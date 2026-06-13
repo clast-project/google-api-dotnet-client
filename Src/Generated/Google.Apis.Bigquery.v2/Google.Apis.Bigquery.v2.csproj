@@ -1,5 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
 
+  <!-- Clast: republished under a Clast.* identity only when -p:Clast=true (see Google.Apis.Core.csproj). -->
+  <PropertyGroup Condition="'$(Clast)' == 'true'">
+    <PackageId>Clast.Google.Apis.Bigquery.v2</PackageId>
+    <AssemblyName>Clast.Google.Apis.Bigquery.v2</AssemblyName>
+    <AssemblyOriginatorKeyFile Condition="'$(ClastKeyPath)' != ''">$(ClastKeyPath)</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+
   <!-- nupkg information -->
   <PropertyGroup>
     <Title>Google.Apis.Bigquery.v2 Client Library</Title>
@@ -49,7 +56,9 @@
 
   <!-- build properties -->
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net462;net6.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net8.0;net10.0</TargetFrameworks>
+    <!-- Clast: required for the System.Text.Json source generator and module initializers. -->
+    <LangVersion>10.0</LangVersion>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\..\..\google.apis.snk</AssemblyOriginatorKeyFile>
     <DebugType>portable</DebugType>
@@ -57,11 +66,36 @@
     <NoWarn>1570,1587,1591</NoWarn>
   </PropertyGroup>
 
+  <!-- Clast: the net10.0 target is validated for trimming/AOT (see Google.Apis.Core.csproj). -->
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net10.0'">
+    <IsAotCompatible>true</IsAotCompatible>
+  </PropertyGroup>
+
   <!-- common dependencies -->
   <ItemGroup>
     <PackageReference Include="ConfigureAwaitChecker.Analyzer" Version="5.0.0" PrivateAssets="All" />
-    <PackageReference Include="Google.Apis" Version="1.74.0" />
-    <PackageReference Include="Google.Apis.Auth" Version="1.74.0" />
+    <!-- Clast: reference the locally-ported (System.Text.Json) support libraries. -->
+    <ProjectReference Include="..\..\Support\Google.Apis\Google.Apis.csproj" />
+    <ProjectReference Include="..\..\Support\Google.Apis.Auth\Google.Apis.Auth.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <PackageReference Include="System.Text.Json" Version="9.0.0" />
+  </ItemGroup>
+
+  <!-- Clast: NuGet metadata stating this is the Clast republish (placed last to override upstream values). -->
+  <PropertyGroup Condition="'$(Clast)' == 'true'">
+    <Title>Clast republish of Google.Apis.Bigquery.v2</Title>
+    <Authors>clast-project</Authors>
+    <Company>clast-project</Company>
+    <Copyright>Clast republish. Based on Google.Apis.Bigquery.v2 (Apache-2.0, Copyright Google LLC).</Copyright>
+    <PackageProjectUrl>https://github.com/clast-project/google-api-dotnet-client</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/clast-project/google-api-dotnet-client</RepositoryUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <Description>Clast republish of the generated Google.Apis.Bigquery.v2 REST client: Newtonsoft.Json replaced with source-generated System.Text.Json, trimming/AOT-compatible, adds a net10.0 target. Namespaces and public type names are unchanged. Independent republish from the clast-project fork — not an official Google package.</Description>
+  </PropertyGroup>
+  <ItemGroup Condition="'$(Clast)' == 'true'">
+    <None Include="..\..\..\CLAST_NUGET.md" Pack="true" PackagePath="README.md" />
   </ItemGroup>
 
 </Project>
