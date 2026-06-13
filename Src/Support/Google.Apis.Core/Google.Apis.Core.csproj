@@ -50,4 +50,20 @@ The Google APIs Core Library contains the Google APIs HTTP layer, JSON support, 
     <Compile Include="../../../third_party/System.Net.Http/StreamReplacingHttpContent.cs" />
   </ItemGroup>
   
+  <!-- Clast: NuGet metadata stating this is the Clast republish. Placed last so it overrides the upstream
+       Title/Description/Authors/URLs. Only applied with -p:Clast=true. -->
+  <PropertyGroup Condition="'$(Clast)' == 'true'">
+    <Title>Clast republish of Google.Apis.Core</Title>
+    <Authors>clast-project</Authors>
+    <Company>clast-project</Company>
+    <Copyright>Clast republish. Based on Google.Apis.Core (Apache-2.0, Copyright Google LLC).</Copyright>
+    <PackageProjectUrl>https://github.com/clast-project/google-api-dotnet-client</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/clast-project/google-api-dotnet-client</RepositoryUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <Description>Clast republish of Google.Apis.Core: Newtonsoft.Json replaced with source-generated System.Text.Json, trimming/AOT-compatible, adds a net10.0 target. Namespaces and public type names are unchanged. Independent republish from the clast-project fork — not an official Google package.</Description>
+  </PropertyGroup>
+  <ItemGroup Condition="'$(Clast)' == 'true'">
+    <None Include="..\..\..\CLAST_NUGET.md" Pack="true" PackagePath="README.md" />
+  </ItemGroup>
+
 </Project>
