@@ -43,6 +43,9 @@ namespace Google.Apis.Tests.Apis.Utils
             private string PrivateProperty { get; set; }
         }
 
+        // The reflective request-parameter discovery these tests exercise is intentionally unavailable on the
+        // AOT target (net10.0); there, request types register descriptors via RequestParameterRegistry instead.
+#if !NET10_0_OR_GREATER
         public static TheoryData<Func<Type, IEnumerable<PropertyInfo>>> Providers { get; } = new TheoryData<Func<Type, IEnumerable<PropertyInfo>>>
         {
            RequestParameterDescriptorProvider.GetUncachedRequestParameterProperties,
@@ -96,5 +99,6 @@ namespace Google.Apis.Tests.Apis.Utils
 
             Assert.NotSame(result1, result2);
         }
+#endif
     }
 }

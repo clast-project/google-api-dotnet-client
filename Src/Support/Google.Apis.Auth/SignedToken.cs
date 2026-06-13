@@ -76,8 +76,8 @@ namespace Google.Apis.Auth
             var encodedPayload = parts[1];
 
             // Decode the three parts of the JWT: header.payload.signature
-            var headerValue = NewtonsoftJsonSerializer.Instance.Deserialize<TJwsHeader>(TokenEncodingHelpers.Base64UrlToString(encodedHeader));
-            var payloadValue = NewtonsoftJsonSerializer.Instance.Deserialize<TJwsPayload>(TokenEncodingHelpers.Base64UrlToString(encodedPayload));
+            var headerValue = SystemTextJsonSerializer.Instance.Deserialize<TJwsHeader>(TokenEncodingHelpers.Base64UrlToString(encodedHeader));
+            var payloadValue = SystemTextJsonSerializer.Instance.Deserialize<TJwsPayload>(TokenEncodingHelpers.Base64UrlToString(encodedPayload));
             var signature = TokenEncodingHelpers.Base64UrlDecode(parts[2]);
 
             return new SignedToken<TJwsHeader, TJwsPayload>(encodedHeader, encodedPayload, headerValue, payloadValue, signature);

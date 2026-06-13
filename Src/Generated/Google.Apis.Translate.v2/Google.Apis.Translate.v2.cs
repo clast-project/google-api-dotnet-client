@@ -1,4 +1,4 @@
-// Copyright 2026 Google LLC
+﻿// Copyright 2026 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -675,7 +675,7 @@ namespace Google.Apis.Translate.v2.Data
         /// The input text upon which to perform language detection. Repeat this parameter to perform language detection
         /// on multiple text inputs.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("q")]
+        [System.Text.Json.Serialization.JsonPropertyName("q")]
         public virtual System.Collections.Generic.IList<string> Q { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -685,7 +685,7 @@ namespace Google.Apis.Translate.v2.Data
     public class DetectionsListResponse : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>A detections contains detection results of several text</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("detections")]
+        [System.Text.Json.Serialization.JsonPropertyName("detections")]
         public virtual System.Collections.Generic.IList<System.Collections.Generic.IList<DetectionsResourceItems>> Detections { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -696,15 +696,15 @@ namespace Google.Apis.Translate.v2.Data
     public class DetectionsResourceItems : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>The confidence of the detection result of this language.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("confidence")]
+        [System.Text.Json.Serialization.JsonPropertyName("confidence")]
         public virtual System.Nullable<float> Confidence { get; set; }
 
         /// <summary>A boolean to indicate is the language detection result reliable.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("isReliable")]
+        [System.Text.Json.Serialization.JsonPropertyName("isReliable")]
         public virtual System.Nullable<bool> IsReliable { get; set; }
 
         /// <summary>The language we detected.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("language")]
+        [System.Text.Json.Serialization.JsonPropertyName("language")]
         public virtual string Language { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -715,7 +715,7 @@ namespace Google.Apis.Translate.v2.Data
     public class GetSupportedLanguagesRequest : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>The language to use to return localized, human readable names of supported languages.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("target")]
+        [System.Text.Json.Serialization.JsonPropertyName("target")]
         public virtual string Target { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -729,7 +729,7 @@ namespace Google.Apis.Translate.v2.Data
         /// list is sorted by the ASCII code point order of the language code. If target parameter is specified, the
         /// list is sorted by the collation order of the language name in the target language.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("languages")]
+        [System.Text.Json.Serialization.JsonPropertyName("languages")]
         public virtual System.Collections.Generic.IList<LanguagesResource> Languages { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -742,11 +742,11 @@ namespace Google.Apis.Translate.v2.Data
         /// Supported language code, generally consisting of its ISO 639-1 identifier. (E.g. 'en', 'ja'). In certain
         /// cases, BCP-47 codes including language + region identifiers are returned (e.g. 'zh-TW' and 'zh-CH')
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("language")]
+        [System.Text.Json.Serialization.JsonPropertyName("language")]
         public virtual string Language { get; set; }
 
         /// <summary>Human readable name of the language localized to the target language.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("name")]
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
         public virtual string Name { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -760,20 +760,20 @@ namespace Google.Apis.Translate.v2.Data
         /// The format of the source text, in either HTML (default) or plain-text. A value of "html" indicates HTML and
         /// a value of "text" indicates plain-text.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("format")]
+        [System.Text.Json.Serialization.JsonPropertyName("format")]
         public virtual string Format { get; set; }
 
         /// <summary>
         /// The `model` type requested for this translation. Valid values are listed in public documentation.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("model")]
+        [System.Text.Json.Serialization.JsonPropertyName("model")]
         public virtual string Model { get; set; }
 
         /// <summary>
         /// The input text to translate. Repeat this parameter to perform translation operations on multiple text
         /// inputs.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("q")]
+        [System.Text.Json.Serialization.JsonPropertyName("q")]
         public virtual System.Collections.Generic.IList<string> Q { get; set; }
 
         /// <summary>
@@ -781,14 +781,14 @@ namespace Google.Apis.Translate.v2.Data
         /// language is not specified, the API will attempt to identify the source language automatically and return it
         /// within the response.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("source")]
+        [System.Text.Json.Serialization.JsonPropertyName("source")]
         public virtual string Source { get; set; }
 
         /// <summary>
         /// The language to use for translation of the input text, set to one of the language codes listed in Language
         /// Support.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("target")]
+        [System.Text.Json.Serialization.JsonPropertyName("target")]
         public virtual string Target { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -799,7 +799,7 @@ namespace Google.Apis.Translate.v2.Data
     public class TranslationsListResponse : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>Translations contains list of translation results of given text</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("translations")]
+        [System.Text.Json.Serialization.JsonPropertyName("translations")]
         public virtual System.Collections.Generic.IList<TranslationsResource> Translations { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -813,18 +813,18 @@ namespace Google.Apis.Translate.v2.Data
         /// the initial request. If the source language was passed, auto-detection of the language will not occur and
         /// this field will be empty.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("detectedSourceLanguage")]
+        [System.Text.Json.Serialization.JsonPropertyName("detectedSourceLanguage")]
         public virtual string DetectedSourceLanguage { get; set; }
 
         /// <summary>
         /// The `model` type used for this translation. Valid values are listed in public documentation. Can be
         /// different from requested `model`. Present only if specific model type was explicitly requested.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("model")]
+        [System.Text.Json.Serialization.JsonPropertyName("model")]
         public virtual string Model { get; set; }
 
         /// <summary>Text translated into the target language.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("translatedText")]
+        [System.Text.Json.Serialization.JsonPropertyName("translatedText")]
         public virtual string TranslatedText { get; set; }
 
         /// <summary>The ETag of the item.</summary>

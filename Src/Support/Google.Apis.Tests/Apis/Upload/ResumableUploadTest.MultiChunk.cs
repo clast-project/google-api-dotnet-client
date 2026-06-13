@@ -578,7 +578,7 @@ namespace Google.Apis.Tests.Apis.Upload
         }
 
         /// <summary>A mock request object.</summary>
-        private class TestRequest : IEquatable<TestRequest>
+        internal class TestRequest : IEquatable<TestRequest>
         {
             public string Name { get; set; }
             public string Description { get; set; }
@@ -596,7 +596,7 @@ namespace Google.Apis.Tests.Apis.Upload
         }
 
         /// <summary>A mock response object.</summary>
-        private class TestResponse : IEquatable<TestResponse>
+        internal class TestResponse : IEquatable<TestResponse>
         {
             public int Id { get; set; }
             public string Name { get; set; }
@@ -632,7 +632,7 @@ namespace Google.Apis.Tests.Apis.Upload
             protected override async Task<IEnumerable<byte>> HandleCall(HttpListenerRequest request, HttpListenerResponse response)
             {
                 var ret = await base.HandleCall(request, response);
-                var serializer = new NewtonsoftJsonSerializer();
+                var serializer = SystemTextJsonSerializer.Instance;
                 if (Requests.Count == 1)
                 {
                     Request = serializer.Deserialize<TRequest>(request.InputStream);

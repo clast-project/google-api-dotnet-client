@@ -1,4 +1,4 @@
-/*
+﻿/*
 Copyright 2025 Google Inc
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -98,7 +98,7 @@ public static class CredentialFactory
         JsonCredentialParameters jsonCredentialParameters;
         try
         {
-            jsonCredentialParameters = await NewtonsoftJsonSerializer.Instance.DeserializeAsync<JsonCredentialParameters>(stream, cancellationToken).ConfigureAwait(false);
+            jsonCredentialParameters = await SystemTextJsonSerializer.Instance.DeserializeAsync<JsonCredentialParameters>(stream, cancellationToken).ConfigureAwait(false);
         }
         catch (Exception e)
         {
@@ -119,7 +119,7 @@ public static class CredentialFactory
         JsonCredentialParameters jsonCredentialParameters;
         try
         {
-            jsonCredentialParameters = await NewtonsoftJsonSerializer.Instance.DeserializeAsync<JsonCredentialParameters>(stream, cancellationToken).ConfigureAwait(false);
+            jsonCredentialParameters = await SystemTextJsonSerializer.Instance.DeserializeAsync<JsonCredentialParameters>(stream, cancellationToken).ConfigureAwait(false);
         }
         catch (Exception e)
         {
@@ -139,7 +139,7 @@ public static class CredentialFactory
         JsonCredentialParameters jsonCredentialParameters;
         try
         {
-            jsonCredentialParameters = NewtonsoftJsonSerializer.Instance.Deserialize<JsonCredentialParameters>(stream);
+            jsonCredentialParameters = SystemTextJsonSerializer.Instance.Deserialize<JsonCredentialParameters>(stream);
         }
         catch (Exception e)
         {
@@ -159,7 +159,7 @@ public static class CredentialFactory
         JsonCredentialParameters jsonCredentialParameters;
         try
         {
-            jsonCredentialParameters = NewtonsoftJsonSerializer.Instance.Deserialize<JsonCredentialParameters>(stream);
+            jsonCredentialParameters = SystemTextJsonSerializer.Instance.Deserialize<JsonCredentialParameters>(stream);
         }
         catch (Exception e)
         {
@@ -179,7 +179,7 @@ public static class CredentialFactory
         JsonCredentialParameters jsonCredentialParameters;
         try
         {
-            jsonCredentialParameters = NewtonsoftJsonSerializer.Instance.Deserialize<JsonCredentialParameters>(json);
+            jsonCredentialParameters = SystemTextJsonSerializer.Instance.Deserialize<JsonCredentialParameters>(json);
         }
         catch (Exception e)
         {
@@ -199,7 +199,7 @@ public static class CredentialFactory
         JsonCredentialParameters jsonCredentialParameters;
         try
         {
-            jsonCredentialParameters = NewtonsoftJsonSerializer.Instance.Deserialize<JsonCredentialParameters>(json);
+            jsonCredentialParameters = SystemTextJsonSerializer.Instance.Deserialize<JsonCredentialParameters>(json);
         }
         catch (Exception e)
         {

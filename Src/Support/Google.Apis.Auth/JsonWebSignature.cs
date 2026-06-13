@@ -51,7 +51,7 @@ namespace Google.Apis.Auth
         /// <exception cref="InvalidJwtException">If the token is invalid or expired.</exception>
         /// <typeparam name="TPayload">The type of the payload to return, so user code can validate
         /// additional claims. Should extend <see cref="Payload"/>. Payload information will be deserialized
-        /// using <see cref="NewtonsoftJsonSerializer.Instance"/>.</typeparam>
+        /// using <see cref="SystemTextJsonSerializer.Instance"/>.</typeparam>
         public async static Task<TPayload> VerifySignedTokenAsync<TPayload>(
             string signedJwt, SignedTokenVerificationOptions options = null, CancellationToken cancellationToken = default)
             where TPayload : Payload
@@ -70,7 +70,7 @@ namespace Google.Apis.Auth
             /// Gets or set the algorithm header parameter that identifies the cryptographic algorithm used to secure 
             /// the JWS or <c>null</c>.
             /// </summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("alg")]
+            [System.Text.Json.Serialization.JsonPropertyName("alg")]
             public string Algorithm { get; set; }
 
             /// <summary>
@@ -78,21 +78,21 @@ namespace Google.Apis.Auth
             /// for a set of JSON-encoded public keys, one of which corresponds to the key that was used to digitally 
             /// sign the JWS or <c>null</c>.
             /// </summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("jku")]
+            [System.Text.Json.Serialization.JsonPropertyName("jku")]
             public string JwkUrl { get; set; }
 
             /// <summary>
             /// Gets or sets JSON Web Key header parameter that is a public key that corresponds to the key used to 
             /// digitally sign the JWS or <c>null</c>.
             /// </summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("jwk")]
+            [System.Text.Json.Serialization.JsonPropertyName("jwk")]
             public string Jwk { get; set; }
 
             /// <summary>
             /// Gets or sets key ID header parameter that is a hint indicating which specific key owned by the signer 
             /// should be used to validate the digital signature or <c>null</c>.
             /// </summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("kid")]
+            [System.Text.Json.Serialization.JsonPropertyName("kid")]
             public string KeyId { get; set; }
 
             /// <summary>
@@ -100,7 +100,7 @@ namespace Google.Apis.Auth
             /// public key certificate or certificate chain corresponding to the key used to digitally sign the JWS or 
             /// <c>null</c>.
             /// </summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("x5u")]
+            [System.Text.Json.Serialization.JsonPropertyName("x5u")]
             public string X509Url { get; set; }
 
             /// <summary>
@@ -108,21 +108,21 @@ namespace Google.Apis.Auth
             /// thumb-print (a.k.a. digest) of the DER encoding of an X.509 certificate that can be used to match the 
             /// certificate or <c>null</c>.
             /// </summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("x5t")]
+            [System.Text.Json.Serialization.JsonPropertyName("x5t")]
             public string X509Thumbprint { get; set; }
 
             /// <summary>
             /// Gets or sets X.509 certificate chain header parameter contains the X.509 public key certificate or 
             /// certificate chain corresponding to the key used to digitally sign the JWS or <c>null</c>.
             /// </summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("x5c")]
+            [System.Text.Json.Serialization.JsonPropertyName("x5c")]
             public string X509Certificate { get; set; }
 
             /// <summary>
             /// Gets or sets array listing the header parameter names that define extensions that are used in the JWS 
             /// header that MUST be understood and processed or <c>null</c>.
             /// </summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("crit")]
+            [System.Text.Json.Serialization.JsonPropertyName("crit")]
             public IList<string> critical { get; set; }
         }
 

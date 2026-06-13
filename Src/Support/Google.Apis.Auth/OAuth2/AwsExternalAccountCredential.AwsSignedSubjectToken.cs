@@ -15,7 +15,7 @@ limitations under the License.
 */
 
 using Google.Apis.Util;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -42,16 +42,16 @@ namespace Google.Apis.Auth.OAuth2
             private const string AwsRequestType = "aws4_request";
             private const string AwsSha256Designation = "AWS4-HMAC-SHA256";
 
-            [JsonProperty("url")]
+            [JsonPropertyName("url")]
             public string Url { get; set; }
 
-            [JsonProperty("method")]
+            [JsonPropertyName("method")]
             public string HttpMethod { get; set; }
 
-            [JsonProperty("body")]
+            [JsonPropertyName("body")]
             public string Body { get; set; }
 
-            [JsonProperty("headers")]
+            [JsonPropertyName("headers")]
             public AwsSignedSubjectTokenHeader[] Headers { get; set; }
 
             public AwsSignedSubjectToken() { }
@@ -66,10 +66,10 @@ namespace Google.Apis.Auth.OAuth2
 
             public sealed class AwsSignedSubjectTokenHeader
             {
-                [JsonProperty("key")]
+                [JsonPropertyName("key")]
                 public string Key { get; set; }
 
-                [JsonProperty("value")]
+                [JsonPropertyName("value")]
                 public string Value { get; set; }
 
                 public AwsSignedSubjectTokenHeader() { }

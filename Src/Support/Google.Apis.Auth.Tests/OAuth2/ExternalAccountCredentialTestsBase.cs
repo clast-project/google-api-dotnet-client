@@ -18,6 +18,7 @@ using Google.Apis.Auth.OAuth2;
 using Google.Apis.Auth.OAuth2.Responses;
 using Google.Apis.Json;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -99,10 +100,10 @@ namespace Google.Apis.Auth.Tests.OAuth2
 
             Assert.Contains(FakeScope, contentText);
 
-            return await BuildStringContentResponseFromJson(new
+            return await BuildStringContentResponseFromJson(new Dictionary<string, string>
             {
-                accessToken = FakeImpersonatedAccessToken,
-                expireTime = "2020-05-13T16:00:00.045123456Z"
+                ["accessToken"] = FakeImpersonatedAccessToken,
+                ["expireTime"] = "2020-05-13T16:00:00.045123456Z"
             });
         }
 
@@ -130,7 +131,7 @@ namespace Google.Apis.Auth.Tests.OAuth2
             });
 
         protected static Task<HttpResponseMessage> BuildStringContentResponseFromJson(object accessToken) =>
-            BuildStringContentResponse(NewtonsoftJsonSerializer.Instance.Serialize(accessToken));
+            BuildStringContentResponse(SystemTextJsonSerializer.Instance.Serialize(accessToken));
 
         protected static Task<HttpResponseMessage> BuildStringContentResponse(string content)
         {

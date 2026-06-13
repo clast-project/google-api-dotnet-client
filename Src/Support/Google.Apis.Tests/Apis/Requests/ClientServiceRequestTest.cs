@@ -47,15 +47,15 @@ namespace Google.Apis.Tests.Apis.Requests
         }
 
         /// <summary>A mock response class.</summary>
-        class MockResponse : IDirectResponseSchema
+        internal class MockResponse : IDirectResponseSchema
         {
-            [Newtonsoft.Json.JsonPropertyAttribute("etag")]
+            [System.Text.Json.Serialization.JsonPropertyName("etag")]
             public string ETag { get; set; }
 
-            [Newtonsoft.Json.JsonPropertyAttribute("name")]
+            [System.Text.Json.Serialization.JsonPropertyName("name")]
             public string Name { get; set; }
 
-            [Newtonsoft.Json.JsonPropertyAttribute("id")]
+            [System.Text.Json.Serialization.JsonPropertyName("id")]
             public int Id { get; set; }
 
             public override bool Equals(object obj)
@@ -71,12 +71,12 @@ namespace Google.Apis.Tests.Apis.Requests
         }
 
         /// <summary>A mock request class.</summary>
-        class MockRequest : IDirectResponseSchema
+        internal class MockRequest : IDirectResponseSchema
         {
-            [Newtonsoft.Json.JsonPropertyAttribute("etag")]
+            [System.Text.Json.Serialization.JsonPropertyName("etag")]
             public string ETag { get; set; }
 
-            [Newtonsoft.Json.JsonPropertyAttribute("long_name")]
+            [System.Text.Json.Serialization.JsonPropertyName("long_name")]
             public string Name { get; set; }
 
             public override bool Equals(object obj)

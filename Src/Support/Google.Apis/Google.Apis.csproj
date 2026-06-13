@@ -4,7 +4,19 @@
 
   <!-- build configuration -->
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net462;net6.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net8.0;net10.0</TargetFrameworks>
+  </PropertyGroup>
+
+  <!-- AOT: the net10.0 target is validated for trimming/AOT (see Google.Apis.Core.csproj). -->
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net10.0'">
+    <IsAotCompatible>true</IsAotCompatible>
+  </PropertyGroup>
+
+  <!-- Clast: republished under a Clast.* identity only when -p:Clast=true (see Google.Apis.Core.csproj). -->
+  <PropertyGroup Condition="'$(Clast)' == 'true'">
+    <PackageId>Clast.Google.Apis</PackageId>
+    <AssemblyName>Clast.Google.Apis</AssemblyName>
+    <AssemblyOriginatorKeyFile Condition="'$(ClastKeyPath)' != ''">$(ClastKeyPath)</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <!-- nupkg information -->

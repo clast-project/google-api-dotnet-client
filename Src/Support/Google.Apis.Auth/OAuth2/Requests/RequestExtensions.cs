@@ -39,7 +39,7 @@ namespace Google.Apis.Auth.OAuth2.Requests
         {
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, url)
             {
-                Content = new StringContent(NewtonsoftJsonSerializer.Instance.Serialize(request), Encoding.UTF8, "application/json")
+                Content = new StringContent(SystemTextJsonSerializer.Instance.Serialize(request), Encoding.UTF8, "application/json")
             };
 
             return await httpClient.SendAsync(httpRequest, cancellationToken).ConfigureAwait(false);
@@ -56,14 +56,14 @@ namespace Google.Apis.Auth.OAuth2.Requests
             if (!response.IsSuccessStatusCode)
             {
                 var serviceHost = new Uri(url).Host;
-                var error = await response.DeserializeErrorAsync(serviceHost, NewtonsoftJsonSerializer.Instance).ConfigureAwait(false);
+                var error = await response.DeserializeErrorAsync(serviceHost, SystemTextJsonSerializer.Instance).ConfigureAwait(false);
                 throw new GoogleApiException(serviceHost)
                 {
                     Error = error,
                     HttpStatusCode = response.StatusCode
                 };
             }
-            return await NewtonsoftJsonSerializer.Instance.DeserializeAsync<TResponse>(
+            return await SystemTextJsonSerializer.Instance.DeserializeAsync<TResponse>(
                 await response.Content.ReadAsStreamAsync().ConfigureAwait(false), cancellationToken).ConfigureAwait(false);
         }
 

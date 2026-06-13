@@ -19,7 +19,8 @@ using Google.Apis.Requests;
 using Google.Apis.Services;
 using Google.Apis.Tests.Mocks;
 using Google.Apis.Util;
-using Newtonsoft.Json;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -61,12 +62,12 @@ Content-Length:  43
 --BOUNDARY--
 ");
         /// <summary>A mock response class.</summary>
-        class MockResponse : IDirectResponseSchema
+        internal class MockResponse : IDirectResponseSchema
         {
-            [Newtonsoft.Json.JsonPropertyAttribute("etag_key")]
+            [System.Text.Json.Serialization.JsonPropertyName("etag_key")]
             public string ETag { get; set; }
 
-            [Newtonsoft.Json.JsonPropertyAttribute("id_key")]
+            [System.Text.Json.Serialization.JsonPropertyName("id_key")]
             public Nullable<int> Id { get; set; }
 
             public override bool Equals(object obj)
@@ -82,12 +83,12 @@ Content-Length:  43
         }
 
         /// <summary>A mock request class.</summary>
-        class MockRequest : IDirectResponseSchema
+        internal class MockRequest : IDirectResponseSchema
         {
-            [Newtonsoft.Json.JsonPropertyAttribute("etag_key")]
+            [System.Text.Json.Serialization.JsonPropertyName("etag_key")]
             public string ETag { get; set; }
 
-            [Newtonsoft.Json.JsonPropertyAttribute("name_key")]
+            [System.Text.Json.Serialization.JsonPropertyName("name_key")]
             public string Name { get; set; }
 
             public override bool Equals(object obj)

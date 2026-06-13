@@ -97,7 +97,7 @@ namespace Google.Apis.Util.Store
                 throw new ArgumentException("Key MUST have a value");
             }
 
-            var serialized = NewtonsoftJsonSerializer.Instance.Serialize(value);
+            var serialized = SystemTextJsonSerializer.Instance.Serialize(value);
             var filePath = Path.Combine(folderPath, GenerateStoredKey(key, typeof(T)));
             File.WriteAllText(filePath, serialized);
             return CompletedTask;
@@ -144,7 +144,7 @@ namespace Google.Apis.Util.Store
                 try
                 {
                     var obj = File.ReadAllText(filePath);
-                    tcs.SetResult(NewtonsoftJsonSerializer.Instance.Deserialize<T>(obj));
+                    tcs.SetResult(SystemTextJsonSerializer.Instance.Deserialize<T>(obj));
                 }
                 catch (Exception ex)
                 {

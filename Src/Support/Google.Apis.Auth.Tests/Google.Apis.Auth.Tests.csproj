@@ -1,8 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
 
   <PropertyGroup>
-    <TargetFrameworks>net462;net8.0</TargetFrameworks>
-    <TargetFrameworks Condition=" '$(OS)' != 'Windows_NT' ">net8.0</TargetFrameworks>
+    <!-- net472 runs the netstandard2.0 build on .NET Framework (net472 has ECParameters, which net462 lacked). -->
+    <TargetFrameworks>net472;net8.0;net10.0</TargetFrameworks>
+    <!-- .NET Framework can't be built/run off-Windows; on macOS/Linux build only the .NET (Core) targets. -->
+    <TargetFrameworks Condition="'$(OS)' != 'Windows_NT'">net8.0;net10.0</TargetFrameworks>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\..\..\google.apis.snk</AssemblyOriginatorKeyFile>
     <IsPackable>false</IsPackable>
@@ -11,6 +13,8 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.6.0" />
+    <!-- Direct reference so the System.Text.Json source generator is available for the test JsonSerializerContext. -->
+    <PackageReference Include="System.Text.Json" Version="9.0.0" />
     <PackageReference Include="xunit" Version="2.9.3" />
     <PackageReference Include="Xunit.Combinatorial" Version="1.7.31" />
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.3" />
@@ -23,7 +27,7 @@
     <PackageReference Include="BouncyCastle.Cryptography" Version="2.6.2" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)'=='net462'">
+  <ItemGroup Condition="'$(TargetFramework)'=='net472'">
     <Reference Include="System.Net.Http" />
   </ItemGroup>
 

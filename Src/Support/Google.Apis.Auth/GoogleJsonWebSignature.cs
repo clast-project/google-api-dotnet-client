@@ -233,32 +233,32 @@ namespace Google.Apis.Auth
             /// <summary>
             /// A space-delimited list of the permissions the application requests or <c>null</c>.
             /// </summary>
-            [Newtonsoft.Json.JsonProperty("scope")]
+            [System.Text.Json.Serialization.JsonPropertyName("scope")]
             public string Scope { get; set; }
 
             /// <summary>
             /// The email address of the user for which the application is requesting delegated access.
             /// </summary>
-            [Newtonsoft.Json.JsonProperty("prn")]
+            [System.Text.Json.Serialization.JsonPropertyName("prn")]
             public string Prn { get; set; }
 
             /// <summary>
             /// The hosted GSuite domain of the user. Provided only if the user belongs to a hosted domain.
             /// </summary>
-            [Newtonsoft.Json.JsonProperty("hd")]
+            [System.Text.Json.Serialization.JsonPropertyName("hd")]
             public string HostedDomain { get; set; }
 
             /// <summary>
             /// The user's email address. This may not be unique and is not suitable for use as a primary key.
             /// Provided only if your scope included the string "email".
             /// </summary>
-            [Newtonsoft.Json.JsonProperty("email")]
+            [System.Text.Json.Serialization.JsonPropertyName("email")]
             public string Email { get; set; }
 
             /// <summary>
             /// True if the user's e-mail address has been verified; otherwise false.
             /// </summary>
-            [Newtonsoft.Json.JsonProperty("email_verified")]
+            [System.Text.Json.Serialization.JsonPropertyName("email_verified")]
             public bool EmailVerified { get; set; }
 
             /// <summary>
@@ -268,14 +268,14 @@ namespace Google.Apis.Auth
             /// When name claims are present, you can use them to update your app's user records.
             /// Note that this claim is never guaranteed to be present.
             /// </summary>
-            [Newtonsoft.Json.JsonProperty("name")]
+            [System.Text.Json.Serialization.JsonPropertyName("name")]
             public string Name { get; set; }
 
             /// <summary>
             /// Given name(s) or first name(s) of the End-User. Note that in some cultures, people can have multiple given names;
             /// all can be present, with the names being separated by space characters.
             /// </summary>
-            [Newtonsoft.Json.JsonProperty("given_name")]
+            [System.Text.Json.Serialization.JsonPropertyName("given_name")]
             public string GivenName { get; set; }
 
             /// <summary>
@@ -283,7 +283,7 @@ namespace Google.Apis.Auth
             /// people can have multiple family names or no family name;
             /// all can be present, with the names being separated by space characters.
             /// </summary>
-            [Newtonsoft.Json.JsonProperty("family_name")]
+            [System.Text.Json.Serialization.JsonPropertyName("family_name")]
             public string FamilyName { get; set; }
 
             /// <summary>
@@ -293,7 +293,7 @@ namespace Google.Apis.Auth
             /// When picture claims are present, you can use them to update your app's user records.
             /// Note that this claim is never guaranteed to be present.
             /// </summary>
-            [Newtonsoft.Json.JsonProperty("picture")]
+            [System.Text.Json.Serialization.JsonPropertyName("picture")]
             public string Picture { get; set; }
 
             /// <summary>
@@ -302,7 +302,7 @@ namespace Google.Apis.Auth
             /// ISO 3166-1 Alpha-2 [ISO3166‑1] country code in uppercase, separated by a dash.
             /// For example, en-US or fr-CA.
             /// </summary>
-            [Newtonsoft.Json.JsonProperty("locale")]
+            [System.Text.Json.Serialization.JsonPropertyName("locale")]
             public string Locale { get; set; }
         }
     }

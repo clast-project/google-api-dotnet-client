@@ -16,7 +16,7 @@ limitations under the License.
 
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Util;
-using Newtonsoft.Json.Linq;
+using System.Text.Json.Nodes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -109,7 +109,7 @@ namespace Google.Apis.Auth
         }
 
         // Internal only for testing purposes.
-        internal static RSA FromKeyToRsa(JToken key)
+        internal static RSA FromKeyToRsa(JsonNode key)
         {
             var rsa = RSA.Create();
             rsa.ImportParameters(new RSAParameters
@@ -137,7 +137,7 @@ namespace Google.Apis.Auth
             }
             throw new InvalidJwtException("JWT invalid, unable to verify signature.");
 
-            static ECDsa FromKeyToECDsa(JToken key)
+            static ECDsa FromKeyToECDsa(JsonNode key)
             {
                 if ((string)key["kty"] != "EC" && (string)key["crv"] != "P-256")
                 {
@@ -179,7 +179,7 @@ namespace Google.Apis.Auth
         private static async Task<IEnumerable<AsymmetricAlgorithm>> GetCertificatesAsync(
             SignedTokenVerificationOptions options,
             string defaultCertificateLocation,
-            Func<JToken, AsymmetricAlgorithm> certificateFactory,
+            Func<JsonNode, AsymmetricAlgorithm> certificateFactory,
             CancellationToken cancellationToken) =>
             await options.CertificateCache.GetCertificatesAsync(
                 options.CertificatesUrl ?? defaultCertificateLocation,
@@ -211,7 +211,7 @@ namespace Google.Apis.Auth
             protected CertificateCacheBase(IClock clock) =>
                 _clock = clock ?? SystemClock.Default;
 
-            public async Task<IEnumerable<AsymmetricAlgorithm>> GetCertificatesAsync(string certificatesLocation, Func<JToken, AsymmetricAlgorithm> certificateFactory, bool forceCertificateRefresh, CancellationToken cancellationToken)
+            public async Task<IEnumerable<AsymmetricAlgorithm>> GetCertificatesAsync(string certificatesLocation, Func<JsonNode, AsymmetricAlgorithm> certificateFactory, bool forceCertificateRefresh, CancellationToken cancellationToken)
             {
                 certificatesLocation.ThrowIfNullOrEmpty(nameof(certificatesLocation));
                 certificateFactory.ThrowIfNull(nameof(certificateFactory));
@@ -224,7 +224,7 @@ namespace Google.Apis.Auth
                         cachedCerts.Expired(_clock.UtcNow))
                     {
                         string certificatesJson = await FetchCertificatesAsync(certificatesLocation).ConfigureAwait(false);
-                        IEnumerable<JToken> jwks = JToken.Parse(certificatesJson)["keys"]?.AsEnumerable() 
+                        IEnumerable<JsonNode> jwks = JsonNode.Parse(certificatesJson)?["keys"]?.AsArray() 
                             ?? throw new ArgumentException($"Only JWK formatted keys are currently supported. No 'keys' element was found in {certificatesLocation}");
                         if (!jwks.Any())
                         {

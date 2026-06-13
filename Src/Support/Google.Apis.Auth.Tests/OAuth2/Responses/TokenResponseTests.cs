@@ -19,7 +19,6 @@ using Google.Apis.Auth.OAuth2.Responses;
 using Google.Apis.Json;
 using Google.Apis.Logging;
 using Google.Apis.Tests.Mocks;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -49,13 +48,13 @@ namespace Google.Apis.Auth.Tests.OAuth2.Responses
         [Fact]
         public void TestSerializer()
         {
-            var tokenResponse = JsonConvert.DeserializeObject<TokenResponse>(
+            var tokenResponse = SystemTextJsonSerializer.Instance.Deserialize<TokenResponse>(
                 @"{
-                 'access_token': '123',
-                 'id_token': '321',
-                 'expires_in': 1000,
-                 'refresh_token': '456',
-                 'scope': '789'
+                 ""access_token"": ""123"",
+                 ""id_token"": ""321"",
+                 ""expires_in"": 1000,
+                 ""refresh_token"": ""456"",
+                 ""scope"": ""789""
                 }");
             Assert.Equal("123", tokenResponse.AccessToken);
             Assert.Equal("321", tokenResponse.IdToken);
@@ -144,7 +143,7 @@ namespace Google.Apis.Auth.Tests.OAuth2.Responses
                 // because that's the recommendation.
                 IssuedUtc = new DateTime(2000, 01, 01, 0, 0, 0, DateTimeKind.Utc),
             };
-            var serializedToken = NewtonsoftJsonSerializer.Instance.Serialize(sentToken);
+            var serializedToken = SystemTextJsonSerializer.Instance.Serialize(sentToken);
             HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK)
             {
                 Content = new StringContent(serializedToken)
@@ -220,7 +219,7 @@ namespace Google.Apis.Auth.Tests.OAuth2.Responses
                 IdToken = idToken,
                 AccessToken = accessToken,
             };
-            var serializedToken = NewtonsoftJsonSerializer.Instance.Serialize(sentToken);
+            var serializedToken = SystemTextJsonSerializer.Instance.Serialize(sentToken);
             HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK)
             {
                 Content = new StringContent(serializedToken)
@@ -242,7 +241,7 @@ namespace Google.Apis.Auth.Tests.OAuth2.Responses
             {
                 IdToken = OidcTokenResponseSuccessMessageHandler.FirstCallToken
             };
-            var serializedToken = NewtonsoftJsonSerializer.Instance.Serialize(sentToken);
+            var serializedToken = SystemTextJsonSerializer.Instance.Serialize(sentToken);
             HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK)
             {
                 Content = new StringContent(serializedToken)
@@ -258,9 +257,9 @@ namespace Google.Apis.Auth.Tests.OAuth2.Responses
         [Fact]
         public void DeserializeFromJustIssued()
         {
-            var tokenResponse = JsonConvert.DeserializeObject<TokenResponse>(
+            var tokenResponse = SystemTextJsonSerializer.Instance.Deserialize<TokenResponse>(
                 @"{
-                 'Issued': '2016-12-14T09:00:00+05'
+                 ""Issued"": ""2016-12-14T09:00:00+05""
                 }");
             // The Issued value will depend on the local time zone; it may not be +5. But the UTC value
             // should be correct... unless it can't be due to a time zone transition, but there's
@@ -271,10 +270,10 @@ namespace Google.Apis.Auth.Tests.OAuth2.Responses
         [Fact]
         public void DeserializeFromDifferentIssuedAndIssuedUtc()
         {
-            var tokenResponse = JsonConvert.DeserializeObject<TokenResponse>(
+            var tokenResponse = SystemTextJsonSerializer.Instance.Deserialize<TokenResponse>(
                 @"{
-                 'Issued': '2016-06-14T09:00:00+05',
-                 'IssuedUtc': '2016-12-25T08:00:00Z'
+                 ""Issued"": ""2016-06-14T09:00:00+05"",
+                 ""IssuedUtc"": ""2016-12-25T08:00:00Z""
                 }");
             // Issued will be set first, then IssuedUtc - there's only one underlying field, so IssuedUtc wins.
             // That's the desirable behavior, as it's system-independent

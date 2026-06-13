@@ -1,4 +1,4 @@
-/*
+﻿/*
 Copyright 2021 Google LLC
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 using System.Collections.Generic;
 
 namespace Google.Apis.Auth.OAuth2.Requests
@@ -27,14 +27,14 @@ namespace Google.Apis.Auth.OAuth2.Requests
         /// <summary>
         /// Gets or sets the scopes to request during the authorization grant.
         /// </summary>
-        [JsonProperty("scope")]
+        [JsonPropertyName("scope")]
         public IEnumerable<string> Scopes { get; set; }
 
         /// <summary>
         /// Gets or sets how long the delegated credential should be valid. Its format is the number of
         /// seconds followed by a letter "s", for example "300s".
         /// </summary>
-        [JsonProperty("lifetime")]
+        [JsonPropertyName("lifetime")]
         public string Lifetime { get; set; }
     }
 }

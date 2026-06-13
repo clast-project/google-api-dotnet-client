@@ -133,7 +133,7 @@ namespace Google.Apis.Auth.OAuth2
                 return responseText;
             }
 
-            var jsonResponse = NewtonsoftJsonSerializer.Instance.Deserialize<Dictionary<string, string>>(responseText);
+            var jsonResponse = SystemTextJsonSerializer.Instance.Deserialize<Dictionary<string, string>>(responseText);
 
             return jsonResponse[SubjectTokenJsonFieldName];
         }

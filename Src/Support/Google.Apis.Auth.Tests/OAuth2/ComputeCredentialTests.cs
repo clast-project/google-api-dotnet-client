@@ -20,6 +20,7 @@ using Google.Apis.Http;
 using Google.Apis.Json;
 using Google.Apis.Tests.Mocks;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -433,7 +434,7 @@ namespace Google.Apis.Auth.Tests.OAuth2
         private ComputeCredential.Initializer GetInitializerForSignBlob()
         {
             var clock = new MockClock(new DateTime(2020, 5, 21, 9, 20, 0, 0, DateTimeKind.Utc));
-            var response = NewtonsoftJsonSerializer.Instance.Serialize(new { keyId = "1", signedBlob = "Zm9v" });
+            var response = SystemTextJsonSerializer.Instance.Serialize(new Dictionary<string, string> { ["keyId"] = "1", ["signedBlob"] = "Zm9v" });
             var fakeAccessToken = "fake_access_token";
             var fakeServiceAccountEmail = "fake-service-account@fake-instance.com";
             var fakeUniverseDomain = "fake.universe.domain.com";
@@ -464,7 +465,7 @@ namespace Google.Apis.Auth.Tests.OAuth2
                 Assert.Equal($"http://will.be.ignored/?scopes={GoogleAuthConsts.IamScope}", request.RequestUri.ToString());
                 return Task.FromResult(new HttpResponseMessage(HttpStatusCode.OK)
                 {
-                    Content = new StringContent(NewtonsoftJsonSerializer.Instance.Serialize(new TokenResponse
+                    Content = new StringContent(SystemTextJsonSerializer.Instance.Serialize(new TokenResponse
                     {
                         AccessToken = fakeAccessToken,
                         ExpiresInSeconds = 24 * 60 * 60, //One day in seconds

@@ -368,7 +368,7 @@ namespace Google.Apis.Auth.Tests.OAuth2.Flows
                 if (Error)
                 {
                     response.StatusCode = System.Net.HttpStatusCode.BadRequest;
-                    var serializedObject = NewtonsoftJsonSerializer.Instance.Serialize(new TokenErrorResponse
+                    var serializedObject = SystemTextJsonSerializer.Instance.Serialize(new TokenErrorResponse
                     {
                         Error = "error",
                         ErrorDescription = "desc",
@@ -378,7 +378,7 @@ namespace Google.Apis.Auth.Tests.OAuth2.Flows
                 }
                 else
                 {
-                    var serializedObject = NewtonsoftJsonSerializer.Instance.Serialize(new TokenResponse
+                    var serializedObject = SystemTextJsonSerializer.Instance.Serialize(new TokenResponse
                     {
                         AccessToken = "a",
                         RefreshToken = "r",

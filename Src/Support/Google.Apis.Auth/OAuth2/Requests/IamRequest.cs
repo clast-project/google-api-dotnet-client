@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 using System.Collections.Generic;
 
 namespace Google.Apis.Auth.OAuth2.Requests
@@ -24,7 +24,7 @@ namespace Google.Apis.Auth.OAuth2.Requests
         /// <summary>
         /// Gets or sets the chained list of delegate service accounts.
         /// </summary>
-        [JsonProperty("delegates")]
+        [JsonPropertyName("delegates")]
         public IEnumerable<string> DelegateAccounts { get; set; }
     }
 }

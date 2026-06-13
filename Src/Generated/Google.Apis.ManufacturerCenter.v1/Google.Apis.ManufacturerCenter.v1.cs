@@ -1,4 +1,4 @@
-// Copyright 2026 Google LLC
+﻿// Copyright 2026 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -1063,122 +1063,122 @@ namespace Google.Apis.ManufacturerCenter.v1.Data
         /// The additional images of the product. For more information, see
         /// https://support.google.com/manufacturers/answer/6124116#addlimage.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("additionalImageLink")]
+        [System.Text.Json.Serialization.JsonPropertyName("additionalImageLink")]
         public virtual System.Collections.Generic.IList<Image> AdditionalImageLink { get; set; }
 
         /// <summary>
         /// The target age group of the product. For more information, see
         /// https://support.google.com/manufacturers/answer/6124116#agegroup.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("ageGroup")]
+        [System.Text.Json.Serialization.JsonPropertyName("ageGroup")]
         public virtual string AgeGroup { get; set; }
 
         /// <summary>
         /// The brand name of the product. For more information, see
         /// https://support.google.com/manufacturers/answer/6124116#brand.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("brand")]
+        [System.Text.Json.Serialization.JsonPropertyName("brand")]
         public virtual string Brand { get; set; }
 
         /// <summary>
         /// The capacity of the product. For more information, see
         /// https://support.google.com/manufacturers/answer/6124116#capacity.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("capacity")]
+        [System.Text.Json.Serialization.JsonPropertyName("capacity")]
         public virtual Capacity Capacity { get; set; }
 
         /// <summary>Optional. List of certifications claimed by this product.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("certification")]
+        [System.Text.Json.Serialization.JsonPropertyName("certification")]
         public virtual System.Collections.Generic.IList<GoogleShoppingManufacturersV1ProductCertification> Certification { get; set; }
 
         /// <summary>
         /// The color of the product. For more information, see
         /// https://support.google.com/manufacturers/answer/6124116#color.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("color")]
+        [System.Text.Json.Serialization.JsonPropertyName("color")]
         public virtual string Color { get; set; }
 
         /// <summary>
         /// The count of the product. For more information, see
         /// https://support.google.com/manufacturers/answer/6124116#count.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("count")]
+        [System.Text.Json.Serialization.JsonPropertyName("count")]
         public virtual Count Count { get; set; }
 
         /// <summary>
         /// The description of the product. For more information, see
         /// https://support.google.com/manufacturers/answer/6124116#description.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("description")]
+        [System.Text.Json.Serialization.JsonPropertyName("description")]
         public virtual string Description { get; set; }
 
         /// <summary>
         /// The disclosure date of the product. For more information, see
         /// https://support.google.com/manufacturers/answer/6124116#disclosure.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("disclosureDate")]
+        [System.Text.Json.Serialization.JsonPropertyName("disclosureDate")]
         public virtual string DisclosureDate { get; set; }
 
         /// <summary>
         /// A list of excluded destinations such as "ClientExport", "ClientShoppingCatalog" or "PartnerShoppingCatalog".
         /// For more information, see https://support.google.com/manufacturers/answer/7443550
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("excludedDestination")]
+        [System.Text.Json.Serialization.JsonPropertyName("excludedDestination")]
         public virtual System.Collections.Generic.IList<string> ExcludedDestination { get; set; }
 
         /// <summary>
         /// The rich format description of the product. For more information, see
         /// https://support.google.com/manufacturers/answer/6124116#featuredesc.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("featureDescription")]
+        [System.Text.Json.Serialization.JsonPropertyName("featureDescription")]
         public virtual System.Collections.Generic.IList<FeatureDescription> FeatureDescription { get; set; }
 
         /// <summary>
         /// The flavor of the product. For more information, see
         /// https://support.google.com/manufacturers/answer/6124116#flavor.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("flavor")]
+        [System.Text.Json.Serialization.JsonPropertyName("flavor")]
         public virtual string Flavor { get; set; }
 
         /// <summary>
         /// The format of the product. For more information, see
         /// https://support.google.com/manufacturers/answer/6124116#format.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("format")]
+        [System.Text.Json.Serialization.JsonPropertyName("format")]
         public virtual string Format { get; set; }
 
         /// <summary>
         /// The target gender of the product. For more information, see
         /// https://support.google.com/manufacturers/answer/6124116#gender.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("gender")]
+        [System.Text.Json.Serialization.JsonPropertyName("gender")]
         public virtual string Gender { get; set; }
 
         /// <summary>
         /// Grocery Attributes. See more at https://support.google.com/manufacturers/answer/12098458#grocery.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("grocery")]
+        [System.Text.Json.Serialization.JsonPropertyName("grocery")]
         public virtual Grocery Grocery { get; set; }
 
         /// <summary>
         /// The Global Trade Item Number (GTIN) of the product. For more information, see
         /// https://support.google.com/manufacturers/answer/6124116#gtin.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("gtin")]
+        [System.Text.Json.Serialization.JsonPropertyName("gtin")]
         public virtual System.Collections.Generic.IList<string> Gtin { get; set; }
 
         /// <summary>
         /// The image of the product. For more information, see
         /// https://support.google.com/manufacturers/answer/6124116#image.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("imageLink")]
+        [System.Text.Json.Serialization.JsonPropertyName("imageLink")]
         public virtual Image ImageLink { get; set; }
 
         /// <summary>
         /// A list of included destinations such as "ClientExport", "ClientShoppingCatalog" or "PartnerShoppingCatalog".
         /// For more information, see https://support.google.com/manufacturers/answer/7443550
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("includedDestination")]
+        [System.Text.Json.Serialization.JsonPropertyName("includedDestination")]
         public virtual System.Collections.Generic.IList<string> IncludedDestination { get; set; }
 
         /// <summary>
@@ -1187,162 +1187,162 @@ namespace Google.Apis.ManufacturerCenter.v1.Data
         /// code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml) of the countries in which this item
         /// will be shown.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("intendedCountry")]
+        [System.Text.Json.Serialization.JsonPropertyName("intendedCountry")]
         public virtual System.Collections.Generic.IList<string> IntendedCountry { get; set; }
 
         /// <summary>
         /// The item group id of the product. For more information, see
         /// https://support.google.com/manufacturers/answer/6124116#itemgroupid.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("itemGroupId")]
+        [System.Text.Json.Serialization.JsonPropertyName("itemGroupId")]
         public virtual string ItemGroupId { get; set; }
 
         /// <summary>
         /// The material of the product. For more information, see
         /// https://support.google.com/manufacturers/answer/6124116#material.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("material")]
+        [System.Text.Json.Serialization.JsonPropertyName("material")]
         public virtual string Material { get; set; }
 
         /// <summary>
         /// The Manufacturer Part Number (MPN) of the product. For more information, see
         /// https://support.google.com/manufacturers/answer/6124116#mpn.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("mpn")]
+        [System.Text.Json.Serialization.JsonPropertyName("mpn")]
         public virtual string Mpn { get; set; }
 
         /// <summary>
         /// Nutrition Attributes. See more at https://support.google.com/manufacturers/answer/12098458#food-servings.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("nutrition")]
+        [System.Text.Json.Serialization.JsonPropertyName("nutrition")]
         public virtual Nutrition Nutrition { get; set; }
 
         /// <summary>
         /// The pattern of the product. For more information, see
         /// https://support.google.com/manufacturers/answer/6124116#pattern.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("pattern")]
+        [System.Text.Json.Serialization.JsonPropertyName("pattern")]
         public virtual string Pattern { get; set; }
 
         /// <summary>
         /// The details of the product. For more information, see
         /// https://support.google.com/manufacturers/answer/6124116#productdetail.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("productDetail")]
+        [System.Text.Json.Serialization.JsonPropertyName("productDetail")]
         public virtual System.Collections.Generic.IList<ProductDetail> ProductDetail { get; set; }
 
         /// <summary>
         /// The product highlights. For more information, see https://support.google.com/manufacturers/answer/10066942
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("productHighlight")]
+        [System.Text.Json.Serialization.JsonPropertyName("productHighlight")]
         public virtual System.Collections.Generic.IList<string> ProductHighlight { get; set; }
 
         /// <summary>
         /// The name of the group of products related to the product. For more information, see
         /// https://support.google.com/manufacturers/answer/6124116#productline.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("productLine")]
+        [System.Text.Json.Serialization.JsonPropertyName("productLine")]
         public virtual string ProductLine { get; set; }
 
         /// <summary>
         /// The canonical name of the product. For more information, see
         /// https://support.google.com/manufacturers/answer/6124116#productname.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("productName")]
+        [System.Text.Json.Serialization.JsonPropertyName("productName")]
         public virtual string ProductName { get; set; }
 
         /// <summary>
         /// The URL of the detail page of the product. For more information, see
         /// https://support.google.com/manufacturers/answer/6124116#productpage.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("productPageUrl")]
+        [System.Text.Json.Serialization.JsonPropertyName("productPageUrl")]
         public virtual string ProductPageUrl { get; set; }
 
         /// <summary>
         /// The type or category of the product. For more information, see
         /// https://support.google.com/manufacturers/answer/6124116#producttype.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("productType")]
+        [System.Text.Json.Serialization.JsonPropertyName("productType")]
         public virtual System.Collections.Generic.IList<string> ProductType { get; set; }
 
         /// <summary>
         /// The release date of the product. For more information, see
         /// https://support.google.com/manufacturers/answer/6124116#release.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("releaseDate")]
+        [System.Text.Json.Serialization.JsonPropertyName("releaseDate")]
         public virtual string ReleaseDate { get; set; }
 
         /// <summary>
         /// Rich product content. For more information, see https://support.google.com/manufacturers/answer/9389865
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("richProductContent")]
+        [System.Text.Json.Serialization.JsonPropertyName("richProductContent")]
         public virtual System.Collections.Generic.IList<string> RichProductContent { get; set; }
 
         /// <summary>
         /// The scent of the product. For more information, see
         /// https://support.google.com/manufacturers/answer/6124116#scent.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("scent")]
+        [System.Text.Json.Serialization.JsonPropertyName("scent")]
         public virtual string Scent { get; set; }
 
         /// <summary>
         /// The size of the product. For more information, see
         /// https://support.google.com/manufacturers/answer/6124116#size.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("size")]
+        [System.Text.Json.Serialization.JsonPropertyName("size")]
         public virtual string Size { get; set; }
 
         /// <summary>
         /// The size system of the product. For more information, see
         /// https://support.google.com/manufacturers/answer/6124116#sizesystem.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("sizeSystem")]
+        [System.Text.Json.Serialization.JsonPropertyName("sizeSystem")]
         public virtual string SizeSystem { get; set; }
 
         /// <summary>
         /// The size type of the product. For more information, see
         /// https://support.google.com/manufacturers/answer/6124116#sizetype.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("sizeType")]
+        [System.Text.Json.Serialization.JsonPropertyName("sizeType")]
         public virtual System.Collections.Generic.IList<string> SizeType { get; set; }
 
         /// <summary>
         /// The suggested retail price (MSRP) of the product. For more information, see
         /// https://support.google.com/manufacturers/answer/6124116#price.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("suggestedRetailPrice")]
+        [System.Text.Json.Serialization.JsonPropertyName("suggestedRetailPrice")]
         public virtual Price SuggestedRetailPrice { get; set; }
 
         /// <summary>
         /// The target client id. Should only be used in the accounts of the data partners. For more information, see
         /// https://support.google.com/manufacturers/answer/10857344
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("targetClientId")]
+        [System.Text.Json.Serialization.JsonPropertyName("targetClientId")]
         public virtual string TargetClientId { get; set; }
 
         /// <summary>
         /// The theme of the product. For more information, see
         /// https://support.google.com/manufacturers/answer/6124116#theme.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("theme")]
+        [System.Text.Json.Serialization.JsonPropertyName("theme")]
         public virtual string Theme { get; set; }
 
         /// <summary>
         /// The title of the product. For more information, see
         /// https://support.google.com/manufacturers/answer/6124116#title.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("title")]
+        [System.Text.Json.Serialization.JsonPropertyName("title")]
         public virtual string Title { get; set; }
 
         /// <summary>
         /// The videos of the product. For more information, see
         /// https://support.google.com/manufacturers/answer/6124116#video.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("videoLink")]
+        [System.Text.Json.Serialization.JsonPropertyName("videoLink")]
         public virtual System.Collections.Generic.IList<string> VideoLink { get; set; }
 
         /// <summary>Virtual Model (3d) asset link.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("virtualModelLink")]
+        [System.Text.Json.Serialization.JsonPropertyName("virtualModelLink")]
         public virtual string VirtualModelLink { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -1356,11 +1356,11 @@ namespace Google.Apis.ManufacturerCenter.v1.Data
     public class Capacity : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>The unit of the capacity, i.e., MB, GB, or TB.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("unit")]
+        [System.Text.Json.Serialization.JsonPropertyName("unit")]
         public virtual string Unit { get; set; }
 
         /// <summary>The numeric value of the capacity.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("value")]
+        [System.Text.Json.Serialization.JsonPropertyName("value")]
         public virtual System.Nullable<long> Value { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -1371,31 +1371,31 @@ namespace Google.Apis.ManufacturerCenter.v1.Data
     public class Certification : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>Required. Name of the certification body.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("authority")]
+        [System.Text.Json.Serialization.JsonPropertyName("authority")]
         public virtual string Authority { get; set; }
 
         /// <summary>Optional. A unique code to identify the certification.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("code")]
+        [System.Text.Json.Serialization.JsonPropertyName("code")]
         public virtual string Code { get; set; }
 
         /// <summary>Optional. A URL link to the certification.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("link")]
+        [System.Text.Json.Serialization.JsonPropertyName("link")]
         public virtual string Link { get; set; }
 
         /// <summary>Optional. A URL link to the certification logo.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("logo")]
+        [System.Text.Json.Serialization.JsonPropertyName("logo")]
         public virtual string Logo { get; set; }
 
         /// <summary>Required. Name of the certification.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("name")]
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
         public virtual string Name { get; set; }
 
         /// <summary>Optional. The expiration date (UTC).</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("validUntil")]
+        [System.Text.Json.Serialization.JsonPropertyName("validUntil")]
         public virtual string ValidUntil { get; set; }
 
         /// <summary>Optional. A custom value of the certification.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("value")]
+        [System.Text.Json.Serialization.JsonPropertyName("value")]
         public virtual string Value { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -1409,11 +1409,11 @@ namespace Google.Apis.ManufacturerCenter.v1.Data
     public class Count : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>The unit in which these products are counted.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("unit")]
+        [System.Text.Json.Serialization.JsonPropertyName("unit")]
         public virtual string Unit { get; set; }
 
         /// <summary>The numeric value of the number of products in a package.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("value")]
+        [System.Text.Json.Serialization.JsonPropertyName("value")]
         public virtual System.Nullable<long> Value { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -1424,25 +1424,25 @@ namespace Google.Apis.ManufacturerCenter.v1.Data
     public class DestinationStatus : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>Output only. List of country codes (ISO 3166-1 alpha-2) where the offer is approved.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("approvedCountries")]
+        [System.Text.Json.Serialization.JsonPropertyName("approvedCountries")]
         public virtual System.Collections.Generic.IList<string> ApprovedCountries { get; set; }
 
         /// <summary>The name of the destination.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("destination")]
+        [System.Text.Json.Serialization.JsonPropertyName("destination")]
         public virtual string Destination { get; set; }
 
         /// <summary>Output only. List of country codes (ISO 3166-1 alpha-2) where the offer is disapproved.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("disapprovedCountries")]
+        [System.Text.Json.Serialization.JsonPropertyName("disapprovedCountries")]
         public virtual System.Collections.Generic.IList<string> DisapprovedCountries { get; set; }
 
         /// <summary>
         /// Output only. List of country codes (ISO 3166-1 alpha-2) where the offer is pending approval.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("pendingCountries")]
+        [System.Text.Json.Serialization.JsonPropertyName("pendingCountries")]
         public virtual System.Collections.Generic.IList<string> PendingCountries { get; set; }
 
         /// <summary>The status of the destination.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("status")]
+        [System.Text.Json.Serialization.JsonPropertyName("status")]
         public virtual string Status { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -1467,15 +1467,15 @@ namespace Google.Apis.ManufacturerCenter.v1.Data
     public class FeatureDescription : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>A short description of the feature.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("headline")]
+        [System.Text.Json.Serialization.JsonPropertyName("headline")]
         public virtual string Headline { get; set; }
 
         /// <summary>An optional image describing the feature.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("image")]
+        [System.Text.Json.Serialization.JsonPropertyName("image")]
         public virtual Image Image { get; set; }
 
         /// <summary>A detailed description of the feature.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("text")]
+        [System.Text.Json.Serialization.JsonPropertyName("text")]
         public virtual string Text { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -1486,11 +1486,11 @@ namespace Google.Apis.ManufacturerCenter.v1.Data
     public class FloatUnit : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>amount.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("amount")]
+        [System.Text.Json.Serialization.JsonPropertyName("amount")]
         public virtual System.Nullable<double> Amount { get; set; }
 
         /// <summary>unit.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("unit")]
+        [System.Text.Json.Serialization.JsonPropertyName("unit")]
         public virtual string Unit { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -1501,31 +1501,31 @@ namespace Google.Apis.ManufacturerCenter.v1.Data
     public class GoogleShoppingManufacturersV1ProductCertification : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>Required. Name of the certification body.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("authority")]
+        [System.Text.Json.Serialization.JsonPropertyName("authority")]
         public virtual string Authority { get; set; }
 
         /// <summary>Optional. A unique code to identify the certification.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("code")]
+        [System.Text.Json.Serialization.JsonPropertyName("code")]
         public virtual string Code { get; set; }
 
         /// <summary>Optional. A URL link to the certification.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("link")]
+        [System.Text.Json.Serialization.JsonPropertyName("link")]
         public virtual string Link { get; set; }
 
         /// <summary>Optional. A URL link to the certification logo.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("logo")]
+        [System.Text.Json.Serialization.JsonPropertyName("logo")]
         public virtual string Logo { get; set; }
 
         /// <summary>Required. Name of the certification.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("name")]
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
         public virtual string Name { get; set; }
 
         /// <summary>Optional. The expiration date (UTC).</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("validUntil")]
+        [System.Text.Json.Serialization.JsonPropertyName("validUntil")]
         public virtual string ValidUntil { get; set; }
 
         /// <summary>Optional. A custom value of the certification.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("value")]
+        [System.Text.Json.Serialization.JsonPropertyName("value")]
         public virtual string Value { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -1535,39 +1535,39 @@ namespace Google.Apis.ManufacturerCenter.v1.Data
     public class Grocery : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>Active ingredients.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("activeIngredients")]
+        [System.Text.Json.Serialization.JsonPropertyName("activeIngredients")]
         public virtual string ActiveIngredients { get; set; }
 
         /// <summary>Alcohol by volume.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("alcoholByVolume")]
+        [System.Text.Json.Serialization.JsonPropertyName("alcoholByVolume")]
         public virtual System.Nullable<double> AlcoholByVolume { get; set; }
 
         /// <summary>Allergens.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("allergens")]
+        [System.Text.Json.Serialization.JsonPropertyName("allergens")]
         public virtual string Allergens { get; set; }
 
         /// <summary>Derived nutrition claim.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("derivedNutritionClaim")]
+        [System.Text.Json.Serialization.JsonPropertyName("derivedNutritionClaim")]
         public virtual System.Collections.Generic.IList<string> DerivedNutritionClaim { get; set; }
 
         /// <summary>Directions.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("directions")]
+        [System.Text.Json.Serialization.JsonPropertyName("directions")]
         public virtual string Directions { get; set; }
 
         /// <summary>Indications.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("indications")]
+        [System.Text.Json.Serialization.JsonPropertyName("indications")]
         public virtual string Indications { get; set; }
 
         /// <summary>Ingredients.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("ingredients")]
+        [System.Text.Json.Serialization.JsonPropertyName("ingredients")]
         public virtual string Ingredients { get; set; }
 
         /// <summary>Nutrition claim.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("nutritionClaim")]
+        [System.Text.Json.Serialization.JsonPropertyName("nutritionClaim")]
         public virtual System.Collections.Generic.IList<string> NutritionClaim { get; set; }
 
         /// <summary>Storage instructions.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("storageInstructions")]
+        [System.Text.Json.Serialization.JsonPropertyName("storageInstructions")]
         public virtual string StorageInstructions { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -1581,15 +1581,15 @@ namespace Google.Apis.ManufacturerCenter.v1.Data
         /// The URL of the image. For crawled images, this is the provided URL. For uploaded images, this is a serving
         /// URL from Google if the image has been processed successfully.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("imageUrl")]
+        [System.Text.Json.Serialization.JsonPropertyName("imageUrl")]
         public virtual string ImageUrl { get; set; }
 
         /// <summary>The status of the image. @OutputOnly</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("status")]
+        [System.Text.Json.Serialization.JsonPropertyName("status")]
         public virtual string Status { get; set; }
 
         /// <summary>The type of the image, i.e., crawled or uploaded. @OutputOnly</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("type")]
+        [System.Text.Json.Serialization.JsonPropertyName("type")]
         public virtual string Type { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -1602,30 +1602,30 @@ namespace Google.Apis.ManufacturerCenter.v1.Data
         /// <summary>
         /// Output only. List of country codes (ISO 3166-1 alpha-2) where issue applies to the manufacturer product.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("applicableCountries")]
+        [System.Text.Json.Serialization.JsonPropertyName("applicableCountries")]
         public virtual System.Collections.Generic.IList<string> ApplicableCountries { get; set; }
 
         /// <summary>
         /// If present, the attribute that triggered the issue. For more information about attributes, see
         /// https://support.google.com/manufacturers/answer/6124116.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("attribute")]
+        [System.Text.Json.Serialization.JsonPropertyName("attribute")]
         public virtual string Attribute { get; set; }
 
         /// <summary>Longer description of the issue focused on how to resolve it.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("description")]
+        [System.Text.Json.Serialization.JsonPropertyName("description")]
         public virtual string Description { get; set; }
 
         /// <summary>The destination this issue applies to.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("destination")]
+        [System.Text.Json.Serialization.JsonPropertyName("destination")]
         public virtual string Destination { get; set; }
 
         /// <summary>What needs to happen to resolve the issue.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("resolution")]
+        [System.Text.Json.Serialization.JsonPropertyName("resolution")]
         public virtual string Resolution { get; set; }
 
         /// <summary>The severity of the issue.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("severity")]
+        [System.Text.Json.Serialization.JsonPropertyName("severity")]
         public virtual string Severity { get; set; }
 
         private string _timestampRaw;
@@ -1633,7 +1633,7 @@ namespace Google.Apis.ManufacturerCenter.v1.Data
         private object _timestamp;
 
         /// <summary>The timestamp when this issue appeared.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("timestamp")]
+        [System.Text.Json.Serialization.JsonPropertyName("timestamp")]
         public virtual string TimestampRaw
         {
             get => _timestampRaw;
@@ -1645,7 +1645,7 @@ namespace Google.Apis.ManufacturerCenter.v1.Data
         }
 
         /// <summary><seealso cref="object"/> representation of <see cref="TimestampRaw"/>.</summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use TimestampDateTimeOffset instead.")]
         public virtual object Timestamp
         {
@@ -1658,7 +1658,7 @@ namespace Google.Apis.ManufacturerCenter.v1.Data
         }
 
         /// <summary><seealso cref="System.DateTimeOffset"/> representation of <see cref="TimestampRaw"/>.</summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual System.DateTimeOffset? TimestampDateTimeOffset
         {
             get => Google.Apis.Util.DiscoveryFormat.ParseGoogleDateTimeToDateTimeOffset(TimestampRaw);
@@ -1666,14 +1666,14 @@ namespace Google.Apis.ManufacturerCenter.v1.Data
         }
 
         /// <summary>Short title describing the nature of the issue.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("title")]
+        [System.Text.Json.Serialization.JsonPropertyName("title")]
         public virtual string Title { get; set; }
 
         /// <summary>
         /// The server-generated type of the issue, for example, “INCORRECT_TEXT_FORMATTING”, “IMAGE_NOT_SERVEABLE”,
         /// etc.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("type")]
+        [System.Text.Json.Serialization.JsonPropertyName("type")]
         public virtual string Type { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -1687,11 +1687,11 @@ namespace Google.Apis.ManufacturerCenter.v1.Data
         /// A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no
         /// subsequent pages.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("nextPageToken")]
+        [System.Text.Json.Serialization.JsonPropertyName("nextPageToken")]
         public virtual string NextPageToken { get; set; }
 
         /// <summary>The product certifications from the specified certification body.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("productCertifications")]
+        [System.Text.Json.Serialization.JsonPropertyName("productCertifications")]
         public virtual System.Collections.Generic.IList<ProductCertification> ProductCertifications { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -1701,11 +1701,11 @@ namespace Google.Apis.ManufacturerCenter.v1.Data
     public class ListProductsResponse : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>The token for the retrieval of the next page of product statuses.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("nextPageToken")]
+        [System.Text.Json.Serialization.JsonPropertyName("nextPageToken")]
         public virtual string NextPageToken { get; set; }
 
         /// <summary>List of the products.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("products")]
+        [System.Text.Json.Serialization.JsonPropertyName("products")]
         public virtual System.Collections.Generic.IList<Product> Products { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -1715,175 +1715,175 @@ namespace Google.Apis.ManufacturerCenter.v1.Data
     public class Nutrition : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>Added sugars.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("addedSugars")]
+        [System.Text.Json.Serialization.JsonPropertyName("addedSugars")]
         public virtual FloatUnit AddedSugars { get; set; }
 
         /// <summary>Added sugars daily percentage.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("addedSugarsDailyPercentage")]
+        [System.Text.Json.Serialization.JsonPropertyName("addedSugarsDailyPercentage")]
         public virtual System.Nullable<double> AddedSugarsDailyPercentage { get; set; }
 
         /// <summary>Calcium.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("calcium")]
+        [System.Text.Json.Serialization.JsonPropertyName("calcium")]
         public virtual FloatUnit Calcium { get; set; }
 
         /// <summary>Calcium daily percentage.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("calciumDailyPercentage")]
+        [System.Text.Json.Serialization.JsonPropertyName("calciumDailyPercentage")]
         public virtual System.Nullable<double> CalciumDailyPercentage { get; set; }
 
         /// <summary>Cholesterol.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("cholesterol")]
+        [System.Text.Json.Serialization.JsonPropertyName("cholesterol")]
         public virtual FloatUnit Cholesterol { get; set; }
 
         /// <summary>Cholesterol daily percentage.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("cholesterolDailyPercentage")]
+        [System.Text.Json.Serialization.JsonPropertyName("cholesterolDailyPercentage")]
         public virtual System.Nullable<double> CholesterolDailyPercentage { get; set; }
 
         /// <summary>Dietary fiber.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("dietaryFiber")]
+        [System.Text.Json.Serialization.JsonPropertyName("dietaryFiber")]
         public virtual FloatUnit DietaryFiber { get; set; }
 
         /// <summary>Dietary fiber daily percentage.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("dietaryFiberDailyPercentage")]
+        [System.Text.Json.Serialization.JsonPropertyName("dietaryFiberDailyPercentage")]
         public virtual System.Nullable<double> DietaryFiberDailyPercentage { get; set; }
 
         /// <summary>Mandatory Nutrition Facts. Energy.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("energy")]
+        [System.Text.Json.Serialization.JsonPropertyName("energy")]
         public virtual FloatUnit Energy { get; set; }
 
         /// <summary>Energy from fat.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("energyFromFat")]
+        [System.Text.Json.Serialization.JsonPropertyName("energyFromFat")]
         public virtual FloatUnit EnergyFromFat { get; set; }
 
         /// <summary>Folate daily percentage.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("folateDailyPercentage")]
+        [System.Text.Json.Serialization.JsonPropertyName("folateDailyPercentage")]
         public virtual System.Nullable<double> FolateDailyPercentage { get; set; }
 
         /// <summary>Folate folic acid.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("folateFolicAcid")]
+        [System.Text.Json.Serialization.JsonPropertyName("folateFolicAcid")]
         public virtual FloatUnit FolateFolicAcid { get; set; }
 
         /// <summary>Folate mcg DFE.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("folateMcgDfe")]
+        [System.Text.Json.Serialization.JsonPropertyName("folateMcgDfe")]
         public virtual System.Nullable<double> FolateMcgDfe { get; set; }
 
         /// <summary>Iron.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("iron")]
+        [System.Text.Json.Serialization.JsonPropertyName("iron")]
         public virtual FloatUnit Iron { get; set; }
 
         /// <summary>Iron daily percentage.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("ironDailyPercentage")]
+        [System.Text.Json.Serialization.JsonPropertyName("ironDailyPercentage")]
         public virtual System.Nullable<double> IronDailyPercentage { get; set; }
 
         /// <summary>Monounsaturated fat.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("monounsaturatedFat")]
+        [System.Text.Json.Serialization.JsonPropertyName("monounsaturatedFat")]
         public virtual FloatUnit MonounsaturatedFat { get; set; }
 
         /// <summary>Nutrition fact measure.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("nutritionFactMeasure")]
+        [System.Text.Json.Serialization.JsonPropertyName("nutritionFactMeasure")]
         public virtual string NutritionFactMeasure { get; set; }
 
         /// <summary>Polyols.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("polyols")]
+        [System.Text.Json.Serialization.JsonPropertyName("polyols")]
         public virtual FloatUnit Polyols { get; set; }
 
         /// <summary>Polyunsaturated fat.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("polyunsaturatedFat")]
+        [System.Text.Json.Serialization.JsonPropertyName("polyunsaturatedFat")]
         public virtual FloatUnit PolyunsaturatedFat { get; set; }
 
         /// <summary>Potassium.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("potassium")]
+        [System.Text.Json.Serialization.JsonPropertyName("potassium")]
         public virtual FloatUnit Potassium { get; set; }
 
         /// <summary>Potassium daily percentage.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("potassiumDailyPercentage")]
+        [System.Text.Json.Serialization.JsonPropertyName("potassiumDailyPercentage")]
         public virtual System.Nullable<double> PotassiumDailyPercentage { get; set; }
 
         /// <summary>Prepared size description.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("preparedSizeDescription")]
+        [System.Text.Json.Serialization.JsonPropertyName("preparedSizeDescription")]
         public virtual string PreparedSizeDescription { get; set; }
 
         /// <summary>Protein.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("protein")]
+        [System.Text.Json.Serialization.JsonPropertyName("protein")]
         public virtual FloatUnit Protein { get; set; }
 
         /// <summary>Protein daily percentage.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("proteinDailyPercentage")]
+        [System.Text.Json.Serialization.JsonPropertyName("proteinDailyPercentage")]
         public virtual System.Nullable<double> ProteinDailyPercentage { get; set; }
 
         /// <summary>Saturated fat.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("saturatedFat")]
+        [System.Text.Json.Serialization.JsonPropertyName("saturatedFat")]
         public virtual FloatUnit SaturatedFat { get; set; }
 
         /// <summary>Saturated fat daily percentage.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("saturatedFatDailyPercentage")]
+        [System.Text.Json.Serialization.JsonPropertyName("saturatedFatDailyPercentage")]
         public virtual System.Nullable<double> SaturatedFatDailyPercentage { get; set; }
 
         /// <summary>Food Serving Size. Serving size description.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("servingSizeDescription")]
+        [System.Text.Json.Serialization.JsonPropertyName("servingSizeDescription")]
         public virtual string ServingSizeDescription { get; set; }
 
         /// <summary>Serving size measure.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("servingSizeMeasure")]
+        [System.Text.Json.Serialization.JsonPropertyName("servingSizeMeasure")]
         public virtual FloatUnit ServingSizeMeasure { get; set; }
 
         /// <summary>Servings per container.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("servingsPerContainer")]
+        [System.Text.Json.Serialization.JsonPropertyName("servingsPerContainer")]
         public virtual string ServingsPerContainer { get; set; }
 
         /// <summary>Sodium.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("sodium")]
+        [System.Text.Json.Serialization.JsonPropertyName("sodium")]
         public virtual FloatUnit Sodium { get; set; }
 
         /// <summary>Sodium daily percentage.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("sodiumDailyPercentage")]
+        [System.Text.Json.Serialization.JsonPropertyName("sodiumDailyPercentage")]
         public virtual System.Nullable<double> SodiumDailyPercentage { get; set; }
 
         /// <summary>Starch.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("starch")]
+        [System.Text.Json.Serialization.JsonPropertyName("starch")]
         public virtual FloatUnit Starch { get; set; }
 
         /// <summary>Total carbohydrate.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("totalCarbohydrate")]
+        [System.Text.Json.Serialization.JsonPropertyName("totalCarbohydrate")]
         public virtual FloatUnit TotalCarbohydrate { get; set; }
 
         /// <summary>Total carbohydrate daily percentage.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("totalCarbohydrateDailyPercentage")]
+        [System.Text.Json.Serialization.JsonPropertyName("totalCarbohydrateDailyPercentage")]
         public virtual System.Nullable<double> TotalCarbohydrateDailyPercentage { get; set; }
 
         /// <summary>Total fat.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("totalFat")]
+        [System.Text.Json.Serialization.JsonPropertyName("totalFat")]
         public virtual FloatUnit TotalFat { get; set; }
 
         /// <summary>Total fat daily percentage.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("totalFatDailyPercentage")]
+        [System.Text.Json.Serialization.JsonPropertyName("totalFatDailyPercentage")]
         public virtual System.Nullable<double> TotalFatDailyPercentage { get; set; }
 
         /// <summary>Total sugars.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("totalSugars")]
+        [System.Text.Json.Serialization.JsonPropertyName("totalSugars")]
         public virtual FloatUnit TotalSugars { get; set; }
 
         /// <summary>Total sugars daily percentage.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("totalSugarsDailyPercentage")]
+        [System.Text.Json.Serialization.JsonPropertyName("totalSugarsDailyPercentage")]
         public virtual System.Nullable<double> TotalSugarsDailyPercentage { get; set; }
 
         /// <summary>Trans fat.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("transFat")]
+        [System.Text.Json.Serialization.JsonPropertyName("transFat")]
         public virtual FloatUnit TransFat { get; set; }
 
         /// <summary>Trans fat daily percentage.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("transFatDailyPercentage")]
+        [System.Text.Json.Serialization.JsonPropertyName("transFatDailyPercentage")]
         public virtual System.Nullable<double> TransFatDailyPercentage { get; set; }
 
         /// <summary>Vitamin D.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("vitaminD")]
+        [System.Text.Json.Serialization.JsonPropertyName("vitaminD")]
         public virtual FloatUnit VitaminD { get; set; }
 
         /// <summary>Vitamin D daily percentage.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("vitaminDDailyPercentage")]
+        [System.Text.Json.Serialization.JsonPropertyName("vitaminDDailyPercentage")]
         public virtual System.Nullable<double> VitaminDDailyPercentage { get; set; }
 
         /// <summary>Voluntary nutrition fact.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("voluntaryNutritionFact")]
+        [System.Text.Json.Serialization.JsonPropertyName("voluntaryNutritionFact")]
         public virtual System.Collections.Generic.IList<VoluntaryNutritionFact> VoluntaryNutritionFact { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -1894,11 +1894,11 @@ namespace Google.Apis.ManufacturerCenter.v1.Data
     public class Price : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>The numeric value of the price.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("amount")]
+        [System.Text.Json.Serialization.JsonPropertyName("amount")]
         public virtual string Amount { get; set; }
 
         /// <summary>The currency in which the price is denoted.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("currency")]
+        [System.Text.Json.Serialization.JsonPropertyName("currency")]
         public virtual string Currency { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -1912,25 +1912,25 @@ namespace Google.Apis.ManufacturerCenter.v1.Data
         /// Attributes of the product uploaded to the Manufacturer Center. Manually edited attributes are taken into
         /// account.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("attributes")]
+        [System.Text.Json.Serialization.JsonPropertyName("attributes")]
         public virtual Attributes Attributes { get; set; }
 
         /// <summary>
         /// The content language of the product as a two-letter ISO 639-1 language code (for example, en).
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("contentLanguage")]
+        [System.Text.Json.Serialization.JsonPropertyName("contentLanguage")]
         public virtual string ContentLanguage { get; set; }
 
         /// <summary>The status of the destinations.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("destinationStatuses")]
+        [System.Text.Json.Serialization.JsonPropertyName("destinationStatuses")]
         public virtual System.Collections.Generic.IList<DestinationStatus> DestinationStatuses { get; set; }
 
         /// <summary>Optional. The feed label for the product.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("feedLabel")]
+        [System.Text.Json.Serialization.JsonPropertyName("feedLabel")]
         public virtual string FeedLabel { get; set; }
 
         /// <summary>A server-generated list of issues associated with the product.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("issues")]
+        [System.Text.Json.Serialization.JsonPropertyName("issues")]
         public virtual System.Collections.Generic.IList<Issue> Issues { get; set; }
 
         /// <summary>
@@ -1939,23 +1939,23 @@ namespace Google.Apis.ManufacturerCenter.v1.Data
         /// product as a two-letter ISO 639-1 language code (for example, en). `product_id` - The ID of the product. For
         /// more information, see https://support.google.com/manufacturers/answer/6124116#id.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("name")]
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
         public virtual string Name { get; set; }
 
         /// <summary>
         /// Parent ID in the format `accounts/{account_id}`. `account_id` - The ID of the Manufacturer Center account.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("parent")]
+        [System.Text.Json.Serialization.JsonPropertyName("parent")]
         public virtual string Parent { get; set; }
 
         /// <summary>
         /// The ID of the product. For more information, see https://support.google.com/manufacturers/answer/6124116#id.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("productId")]
+        [System.Text.Json.Serialization.JsonPropertyName("productId")]
         public virtual string ProductId { get; set; }
 
         /// <summary>The target country of the product as a CLDR territory code (for example, US).</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("targetCountry")]
+        [System.Text.Json.Serialization.JsonPropertyName("targetCountry")]
         public virtual string TargetCountry { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -1968,30 +1968,30 @@ namespace Google.Apis.ManufacturerCenter.v1.Data
         /// <summary>
         /// Required. This is the product's brand name. The brand is used to help identify your product.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("brand")]
+        [System.Text.Json.Serialization.JsonPropertyName("brand")]
         public virtual string Brand { get; set; }
 
         /// <summary>Required. A list of certifications to link to the described product.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("certification")]
+        [System.Text.Json.Serialization.JsonPropertyName("certification")]
         public virtual System.Collections.Generic.IList<Certification> Certification { get; set; }
 
         /// <summary>Optional. A 2-letter country code (ISO 3166-1 Alpha 2).</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("countryCode")]
+        [System.Text.Json.Serialization.JsonPropertyName("countryCode")]
         public virtual System.Collections.Generic.IList<string> CountryCode { get; set; }
 
         /// <summary>Output only. The statuses of the destinations.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("destinationStatuses")]
+        [System.Text.Json.Serialization.JsonPropertyName("destinationStatuses")]
         public virtual System.Collections.Generic.IList<DestinationStatus> DestinationStatuses { get; set; }
 
         /// <summary>Output only. A server-generated list of issues associated with the product.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("issues")]
+        [System.Text.Json.Serialization.JsonPropertyName("issues")]
         public virtual System.Collections.Generic.IList<Issue> Issues { get; set; }
 
         /// <summary>
         /// Optional. These are the Manufacturer Part Numbers (MPN). MPNs are used to uniquely identify a specific
         /// product among all products from the same manufacturer
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("mpn")]
+        [System.Text.Json.Serialization.JsonPropertyName("mpn")]
         public virtual System.Collections.Generic.IList<string> Mpn { get; set; }
 
         /// <summary>
@@ -2000,19 +2000,19 @@ namespace Google.Apis.ManufacturerCenter.v1.Data
         /// identifier and `language_code` is a 2-letter ISO 639-1 code of a Shopping supported language according to
         /// https://support.google.com/merchants/answer/160637.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("name")]
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
         public virtual string Name { get; set; }
 
         /// <summary>Optional. Another name for GTIN.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("productCode")]
+        [System.Text.Json.Serialization.JsonPropertyName("productCode")]
         public virtual System.Collections.Generic.IList<string> ProductCode { get; set; }
 
         /// <summary>Optional. These are your own product categorization system in your product data.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("productType")]
+        [System.Text.Json.Serialization.JsonPropertyName("productType")]
         public virtual System.Collections.Generic.IList<string> ProductType { get; set; }
 
         /// <summary>Required. This is to clearly identify the product you are certifying.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("title")]
+        [System.Text.Json.Serialization.JsonPropertyName("title")]
         public virtual string Title { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -2026,15 +2026,15 @@ namespace Google.Apis.ManufacturerCenter.v1.Data
     public class ProductDetail : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>The name of the attribute.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("attributeName")]
+        [System.Text.Json.Serialization.JsonPropertyName("attributeName")]
         public virtual string AttributeName { get; set; }
 
         /// <summary>The value of the attribute.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("attributeValue")]
+        [System.Text.Json.Serialization.JsonPropertyName("attributeValue")]
         public virtual string AttributeValue { get; set; }
 
         /// <summary>A short section name that can be reused between multiple product details.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("sectionName")]
+        [System.Text.Json.Serialization.JsonPropertyName("sectionName")]
         public virtual string SectionName { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -2045,15 +2045,15 @@ namespace Google.Apis.ManufacturerCenter.v1.Data
     public class VoluntaryNutritionFact : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>Daily percentage.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("dailyPercentage")]
+        [System.Text.Json.Serialization.JsonPropertyName("dailyPercentage")]
         public virtual System.Nullable<double> DailyPercentage { get; set; }
 
         /// <summary>Name.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("name")]
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
         public virtual string Name { get; set; }
 
         /// <summary>Value.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("value")]
+        [System.Text.Json.Serialization.JsonPropertyName("value")]
         public virtual FloatUnit Value { get; set; }
 
         /// <summary>The ETag of the item.</summary>

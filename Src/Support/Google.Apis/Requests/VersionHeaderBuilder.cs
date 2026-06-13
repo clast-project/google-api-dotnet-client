@@ -104,18 +104,10 @@ namespace Google.Apis.Requests
         {
             try
             {
-                // Assembly.GetEntryAssembly() isn't available in netstandard1.3. Attempt to fetch it with reflection, which is ugly but should work.
-                // This is a slightly more robust version of the code we previously used in Microsoft.Extensions.PlatformAbstractions.
-                var getEntryAssemblyMethod = typeof(Assembly)
-                    .GetTypeInfo()
-                    .DeclaredMethods
-                    .Where(m => m.Name == "GetEntryAssembly" && m.IsStatic && m.GetParameters().Length == 0 && m.ReturnType == typeof(Assembly))
-                    .FirstOrDefault();
-                if (getEntryAssemblyMethod == null)
-                {
-                    return null;
-                }
-                Assembly entryAssembly = (Assembly) getEntryAssemblyMethod.Invoke(null, new object[0]);
+                // Assembly.GetEntryAssembly() is available on all targeted frameworks (netstandard2.0 and later), so
+                // call it directly. (It was previously fetched via reflection only to support netstandard1.3, which is
+                // no longer targeted; the reflective form was also not trim-safe — IL2026.)
+                Assembly entryAssembly = Assembly.GetEntryAssembly();
                 var frameworkName = entryAssembly?.GetCustomAttribute<TargetFrameworkAttribute>()?.FrameworkName;
                 return frameworkName == null ? null : FormatVersion(new FrameworkName(frameworkName).Version);
             }

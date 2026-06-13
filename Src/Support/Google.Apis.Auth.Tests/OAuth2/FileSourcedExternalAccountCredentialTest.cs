@@ -16,7 +16,6 @@ limitations under the License.
 
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Tests.Mocks;
-using Newtonsoft.Json;
 using System;
 using System.IO;
 using System.Threading.Tasks;
@@ -225,7 +224,7 @@ namespace Google.Apis.Auth.Tests.OAuth2
                             {
                                 SubjectTokenJsonFieldName = "unknownField"
                             }),
-                        typeof(JsonReaderException)
+                        typeof(System.Text.Json.JsonException)
                     }
                 };
 

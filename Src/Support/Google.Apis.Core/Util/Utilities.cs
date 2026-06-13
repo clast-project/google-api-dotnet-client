@@ -16,8 +16,6 @@ limitations under the License.
 
 using Google.Apis.Json;
 using Google.Apis.Testing;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -30,8 +28,6 @@ namespace Google.Apis.Util
     /// <summary>A utility class which contains helper methods and extension methods.</summary>
     public static class Utilities
     {
-        private static readonly JsonSerializerSettings s_serializerSettingsWithoutDateParsing = new JsonSerializerSettings { DateParseHandling = DateParseHandling.None };
-
         /// <summary>Returns the version of the core library.</summary>
         [VisibleForTestOnly]
         public static string GetLibraryVersion()
@@ -115,6 +111,18 @@ namespace Google.Apis.Util
         /// <summary>Returns the defined string value of an Enum.</summary>
         internal static string GetStringValue(this Enum value)
         {
+            // Prefer the source-generated map (AOT-safe). Generated enums always carry a StringValue on every
+            // member, so a registered converter never hits the "no StringValue" fallback for them.
+            if (EnumStringValueRegistry.TryConvert(value, out var registered))
+            {
+                return registered;
+            }
+#if NET10_0_OR_GREATER
+            // Reflective StringValue discovery is not trim-safe; on AOT the enum's converter must be registered.
+            throw new NotSupportedException(
+                $"No source-generated StringValue map is registered for enum type '{value.GetType()}'. " +
+                "Ensure the owning client was processed by the Clast transform so it self-registers its enums.");
+#else
             FieldInfo entry = value.GetType().GetField(value.ToString());
             entry.ThrowIfNull("value");
 
@@ -128,6 +136,7 @@ namespace Google.Apis.Util
             // Otherwise, throw an exception.
             throw new ArgumentException(
                 string.Format("Enum value '{0}' does not contain a StringValue attribute", entry), "value");
+#endif
         }
 
         /// <summary>
@@ -150,13 +159,25 @@ namespace Google.Apis.Util
                 return null;
             }
 
-            if (o.GetType().GetTypeInfo().IsEnum)
+            if (o is Enum enumValue)
             {
+                // Prefer the source-generated enum->wire map (AOT-safe).
+                if (EnumStringValueRegistry.TryConvert(enumValue, out var registered))
+                {
+                    return registered;
+                }
+#if NET10_0_OR_GREATER
+                // Reflective StringValue discovery is not trim-safe; on AOT an unregistered enum falls back to its
+                // member name. Generated clients register all their enums, so this only affects hand-written enums
+                // that were not registered (see BEHAVIORAL-CHANGES.md BC-016).
+                return enumValue.ToString();
+#else
                 // Try to convert the Enum value using the StringValue attribute.
                 var enumType = o.GetType();
                 FieldInfo field = enumType.GetField(o.ToString());
                 StringValueAttribute attribute = field.GetCustomAttribute<StringValueAttribute>();
                 return attribute != null ? attribute.Text : o.ToString();
+#endif
             }
 
             if (o is DateTime)
@@ -231,8 +252,9 @@ namespace Google.Apis.Util
             : date.Value.ToUniversalTime().ToString("yyyy-MM-dd'T'HH:mm:ss.fff'Z'", CultureInfo.InvariantCulture);
 
         /// <summary>
-        /// Deserializes the given raw value to an object using <see cref="NewtonsoftJsonSerializer.Instance"/>,
-        /// as if it were a JSON string value.
+        /// Interprets the given raw string value the way the legacy Newtonsoft-based serializer did when
+        /// deserializing to <see cref="object"/>: an ISO-8601 date/time string becomes a UTC
+        /// <see cref="DateTime"/>, and any other value is returned as the original string.
         /// </summary>
         /// <param name="rawValue">The string value to deserialize. May be null, in which case null is returned.</param>
         /// <returns>The deserialized value.</returns>
@@ -242,34 +264,42 @@ namespace Google.Apis.Util
             {
                 return null;
             }
-            // We need to encode the string as JSON - add quotes round it, escape backslashes etc.
-            string json = JsonConvert.SerializeObject(rawValue);
-            return NewtonsoftJsonSerializer.Instance.Deserialize<object>(json);
+            // Only ISO-8601 date/time-shaped strings (yyyy-MM-ddT...) are treated as dates, matching the old
+            // Newtonsoft date-parsing behavior; everything else is left as a string.
+            if (rawValue.Length >= 19 && rawValue[4] == '-' && rawValue[7] == '-' && rawValue[10] == 'T'
+                && DateTime.TryParse(rawValue, CultureInfo.InvariantCulture,
+                    DateTimeStyles.AdjustToUniversal | DateTimeStyles.AssumeUniversal, out DateTime parsed))
+            {
+                return parsed;
+            }
+            return rawValue;
         }
 
         /// <summary>
-        /// Serializes the given value using <see cref="NewtonsoftJsonSerializer.Instance"/>.
+        /// Formats the given value as the string the Google API expects, matching the legacy behavior: a
+        /// <see cref="string"/> is returned unchanged, a <see cref="DateTime"/> is formatted as RFC 3339, and a
+        /// <see cref="DateTimeOffset"/> is formatted in ISO-8601 with its offset.
         /// </summary>
         /// <param name="value">The value to serialize. May be null, in which case null is returned.</param>
         /// <returns>The string representation of the object.</returns>
-        /// <exception cref="ArgumentException">The value does not serialize to a JSON string.</exception>
+        /// <exception cref="ArgumentException">The value is not of a type that maps to a JSON string.</exception>
         public static string SerializeForGoogleFormat(object value)
         {
-            if (value is null)
+            switch (value)
             {
-                return null;
+                case null:
+                    return null;
+                case string s:
+                    return s;
+                case DateTime dt:
+                    return ConvertToRFC3339(dt);
+                case DateTimeOffset dto:
+                    return dto.Millisecond == 0
+                        ? dto.ToString("yyyy-MM-dd'T'HH:mm:sszzz", CultureInfo.InvariantCulture)
+                        : dto.ToString("yyyy-MM-dd'T'HH:mm:ss.fffzzz", CultureInfo.InvariantCulture);
+                default:
+                    throw new ArgumentException("Value did not serialize to a JSON string.");
             }
-            var json = NewtonsoftJsonSerializer.Instance.Serialize(value);
-            if (json is null ||
-                json.Length < 2 ||
-                !json.StartsWith("\"", StringComparison.Ordinal) ||
-                !json.EndsWith("\"", StringComparison.Ordinal))
-            {
-                throw new ArgumentException("Value did not serialize to a JSON string.");
-            }
-            // Okay, so we have a JSON string. Now we need to parse it to retrieve the actual string value,
-            // with no conversion to DateTime etc.
-            return JsonConvert.DeserializeObject<string>(json, s_serializerSettingsWithoutDateParsing);
         }
     }
 }

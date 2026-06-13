@@ -67,6 +67,10 @@ namespace Google.Apis.Util
         /// </summary>
         public static void PatchUriQuirks()
         {
+#if NETSTANDARD2_0
+            // These quirks only exist on the .NET Framework runtime (pre-4.5 behaviors retained for compat).
+            // On .NET 5+ they were removed, so this is a no-op there - which also keeps the (necessarily
+            // reflection-based) workaround out of the trim/AOT-analyzed builds.
             var uriParser = typeof(System.Uri).GetTypeInfo().Assembly.GetType("System.UriParser");
             if (uriParser == null) { return; }
 
@@ -117,6 +121,7 @@ namespace Google.Apis.Util
                     }
                 }
             }
+#endif
         }
     }
 }

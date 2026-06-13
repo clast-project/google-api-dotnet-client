@@ -14,7 +14,7 @@
 
 using Google.Apis.Requests;
 using Google.Apis.Util;
-using Newtonsoft.Json;
+using System.Text.Json;
 using System.Net.Http;
 using System.Threading.Tasks;
 

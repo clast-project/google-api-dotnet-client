@@ -1,4 +1,4 @@
-// Copyright 2026 Google LLC
+﻿// Copyright 2026 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -9819,11 +9819,11 @@ namespace Google.Apis.Storage.v1.Data
         /// <summary>
         /// Specifies the time when the relocation will revert to the sync stage if the relocation hasn't succeeded.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("expireTime")]
+        [System.Text.Json.Serialization.JsonPropertyName("expireTime")]
         public virtual string ExpireTimeRaw { get; set; }
 
         /// <summary><seealso cref="System.DateTimeOffset"/> representation of <see cref="ExpireTimeRaw"/>.</summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual System.DateTimeOffset? ExpireTimeDateTimeOffset
         {
             get => Google.Apis.Util.DiscoveryFormat.ParseDateTimeToDateTimeOffset(ExpireTimeRaw);
@@ -9831,7 +9831,7 @@ namespace Google.Apis.Storage.v1.Data
         }
 
         /// <summary><seealso cref="System.DateTime"/> representation of <see cref="ExpireTimeRaw"/>.</summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use ExpireTimeDateTimeOffset instead.")]
         public virtual System.DateTime? ExpireTime
         {
@@ -9843,7 +9843,7 @@ namespace Google.Apis.Storage.v1.Data
         /// Specifies the duration after which the relocation will revert to the sync stage if the relocation hasn't
         /// succeeded. Optional, if not supplied, a default value of 12h will be used.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("ttl")]
+        [System.Text.Json.Serialization.JsonPropertyName("ttl")]
         public virtual object Ttl { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -9854,23 +9854,23 @@ namespace Google.Apis.Storage.v1.Data
     public class AnywhereCache : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>The cache-level entry admission policy.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("admissionPolicy")]
+        [System.Text.Json.Serialization.JsonPropertyName("admissionPolicy")]
         public virtual string AdmissionPolicy { get; set; }
 
         /// <summary>The ID of the Anywhere cache instance.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("anywhereCacheId")]
+        [System.Text.Json.Serialization.JsonPropertyName("anywhereCacheId")]
         public virtual string AnywhereCacheId { get; set; }
 
         /// <summary>The name of the bucket containing this cache instance.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("bucket")]
+        [System.Text.Json.Serialization.JsonPropertyName("bucket")]
         public virtual string Bucket { get; set; }
 
         /// <summary>The creation time of the cache instance in RFC 3339 format.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("createTime")]
+        [System.Text.Json.Serialization.JsonPropertyName("createTime")]
         public virtual string CreateTimeRaw { get; set; }
 
         /// <summary><seealso cref="System.DateTimeOffset"/> representation of <see cref="CreateTimeRaw"/>.</summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual System.DateTimeOffset? CreateTimeDateTimeOffset
         {
             get => Google.Apis.Util.DiscoveryFormat.ParseDateTimeToDateTimeOffset(CreateTimeRaw);
@@ -9878,7 +9878,7 @@ namespace Google.Apis.Storage.v1.Data
         }
 
         /// <summary><seealso cref="System.DateTime"/> representation of <see cref="CreateTimeRaw"/>.</summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use CreateTimeDateTimeOffset instead.")]
         public virtual System.DateTime? CreateTime
         {
@@ -9887,39 +9887,39 @@ namespace Google.Apis.Storage.v1.Data
         }
 
         /// <summary>The ID of the resource, including the project number, bucket name and anywhere cache ID.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("id")]
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
         public virtual string Id { get; set; }
 
         /// <summary>Specifies whether objects are ingested into the cache upon write.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("ingestOnWrite")]
+        [System.Text.Json.Serialization.JsonPropertyName("ingestOnWrite")]
         public virtual System.Nullable<bool> IngestOnWrite { get; set; }
 
         /// <summary>The kind of item this is. For Anywhere Cache, this is always storage#anywhereCache.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("kind")]
+        [System.Text.Json.Serialization.JsonPropertyName("kind")]
         public virtual string Kind { get; set; }
 
         /// <summary>True if the cache instance has an active Update long-running operation.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("pendingUpdate")]
+        [System.Text.Json.Serialization.JsonPropertyName("pendingUpdate")]
         public virtual System.Nullable<bool> PendingUpdate { get; set; }
 
         /// <summary>The link to this cache instance.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("selfLink")]
+        [System.Text.Json.Serialization.JsonPropertyName("selfLink")]
         public virtual string SelfLink { get; set; }
 
         /// <summary>The current state of the cache instance.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("state")]
+        [System.Text.Json.Serialization.JsonPropertyName("state")]
         public virtual string State { get; set; }
 
         /// <summary>The TTL of all cache entries in whole seconds. e.g., "7200s". </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("ttl")]
+        [System.Text.Json.Serialization.JsonPropertyName("ttl")]
         public virtual object Ttl { get; set; }
 
         /// <summary>The modification time of the cache instance metadata in RFC 3339 format.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("updateTime")]
+        [System.Text.Json.Serialization.JsonPropertyName("updateTime")]
         public virtual string UpdateTimeRaw { get; set; }
 
         /// <summary><seealso cref="System.DateTimeOffset"/> representation of <see cref="UpdateTimeRaw"/>.</summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual System.DateTimeOffset? UpdateTimeDateTimeOffset
         {
             get => Google.Apis.Util.DiscoveryFormat.ParseDateTimeToDateTimeOffset(UpdateTimeRaw);
@@ -9927,7 +9927,7 @@ namespace Google.Apis.Storage.v1.Data
         }
 
         /// <summary><seealso cref="System.DateTime"/> representation of <see cref="UpdateTimeRaw"/>.</summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use UpdateTimeDateTimeOffset instead.")]
         public virtual System.DateTime? UpdateTime
         {
@@ -9936,7 +9936,7 @@ namespace Google.Apis.Storage.v1.Data
         }
 
         /// <summary>The zone in which the cache instance is running. For example, us-central1-a.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("zone")]
+        [System.Text.Json.Serialization.JsonPropertyName("zone")]
         public virtual string Zone { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -9947,20 +9947,20 @@ namespace Google.Apis.Storage.v1.Data
     public class AnywhereCaches : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>The list of items.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("items")]
+        [System.Text.Json.Serialization.JsonPropertyName("items")]
         public virtual System.Collections.Generic.IList<AnywhereCache> Items { get; set; }
 
         /// <summary>
         /// The kind of item this is. For lists of Anywhere Caches, this is always storage#anywhereCaches.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("kind")]
+        [System.Text.Json.Serialization.JsonPropertyName("kind")]
         public virtual string Kind { get; set; }
 
         /// <summary>
         /// The continuation token, used to page through large result sets. Provide this value in a subsequent request
         /// to return the next page of results.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("nextPageToken")]
+        [System.Text.Json.Serialization.JsonPropertyName("nextPageToken")]
         public virtual string NextPageToken { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -9971,23 +9971,23 @@ namespace Google.Apis.Storage.v1.Data
     public class Bucket : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>Access controls on the bucket.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("acl")]
+        [System.Text.Json.Serialization.JsonPropertyName("acl")]
         public virtual System.Collections.Generic.IList<BucketAccessControl> Acl { get; set; }
 
         /// <summary>The bucket's Autoclass configuration.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("autoclass")]
+        [System.Text.Json.Serialization.JsonPropertyName("autoclass")]
         public virtual AutoclassData Autoclass { get; set; }
 
         /// <summary>The bucket's billing configuration.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("billing")]
+        [System.Text.Json.Serialization.JsonPropertyName("billing")]
         public virtual BillingData Billing { get; set; }
 
         /// <summary>The bucket's Cross-Origin Resource Sharing (CORS) configuration.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("cors")]
+        [System.Text.Json.Serialization.JsonPropertyName("cors")]
         public virtual System.Collections.Generic.IList<CorsData> Cors { get; set; }
 
         /// <summary>The bucket's custom placement configuration for Custom Dual Regions.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("customPlacementConfig")]
+        [System.Text.Json.Serialization.JsonPropertyName("customPlacementConfig")]
         public virtual CustomPlacementConfigData CustomPlacementConfig { get; set; }
 
         /// <summary>
@@ -10001,33 +10001,33 @@ namespace Google.Apis.Storage.v1.Data
         /// transitioned from true to false. Objects under event-based hold cannot be deleted, overwritten or archived
         /// until the hold is removed.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("defaultEventBasedHold")]
+        [System.Text.Json.Serialization.JsonPropertyName("defaultEventBasedHold")]
         public virtual System.Nullable<bool> DefaultEventBasedHold { get; set; }
 
         /// <summary>Default access controls to apply to new objects when no ACL is provided.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("defaultObjectAcl")]
+        [System.Text.Json.Serialization.JsonPropertyName("defaultObjectAcl")]
         public virtual System.Collections.Generic.IList<ObjectAccessControl> DefaultObjectAcl { get; set; }
 
         /// <summary>Encryption configuration for a bucket.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("encryption")]
+        [System.Text.Json.Serialization.JsonPropertyName("encryption")]
         public virtual EncryptionData Encryption { get; set; }
 
         /// <summary>HTTP 1.1 Entity tag for the bucket.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("etag")]
+        [System.Text.Json.Serialization.JsonPropertyName("etag")]
         public virtual string ETag { get; set; }
 
         /// <summary>The generation of this bucket.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("generation")]
+        [System.Text.Json.Serialization.JsonPropertyName("generation")]
         public virtual System.Nullable<long> Generation { get; set; }
 
         /// <summary>The hard delete time of the bucket in RFC 3339 format.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("hardDeleteTime")]
+        [System.Text.Json.Serialization.JsonPropertyName("hardDeleteTime")]
         public virtual string HardDeleteTimeRaw { get; set; }
 
         /// <summary>
         /// <seealso cref="System.DateTimeOffset"/> representation of <see cref="HardDeleteTimeRaw"/>.
         /// </summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual System.DateTimeOffset? HardDeleteTimeDateTimeOffset
         {
             get => Google.Apis.Util.DiscoveryFormat.ParseDateTimeToDateTimeOffset(HardDeleteTimeRaw);
@@ -10035,7 +10035,7 @@ namespace Google.Apis.Storage.v1.Data
         }
 
         /// <summary><seealso cref="System.DateTime"/> representation of <see cref="HardDeleteTimeRaw"/>.</summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use HardDeleteTimeDateTimeOffset instead.")]
         public virtual System.DateTime? HardDeleteTime
         {
@@ -10044,15 +10044,15 @@ namespace Google.Apis.Storage.v1.Data
         }
 
         /// <summary>The bucket's hierarchical namespace configuration.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("hierarchicalNamespace")]
+        [System.Text.Json.Serialization.JsonPropertyName("hierarchicalNamespace")]
         public virtual HierarchicalNamespaceData HierarchicalNamespace { get; set; }
 
         /// <summary>The bucket's IAM configuration.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("iamConfiguration")]
+        [System.Text.Json.Serialization.JsonPropertyName("iamConfiguration")]
         public virtual IamConfigurationData IamConfiguration { get; set; }
 
         /// <summary>The ID of the bucket. For buckets, the id and name properties are the same.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("id")]
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
         public virtual string Id { get; set; }
 
         /// <summary>
@@ -10060,22 +10060,22 @@ namespace Google.Apis.Storage.v1.Data
         /// operations on the bucket, as well as its underlying objects. Only enforced when the mode is set to
         /// 'Enabled'.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("ipFilter")]
+        [System.Text.Json.Serialization.JsonPropertyName("ipFilter")]
         public virtual IpFilterData IpFilter { get; set; }
 
         /// <summary>The kind of item this is. For buckets, this is always storage#bucket.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("kind")]
+        [System.Text.Json.Serialization.JsonPropertyName("kind")]
         public virtual string Kind { get; set; }
 
         /// <summary>User-provided labels, in key/value pairs.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("labels")]
+        [System.Text.Json.Serialization.JsonPropertyName("labels")]
         public virtual System.Collections.Generic.IDictionary<string, string> Labels { get; set; }
 
         /// <summary>
         /// The bucket's lifecycle configuration. See [Lifecycle
         /// Management](https://cloud.google.com/storage/docs/lifecycle) for more information.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("lifecycle")]
+        [System.Text.Json.Serialization.JsonPropertyName("lifecycle")]
         public virtual LifecycleData Lifecycle { get; set; }
 
         /// <summary>
@@ -10083,38 +10083,38 @@ namespace Google.Apis.Storage.v1.Data
         /// region. Defaults to US. See the [Developer's Guide](https://cloud.google.com/storage/docs/locations) for the
         /// authoritative list.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("location")]
+        [System.Text.Json.Serialization.JsonPropertyName("location")]
         public virtual string Location { get; set; }
 
         /// <summary>The type of the bucket location.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("locationType")]
+        [System.Text.Json.Serialization.JsonPropertyName("locationType")]
         public virtual string LocationType { get; set; }
 
         /// <summary>
         /// The bucket's logging configuration, which defines the destination bucket and optional name prefix for the
         /// current bucket's logs.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("logging")]
+        [System.Text.Json.Serialization.JsonPropertyName("logging")]
         public virtual LoggingData Logging { get; set; }
 
         /// <summary>The metadata generation of this bucket.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("metageneration")]
+        [System.Text.Json.Serialization.JsonPropertyName("metageneration")]
         public virtual System.Nullable<long> Metageneration { get; set; }
 
         /// <summary>The name of the bucket.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("name")]
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
         public virtual string Name { get; set; }
 
         /// <summary>The bucket's object retention config.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("objectRetention")]
+        [System.Text.Json.Serialization.JsonPropertyName("objectRetention")]
         public virtual ObjectRetentionData ObjectRetention { get; set; }
 
         /// <summary>The owner of the bucket. This is always the project team's owner group.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("owner")]
+        [System.Text.Json.Serialization.JsonPropertyName("owner")]
         public virtual OwnerData Owner { get; set; }
 
         /// <summary>The project number of the project the bucket belongs to.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("projectNumber")]
+        [System.Text.Json.Serialization.JsonPropertyName("projectNumber")]
         public virtual System.Nullable<ulong> ProjectNumber { get; set; }
 
         /// <summary>
@@ -10125,43 +10125,43 @@ namespace Google.Apis.Storage.v1.Data
         /// be removed or shortened in duration for the lifetime of the bucket. Attempting to remove or decrease period
         /// of a locked retention policy will result in a PERMISSION_DENIED error.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("retentionPolicy")]
+        [System.Text.Json.Serialization.JsonPropertyName("retentionPolicy")]
         public virtual RetentionPolicyData RetentionPolicy { get; set; }
 
         /// <summary>
         /// The Recovery Point Objective (RPO) of this bucket. Set to ASYNC_TURBO to turn on Turbo Replication on a
         /// bucket.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("rpo")]
+        [System.Text.Json.Serialization.JsonPropertyName("rpo")]
         public virtual string Rpo { get; set; }
 
         /// <summary>Reserved for future use.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("satisfiesPZI")]
+        [System.Text.Json.Serialization.JsonPropertyName("satisfiesPZI")]
         public virtual System.Nullable<bool> SatisfiesPZI { get; set; }
 
         /// <summary>Reserved for future use.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("satisfiesPZS")]
+        [System.Text.Json.Serialization.JsonPropertyName("satisfiesPZS")]
         public virtual System.Nullable<bool> SatisfiesPZS { get; set; }
 
         /// <summary>The URI of this bucket.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("selfLink")]
+        [System.Text.Json.Serialization.JsonPropertyName("selfLink")]
         public virtual string SelfLink { get; set; }
 
         /// <summary>
         /// The bucket's soft delete policy, which defines the period of time that soft-deleted objects will be
         /// retained, and cannot be permanently deleted.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("softDeletePolicy")]
+        [System.Text.Json.Serialization.JsonPropertyName("softDeletePolicy")]
         public virtual SoftDeletePolicyData SoftDeletePolicy { get; set; }
 
         /// <summary>The soft delete time of the bucket in RFC 3339 format.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("softDeleteTime")]
+        [System.Text.Json.Serialization.JsonPropertyName("softDeleteTime")]
         public virtual string SoftDeleteTimeRaw { get; set; }
 
         /// <summary>
         /// <seealso cref="System.DateTimeOffset"/> representation of <see cref="SoftDeleteTimeRaw"/>.
         /// </summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual System.DateTimeOffset? SoftDeleteTimeDateTimeOffset
         {
             get => Google.Apis.Util.DiscoveryFormat.ParseDateTimeToDateTimeOffset(SoftDeleteTimeRaw);
@@ -10169,7 +10169,7 @@ namespace Google.Apis.Storage.v1.Data
         }
 
         /// <summary><seealso cref="System.DateTime"/> representation of <see cref="SoftDeleteTimeRaw"/>.</summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use SoftDeleteTimeDateTimeOffset instead.")]
         public virtual System.DateTime? SoftDeleteTime
         {
@@ -10184,15 +10184,15 @@ namespace Google.Apis.Storage.v1.Data
         /// If this value is not specified when the bucket is created, it will default to STANDARD. For more
         /// information, see [Storage Classes](https://cloud.google.com/storage/docs/storage-classes).
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("storageClass")]
+        [System.Text.Json.Serialization.JsonPropertyName("storageClass")]
         public virtual string StorageClass { get; set; }
 
         /// <summary>The creation time of the bucket in RFC 3339 format.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("timeCreated")]
+        [System.Text.Json.Serialization.JsonPropertyName("timeCreated")]
         public virtual string TimeCreatedRaw { get; set; }
 
         /// <summary><seealso cref="System.DateTimeOffset"/> representation of <see cref="TimeCreatedRaw"/>.</summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual System.DateTimeOffset? TimeCreatedDateTimeOffset
         {
             get => Google.Apis.Util.DiscoveryFormat.ParseDateTimeToDateTimeOffset(TimeCreatedRaw);
@@ -10200,7 +10200,7 @@ namespace Google.Apis.Storage.v1.Data
         }
 
         /// <summary><seealso cref="System.DateTime"/> representation of <see cref="TimeCreatedRaw"/>.</summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use TimeCreatedDateTimeOffset instead.")]
         public virtual System.DateTime? TimeCreated
         {
@@ -10209,11 +10209,11 @@ namespace Google.Apis.Storage.v1.Data
         }
 
         /// <summary>The modification time of the bucket in RFC 3339 format.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("updated")]
+        [System.Text.Json.Serialization.JsonPropertyName("updated")]
         public virtual string UpdatedRaw { get; set; }
 
         /// <summary><seealso cref="System.DateTimeOffset"/> representation of <see cref="UpdatedRaw"/>.</summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual System.DateTimeOffset? UpdatedDateTimeOffset
         {
             get => Google.Apis.Util.DiscoveryFormat.ParseDateTimeToDateTimeOffset(UpdatedRaw);
@@ -10221,7 +10221,7 @@ namespace Google.Apis.Storage.v1.Data
         }
 
         /// <summary><seealso cref="System.DateTime"/> representation of <see cref="UpdatedRaw"/>.</summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use UpdatedDateTimeOffset instead.")]
         public virtual System.DateTime? Updated
         {
@@ -10230,7 +10230,7 @@ namespace Google.Apis.Storage.v1.Data
         }
 
         /// <summary>The bucket's versioning configuration.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("versioning")]
+        [System.Text.Json.Serialization.JsonPropertyName("versioning")]
         public virtual VersioningData Versioning { get; set; }
 
         /// <summary>
@@ -10238,35 +10238,35 @@ namespace Google.Apis.Storage.v1.Data
         /// web site. See the [Static Website Examples](https://cloud.google.com/storage/docs/static-website) for more
         /// information.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("website")]
+        [System.Text.Json.Serialization.JsonPropertyName("website")]
         public virtual WebsiteData Website { get; set; }
 
         /// <summary>The bucket's Autoclass configuration.</summary>
         public class AutoclassData
         {
             /// <summary>Whether or not Autoclass is enabled on this bucket</summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("enabled")]
+            [System.Text.Json.Serialization.JsonPropertyName("enabled")]
             public virtual System.Nullable<bool> Enabled { get; set; }
 
             /// <summary>
             /// The storage class that objects in the bucket eventually transition to if they are not read for a certain
             /// length of time. Valid values are NEARLINE and ARCHIVE.
             /// </summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("terminalStorageClass")]
+            [System.Text.Json.Serialization.JsonPropertyName("terminalStorageClass")]
             public virtual string TerminalStorageClass { get; set; }
 
             /// <summary>
             /// A date and time in RFC 3339 format representing the time of the most recent update to
             /// "terminalStorageClass".
             /// </summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("terminalStorageClassUpdateTime")]
+            [System.Text.Json.Serialization.JsonPropertyName("terminalStorageClassUpdateTime")]
             public virtual string TerminalStorageClassUpdateTimeRaw { get; set; }
 
             /// <summary>
             /// <seealso cref="System.DateTimeOffset"/> representation of
             /// <see cref="TerminalStorageClassUpdateTimeRaw"/>.
             /// </summary>
-            [Newtonsoft.Json.JsonIgnoreAttribute]
+            [System.Text.Json.Serialization.JsonIgnore]
             public virtual System.DateTimeOffset? TerminalStorageClassUpdateTimeDateTimeOffset
             {
                 get => Google.Apis.Util.DiscoveryFormat.ParseDateTimeToDateTimeOffset(TerminalStorageClassUpdateTimeRaw);
@@ -10276,7 +10276,7 @@ namespace Google.Apis.Storage.v1.Data
             /// <summary>
             /// <seealso cref="System.DateTime"/> representation of <see cref="TerminalStorageClassUpdateTimeRaw"/>.
             /// </summary>
-            [Newtonsoft.Json.JsonIgnoreAttribute]
+            [System.Text.Json.Serialization.JsonIgnore]
             [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use TerminalStorageClassUpdateTimeDateTimeOffset instead.")]
             public virtual System.DateTime? TerminalStorageClassUpdateTime
             {
@@ -10287,13 +10287,13 @@ namespace Google.Apis.Storage.v1.Data
             /// <summary>
             /// A date and time in RFC 3339 format representing the instant at which "enabled" was last toggled.
             /// </summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("toggleTime")]
+            [System.Text.Json.Serialization.JsonPropertyName("toggleTime")]
             public virtual string ToggleTimeRaw { get; set; }
 
             /// <summary>
             /// <seealso cref="System.DateTimeOffset"/> representation of <see cref="ToggleTimeRaw"/>.
             /// </summary>
-            [Newtonsoft.Json.JsonIgnoreAttribute]
+            [System.Text.Json.Serialization.JsonIgnore]
             public virtual System.DateTimeOffset? ToggleTimeDateTimeOffset
             {
                 get => Google.Apis.Util.DiscoveryFormat.ParseDateTimeToDateTimeOffset(ToggleTimeRaw);
@@ -10301,7 +10301,7 @@ namespace Google.Apis.Storage.v1.Data
             }
 
             /// <summary><seealso cref="System.DateTime"/> representation of <see cref="ToggleTimeRaw"/>.</summary>
-            [Newtonsoft.Json.JsonIgnoreAttribute]
+            [System.Text.Json.Serialization.JsonIgnore]
             [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use ToggleTimeDateTimeOffset instead.")]
             public virtual System.DateTime? ToggleTime
             {
@@ -10314,7 +10314,7 @@ namespace Google.Apis.Storage.v1.Data
         public class BillingData
         {
             /// <summary>When set to true, Requester Pays is enabled for this bucket.</summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("requesterPays")]
+            [System.Text.Json.Serialization.JsonPropertyName("requesterPays")]
             public virtual System.Nullable<bool> RequesterPays { get; set; }
         }
 
@@ -10324,28 +10324,28 @@ namespace Google.Apis.Storage.v1.Data
             /// <summary>
             /// The value, in seconds, to return in the  Access-Control-Max-Age header used in preflight responses.
             /// </summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("maxAgeSeconds")]
+            [System.Text.Json.Serialization.JsonPropertyName("maxAgeSeconds")]
             public virtual System.Nullable<int> MaxAgeSeconds { get; set; }
 
             /// <summary>
             /// The list of HTTP methods on which to include CORS response headers, (GET, OPTIONS, POST, etc) Note: "*"
             /// is permitted in the list of methods, and means "any method".
             /// </summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("method")]
+            [System.Text.Json.Serialization.JsonPropertyName("method")]
             public virtual System.Collections.Generic.IList<string> Method { get; set; }
 
             /// <summary>
             /// The list of Origins eligible to receive CORS response headers. Note: "*" is permitted in the list of
             /// origins, and means "any Origin".
             /// </summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("origin")]
+            [System.Text.Json.Serialization.JsonPropertyName("origin")]
             public virtual System.Collections.Generic.IList<string> Origin { get; set; }
 
             /// <summary>
             /// The list of HTTP headers other than the simple response headers to give permission for the user-agent to
             /// share across domains.
             /// </summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("responseHeader")]
+            [System.Text.Json.Serialization.JsonPropertyName("responseHeader")]
             public virtual System.Collections.Generic.IList<string> ResponseHeader { get; set; }
         }
 
@@ -10353,7 +10353,7 @@ namespace Google.Apis.Storage.v1.Data
         public class CustomPlacementConfigData
         {
             /// <summary>The list of regional locations in which data is placed.</summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("dataLocations")]
+            [System.Text.Json.Serialization.JsonPropertyName("dataLocations")]
             public virtual System.Collections.Generic.IList<string> DataLocations { get; set; }
         }
 
@@ -10365,7 +10365,7 @@ namespace Google.Apis.Storage.v1.Data
             /// has no effect on existing objects; it applies to new objects only. If omitted, the new objects are
             /// allowed to be encrypted with Customer Managed Encryption type by default.
             /// </summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("customerManagedEncryptionEnforcementConfig")]
+            [System.Text.Json.Serialization.JsonPropertyName("customerManagedEncryptionEnforcementConfig")]
             public virtual CustomerManagedEncryptionEnforcementConfigData CustomerManagedEncryptionEnforcementConfig { get; set; }
 
             /// <summary>
@@ -10373,14 +10373,14 @@ namespace Google.Apis.Storage.v1.Data
             /// has no effect on existing objects; it applies to new objects only. If omitted, the new objects are
             /// allowed to be encrypted with Customer Supplied Encryption type by default.
             /// </summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("customerSuppliedEncryptionEnforcementConfig")]
+            [System.Text.Json.Serialization.JsonPropertyName("customerSuppliedEncryptionEnforcementConfig")]
             public virtual CustomerSuppliedEncryptionEnforcementConfigData CustomerSuppliedEncryptionEnforcementConfig { get; set; }
 
             /// <summary>
             /// A Cloud KMS key that will be used to encrypt objects inserted into this bucket, if no encryption method
             /// is specified.
             /// </summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("defaultKmsKeyName")]
+            [System.Text.Json.Serialization.JsonPropertyName("defaultKmsKeyName")]
             public virtual string DefaultKmsKeyName { get; set; }
 
             /// <summary>
@@ -10388,7 +10388,7 @@ namespace Google.Apis.Storage.v1.Data
             /// has no effect on existing objects; it applies to new objects only. If omitted, the new objects are
             /// allowed to be encrypted with Google Managed Encryption type by default.
             /// </summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("googleManagedEncryptionEnforcementConfig")]
+            [System.Text.Json.Serialization.JsonPropertyName("googleManagedEncryptionEnforcementConfig")]
             public virtual GoogleManagedEncryptionEnforcementConfigData GoogleManagedEncryptionEnforcementConfig { get; set; }
 
             /// <summary>
@@ -10402,13 +10402,13 @@ namespace Google.Apis.Storage.v1.Data
                 /// Server-determined value that indicates the time from which configuration was enforced and effective.
                 /// This value is in RFC 3339 format.
                 /// </summary>
-                [Newtonsoft.Json.JsonPropertyAttribute("effectiveTime")]
+                [System.Text.Json.Serialization.JsonPropertyName("effectiveTime")]
                 public virtual string EffectiveTimeRaw { get; set; }
 
                 /// <summary>
                 /// <seealso cref="System.DateTimeOffset"/> representation of <see cref="EffectiveTimeRaw"/>.
                 /// </summary>
-                [Newtonsoft.Json.JsonIgnoreAttribute]
+                [System.Text.Json.Serialization.JsonIgnore]
                 public virtual System.DateTimeOffset? EffectiveTimeDateTimeOffset
                 {
                     get => Google.Apis.Util.DiscoveryFormat.ParseDateTimeToDateTimeOffset(EffectiveTimeRaw);
@@ -10418,7 +10418,7 @@ namespace Google.Apis.Storage.v1.Data
                 /// <summary>
                 /// <seealso cref="System.DateTime"/> representation of <see cref="EffectiveTimeRaw"/>.
                 /// </summary>
-                [Newtonsoft.Json.JsonIgnoreAttribute]
+                [System.Text.Json.Serialization.JsonIgnore]
                 [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use EffectiveTimeDateTimeOffset instead.")]
                 public virtual System.DateTime? EffectiveTime
                 {
@@ -10427,7 +10427,7 @@ namespace Google.Apis.Storage.v1.Data
                 }
 
                 /// <summary>Restriction mode for Customer-Managed Encryption Keys. Defaults to NotRestricted.</summary>
-                [Newtonsoft.Json.JsonPropertyAttribute("restrictionMode")]
+                [System.Text.Json.Serialization.JsonPropertyName("restrictionMode")]
                 public virtual string RestrictionMode { get; set; }
             }
 
@@ -10442,13 +10442,13 @@ namespace Google.Apis.Storage.v1.Data
                 /// Server-determined value that indicates the time from which configuration was enforced and effective.
                 /// This value is in RFC 3339 format.
                 /// </summary>
-                [Newtonsoft.Json.JsonPropertyAttribute("effectiveTime")]
+                [System.Text.Json.Serialization.JsonPropertyName("effectiveTime")]
                 public virtual string EffectiveTimeRaw { get; set; }
 
                 /// <summary>
                 /// <seealso cref="System.DateTimeOffset"/> representation of <see cref="EffectiveTimeRaw"/>.
                 /// </summary>
-                [Newtonsoft.Json.JsonIgnoreAttribute]
+                [System.Text.Json.Serialization.JsonIgnore]
                 public virtual System.DateTimeOffset? EffectiveTimeDateTimeOffset
                 {
                     get => Google.Apis.Util.DiscoveryFormat.ParseDateTimeToDateTimeOffset(EffectiveTimeRaw);
@@ -10458,7 +10458,7 @@ namespace Google.Apis.Storage.v1.Data
                 /// <summary>
                 /// <seealso cref="System.DateTime"/> representation of <see cref="EffectiveTimeRaw"/>.
                 /// </summary>
-                [Newtonsoft.Json.JsonIgnoreAttribute]
+                [System.Text.Json.Serialization.JsonIgnore]
                 [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use EffectiveTimeDateTimeOffset instead.")]
                 public virtual System.DateTime? EffectiveTime
                 {
@@ -10469,7 +10469,7 @@ namespace Google.Apis.Storage.v1.Data
                 /// <summary>
                 /// Restriction mode for Customer-Supplied Encryption Keys. Defaults to NotRestricted.
                 /// </summary>
-                [Newtonsoft.Json.JsonPropertyAttribute("restrictionMode")]
+                [System.Text.Json.Serialization.JsonPropertyName("restrictionMode")]
                 public virtual string RestrictionMode { get; set; }
             }
 
@@ -10484,13 +10484,13 @@ namespace Google.Apis.Storage.v1.Data
                 /// Server-determined value that indicates the time from which configuration was enforced and effective.
                 /// This value is in RFC 3339 format.
                 /// </summary>
-                [Newtonsoft.Json.JsonPropertyAttribute("effectiveTime")]
+                [System.Text.Json.Serialization.JsonPropertyName("effectiveTime")]
                 public virtual string EffectiveTimeRaw { get; set; }
 
                 /// <summary>
                 /// <seealso cref="System.DateTimeOffset"/> representation of <see cref="EffectiveTimeRaw"/>.
                 /// </summary>
-                [Newtonsoft.Json.JsonIgnoreAttribute]
+                [System.Text.Json.Serialization.JsonIgnore]
                 public virtual System.DateTimeOffset? EffectiveTimeDateTimeOffset
                 {
                     get => Google.Apis.Util.DiscoveryFormat.ParseDateTimeToDateTimeOffset(EffectiveTimeRaw);
@@ -10500,7 +10500,7 @@ namespace Google.Apis.Storage.v1.Data
                 /// <summary>
                 /// <seealso cref="System.DateTime"/> representation of <see cref="EffectiveTimeRaw"/>.
                 /// </summary>
-                [Newtonsoft.Json.JsonIgnoreAttribute]
+                [System.Text.Json.Serialization.JsonIgnore]
                 [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use EffectiveTimeDateTimeOffset instead.")]
                 public virtual System.DateTime? EffectiveTime
                 {
@@ -10509,7 +10509,7 @@ namespace Google.Apis.Storage.v1.Data
                 }
 
                 /// <summary>Restriction mode for Google-Managed Encryption Keys. Defaults to NotRestricted.</summary>
-                [Newtonsoft.Json.JsonPropertyAttribute("restrictionMode")]
+                [System.Text.Json.Serialization.JsonPropertyName("restrictionMode")]
                 public virtual string RestrictionMode { get; set; }
             }
         }
@@ -10518,7 +10518,7 @@ namespace Google.Apis.Storage.v1.Data
         public class HierarchicalNamespaceData
         {
             /// <summary>When set to true, hierarchical namespace is enabled for this bucket.</summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("enabled")]
+            [System.Text.Json.Serialization.JsonPropertyName("enabled")]
             public virtual System.Nullable<bool> Enabled { get; set; }
         }
 
@@ -10531,18 +10531,18 @@ namespace Google.Apis.Storage.v1.Data
             /// uniformBucketLevelAccess field. We recommend using the uniformBucketLevelAccess field to enable and
             /// disable the feature.
             /// </summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("bucketPolicyOnly")]
+            [System.Text.Json.Serialization.JsonPropertyName("bucketPolicyOnly")]
             public virtual BucketPolicyOnlyData BucketPolicyOnly { get; set; }
 
             /// <summary>
             /// The bucket's Public Access Prevention configuration. Currently, 'inherited' and 'enforced' are
             /// supported.
             /// </summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("publicAccessPrevention")]
+            [System.Text.Json.Serialization.JsonPropertyName("publicAccessPrevention")]
             public virtual string PublicAccessPrevention { get; set; }
 
             /// <summary>The bucket's uniform bucket-level access configuration.</summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("uniformBucketLevelAccess")]
+            [System.Text.Json.Serialization.JsonPropertyName("uniformBucketLevelAccess")]
             public virtual UniformBucketLevelAccessData UniformBucketLevelAccess { get; set; }
 
             /// <summary>
@@ -10554,7 +10554,7 @@ namespace Google.Apis.Storage.v1.Data
             public class BucketPolicyOnlyData
             {
                 /// <summary>If set, access is controlled only by bucket-level or above IAM policies.</summary>
-                [Newtonsoft.Json.JsonPropertyAttribute("enabled")]
+                [System.Text.Json.Serialization.JsonPropertyName("enabled")]
                 public virtual System.Nullable<bool> Enabled { get; set; }
 
                 /// <summary>
@@ -10562,13 +10562,13 @@ namespace Google.Apis.Storage.v1.Data
                 /// format. iamConfiguration.bucketPolicyOnly.enabled may be changed from true to false until the locked
                 /// time, after which the field is immutable.
                 /// </summary>
-                [Newtonsoft.Json.JsonPropertyAttribute("lockedTime")]
+                [System.Text.Json.Serialization.JsonPropertyName("lockedTime")]
                 public virtual string LockedTimeRaw { get; set; }
 
                 /// <summary>
                 /// <seealso cref="System.DateTimeOffset"/> representation of <see cref="LockedTimeRaw"/>.
                 /// </summary>
-                [Newtonsoft.Json.JsonIgnoreAttribute]
+                [System.Text.Json.Serialization.JsonIgnore]
                 public virtual System.DateTimeOffset? LockedTimeDateTimeOffset
                 {
                     get => Google.Apis.Util.DiscoveryFormat.ParseDateTimeToDateTimeOffset(LockedTimeRaw);
@@ -10576,7 +10576,7 @@ namespace Google.Apis.Storage.v1.Data
                 }
 
                 /// <summary><seealso cref="System.DateTime"/> representation of <see cref="LockedTimeRaw"/>.</summary>
-                [Newtonsoft.Json.JsonIgnoreAttribute]
+                [System.Text.Json.Serialization.JsonIgnore]
                 [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use LockedTimeDateTimeOffset instead.")]
                 public virtual System.DateTime? LockedTime
                 {
@@ -10589,7 +10589,7 @@ namespace Google.Apis.Storage.v1.Data
             public class UniformBucketLevelAccessData
             {
                 /// <summary>If set, access is controlled only by bucket-level or above IAM policies.</summary>
-                [Newtonsoft.Json.JsonPropertyAttribute("enabled")]
+                [System.Text.Json.Serialization.JsonPropertyName("enabled")]
                 public virtual System.Nullable<bool> Enabled { get; set; }
 
                 /// <summary>
@@ -10597,13 +10597,13 @@ namespace Google.Apis.Storage.v1.Data
                 /// RFC 3339  format. iamConfiguration.uniformBucketLevelAccess.enabled may be changed from true to
                 /// false until the locked time, after which the field is immutable.
                 /// </summary>
-                [Newtonsoft.Json.JsonPropertyAttribute("lockedTime")]
+                [System.Text.Json.Serialization.JsonPropertyName("lockedTime")]
                 public virtual string LockedTimeRaw { get; set; }
 
                 /// <summary>
                 /// <seealso cref="System.DateTimeOffset"/> representation of <see cref="LockedTimeRaw"/>.
                 /// </summary>
-                [Newtonsoft.Json.JsonIgnoreAttribute]
+                [System.Text.Json.Serialization.JsonIgnore]
                 public virtual System.DateTimeOffset? LockedTimeDateTimeOffset
                 {
                     get => Google.Apis.Util.DiscoveryFormat.ParseDateTimeToDateTimeOffset(LockedTimeRaw);
@@ -10611,7 +10611,7 @@ namespace Google.Apis.Storage.v1.Data
                 }
 
                 /// <summary><seealso cref="System.DateTime"/> representation of <see cref="LockedTimeRaw"/>.</summary>
-                [Newtonsoft.Json.JsonIgnoreAttribute]
+                [System.Text.Json.Serialization.JsonIgnore]
                 [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use LockedTimeDateTimeOffset instead.")]
                 public virtual System.DateTime? LockedTime
                 {
@@ -10631,32 +10631,32 @@ namespace Google.Apis.Storage.v1.Data
             /// <summary>
             /// Whether to allow all service agents to access the bucket regardless of the IP filter configuration.
             /// </summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("allowAllServiceAgentAccess")]
+            [System.Text.Json.Serialization.JsonPropertyName("allowAllServiceAgentAccess")]
             public virtual System.Nullable<bool> AllowAllServiceAgentAccess { get; set; }
 
             /// <summary>Whether to allow cross-org VPCs in the bucket's IP filter configuration.</summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("allowCrossOrgVpcs")]
+            [System.Text.Json.Serialization.JsonPropertyName("allowCrossOrgVpcs")]
             public virtual System.Nullable<bool> AllowCrossOrgVpcs { get; set; }
 
             /// <summary>The mode of the IP filter. Valid values are 'Enabled' and 'Disabled'.</summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("mode")]
+            [System.Text.Json.Serialization.JsonPropertyName("mode")]
             public virtual string Mode { get; set; }
 
             /// <summary>The public network source of the bucket's IP filter.</summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("publicNetworkSource")]
+            [System.Text.Json.Serialization.JsonPropertyName("publicNetworkSource")]
             public virtual PublicNetworkSourceData PublicNetworkSource { get; set; }
 
             /// <summary>
             /// The list of [VPC network](https://cloud.google.com/vpc/docs/vpc) sources of the bucket's IP filter.
             /// </summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("vpcNetworkSources")]
+            [System.Text.Json.Serialization.JsonPropertyName("vpcNetworkSources")]
             public virtual System.Collections.Generic.IList<VpcNetworkSourcesData> VpcNetworkSources { get; set; }
 
             /// <summary>The public network source of the bucket's IP filter.</summary>
             public class PublicNetworkSourceData
             {
                 /// <summary>The list of public IPv4, IPv6 cidr ranges that are allowed to access the bucket.</summary>
-                [Newtonsoft.Json.JsonPropertyAttribute("allowedIpCidrRanges")]
+                [System.Text.Json.Serialization.JsonPropertyName("allowedIpCidrRanges")]
                 public virtual System.Collections.Generic.IList<string> AllowedIpCidrRanges { get; set; }
             }
 
@@ -10668,11 +10668,11 @@ namespace Google.Apis.Storage.v1.Data
                 /// <summary>
                 /// The list of IPv4, IPv6 cidr ranges subnetworks that are allowed to access the bucket.
                 /// </summary>
-                [Newtonsoft.Json.JsonPropertyAttribute("allowedIpCidrRanges")]
+                [System.Text.Json.Serialization.JsonPropertyName("allowedIpCidrRanges")]
                 public virtual System.Collections.Generic.IList<string> AllowedIpCidrRanges { get; set; }
 
                 /// <summary>Name of the network. Format: projects/{PROJECT_ID}/global/networks/{NETWORK_NAME}</summary>
-                [Newtonsoft.Json.JsonPropertyAttribute("network")]
+                [System.Text.Json.Serialization.JsonPropertyName("network")]
                 public virtual string Network { get; set; }
             }
         }
@@ -10687,7 +10687,7 @@ namespace Google.Apis.Storage.v1.Data
             /// A lifecycle management rule, which is made of an action to take and the condition(s) under which the
             /// action will be taken.
             /// </summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("rule")]
+            [System.Text.Json.Serialization.JsonPropertyName("rule")]
             public virtual System.Collections.Generic.IList<RuleData> Rule { get; set; }
 
             /// <summary>
@@ -10697,25 +10697,25 @@ namespace Google.Apis.Storage.v1.Data
             public class RuleData
             {
                 /// <summary>The action to take.</summary>
-                [Newtonsoft.Json.JsonPropertyAttribute("action")]
+                [System.Text.Json.Serialization.JsonPropertyName("action")]
                 public virtual ActionData Action { get; set; }
 
                 /// <summary>The condition(s) under which the action will be taken.</summary>
-                [Newtonsoft.Json.JsonPropertyAttribute("condition")]
+                [System.Text.Json.Serialization.JsonPropertyName("condition")]
                 public virtual ConditionData Condition { get; set; }
 
                 /// <summary>The action to take.</summary>
                 public class ActionData
                 {
                     /// <summary>Target storage class. Required iff the type of the action is SetStorageClass.</summary>
-                    [Newtonsoft.Json.JsonPropertyAttribute("storageClass")]
+                    [System.Text.Json.Serialization.JsonPropertyName("storageClass")]
                     public virtual string StorageClass { get; set; }
 
                     /// <summary>
                     /// Type of the action. Currently, only Delete, SetStorageClass, and AbortIncompleteMultipartUpload
                     /// are supported.
                     /// </summary>
-                    [Newtonsoft.Json.JsonPropertyAttribute("type")]
+                    [System.Text.Json.Serialization.JsonPropertyName("type")]
                     public virtual string Type { get; set; }
                 }
 
@@ -10726,21 +10726,21 @@ namespace Google.Apis.Storage.v1.Data
                     /// Age of an object (in days). This condition is satisfied when an object reaches the specified
                     /// age.
                     /// </summary>
-                    [Newtonsoft.Json.JsonPropertyAttribute("age")]
+                    [System.Text.Json.Serialization.JsonPropertyName("age")]
                     public virtual System.Nullable<int> Age { get; set; }
 
                     /// <summary>
                     /// A date in RFC 3339 format with only the date part (for instance, "2013-01-15"). This condition
                     /// is satisfied when an object is created before midnight of the specified date in UTC.
                     /// </summary>
-                    [Newtonsoft.Json.JsonPropertyAttribute("createdBefore")]
+                    [System.Text.Json.Serialization.JsonPropertyName("createdBefore")]
                     public virtual string CreatedBefore { get; set; }
 
                     /// <summary>
                     /// A date in RFC 3339 format with only the date part (for instance, "2013-01-15"). This condition
                     /// is satisfied when the custom time on an object is before this date in UTC.
                     /// </summary>
-                    [Newtonsoft.Json.JsonPropertyAttribute("customTimeBefore")]
+                    [System.Text.Json.Serialization.JsonPropertyName("customTimeBefore")]
                     public virtual string CustomTimeBefore { get; set; }
 
                     /// <summary>
@@ -10748,7 +10748,7 @@ namespace Google.Apis.Storage.v1.Data
                     /// satisfied if the days elapsed is at least this number. If no custom timestamp is specified on an
                     /// object, the condition does not apply.
                     /// </summary>
-                    [Newtonsoft.Json.JsonPropertyAttribute("daysSinceCustomTime")]
+                    [System.Text.Json.Serialization.JsonPropertyName("daysSinceCustomTime")]
                     public virtual System.Nullable<int> DaysSinceCustomTime { get; set; }
 
                     /// <summary>
@@ -10757,14 +10757,14 @@ namespace Google.Apis.Storage.v1.Data
                     /// objects. The value of the field must be a nonnegative integer. If it's zero, the object version
                     /// will become eligible for Lifecycle action as soon as it becomes noncurrent.
                     /// </summary>
-                    [Newtonsoft.Json.JsonPropertyAttribute("daysSinceNoncurrentTime")]
+                    [System.Text.Json.Serialization.JsonPropertyName("daysSinceNoncurrentTime")]
                     public virtual System.Nullable<int> DaysSinceNoncurrentTime { get; set; }
 
                     /// <summary>
                     /// Relevant only for versioned objects. If the value is true, this condition matches live objects;
                     /// if the value is false, it matches archived objects.
                     /// </summary>
-                    [Newtonsoft.Json.JsonPropertyAttribute("isLive")]
+                    [System.Text.Json.Serialization.JsonPropertyName("isLive")]
                     public virtual System.Nullable<bool> IsLive { get; set; }
 
                     /// <summary>
@@ -10773,14 +10773,14 @@ namespace Google.Apis.Storage.v1.Data
                     /// stage and is only available to a whitelisted set of users; that means that this feature may be
                     /// changed in backward-incompatible ways and that it is not guaranteed to be released.
                     /// </summary>
-                    [Newtonsoft.Json.JsonPropertyAttribute("matchesPattern")]
+                    [System.Text.Json.Serialization.JsonPropertyName("matchesPattern")]
                     public virtual string MatchesPattern { get; set; }
 
                     /// <summary>
                     /// List of object name prefixes. This condition will be satisfied when at least one of the prefixes
                     /// exactly matches the beginning of the object name.
                     /// </summary>
-                    [Newtonsoft.Json.JsonPropertyAttribute("matchesPrefix")]
+                    [System.Text.Json.Serialization.JsonPropertyName("matchesPrefix")]
                     public virtual System.Collections.Generic.IList<string> MatchesPrefix { get; set; }
 
                     /// <summary>
@@ -10788,14 +10788,14 @@ namespace Google.Apis.Storage.v1.Data
                     /// include MULTI_REGIONAL, REGIONAL, NEARLINE, COLDLINE, ARCHIVE, STANDARD, and
                     /// DURABLE_REDUCED_AVAILABILITY.
                     /// </summary>
-                    [Newtonsoft.Json.JsonPropertyAttribute("matchesStorageClass")]
+                    [System.Text.Json.Serialization.JsonPropertyName("matchesStorageClass")]
                     public virtual System.Collections.Generic.IList<string> MatchesStorageClass { get; set; }
 
                     /// <summary>
                     /// List of object name suffixes. This condition will be satisfied when at least one of the suffixes
                     /// exactly matches the end of the object name.
                     /// </summary>
-                    [Newtonsoft.Json.JsonPropertyAttribute("matchesSuffix")]
+                    [System.Text.Json.Serialization.JsonPropertyName("matchesSuffix")]
                     public virtual System.Collections.Generic.IList<string> MatchesSuffix { get; set; }
 
                     /// <summary>
@@ -10803,22 +10803,22 @@ namespace Google.Apis.Storage.v1.Data
                     /// is satisfied when the noncurrent time on an object is before this date in UTC. This condition is
                     /// relevant only for versioned objects.
                     /// </summary>
-                    [Newtonsoft.Json.JsonPropertyAttribute("noncurrentTimeBefore")]
+                    [System.Text.Json.Serialization.JsonPropertyName("noncurrentTimeBefore")]
                     public virtual string NoncurrentTimeBefore { get; set; }
 
                     /// <summary>
                     /// Relevant only for versioned objects. If the value is N, this condition is satisfied when there
                     /// are at least N versions (including the live version) newer than this version of the object.
                     /// </summary>
-                    [Newtonsoft.Json.JsonPropertyAttribute("numNewerVersions")]
+                    [System.Text.Json.Serialization.JsonPropertyName("numNewerVersions")]
                     public virtual System.Nullable<int> NumNewerVersions { get; set; }
 
                     /// <summary>Objects having a size greater than this value in bytes will be matched.</summary>
-                    [Newtonsoft.Json.JsonPropertyAttribute("sizeAboveBytes")]
+                    [System.Text.Json.Serialization.JsonPropertyName("sizeAboveBytes")]
                     public virtual System.Nullable<long> SizeAboveBytes { get; set; }
 
                     /// <summary>Objects having a size less than this value in bytes will be matched.</summary>
-                    [Newtonsoft.Json.JsonPropertyAttribute("sizeBelowBytes")]
+                    [System.Text.Json.Serialization.JsonPropertyName("sizeBelowBytes")]
                     public virtual System.Nullable<long> SizeBelowBytes { get; set; }
                 }
             }
@@ -10831,11 +10831,11 @@ namespace Google.Apis.Storage.v1.Data
         public class LoggingData
         {
             /// <summary>The destination bucket where the current bucket's logs should be placed.</summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("logBucket")]
+            [System.Text.Json.Serialization.JsonPropertyName("logBucket")]
             public virtual string LogBucket { get; set; }
 
             /// <summary>A prefix for log object names.</summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("logObjectPrefix")]
+            [System.Text.Json.Serialization.JsonPropertyName("logObjectPrefix")]
             public virtual string LogObjectPrefix { get; set; }
         }
 
@@ -10843,7 +10843,7 @@ namespace Google.Apis.Storage.v1.Data
         public class ObjectRetentionData
         {
             /// <summary>The bucket's object retention mode. Can be Enabled.</summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("mode")]
+            [System.Text.Json.Serialization.JsonPropertyName("mode")]
             public virtual string Mode { get; set; }
         }
 
@@ -10851,11 +10851,11 @@ namespace Google.Apis.Storage.v1.Data
         public class OwnerData
         {
             /// <summary>The entity, in the form project-owner-projectId.</summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("entity")]
+            [System.Text.Json.Serialization.JsonPropertyName("entity")]
             public virtual string Entity { get; set; }
 
             /// <summary>The ID for the entity.</summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("entityId")]
+            [System.Text.Json.Serialization.JsonPropertyName("entityId")]
             public virtual string EntityId { get; set; }
         }
 
@@ -10873,13 +10873,13 @@ namespace Google.Apis.Storage.v1.Data
             /// Server-determined value that indicates the time from which policy was enforced and effective. This value
             /// is in RFC 3339 format.
             /// </summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("effectiveTime")]
+            [System.Text.Json.Serialization.JsonPropertyName("effectiveTime")]
             public virtual string EffectiveTimeRaw { get; set; }
 
             /// <summary>
             /// <seealso cref="System.DateTimeOffset"/> representation of <see cref="EffectiveTimeRaw"/>.
             /// </summary>
-            [Newtonsoft.Json.JsonIgnoreAttribute]
+            [System.Text.Json.Serialization.JsonIgnore]
             public virtual System.DateTimeOffset? EffectiveTimeDateTimeOffset
             {
                 get => Google.Apis.Util.DiscoveryFormat.ParseDateTimeToDateTimeOffset(EffectiveTimeRaw);
@@ -10887,7 +10887,7 @@ namespace Google.Apis.Storage.v1.Data
             }
 
             /// <summary><seealso cref="System.DateTime"/> representation of <see cref="EffectiveTimeRaw"/>.</summary>
-            [Newtonsoft.Json.JsonIgnoreAttribute]
+            [System.Text.Json.Serialization.JsonIgnore]
             [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use EffectiveTimeDateTimeOffset instead.")]
             public virtual System.DateTime? EffectiveTime
             {
@@ -10896,7 +10896,7 @@ namespace Google.Apis.Storage.v1.Data
             }
 
             /// <summary>Once locked, an object retention policy cannot be modified.</summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("isLocked")]
+            [System.Text.Json.Serialization.JsonPropertyName("isLocked")]
             public virtual System.Nullable<bool> IsLocked { get; set; }
 
             /// <summary>
@@ -10904,7 +10904,7 @@ namespace Google.Apis.Storage.v1.Data
             /// and less than 100 years. Note that enforcement of retention periods less than a day is not guaranteed.
             /// Such periods should only be used for testing purposes.
             /// </summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("retentionPeriod")]
+            [System.Text.Json.Serialization.JsonPropertyName("retentionPeriod")]
             public virtual System.Nullable<long> RetentionPeriod { get; set; }
         }
 
@@ -10918,13 +10918,13 @@ namespace Google.Apis.Storage.v1.Data
             /// Server-determined value that indicates the time from which the policy, or one with a greater retention,
             /// was effective. This value is in RFC 3339 format.
             /// </summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("effectiveTime")]
+            [System.Text.Json.Serialization.JsonPropertyName("effectiveTime")]
             public virtual string EffectiveTimeRaw { get; set; }
 
             /// <summary>
             /// <seealso cref="System.DateTimeOffset"/> representation of <see cref="EffectiveTimeRaw"/>.
             /// </summary>
-            [Newtonsoft.Json.JsonIgnoreAttribute]
+            [System.Text.Json.Serialization.JsonIgnore]
             public virtual System.DateTimeOffset? EffectiveTimeDateTimeOffset
             {
                 get => Google.Apis.Util.DiscoveryFormat.ParseDateTimeToDateTimeOffset(EffectiveTimeRaw);
@@ -10932,7 +10932,7 @@ namespace Google.Apis.Storage.v1.Data
             }
 
             /// <summary><seealso cref="System.DateTime"/> representation of <see cref="EffectiveTimeRaw"/>.</summary>
-            [Newtonsoft.Json.JsonIgnoreAttribute]
+            [System.Text.Json.Serialization.JsonIgnore]
             [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use EffectiveTimeDateTimeOffset instead.")]
             public virtual System.DateTime? EffectiveTime
             {
@@ -10944,7 +10944,7 @@ namespace Google.Apis.Storage.v1.Data
             /// The duration in seconds that soft-deleted objects in the bucket will be retained and cannot be
             /// permanently deleted.
             /// </summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("retentionDurationSeconds")]
+            [System.Text.Json.Serialization.JsonPropertyName("retentionDurationSeconds")]
             public virtual System.Nullable<long> RetentionDurationSeconds { get; set; }
         }
 
@@ -10952,7 +10952,7 @@ namespace Google.Apis.Storage.v1.Data
         public class VersioningData
         {
             /// <summary>While set to true, versioning is fully enabled for this bucket.</summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("enabled")]
+            [System.Text.Json.Serialization.JsonPropertyName("enabled")]
             public virtual System.Nullable<bool> Enabled { get; set; }
         }
 
@@ -10968,14 +10968,14 @@ namespace Google.Apis.Storage.v1.Data
             /// this suffix, and attempt to retrieve the resulting object. This allows the creation of index.html
             /// objects to represent directory pages.
             /// </summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("mainPageSuffix")]
+            [System.Text.Json.Serialization.JsonPropertyName("mainPageSuffix")]
             public virtual string MainPageSuffix { get; set; }
 
             /// <summary>
             /// If the requested object path is missing, and any mainPageSuffix object is missing, if applicable, the
             /// service will return the named object from this bucket as the content for a 404 Not Found result.
             /// </summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("notFoundPage")]
+            [System.Text.Json.Serialization.JsonPropertyName("notFoundPage")]
             public virtual string NotFoundPage { get; set; }
         }
     }
@@ -10984,15 +10984,15 @@ namespace Google.Apis.Storage.v1.Data
     public class BucketAccessControl : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>The name of the bucket.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("bucket")]
+        [System.Text.Json.Serialization.JsonPropertyName("bucket")]
         public virtual string Bucket { get; set; }
 
         /// <summary>The domain associated with the entity, if any.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("domain")]
+        [System.Text.Json.Serialization.JsonPropertyName("domain")]
         public virtual string Domain { get; set; }
 
         /// <summary>The email address associated with the entity, if any.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("email")]
+        [System.Text.Json.Serialization.JsonPropertyName("email")]
         public virtual string Email { get; set; }
 
         /// <summary>
@@ -11002,48 +11002,48 @@ namespace Google.Apis.Storage.v1.Data
         /// would be group-example@googlegroups.com.  - To refer to all members of the Google Apps for Business domain
         /// example.com, the entity would be domain-example.com.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("entity")]
+        [System.Text.Json.Serialization.JsonPropertyName("entity")]
         public virtual string Entity { get; set; }
 
         /// <summary>The ID for the entity, if any.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("entityId")]
+        [System.Text.Json.Serialization.JsonPropertyName("entityId")]
         public virtual string EntityId { get; set; }
 
         /// <summary>HTTP 1.1 Entity tag for the access-control entry.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("etag")]
+        [System.Text.Json.Serialization.JsonPropertyName("etag")]
         public virtual string ETag { get; set; }
 
         /// <summary>The ID of the access-control entry.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("id")]
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
         public virtual string Id { get; set; }
 
         /// <summary>
         /// The kind of item this is. For bucket access control entries, this is always storage#bucketAccessControl.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("kind")]
+        [System.Text.Json.Serialization.JsonPropertyName("kind")]
         public virtual string Kind { get; set; }
 
         /// <summary>The project team associated with the entity, if any.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("projectTeam")]
+        [System.Text.Json.Serialization.JsonPropertyName("projectTeam")]
         public virtual ProjectTeamData ProjectTeam { get; set; }
 
         /// <summary>The access permission for the entity.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("role")]
+        [System.Text.Json.Serialization.JsonPropertyName("role")]
         public virtual string Role { get; set; }
 
         /// <summary>The link to this access-control entry.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("selfLink")]
+        [System.Text.Json.Serialization.JsonPropertyName("selfLink")]
         public virtual string SelfLink { get; set; }
 
         /// <summary>The project team associated with the entity, if any.</summary>
         public class ProjectTeamData
         {
             /// <summary>The project number.</summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("projectNumber")]
+            [System.Text.Json.Serialization.JsonPropertyName("projectNumber")]
             public virtual string ProjectNumber { get; set; }
 
             /// <summary>The team.</summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("team")]
+            [System.Text.Json.Serialization.JsonPropertyName("team")]
             public virtual string Team { get; set; }
         }
     }
@@ -11052,14 +11052,14 @@ namespace Google.Apis.Storage.v1.Data
     public class BucketAccessControls : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>The list of items.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("items")]
+        [System.Text.Json.Serialization.JsonPropertyName("items")]
         public virtual System.Collections.Generic.IList<BucketAccessControl> Items { get; set; }
 
         /// <summary>
         /// The kind of item this is. For lists of bucket access control entries, this is always
         /// storage#bucketAccessControls.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("kind")]
+        [System.Text.Json.Serialization.JsonPropertyName("kind")]
         public virtual string Kind { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -11070,27 +11070,27 @@ namespace Google.Apis.Storage.v1.Data
     public class BucketStorageLayout : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>The name of the bucket.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("bucket")]
+        [System.Text.Json.Serialization.JsonPropertyName("bucket")]
         public virtual string Bucket { get; set; }
 
         /// <summary>The bucket's custom placement configuration for Custom Dual Regions.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("customPlacementConfig")]
+        [System.Text.Json.Serialization.JsonPropertyName("customPlacementConfig")]
         public virtual CustomPlacementConfigData CustomPlacementConfig { get; set; }
 
         /// <summary>The bucket's hierarchical namespace configuration.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("hierarchicalNamespace")]
+        [System.Text.Json.Serialization.JsonPropertyName("hierarchicalNamespace")]
         public virtual HierarchicalNamespaceData HierarchicalNamespace { get; set; }
 
         /// <summary>The kind of item this is. For storage layout, this is always storage#storageLayout.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("kind")]
+        [System.Text.Json.Serialization.JsonPropertyName("kind")]
         public virtual string Kind { get; set; }
 
         /// <summary>The location of the bucket.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("location")]
+        [System.Text.Json.Serialization.JsonPropertyName("location")]
         public virtual string Location { get; set; }
 
         /// <summary>The type of the bucket location.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("locationType")]
+        [System.Text.Json.Serialization.JsonPropertyName("locationType")]
         public virtual string LocationType { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -11100,7 +11100,7 @@ namespace Google.Apis.Storage.v1.Data
         public class CustomPlacementConfigData
         {
             /// <summary>The list of regional locations in which data is placed.</summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("dataLocations")]
+            [System.Text.Json.Serialization.JsonPropertyName("dataLocations")]
             public virtual System.Collections.Generic.IList<string> DataLocations { get; set; }
         }
 
@@ -11108,7 +11108,7 @@ namespace Google.Apis.Storage.v1.Data
         public class HierarchicalNamespaceData
         {
             /// <summary>When set to true, hierarchical namespace is enabled for this bucket.</summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("enabled")]
+            [System.Text.Json.Serialization.JsonPropertyName("enabled")]
             public virtual System.Nullable<bool> Enabled { get; set; }
         }
     }
@@ -11117,22 +11117,22 @@ namespace Google.Apis.Storage.v1.Data
     public class Buckets : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>The list of items.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("items")]
+        [System.Text.Json.Serialization.JsonPropertyName("items")]
         public virtual System.Collections.Generic.IList<Bucket> Items { get; set; }
 
         /// <summary>The kind of item this is. For lists of buckets, this is always storage#buckets.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("kind")]
+        [System.Text.Json.Serialization.JsonPropertyName("kind")]
         public virtual string Kind { get; set; }
 
         /// <summary>
         /// The continuation token, used to page through large result sets. Provide this value in a subsequent request
         /// to return the next page of results.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("nextPageToken")]
+        [System.Text.Json.Serialization.JsonPropertyName("nextPageToken")]
         public virtual string NextPageToken { get; set; }
 
         /// <summary>The list of bucket resource names that could not be reached during the listing operation.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("unreachable")]
+        [System.Text.Json.Serialization.JsonPropertyName("unreachable")]
         public virtual System.Collections.Generic.IList<string> Unreachable { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -11149,24 +11149,24 @@ namespace Google.Apis.Storage.v1.Data
         /// result in a soft-deleted object. In either case, if a noncurrent object already exists with the same name, a
         /// live version can be written without issue.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("allowOverwrite")]
+        [System.Text.Json.Serialization.JsonPropertyName("allowOverwrite")]
         public virtual System.Nullable<bool> AllowOverwrite { get; set; }
 
         /// <summary>
         /// If true, copies the source object's ACL; otherwise, uses the bucket's default object ACL. The default is
         /// false.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("copySourceAcl")]
+        [System.Text.Json.Serialization.JsonPropertyName("copySourceAcl")]
         public virtual System.Nullable<bool> CopySourceAcl { get; set; }
 
         /// <summary>Restores only the objects that were created after this time.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("createdAfterTime")]
+        [System.Text.Json.Serialization.JsonPropertyName("createdAfterTime")]
         public virtual string CreatedAfterTimeRaw { get; set; }
 
         /// <summary>
         /// <seealso cref="System.DateTimeOffset"/> representation of <see cref="CreatedAfterTimeRaw"/>.
         /// </summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual System.DateTimeOffset? CreatedAfterTimeDateTimeOffset
         {
             get => Google.Apis.Util.DiscoveryFormat.ParseDateTimeToDateTimeOffset(CreatedAfterTimeRaw);
@@ -11174,7 +11174,7 @@ namespace Google.Apis.Storage.v1.Data
         }
 
         /// <summary><seealso cref="System.DateTime"/> representation of <see cref="CreatedAfterTimeRaw"/>.</summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use CreatedAfterTimeDateTimeOffset instead.")]
         public virtual System.DateTime? CreatedAfterTime
         {
@@ -11183,13 +11183,13 @@ namespace Google.Apis.Storage.v1.Data
         }
 
         /// <summary>Restores only the objects that were created before this time.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("createdBeforeTime")]
+        [System.Text.Json.Serialization.JsonPropertyName("createdBeforeTime")]
         public virtual string CreatedBeforeTimeRaw { get; set; }
 
         /// <summary>
         /// <seealso cref="System.DateTimeOffset"/> representation of <see cref="CreatedBeforeTimeRaw"/>.
         /// </summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual System.DateTimeOffset? CreatedBeforeTimeDateTimeOffset
         {
             get => Google.Apis.Util.DiscoveryFormat.ParseDateTimeToDateTimeOffset(CreatedBeforeTimeRaw);
@@ -11197,7 +11197,7 @@ namespace Google.Apis.Storage.v1.Data
         }
 
         /// <summary><seealso cref="System.DateTime"/> representation of <see cref="CreatedBeforeTimeRaw"/>.</summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use CreatedBeforeTimeDateTimeOffset instead.")]
         public virtual System.DateTime? CreatedBeforeTime
         {
@@ -11209,17 +11209,17 @@ namespace Google.Apis.Storage.v1.Data
         /// Restores only the objects matching any of the specified glob(s). If this parameter is not specified, all
         /// objects will be restored within the specified time range.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("matchGlobs")]
+        [System.Text.Json.Serialization.JsonPropertyName("matchGlobs")]
         public virtual System.Collections.Generic.IList<string> MatchGlobs { get; set; }
 
         /// <summary>Restores only the objects that were soft-deleted after this time.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("softDeletedAfterTime")]
+        [System.Text.Json.Serialization.JsonPropertyName("softDeletedAfterTime")]
         public virtual string SoftDeletedAfterTimeRaw { get; set; }
 
         /// <summary>
         /// <seealso cref="System.DateTimeOffset"/> representation of <see cref="SoftDeletedAfterTimeRaw"/>.
         /// </summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual System.DateTimeOffset? SoftDeletedAfterTimeDateTimeOffset
         {
             get => Google.Apis.Util.DiscoveryFormat.ParseDateTimeToDateTimeOffset(SoftDeletedAfterTimeRaw);
@@ -11229,7 +11229,7 @@ namespace Google.Apis.Storage.v1.Data
         /// <summary>
         /// <seealso cref="System.DateTime"/> representation of <see cref="SoftDeletedAfterTimeRaw"/>.
         /// </summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use SoftDeletedAfterTimeDateTimeOffset instead.")]
         public virtual System.DateTime? SoftDeletedAfterTime
         {
@@ -11238,13 +11238,13 @@ namespace Google.Apis.Storage.v1.Data
         }
 
         /// <summary>Restores only the objects that were soft-deleted before this time.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("softDeletedBeforeTime")]
+        [System.Text.Json.Serialization.JsonPropertyName("softDeletedBeforeTime")]
         public virtual string SoftDeletedBeforeTimeRaw { get; set; }
 
         /// <summary>
         /// <seealso cref="System.DateTimeOffset"/> representation of <see cref="SoftDeletedBeforeTimeRaw"/>.
         /// </summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual System.DateTimeOffset? SoftDeletedBeforeTimeDateTimeOffset
         {
             get => Google.Apis.Util.DiscoveryFormat.ParseDateTimeToDateTimeOffset(SoftDeletedBeforeTimeRaw);
@@ -11254,7 +11254,7 @@ namespace Google.Apis.Storage.v1.Data
         /// <summary>
         /// <seealso cref="System.DateTime"/> representation of <see cref="SoftDeletedBeforeTimeRaw"/>.
         /// </summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use SoftDeletedBeforeTimeDateTimeOffset instead.")]
         public virtual System.DateTime? SoftDeletedBeforeTime
         {
@@ -11270,53 +11270,53 @@ namespace Google.Apis.Storage.v1.Data
     public class Channel : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>The address where notifications are delivered for this channel.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("address")]
+        [System.Text.Json.Serialization.JsonPropertyName("address")]
         public virtual string Address { get; set; }
 
         /// <summary>
         /// Date and time of notification channel expiration, expressed as a Unix timestamp, in milliseconds. Optional.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("expiration")]
+        [System.Text.Json.Serialization.JsonPropertyName("expiration")]
         public virtual System.Nullable<long> Expiration { get; set; }
 
         /// <summary>A UUID or similar unique string that identifies this channel.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("id")]
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
         public virtual string Id { get; set; }
 
         /// <summary>
         /// Identifies this as a notification channel used to watch for changes to a resource, which is "api#channel".
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("kind")]
+        [System.Text.Json.Serialization.JsonPropertyName("kind")]
         public virtual string Kind { get; set; }
 
         /// <summary>Additional parameters controlling delivery channel behavior. Optional.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("params")]
+        [System.Text.Json.Serialization.JsonPropertyName("params")]
         public virtual System.Collections.Generic.IDictionary<string, string> Params__ { get; set; }
 
         /// <summary>A Boolean value to indicate whether payload is wanted. Optional.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("payload")]
+        [System.Text.Json.Serialization.JsonPropertyName("payload")]
         public virtual System.Nullable<bool> Payload { get; set; }
 
         /// <summary>
         /// An opaque ID that identifies the resource being watched on this channel. Stable across different API
         /// versions.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("resourceId")]
+        [System.Text.Json.Serialization.JsonPropertyName("resourceId")]
         public virtual string ResourceId { get; set; }
 
         /// <summary>A version-specific identifier for the watched resource.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("resourceUri")]
+        [System.Text.Json.Serialization.JsonPropertyName("resourceUri")]
         public virtual string ResourceUri { get; set; }
 
         /// <summary>
         /// An arbitrary string delivered to the target address with each notification delivered over this channel.
         /// Optional.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("token")]
+        [System.Text.Json.Serialization.JsonPropertyName("token")]
         public virtual string Token { get; set; }
 
         /// <summary>The type of delivery mechanism used for this channel.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("type")]
+        [System.Text.Json.Serialization.JsonPropertyName("type")]
         public virtual string Type { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -11327,19 +11327,19 @@ namespace Google.Apis.Storage.v1.Data
     public class ComposeRequest : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>If true, the source objects will be deleted.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("deleteSourceObjects")]
+        [System.Text.Json.Serialization.JsonPropertyName("deleteSourceObjects")]
         public virtual System.Nullable<bool> DeleteSourceObjects { get; set; }
 
         /// <summary>Properties of the resulting object.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("destination")]
+        [System.Text.Json.Serialization.JsonPropertyName("destination")]
         public virtual Object Destination { get; set; }
 
         /// <summary>The kind of item this is.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("kind")]
+        [System.Text.Json.Serialization.JsonPropertyName("kind")]
         public virtual string Kind { get; set; }
 
         /// <summary>The list of source objects that will be concatenated into a single object.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("sourceObjects")]
+        [System.Text.Json.Serialization.JsonPropertyName("sourceObjects")]
         public virtual System.Collections.Generic.IList<SourceObjectsData> SourceObjects { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -11349,15 +11349,15 @@ namespace Google.Apis.Storage.v1.Data
         public class SourceObjectsData
         {
             /// <summary>The generation of this object to use as the source.</summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("generation")]
+            [System.Text.Json.Serialization.JsonPropertyName("generation")]
             public virtual System.Nullable<long> Generation { get; set; }
 
             /// <summary>The source object's name. All source objects must reside in the same bucket.</summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("name")]
+            [System.Text.Json.Serialization.JsonPropertyName("name")]
             public virtual string Name { get; set; }
 
             /// <summary>Conditions that must be met for this operation to execute.</summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("objectPreconditions")]
+            [System.Text.Json.Serialization.JsonPropertyName("objectPreconditions")]
             public virtual ObjectPreconditionsData ObjectPreconditions { get; set; }
 
             /// <summary>Conditions that must be met for this operation to execute.</summary>
@@ -11368,7 +11368,7 @@ namespace Google.Apis.Storage.v1.Data
                 /// value. If this value and a generation are both specified, they must be the same value or the call
                 /// will fail.
                 /// </summary>
-                [Newtonsoft.Json.JsonPropertyAttribute("ifGenerationMatch")]
+                [System.Text.Json.Serialization.JsonPropertyName("ifGenerationMatch")]
                 public virtual System.Nullable<long> IfGenerationMatch { get; set; }
             }
         }
@@ -11384,28 +11384,28 @@ namespace Google.Apis.Storage.v1.Data
         /// An optional description of the expression. This is a longer text which describes the expression, e.g. when
         /// hovered over it in a UI.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("description")]
+        [System.Text.Json.Serialization.JsonPropertyName("description")]
         public virtual string Description { get; set; }
 
         /// <summary>
         /// Textual representation of an expression in Common Expression Language syntax. The application context of the
         /// containing message determines which well-known feature set of CEL is supported.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("expression")]
+        [System.Text.Json.Serialization.JsonPropertyName("expression")]
         public virtual string Expression { get; set; }
 
         /// <summary>
         /// An optional string indicating the location of the expression for error reporting, e.g. a file name and a
         /// position in the file.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("location")]
+        [System.Text.Json.Serialization.JsonPropertyName("location")]
         public virtual string Location { get; set; }
 
         /// <summary>
         /// An optional title for the expression, i.e. a short string describing its purpose. This can be used e.g. in
         /// UIs which allow to enter the expression.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("title")]
+        [System.Text.Json.Serialization.JsonPropertyName("title")]
         public virtual string Title { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -11416,15 +11416,15 @@ namespace Google.Apis.Storage.v1.Data
     public class Folder : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>The name of the bucket containing this folder.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("bucket")]
+        [System.Text.Json.Serialization.JsonPropertyName("bucket")]
         public virtual string Bucket { get; set; }
 
         /// <summary>The creation time of the folder in RFC 3339 format.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("createTime")]
+        [System.Text.Json.Serialization.JsonPropertyName("createTime")]
         public virtual string CreateTimeRaw { get; set; }
 
         /// <summary><seealso cref="System.DateTimeOffset"/> representation of <see cref="CreateTimeRaw"/>.</summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual System.DateTimeOffset? CreateTimeDateTimeOffset
         {
             get => Google.Apis.Util.DiscoveryFormat.ParseDateTimeToDateTimeOffset(CreateTimeRaw);
@@ -11432,7 +11432,7 @@ namespace Google.Apis.Storage.v1.Data
         }
 
         /// <summary><seealso cref="System.DateTime"/> representation of <see cref="CreateTimeRaw"/>.</summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use CreateTimeDateTimeOffset instead.")]
         public virtual System.DateTime? CreateTime
         {
@@ -11441,40 +11441,40 @@ namespace Google.Apis.Storage.v1.Data
         }
 
         /// <summary>The ID of the folder, including the bucket name, folder name.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("id")]
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
         public virtual string Id { get; set; }
 
         /// <summary>The kind of item this is. For folders, this is always storage#folder.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("kind")]
+        [System.Text.Json.Serialization.JsonPropertyName("kind")]
         public virtual string Kind { get; set; }
 
         /// <summary>
         /// The version of the metadata for this folder. Used for preconditions and for detecting changes in metadata.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("metageneration")]
+        [System.Text.Json.Serialization.JsonPropertyName("metageneration")]
         public virtual System.Nullable<long> Metageneration { get; set; }
 
         /// <summary>The name of the folder. Required if not specified by URL parameter.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("name")]
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
         public virtual string Name { get; set; }
 
         /// <summary>
         /// Only present if the folder is part of an ongoing rename folder operation. Contains information which can be
         /// used to query the operation status.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("pendingRenameInfo")]
+        [System.Text.Json.Serialization.JsonPropertyName("pendingRenameInfo")]
         public virtual PendingRenameInfoData PendingRenameInfo { get; set; }
 
         /// <summary>The link to this folder.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("selfLink")]
+        [System.Text.Json.Serialization.JsonPropertyName("selfLink")]
         public virtual string SelfLink { get; set; }
 
         /// <summary>The modification time of the folder metadata in RFC 3339 format.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("updateTime")]
+        [System.Text.Json.Serialization.JsonPropertyName("updateTime")]
         public virtual string UpdateTimeRaw { get; set; }
 
         /// <summary><seealso cref="System.DateTimeOffset"/> representation of <see cref="UpdateTimeRaw"/>.</summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual System.DateTimeOffset? UpdateTimeDateTimeOffset
         {
             get => Google.Apis.Util.DiscoveryFormat.ParseDateTimeToDateTimeOffset(UpdateTimeRaw);
@@ -11482,7 +11482,7 @@ namespace Google.Apis.Storage.v1.Data
         }
 
         /// <summary><seealso cref="System.DateTime"/> representation of <see cref="UpdateTimeRaw"/>.</summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use UpdateTimeDateTimeOffset instead.")]
         public virtual System.DateTime? UpdateTime
         {
@@ -11500,7 +11500,7 @@ namespace Google.Apis.Storage.v1.Data
         public class PendingRenameInfoData
         {
             /// <summary>The ID of the rename folder operation.</summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("operationId")]
+            [System.Text.Json.Serialization.JsonPropertyName("operationId")]
             public virtual string OperationId { get; set; }
         }
     }
@@ -11509,18 +11509,18 @@ namespace Google.Apis.Storage.v1.Data
     public class Folders : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>The list of items.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("items")]
+        [System.Text.Json.Serialization.JsonPropertyName("items")]
         public virtual System.Collections.Generic.IList<Folder> Items { get; set; }
 
         /// <summary>The kind of item this is. For lists of folders, this is always storage#folders.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("kind")]
+        [System.Text.Json.Serialization.JsonPropertyName("kind")]
         public virtual string Kind { get; set; }
 
         /// <summary>
         /// The continuation token, used to page through large result sets. Provide this value in a subsequent request
         /// to return the next page of results.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("nextPageToken")]
+        [System.Text.Json.Serialization.JsonPropertyName("nextPageToken")]
         public virtual string NextPageToken { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -11531,18 +11531,18 @@ namespace Google.Apis.Storage.v1.Data
     public class GoogleLongrunningListOperationsResponse : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>The kind of item this is. For lists of operations, this is always storage#operations.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("kind")]
+        [System.Text.Json.Serialization.JsonPropertyName("kind")]
         public virtual string Kind { get; set; }
 
         /// <summary>
         /// The continuation token, used to page through large result sets. Provide this value in a subsequent request
         /// to return the next page of results.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("nextPageToken")]
+        [System.Text.Json.Serialization.JsonPropertyName("nextPageToken")]
         public virtual string NextPageToken { get; set; }
 
         /// <summary>A list of operations that matches the specified filter in the request.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("operations")]
+        [System.Text.Json.Serialization.JsonPropertyName("operations")]
         public virtual System.Collections.Generic.IList<GoogleLongrunningOperation> Operations { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -11556,15 +11556,15 @@ namespace Google.Apis.Storage.v1.Data
         /// If the value is "false", it means the operation is still in progress. If "true", the operation is completed,
         /// and either "error" or "response" is available.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("done")]
+        [System.Text.Json.Serialization.JsonPropertyName("done")]
         public virtual System.Nullable<bool> Done { get; set; }
 
         /// <summary>The error result of the operation in case of failure or cancellation.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("error")]
+        [System.Text.Json.Serialization.JsonPropertyName("error")]
         public virtual GoogleRpcStatus Error { get; set; }
 
         /// <summary>The kind of item this is. For operations, this is always storage#operation.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("kind")]
+        [System.Text.Json.Serialization.JsonPropertyName("kind")]
         public virtual string Kind { get; set; }
 
         /// <summary>
@@ -11572,14 +11572,14 @@ namespace Google.Apis.Storage.v1.Data
         /// common metadata such as create time. Some services might not provide such metadata. Any method that returns
         /// a long-running operation should document the metadata type, if any.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("metadata")]
+        [System.Text.Json.Serialization.JsonPropertyName("metadata")]
         public virtual System.Collections.Generic.IDictionary<string, object> Metadata { get; set; }
 
         /// <summary>
         /// The server-assigned name, which is only unique within the same service that originally returns it. If you
         /// use the default HTTP mapping, the "name" should be a resource name ending with "operations/{operationId}".
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("name")]
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
         public virtual string Name { get; set; }
 
         /// <summary>
@@ -11589,11 +11589,11 @@ namespace Google.Apis.Storage.v1.Data
         /// "XxxResponse", where "Xxx" is the original method name. For example, if the original method name is
         /// "TakeSnapshot()", the inferred response type is "TakeSnapshotResponse".
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("response")]
+        [System.Text.Json.Serialization.JsonPropertyName("response")]
         public virtual System.Collections.Generic.IDictionary<string, object> Response { get; set; }
 
         /// <summary>The link to this long running operation.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("selfLink")]
+        [System.Text.Json.Serialization.JsonPropertyName("selfLink")]
         public virtual string SelfLink { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -11609,17 +11609,17 @@ namespace Google.Apis.Storage.v1.Data
     public class GoogleRpcStatus : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>The status code, which should be an enum value of google.rpc.Code.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("code")]
+        [System.Text.Json.Serialization.JsonPropertyName("code")]
         public virtual System.Nullable<int> Code { get; set; }
 
         /// <summary>
         /// A list of messages that carry the error details. There is a common set of message types for APIs to use.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("details")]
+        [System.Text.Json.Serialization.JsonPropertyName("details")]
         public virtual System.Collections.Generic.IList<System.Collections.Generic.IDictionary<string, object>> Details { get; set; }
 
         /// <summary>A developer-facing error message, which should be in English.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("message")]
+        [System.Text.Json.Serialization.JsonPropertyName("message")]
         public virtual string Message { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -11630,15 +11630,15 @@ namespace Google.Apis.Storage.v1.Data
     public class HmacKey : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>The kind of item this is. For HMAC keys, this is always storage#hmacKey.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("kind")]
+        [System.Text.Json.Serialization.JsonPropertyName("kind")]
         public virtual string Kind { get; set; }
 
         /// <summary>Key metadata.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("metadata")]
+        [System.Text.Json.Serialization.JsonPropertyName("metadata")]
         public virtual HmacKeyMetadata Metadata { get; set; }
 
         /// <summary>HMAC secret key material.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("secret")]
+        [System.Text.Json.Serialization.JsonPropertyName("secret")]
         public virtual string Secret { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -11649,43 +11649,43 @@ namespace Google.Apis.Storage.v1.Data
     public class HmacKeyMetadata : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>The ID of the HMAC Key.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("accessId")]
+        [System.Text.Json.Serialization.JsonPropertyName("accessId")]
         public virtual string AccessId { get; set; }
 
         /// <summary>HTTP 1.1 Entity tag for the HMAC key.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("etag")]
+        [System.Text.Json.Serialization.JsonPropertyName("etag")]
         public virtual string ETag { get; set; }
 
         /// <summary>The ID of the HMAC key, including the Project ID and the Access ID.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("id")]
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
         public virtual string Id { get; set; }
 
         /// <summary>The kind of item this is. For HMAC Key metadata, this is always storage#hmacKeyMetadata.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("kind")]
+        [System.Text.Json.Serialization.JsonPropertyName("kind")]
         public virtual string Kind { get; set; }
 
         /// <summary>Project ID owning the service account to which the key authenticates.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("projectId")]
+        [System.Text.Json.Serialization.JsonPropertyName("projectId")]
         public virtual string ProjectId { get; set; }
 
         /// <summary>The link to this resource.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("selfLink")]
+        [System.Text.Json.Serialization.JsonPropertyName("selfLink")]
         public virtual string SelfLink { get; set; }
 
         /// <summary>The email address of the key's associated service account.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("serviceAccountEmail")]
+        [System.Text.Json.Serialization.JsonPropertyName("serviceAccountEmail")]
         public virtual string ServiceAccountEmail { get; set; }
 
         /// <summary>The state of the key. Can be one of ACTIVE, INACTIVE, or DELETED.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("state")]
+        [System.Text.Json.Serialization.JsonPropertyName("state")]
         public virtual string State { get; set; }
 
         /// <summary>The creation time of the HMAC key in RFC 3339 format.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("timeCreated")]
+        [System.Text.Json.Serialization.JsonPropertyName("timeCreated")]
         public virtual string TimeCreatedRaw { get; set; }
 
         /// <summary><seealso cref="System.DateTimeOffset"/> representation of <see cref="TimeCreatedRaw"/>.</summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual System.DateTimeOffset? TimeCreatedDateTimeOffset
         {
             get => Google.Apis.Util.DiscoveryFormat.ParseDateTimeToDateTimeOffset(TimeCreatedRaw);
@@ -11693,7 +11693,7 @@ namespace Google.Apis.Storage.v1.Data
         }
 
         /// <summary><seealso cref="System.DateTime"/> representation of <see cref="TimeCreatedRaw"/>.</summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use TimeCreatedDateTimeOffset instead.")]
         public virtual System.DateTime? TimeCreated
         {
@@ -11702,11 +11702,11 @@ namespace Google.Apis.Storage.v1.Data
         }
 
         /// <summary>The last modification time of the HMAC key metadata in RFC 3339 format.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("updated")]
+        [System.Text.Json.Serialization.JsonPropertyName("updated")]
         public virtual string UpdatedRaw { get; set; }
 
         /// <summary><seealso cref="System.DateTimeOffset"/> representation of <see cref="UpdatedRaw"/>.</summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual System.DateTimeOffset? UpdatedDateTimeOffset
         {
             get => Google.Apis.Util.DiscoveryFormat.ParseDateTimeToDateTimeOffset(UpdatedRaw);
@@ -11714,7 +11714,7 @@ namespace Google.Apis.Storage.v1.Data
         }
 
         /// <summary><seealso cref="System.DateTime"/> representation of <see cref="UpdatedRaw"/>.</summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use UpdatedDateTimeOffset instead.")]
         public virtual System.DateTime? Updated
         {
@@ -11727,18 +11727,18 @@ namespace Google.Apis.Storage.v1.Data
     public class HmacKeysMetadata : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>The list of items.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("items")]
+        [System.Text.Json.Serialization.JsonPropertyName("items")]
         public virtual System.Collections.Generic.IList<HmacKeyMetadata> Items { get; set; }
 
         /// <summary>The kind of item this is. For lists of hmacKeys, this is always storage#hmacKeysMetadata.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("kind")]
+        [System.Text.Json.Serialization.JsonPropertyName("kind")]
         public virtual string Kind { get; set; }
 
         /// <summary>
         /// The continuation token, used to page through large result sets. Provide this value in a subsequent request
         /// to return the next page of results.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("nextPageToken")]
+        [System.Text.Json.Serialization.JsonPropertyName("nextPageToken")]
         public virtual string NextPageToken { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -11749,15 +11749,15 @@ namespace Google.Apis.Storage.v1.Data
     public class ManagedFolder : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>The name of the bucket containing this managed folder.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("bucket")]
+        [System.Text.Json.Serialization.JsonPropertyName("bucket")]
         public virtual string Bucket { get; set; }
 
         /// <summary>The creation time of the managed folder in RFC 3339 format.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("createTime")]
+        [System.Text.Json.Serialization.JsonPropertyName("createTime")]
         public virtual string CreateTimeRaw { get; set; }
 
         /// <summary><seealso cref="System.DateTimeOffset"/> representation of <see cref="CreateTimeRaw"/>.</summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual System.DateTimeOffset? CreateTimeDateTimeOffset
         {
             get => Google.Apis.Util.DiscoveryFormat.ParseDateTimeToDateTimeOffset(CreateTimeRaw);
@@ -11765,7 +11765,7 @@ namespace Google.Apis.Storage.v1.Data
         }
 
         /// <summary><seealso cref="System.DateTime"/> representation of <see cref="CreateTimeRaw"/>.</summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use CreateTimeDateTimeOffset instead.")]
         public virtual System.DateTime? CreateTime
         {
@@ -11774,34 +11774,34 @@ namespace Google.Apis.Storage.v1.Data
         }
 
         /// <summary>The ID of the managed folder, including the bucket name and managed folder name.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("id")]
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
         public virtual string Id { get; set; }
 
         /// <summary>The kind of item this is. For managed folders, this is always storage#managedFolder.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("kind")]
+        [System.Text.Json.Serialization.JsonPropertyName("kind")]
         public virtual string Kind { get; set; }
 
         /// <summary>
         /// The version of the metadata for this managed folder. Used for preconditions and for detecting changes in
         /// metadata.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("metageneration")]
+        [System.Text.Json.Serialization.JsonPropertyName("metageneration")]
         public virtual System.Nullable<long> Metageneration { get; set; }
 
         /// <summary>The name of the managed folder. Required if not specified by URL parameter.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("name")]
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
         public virtual string Name { get; set; }
 
         /// <summary>The link to this managed folder.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("selfLink")]
+        [System.Text.Json.Serialization.JsonPropertyName("selfLink")]
         public virtual string SelfLink { get; set; }
 
         /// <summary>The last update time of the managed folder metadata in RFC 3339 format.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("updateTime")]
+        [System.Text.Json.Serialization.JsonPropertyName("updateTime")]
         public virtual string UpdateTimeRaw { get; set; }
 
         /// <summary><seealso cref="System.DateTimeOffset"/> representation of <see cref="UpdateTimeRaw"/>.</summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual System.DateTimeOffset? UpdateTimeDateTimeOffset
         {
             get => Google.Apis.Util.DiscoveryFormat.ParseDateTimeToDateTimeOffset(UpdateTimeRaw);
@@ -11809,7 +11809,7 @@ namespace Google.Apis.Storage.v1.Data
         }
 
         /// <summary><seealso cref="System.DateTime"/> representation of <see cref="UpdateTimeRaw"/>.</summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use UpdateTimeDateTimeOffset instead.")]
         public virtual System.DateTime? UpdateTime
         {
@@ -11825,20 +11825,20 @@ namespace Google.Apis.Storage.v1.Data
     public class ManagedFolders : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>The list of items.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("items")]
+        [System.Text.Json.Serialization.JsonPropertyName("items")]
         public virtual System.Collections.Generic.IList<ManagedFolder> Items { get; set; }
 
         /// <summary>
         /// The kind of item this is. For lists of managed folders, this is always storage#managedFolders.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("kind")]
+        [System.Text.Json.Serialization.JsonPropertyName("kind")]
         public virtual string Kind { get; set; }
 
         /// <summary>
         /// The continuation token, used to page through large result sets. Provide this value in a subsequent request
         /// to return the next page of results.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("nextPageToken")]
+        [System.Text.Json.Serialization.JsonPropertyName("nextPageToken")]
         public virtual string NextPageToken { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -11852,47 +11852,47 @@ namespace Google.Apis.Storage.v1.Data
         /// An optional list of additional attributes to attach to each Cloud PubSub message published for this
         /// notification subscription.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("custom_attributes")]
+        [System.Text.Json.Serialization.JsonPropertyName("custom_attributes")]
         public virtual System.Collections.Generic.IDictionary<string, string> CustomAttributes { get; set; }
 
         /// <summary>HTTP 1.1 Entity tag for this subscription notification.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("etag")]
+        [System.Text.Json.Serialization.JsonPropertyName("etag")]
         public virtual string ETag { get; set; }
 
         /// <summary>
         /// If present, only send notifications about listed event types. If empty, sent notifications for all event
         /// types.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("event_types")]
+        [System.Text.Json.Serialization.JsonPropertyName("event_types")]
         public virtual System.Collections.Generic.IList<string> EventTypes { get; set; }
 
         /// <summary>The ID of the notification.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("id")]
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
         public virtual string Id { get; set; }
 
         /// <summary>The kind of item this is. For notifications, this is always storage#notification.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("kind")]
+        [System.Text.Json.Serialization.JsonPropertyName("kind")]
         public virtual string Kind { get; set; }
 
         /// <summary>
         /// If present, only apply this notification configuration to object names that begin with this prefix.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("object_name_prefix")]
+        [System.Text.Json.Serialization.JsonPropertyName("object_name_prefix")]
         public virtual string ObjectNamePrefix { get; set; }
 
         /// <summary>The desired content of the Payload.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("payload_format")]
+        [System.Text.Json.Serialization.JsonPropertyName("payload_format")]
         public virtual string PayloadFormat { get; set; }
 
         /// <summary>The canonical URL of this notification.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("selfLink")]
+        [System.Text.Json.Serialization.JsonPropertyName("selfLink")]
         public virtual string SelfLink { get; set; }
 
         /// <summary>
         /// The Cloud PubSub topic to which this subscription publishes. Formatted as:
         /// '//pubsub.googleapis.com/projects/{project-identifier}/topics/{my-topic}'
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("topic")]
+        [System.Text.Json.Serialization.JsonPropertyName("topic")]
         public virtual string Topic { get; set; }
     }
 
@@ -11900,13 +11900,13 @@ namespace Google.Apis.Storage.v1.Data
     public class Notifications : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>The list of items.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("items")]
+        [System.Text.Json.Serialization.JsonPropertyName("items")]
         public virtual System.Collections.Generic.IList<Notification> Items { get; set; }
 
         /// <summary>
         /// The kind of item this is. For lists of notifications, this is always storage#notifications.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("kind")]
+        [System.Text.Json.Serialization.JsonPropertyName("kind")]
         public virtual string Kind { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -11917,50 +11917,50 @@ namespace Google.Apis.Storage.v1.Data
     public class Object : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>Access controls on the object.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("acl")]
+        [System.Text.Json.Serialization.JsonPropertyName("acl")]
         public virtual System.Collections.Generic.IList<ObjectAccessControl> Acl { get; set; }
 
         /// <summary>The name of the bucket containing this object.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("bucket")]
+        [System.Text.Json.Serialization.JsonPropertyName("bucket")]
         public virtual string Bucket { get; set; }
 
         /// <summary>
         /// Cache-Control directive for the object data. If omitted, and the object is accessible to all anonymous
         /// users, the default will be public, max-age=3600.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("cacheControl")]
+        [System.Text.Json.Serialization.JsonPropertyName("cacheControl")]
         public virtual string CacheControl { get; set; }
 
         /// <summary>
         /// Number of underlying components that make up this object. Components are accumulated by compose operations.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("componentCount")]
+        [System.Text.Json.Serialization.JsonPropertyName("componentCount")]
         public virtual System.Nullable<int> ComponentCount { get; set; }
 
         /// <summary>Content-Disposition of the object data.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("contentDisposition")]
+        [System.Text.Json.Serialization.JsonPropertyName("contentDisposition")]
         public virtual string ContentDisposition { get; set; }
 
         /// <summary>Content-Encoding of the object data.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("contentEncoding")]
+        [System.Text.Json.Serialization.JsonPropertyName("contentEncoding")]
         public virtual string ContentEncoding { get; set; }
 
         /// <summary>Content-Language of the object data.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("contentLanguage")]
+        [System.Text.Json.Serialization.JsonPropertyName("contentLanguage")]
         public virtual string ContentLanguage { get; set; }
 
         /// <summary>
         /// Content-Type of the object data. If an object is stored without a Content-Type, it is served as
         /// application/octet-stream.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("contentType")]
+        [System.Text.Json.Serialization.JsonPropertyName("contentType")]
         public virtual string ContentType { get; set; }
 
         /// <summary>
         /// User-defined or system-defined object contexts. Each object context is a key-payload pair, where the key
         /// provides the identification and the payload holds the associated value and additional metadata.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("contexts")]
+        [System.Text.Json.Serialization.JsonPropertyName("contexts")]
         public virtual ContextsData Contexts { get; set; }
 
         /// <summary>
@@ -11968,15 +11968,15 @@ namespace Google.Apis.Storage.v1.Data
         /// more information about using the CRC32c checksum, see [Data Validation and Change
         /// Detection](https://cloud.google.com/storage/docs/data-validation).
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("crc32c")]
+        [System.Text.Json.Serialization.JsonPropertyName("crc32c")]
         public virtual string Crc32c { get; set; }
 
         /// <summary>A timestamp in RFC 3339 format specified by the user for an object.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("customTime")]
+        [System.Text.Json.Serialization.JsonPropertyName("customTime")]
         public virtual string CustomTimeRaw { get; set; }
 
         /// <summary><seealso cref="System.DateTimeOffset"/> representation of <see cref="CustomTimeRaw"/>.</summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual System.DateTimeOffset? CustomTimeDateTimeOffset
         {
             get => Google.Apis.Util.DiscoveryFormat.ParseDateTimeToDateTimeOffset(CustomTimeRaw);
@@ -11984,7 +11984,7 @@ namespace Google.Apis.Storage.v1.Data
         }
 
         /// <summary><seealso cref="System.DateTime"/> representation of <see cref="CustomTimeRaw"/>.</summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use CustomTimeDateTimeOffset instead.")]
         public virtual System.DateTime? CustomTime
         {
@@ -11993,11 +11993,11 @@ namespace Google.Apis.Storage.v1.Data
         }
 
         /// <summary>Metadata of customer-supplied encryption key, if the object is encrypted by such a key.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("customerEncryption")]
+        [System.Text.Json.Serialization.JsonPropertyName("customerEncryption")]
         public virtual CustomerEncryptionData CustomerEncryption { get; set; }
 
         /// <summary>HTTP 1.1 Entity tag for the object.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("etag")]
+        [System.Text.Json.Serialization.JsonPropertyName("etag")]
         public virtual string ETag { get; set; }
 
         /// <summary>
@@ -12010,24 +12010,24 @@ namespace Google.Apis.Storage.v1.Data
         /// released) and then 3 more years after that. That means retention duration of the objects begins from the
         /// moment event-based hold transitioned from true to false.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("eventBasedHold")]
+        [System.Text.Json.Serialization.JsonPropertyName("eventBasedHold")]
         public virtual System.Nullable<bool> EventBasedHold { get; set; }
 
         /// <summary>The content generation of this object. Used for object versioning.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("generation")]
+        [System.Text.Json.Serialization.JsonPropertyName("generation")]
         public virtual System.Nullable<long> Generation { get; set; }
 
         /// <summary>
         /// This is the time (in the future) when the soft-deleted object will no longer be restorable. It is equal to
         /// the soft delete time plus the current soft delete retention duration of the bucket.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("hardDeleteTime")]
+        [System.Text.Json.Serialization.JsonPropertyName("hardDeleteTime")]
         public virtual string HardDeleteTimeRaw { get; set; }
 
         /// <summary>
         /// <seealso cref="System.DateTimeOffset"/> representation of <see cref="HardDeleteTimeRaw"/>.
         /// </summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual System.DateTimeOffset? HardDeleteTimeDateTimeOffset
         {
             get => Google.Apis.Util.DiscoveryFormat.ParseDateTimeToDateTimeOffset(HardDeleteTimeRaw);
@@ -12035,7 +12035,7 @@ namespace Google.Apis.Storage.v1.Data
         }
 
         /// <summary><seealso cref="System.DateTime"/> representation of <see cref="HardDeleteTimeRaw"/>.</summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use HardDeleteTimeDateTimeOffset instead.")]
         public virtual System.DateTime? HardDeleteTime
         {
@@ -12044,33 +12044,33 @@ namespace Google.Apis.Storage.v1.Data
         }
 
         /// <summary>The ID of the object, including the bucket name, object name, and generation number.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("id")]
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
         public virtual string Id { get; set; }
 
         /// <summary>The kind of item this is. For objects, this is always storage#object.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("kind")]
+        [System.Text.Json.Serialization.JsonPropertyName("kind")]
         public virtual string Kind { get; set; }
 
         /// <summary>
         /// Not currently supported. Specifying the parameter causes the request to fail with status code 400 - Bad
         /// Request.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("kmsKeyName")]
+        [System.Text.Json.Serialization.JsonPropertyName("kmsKeyName")]
         public virtual string KmsKeyName { get; set; }
 
         /// <summary>
         /// MD5 hash of the data; encoded using base64. For more information about using the MD5 hash, see [Data
         /// Validation and Change Detection](https://cloud.google.com/storage/docs/data-validation).
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("md5Hash")]
+        [System.Text.Json.Serialization.JsonPropertyName("md5Hash")]
         public virtual string Md5Hash { get; set; }
 
         /// <summary>Media download link.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("mediaLink")]
+        [System.Text.Json.Serialization.JsonPropertyName("mediaLink")]
         public virtual string MediaLink { get; set; }
 
         /// <summary>User-provided metadata, in key/value pairs.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("metadata")]
+        [System.Text.Json.Serialization.JsonPropertyName("metadata")]
         public virtual System.Collections.Generic.IDictionary<string, string> Metadata { get; set; }
 
         /// <summary>
@@ -12078,26 +12078,26 @@ namespace Google.Apis.Storage.v1.Data
         /// changes in metadata. A metageneration number is only meaningful in the context of a particular generation of
         /// a particular object.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("metageneration")]
+        [System.Text.Json.Serialization.JsonPropertyName("metageneration")]
         public virtual System.Nullable<long> Metageneration { get; set; }
 
         /// <summary>The name of the object. Required if not specified by URL parameter.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("name")]
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
         public virtual string Name { get; set; }
 
         /// <summary>The owner of the object. This will always be the uploader of the object.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("owner")]
+        [System.Text.Json.Serialization.JsonPropertyName("owner")]
         public virtual OwnerData Owner { get; set; }
 
         /// <summary>
         /// Restore token used to differentiate deleted objects with the same name and generation. This field is only
         /// returned for deleted objects in hierarchical namespace buckets.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("restoreToken")]
+        [System.Text.Json.Serialization.JsonPropertyName("restoreToken")]
         public virtual string RestoreToken { get; set; }
 
         /// <summary>A collection of object level retention parameters.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("retention")]
+        [System.Text.Json.Serialization.JsonPropertyName("retention")]
         public virtual RetentionData Retention { get; set; }
 
         /// <summary>
@@ -12107,13 +12107,13 @@ namespace Google.Apis.Storage.v1.Data
         /// when temporary hold is set (so that the user can reason about policy without having to first unset the
         /// temporary hold).
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("retentionExpirationTime")]
+        [System.Text.Json.Serialization.JsonPropertyName("retentionExpirationTime")]
         public virtual string RetentionExpirationTimeRaw { get; set; }
 
         /// <summary>
         /// <seealso cref="System.DateTimeOffset"/> representation of <see cref="RetentionExpirationTimeRaw"/>.
         /// </summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual System.DateTimeOffset? RetentionExpirationTimeDateTimeOffset
         {
             get => Google.Apis.Util.DiscoveryFormat.ParseDateTimeToDateTimeOffset(RetentionExpirationTimeRaw);
@@ -12123,7 +12123,7 @@ namespace Google.Apis.Storage.v1.Data
         /// <summary>
         /// <seealso cref="System.DateTime"/> representation of <see cref="RetentionExpirationTimeRaw"/>.
         /// </summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use RetentionExpirationTimeDateTimeOffset instead.")]
         public virtual System.DateTime? RetentionExpirationTime
         {
@@ -12132,21 +12132,21 @@ namespace Google.Apis.Storage.v1.Data
         }
 
         /// <summary>The link to this object.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("selfLink")]
+        [System.Text.Json.Serialization.JsonPropertyName("selfLink")]
         public virtual string SelfLink { get; set; }
 
         /// <summary>Content-Length of the data in bytes.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("size")]
+        [System.Text.Json.Serialization.JsonPropertyName("size")]
         public virtual System.Nullable<ulong> Size { get; set; }
 
         /// <summary>The time at which the object became soft-deleted in RFC 3339 format.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("softDeleteTime")]
+        [System.Text.Json.Serialization.JsonPropertyName("softDeleteTime")]
         public virtual string SoftDeleteTimeRaw { get; set; }
 
         /// <summary>
         /// <seealso cref="System.DateTimeOffset"/> representation of <see cref="SoftDeleteTimeRaw"/>.
         /// </summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual System.DateTimeOffset? SoftDeleteTimeDateTimeOffset
         {
             get => Google.Apis.Util.DiscoveryFormat.ParseDateTimeToDateTimeOffset(SoftDeleteTimeRaw);
@@ -12154,7 +12154,7 @@ namespace Google.Apis.Storage.v1.Data
         }
 
         /// <summary><seealso cref="System.DateTime"/> representation of <see cref="SoftDeleteTimeRaw"/>.</summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use SoftDeleteTimeDateTimeOffset instead.")]
         public virtual System.DateTime? SoftDeleteTime
         {
@@ -12163,7 +12163,7 @@ namespace Google.Apis.Storage.v1.Data
         }
 
         /// <summary>Storage class of the object.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("storageClass")]
+        [System.Text.Json.Serialization.JsonPropertyName("storageClass")]
         public virtual string StorageClass { get; set; }
 
         /// <summary>
@@ -12172,15 +12172,15 @@ namespace Google.Apis.Storage.v1.Data
         /// be retained while the investigation is ongoing. Note that unlike event-based hold, temporary hold does not
         /// impact retention expiration time of an object.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("temporaryHold")]
+        [System.Text.Json.Serialization.JsonPropertyName("temporaryHold")]
         public virtual System.Nullable<bool> TemporaryHold { get; set; }
 
         /// <summary>The creation time of the object in RFC 3339 format.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("timeCreated")]
+        [System.Text.Json.Serialization.JsonPropertyName("timeCreated")]
         public virtual string TimeCreatedRaw { get; set; }
 
         /// <summary><seealso cref="System.DateTimeOffset"/> representation of <see cref="TimeCreatedRaw"/>.</summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual System.DateTimeOffset? TimeCreatedDateTimeOffset
         {
             get => Google.Apis.Util.DiscoveryFormat.ParseDateTimeToDateTimeOffset(TimeCreatedRaw);
@@ -12188,7 +12188,7 @@ namespace Google.Apis.Storage.v1.Data
         }
 
         /// <summary><seealso cref="System.DateTime"/> representation of <see cref="TimeCreatedRaw"/>.</summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use TimeCreatedDateTimeOffset instead.")]
         public virtual System.DateTime? TimeCreated
         {
@@ -12200,11 +12200,11 @@ namespace Google.Apis.Storage.v1.Data
         /// The time at which the object became noncurrent in RFC 3339 format. Will be returned if and only if this
         /// version of the object has been deleted.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("timeDeleted")]
+        [System.Text.Json.Serialization.JsonPropertyName("timeDeleted")]
         public virtual string TimeDeletedRaw { get; set; }
 
         /// <summary><seealso cref="System.DateTimeOffset"/> representation of <see cref="TimeDeletedRaw"/>.</summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual System.DateTimeOffset? TimeDeletedDateTimeOffset
         {
             get => Google.Apis.Util.DiscoveryFormat.ParseDateTimeToDateTimeOffset(TimeDeletedRaw);
@@ -12212,7 +12212,7 @@ namespace Google.Apis.Storage.v1.Data
         }
 
         /// <summary><seealso cref="System.DateTime"/> representation of <see cref="TimeDeletedRaw"/>.</summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use TimeDeletedDateTimeOffset instead.")]
         public virtual System.DateTime? TimeDeleted
         {
@@ -12221,11 +12221,11 @@ namespace Google.Apis.Storage.v1.Data
         }
 
         /// <summary>The time when the object was finalized.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("timeFinalized")]
+        [System.Text.Json.Serialization.JsonPropertyName("timeFinalized")]
         public virtual string TimeFinalizedRaw { get; set; }
 
         /// <summary><seealso cref="System.DateTimeOffset"/> representation of <see cref="TimeFinalizedRaw"/>.</summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual System.DateTimeOffset? TimeFinalizedDateTimeOffset
         {
             get => Google.Apis.Util.DiscoveryFormat.ParseDateTimeToDateTimeOffset(TimeFinalizedRaw);
@@ -12233,7 +12233,7 @@ namespace Google.Apis.Storage.v1.Data
         }
 
         /// <summary><seealso cref="System.DateTime"/> representation of <see cref="TimeFinalizedRaw"/>.</summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use TimeFinalizedDateTimeOffset instead.")]
         public virtual System.DateTime? TimeFinalized
         {
@@ -12245,13 +12245,13 @@ namespace Google.Apis.Storage.v1.Data
         /// The time at which the object's storage class was last changed. When the object is initially created, it will
         /// be set to timeCreated.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("timeStorageClassUpdated")]
+        [System.Text.Json.Serialization.JsonPropertyName("timeStorageClassUpdated")]
         public virtual string TimeStorageClassUpdatedRaw { get; set; }
 
         /// <summary>
         /// <seealso cref="System.DateTimeOffset"/> representation of <see cref="TimeStorageClassUpdatedRaw"/>.
         /// </summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual System.DateTimeOffset? TimeStorageClassUpdatedDateTimeOffset
         {
             get => Google.Apis.Util.DiscoveryFormat.ParseDateTimeToDateTimeOffset(TimeStorageClassUpdatedRaw);
@@ -12261,7 +12261,7 @@ namespace Google.Apis.Storage.v1.Data
         /// <summary>
         /// <seealso cref="System.DateTime"/> representation of <see cref="TimeStorageClassUpdatedRaw"/>.
         /// </summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use TimeStorageClassUpdatedDateTimeOffset instead.")]
         public virtual System.DateTime? TimeStorageClassUpdated
         {
@@ -12275,11 +12275,11 @@ namespace Google.Apis.Storage.v1.Data
         /// modifying custom metadata, as well as changes made by Cloud Storage on behalf of a requester, such as
         /// changing the storage class based on an Object Lifecycle Configuration.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("updated")]
+        [System.Text.Json.Serialization.JsonPropertyName("updated")]
         public virtual string UpdatedRaw { get; set; }
 
         /// <summary><seealso cref="System.DateTimeOffset"/> representation of <see cref="UpdatedRaw"/>.</summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual System.DateTimeOffset? UpdatedDateTimeOffset
         {
             get => Google.Apis.Util.DiscoveryFormat.ParseDateTimeToDateTimeOffset(UpdatedRaw);
@@ -12287,7 +12287,7 @@ namespace Google.Apis.Storage.v1.Data
         }
 
         /// <summary><seealso cref="System.DateTime"/> representation of <see cref="UpdatedRaw"/>.</summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use UpdatedDateTimeOffset instead.")]
         public virtual System.DateTime? Updated
         {
@@ -12302,7 +12302,7 @@ namespace Google.Apis.Storage.v1.Data
         public class ContextsData
         {
             /// <summary>User-defined object contexts.</summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("custom")]
+            [System.Text.Json.Serialization.JsonPropertyName("custom")]
             public virtual System.Collections.Generic.IDictionary<string, ObjectCustomContextPayload> Custom { get; set; }
         }
 
@@ -12310,11 +12310,11 @@ namespace Google.Apis.Storage.v1.Data
         public class CustomerEncryptionData
         {
             /// <summary>The encryption algorithm.</summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("encryptionAlgorithm")]
+            [System.Text.Json.Serialization.JsonPropertyName("encryptionAlgorithm")]
             public virtual string EncryptionAlgorithm { get; set; }
 
             /// <summary>SHA256 hash value of the encryption key.</summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("keySha256")]
+            [System.Text.Json.Serialization.JsonPropertyName("keySha256")]
             public virtual string KeySha256 { get; set; }
         }
 
@@ -12322,11 +12322,11 @@ namespace Google.Apis.Storage.v1.Data
         public class OwnerData
         {
             /// <summary>The entity, in the form user-userId.</summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("entity")]
+            [System.Text.Json.Serialization.JsonPropertyName("entity")]
             public virtual string Entity { get; set; }
 
             /// <summary>The ID for the entity.</summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("entityId")]
+            [System.Text.Json.Serialization.JsonPropertyName("entityId")]
             public virtual string EntityId { get; set; }
         }
 
@@ -12334,17 +12334,17 @@ namespace Google.Apis.Storage.v1.Data
         public class RetentionData
         {
             /// <summary>The bucket's object retention mode, can only be Unlocked or Locked.</summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("mode")]
+            [System.Text.Json.Serialization.JsonPropertyName("mode")]
             public virtual string Mode { get; set; }
 
             /// <summary>A time in RFC 3339 format until which object retention protects this object.</summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("retainUntilTime")]
+            [System.Text.Json.Serialization.JsonPropertyName("retainUntilTime")]
             public virtual string RetainUntilTimeRaw { get; set; }
 
             /// <summary>
             /// <seealso cref="System.DateTimeOffset"/> representation of <see cref="RetainUntilTimeRaw"/>.
             /// </summary>
-            [Newtonsoft.Json.JsonIgnoreAttribute]
+            [System.Text.Json.Serialization.JsonIgnore]
             public virtual System.DateTimeOffset? RetainUntilTimeDateTimeOffset
             {
                 get => Google.Apis.Util.DiscoveryFormat.ParseDateTimeToDateTimeOffset(RetainUntilTimeRaw);
@@ -12352,7 +12352,7 @@ namespace Google.Apis.Storage.v1.Data
             }
 
             /// <summary><seealso cref="System.DateTime"/> representation of <see cref="RetainUntilTimeRaw"/>.</summary>
-            [Newtonsoft.Json.JsonIgnoreAttribute]
+            [System.Text.Json.Serialization.JsonIgnore]
             [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use RetainUntilTimeDateTimeOffset instead.")]
             public virtual System.DateTime? RetainUntilTime
             {
@@ -12366,15 +12366,15 @@ namespace Google.Apis.Storage.v1.Data
     public class ObjectAccessControl : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>The name of the bucket.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("bucket")]
+        [System.Text.Json.Serialization.JsonPropertyName("bucket")]
         public virtual string Bucket { get; set; }
 
         /// <summary>The domain associated with the entity, if any.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("domain")]
+        [System.Text.Json.Serialization.JsonPropertyName("domain")]
         public virtual string Domain { get; set; }
 
         /// <summary>The email address associated with the entity, if any.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("email")]
+        [System.Text.Json.Serialization.JsonPropertyName("email")]
         public virtual string Email { get; set; }
 
         /// <summary>
@@ -12384,56 +12384,56 @@ namespace Google.Apis.Storage.v1.Data
         /// would be group-example@googlegroups.com.  - To refer to all members of the Google Apps for Business domain
         /// example.com, the entity would be domain-example.com.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("entity")]
+        [System.Text.Json.Serialization.JsonPropertyName("entity")]
         public virtual string Entity { get; set; }
 
         /// <summary>The ID for the entity, if any.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("entityId")]
+        [System.Text.Json.Serialization.JsonPropertyName("entityId")]
         public virtual string EntityId { get; set; }
 
         /// <summary>HTTP 1.1 Entity tag for the access-control entry.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("etag")]
+        [System.Text.Json.Serialization.JsonPropertyName("etag")]
         public virtual string ETag { get; set; }
 
         /// <summary>The content generation of the object, if applied to an object.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("generation")]
+        [System.Text.Json.Serialization.JsonPropertyName("generation")]
         public virtual System.Nullable<long> Generation { get; set; }
 
         /// <summary>The ID of the access-control entry.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("id")]
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
         public virtual string Id { get; set; }
 
         /// <summary>
         /// The kind of item this is. For object access control entries, this is always storage#objectAccessControl.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("kind")]
+        [System.Text.Json.Serialization.JsonPropertyName("kind")]
         public virtual string Kind { get; set; }
 
         /// <summary>The name of the object, if applied to an object.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("object")]
+        [System.Text.Json.Serialization.JsonPropertyName("object")]
         public virtual string Object__ { get; set; }
 
         /// <summary>The project team associated with the entity, if any.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("projectTeam")]
+        [System.Text.Json.Serialization.JsonPropertyName("projectTeam")]
         public virtual ProjectTeamData ProjectTeam { get; set; }
 
         /// <summary>The access permission for the entity.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("role")]
+        [System.Text.Json.Serialization.JsonPropertyName("role")]
         public virtual string Role { get; set; }
 
         /// <summary>The link to this access-control entry.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("selfLink")]
+        [System.Text.Json.Serialization.JsonPropertyName("selfLink")]
         public virtual string SelfLink { get; set; }
 
         /// <summary>The project team associated with the entity, if any.</summary>
         public class ProjectTeamData
         {
             /// <summary>The project number.</summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("projectNumber")]
+            [System.Text.Json.Serialization.JsonPropertyName("projectNumber")]
             public virtual string ProjectNumber { get; set; }
 
             /// <summary>The team.</summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("team")]
+            [System.Text.Json.Serialization.JsonPropertyName("team")]
             public virtual string Team { get; set; }
         }
     }
@@ -12442,14 +12442,14 @@ namespace Google.Apis.Storage.v1.Data
     public class ObjectAccessControls : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>The list of items.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("items")]
+        [System.Text.Json.Serialization.JsonPropertyName("items")]
         public virtual System.Collections.Generic.IList<ObjectAccessControl> Items { get; set; }
 
         /// <summary>
         /// The kind of item this is. For lists of object access control entries, this is always
         /// storage#objectAccessControls.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("kind")]
+        [System.Text.Json.Serialization.JsonPropertyName("kind")]
         public virtual string Kind { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -12460,11 +12460,11 @@ namespace Google.Apis.Storage.v1.Data
     public class ObjectCustomContextPayload : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>The time at which the object context was created in RFC 3339 format.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("createTime")]
+        [System.Text.Json.Serialization.JsonPropertyName("createTime")]
         public virtual string CreateTimeRaw { get; set; }
 
         /// <summary><seealso cref="System.DateTimeOffset"/> representation of <see cref="CreateTimeRaw"/>.</summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual System.DateTimeOffset? CreateTimeDateTimeOffset
         {
             get => Google.Apis.Util.DiscoveryFormat.ParseDateTimeToDateTimeOffset(CreateTimeRaw);
@@ -12472,7 +12472,7 @@ namespace Google.Apis.Storage.v1.Data
         }
 
         /// <summary><seealso cref="System.DateTime"/> representation of <see cref="CreateTimeRaw"/>.</summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use CreateTimeDateTimeOffset instead.")]
         public virtual System.DateTime? CreateTime
         {
@@ -12481,11 +12481,11 @@ namespace Google.Apis.Storage.v1.Data
         }
 
         /// <summary>The time at which the object context was last updated in RFC 3339 format.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("updateTime")]
+        [System.Text.Json.Serialization.JsonPropertyName("updateTime")]
         public virtual string UpdateTimeRaw { get; set; }
 
         /// <summary><seealso cref="System.DateTimeOffset"/> representation of <see cref="UpdateTimeRaw"/>.</summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual System.DateTimeOffset? UpdateTimeDateTimeOffset
         {
             get => Google.Apis.Util.DiscoveryFormat.ParseDateTimeToDateTimeOffset(UpdateTimeRaw);
@@ -12493,7 +12493,7 @@ namespace Google.Apis.Storage.v1.Data
         }
 
         /// <summary><seealso cref="System.DateTime"/> representation of <see cref="UpdateTimeRaw"/>.</summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use UpdateTimeDateTimeOffset instead.")]
         public virtual System.DateTime? UpdateTime
         {
@@ -12502,7 +12502,7 @@ namespace Google.Apis.Storage.v1.Data
         }
 
         /// <summary>The value of the object context.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("value")]
+        [System.Text.Json.Serialization.JsonPropertyName("value")]
         public virtual string Value { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -12513,24 +12513,24 @@ namespace Google.Apis.Storage.v1.Data
     public class Objects : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>The list of items.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("items")]
+        [System.Text.Json.Serialization.JsonPropertyName("items")]
         public virtual System.Collections.Generic.IList<Object> Items { get; set; }
 
         /// <summary>The kind of item this is. For lists of objects, this is always storage#objects.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("kind")]
+        [System.Text.Json.Serialization.JsonPropertyName("kind")]
         public virtual string Kind { get; set; }
 
         /// <summary>
         /// The continuation token, used to page through large result sets. Provide this value in a subsequent request
         /// to return the next page of results.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("nextPageToken")]
+        [System.Text.Json.Serialization.JsonPropertyName("nextPageToken")]
         public virtual string NextPageToken { get; set; }
 
         /// <summary>
         /// The list of prefixes of objects matching-but-not-listed up to and including the requested delimiter.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("prefixes")]
+        [System.Text.Json.Serialization.JsonPropertyName("prefixes")]
         public virtual System.Collections.Generic.IList<string> Prefixes { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -12543,17 +12543,17 @@ namespace Google.Apis.Storage.v1.Data
         /// <summary>
         /// An association between a role, which comes with a set of permissions, and members who may assume that role.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("bindings")]
+        [System.Text.Json.Serialization.JsonPropertyName("bindings")]
         public virtual System.Collections.Generic.IList<BindingsData> Bindings { get; set; }
 
         /// <summary>HTTP 1.1  Entity tag for the policy.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("etag")]
+        [System.Text.Json.Serialization.JsonPropertyName("etag")]
         public virtual string ETag { get; set; }
 
         /// <summary>
         /// The kind of item this is. For policies, this is always storage#policy. This field is ignored on input.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("kind")]
+        [System.Text.Json.Serialization.JsonPropertyName("kind")]
         public virtual string Kind { get; set; }
 
         /// <summary>
@@ -12563,11 +12563,11 @@ namespace Google.Apis.Storage.v1.Data
         /// #generationNumber to the end of the object name, e.g. projects/_/buckets/my-bucket/objects/data.txt#17. The
         /// current generation can be denoted with #0. This field is ignored on input.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("resourceId")]
+        [System.Text.Json.Serialization.JsonPropertyName("resourceId")]
         public virtual string ResourceId { get; set; }
 
         /// <summary>The IAM policy format version.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("version")]
+        [System.Text.Json.Serialization.JsonPropertyName("version")]
         public virtual System.Nullable<int> Version { get; set; }
 
         /// <summary>
@@ -12579,7 +12579,7 @@ namespace Google.Apis.Storage.v1.Data
             /// The condition that is associated with this binding. NOTE: an unsatisfied condition will not allow user
             /// access via current binding. Different bindings, including their conditions, are examined independently.
             /// </summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("condition")]
+            [System.Text.Json.Serialization.JsonPropertyName("condition")]
             public virtual Expr Condition { get; set; }
 
             /// <summary>
@@ -12597,7 +12597,7 @@ namespace Google.Apis.Storage.v1.Data
             /// projectEditor:my-example-project   - projectViewer:projectid - Viewers of the given project. For
             /// example, projectViewer:my-example-project
             /// </summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("members")]
+            [System.Text.Json.Serialization.JsonPropertyName("members")]
             public virtual System.Collections.Generic.IList<string> Members { get; set; }
 
             /// <summary>
@@ -12617,7 +12617,7 @@ namespace Google.Apis.Storage.v1.Data
             /// roles/storage.legacyBucketOwner - Read and write access to existing buckets with object
             /// listing/creation/deletion. Equivalent to an ACL entry on a bucket with the OWNER role.
             /// </summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("role")]
+            [System.Text.Json.Serialization.JsonPropertyName("role")]
             public virtual string Role { get; set; }
         }
     }
@@ -12626,7 +12626,7 @@ namespace Google.Apis.Storage.v1.Data
     public class RelocateBucketRequest : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>The bucket's new custom placement configuration if relocating to a Custom Dual Region.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("destinationCustomPlacementConfig")]
+        [System.Text.Json.Serialization.JsonPropertyName("destinationCustomPlacementConfig")]
         public virtual DestinationCustomPlacementConfigData DestinationCustomPlacementConfig { get; set; }
 
         /// <summary>
@@ -12634,15 +12634,15 @@ namespace Google.Apis.Storage.v1.Data
         /// projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key. If set, is used to encrypt all
         /// objects in the destination bucket.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("destinationKmsKeyName")]
+        [System.Text.Json.Serialization.JsonPropertyName("destinationKmsKeyName")]
         public virtual string DestinationKmsKeyName { get; set; }
 
         /// <summary>The new location the bucket will be relocated to.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("destinationLocation")]
+        [System.Text.Json.Serialization.JsonPropertyName("destinationLocation")]
         public virtual string DestinationLocation { get; set; }
 
         /// <summary>If true, validate the operation, but do not actually relocate the bucket.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("validateOnly")]
+        [System.Text.Json.Serialization.JsonPropertyName("validateOnly")]
         public virtual System.Nullable<bool> ValidateOnly { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -12652,7 +12652,7 @@ namespace Google.Apis.Storage.v1.Data
         public class DestinationCustomPlacementConfigData
         {
             /// <summary>The list of regional locations in which data is placed.</summary>
-            [Newtonsoft.Json.JsonPropertyAttribute("dataLocations")]
+            [System.Text.Json.Serialization.JsonPropertyName("dataLocations")]
             public virtual System.Collections.Generic.IList<string> DataLocations { get; set; }
         }
     }
@@ -12664,38 +12664,38 @@ namespace Google.Apis.Storage.v1.Data
         /// true if the copy is finished; otherwise, false if the copy is in progress. This property is always present
         /// in the response.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("done")]
+        [System.Text.Json.Serialization.JsonPropertyName("done")]
         public virtual System.Nullable<bool> Done { get; set; }
 
         /// <summary>The kind of item this is.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("kind")]
+        [System.Text.Json.Serialization.JsonPropertyName("kind")]
         public virtual string Kind { get; set; }
 
         /// <summary>
         /// The total size of the object being copied in bytes. This property is always present in the response.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("objectSize")]
+        [System.Text.Json.Serialization.JsonPropertyName("objectSize")]
         public virtual System.Nullable<long> ObjectSize { get; set; }
 
         /// <summary>
         /// A resource containing the metadata for the copied-to object. This property is present in the response only
         /// when copying completes.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("resource")]
+        [System.Text.Json.Serialization.JsonPropertyName("resource")]
         public virtual Object Resource { get; set; }
 
         /// <summary>
         /// A token to use in subsequent requests to continue copying data. This token is present in the response only
         /// when there is more data to copy.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("rewriteToken")]
+        [System.Text.Json.Serialization.JsonPropertyName("rewriteToken")]
         public virtual string RewriteToken { get; set; }
 
         /// <summary>
         /// The total bytes written so far, which can be used to provide a waiting user with a progress indicator. This
         /// property is always present in the response.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("totalBytesRewritten")]
+        [System.Text.Json.Serialization.JsonPropertyName("totalBytesRewritten")]
         public virtual System.Nullable<long> TotalBytesRewritten { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -12706,11 +12706,11 @@ namespace Google.Apis.Storage.v1.Data
     public class ServiceAccount : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>The ID of the notification.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("email_address")]
+        [System.Text.Json.Serialization.JsonPropertyName("email_address")]
         public virtual string EmailAddress { get; set; }
 
         /// <summary>The kind of item this is. For notifications, this is always storage#notification.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("kind")]
+        [System.Text.Json.Serialization.JsonPropertyName("kind")]
         public virtual string Kind { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -12721,7 +12721,7 @@ namespace Google.Apis.Storage.v1.Data
     public class TestIamPermissionsResponse : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>The kind of item this is.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("kind")]
+        [System.Text.Json.Serialization.JsonPropertyName("kind")]
         public virtual string Kind { get; set; }
 
         /// <summary>
@@ -12739,7 +12739,7 @@ namespace Google.Apis.Storage.v1.Data
         /// storage.managedFolders.create - Create managed folder.   - storage.managedFolders.list - List managed
         /// folders.   - storage.managedFolders.setIamPolicy - Update managed folder IAM policy.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("permissions")]
+        [System.Text.Json.Serialization.JsonPropertyName("permissions")]
         public virtual System.Collections.Generic.IList<string> Permissions { get; set; }
 
         /// <summary>The ETag of the item.</summary>

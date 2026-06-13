@@ -4,8 +4,26 @@
 
   <!-- build configuration -->
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net462;net6.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net8.0;net10.0</TargetFrameworks>
     <LangVersion>10.0</LangVersion>
+  </PropertyGroup>
+
+  <!-- AOT: the net10.0 target is validated for trimming/AOT. The two reflection-over-generated-types paths
+       (enum [StringValue] conversion in Utilities; request-parameter discovery in RequestParameterDescriptorProvider)
+       are now source-generated per client into EnumStringValueRegistry / RequestParameterRegistry, so no reflection
+       is needed on this target. UriPatcher is a no-op on net5+. The serialization path is source-generated STJ. -->
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net10.0'">
+    <IsAotCompatible>true</IsAotCompatible>
+  </PropertyGroup>
+
+
+  <!-- Clast: when built with -p:Clast=true, republish under a Clast.* package id/assembly name and the Clast.snk key
+       (namespaces/type names stay the same). Default (flag off) keeps the original identity, so the in-repo test
+       projects build and run exactly as before. Pass -p:ClastKeyPath=<path-to-Clast.snk> to re-sign. -->
+  <PropertyGroup Condition="'$(Clast)' == 'true'">
+    <PackageId>Clast.Google.Apis.Core</PackageId>
+    <AssemblyName>Clast.Google.Apis.Core</AssemblyName>
+    <AssemblyOriginatorKeyFile Condition="'$(ClastKeyPath)' != ''">$(ClastKeyPath)</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <!-- nupkg information -->
@@ -18,13 +36,13 @@ The Google APIs Core Library contains the Google APIs HTTP layer, JSON support, 
   
   <!-- package references; common then per-target -->
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
-
     <PackageReference Include="ConfigureAwaitChecker.Analyzer" Version="5.0.0.1" PrivateAssets="All" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)'=='net462'">
-    <Reference Include="System.Net.Http" />
+  <!-- System.Text.Json provides the source-generated serializer. It is in-box on net8.0 and net10.0;
+       on netstandard2.0 the package supplies both the runtime and the source generator. -->
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <PackageReference Include="System.Text.Json" Version="9.0.0" />
   </ItemGroup>
 
   <ItemGroup>

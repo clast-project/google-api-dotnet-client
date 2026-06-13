@@ -17,7 +17,8 @@ limitations under the License.
 using Google.Apis.Json;
 using Google.Apis.Logging;
 using Google.Apis.Util;
-using Newtonsoft.Json;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System;
 using System.Globalization;
 using System.Net.Http;
@@ -40,17 +41,17 @@ namespace Google.Apis.Auth.OAuth2.Responses
         internal const int TokenInvalidWindowSeconds = 60;
 
         /// <summary>Gets or sets the access token issued by the authorization server.</summary>
-        [JsonProperty("access_token")]
+        [JsonPropertyName("access_token")]
         public string AccessToken { get; set; }
 
         /// <summary>
         /// Gets or sets the token type as specified in http://tools.ietf.org/html/rfc6749#section-7.1.
         /// </summary>
-        [JsonProperty("token_type")]
+        [JsonPropertyName("token_type")]
         public string TokenType { get; set; }
 
         /// <summary>Gets or sets the lifetime in seconds of the access token.</summary>
-        [JsonProperty("expires_in")]
+        [JsonPropertyName("expires_in")]
         public long? ExpiresInSeconds { get; set; }
 
         /// <summary>
@@ -58,19 +59,19 @@ namespace Google.Apis.Auth.OAuth2.Responses
         /// For example, the value "3600" denotes that the access token will expire in one hour from the time the 
         /// response was generated.
         /// </summary>
-        [JsonProperty("refresh_token")]
+        [JsonPropertyName("refresh_token")]
         public string RefreshToken { get; set; }
 
         /// <summary>
         /// Gets or sets the scope of the access token as specified in http://tools.ietf.org/html/rfc6749#section-3.3.
         /// </summary>
-        [JsonProperty("scope")]
+        [JsonPropertyName("scope")]
         public string Scope { get; set; }
 
         /// <summary>
         /// Gets or sets the id_token, which is a JSON Web Token (JWT) as specified in http://tools.ietf.org/html/draft-ietf-oauth-json-web-token
         /// </summary>
-        [JsonProperty("id_token")]
+        [JsonPropertyName("id_token")]
         public string IdToken { get; set; }
 
         /// <summary>
@@ -79,7 +80,7 @@ namespace Google.Apis.Auth.OAuth2.Responses
         /// time zone transitions (e.g. daylight saving transitions).
         /// </summary>
         [Obsolete("Use IssuedUtc instead")]
-        [JsonProperty(Order = 1)] // Serialize this before IssuedUtc, so that IssuedUtc takes priority when deserializing
+        [JsonPropertyOrder(1)] // Serialize this before IssuedUtc, so that IssuedUtc takes priority when deserializing
         public DateTime Issued
         {
             get { return IssuedUtc.ToLocalTime(); }
@@ -92,23 +93,23 @@ namespace Google.Apis.Auth.OAuth2.Responses
         /// <remarks>
         /// This should be set by the CLIENT after the token was received from the server.
         /// </remarks>
-        [JsonProperty(Order = 2)]
+        [JsonPropertyOrder(2)]
         public DateTime IssuedUtc { get; set; }
 
         /// <summary>Access token for impersonated credentials.</summary>
-        [JsonProperty("accessToken")]
-        private string ImpersonatedAccessToken { set => AccessToken = value; }
+        [JsonPropertyName("accessToken")]
+        public string ImpersonatedAccessToken { set => AccessToken = value; }
 
         /// <summary>ID token for impersonated credentials.</summary>
-        [JsonProperty("token")]
-        private string ImpersonatedIdToken { set => IdToken = value; }
+        [JsonPropertyName("token")]
+        public string ImpersonatedIdToken { set => IdToken = value; }
 
         /// <summary>
         /// Access token expiration time for impersonated credentials. It has the RFC3339
         /// format: "yyyy-MM-dd'T'HH:mm:sssssssss'Z'". For example: 2020-05-13T16:00:00.045123456Z.
         /// </summary>
-        [JsonProperty("expireTime")]
-        private string ImpersonatedAccessTokenExpireTime { get; set; }
+        [JsonPropertyName("expireTime")]
+        public string ImpersonatedAccessTokenExpireTime { get; set; }
 
         /// <summary>
         /// Returns true if the token represented by this token response should be refreshed.
@@ -212,7 +213,7 @@ namespace Google.Apis.Auth.OAuth2.Responses
                     // "{"error": {"code": 404, "message": "...", "errors": [{"message": "...", ...}], "status": "NOT_FOUND"}}" 
                     var error = response.RequestMessage?.RequestUri?.AbsoluteUri.StartsWith(GoogleAuthConsts.IamServiceHostPrefix, StringComparison.Ordinal) == true ?
                         new TokenErrorResponse { Error = content } :
-                        NewtonsoftJsonSerializer.Instance.Deserialize<TokenErrorResponse>(content);
+                        SystemTextJsonSerializer.Instance.Deserialize<TokenErrorResponse>(content);
                     throw new TokenResponseException(error, response.StatusCode);
                 }
 
@@ -229,7 +230,7 @@ namespace Google.Apis.Auth.OAuth2.Responses
                 else
                 {
                     typeName = nameof(TokenResponse);
-                    newToken = NewtonsoftJsonSerializer.Instance.Deserialize<TokenResponse>(content);
+                    newToken = SystemTextJsonSerializer.Instance.Deserialize<TokenResponse>(content);
                 }
                 // We make some modifications to the token before returning, to guarantee consistency
                 // for our code across endpoint usage.
