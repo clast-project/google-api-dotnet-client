@@ -1,3 +1,22 @@
+# Clast fork — Newtonsoft-free, AOT-ready republish
+
+> This is the **`clast-project`** fork of [`googleapis/google-api-dotnet-client`](https://github.com/googleapis/google-api-dotnet-client). It republishes a small subset of this repository's libraries under a **`Clast.`** package-id prefix, with **`Newtonsoft.Json` replaced by source-generated `System.Text.Json`**, made **trimming/AOT-compatible**, and a **`net10.0`** target added (alongside `netstandard2.0` and `net8.0`).
+>
+> **Why:** to provide a Newtonsoft-free, AOT-ready build of the [`Google.Cloud.Storage.V1`](https://github.com/clast-project/google-cloud-dotnet) dependency closure. Namespaces and public type names are **unchanged** — only the package id, assembly name, and strong-name key differ — so consumers recompile against the `Clast.*` packages rather than using them as binary drop-in replacements.
+>
+> **Packages republished from this repository:**
+>
+> | Clast package | Upstream package |
+> |---|---|
+> | `Clast.Google.Apis.Core` | `Google.Apis.Core` |
+> | `Clast.Google.Apis` | `Google.Apis` |
+> | `Clast.Google.Apis.Auth` | `Google.Apis.Auth` |
+> | `Clast.Google.Apis.Storage.v1` | `Google.Apis.Storage.v1` |
+>
+> Everything else in this repository is unchanged upstream content and is **not** part of the Clast republish. The renaming/re-signing is gated behind an opt-in `-p:Clast=true` MSBuild flag (default builds keep the original identity, so the existing tests run unchanged). See [`PLAN.md`](PLAN.md) and [`BEHAVIORAL-CHANGES.md`](BEHAVIORAL-CHANGES.md) for the full design and the catalogue of Newtonsoft→System.Text.Json behavior differences.
+
+---
+
 [![GitHub Actions status](https://img.shields.io/github/actions/workflow/status/googleapis/google-api-dotnet-client/build.yml)](https://github.com/googleapis/google-api-dotnet-client/actions/workflows/build.yml)
 
 # Google APIs client Library for .NET
