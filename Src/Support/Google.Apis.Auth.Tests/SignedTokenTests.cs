@@ -14,7 +14,6 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-using Newtonsoft.Json;
 using System;
 using Xunit;
 
@@ -105,7 +104,7 @@ namespace Google.Apis.Auth.Tests
         [Fact]
         public void FromSignedToken_ThrowsIfNotValidJson()
         {
-            Assert.Throws<JsonReaderException>(
+            Assert.Throws<System.Text.Json.JsonException>(
                 () => SignedToken<JsonWebSignature.Header, JsonWebSignature.Payload>.FromSignedToken(
                     "YmFzZV82NF9oZWFkZXJfbm9fanNvbg==.YmFzZV82NF9wYXlsb2FkX25vX2pzb24=.c2lnbmF0dXJl"));
         }

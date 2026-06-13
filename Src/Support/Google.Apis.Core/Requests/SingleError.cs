@@ -14,6 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+using System.Text.Json.Serialization;
+
 namespace Google.Apis.Requests
 {
     /// <summary>
@@ -24,26 +26,31 @@ namespace Google.Apis.Requests
         /// <summary>
         /// The domain in which the error occured
         /// </summary>
+        [JsonPropertyName("domain")]
         public string Domain { get; set; }
 
         /// <summary>
         /// The reason the error was thrown
         /// </summary>
+        [JsonPropertyName("reason")]
         public string Reason { get; set; }
 
         /// <summary>
         /// The error message
         /// </summary>
+        [JsonPropertyName("message")]
         public string Message { get; set; }
 
         /// <summary>
         /// Type of the location
         /// </summary>
+        [JsonPropertyName("locationType")]
         public string LocationType { get; set; }
 
         /// <summary>
         /// Location where the error was thrown
         /// </summary>
+        [JsonPropertyName("location")]
         public string Location { get; set; }
 
         /// <summary>

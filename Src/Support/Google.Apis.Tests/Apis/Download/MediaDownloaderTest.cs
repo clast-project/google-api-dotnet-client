@@ -158,7 +158,7 @@ namespace Google.Apis.Tests.Apis.Download
                     {
                         // Return 400 with a JSON-encoded error.
                         var apiResponse = new StandardResponse<object> { Error = BadRequestError };
-                        var apiResponseText = new NewtonsoftJsonSerializer().Serialize(apiResponse);
+                        var apiResponseText = SystemTextJsonSerializer.Instance.Serialize(apiResponse);
                         byte[] apiResponseBytes = Encoding.UTF8.GetBytes(apiResponseText);
 
                         response.StatusCode = (int)HttpStatusCode.BadRequest;

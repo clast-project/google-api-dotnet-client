@@ -18,7 +18,8 @@ using Google.Apis.Auth.OAuth2.Requests;
 using Google.Apis.Auth.OAuth2.Responses;
 using Google.Apis.Http;
 using Google.Apis.Util;
-using Newtonsoft.Json;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -443,6 +444,13 @@ namespace Google.Apis.Auth.OAuth2
             bool IsWindowsGoogleBios()
             {
                 Logger.Info("Checking BIOS values on Windows.");
+#if NET10_0_OR_GREATER
+                // System.Management (WMI) is not trimming/AOT-compatible, so the WMI Win32_BIOS fast-path is not
+                // available on this target. GCE residency is still detected by the metadata-server check, which is
+                // attempted first in IsRunningOnComputeEngine and is authoritative on GCE. See BEHAVIORAL-CHANGES.md BC-019.
+                Logger.Debug("WMI BIOS check is unavailable on this target; relying on metadata-server detection for GCE residency.");
+                return false;
+#else
                 System.Management.ManagementClass biosClass = new ("Win32_BIOS");
                 using var instances = biosClass.GetInstances();
 
@@ -467,6 +475,7 @@ namespace Google.Apis.Auth.OAuth2
                     Logger.Debug("No Win32_BIOS management object found.");
                 }
                 return isGoogle;
+#endif
             }
 
             async Task<bool> IsLinuxGoogleBiosAsync()

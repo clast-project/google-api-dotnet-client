@@ -20,11 +20,11 @@ namespace Google.Apis.Auth.OAuth2
     public sealed class ClientSecrets
     {
         /// <summary>Gets or sets the client identifier.</summary>
-        [Newtonsoft.Json.JsonProperty("client_id")]
+        [System.Text.Json.Serialization.JsonPropertyName("client_id")]
         public string ClientId { get; set; }
 
         /// <summary>Gets or sets the client Secret.</summary>
-        [Newtonsoft.Json.JsonProperty("client_secret")]
+        [System.Text.Json.Serialization.JsonPropertyName("client_secret")]
         public string ClientSecret { get; set; }
     }
 }

@@ -1,4 +1,4 @@
-/*
+﻿/*
 Copyright 2021 Google LLC
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace Google.Apis.Auth.OAuth2.Requests
 {
@@ -26,13 +26,13 @@ namespace Google.Apis.Auth.OAuth2.Requests
         /// <summary>
         /// Gets or sets the audience of the requested OIDC token.
         /// </summary>
-        [JsonProperty("audience")]
+        [JsonPropertyName("audience")]
         public string Audience { get; set; }
 
         /// <summary>
         /// Gets or sets whether email address should be included in the requested OIDC token.
         /// </summary>
-        [JsonProperty("includeEmail")]
+        [JsonPropertyName("includeEmail")]
         public bool IncludeEmail { get; set; }
     }
 }

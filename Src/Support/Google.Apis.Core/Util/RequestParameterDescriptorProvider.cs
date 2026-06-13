@@ -42,9 +42,22 @@ internal static class RequestParameterDescriptorProvider
     /// Returns uncached <see cref="PropertyInfo"/> for all properties of <paramref name="type"/> that are request parameters,
     /// that is, are marked with <see cref="RequestParameterAttribute"/>.
     /// </summary>
+    /// <remarks>
+    /// This is the reflective request-parameter discovery path, retained for non-AOT targets and for hand-written
+    /// request types that are not source-generated. It is not trim-safe (<c>GetProperties</c> is IL2070), so it is
+    /// compiled out of AOT targets; on those, request types must register descriptors with
+    /// <see cref="RequestParameterRegistry"/> (generated clients self-register from a module initializer).
+    /// </remarks>
     internal static IEnumerable<PropertyInfo> GetUncachedRequestParameterProperties(Type type) =>
+#if NET10_0_OR_GREATER
+        throw new NotSupportedException(
+            $"Reflective request-parameter discovery is not available on this target. Request type '{type}' must " +
+            "register its parameters with RequestParameterRegistry (generated clients do this automatically via the " +
+            "Clast transform).");
+#else
         type.GetProperties(BindingFlags.Instance | BindingFlags.Public)
             .Where(prop => prop.GetCustomAttribute<RequestParameterAttribute>(inherit: false) is not null);
+#endif
 
     internal static void ClearCache() => s_cache.Clear();
 }

@@ -500,7 +500,7 @@ namespace Google.Apis.Auth.OAuth2
         private string CreateAssertionFromPayload(JsonWebSignature.Payload payload)
         {
             string serializedHeader = CreateSerializedHeader();
-            string serializedPayload = NewtonsoftJsonSerializer.Instance.Serialize(payload);
+            string serializedPayload = SystemTextJsonSerializer.Instance.Serialize(payload);
 
             var assertion = new StringBuilder();
             assertion.Append(TokenEncodingHelpers.UrlSafeBase64Encode(serializedHeader))
@@ -545,7 +545,7 @@ namespace Google.Apis.Auth.OAuth2
                 KeyId = KeyId
             };
 
-            return NewtonsoftJsonSerializer.Instance.Serialize(header);
+            return SystemTextJsonSerializer.Instance.Serialize(header);
         }
 
         /// <summary>

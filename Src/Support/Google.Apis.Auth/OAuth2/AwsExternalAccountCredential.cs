@@ -149,7 +149,7 @@ namespace Google.Apis.Auth.OAuth2
 
             var subjectToken = AwsSignedSubjectToken.Create(awsSecurityCredentials, awsRegion, new Uri(regionalizedVerificationUrl), Audience, Clock);
 
-            return Uri.EscapeDataString(NewtonsoftJsonSerializer.Instance.Serialize(subjectToken));
+            return Uri.EscapeDataString(SystemTextJsonSerializer.Instance.Serialize(subjectToken));
         }
 
         /// <inheritdoc/>

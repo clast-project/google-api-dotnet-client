@@ -14,7 +14,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace Google.Apis.Auth.OAuth2.Requests
 {
@@ -23,7 +23,7 @@ namespace Google.Apis.Auth.OAuth2.Requests
         /// <summary>
         /// Gets or sets the payload to be signed.
         /// </summary>
-        [JsonProperty("payload")]
+        [JsonPropertyName("payload")]
         public byte[] Payload { get; set; }
     }
 }

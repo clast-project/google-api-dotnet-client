@@ -1,4 +1,4 @@
-/*
+﻿/*
 Copyright 2021 Google LLC
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -22,6 +22,7 @@ using Google.Apis.Json;
 using Google.Apis.Tests.Mocks;
 using Google.Apis.Util;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -99,7 +100,7 @@ namespace Google.Apis.Auth.Tests.OAuth2
             var sourceCredential = CreateSourceCredential();
             var messageHandler = new FakeHttpMessageHandler(
                 status,
-                serializeBody ? NewtonsoftJsonSerializer.Instance.Serialize(body) : body.ToString(),
+                serializeBody ? SystemTextJsonSerializer.Instance.Serialize(body) : body.ToString(),
                 requestValidator);
 
             var initializer = customTokenUrl is null
@@ -117,18 +118,18 @@ namespace Google.Apis.Auth.Tests.OAuth2
         }
 
         private static ImpersonatedCredential CreateImpersonatedCredentialWithIdTokenResponse() =>
-            CreateImpersonatedCredentialForBody(new { token = OidcComputeSuccessMessageHandler.FirstCallToken });
+            CreateImpersonatedCredentialForBody(new Dictionary<string, string> { ["token"] = OidcComputeSuccessMessageHandler.FirstCallToken });
 
         private static ImpersonatedCredential CreateImpersonatedCredentialWithAccessTokenResponse(Action<HttpRequestMessage> requestValidator = null, string principal = "principal", string customTokenUrl = null) =>
             CreateImpersonatedCredentialForBody(
-                new { accessToken = "access_token", expireTime = "2020-05-13T16:00:00.045123456Z" },
+                new Dictionary<string, string> { ["accessToken"] = "access_token", ["expireTime"] = "2020-05-13T16:00:00.045123456Z" },
                 requestValidator: requestValidator,
                 principal: principal,
                 customTokenUrl: customTokenUrl);
 
         // Use signedBlob = base64("principal") = "Zm9v"
         private static ImpersonatedCredential CreateImpersonatedCredentialWithSignBlobResponse(ExponentialBackOffPolicy? retryPolicy = null) =>
-            CreateImpersonatedCredentialForBody(new { keyId = "1", signedBlob = "Zm9v" }, retryPolicy: retryPolicy);
+            CreateImpersonatedCredentialForBody(new Dictionary<string, string> { ["keyId"] = "1", ["signedBlob"] = "Zm9v" }, retryPolicy: retryPolicy);
 
         private static ImpersonatedCredential CreateImpersonatedCredentialWithErrorResponse() =>
             CreateImpersonatedCredentialForBody(ErrorResponseContent, false, HttpStatusCode.NotFound);

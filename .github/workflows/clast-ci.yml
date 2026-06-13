@@ -1,0 +1,42 @@
+name: Clast CI
+
+# Build + test the Clast support libraries (Core/Apis/Auth) and the transformed Storage.v1 test clients.
+# Tests run with the Clast flag OFF (default) so the assemblies keep their original identity and the suites
+# behave exactly as upstream. net8.0/net10.0 run on all three OSes; net472 (Windows only) is selected
+# automatically by the test projects.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build-test:
+    name: build-test (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    env:
+      DOTNET_NOLOGO: true
+      DOTNET_CLI_TELEMETRY_OPTOUT: true
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: |
+            8.0.x
+            10.0.x
+
+      - name: Test
+        shell: bash
+        run: |
+          set -e
+          dotnet test Src/Support/Google.Apis.Tests/Google.Apis.Tests.csproj -c Release
+          dotnet test Src/Support/Google.Apis.Auth.Tests/Google.Apis.Auth.Tests.csproj -c Release

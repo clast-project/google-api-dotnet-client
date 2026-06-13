@@ -118,7 +118,7 @@ namespace Google.Apis.Auth.OAuth2.Flows
             if (!response.IsSuccessStatusCode)
             {
                 var content = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
-                var error = NewtonsoftJsonSerializer.Instance.Deserialize<TokenErrorResponse>(content);
+                var error = SystemTextJsonSerializer.Instance.Deserialize<TokenErrorResponse>(content);
                 throw new TokenResponseException(error, response.StatusCode);
             }
 

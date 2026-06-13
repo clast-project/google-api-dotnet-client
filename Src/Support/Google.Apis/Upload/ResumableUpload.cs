@@ -695,7 +695,7 @@ namespace Google.Apis.Upload
         {
             string effectiveServiceName = Options?.ServiceName ?? "";
             RequestError error = await response
-                .DeserializeErrorAsync(effectiveServiceName, Options?.Serializer ?? NewtonsoftJsonSerializer.Instance)
+                .DeserializeErrorAsync(effectiveServiceName, Options?.Serializer ?? SystemTextJsonSerializer.Instance)
                 .ConfigureAwait(false);
             return new GoogleApiException(effectiveServiceName)
             {
@@ -1180,28 +1180,53 @@ namespace Google.Apis.Upload
         /// </summary>
         private void SetAllPropertyValues(RequestBuilder requestBuilder)
         {
+            // Prefer source-generated descriptors (AOT-safe, no reflection). Generated upload request types
+            // self-register from a module initializer; the reflective path is only for non-AOT targets.
+            if (RequestParameterRegistry.TryGet(GetType(), out var descriptors))
+            {
+                foreach (var descriptor in descriptors)
+                {
+                    AddParameterValue(requestBuilder, descriptor.ParameterType, descriptor.Name, descriptor.ValueGetter(this));
+                }
+                return;
+            }
+
+#if NET10_0_OR_GREATER
+            throw new NotSupportedException(
+                $"Upload request type '{GetType()}' has no source-generated request-parameter metadata. " +
+                "Ensure the owning client was processed by the Clast transform so it self-registers its parameters.");
+#else
             foreach (var property in ApplicationContext.RequestParameterProvider(GetType()))
             {
                 // We know these properties have this attribute.
                 var attribute = Utilities.GetCustomAttribute<RequestParameterAttribute>(property);
 
                 string name = attribute.Name ?? property.Name.ToLowerInvariant();
-                object value = property.GetValue(this, null);
-                if (value != null)
+                AddParameterValue(requestBuilder, attribute.Type, name, property.GetValue(this, null));
+            }
+#endif
+        }
+
+        /// <summary>
+        /// Adds a single request-parameter value to the builder, expanding repeated (enumerable, non-string) values
+        /// into multiple parameters. Shared by the source-generated and reflective parameter paths.
+        /// </summary>
+        private static void AddParameterValue(RequestBuilder requestBuilder, RequestParameterType parameterType, string name, object value)
+        {
+            if (value != null)
+            {
+                var valueAsEnumerable = value as IEnumerable;
+                if (!(value is string) && valueAsEnumerable != null)
                 {
-                    var valueAsEnumerable = value as IEnumerable;
-                    if (!(value is string) && valueAsEnumerable != null)
+                    foreach (var elem in valueAsEnumerable)
                     {
-                        foreach (var elem in valueAsEnumerable)
-                        {
-                            requestBuilder.AddParameter(attribute.Type, name, Utilities.ConvertToString(elem));
-                        }
+                        requestBuilder.AddParameter(parameterType, name, Utilities.ConvertToString(elem));
                     }
-                    else
-                    {
-                        // Otherwise just convert it to a string.
-                        requestBuilder.AddParameter(attribute.Type, name, Utilities.ConvertToString(value));
-                    }
+                }
+                else
+                {
+                    // Otherwise just convert it to a string.
+                    requestBuilder.AddParameter(parameterType, name, Utilities.ConvertToString(value));
                 }
             }
         }

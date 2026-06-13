@@ -15,7 +15,7 @@ limitations under the License.
 */
 
 using Google.Apis.Requests;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace Google.Apis.Util
 {
@@ -27,11 +27,11 @@ namespace Google.Apis.Util
     public sealed class StandardResponse<InnerType>
     {
         /// <summary>May be null if call failed.</summary>
-        [JsonProperty("data")]
+        [JsonPropertyName("data")]
         public InnerType Data { get; set; }
 
         /// <summary>May be null if call succedded.</summary>
-        [JsonProperty("error")]
+        [JsonPropertyName("error")]
         public RequestError Error { get; set; }
     }
 }

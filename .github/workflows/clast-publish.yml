@@ -1,0 +1,128 @@
+name: Clast Publish
+
+# Orchestrated build + publish of all 7 Clast.* packages to NuGet.org.
+# Checks out the whole closure (this repo + gax-dotnet + google-cloud-dotnet) as siblings so the cross-repo
+# ProjectReferences resolve, packs every shippable project with -p:Clast=true (renamed assemblies + Clast.snk)
+# at a single version, then pushes to NuGet.org.
+#
+# Trigger:
+#   - push a tag like v0.1.0  -> publishes version 0.1.0
+#   - manual run (workflow_dispatch) -> choose a version; dry_run=true (default) packs without pushing.
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Package version (e.g. 0.1.0 or 0.1.0-preview.1)'
+        required: true
+        default: '0.1.0'
+      dry_run:
+        description: 'Pack only; do not push to NuGet.org'
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    env:
+      DOTNET_NOLOGO: true
+      DOTNET_CLI_TELEMETRY_OPTOUT: true
+    steps:
+      - name: Checkout google-api-dotnet-client (driver)
+        uses: actions/checkout@v6
+        with:
+          path: google-api-dotnet-client
+
+      # Resolve the dependency repos to the same branch this workflow runs on if it exists there (lets a branch
+      # dry-run before merge); otherwise main. A tag (e.g. v0.1.0) isn't a branch name, so it falls back to main.
+      - name: Resolve dependency refs
+        id: dep
+        shell: bash
+        run: |
+          NAME="${{ github.ref_name }}"
+          resolve() {
+            local repo="$1" ref="main"
+            if [ -n "$NAME" ] && git ls-remote --exit-code --heads \
+              "https://github.com/clast-project/$repo.git" "$NAME" >/dev/null 2>&1; then
+              ref="$NAME"
+            fi
+            echo "$ref"
+          }
+          echo "gax=$(resolve gax-dotnet)" >> "$GITHUB_OUTPUT"
+          echo "gcloud=$(resolve google-cloud-dotnet)" >> "$GITHUB_OUTPUT"
+
+      - name: Checkout gax-dotnet
+        uses: actions/checkout@v6
+        with:
+          repository: clast-project/gax-dotnet
+          ref: ${{ steps.dep.outputs.gax }}
+          path: gax-dotnet
+
+      - name: Checkout google-cloud-dotnet
+        uses: actions/checkout@v6
+        with:
+          repository: clast-project/google-cloud-dotnet
+          ref: ${{ steps.dep.outputs.gcloud }}
+          path: google-cloud-dotnet
+
+      - name: Setup .NET (8 runtime for tests, 10 SDK per global.json)
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: |
+            8.0.x
+            10.0.x
+
+      - name: Determine version
+        id: ver
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" = "push" ]; then
+            V="${GITHUB_REF_NAME#v}"
+          else
+            V="${{ github.event.inputs.version }}"
+          fi
+          echo "version=$V" >> "$GITHUB_OUTPUT"
+          echo "Clast version: $V"
+
+      - name: Pack all 7 Clast.* packages
+        shell: bash
+        env:
+          VERSION: ${{ steps.ver.outputs.version }}
+          KEY: ${{ github.workspace }}/google-api-dotnet-client/Clast.snk
+          OUT: ${{ github.workspace }}/clast-packages
+        run: |
+          set -e
+          projects=(
+            google-api-dotnet-client/Src/Support/Google.Apis.Core/Google.Apis.Core.csproj
+            google-api-dotnet-client/Src/Support/Google.Apis/Google.Apis.csproj
+            google-api-dotnet-client/Src/Support/Google.Apis.Auth/Google.Apis.Auth.csproj
+            google-api-dotnet-client/Src/Generated/Google.Apis.Storage.v1/Google.Apis.Storage.v1.csproj
+            gax-dotnet/Google.Api.Gax/Google.Api.Gax.csproj
+            gax-dotnet/Google.Api.Gax.Rest/Google.Api.Gax.Rest.csproj
+            google-cloud-dotnet/apis/Google.Cloud.Storage.V1/Google.Cloud.Storage.V1/Google.Cloud.Storage.V1.csproj
+          )
+          for p in "${projects[@]}"; do
+            dotnet pack "$p" -c Release -o "$OUT" \
+              -p:Clast=true -p:ClastKeyPath="$KEY" -p:Version="$VERSION"
+          done
+          ls -l "$OUT"
+
+      - name: Upload packages artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: clast-packages-${{ steps.ver.outputs.version }}
+          path: ${{ github.workspace }}/clast-packages/*.nupkg
+
+      - name: Push to NuGet.org
+        if: ${{ github.event_name == 'push' || github.event.inputs.dry_run == 'false' }}
+        shell: bash
+        run: |
+          dotnet nuget push "${{ github.workspace }}/clast-packages/*.nupkg" \
+            --api-key "${{ secrets.NUGET_API_KEY }}" \
+            --source https://api.nuget.org/v3/index.json \
+            --skip-duplicate

@@ -48,7 +48,9 @@
 
   <!-- build properties -->
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net462;net6.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.0;net8.0;net10.0</TargetFrameworks>
+    <!-- Clast: required for the System.Text.Json source generator and module initializers. -->
+    <LangVersion>10.0</LangVersion>
     <SignAssembly>true</SignAssembly>
     <AssemblyOriginatorKeyFile>..\..\..\google.apis.snk</AssemblyOriginatorKeyFile>
     <DebugType>portable</DebugType>
@@ -56,11 +58,21 @@
     <NoWarn>1570,1587,1591</NoWarn>
   </PropertyGroup>
 
+  <!-- Clast: the net10.0 target is validated for trimming/AOT (see Google.Apis.Core.csproj). -->
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net10.0'">
+    <IsAotCompatible>true</IsAotCompatible>
+  </PropertyGroup>
+
   <!-- common dependencies -->
   <ItemGroup>
     <PackageReference Include="ConfigureAwaitChecker.Analyzer" Version="5.0.0" PrivateAssets="All" />
-    <PackageReference Include="Google.Apis" Version="1.74.0" />
-    <PackageReference Include="Google.Apis.Auth" Version="1.74.0" />
+    <!-- Clast: reference the locally-ported (System.Text.Json) support libraries. -->
+    <ProjectReference Include="..\..\Support\Google.Apis\Google.Apis.csproj" />
+    <ProjectReference Include="..\..\Support\Google.Apis.Auth\Google.Apis.Auth.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <PackageReference Include="System.Text.Json" Version="9.0.0" />
   </ItemGroup>
 
 </Project>

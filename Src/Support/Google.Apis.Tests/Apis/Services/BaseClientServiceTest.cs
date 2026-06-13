@@ -23,7 +23,8 @@ using Google.Apis.Services;
 using Google.Apis.Tests.Mocks;
 using Google.Apis.Translate.v2;
 using Google.Apis.Util;
-using Newtonsoft.Json;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System;
 using System.IO;
 using System.Linq;
@@ -43,13 +44,13 @@ namespace Google.Apis.Tests.Apis.Services
         /// <summary>A Json schema for testing serialization/deserialization.</summary>
         internal class MockJsonSchema : IDirectResponseSchema
         {
-            [JsonProperty("kind")]
+            [JsonPropertyName("kind")]
             public string Kind { get; set; }
 
-            [JsonProperty("longUrl")]
+            [JsonPropertyName("longUrl")]
             public string LongURL { get; set; }
 
-            [JsonProperty("status")]
+            [JsonPropertyName("status")]
             public string Status { get; set; }
 
             public RequestError Error { get; set; }
@@ -93,7 +94,7 @@ namespace Google.Apis.Tests.Apis.Services
             var client = CreateClientService(Features.LegacyDataResponse);
 
             // Check that the default serializer is set.
-            Assert.IsType<NewtonsoftJsonSerializer>(client.Serializer);
+            Assert.IsType<SystemTextJsonSerializer>(client.Serializer);
 
             // Check that the response is decoded correctly.
             var stream = new MemoryStream(Encoding.UTF8.GetBytes(Response));
@@ -112,7 +113,7 @@ namespace Google.Apis.Tests.Apis.Services
             var client = CreateClientService();
 
             // Check that the default serializer is set
-            Assert.IsType<NewtonsoftJsonSerializer>(client.Serializer);
+            Assert.IsType<SystemTextJsonSerializer>(client.Serializer);
 
             // Check that the response is decoded correctly
             var stream = new MemoryStream(Encoding.UTF8.GetBytes(Response));

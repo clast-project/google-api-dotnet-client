@@ -28,14 +28,15 @@ namespace Google.Apis.Auth.OAuth2
     public sealed class GoogleClientSecrets
     {
         /// <summary>Gets or sets the details for installed applications.</summary>
-        [Newtonsoft.Json.JsonProperty("installed")]
-        private ClientSecrets Installed { get; set; }
+        [System.Text.Json.Serialization.JsonPropertyName("installed")]
+        public ClientSecrets Installed { get; set; }
 
         /// <summary>Gets or sets the details for web applications.</summary>
-        [Newtonsoft.Json.JsonProperty("web")]
-        private ClientSecrets Web { get; set; }
+        [System.Text.Json.Serialization.JsonPropertyName("web")]
+        public ClientSecrets Web { get; set; }
 
         /// <summary>Gets the client secrets which contains the client identifier and client secret. </summary>
+        [System.Text.Json.Serialization.JsonIgnore]
         public ClientSecrets Secrets
         {
             get
@@ -58,11 +59,11 @@ namespace Google.Apis.Auth.OAuth2
 
         /// <summary>Loads the Google client secret from the input stream.</summary>
         public static GoogleClientSecrets FromStream(Stream stream) =>
-            NewtonsoftJsonSerializer.Instance.Deserialize<GoogleClientSecrets>(stream);
+            SystemTextJsonSerializer.Instance.Deserialize<GoogleClientSecrets>(stream);
 
         /// <summary>Asynchronously loads the Google client secret from the input stream.</summary>
         public static Task<GoogleClientSecrets> FromStreamAsync(Stream stream, CancellationToken cancellationToken = default) =>
-            NewtonsoftJsonSerializer.Instance.DeserializeAsync<GoogleClientSecrets>(stream, cancellationToken);
+            SystemTextJsonSerializer.Instance.DeserializeAsync<GoogleClientSecrets>(stream, cancellationToken);
 
         /// <summary>Loads the Google client secret from a JSON file.</summary>
         public static GoogleClientSecrets FromFile(string clientSecretsFilePath)

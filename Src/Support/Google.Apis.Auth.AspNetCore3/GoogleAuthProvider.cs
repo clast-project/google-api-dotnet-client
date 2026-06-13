@@ -21,7 +21,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -88,11 +88,16 @@ internal class GoogleAuthProvider : IGoogleAuthProvider
             {
                 var refreshResponse = await options.Backchannel.PostAsync(oidcConfig.TokenEndpoint, refreshContent, cancellationToken);
                 refreshResponse.EnsureSuccessStatusCode();
-                var payload = JObject.Parse(await refreshResponse.Content.ReadAsStringAsync());
-                var refreshedAccessToken = payload.Value<string>("access_token");
-                var refreshedRefreshToken = payload.Value<string>("refresh_token");
-                var refreshedExpiresIn = payload.Value<string>("expires_in");
-                var refreshedIdToken = payload.Value<string>("id_token");
+                using var payload = JsonDocument.Parse(await refreshResponse.Content.ReadAsStringAsync());
+                var root = payload.RootElement;
+                string GetTokenValue(string name) =>
+                    root.TryGetProperty(name, out var element) && element.ValueKind != JsonValueKind.Null && element.ValueKind != JsonValueKind.Undefined
+                        ? (element.ValueKind == JsonValueKind.String ? element.GetString() : element.GetRawText())
+                        : null;
+                var refreshedAccessToken = GetTokenValue("access_token");
+                var refreshedRefreshToken = GetTokenValue("refresh_token");
+                var refreshedExpiresIn = GetTokenValue("expires_in");
+                var refreshedIdToken = GetTokenValue("id_token");
                 auth.Properties.UpdateTokenValue(OpenIdConnectParameterNames.AccessToken, refreshedAccessToken);
                 if (!string.IsNullOrEmpty(refreshedRefreshToken))
                 {

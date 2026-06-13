@@ -16,6 +16,7 @@ limitations under the License.
 
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 using Google.Apis.Util;
 
@@ -42,16 +43,19 @@ namespace Google.Apis.Requests
         /// <summary>
         /// Contains a list of all errors
         /// </summary>
+        [JsonPropertyName("errors")]
         public IList<SingleError> Errors { get; set; }
 
         /// <summary>
         /// The error code returned
         /// </summary>
+        [JsonPropertyName("code")]
         public int Code { get; set; }
 
         /// <summary>
         /// The error message returned
         /// </summary>
+        [JsonPropertyName("message")]
         public string Message { get; set; }
 
         /// <summary>

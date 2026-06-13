@@ -16,7 +16,6 @@ limitations under the License.
 
 using Google.Apis.Tests.Mocks;
 using Google.Apis.Util;
-using Newtonsoft.Json;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -90,9 +89,9 @@ namespace Google.Apis.Auth.Tests
             Assert.NotEmpty(payload.AuthorizedParty);
         }
 
-        private class CustomPayload : JsonWebSignature.Payload
+        internal class CustomPayload : JsonWebSignature.Payload
         {
-            [JsonProperty("azp")]
+            [System.Text.Json.Serialization.JsonPropertyName("azp")]
             public string AuthorizedParty { get; set; }
         }
 

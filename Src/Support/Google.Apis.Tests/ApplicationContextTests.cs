@@ -121,6 +121,8 @@ namespace Google.Apis.Tests
             }
         }
 
+        // This test invokes the reflective request-parameter provider, which is unavailable on the AOT target.
+#if !NET10_0_OR_GREATER
         [Fact]
         public void DisableRequestParameterCache_CacheCleared()
         {
@@ -142,5 +144,6 @@ namespace Google.Apis.Tests
                 ApplicationContext.Reset();
             }
         }
+#endif
     }
 }

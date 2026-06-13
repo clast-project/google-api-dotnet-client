@@ -17,8 +17,8 @@ limitations under the License.
 using Google.Apis.Auth.OAuth2;
 using Google.Apis.Json;
 using Google.Apis.Tests.Mocks;
-using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -256,12 +256,12 @@ namespace Google.Apis.Auth.Tests.OAuth2
             Assert.Contains(roleRequest.Headers, header => header.Key == ImdsV2TokenHeaderName && header.Value.Single() == FakeImdsV2Token);
 
             return BuildStringContentResponseFromJson(
-                new
+                new Dictionary<string, string>
                 {
-                    Code = "Success",
-                    AccessKeyId = FakeSecurityCredentialsAccessKeyId,
-                    SecretAccessKey = FakeSecurityCredentialsSecretAccessKey,
-                    Token = FakeSecurityCredentialsToken
+                    ["Code"] = "Success",
+                    ["AccessKeyId"] = FakeSecurityCredentialsAccessKeyId,
+                    ["SecretAccessKey"] = FakeSecurityCredentialsSecretAccessKey,
+                    ["Token"] = FakeSecurityCredentialsToken
                 });
         }
 
@@ -270,7 +270,7 @@ namespace Google.Apis.Auth.Tests.OAuth2
             int start = accessTokenRequestContent.IndexOf("subject_token=", StringComparison.Ordinal) + 14;
             int end = accessTokenRequestContent.IndexOf("&subject_token_type=", StringComparison.Ordinal);
             string subjectToken = Uri.UnescapeDataString(accessTokenRequestContent.Substring(start, end - start));
-            var deserializedSubjectToken = NewtonsoftJsonSerializer.Instance.Deserialize<AwsSignedSubjectToken>(subjectToken);
+            var deserializedSubjectToken = SystemTextJsonSerializer.Instance.Deserialize<AwsSignedSubjectToken>(subjectToken);
 
             Assert.Equal(FakeRegionalizedVerificationUrl, deserializedSubjectToken.Url);
             Assert.Equal("POST", deserializedSubjectToken.HttpMethod);
@@ -292,24 +292,24 @@ namespace Google.Apis.Auth.Tests.OAuth2
 
         public class AwsSignedSubjectToken
         {
-            [JsonProperty("url")]
+            [System.Text.Json.Serialization.JsonPropertyName("url")]
             public string Url { get; set; }
 
-            [JsonProperty("method")]
+            [System.Text.Json.Serialization.JsonPropertyName("method")]
             public string HttpMethod { get; set; }
 
-            [JsonProperty("body")]
+            [System.Text.Json.Serialization.JsonPropertyName("body")]
             public string Body { get; set; }
 
-            [JsonProperty("headers")]
+            [System.Text.Json.Serialization.JsonPropertyName("headers")]
             public AwsSignedSubjectTokenHeader[] Headers { get; set; }
 
             public class AwsSignedSubjectTokenHeader
             {
-                [JsonProperty("key")]
+                [System.Text.Json.Serialization.JsonPropertyName("key")]
                 public string Key { get; set; }
 
-                [JsonProperty("value")]
+                [System.Text.Json.Serialization.JsonPropertyName("value")]
                 public string Value { get; set; }
             }
         }

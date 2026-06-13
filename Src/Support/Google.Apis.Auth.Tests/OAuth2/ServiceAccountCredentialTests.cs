@@ -1,4 +1,4 @@
-/*
+﻿/*
 Copyright 2017 Google LLC
 
 Licensed under the Apache License, Version 2.0 (the "License");
@@ -44,7 +44,7 @@ namespace Google.Apis.Auth.Tests.OAuth2
         {
             var mockFactory = new MockHttpClientFactory(new FetchesTokenMessageHandler());
             string fakeServiceAccountCredentialFileContents = GetContents(DefaultCredentialProviderTests.ServiceAccountCredentialMinimalFileName);
-            var credentialParameters = NewtonsoftJsonSerializer.Instance.Deserialize<JsonCredentialParameters>(fakeServiceAccountCredentialFileContents);
+            var credentialParameters = SystemTextJsonSerializer.Instance.Deserialize<JsonCredentialParameters>(fakeServiceAccountCredentialFileContents);
             var credential = new ServiceAccountCredential(new ServiceAccountCredential.Initializer(credentialParameters.ClientEmail)
             {
                 HttpClientFactory = mockFactory
@@ -60,7 +60,7 @@ namespace Google.Apis.Auth.Tests.OAuth2
         public void BadResponse503AndRecommended_RecommendedRetryPolicy()
         {
             var mockFactory = new MockHttpClientFactory(new FetchesTokenMessageHandler()); string fakeServiceAccountCredentialFileContents = GetContents(DefaultCredentialProviderTests.ServiceAccountCredentialMinimalFileName);
-            var credentialParameters = NewtonsoftJsonSerializer.Instance.Deserialize<JsonCredentialParameters>(fakeServiceAccountCredentialFileContents);
+            var credentialParameters = SystemTextJsonSerializer.Instance.Deserialize<JsonCredentialParameters>(fakeServiceAccountCredentialFileContents);
             var credential = new ServiceAccountCredential(new ServiceAccountCredential.Initializer(credentialParameters.ClientEmail)
             {
                 HttpClientFactory = mockFactory,
@@ -78,7 +78,7 @@ namespace Google.Apis.Auth.Tests.OAuth2
         {
             var mockFactory = new MockHttpClientFactory(new FetchesTokenMessageHandler());
             string fakeServiceAccountCredentialFileContents = GetContents(DefaultCredentialProviderTests.ServiceAccountCredentialMinimalFileName);
-            var credentialParameters = NewtonsoftJsonSerializer.Instance.Deserialize<JsonCredentialParameters>(fakeServiceAccountCredentialFileContents);
+            var credentialParameters = SystemTextJsonSerializer.Instance.Deserialize<JsonCredentialParameters>(fakeServiceAccountCredentialFileContents);
             var credential = new ServiceAccountCredential(new ServiceAccountCredential.Initializer(credentialParameters.ClientEmail)
             {
                 HttpClientFactory = mockFactory,
@@ -97,7 +97,7 @@ namespace Google.Apis.Auth.Tests.OAuth2
         {
             var mockFactory = new MockHttpClientFactory(new FetchesTokenMessageHandler());
             string fakeServiceAccountCredentialFileContents = GetContents(DefaultCredentialProviderTests.ServiceAccountCredentialMinimalFileName);
-            var credentialParameters = NewtonsoftJsonSerializer.Instance.Deserialize<JsonCredentialParameters>(fakeServiceAccountCredentialFileContents);
+            var credentialParameters = SystemTextJsonSerializer.Instance.Deserialize<JsonCredentialParameters>(fakeServiceAccountCredentialFileContents);
             var credential = new ServiceAccountCredential(new ServiceAccountCredential.Initializer(credentialParameters.ClientEmail)
             {
                 HttpClientFactory = mockFactory,
@@ -117,7 +117,7 @@ namespace Google.Apis.Auth.Tests.OAuth2
         {
             var mockFactory = new MockHttpClientFactory(new FetchesTokenMessageHandler());
             string fakeServiceAccountCredentialFileContents = GetContents(DefaultCredentialProviderTests.ServiceAccountCredentialMinimalFileName);
-            var credentialParameters = NewtonsoftJsonSerializer.Instance.Deserialize<JsonCredentialParameters>(fakeServiceAccountCredentialFileContents);
+            var credentialParameters = SystemTextJsonSerializer.Instance.Deserialize<JsonCredentialParameters>(fakeServiceAccountCredentialFileContents);
             var credential = new ServiceAccountCredential(new ServiceAccountCredential.Initializer(credentialParameters.ClientEmail)
             {
                 HttpClientFactory = mockFactory,
@@ -135,7 +135,7 @@ namespace Google.Apis.Auth.Tests.OAuth2
         {
             string fakeServiceAccountCredentialFileContents = GetContents(DefaultCredentialProviderTests.ServiceAccountCredentialMinimalFileName);
 
-            var credentialParameters = NewtonsoftJsonSerializer.Instance.Deserialize<JsonCredentialParameters>(fakeServiceAccountCredentialFileContents);
+            var credentialParameters = SystemTextJsonSerializer.Instance.Deserialize<JsonCredentialParameters>(fakeServiceAccountCredentialFileContents);
             var initializer = new ServiceAccountCredential.Initializer(credentialParameters.ClientEmail)
             {
                 Clock = new MockClock(new DateTime(2016, 1, 1, 0, 0, 0, DateTimeKind.Utc))
@@ -160,7 +160,7 @@ namespace Google.Apis.Auth.Tests.OAuth2
         {
             string fakeServiceAccountCredentialFileContents = GetContents(DefaultCredentialProviderTests.ServiceAccountCredentialMinimalFileName);
 
-            var credentialParameters = NewtonsoftJsonSerializer.Instance.Deserialize<JsonCredentialParameters>(fakeServiceAccountCredentialFileContents);
+            var credentialParameters = SystemTextJsonSerializer.Instance.Deserialize<JsonCredentialParameters>(fakeServiceAccountCredentialFileContents);
             var messageHandler = new FetchesTokenMessageHandler();
             var initializer = new ServiceAccountCredential.Initializer(credentialParameters.ClientEmail)
             {
@@ -205,7 +205,7 @@ namespace Google.Apis.Auth.Tests.OAuth2
         {
             string fakeServiceAccountCredentialFileContents = GetContents(DefaultCredentialProviderTests.ServiceAccountCredentialMinimalFileName);
 
-            var credentialParameters = NewtonsoftJsonSerializer.Instance.Deserialize<JsonCredentialParameters>(fakeServiceAccountCredentialFileContents);
+            var credentialParameters = SystemTextJsonSerializer.Instance.Deserialize<JsonCredentialParameters>(fakeServiceAccountCredentialFileContents);
             var initializer = new ServiceAccountCredential.Initializer(credentialParameters.ClientEmail)
             {
                 Clock = new MockClock(new DateTime(2016, 1, 1, 0, 0, 0, DateTimeKind.Utc))
@@ -833,7 +833,7 @@ ZUp8AsbVqF6rbLiiUfJMo2btGclQu4DEVyS+ymFA65tXDLUuR9EDqJYdqHNZJ5B8
                 ExpirationTimeSeconds = (long)(clock.UtcNow.Add(JwtLifetime) - UnixEpoch).TotalSeconds,
                 TargetAudience = "any_audience"
             };
-            var serializedExpectedPayload = NewtonsoftJsonSerializer.Instance.Serialize(expectedPayload);
+            var serializedExpectedPayload = SystemTextJsonSerializer.Instance.Serialize(expectedPayload);
             var urlSafeEncodedExpectedPayload = TokenEncodingHelpers.UrlSafeBase64Encode(serializedExpectedPayload);
 
             var oidcToken = await credential.GetOidcTokenAsync(OidcTokenOptions.FromTargetAudience("any_audience"));

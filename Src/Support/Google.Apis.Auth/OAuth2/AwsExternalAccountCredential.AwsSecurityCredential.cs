@@ -15,7 +15,7 @@ limitations under the License.
 */
 
 using Google.Apis.Json;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 using System;
 using System.IO;
 using System.Threading.Tasks;
@@ -97,7 +97,7 @@ namespace Google.Apis.Auth.OAuth2
                     && credentialJson != "")
                 {
                     // Deserialize the credentials
-                    var deserializedCredentials = NewtonsoftJsonSerializer.Instance.Deserialize<AwsSecurityCredentialsResponse>(credentialJson);
+                    var deserializedCredentials = SystemTextJsonSerializer.Instance.Deserialize<AwsSecurityCredentialsResponse>(credentialJson);
 
                     if (deserializedCredentials.IsSuccess
                         && !string.IsNullOrEmpty(deserializedCredentials.AccessKeyId)
@@ -138,23 +138,23 @@ namespace Google.Apis.Auth.OAuth2
             /// Partial representation of a metadata server security credentials response as defined by
             /// https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html#instance-metadata-security-credentials
             /// </summary>
-            private struct AwsSecurityCredentialsResponse
+            internal struct AwsSecurityCredentialsResponse
             {
                 internal const string SuccessStatusCode = "Success";
 
                 [JsonIgnore]
                 public bool IsSuccess => Code?.Equals(SuccessStatusCode, StringComparison.OrdinalIgnoreCase) == true;
 
-                [JsonProperty("Code")]
+                [JsonPropertyName("Code")]
                 public string Code { get; set; }
                 
-                [JsonProperty("AccessKeyId")]
+                [JsonPropertyName("AccessKeyId")]
                 public string AccessKeyId { get; set; }
                 
-                [JsonProperty("SecretAccessKey")]
+                [JsonPropertyName("SecretAccessKey")]
                 public string SecretAccessKey { get; set; }
                 
-                [JsonProperty("Token")]
+                [JsonPropertyName("Token")]
                 public string Token { get; set; }
             }
         }

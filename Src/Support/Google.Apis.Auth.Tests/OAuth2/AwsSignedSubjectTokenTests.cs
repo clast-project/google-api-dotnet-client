@@ -54,7 +54,7 @@ namespace Google.Apis.Auth.Tests.OAuth2
             // for proper testing than to just repeat this step here. This is by far the simplest step of subject
             // token generation as compared to building and signing the canonical request, etc. for which we are
             // testing production code.
-            AwsSignedSubjectToken expected = NewtonsoftJsonSerializer.Instance.Deserialize<AwsSignedSubjectToken>(Uri.UnescapeDataString(SerializedSubjectToken));
+            AwsSignedSubjectToken expected = SystemTextJsonSerializer.Instance.Deserialize<AwsSignedSubjectToken>(Uri.UnescapeDataString(SerializedSubjectToken));
 
             AwsSignedSubjectToken subjectToken = AwsSignedSubjectToken.Create(
                 new AwsSecurityCredentials(AwsSecretAcessKeyId, AwsSecretAccessKey, AwsToken),

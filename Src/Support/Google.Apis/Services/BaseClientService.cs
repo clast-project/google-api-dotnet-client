@@ -86,7 +86,7 @@ namespace Google.Apis.Services
             public bool GZipEnabled { get; set; }
 
             /// <summary>
-            /// Gets or sets the serializer. Default value is <see cref="NewtonsoftJsonSerializer"/>.
+            /// Gets or sets the serializer. Default value is <see cref="SystemTextJsonSerializer"/>.
             /// </summary>
             public ISerializer Serializer { get; set; }
 
@@ -148,7 +148,7 @@ namespace Google.Apis.Services
             public Initializer()
             {
                 GZipEnabled = true;
-                Serializer = NewtonsoftJsonSerializer.Instance;
+                Serializer = SystemTextJsonSerializer.Instance;
                 DefaultExponentialBackOffPolicy = ExponentialBackOffPolicy.UnsuccessfulResponse503;
                 MaxUrlLength = DefaultMaxUrlLength;
                 VersionHeaderBuilder = new VersionHeaderBuilder()

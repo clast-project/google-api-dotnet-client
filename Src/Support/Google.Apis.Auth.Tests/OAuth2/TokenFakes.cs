@@ -75,7 +75,7 @@ namespace Google.Apis.Auth.Tests.OAuth2
             {
                 IdToken = Calls == 1 ? FirstCallToken : SubsequentCallsToken,
             };
-            var serializedToken = NewtonsoftJsonSerializer.Instance.Serialize(token);
+            var serializedToken = SystemTextJsonSerializer.Instance.Serialize(token);
             HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK)
             {
                 Content = new StringContent(serializedToken),
@@ -156,7 +156,7 @@ namespace Google.Apis.Auth.Tests.OAuth2
             return new HttpResponseMessage()
             {
                 Content = new StringContent(
-                    NewtonsoftJsonSerializer.Instance.Serialize(new TokenResponse
+                    SystemTextJsonSerializer.Instance.Serialize(new TokenResponse
                     {
                         AccessToken = "a",
                         RefreshToken = "r",

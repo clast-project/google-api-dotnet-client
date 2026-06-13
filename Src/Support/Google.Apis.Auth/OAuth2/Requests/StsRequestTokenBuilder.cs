@@ -88,7 +88,7 @@ namespace Google.Apis.Auth.OAuth2.Requests
                 : null;
 
             var options = (authenticationHeader is null && WorkforcePoolUserProject is string)
-                ? NewtonsoftJsonSerializer.Instance.Serialize(new { userProject = WorkforcePoolUserProject })
+                ? SystemTextJsonSerializer.Instance.Serialize(new StsRequestOptions { UserProject = WorkforcePoolUserProject })
                 : null;
 
             var scope = Scopes?.Any() == true ? string.Join(" ", Scopes) : null;

@@ -126,6 +126,22 @@ namespace Google.Apis.Requests.Parameters
         /// <param name="action">An action to invoke which gets the parameter type, name and its value</param>
         private static void IterateParameters(object request, Action<RequestParameterType, string, object> action)
         {
+            // Prefer source-generated descriptors (AOT-safe, no reflection). Generated clients self-register from a
+            // module initializer; the reflective path below is only for non-AOT targets and hand-written request types.
+            if (RequestParameterRegistry.TryGet(request.GetType(), out var descriptors))
+            {
+                foreach (var descriptor in descriptors)
+                {
+                    ProcessParameter(descriptor.ParameterType, descriptor.Name, descriptor.IsValueType, descriptor.ValueGetter(request), action);
+                }
+                return;
+            }
+
+#if NET10_0_OR_GREATER
+            throw new NotSupportedException(
+                $"Request type '{request.GetType()}' has no source-generated request-parameter metadata. " +
+                "Ensure the owning client was processed by the Clast transform so it self-registers its parameters.");
+#else
             // Use reflection to build the parameter dictionary.
             foreach (PropertyInfo property in ApplicationContext.RequestParameterProvider(request.GetType()))
             {
@@ -136,31 +152,39 @@ namespace Google.Apis.Requests.Parameters
                 // property name.
                 string name = attribute.Name ?? property.Name.ToLowerInvariant();
 
-                var propertyType = property.PropertyType;
-                var value = property.GetValue(request, null);
+                ProcessParameter(attribute.Type, name, property.PropertyType.GetTypeInfo().IsValueType, property.GetValue(request, null), action);
+            }
+#endif
+        }
 
-                // Call action with the type name and value.
-                if (propertyType.GetTypeInfo().IsValueType || value != null)
+        /// <summary>
+        /// Applies the value-type/null-skip and user-defined-queries handling for a single request parameter,
+        /// invoking <paramref name="action"/> for the resulting query/path entries. Shared by the source-generated
+        /// and reflective parameter-iteration paths.
+        /// </summary>
+        private static void ProcessParameter(RequestParameterType parameterType, string name, bool isValueType, object value, Action<RequestParameterType, string, object> action)
+        {
+            // Call action with the type, name and value.
+            if (isValueType || value != null)
+            {
+                if (parameterType == RequestParameterType.UserDefinedQueries)
                 {
-                    if (attribute.Type == RequestParameterType.UserDefinedQueries)
+                    if (typeof(IEnumerable<KeyValuePair<string, string>>).IsAssignableFrom(value.GetType()))
                     {
-                        if (typeof(IEnumerable<KeyValuePair<string, string>>).IsAssignableFrom(value.GetType()))
+                        foreach (var pair in (IEnumerable<KeyValuePair<string, string>>)value)
                         {
-                            foreach (var pair in (IEnumerable<KeyValuePair<string, string>>)value)
-                            {
-                                action(RequestParameterType.Query, pair.Key, pair.Value);
-                            }
-                        }
-                        else
-                        {
-                            Logger.Warning("Parameter marked with RequestParameterType.UserDefinedQueries attribute " +
-                                "was not of type IEnumerable<KeyValuePair<string, string>> and will be skipped.");
+                            action(RequestParameterType.Query, pair.Key, pair.Value);
                         }
                     }
                     else
                     {
-                        action(attribute.Type, name, value);
+                        Logger.Warning("Parameter marked with RequestParameterType.UserDefinedQueries attribute " +
+                            "was not of type IEnumerable<KeyValuePair<string, string>> and will be skipped.");
                     }
+                }
+                else
+                {
+                    action(parameterType, name, value);
                 }
             }
         }
