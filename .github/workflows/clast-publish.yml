@@ -1,7 +1,7 @@
 name: Clast Publish
 
-# Orchestrated build + publish of all 8 Clast.* packages to NuGet.org.
-# Checks out the whole closure (this repo + gax-dotnet + google-cloud-dotnet) as siblings so the cross-repo
+# Orchestrated build + publish of all 10 Clast.* packages to NuGet.org.
+# Checks out the whole closure (this repo + gax-dotnet + grpc-dotnet + google-cloud-dotnet) as siblings so the cross-repo
 # ProjectReferences resolve, packs every shippable project with -p:Clast=true (renamed assemblies + Clast.snk)
 # at a single version, then pushes to NuGet.org.
 #
@@ -55,6 +55,7 @@ jobs:
           }
           echo "gax=$(resolve gax-dotnet)" >> "$GITHUB_OUTPUT"
           echo "gcloud=$(resolve google-cloud-dotnet)" >> "$GITHUB_OUTPUT"
+          echo "grpc=$(resolve grpc-dotnet)" >> "$GITHUB_OUTPUT"
 
       - name: Checkout gax-dotnet
         uses: actions/checkout@v6
@@ -62,6 +63,13 @@ jobs:
           repository: clast-project/gax-dotnet
           ref: ${{ steps.dep.outputs.gax }}
           path: gax-dotnet
+
+      - name: Checkout grpc-dotnet
+        uses: actions/checkout@v6
+        with:
+          repository: clast-project/grpc-dotnet
+          ref: ${{ steps.dep.outputs.grpc }}
+          path: grpc-dotnet
 
       - name: Checkout google-cloud-dotnet
         uses: actions/checkout@v6
@@ -89,7 +97,7 @@ jobs:
           echo "version=$V" >> "$GITHUB_OUTPUT"
           echo "Clast version: $V"
 
-      - name: Pack all 8 Clast.* packages
+      - name: Pack all 10 Clast.* packages
         shell: bash
         env:
           VERSION: ${{ steps.ver.outputs.version }}
@@ -103,8 +111,10 @@ jobs:
             google-api-dotnet-client/Src/Support/Google.Apis.Auth/Google.Apis.Auth.csproj
             google-api-dotnet-client/Src/Generated/Google.Apis.Storage.v1/Google.Apis.Storage.v1.csproj
             google-api-dotnet-client/Src/Generated/Google.Apis.Bigquery.v2/Google.Apis.Bigquery.v2.csproj
+            grpc-dotnet/src/Grpc.Auth/Grpc.Auth.csproj
             gax-dotnet/Google.Api.Gax/Google.Api.Gax.csproj
             gax-dotnet/Google.Api.Gax.Rest/Google.Api.Gax.Rest.csproj
+            gax-dotnet/Google.Api.Gax.Grpc/Google.Api.Gax.Grpc.csproj
             google-cloud-dotnet/apis/Google.Cloud.Storage.V1/Google.Cloud.Storage.V1/Google.Cloud.Storage.V1.csproj
           )
           for p in "${projects[@]}"; do
