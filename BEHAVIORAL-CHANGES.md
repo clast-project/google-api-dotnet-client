@@ -296,3 +296,29 @@ input-preprocessing shim or a custom converter) instead of accepting the differe
   runtime under aggressive trimming, an enum routing-header value emitted as its integer rather than its proto name.
 - **Compat path:** if a future enum is trimmed of its `[OriginalName]` metadata, root it (e.g. `[DynamicDependency]`
   or a source-generated name registry mirroring Core's `EnumStringValueRegistry`).
+
+## BC-022 — BigQuery.V2 wrapper: row values are `JsonElement`; `CreateJsonSerializersSettings` removed
+- **Area:** `Google.Cloud.BigQuery.V2` (`BigQueryRow`, `BigQueryClient`, `BigQueryClientBuilder`), google-cloud-dotnet.
+- **Was → Now:** the wrapper read query-result cell values (the generated `TableCell.V`, typed `object`) as
+  Newtonsoft `JValue`/`JArray`/`JObject` and cast accordingly; scalar cells arrived as boxed CLR strings. Under STJ
+  source-gen those `object` values now materialize as `System.Text.Json.JsonElement` (this is BC-002 applied to the
+  wrapper's data path). `BigQueryRow` was ported to `JsonElement` (`EnumerateArray`/`GetProperty`/`GetString`/
+  `ValueKind`), with a small `GetRawString` helper that accepts either a CLR `string` (values extracted from a parent
+  record) or a `JsonElement` (values read directly from a response).
+- **Public-API change:** `BigQueryClient.CreateJsonSerializersSettings()` returned a Newtonsoft
+  `JsonSerializerSettings` whose only customization was `DateParseHandling.None` — needed because Newtonsoft would
+  otherwise auto-parse date-shaped strings under `object` into `DateTime` and break the row casts. STJ never
+  auto-parses dates into `object` (values stay `JsonElement`), so the setting is meaningless; the method is removed
+  and `BigQueryClientBuilder` now relies on the default System.Text.Json serializer (BC-003/BC-015). Consumers that
+  called it must recompile (the Clast packages are a recompile-required republish by design).
+- **Disposition:** `Accepted`. Behavior for all supported cell shapes (scalar / repeated / struct, incl. nested) is
+  preserved — verified by `BigQueryRowTest` (943 tests green on net8.0 and net462) and a native-AOT proof that reads
+  a deserialized row plus builds a request with an enum + query parameter.
+- **Detection signature:** `InvalidCastException` casting a cell value to `JValue`/`JArray`/`JObject`, or
+  `error CS0117/CS1061` referencing `CreateJsonSerializersSettings` / Newtonsoft `JsonSerializerSettings`.
+- **Compat path:** use `BigQueryRow`'s typed indexer as before; construct services via
+  `BigQueryClient.Create`/`BigQueryClientBuilder` (which now wire the System.Text.Json serializer automatically).
+- **Also (AOT):** `BigQueryParameter`/`BigQueryInsertRow` built their valid-`IReadOnlyList<T>` lists via
+  `typeof(IReadOnlyList<>).MakeGenericType(t)` (IL3050) — now listed as explicit closed-generic `typeof(...)`
+  literals; and `EnumMap.GetApiValueNamesIn<T>` reflects over enum fields (IL2090), retained with a net10-guarded
+  `[UnconditionalSuppressMessage]` (same rationale as BC-021 — enum fields/attributes are AOT-preserved).
