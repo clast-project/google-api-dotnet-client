@@ -1,6 +1,6 @@
 name: Clast Publish
 
-# Orchestrated build + publish of all 10 Clast.* packages to NuGet.org.
+# Orchestrated build + publish of all 11 Clast.* packages to NuGet.org.
 # Checks out the whole closure (this repo + gax-dotnet + grpc-dotnet + google-cloud-dotnet) as siblings so the cross-repo
 # ProjectReferences resolve, packs every shippable project with -p:Clast=true (renamed assemblies + Clast.snk)
 # at a single version, then pushes to NuGet.org.
@@ -97,7 +97,7 @@ jobs:
           echo "version=$V" >> "$GITHUB_OUTPUT"
           echo "Clast version: $V"
 
-      - name: Pack all 10 Clast.* packages
+      - name: Pack all 11 Clast.* packages
         shell: bash
         env:
           VERSION: ${{ steps.ver.outputs.version }}
@@ -116,6 +116,7 @@ jobs:
             gax-dotnet/Google.Api.Gax.Rest/Google.Api.Gax.Rest.csproj
             gax-dotnet/Google.Api.Gax.Grpc/Google.Api.Gax.Grpc.csproj
             google-cloud-dotnet/apis/Google.Cloud.Storage.V1/Google.Cloud.Storage.V1/Google.Cloud.Storage.V1.csproj
+            google-cloud-dotnet/apis/Google.Cloud.BigQuery.V2/Google.Cloud.BigQuery.V2/Google.Cloud.BigQuery.V2.csproj
           )
           for p in "${projects[@]}"; do
             dotnet pack "$p" -c Release -o "$OUT" \
