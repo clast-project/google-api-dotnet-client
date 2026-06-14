@@ -260,3 +260,39 @@ input-preprocessing shim or a custom converter) instead of accepting the differe
 - **Detection signature:** `Assert.Throws<JsonException>`/`Exception type was not an exact match` in tests, or a
   `catch (Newtonsoft.Json.JsonException)` no longer catching STJ failures.
 - **Compat path:** none; update catch/assert sites to `System.Text.Json.JsonException`.
+
+## BC-020 — Legacy Grpc.Core transport (`GrpcCoreAdapter`) disabled on the AOT target
+- **Area:** `Google.Api.Gax.Grpc` (`GrpcCoreAdapter`), net10.0 only (gax-dotnet).
+- **Was → Now:** `GrpcCoreAdapter` creates a native `Grpc.Core.Channel` via runtime code generation
+  (`Type.MakeGenericType` / `MethodInfo.MakeGenericMethod` / `Expression.Compile`), which carries
+  `RequiresDynamicCode` and **cannot** run under native AOT (IL3050/IL2060). `Grpc.Core` is itself deprecated/EOL.
+  On net10.0 the dynamic-code factory body is compiled out and `GrpcCoreAdapter` channel creation throws
+  `PlatformNotSupportedException`; netstandard2.0/net8.0 are unchanged. The public type still exists on net10 so
+  the API surface is stable across TFMs.
+- **Disposition:** `Accepted`. The default transport selection
+  (`GrpcAdapter.DetectDefaultGrpcTransportAdapterPreferringGrpcNetClient`) resolves to `GrpcNetClientAdapter`
+  (Grpc.Net.Client) on net10 — the `Grpc.Core` fallback is `#if NET462_OR_GREATER` and already absent there — so
+  the legacy path is only reached when a caller explicitly opts in (e.g. `GRPC_DEFAULT_ADAPTER_OVERRIDE=Grpc.Core`
+  or passing `GrpcCoreAdapter.Instance`), which AOT cannot support regardless.
+- **Detection signature:** `PlatformNotSupportedException` ("GrpcCoreAdapter ... is not supported on .NET 10 or
+  under native AOT") at channel creation on net10; or, before the guard, IL3050/IL2060 in `GrpcCoreAdapter.cs`.
+- **Compat path:** use `GrpcNetClientAdapter` (the default on modern .NET). For the unmanaged Grpc.Core transport,
+  target net8.0/netstandard2.0 (non-AOT).
+
+## BC-021 — Gax.Grpc enum `[OriginalName]` reflection retained for AOT (routing headers / REST transcoding)
+- **Area:** `Google.Api.Gax.Grpc` (`ProtobufUtilities.OriginalEnumValueHelper`), net10.0 / native AOT (gax-dotnet).
+- **Was → Now:** Formatting an enum value for a gRPC routing header (`x-goog-request-params`) or REST transcoding
+  reflects over the protobuf enum's fields and their `[OriginalName]` attributes (code copied verbatim from
+  Google.Protobuf's `JsonFormatter`). The per-assembly AOT analyzer flags this as IL2070. The lookup is left
+  intact and the warning is suppressed via `[UnconditionalSuppressMessage]` (guarded to net10, where the attribute
+  exists), because protobuf enum types and their metadata are rooted by the generated message code / protobuf
+  runtime — empirically confirmed: the native-AOT proof formats `NullValue.NullValue` and gets `"NULL_VALUE"`
+  (the reflective name), not the integer fallback.
+- **Disposition:** `Accepted` (relies on the same protobuf-metadata preservation that Google.Protobuf's own
+  `JsonFormatter` depends on). NOTE: the `Google.Protobuf` package itself emits an aggregate `IL3053` under native
+  publish; per the Clast scoping decision the protobuf/gRPC stack (`Google.Protobuf`, `Grpc.*`,
+  `Google.Api.CommonProtos`) is treated as AOT-compatible unchanged, and the native proof runs correctly despite it.
+- **Detection signature:** IL2070 at `ProtobufUtilities.cs` `GetNameMapping` if the suppression is removed; or, at
+  runtime under aggressive trimming, an enum routing-header value emitted as its integer rather than its proto name.
+- **Compat path:** if a future enum is trimmed of its `[OriginalName]` metadata, root it (e.g. `[DynamicDependency]`
+  or a source-generated name registry mirroring Core's `EnumStringValueRegistry`).
