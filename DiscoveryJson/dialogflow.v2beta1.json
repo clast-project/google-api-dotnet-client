@@ -8431,7 +8431,7 @@
       }
     }
   },
-  "revision": "20260604",
+  "revision": "20260701",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -14200,8 +14200,13 @@
     "GoogleCloudDialogflowV2KnowledgeAssistAnswerAdditionalSuggestedQueryResult": {
       "id": "GoogleCloudDialogflowV2KnowledgeAssistAnswerAdditionalSuggestedQueryResult",
       "properties": {
+        "answerRecord": {
+          "readOnly": true,
+          "type": "string"
+        },
         "suggestedQuery": {
-          "$ref": "GoogleCloudDialogflowV2KnowledgeAssistAnswerSuggestedQuery"
+          "$ref": "GoogleCloudDialogflowV2KnowledgeAssistAnswerSuggestedQuery",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -14879,9 +14884,17 @@
           "enum": [
             "MESSAGE_TYPE_UNSPECIFIED",
             "TRANSCRIPT",
-            "END_OF_SINGLE_UTTERANCE"
+            "DTMF_DIGITS",
+            "END_OF_SINGLE_UTTERANCE",
+            "PARTIAL_DTMF_DIGITS",
+            "SPEECH_ACTIVITY_BEGIN",
+            "SPEECH_ACTIVITY_END"
           ],
           "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
             "",
             "",
             ""
@@ -17793,18 +17806,6 @@
       },
       "type": "object"
     },
-    "GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigConversationModelConfig": {
-      "id": "GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigConversationModelConfig",
-      "properties": {
-        "baselineModelVersion": {
-          "type": "string"
-        },
-        "model": {
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigConversationProcessConfig": {
       "id": "GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigConversationProcessConfig",
       "properties": {
@@ -17866,9 +17867,6 @@
     "GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionFeatureConfig": {
       "id": "GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionFeatureConfig",
       "properties": {
-        "conversationModelConfig": {
-          "$ref": "GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigConversationModelConfig"
-        },
         "conversationProcessConfig": {
           "$ref": "GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigConversationProcessConfig"
         },
@@ -18346,6 +18344,9 @@
           "type": "boolean"
         },
         "enableAutomaticPunctuation": {
+          "type": "boolean"
+        },
+        "enableVoiceActivityEvents": {
           "type": "boolean"
         },
         "enableWordInfo": {
@@ -19519,8 +19520,13 @@
     "GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerAdditionalSuggestedQueryResult": {
       "id": "GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerAdditionalSuggestedQueryResult",
       "properties": {
+        "answerRecord": {
+          "readOnly": true,
+          "type": "string"
+        },
         "suggestedQuery": {
-          "$ref": "GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerSuggestedQuery"
+          "$ref": "GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerSuggestedQuery",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -20313,6 +20319,15 @@
             "OUTPUT_AUDIO_ENCODING_MULAW",
             "OUTPUT_AUDIO_ENCODING_ALAW"
           ],
+          "enumDeprecated": [
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false
+          ],
           "enumDescriptions": [
             "",
             "",
@@ -20847,6 +20862,13 @@
     "GoogleCloudDialogflowV2beta1SearchKnowledgeDebugInfo": {
       "id": "GoogleCloudDialogflowV2beta1SearchKnowledgeDebugInfo",
       "properties": {
+        "cesDebugInfo": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "type": "object"
+        },
         "datastoreResponseReason": {
           "enum": [
             "DATASTORE_RESPONSE_REASON_UNSPECIFIED",
@@ -21467,9 +21489,13 @@
             "TRANSCRIPT",
             "END_OF_SINGLE_UTTERANCE",
             "DTMF_DIGITS",
-            "PARTIAL_DTMF_DIGITS"
+            "PARTIAL_DTMF_DIGITS",
+            "SPEECH_ACTIVITY_BEGIN",
+            "SPEECH_ACTIVITY_END"
           ],
           "enumDescriptions": [
+            "",
+            "",
             "",
             "",
             "",
@@ -22437,6 +22463,15 @@
             "OUTPUT_AUDIO_ENCODING_OGG_OPUS",
             "OUTPUT_AUDIO_ENCODING_MULAW",
             "OUTPUT_AUDIO_ENCODING_ALAW"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false
           ],
           "enumDescriptions": [
             "",

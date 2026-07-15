@@ -295,10 +295,14 @@ namespace Google.Apis.Merchant.issueresolution_v1
             /// <summary>
             /// Lists the `AggregateProductStatuses` resources for your merchant account. The response might contain
             /// fewer items than specified by `pageSize`. If `pageToken` was returned in previous request, it can be
-            /// used to obtain additional results.
+            /// used to obtain additional results. This method can only be accessed by standalone accounts and
+            /// sub-accounts of an advanced account. To retrieve product statuses for sub-accounts, you must first call
+            /// the accounts.listSubaccounts method to obtain a list of sub-accounts, and then call
+            /// `accounts.aggregateProductStatuses.list` for each sub-account individually.
             /// </summary>
             /// <param name="parent">
-            /// Required. The account to list aggregate product statuses for. Format: `accounts/{account}`
+            /// Required. The account to list aggregate product statuses for. Format: `accounts/{account}` Can only be
+            /// sub-accounts and standalone accounts.
             /// </param>
             public virtual ListRequest List(string parent)
             {
@@ -308,7 +312,10 @@ namespace Google.Apis.Merchant.issueresolution_v1
             /// <summary>
             /// Lists the `AggregateProductStatuses` resources for your merchant account. The response might contain
             /// fewer items than specified by `pageSize`. If `pageToken` was returned in previous request, it can be
-            /// used to obtain additional results.
+            /// used to obtain additional results. This method can only be accessed by standalone accounts and
+            /// sub-accounts of an advanced account. To retrieve product statuses for sub-accounts, you must first call
+            /// the accounts.listSubaccounts method to obtain a list of sub-accounts, and then call
+            /// `accounts.aggregateProductStatuses.list` for each sub-account individually.
             /// </summary>
             public class ListRequest : MerchantBaseServiceRequest<Google.Apis.Merchant.issueresolution_v1.Data.ListAggregateProductStatusesResponse>
             {
@@ -320,7 +327,8 @@ namespace Google.Apis.Merchant.issueresolution_v1
                 }
 
                 /// <summary>
-                /// Required. The account to list aggregate product statuses for. Format: `accounts/{account}`
+                /// Required. The account to list aggregate product statuses for. Format: `accounts/{account}` Can only
+                /// be sub-accounts and standalone accounts.
                 /// </summary>
                 [Google.Apis.Util.RequestParameterAttribute("parent", Google.Apis.Util.RequestParameterType.Path)]
                 public virtual string Parent { get; private set; }
@@ -1544,9 +1552,12 @@ namespace Google.Apis.Merchant.issueresolution_v1.Data
         /// main text and the tooltip text when the style is not used. * `tooltip-style-question` - the tooltip shows
         /// helpful information, can use the '?' as an icon. * `tooltip-style-info` - the tooltip adds additional
         /// information fitting to the context, can use the 'i' as an icon. * `content-moderation` - marks the paragraph
-        /// that explains how the issue was identified. * `new-element` - Present for new elements added to the
-        /// pre-rendered content in the future. To make sure that a new content element does not break your style, you
-        /// can hide everything with this class.
+        /// that explains how the issue was identified. * `asset-value` - marks the paragraph that contains the asset
+        /// information. * `asset-label` - marks the section of the text that contains the label of the asset. *
+        /// `asset-link` - marks the section of the text that contains a link to the asset. * `asset-provided-value` -
+        /// marks the section of the text that contains the value of the asset. * `new-element` - Present for new
+        /// elements added to the pre-rendered content in the future. To make sure that a new content element does not
+        /// break your style, you can hide everything with this class.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("prerenderedContent")]
         public virtual string PrerenderedContent { get; set; }

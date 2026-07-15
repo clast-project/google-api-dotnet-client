@@ -198,11 +198,6 @@
     },
     {
       "description": "Regional Endpoint",
-      "endpointUrl": "https://datastream.us-central2.rep.googleapis.com/",
-      "location": "us-central2"
-    },
-    {
-      "description": "Regional Endpoint",
       "endpointUrl": "https://datastream.us-east1.rep.googleapis.com/",
       "location": "us-east1"
     },
@@ -245,11 +240,6 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://datastream.us-west4.rep.googleapis.com/",
       "location": "us-west4"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://datastream.us-west8.rep.googleapis.com/",
-      "location": "us-west8"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -1503,7 +1493,7 @@
       }
     }
   },
-  "revision": "20260531",
+  "revision": "20260623",
   "rootUrl": "https://datastream.googleapis.com/",
   "schemas": {
     "AppendOnly": {
@@ -4214,7 +4204,8 @@
         },
         "userCredentials": {
           "$ref": "UserCredentials",
-          "description": "User-password authentication."
+          "deprecated": true,
+          "description": "Deprecated: Salesforce is retiring Username-Password authentication. Use `oauth2_client_credentials` instead."
         }
       },
       "type": "object"
@@ -5206,7 +5197,8 @@
       "type": "object"
     },
     "UserCredentials": {
-      "description": "Username-password credentials.",
+      "deprecated": true,
+      "description": "Deprecated: Salesforce is retiring Username-Password authentication. Use `Oauth2ClientCredentials` instead.",
       "id": "UserCredentials",
       "properties": {
         "password": {

@@ -5591,7 +5591,7 @@
       }
     }
   },
-  "revision": "20260526",
+  "revision": "20260710",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -5713,6 +5713,40 @@
       },
       "type": "object"
     },
+    "Agent": {
+      "id": "Agent",
+      "properties": {
+        "displayName": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AgentAnomaly": {
+      "id": "AgentAnomaly",
+      "properties": {
+        "confidenceScore": {
+          "format": "double",
+          "type": "number"
+        },
+        "detectorReferences": {
+          "items": {
+            "$ref": "DetectorReference"
+          },
+          "type": "array"
+        },
+        "invocationReferences": {
+          "items": {
+            "$ref": "InvocationReference"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "AgentDataAccessEvent": {
       "id": "AgentDataAccessEvent",
       "properties": {
@@ -5739,6 +5773,15 @@
           "type": "string"
         },
         "principalSubject": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AgentSession": {
+      "id": "AgentSession",
+      "properties": {
+        "sessionId": {
           "type": "string"
         }
       },
@@ -7071,6 +7114,41 @@
       },
       "type": "object"
     },
+    "DetectorReference": {
+      "id": "DetectorReference",
+      "properties": {
+        "detectorId": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "explanation": {
+          "type": "string"
+        },
+        "recommendation": {
+          "type": "string"
+        },
+        "severity": {
+          "enum": [
+            "SEVERITY_UNSPECIFIED",
+            "CRITICAL",
+            "HIGH",
+            "MEDIUM",
+            "LOW"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "DiscoveredWorkload": {
       "id": "DiscoveredWorkload",
       "properties": {
@@ -7408,6 +7486,10 @@
         "networkIngressFirewallPolicy": {
           "type": "string"
         },
+        "networkPathInsightsGenerationTime": {
+          "format": "google-datetime",
+          "type": "string"
+        },
         "privateIpAddress": {
           "type": "string"
         },
@@ -7514,9 +7596,21 @@
         "affectedResources": {
           "$ref": "AffectedResources"
         },
+        "agent": {
+          "$ref": "Agent"
+        },
+        "agentAnomaly": {
+          "$ref": "AgentAnomaly"
+        },
         "agentDataAccessEvents": {
           "items": {
             "$ref": "AgentDataAccessEvent"
+          },
+          "type": "array"
+        },
+        "agentSessions": {
+          "items": {
+            "$ref": "AgentSession"
           },
           "type": "array"
         },
@@ -7683,6 +7777,9 @@
             "$ref": "IamBinding"
           },
           "type": "array"
+        },
+        "iamDetails": {
+          "$ref": "GoogleCloudSecuritycenterV1IamDetails"
         },
         "indicator": {
           "$ref": "Indicator"
@@ -8164,6 +8261,30 @@
         },
         "ticketInfo": {
           "$ref": "TicketInfo"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV1IamDetails": {
+      "id": "GoogleCloudSecuritycenterV1IamDetails",
+      "properties": {
+        "iamRolePermissions": {
+          "items": {
+            "$ref": "GoogleCloudSecuritycenterV1IamRolePermission"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV1IamRolePermission": {
+      "id": "GoogleCloudSecuritycenterV1IamRolePermission",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
         }
       },
       "type": "object"
@@ -8948,6 +9069,40 @@
       },
       "type": "object"
     },
+    "GoogleCloudSecuritycenterV2Agent": {
+      "id": "GoogleCloudSecuritycenterV2Agent",
+      "properties": {
+        "displayName": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2AgentAnomaly": {
+      "id": "GoogleCloudSecuritycenterV2AgentAnomaly",
+      "properties": {
+        "confidenceScore": {
+          "format": "double",
+          "type": "number"
+        },
+        "detectorReferences": {
+          "items": {
+            "$ref": "GoogleCloudSecuritycenterV2DetectorReference"
+          },
+          "type": "array"
+        },
+        "invocationReferences": {
+          "items": {
+            "$ref": "GoogleCloudSecuritycenterV2InvocationReference"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudSecuritycenterV2AgentDataAccessEvent": {
       "id": "GoogleCloudSecuritycenterV2AgentDataAccessEvent",
       "properties": {
@@ -8974,6 +9129,15 @@
           "type": "string"
         },
         "principalSubject": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2AgentSession": {
+      "id": "GoogleCloudSecuritycenterV2AgentSession",
+      "properties": {
+        "sessionId": {
           "type": "string"
         }
       },
@@ -10045,6 +10209,41 @@
       },
       "type": "object"
     },
+    "GoogleCloudSecuritycenterV2DetectorReference": {
+      "id": "GoogleCloudSecuritycenterV2DetectorReference",
+      "properties": {
+        "detectorId": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "explanation": {
+          "type": "string"
+        },
+        "recommendation": {
+          "type": "string"
+        },
+        "severity": {
+          "enum": [
+            "SEVERITY_UNSPECIFIED",
+            "CRITICAL",
+            "HIGH",
+            "MEDIUM",
+            "LOW"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudSecuritycenterV2DiscoveredWorkload": {
       "id": "GoogleCloudSecuritycenterV2DiscoveredWorkload",
       "properties": {
@@ -10214,6 +10413,10 @@
         "networkIngressFirewallPolicy": {
           "type": "string"
         },
+        "networkPathInsightsGenerationTime": {
+          "format": "google-datetime",
+          "type": "string"
+        },
         "privateIpAddress": {
           "type": "string"
         },
@@ -10366,9 +10569,21 @@
         "affectedResources": {
           "$ref": "GoogleCloudSecuritycenterV2AffectedResources"
         },
+        "agent": {
+          "$ref": "GoogleCloudSecuritycenterV2Agent"
+        },
+        "agentAnomaly": {
+          "$ref": "GoogleCloudSecuritycenterV2AgentAnomaly"
+        },
         "agentDataAccessEvents": {
           "items": {
             "$ref": "GoogleCloudSecuritycenterV2AgentDataAccessEvent"
+          },
+          "type": "array"
+        },
+        "agentSessions": {
+          "items": {
+            "$ref": "GoogleCloudSecuritycenterV2AgentSession"
           },
           "type": "array"
         },
@@ -10541,6 +10756,9 @@
             "$ref": "GoogleCloudSecuritycenterV2IamBinding"
           },
           "type": "array"
+        },
+        "iamDetails": {
+          "$ref": "GoogleCloudSecuritycenterV2IamDetails"
         },
         "indicator": {
           "$ref": "GoogleCloudSecuritycenterV2Indicator"
@@ -10834,6 +11052,30 @@
       },
       "type": "object"
     },
+    "GoogleCloudSecuritycenterV2IamDetails": {
+      "id": "GoogleCloudSecuritycenterV2IamDetails",
+      "properties": {
+        "iamRolePermissions": {
+          "items": {
+            "$ref": "GoogleCloudSecuritycenterV2IamRolePermission"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2IamRolePermission": {
+      "id": "GoogleCloudSecuritycenterV2IamRolePermission",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudSecuritycenterV2Indicator": {
       "id": "GoogleCloudSecuritycenterV2Indicator",
       "properties": {
@@ -10874,6 +11116,15 @@
           "$ref": "GoogleCloudSecuritycenterV2SensitivityScore"
         },
         "version": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2InvocationReference": {
+      "id": "GoogleCloudSecuritycenterV2InvocationReference",
+      "properties": {
+        "invocationId": {
           "type": "string"
         }
       },
@@ -13523,6 +13774,15 @@
           "$ref": "SensitivityScore"
         },
         "version": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InvocationReference": {
+      "id": "InvocationReference",
+      "properties": {
+        "invocationId": {
           "type": "string"
         }
       },

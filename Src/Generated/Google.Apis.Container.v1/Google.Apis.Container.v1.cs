@@ -1435,6 +1435,71 @@ namespace Google.Apis.Container.v1
                     }
                 }
 
+                /// <summary>
+                /// CompleteControlPlaneUpgrade completes the rollback-safe upgrade by performing the step two upgrade
+                /// for a specific cluster.
+                /// </summary>
+                /// <param name="body">The body of the request.</param>
+                /// <param name="name">
+                /// Required. The name (project, location, cluster) of the cluster to complete upgrade. Specified in the
+                /// format `projects/*/locations/*/clusters/*`.
+                /// </param>
+                public virtual CompleteControlPlaneUpgradeRequest CompleteControlPlaneUpgrade(Google.Apis.Container.v1.Data.CompleteControlPlaneUpgradeRequest body, string name)
+                {
+                    return new CompleteControlPlaneUpgradeRequest(this.service, body, name);
+                }
+
+                /// <summary>
+                /// CompleteControlPlaneUpgrade completes the rollback-safe upgrade by performing the step two upgrade
+                /// for a specific cluster.
+                /// </summary>
+                public class CompleteControlPlaneUpgradeRequest : ContainerBaseServiceRequest<Google.Apis.Container.v1.Data.Operation>
+                {
+                    /// <summary>Constructs a new CompleteControlPlaneUpgrade request.</summary>
+                    public CompleteControlPlaneUpgradeRequest(Google.Apis.Services.IClientService service, Google.Apis.Container.v1.Data.CompleteControlPlaneUpgradeRequest body, string name) : base(service)
+                    {
+                        Name = name;
+                        Body = body;
+                        InitParameters();
+                    }
+
+                    /// <summary>
+                    /// Required. The name (project, location, cluster) of the cluster to complete upgrade. Specified in
+                    /// the format `projects/*/locations/*/clusters/*`.
+                    /// </summary>
+                    [Google.Apis.Util.RequestParameterAttribute("name", Google.Apis.Util.RequestParameterType.Path)]
+                    public virtual string Name { get; private set; }
+
+                    /// <summary>Gets or sets the body of this request.</summary>
+                    Google.Apis.Container.v1.Data.CompleteControlPlaneUpgradeRequest Body { get; set; }
+
+                    /// <summary>Returns the body of the request.</summary>
+                    protected override object GetBody() => Body;
+
+                    /// <summary>Gets the method name.</summary>
+                    public override string MethodName => "completeControlPlaneUpgrade";
+
+                    /// <summary>Gets the HTTP method.</summary>
+                    public override string HttpMethod => "POST";
+
+                    /// <summary>Gets the REST path.</summary>
+                    public override string RestPath => "v1/{+name}:completeControlPlaneUpgrade";
+
+                    /// <summary>Initializes CompleteControlPlaneUpgrade parameter list.</summary>
+                    protected override void InitParameters()
+                    {
+                        base.InitParameters();
+                        RequestParameters.Add("name", new Google.Apis.Discovery.Parameter
+                        {
+                            Name = "name",
+                            IsRequired = true,
+                            ParameterType = "path",
+                            DefaultValue = null,
+                            Pattern = @"^projects/[^/]+/locations/[^/]+/clusters/[^/]+$",
+                        });
+                    }
+                }
+
                 /// <summary>Completes master IP rotation.</summary>
                 /// <param name="body">The body of the request.</param>
                 /// <param name="name">
@@ -4354,6 +4419,71 @@ namespace Google.Apis.Container.v1
                             ParameterType = "path",
                             DefaultValue = null,
                             Pattern = null,
+                        });
+                    }
+                }
+
+                /// <summary>
+                /// CompleteControlPlaneUpgrade completes the rollback-safe upgrade by performing the step two upgrade
+                /// for a specific cluster.
+                /// </summary>
+                /// <param name="body">The body of the request.</param>
+                /// <param name="name">
+                /// Required. The name (project, location, cluster) of the cluster to complete upgrade. Specified in the
+                /// format `projects/*/locations/*/clusters/*`.
+                /// </param>
+                public virtual CompleteControlPlaneUpgradeRequest CompleteControlPlaneUpgrade(Google.Apis.Container.v1.Data.CompleteControlPlaneUpgradeRequest body, string name)
+                {
+                    return new CompleteControlPlaneUpgradeRequest(this.service, body, name);
+                }
+
+                /// <summary>
+                /// CompleteControlPlaneUpgrade completes the rollback-safe upgrade by performing the step two upgrade
+                /// for a specific cluster.
+                /// </summary>
+                public class CompleteControlPlaneUpgradeRequest : ContainerBaseServiceRequest<Google.Apis.Container.v1.Data.Operation>
+                {
+                    /// <summary>Constructs a new CompleteControlPlaneUpgrade request.</summary>
+                    public CompleteControlPlaneUpgradeRequest(Google.Apis.Services.IClientService service, Google.Apis.Container.v1.Data.CompleteControlPlaneUpgradeRequest body, string name) : base(service)
+                    {
+                        Name = name;
+                        Body = body;
+                        InitParameters();
+                    }
+
+                    /// <summary>
+                    /// Required. The name (project, location, cluster) of the cluster to complete upgrade. Specified in
+                    /// the format `projects/*/locations/*/clusters/*`.
+                    /// </summary>
+                    [Google.Apis.Util.RequestParameterAttribute("name", Google.Apis.Util.RequestParameterType.Path)]
+                    public virtual string Name { get; private set; }
+
+                    /// <summary>Gets or sets the body of this request.</summary>
+                    Google.Apis.Container.v1.Data.CompleteControlPlaneUpgradeRequest Body { get; set; }
+
+                    /// <summary>Returns the body of the request.</summary>
+                    protected override object GetBody() => Body;
+
+                    /// <summary>Gets the method name.</summary>
+                    public override string MethodName => "completeControlPlaneUpgrade";
+
+                    /// <summary>Gets the HTTP method.</summary>
+                    public override string HttpMethod => "POST";
+
+                    /// <summary>Gets the REST path.</summary>
+                    public override string RestPath => "v1/{+name}:completeControlPlaneUpgrade";
+
+                    /// <summary>Initializes CompleteControlPlaneUpgrade parameter list.</summary>
+                    protected override void InitParameters()
+                    {
+                        base.InitParameters();
+                        RequestParameters.Add("name", new Google.Apis.Discovery.Parameter
+                        {
+                            Name = "name",
+                            IsRequired = true,
+                            ParameterType = "path",
+                            DefaultValue = null,
+                            Pattern = @"^projects/[^/]+/zones/[^/]+/clusters/[^/]+$",
                         });
                     }
                 }
@@ -7437,6 +7567,13 @@ namespace Google.Apis.Container.v1.Data
         [Newtonsoft.Json.JsonPropertyAttribute("createTime")]
         public virtual string CreateTime { get; set; }
 
+        /// <summary>
+        /// Output only. The current emulated version of the master endpoint. The version is in minor version format,
+        /// e.g. 1.30. No value or empty string means the cluster has no emulated version.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("currentEmulatedVersion")]
+        public virtual string CurrentEmulatedVersion { get; set; }
+
         /// <summary>Output only. The current software version of the master endpoint.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("currentMasterVersion")]
         public virtual string CurrentMasterVersion { get; set; }
@@ -7771,6 +7908,13 @@ namespace Google.Apis.Container.v1.Data
         [Newtonsoft.Json.JsonPropertyAttribute("resourceUsageExportConfig")]
         public virtual ResourceUsageExportConfig ResourceUsageExportConfig { get; set; }
 
+        /// <summary>
+        /// Optional. The rollback safe upgrade information of the cluster. This field is used when user manually
+        /// triggers a rollback safe upgrade.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("rollbackSafeUpgrade")]
+        public virtual RollbackSafeUpgrade RollbackSafeUpgrade { get; set; }
+
         /// <summary>Output only. Reserved for future use.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("satisfiesPzi")]
         public virtual System.Nullable<bool> SatisfiesPzi { get; set; }
@@ -8040,6 +8184,10 @@ namespace Google.Apis.Container.v1.Data
         [Newtonsoft.Json.JsonPropertyAttribute("desiredDnsConfig")]
         public virtual DNSConfig DesiredDnsConfig { get; set; }
 
+        /// <summary>Optional. The desired emulated version for the cluster.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("desiredEmulatedVersion")]
+        public virtual string DesiredEmulatedVersion { get; set; }
+
         /// <summary>Enable/Disable Cilium Clusterwide Network Policy for the cluster.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("desiredEnableCiliumClusterwideNetworkPolicy")]
         public virtual System.Nullable<bool> DesiredEnableCiliumClusterwideNetworkPolicy { get; set; }
@@ -8302,6 +8450,10 @@ namespace Google.Apis.Container.v1.Data
         [Newtonsoft.Json.JsonPropertyAttribute("desiredResourceUsageExportConfig")]
         public virtual ResourceUsageExportConfig DesiredResourceUsageExportConfig { get; set; }
 
+        /// <summary>Optional. The desired rollback safe upgrade configuration.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("desiredRollbackSafeUpgrade")]
+        public virtual RollbackSafeUpgrade DesiredRollbackSafeUpgrade { get; set; }
+
         /// <summary>Enable/Disable Secret Manager Config.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("desiredSecretManagerConfig")]
         public virtual SecretManagerConfig DesiredSecretManagerConfig { get; set; }
@@ -8400,9 +8552,24 @@ namespace Google.Apis.Container.v1.Data
         [Newtonsoft.Json.JsonPropertyAttribute("pausedReason")]
         public virtual System.Collections.Generic.IList<string> PausedReason { get; set; }
 
+        /// <summary>Output only. The cluster's rollback-safe upgrade status.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("rollbackSafeUpgradeStatus")]
+        public virtual RollbackSafeUpgradeStatus RollbackSafeUpgradeStatus { get; set; }
+
         /// <summary>The list of past auto upgrades.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("upgradeDetails")]
         public virtual System.Collections.Generic.IList<UpgradeDetails> UpgradeDetails { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>CompleteControlPlaneUpgradeRequest sets the name of target cluster to complete upgrade.</summary>
+    public class CompleteControlPlaneUpgradeRequest : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Optional. API request version that initiates this operation.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("version")]
+        public virtual string Version { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -8687,13 +8854,20 @@ namespace Google.Apis.Container.v1.Data
         [Newtonsoft.Json.JsonPropertyAttribute("image")]
         public virtual string Image { get; set; }
 
-        /// <summary>The name of the image family to use for this node.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("imageFamily")]
-        public virtual string ImageFamily { get; set; }
-
         /// <summary>The project containing the image to use for this node.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("imageProject")]
         public virtual string ImageProject { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Contains the custom image info for a node pool.</summary>
+    public class CustomImageInfo : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Output only. The human-readable upgrade message for the custom image.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("upgradeMessage")]
+        public virtual string UpgradeMessage { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -8918,6 +9092,27 @@ namespace Google.Apis.Container.v1.Data
         /// <summary>desired_tier specifies the desired tier of the cluster.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("desiredTier")]
         public virtual string DesiredTier { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>DiskIoScheduler contains the configuration for the disk IO scheduler.</summary>
+    public class DiskIoScheduler : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>
+        /// Optional. Configures the IO scheduler for the attached disks. Supported values are `mq-deadline`, `bfq`,
+        /// `kyber`, `none`.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("nodeAttachedDiskIoScheduler")]
+        public virtual string NodeAttachedDiskIoScheduler { get; set; }
+
+        /// <summary>
+        /// Optional. Configures the IO scheduler for the boot disk or ephemeral lssd that runs node system workloads.
+        /// Supported values are `mq-deadline`, `bfq`, `kyber`, `none`.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("nodeSystemIoScheduler")]
+        public virtual string NodeSystemIoScheduler { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -10143,6 +10338,93 @@ namespace Google.Apis.Container.v1.Data
         public virtual string ETag { get; set; }
     }
 
+    /// <summary>Contains expiry information about the kubelet certificate.</summary>
+    public class KubeletCertInfo : Google.Apis.Requests.IDirectResponseSchema
+    {
+        private string _nonTpmBootstrapCertExpireTimeRaw;
+
+        private object _nonTpmBootstrapCertExpireTime;
+
+        /// <summary>Output only.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("nonTpmBootstrapCertExpireTime")]
+        public virtual string NonTpmBootstrapCertExpireTimeRaw
+        {
+            get => _nonTpmBootstrapCertExpireTimeRaw;
+            set
+            {
+                _nonTpmBootstrapCertExpireTime = Google.Apis.Util.Utilities.DeserializeForGoogleFormat(value);
+                _nonTpmBootstrapCertExpireTimeRaw = value;
+            }
+        }
+
+        /// <summary>
+        /// <seealso cref="object"/> representation of <see cref="NonTpmBootstrapCertExpireTimeRaw"/>.
+        /// </summary>
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use NonTpmBootstrapCertExpireTimeDateTimeOffset instead.")]
+        public virtual object NonTpmBootstrapCertExpireTime
+        {
+            get => _nonTpmBootstrapCertExpireTime;
+            set
+            {
+                _nonTpmBootstrapCertExpireTimeRaw = Google.Apis.Util.Utilities.SerializeForGoogleFormat(value);
+                _nonTpmBootstrapCertExpireTime = value;
+            }
+        }
+
+        /// <summary>
+        /// <seealso cref="System.DateTimeOffset"/> representation of <see cref="NonTpmBootstrapCertExpireTimeRaw"/>.
+        /// </summary>
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        public virtual System.DateTimeOffset? NonTpmBootstrapCertExpireTimeDateTimeOffset
+        {
+            get => Google.Apis.Util.DiscoveryFormat.ParseGoogleDateTimeToDateTimeOffset(NonTpmBootstrapCertExpireTimeRaw);
+            set => NonTpmBootstrapCertExpireTimeRaw = Google.Apis.Util.DiscoveryFormat.FormatDateTimeOffsetToGoogleDateTime(value);
+        }
+
+        private string _tpmBootstrapCertExpireTimeRaw;
+
+        private object _tpmBootstrapCertExpireTime;
+
+        /// <summary>Output only.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("tpmBootstrapCertExpireTime")]
+        public virtual string TpmBootstrapCertExpireTimeRaw
+        {
+            get => _tpmBootstrapCertExpireTimeRaw;
+            set
+            {
+                _tpmBootstrapCertExpireTime = Google.Apis.Util.Utilities.DeserializeForGoogleFormat(value);
+                _tpmBootstrapCertExpireTimeRaw = value;
+            }
+        }
+
+        /// <summary><seealso cref="object"/> representation of <see cref="TpmBootstrapCertExpireTimeRaw"/>.</summary>
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use TpmBootstrapCertExpireTimeDateTimeOffset instead.")]
+        public virtual object TpmBootstrapCertExpireTime
+        {
+            get => _tpmBootstrapCertExpireTime;
+            set
+            {
+                _tpmBootstrapCertExpireTimeRaw = Google.Apis.Util.Utilities.SerializeForGoogleFormat(value);
+                _tpmBootstrapCertExpireTime = value;
+            }
+        }
+
+        /// <summary>
+        /// <seealso cref="System.DateTimeOffset"/> representation of <see cref="TpmBootstrapCertExpireTimeRaw"/>.
+        /// </summary>
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        public virtual System.DateTimeOffset? TpmBootstrapCertExpireTimeDateTimeOffset
+        {
+            get => Google.Apis.Util.DiscoveryFormat.ParseGoogleDateTimeToDateTimeOffset(TpmBootstrapCertExpireTimeRaw);
+            set => TpmBootstrapCertExpireTimeRaw = Google.Apis.Util.DiscoveryFormat.FormatDateTimeOffsetToGoogleDateTime(value);
+        }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
     /// <summary>Configuration for the Kubernetes Dashboard.</summary>
     public class KubernetesDashboard : Google.Apis.Requests.IDirectResponseSchema
     {
@@ -10184,6 +10466,10 @@ namespace Google.Apis.Container.v1.Data
         [Newtonsoft.Json.JsonPropertyAttribute("customNodeInit")]
         public virtual CustomNodeInit CustomNodeInit { get; set; }
 
+        /// <summary>Optional. Controls the configuration for the disk IO scheduler.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("diskIoScheduler")]
+        public virtual DiskIoScheduler DiskIoScheduler { get; set; }
+
         /// <summary>Optional. Amounts for 2M and 1G hugepages</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("hugepages")]
         public virtual HugepagesConfig Hugepages { get; set; }
@@ -10194,6 +10480,10 @@ namespace Google.Apis.Container.v1.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("nodeKernelModuleLoading")]
         public virtual NodeKernelModuleLoading NodeKernelModuleLoading { get; set; }
+
+        /// <summary>Optional. Contains VFIO-related configurations for this node.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("nodeVfioConfig")]
+        public virtual NodeVfioConfig NodeVfioConfig { get; set; }
 
         /// <summary>Optional. Enables and configures swap space on nodes. If omitted, swap is disabled.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("swapConfig")]
@@ -10210,10 +10500,10 @@ namespace Google.Apis.Container.v1.Data
         /// net.netfilter.nf_conntrack_buckets net.netfilter.nf_conntrack_tcp_timeout_close_wait
         /// net.netfilter.nf_conntrack_tcp_timeout_time_wait net.netfilter.nf_conntrack_tcp_timeout_established
         /// net.netfilter.nf_conntrack_acct kernel.keys.maxkeys kernel.keys.maxbytes kernel.shmmni kernel.shmmax
-        /// kernel.shmall kernel.perf_event_paranoid kernel.sched_rt_runtime_us kernel.softlockup_panic
-        /// kernel.yama.ptrace_scope kernel.kptr_restrict kernel.dmesg_restrict kernel.sysrq fs.aio-max-nr fs.file-max
-        /// fs.inotify.max_user_instances fs.inotify.max_user_watches fs.nr_open vm.dirty_background_ratio
-        /// vm.dirty_background_bytes vm.dirty_expire_centisecs vm.dirty_ratio vm.dirty_bytes
+        /// kernel.shmall kernel.core_pattern kernel.perf_event_paranoid kernel.sched_rt_runtime_us
+        /// kernel.softlockup_panic kernel.yama.ptrace_scope kernel.kptr_restrict kernel.dmesg_restrict kernel.sysrq
+        /// fs.aio-max-nr fs.file-max fs.inotify.max_user_instances fs.inotify.max_user_watches fs.nr_open
+        /// vm.dirty_background_ratio vm.dirty_background_bytes vm.dirty_expire_centisecs vm.dirty_ratio vm.dirty_bytes
         /// vm.dirty_writeback_centisecs vm.max_map_count vm.overcommit_memory vm.overcommit_ratio vm.vfs_cache_pressure
         /// vm.swappiness vm.watermark_scale_factor vm.min_free_kbytes
         /// </summary>
@@ -11621,7 +11911,7 @@ namespace Google.Apis.Container.v1.Data
         [Newtonsoft.Json.JsonPropertyAttribute("bestEffortProvisioning")]
         public virtual BestEffortProvisioning BestEffortProvisioning { get; set; }
 
-        /// <summary>Which conditions caused the current node pool state.</summary>
+        /// <summary>Output only. Which conditions caused the current node pool state.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("conditions")]
         public virtual System.Collections.Generic.IList<StatusCondition> Conditions { get; set; }
 
@@ -11630,8 +11920,8 @@ namespace Google.Apis.Container.v1.Data
         public virtual NodeConfig Config { get; set; }
 
         /// <summary>
-        /// This checksum is computed by the server based on the value of node pool fields, and may be sent on update
-        /// requests to ensure the client has an up-to-date value before proceeding.
+        /// Output only. This checksum is computed by the server based on the value of node pool fields, and may be sent
+        /// on update requests to ensure the client has an up-to-date value before proceeding.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("etag")]
         public virtual string ETag { get; set; }
@@ -11652,6 +11942,10 @@ namespace Google.Apis.Container.v1.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("instanceGroupUrls")]
         public virtual System.Collections.Generic.IList<string> InstanceGroupUrls { get; set; }
+
+        /// <summary>Output only. Contains expiry information about the kubelet certificate.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("kubeletCertInfo")]
+        public virtual KubeletCertInfo KubeletCertInfo { get; set; }
 
         /// <summary>
         /// The list of Google Compute Engine [zones](https://cloud.google.com/compute/docs/zones#available) in which
@@ -11861,6 +12155,10 @@ namespace Google.Apis.Container.v1.Data
         [Newtonsoft.Json.JsonPropertyAttribute("autoUpgradeStatus")]
         public virtual System.Collections.Generic.IList<string> AutoUpgradeStatus { get; set; }
 
+        /// <summary>Output only. Upgrade info for the node pool specific to the usage of custom images.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("customImageInfo")]
+        public virtual CustomImageInfo CustomImageInfo { get; set; }
+
         /// <summary>The node pool's current minor version's end of extended support timestamp.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("endOfExtendedSupportTimestamp")]
         public virtual string EndOfExtendedSupportTimestamp { get; set; }
@@ -11932,6 +12230,27 @@ namespace Google.Apis.Container.v1.Data
         /// <summary>List of node taints.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("taints")]
         public virtual System.Collections.Generic.IList<NodeTaint> Taints { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>
+    /// Configuration settings for VFIO (Virtual Function I/O) on a node. VFIO allows safe, unprivileged, userspace
+    /// drivers to access I/O devices.
+    /// </summary>
+    public class NodeVfioConfig : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>
+        /// Optional. Specifies the maximum number of DMA entries (pages) that can be mapped by the VFIO IOMMU type 1
+        /// driver for a container. This limit affects the total amount of host memory that can be pinned for direct
+        /// device access, which is often critical for high-performance devices like TPUs and GPUs. This setting
+        /// corresponds to the kernel parameter at: `/sys/module/vfio_iommu_type1/parameters/dma_entry_limit`. The
+        /// default value in the kernel is `65535`. Higher values may be needed for workloads mapping large memory
+        /// regions. Supported values are integers between `65535` and `4194304`.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("dmaEntryLimit")]
+        public virtual System.Nullable<int> DmaEntryLimit { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -12755,6 +13074,76 @@ namespace Google.Apis.Container.v1.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("zone")]
         public virtual string Zone { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>RollbackSafeUpgrade is the configuration for the rollback safe upgrade.</summary>
+    public class RollbackSafeUpgrade : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>
+        /// Optional. A user-defined period for the cluster remains in the rollbackable state. ex: {seconds: 21600}.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("controlPlaneSoakDuration")]
+        public virtual object ControlPlaneSoakDuration { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>RollbackSafeUpgradeStatus contains the rollback-safe upgrade status of a cluster.</summary>
+    public class RollbackSafeUpgradeStatus : Google.Apis.Requests.IDirectResponseSchema
+    {
+        private string _controlPlaneUpgradeRollbackEndTimeRaw;
+
+        private object _controlPlaneUpgradeRollbackEndTime;
+
+        /// <summary>Output only. The rollback-safe mode expiration time.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("controlPlaneUpgradeRollbackEndTime")]
+        public virtual string ControlPlaneUpgradeRollbackEndTimeRaw
+        {
+            get => _controlPlaneUpgradeRollbackEndTimeRaw;
+            set
+            {
+                _controlPlaneUpgradeRollbackEndTime = Google.Apis.Util.Utilities.DeserializeForGoogleFormat(value);
+                _controlPlaneUpgradeRollbackEndTimeRaw = value;
+            }
+        }
+
+        /// <summary>
+        /// <seealso cref="object"/> representation of <see cref="ControlPlaneUpgradeRollbackEndTimeRaw"/>.
+        /// </summary>
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use ControlPlaneUpgradeRollbackEndTimeDateTimeOffset instead.")]
+        public virtual object ControlPlaneUpgradeRollbackEndTime
+        {
+            get => _controlPlaneUpgradeRollbackEndTime;
+            set
+            {
+                _controlPlaneUpgradeRollbackEndTimeRaw = Google.Apis.Util.Utilities.SerializeForGoogleFormat(value);
+                _controlPlaneUpgradeRollbackEndTime = value;
+            }
+        }
+
+        /// <summary>
+        /// <seealso cref="System.DateTimeOffset"/> representation of
+        /// <see cref="ControlPlaneUpgradeRollbackEndTimeRaw"/>.
+        /// </summary>
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        public virtual System.DateTimeOffset? ControlPlaneUpgradeRollbackEndTimeDateTimeOffset
+        {
+            get => Google.Apis.Util.DiscoveryFormat.ParseGoogleDateTimeToDateTimeOffset(ControlPlaneUpgradeRollbackEndTimeRaw);
+            set => ControlPlaneUpgradeRollbackEndTimeRaw = Google.Apis.Util.DiscoveryFormat.FormatDateTimeOffsetToGoogleDateTime(value);
+        }
+
+        /// <summary>Output only. The mode of the rollback-safe upgrade.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("mode")]
+        public virtual string Mode { get; set; }
+
+        /// <summary>Output only. The GKE version that the cluster previously used before step-one upgrade.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("previousVersion")]
+        public virtual string PreviousVersion { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -13905,8 +14294,10 @@ namespace Google.Apis.Container.v1.Data
     }
 
     /// <summary>
-    /// TopologyManager defines the configuration options for Topology Manager feature. See
-    /// https://kubernetes.io/docs/tasks/administer-cluster/topology-manager/
+    /// TopologyManager defines the configuration options for the [`kubelet` Topology Manager
+    /// component](https://kubernetes.io/docs/tasks/administer-cluster/topology-manager/). For more information about
+    /// the supported machine types and versions for the Topology Manager in GKE, see [Customizing node system
+    /// configuration](https://docs.cloud.google.com/kubernetes-engine/docs/how-to/node-system-config#kubelet-resource-managers).
     /// </summary>
     public class TopologyManager : Google.Apis.Requests.IDirectResponseSchema
     {
@@ -14183,6 +14574,12 @@ namespace Google.Apis.Container.v1.Data
         public virtual string MachineType { get; set; }
 
         /// <summary>
+        /// Optional. Specifies the maintenance policy for the node pool, including maintenance exclusion options.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("maintenancePolicy")]
+        public virtual NodePoolMaintenancePolicy MaintenancePolicy { get; set; }
+
+        /// <summary>
         /// The maximum duration for the nodes to exist. If unspecified, the nodes can exist indefinitely.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("maxRunDuration")]
@@ -14356,6 +14753,10 @@ namespace Google.Apis.Container.v1.Data
             set => EndTimeRaw = Google.Apis.Util.DiscoveryFormat.FormatDateTimeOffsetToGoogleDateTime(value);
         }
 
+        /// <summary>Output only. The emulated version before the upgrade.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("initialEmulatedVersion")]
+        public virtual string InitialEmulatedVersion { get; set; }
+
         /// <summary>The version before the upgrade.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("initialVersion")]
         public virtual string InitialVersion { get; set; }
@@ -14405,6 +14806,10 @@ namespace Google.Apis.Container.v1.Data
         [Newtonsoft.Json.JsonPropertyAttribute("state")]
         public virtual string State { get; set; }
 
+        /// <summary>Output only. The emulated version after the upgrade.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("targetEmulatedVersion")]
+        public virtual string TargetEmulatedVersion { get; set; }
+
         /// <summary>The version after the upgrade.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("targetVersion")]
         public virtual string TargetVersion { get; set; }
@@ -14418,6 +14823,10 @@ namespace Google.Apis.Container.v1.Data
     /// </summary>
     public class UpgradeEvent : Google.Apis.Requests.IDirectResponseSchema
     {
+        /// <summary>Output only. The current emulated version before the upgrade.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("currentEmulatedVersion")]
+        public virtual string CurrentEmulatedVersion { get; set; }
+
         /// <summary>The current version before the upgrade.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("currentVersion")]
         public virtual string CurrentVersion { get; set; }
@@ -14476,6 +14885,10 @@ namespace Google.Apis.Container.v1.Data
         [Newtonsoft.Json.JsonPropertyAttribute("resourceType")]
         public virtual string ResourceType { get; set; }
 
+        /// <summary>Output only. The target emulated version for the upgrade.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("targetEmulatedVersion")]
+        public virtual string TargetEmulatedVersion { get; set; }
+
         /// <summary>The target version for the upgrade.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("targetVersion")]
         public virtual string TargetVersion { get; set; }
@@ -14489,6 +14902,10 @@ namespace Google.Apis.Container.v1.Data
     /// </summary>
     public class UpgradeInfoEvent : Google.Apis.Requests.IDirectResponseSchema
     {
+        /// <summary>Output only. The current emulated version before the upgrade.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("currentEmulatedVersion")]
+        public virtual string CurrentEmulatedVersion { get; set; }
+
         /// <summary>The current version before the upgrade.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("currentVersion")]
         public virtual string CurrentVersion { get; set; }
@@ -14678,6 +15095,10 @@ namespace Google.Apis.Container.v1.Data
         /// <summary>Output only. The state of the upgrade.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("state")]
         public virtual string State { get; set; }
+
+        /// <summary>Output only. The target emulated version for the upgrade.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("targetEmulatedVersion")]
+        public virtual string TargetEmulatedVersion { get; set; }
 
         /// <summary>The target version for the upgrade.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("targetVersion")]

@@ -184,6 +184,12 @@ namespace Google.Apis.HangoutsChat.v1
             /// <summary>View chat and spaces in Google Chat</summary>
             public static string ChatSpacesReadonly = "https://www.googleapis.com/auth/chat.spaces.readonly";
 
+            /// <summary>See and change your availability status in Google Chat.</summary>
+            public static string ChatUsersAvailability = "https://www.googleapis.com/auth/chat.users.availability";
+
+            /// <summary>See your availability status in Google Chat.</summary>
+            public static string ChatUsersAvailabilityReadonly = "https://www.googleapis.com/auth/chat.users.availability.readonly";
+
             /// <summary>View and modify last read time for Google Chat conversations</summary>
             public static string ChatUsersReadstate = "https://www.googleapis.com/auth/chat.users.readstate";
 
@@ -326,6 +332,12 @@ namespace Google.Apis.HangoutsChat.v1
 
             /// <summary>View chat and spaces in Google Chat</summary>
             public const string ChatSpacesReadonly = "https://www.googleapis.com/auth/chat.spaces.readonly";
+
+            /// <summary>See and change your availability status in Google Chat.</summary>
+            public const string ChatUsersAvailability = "https://www.googleapis.com/auth/chat.users.availability";
+
+            /// <summary>See your availability status in Google Chat.</summary>
+            public const string ChatUsersAvailabilityReadonly = "https://www.googleapis.com/auth/chat.users.availability.readonly";
 
             /// <summary>View and modify last read time for Google Chat conversations</summary>
             public const string ChatUsersReadstate = "https://www.googleapis.com/auth/chat.users.readstate";
@@ -4320,13 +4332,25 @@ namespace Google.Apis.HangoutsChat.v1
             /// [import mode](https://developers.google.com/workspace/chat/import-data-overview). To learn more, see
             /// [Make a space discoverable to specific
             /// users](https://developers.google.com/workspace/chat/space-target-audience). `access_settings.audience`
-            /// is not supported with `useAdminAccess`. `permission_settings`: Supports changing the [permission
-            /// settings](https://support.google.com/chat/answer/13340792) of a space. When updating permission
-            /// settings, you can only specify `permissionSettings` field masks; you cannot update other field masks at
-            /// the same time. The supported field masks include: - `permission_settings.manageMembersAndGroups` -
-            /// `permission_settings.modifySpaceDetails` - `permission_settings.toggleHistory` -
-            /// `permission_settings.useAtMentionAll` - `permission_settings.manageApps` -
-            /// `permission_settings.manageWebhooks` - `permission_settings.replyMessages`
+            /// is not supported with `useAdminAccess`. `access_settings.access_permission_settings`: Updates the
+            /// [access permission settings](https://support.google.com/chat/answer/11971020) of who can discover and
+            /// join the space where `spaceType` field is `SPACE`. Principals allowed to join the space must also be
+            /// allowed to discover it. To update access permission settings for a space, the authenticating user must
+            /// be a space manager or assistant manager and omit all other field masks in the request. You can't update
+            /// this field if the space is in [import
+            /// mode](https://developers.google.com/workspace/chat/import-data-overview). To learn more, see [Make a
+            /// space discoverable to specific
+            /// users](https://developers.google.com/workspace/chat/space-target-audience).
+            /// `access_settings.access_permission_settings` is not supported with `useAdminAccess`. The supported field
+            /// masks include: - `access_settings.access_permission_settings.discoverSpaceSetting` -
+            /// `access_settings.access_permission_settings.joinSpaceSetting` `permission_settings`: Supports changing
+            /// the [permission settings](https://support.google.com/chat/answer/13340792) of a space. When updating
+            /// permission settings, you can only specify `permissionSettings` field masks; you cannot update other
+            /// field masks at the same time. The supported field masks include: -
+            /// `permission_settings.manageMembersAndGroups` - `permission_settings.modifySpaceDetails` -
+            /// `permission_settings.toggleHistory` - `permission_settings.useAtMentionAll` -
+            /// `permission_settings.manageApps` - `permission_settings.manageWebhooks` -
+            /// `permission_settings.replyMessages`
             /// </summary>
             [Google.Apis.Util.RequestParameterAttribute("updateMask", Google.Apis.Util.RequestParameterType.Query)]
             public virtual object UpdateMask { get; set; }
@@ -4389,10 +4413,15 @@ namespace Google.Apis.HangoutsChat.v1
         }
 
         /// <summary>
-        /// Returns a list of spaces in a Google Workspace organization based on an administrator's search. In the
-        /// request, set `use_admin_access` to `true`. For an example, see [Search for and manage
-        /// spaces](https://developers.google.com/workspace/chat/search-manage-admin). Requires [user authentication
-        /// with administrator
+        /// Returns a list of spaces in a Google Workspace organization. For an example, see [Search for and manage
+        /// spaces](https://developers.google.com/workspace/chat/search-manage-admin). When `use_admin_access` is set to
+        /// `false`, the results are limited to spaces where the calling user is a joined member. To search with
+        /// administrator privileges, set `use_admin_access` to `true`. Setting `use_admin_access` to `false` is
+        /// available under Developer Preview. Supports the following types of
+        /// [authentication](https://developers.google.com/workspace/chat/authenticate-authorize): - [User
+        /// authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) with one of
+        /// the following authorization scopes: - `https://www.googleapis.com/auth/chat.spaces.readonly` -
+        /// `https://www.googleapis.com/auth/chat.spaces` - [User authentication with administrator
         /// privileges](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user#admin-privileges)
         /// and one of the following [authorization
         /// scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes): -
@@ -4405,10 +4434,15 @@ namespace Google.Apis.HangoutsChat.v1
         }
 
         /// <summary>
-        /// Returns a list of spaces in a Google Workspace organization based on an administrator's search. In the
-        /// request, set `use_admin_access` to `true`. For an example, see [Search for and manage
-        /// spaces](https://developers.google.com/workspace/chat/search-manage-admin). Requires [user authentication
-        /// with administrator
+        /// Returns a list of spaces in a Google Workspace organization. For an example, see [Search for and manage
+        /// spaces](https://developers.google.com/workspace/chat/search-manage-admin). When `use_admin_access` is set to
+        /// `false`, the results are limited to spaces where the calling user is a joined member. To search with
+        /// administrator privileges, set `use_admin_access` to `true`. Setting `use_admin_access` to `false` is
+        /// available under Developer Preview. Supports the following types of
+        /// [authentication](https://developers.google.com/workspace/chat/authenticate-authorize): - [User
+        /// authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) with one of
+        /// the following authorization scopes: - `https://www.googleapis.com/auth/chat.spaces.readonly` -
+        /// `https://www.googleapis.com/auth/chat.spaces` - [User authentication with administrator
         /// privileges](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user#admin-privileges)
         /// and one of the following [authorization
         /// scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes): -
@@ -4427,11 +4461,14 @@ namespace Google.Apis.HangoutsChat.v1
             /// Optional. How the list of spaces is ordered. Supported attributes to order by are: -
             /// `membership_count.joined_direct_human_user_count` — Denotes the count of human users that have directly
             /// joined a space. - `last_active_time` — Denotes the time when last eligible item is added to any topic of
-            /// this space. - `create_time` — Denotes the time of the space creation. Valid ordering operation values
-            /// are: - `ASC` for ascending. Default value. - `DESC` for descending. The supported syntax are: -
+            /// this space. - `create_time` — Denotes the time of the space creation. When `useAdminAccess` is `false`,
+            /// only `create_time` and `relevance` are supported for ordering. Only `DESC` is supported for these fields
+            /// in non-admin searches. Valid ordering operation values are: - `ASC` for ascending. Default value. -
+            /// `DESC` for descending. The supported syntax are when `useAdminAccess` is set to `true`: -
             /// `membership_count.joined_direct_human_user_count DESC` -
             /// `membership_count.joined_direct_human_user_count ASC` - `last_active_time DESC` - `last_active_time ASC`
-            /// - `create_time DESC` - `create_time ASC`
+            /// - `create_time DESC` - `create_time ASC` When `useAdminAccess` is set to `false`: - `create_time DESC` -
+            /// `relevance DESC`
             /// </summary>
             [Google.Apis.Util.RequestParameterAttribute("orderBy", Google.Apis.Util.RequestParameterType.Query)]
             public virtual string OrderBy { get; set; }
@@ -4453,37 +4490,46 @@ namespace Google.Apis.HangoutsChat.v1
             public virtual string PageToken { get; set; }
 
             /// <summary>
-            /// Required. A search query. You can search by using the following parameters : - `create_time` -
-            /// `customer` - `display_name` - `external_user_allowed` - `last_active_time` - `space_history_state` -
-            /// `space_type` `create_time` and `last_active_time` accept a timestamp in
+            /// Required. A search query. You can search by using the following parameters when `useAdminAccess` is set
+            /// to `true`: - `create_time` - `customer` - `display_name` - `external_user_allowed` - `last_active_time`
+            /// - `space_history_state` - `space_type` When `useAdminAccess` is set to `false`: - `display_name` -
+            /// `external_user_allowed` `create_time` and `last_active_time` accept a timestamp in
             /// [RFC-3339](https://www.rfc-editor.org/rfc/rfc3339) format and the supported comparison operators are:
-            /// `=`, `&amp;lt;`, `&amp;gt;`, `&amp;lt;=`, `&amp;gt;=`. `customer` is required and is used to indicate
-            /// which customer to fetch spaces from. `customers/my_customer` is the only supported value. `display_name`
-            /// only accepts the `HAS` (`:`) operator. The text to match is first tokenized into tokens and each token
-            /// is prefix-matched case-insensitively and independently as a substring anywhere in the space's
-            /// `display_name`. For example, `Fun Eve` matches `Fun event` or `The evening was fun`, but not `notFun
-            /// event` or `even`. `external_user_allowed` accepts either `true` or `false`. `space_history_state` only
+            /// `=`, `&amp;lt;`, `&amp;gt;`, `&amp;lt;=`, `&amp;gt;=`. `customer` is required when `useAdminAccess` is
+            /// set to `true`, and is used to indicate which customer to fetch spaces from. `customers/my_customer` is
+            /// the only supported value. `display_name` only accepts the `HAS` (`:`) operator. The text to match is
+            /// first tokenized into tokens and each token is prefix-matched case-insensitively and independently as a
+            /// substring anywhere in the space's `display_name`. For example, `Fun Eve` matches `Fun event` or `The
+            /// evening was fun`, but not `notFun event` or `even`. When `useAdminAccess` is set to `false`,
+            /// `display_name` is required to retrieve meaningful results. Otherwise, the default behavior is to return
+            /// an empty response. `external_user_allowed` accepts either `true` or `false`. `space_history_state` only
             /// accepts values from the [`historyState`]
             /// (https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces#Space.HistoryState) field of
-            /// a `space` resource. `space_type` is required and the only valid value is `SPACE`. Across different
-            /// fields, only `AND` operators are supported. A valid example is `space_type = "SPACE" AND
-            /// display_name:"Hello"` and an invalid example is `space_type = "SPACE" OR display_name:"Hello"`. Among
-            /// the same field, `space_type` doesn't support `AND` or `OR` operators. `display_name`,
-            /// 'space_history_state', and 'external_user_allowed' only support `OR` operators. `last_active_time` and
-            /// `create_time` support both `AND` and `OR` operators. `AND` can only be used to represent an interval,
-            /// such as `last_active_time &amp;lt; "2022-01-01T00:00:00+00:00" AND last_active_time &amp;gt;
-            /// "2023-01-01T00:00:00+00:00"`. The following example queries are valid:
+            /// a `space` resource. `space_type` is required when `useAdminAccess` is set to `true`, and the only valid
+            /// value is `SPACE`. Across different fields, only `AND` operators are supported. A valid example is
+            /// `space_type = "SPACE" AND display_name:"Hello"` and an invalid example is `space_type = "SPACE" OR
+            /// display_name:"Hello"`. Among the same field, `space_type` doesn't support `AND` or `OR` operators.
+            /// `display_name`, 'space_history_state', and 'external_user_allowed' only support `OR` operators.
+            /// `last_active_time` and `create_time` support both `AND` and `OR` operators. `AND` can only be used to
+            /// represent an interval, such as `last_active_time &amp;lt; "2022-01-01T00:00:00+00:00" AND
+            /// last_active_time &amp;gt; "2023-01-01T00:00:00+00:00"`. The following example queries are valid when
+            /// `useAdminAccess` is set to `true`:
             /// ```
-            /// customer =
-            /// "customers/my_customer" AND space_type = "SPACE" customer = "customers/my_customer" AND space_type =
-            /// "SPACE" AND display_name:"Hello World" customer = "customers/my_customer" AND space_type = "SPACE" AND
-            /// (last_active_time &amp;lt; "2020-01-01T00:00:00+00:00" OR last_active_time &amp;gt;
+            /// customer = "customers/my_customer" AND space_type = "SPACE"
+            /// customer = "customers/my_customer" AND space_type = "SPACE" AND display_name:"Hello World" customer =
+            /// "customers/my_customer" AND space_type = "SPACE" AND (last_active_time &amp;lt;
+            /// "2020-01-01T00:00:00+00:00" OR last_active_time &amp;gt; "2022-01-01T00:00:00+00:00") customer =
+            /// "customers/my_customer" AND space_type = "SPACE" AND (display_name:"Hello World" OR display_name:"Fun
+            /// event") AND (last_active_time &amp;gt; "2020-01-01T00:00:00+00:00" AND last_active_time &amp;lt;
             /// "2022-01-01T00:00:00+00:00") customer = "customers/my_customer" AND space_type = "SPACE" AND
-            /// (display_name:"Hello World" OR display_name:"Fun event") AND (last_active_time &amp;gt;
-            /// "2020-01-01T00:00:00+00:00" AND last_active_time &amp;lt; "2022-01-01T00:00:00+00:00") customer =
-            /// "customers/my_customer" AND space_type = "SPACE" AND (create_time &amp;gt; "2019-01-01T00:00:00+00:00"
-            /// AND create_time &amp;lt; "2020-01-01T00:00:00+00:00") AND (external_user_allowed = "true") AND
-            /// (space_history_state = "HISTORY_ON" OR space_history_state = "HISTORY_OFF")
+            /// (create_time &amp;gt; "2019-01-01T00:00:00+00:00" AND create_time &amp;lt; "2020-01-01T00:00:00+00:00")
+            /// AND (external_user_allowed = "true") AND (space_history_state = "HISTORY_ON" OR space_history_state =
+            /// "HISTORY_OFF")
+            /// ```
+            /// The following example queries are valid when `useAdminAccess` is set to `false`:
+            /// ```
+            /// display_name:"Hello World" (display_name:"Hello" OR display_name:"Fun") (external_user_allowed = "true")
+            /// // Returns an empty response. (external_user_allowed = "true" AND display_name:"Hello")
             /// ```
             /// </summary>
             [Google.Apis.Util.RequestParameterAttribute("query", Google.Apis.Util.RequestParameterType.Query)]
@@ -4494,8 +4540,9 @@ namespace Google.Apis.HangoutsChat.v1
             /// user must be a Google Workspace administrator with the [manage chat and spaces conversations
             /// privilege](https://support.google.com/a/answer/13369245). Requires either the
             /// `chat.admin.spaces.readonly` or `chat.admin.spaces` [OAuth 2.0
-            /// scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes). This method
-            /// currently only supports admin access, thus only `true` is accepted for this field.
+            /// scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes). Setting
+            /// `use_admin_access` to `false` is available under Developer Preview. [Developer
+            /// Preview](https://developers.google.com/workspace/preview).
             /// </summary>
             [Google.Apis.Util.RequestParameterAttribute("useAdminAccess", Google.Apis.Util.RequestParameterType.Query)]
             public virtual System.Nullable<bool> UseAdminAccess { get; set; }
@@ -4670,8 +4717,428 @@ namespace Google.Apis.HangoutsChat.v1
         public UsersResource(Google.Apis.Services.IClientService service)
         {
             this.service = service;
+            Availability = new AvailabilityResource(service);
             Sections = new SectionsResource(service);
             Spaces = new SpacesResource(service);
+        }
+
+        /// <summary>Gets the Availability resource.</summary>
+        public virtual AvailabilityResource Availability { get; }
+
+        /// <summary>The "availability" collection of methods.</summary>
+        public class AvailabilityResource
+        {
+            private const string Resource = "availability";
+
+            /// <summary>The service which this resource belongs to.</summary>
+            private readonly Google.Apis.Services.IClientService service;
+
+            /// <summary>Constructs a new resource.</summary>
+            public AvailabilityResource(Google.Apis.Services.IClientService service)
+            {
+                this.service = service;
+            }
+
+            /// <summary>
+            /// Returns availability information for a human user in Google Chat. For example, this can be used to check
+            /// if a user is online or away, or to retrieve their custom status message. This method only retrieves the
+            /// authenticated user's availability. Requires [user
+            /// authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) with one
+            /// of the following [authorization
+            /// scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes): -
+            /// `https://www.googleapis.com/auth/chat.users.availability.readonly` -
+            /// `https://www.googleapis.com/auth/chat.users.availability`
+            /// </summary>
+            /// <param name="name">
+            /// Required. The resource name of the availability to retrieve. Format: users/{user}/availability `{user}`
+            /// is the id for the Person in the People API or Admin SDK directory API. For example, `users/123456789`.
+            /// The user's email address or `me` can also be used as an alias to refer to the caller. For example,
+            /// `users/user@example.com` or `users/me`.
+            /// </param>
+            public virtual GetRequest Get(string name)
+            {
+                return new GetRequest(this.service, name);
+            }
+
+            /// <summary>
+            /// Returns availability information for a human user in Google Chat. For example, this can be used to check
+            /// if a user is online or away, or to retrieve their custom status message. This method only retrieves the
+            /// authenticated user's availability. Requires [user
+            /// authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) with one
+            /// of the following [authorization
+            /// scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes): -
+            /// `https://www.googleapis.com/auth/chat.users.availability.readonly` -
+            /// `https://www.googleapis.com/auth/chat.users.availability`
+            /// </summary>
+            public class GetRequest : HangoutsChatBaseServiceRequest<Google.Apis.HangoutsChat.v1.Data.Availability>
+            {
+                /// <summary>Constructs a new Get request.</summary>
+                public GetRequest(Google.Apis.Services.IClientService service, string name) : base(service)
+                {
+                    Name = name;
+                    InitParameters();
+                }
+
+                /// <summary>
+                /// Required. The resource name of the availability to retrieve. Format: users/{user}/availability
+                /// `{user}` is the id for the Person in the People API or Admin SDK directory API. For example,
+                /// `users/123456789`. The user's email address or `me` can also be used as an alias to refer to the
+                /// caller. For example, `users/user@example.com` or `users/me`.
+                /// </summary>
+                [Google.Apis.Util.RequestParameterAttribute("name", Google.Apis.Util.RequestParameterType.Path)]
+                public virtual string Name { get; private set; }
+
+                /// <summary>Gets the method name.</summary>
+                public override string MethodName => "get";
+
+                /// <summary>Gets the HTTP method.</summary>
+                public override string HttpMethod => "GET";
+
+                /// <summary>Gets the REST path.</summary>
+                public override string RestPath => "v1/{+name}";
+
+                /// <summary>Initializes Get parameter list.</summary>
+                protected override void InitParameters()
+                {
+                    base.InitParameters();
+                    RequestParameters.Add("name", new Google.Apis.Discovery.Parameter
+                    {
+                        Name = "name",
+                        IsRequired = true,
+                        ParameterType = "path",
+                        DefaultValue = null,
+                        Pattern = @"^users/[^/]+/availability$",
+                    });
+                }
+            }
+
+            /// <summary>
+            /// Marks user as `ACTIVE` in Google Chat. Sets the user's availability state to `ACTIVE`. The `ACTIVE`
+            /// state lasts until the specified expiration, at which point the user's state becomes `AWAY`. Note that if
+            /// the user is actively using Chat, the `ACTIVE` state duration may extend beyond the provided expiration.
+            /// This method only updates the authenticated user's availability. Requires [user
+            /// authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) with
+            /// [authorization
+            /// scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes): -
+            /// `https://www.googleapis.com/auth/chat.users.availability`
+            /// </summary>
+            /// <param name="body">The body of the request.</param>
+            /// <param name="name">
+            /// Required. The resource name of the availability to mark as active. Format: users/{user}/availability
+            /// `{user}` is the id for the Person in the People API or Admin SDK directory API. For example,
+            /// `users/123456789`. The user's email address or `me` can also be used as an alias to refer to the caller.
+            /// For example, `users/user@example.com` or `users/me`.
+            /// </param>
+            public virtual MarkAsActiveRequest MarkAsActive(Google.Apis.HangoutsChat.v1.Data.MarkAsActiveRequest body, string name)
+            {
+                return new MarkAsActiveRequest(this.service, body, name);
+            }
+
+            /// <summary>
+            /// Marks user as `ACTIVE` in Google Chat. Sets the user's availability state to `ACTIVE`. The `ACTIVE`
+            /// state lasts until the specified expiration, at which point the user's state becomes `AWAY`. Note that if
+            /// the user is actively using Chat, the `ACTIVE` state duration may extend beyond the provided expiration.
+            /// This method only updates the authenticated user's availability. Requires [user
+            /// authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) with
+            /// [authorization
+            /// scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes): -
+            /// `https://www.googleapis.com/auth/chat.users.availability`
+            /// </summary>
+            public class MarkAsActiveRequest : HangoutsChatBaseServiceRequest<Google.Apis.HangoutsChat.v1.Data.Availability>
+            {
+                /// <summary>Constructs a new MarkAsActive request.</summary>
+                public MarkAsActiveRequest(Google.Apis.Services.IClientService service, Google.Apis.HangoutsChat.v1.Data.MarkAsActiveRequest body, string name) : base(service)
+                {
+                    Name = name;
+                    Body = body;
+                    InitParameters();
+                }
+
+                /// <summary>
+                /// Required. The resource name of the availability to mark as active. Format: users/{user}/availability
+                /// `{user}` is the id for the Person in the People API or Admin SDK directory API. For example,
+                /// `users/123456789`. The user's email address or `me` can also be used as an alias to refer to the
+                /// caller. For example, `users/user@example.com` or `users/me`.
+                /// </summary>
+                [Google.Apis.Util.RequestParameterAttribute("name", Google.Apis.Util.RequestParameterType.Path)]
+                public virtual string Name { get; private set; }
+
+                /// <summary>Gets or sets the body of this request.</summary>
+                Google.Apis.HangoutsChat.v1.Data.MarkAsActiveRequest Body { get; set; }
+
+                /// <summary>Returns the body of the request.</summary>
+                protected override object GetBody() => Body;
+
+                /// <summary>Gets the method name.</summary>
+                public override string MethodName => "markAsActive";
+
+                /// <summary>Gets the HTTP method.</summary>
+                public override string HttpMethod => "POST";
+
+                /// <summary>Gets the REST path.</summary>
+                public override string RestPath => "v1/{+name}:markAsActive";
+
+                /// <summary>Initializes MarkAsActive parameter list.</summary>
+                protected override void InitParameters()
+                {
+                    base.InitParameters();
+                    RequestParameters.Add("name", new Google.Apis.Discovery.Parameter
+                    {
+                        Name = "name",
+                        IsRequired = true,
+                        ParameterType = "path",
+                        DefaultValue = null,
+                        Pattern = @"^users/[^/]+/availability$",
+                    });
+                }
+            }
+
+            /// <summary>
+            /// Marks user as `AWAY` in Google Chat. Sets the user's state to away and is not affected by the user's
+            /// activity. This method only updates the authenticated user's availability. Requires [user
+            /// authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) with
+            /// [authorization
+            /// scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes): -
+            /// `https://www.googleapis.com/auth/chat.users.availability`
+            /// </summary>
+            /// <param name="body">The body of the request.</param>
+            /// <param name="name">
+            /// Required. The resource name of the availability to mark as away. Format: users/{user}/availability
+            /// `{user}` is the id for the Person in the People API or Admin SDK directory API. For example,
+            /// `users/123456789`. The user's email address or `me` can also be used as an alias to refer to the caller.
+            /// For example, `users/user@example.com` or `users/me`.
+            /// </param>
+            public virtual MarkAsAwayRequest MarkAsAway(Google.Apis.HangoutsChat.v1.Data.MarkAsAwayRequest body, string name)
+            {
+                return new MarkAsAwayRequest(this.service, body, name);
+            }
+
+            /// <summary>
+            /// Marks user as `AWAY` in Google Chat. Sets the user's state to away and is not affected by the user's
+            /// activity. This method only updates the authenticated user's availability. Requires [user
+            /// authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) with
+            /// [authorization
+            /// scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes): -
+            /// `https://www.googleapis.com/auth/chat.users.availability`
+            /// </summary>
+            public class MarkAsAwayRequest : HangoutsChatBaseServiceRequest<Google.Apis.HangoutsChat.v1.Data.Availability>
+            {
+                /// <summary>Constructs a new MarkAsAway request.</summary>
+                public MarkAsAwayRequest(Google.Apis.Services.IClientService service, Google.Apis.HangoutsChat.v1.Data.MarkAsAwayRequest body, string name) : base(service)
+                {
+                    Name = name;
+                    Body = body;
+                    InitParameters();
+                }
+
+                /// <summary>
+                /// Required. The resource name of the availability to mark as away. Format: users/{user}/availability
+                /// `{user}` is the id for the Person in the People API or Admin SDK directory API. For example,
+                /// `users/123456789`. The user's email address or `me` can also be used as an alias to refer to the
+                /// caller. For example, `users/user@example.com` or `users/me`.
+                /// </summary>
+                [Google.Apis.Util.RequestParameterAttribute("name", Google.Apis.Util.RequestParameterType.Path)]
+                public virtual string Name { get; private set; }
+
+                /// <summary>Gets or sets the body of this request.</summary>
+                Google.Apis.HangoutsChat.v1.Data.MarkAsAwayRequest Body { get; set; }
+
+                /// <summary>Returns the body of the request.</summary>
+                protected override object GetBody() => Body;
+
+                /// <summary>Gets the method name.</summary>
+                public override string MethodName => "markAsAway";
+
+                /// <summary>Gets the HTTP method.</summary>
+                public override string HttpMethod => "POST";
+
+                /// <summary>Gets the REST path.</summary>
+                public override string RestPath => "v1/{+name}:markAsAway";
+
+                /// <summary>Initializes MarkAsAway parameter list.</summary>
+                protected override void InitParameters()
+                {
+                    base.InitParameters();
+                    RequestParameters.Add("name", new Google.Apis.Discovery.Parameter
+                    {
+                        Name = "name",
+                        IsRequired = true,
+                        ParameterType = "path",
+                        DefaultValue = null,
+                        Pattern = @"^users/[^/]+/availability$",
+                    });
+                }
+            }
+
+            /// <summary>
+            /// Marks user as `DO_NOT_DISTURB` in Google Chat. Sets a user's availability state to `DO_NOT_DISTURB`
+            /// until a specified expiration time. When in `DO_NOT_DISTURB`, users typically won't receive
+            /// notifications. This method only updates the authenticated user's availability. Requires [user
+            /// authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) with
+            /// [authorization
+            /// scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes): -
+            /// `https://www.googleapis.com/auth/chat.users.availability`
+            /// </summary>
+            /// <param name="body">The body of the request.</param>
+            /// <param name="name">
+            /// Required. The resource name of the availability to mark as Do Not Disturb. Format:
+            /// users/{user}/availability `{user}` is the id for the Person in the People API or Admin SDK directory
+            /// API. For example, `users/123456789`. The user's email address or `me` can also be used as an alias to
+            /// refer to the caller. For example, `users/user@example.com` or `users/me`.
+            /// </param>
+            public virtual MarkAsDoNotDisturbRequest MarkAsDoNotDisturb(Google.Apis.HangoutsChat.v1.Data.MarkAsDoNotDisturbRequest body, string name)
+            {
+                return new MarkAsDoNotDisturbRequest(this.service, body, name);
+            }
+
+            /// <summary>
+            /// Marks user as `DO_NOT_DISTURB` in Google Chat. Sets a user's availability state to `DO_NOT_DISTURB`
+            /// until a specified expiration time. When in `DO_NOT_DISTURB`, users typically won't receive
+            /// notifications. This method only updates the authenticated user's availability. Requires [user
+            /// authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) with
+            /// [authorization
+            /// scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes): -
+            /// `https://www.googleapis.com/auth/chat.users.availability`
+            /// </summary>
+            public class MarkAsDoNotDisturbRequest : HangoutsChatBaseServiceRequest<Google.Apis.HangoutsChat.v1.Data.Availability>
+            {
+                /// <summary>Constructs a new MarkAsDoNotDisturb request.</summary>
+                public MarkAsDoNotDisturbRequest(Google.Apis.Services.IClientService service, Google.Apis.HangoutsChat.v1.Data.MarkAsDoNotDisturbRequest body, string name) : base(service)
+                {
+                    Name = name;
+                    Body = body;
+                    InitParameters();
+                }
+
+                /// <summary>
+                /// Required. The resource name of the availability to mark as Do Not Disturb. Format:
+                /// users/{user}/availability `{user}` is the id for the Person in the People API or Admin SDK directory
+                /// API. For example, `users/123456789`. The user's email address or `me` can also be used as an alias
+                /// to refer to the caller. For example, `users/user@example.com` or `users/me`.
+                /// </summary>
+                [Google.Apis.Util.RequestParameterAttribute("name", Google.Apis.Util.RequestParameterType.Path)]
+                public virtual string Name { get; private set; }
+
+                /// <summary>Gets or sets the body of this request.</summary>
+                Google.Apis.HangoutsChat.v1.Data.MarkAsDoNotDisturbRequest Body { get; set; }
+
+                /// <summary>Returns the body of the request.</summary>
+                protected override object GetBody() => Body;
+
+                /// <summary>Gets the method name.</summary>
+                public override string MethodName => "markAsDoNotDisturb";
+
+                /// <summary>Gets the HTTP method.</summary>
+                public override string HttpMethod => "POST";
+
+                /// <summary>Gets the REST path.</summary>
+                public override string RestPath => "v1/{+name}:markAsDoNotDisturb";
+
+                /// <summary>Initializes MarkAsDoNotDisturb parameter list.</summary>
+                protected override void InitParameters()
+                {
+                    base.InitParameters();
+                    RequestParameters.Add("name", new Google.Apis.Discovery.Parameter
+                    {
+                        Name = "name",
+                        IsRequired = true,
+                        ParameterType = "path",
+                        DefaultValue = null,
+                        Pattern = @"^users/[^/]+/availability$",
+                    });
+                }
+            }
+
+            /// <summary>
+            /// Updates availability information for a human user. Only the `custom_status` field can be updated through
+            /// this method. This method only updates the authenticated user's availability. Requires [user
+            /// authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) with one
+            /// of the following [authorization
+            /// scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes): -
+            /// `https://www.googleapis.com/auth/chat.users.availability`
+            /// </summary>
+            /// <param name="body">The body of the request.</param>
+            /// <param name="name">
+            /// Identifier. Resource name of the user's availability. Format: `users/{user}/availability` `{user}` is
+            /// the id for the Person in the People API or Admin SDK directory API. For example, `users/123456789`. The
+            /// user's email address or `me` can also be used as an alias to refer to the caller. For example,
+            /// `users/user@example.com` or `users/me`.
+            /// </param>
+            public virtual PatchRequest Patch(Google.Apis.HangoutsChat.v1.Data.Availability body, string name)
+            {
+                return new PatchRequest(this.service, body, name);
+            }
+
+            /// <summary>
+            /// Updates availability information for a human user. Only the `custom_status` field can be updated through
+            /// this method. This method only updates the authenticated user's availability. Requires [user
+            /// authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) with one
+            /// of the following [authorization
+            /// scopes](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes): -
+            /// `https://www.googleapis.com/auth/chat.users.availability`
+            /// </summary>
+            public class PatchRequest : HangoutsChatBaseServiceRequest<Google.Apis.HangoutsChat.v1.Data.Availability>
+            {
+                /// <summary>Constructs a new Patch request.</summary>
+                public PatchRequest(Google.Apis.Services.IClientService service, Google.Apis.HangoutsChat.v1.Data.Availability body, string name) : base(service)
+                {
+                    Name = name;
+                    Body = body;
+                    InitParameters();
+                }
+
+                /// <summary>
+                /// Identifier. Resource name of the user's availability. Format: `users/{user}/availability` `{user}`
+                /// is the id for the Person in the People API or Admin SDK directory API. For example,
+                /// `users/123456789`. The user's email address or `me` can also be used as an alias to refer to the
+                /// caller. For example, `users/user@example.com` or `users/me`.
+                /// </summary>
+                [Google.Apis.Util.RequestParameterAttribute("name", Google.Apis.Util.RequestParameterType.Path)]
+                public virtual string Name { get; private set; }
+
+                /// <summary>
+                /// Required. The list of fields to update. The only field that can be updated is `custom_status`.
+                /// </summary>
+                [Google.Apis.Util.RequestParameterAttribute("updateMask", Google.Apis.Util.RequestParameterType.Query)]
+                public virtual object UpdateMask { get; set; }
+
+                /// <summary>Gets or sets the body of this request.</summary>
+                Google.Apis.HangoutsChat.v1.Data.Availability Body { get; set; }
+
+                /// <summary>Returns the body of the request.</summary>
+                protected override object GetBody() => Body;
+
+                /// <summary>Gets the method name.</summary>
+                public override string MethodName => "patch";
+
+                /// <summary>Gets the HTTP method.</summary>
+                public override string HttpMethod => "PATCH";
+
+                /// <summary>Gets the REST path.</summary>
+                public override string RestPath => "v1/{+name}";
+
+                /// <summary>Initializes Patch parameter list.</summary>
+                protected override void InitParameters()
+                {
+                    base.InitParameters();
+                    RequestParameters.Add("name", new Google.Apis.Discovery.Parameter
+                    {
+                        Name = "name",
+                        IsRequired = true,
+                        ParameterType = "path",
+                        DefaultValue = null,
+                        Pattern = @"^users/[^/]+/availability$",
+                    });
+                    RequestParameters.Add("updateMask", new Google.Apis.Discovery.Parameter
+                    {
+                        Name = "updateMask",
+                        IsRequired = false,
+                        ParameterType = "query",
+                        DefaultValue = null,
+                        Pattern = null,
+                    });
+                }
+            }
         }
 
         /// <summary>Gets the Sections resource.</summary>
@@ -5774,11 +6241,44 @@ namespace Google.Apis.HangoutsChat.v1
 }
 namespace Google.Apis.HangoutsChat.v1.Data
 {
+    /// <summary>An access permission setting.</summary>
+    public class AccessPermissionSetting : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Optional. Unordered list. Allowed principals for this permission.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("principals")]
+        public virtual System.Collections.Generic.IList<Principal> Principals { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Access permission settings for a space.</summary>
+    public class AccessPermissionSettings : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Optional. Access permission setting for discovering the space.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("discoverSpaceSetting")]
+        public virtual AccessPermissionSetting DiscoverSpaceSetting { get; set; }
+
+        /// <summary>Optional. Access permission setting for joining the space.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("joinSpaceSetting")]
+        public virtual AccessPermissionSetting JoinSpaceSetting { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
     /// <summary>
     /// Represents the [access setting](https://support.google.com/chat/answer/11971020) of the space.
     /// </summary>
     public class AccessSettings : Google.Apis.Requests.IDirectResponseSchema
     {
+        /// <summary>
+        /// Optional. Access permission settings for the space. To set the target audience when creating a space,
+        /// specify the `accessSettings.audience` field in your request.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("accessPermissionSettings")]
+        public virtual AccessPermissionSettings AccessPermissionSettings { get; set; }
+
         /// <summary>Output only. Indicates the access state of the space.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("accessState")]
         public virtual string AccessState { get; set; }
@@ -6039,6 +6539,60 @@ namespace Google.Apis.HangoutsChat.v1.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("resourceName")]
         public virtual string ResourceName { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>
+    /// A target audience in Google Chat. A target audience represents a group of users within a Google Workspace
+    /// organization, defined by an administrator. Target audiences are used to configure access and visibility settings
+    /// for resources, such as making a space discoverable to a specific group of users. For more details, see [Target
+    /// audiences](https://support.google.com/a/answer/9934697) and [Make a space discoverable to a target
+    /// audience](https://developers.google.com/workspace/chat/space-target-audience).
+    /// </summary>
+    public class Audience : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>
+        /// The resource name of the [target audience](https://support.google.com/a/answer/9934697) who can discover or
+        /// join the space. For details, see [Make a space discoverable to a target
+        /// audience](https://developers.google.com/workspace/chat/space-target-audience). Format:
+        /// `audiences/{audience}` To use the default target audience for the Google Workspace organization, set to
+        /// `audiences/default`.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("name")]
+        public virtual string Name { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>
+    /// Represents a user's current availability information in Google Chat, including their state (for example, Active,
+    /// Away, Do Not Disturb) and any custom status.
+    /// </summary>
+    public class Availability : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Optional. The user's custom status.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("customStatus")]
+        public virtual CustomStatus CustomStatus { get; set; }
+
+        /// <summary>Output only. Metadata if the user state is set to DO_NOT_DISTURB.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("doNotDisturbMetadata")]
+        public virtual DoNotDisturbMetadata DoNotDisturbMetadata { get; set; }
+
+        /// <summary>
+        /// Identifier. Resource name of the user's availability. Format: `users/{user}/availability` `{user}` is the id
+        /// for the Person in the People API or Admin SDK directory API. For example, `users/123456789`. The user's
+        /// email address or `me` can also be used as an alias to refer to the caller. For example,
+        /// `users/user@example.com` or `users/me`.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("name")]
+        public virtual string Name { get; set; }
+
+        /// <summary>Output only. The user's current availability state.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("state")]
+        public virtual string State { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -6497,6 +7051,68 @@ namespace Google.Apis.HangoutsChat.v1.Data
         public virtual string ETag { get; set; }
     }
 
+    /// <summary>
+    /// Represents a user's custom status in Google Chat. This includes a short text message with an optional emoji that
+    /// a user sets to give more context about their availability.
+    /// </summary>
+    public class CustomStatus : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>
+        /// Required. The emoji of the custom status. Only Unicode emojis are supported; custom emojis are not
+        /// supported.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("emoji")]
+        public virtual Emoji Emoji { get; set; }
+
+        private string _expireTimeRaw;
+
+        private object _expireTime;
+
+        /// <summary>The timestamp when the custom status expires.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("expireTime")]
+        public virtual string ExpireTimeRaw
+        {
+            get => _expireTimeRaw;
+            set
+            {
+                _expireTime = Google.Apis.Util.Utilities.DeserializeForGoogleFormat(value);
+                _expireTimeRaw = value;
+            }
+        }
+
+        /// <summary><seealso cref="object"/> representation of <see cref="ExpireTimeRaw"/>.</summary>
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use ExpireTimeDateTimeOffset instead.")]
+        public virtual object ExpireTime
+        {
+            get => _expireTime;
+            set
+            {
+                _expireTimeRaw = Google.Apis.Util.Utilities.SerializeForGoogleFormat(value);
+                _expireTime = value;
+            }
+        }
+
+        /// <summary><seealso cref="System.DateTimeOffset"/> representation of <see cref="ExpireTimeRaw"/>.</summary>
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        public virtual System.DateTimeOffset? ExpireTimeDateTimeOffset
+        {
+            get => Google.Apis.Util.DiscoveryFormat.ParseGoogleDateTimeToDateTimeOffset(ExpireTimeRaw);
+            set => ExpireTimeRaw = Google.Apis.Util.DiscoveryFormat.FormatDateTimeOffsetToGoogleDateTime(value);
+        }
+
+        /// <summary>Required. The text of the custom status. This will be a string with maximum length of 64.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("text")]
+        public virtual string Text { get; set; }
+
+        /// <summary>Input only. The time-to-live duration after which the custom status expires.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("ttl")]
+        public virtual object Ttl { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
     /// <summary>Date input values.</summary>
     public class DateInput : Google.Apis.Requests.IDirectResponseSchema
     {
@@ -6716,6 +7332,57 @@ namespace Google.Apis.HangoutsChat.v1.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("dialog")]
         public virtual Dialog Dialog { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>
+    /// Metadata associated with the `DO_NOT_DISTURB` availability state, specifying when the state is set to expire.
+    /// </summary>
+    public class DoNotDisturbMetadata : Google.Apis.Requests.IDirectResponseSchema
+    {
+        private string _expirationTimeRaw;
+
+        private object _expirationTime;
+
+        /// <summary>
+        /// Output only. Timestamp until which the user should be marked as DO_NOT_DISTURB. This can be maximum of 1
+        /// year in the future.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("expirationTime")]
+        public virtual string ExpirationTimeRaw
+        {
+            get => _expirationTimeRaw;
+            set
+            {
+                _expirationTime = Google.Apis.Util.Utilities.DeserializeForGoogleFormat(value);
+                _expirationTimeRaw = value;
+            }
+        }
+
+        /// <summary><seealso cref="object"/> representation of <see cref="ExpirationTimeRaw"/>.</summary>
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use ExpirationTimeDateTimeOffset instead.")]
+        public virtual object ExpirationTime
+        {
+            get => _expirationTime;
+            set
+            {
+                _expirationTimeRaw = Google.Apis.Util.Utilities.SerializeForGoogleFormat(value);
+                _expirationTime = value;
+            }
+        }
+
+        /// <summary>
+        /// <seealso cref="System.DateTimeOffset"/> representation of <see cref="ExpirationTimeRaw"/>.
+        /// </summary>
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        public virtual System.DateTimeOffset? ExpirationTimeDateTimeOffset
+        {
+            get => Google.Apis.Util.DiscoveryFormat.ParseGoogleDateTimeToDateTimeOffset(ExpirationTimeRaw);
+            set => ExpirationTimeRaw = Google.Apis.Util.DiscoveryFormat.FormatDateTimeOffsetToGoogleDateTime(value);
+        }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -9241,6 +9908,112 @@ namespace Google.Apis.HangoutsChat.v1.Data
         public virtual string ETag { get; set; }
     }
 
+    /// <summary>Request message for the `MarkAsActive` method.</summary>
+    public class MarkAsActiveRequest : Google.Apis.Requests.IDirectResponseSchema
+    {
+        private string _expireTimeRaw;
+
+        private object _expireTime;
+
+        /// <summary>The absolute timestamp when the ACTIVE state expires.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("expireTime")]
+        public virtual string ExpireTimeRaw
+        {
+            get => _expireTimeRaw;
+            set
+            {
+                _expireTime = Google.Apis.Util.Utilities.DeserializeForGoogleFormat(value);
+                _expireTimeRaw = value;
+            }
+        }
+
+        /// <summary><seealso cref="object"/> representation of <see cref="ExpireTimeRaw"/>.</summary>
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use ExpireTimeDateTimeOffset instead.")]
+        public virtual object ExpireTime
+        {
+            get => _expireTime;
+            set
+            {
+                _expireTimeRaw = Google.Apis.Util.Utilities.SerializeForGoogleFormat(value);
+                _expireTime = value;
+            }
+        }
+
+        /// <summary><seealso cref="System.DateTimeOffset"/> representation of <see cref="ExpireTimeRaw"/>.</summary>
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        public virtual System.DateTimeOffset? ExpireTimeDateTimeOffset
+        {
+            get => Google.Apis.Util.DiscoveryFormat.ParseGoogleDateTimeToDateTimeOffset(ExpireTimeRaw);
+            set => ExpireTimeRaw = Google.Apis.Util.DiscoveryFormat.FormatDateTimeOffsetToGoogleDateTime(value);
+        }
+
+        /// <summary>
+        /// The duration from the current time until the ACTIVE state expires. Using a short TTL can effectively reset
+        /// the user's state to be based on activity after this brief duration.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("ttl")]
+        public virtual object Ttl { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Request message for the `MarkAsAway` method.</summary>
+    public class MarkAsAwayRequest : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Request message for the `MarkAsDoNotDisturb` method.</summary>
+    public class MarkAsDoNotDisturbRequest : Google.Apis.Requests.IDirectResponseSchema
+    {
+        private string _expireTimeRaw;
+
+        private object _expireTime;
+
+        /// <summary>The absolute timestamp when the DND state expires.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("expireTime")]
+        public virtual string ExpireTimeRaw
+        {
+            get => _expireTimeRaw;
+            set
+            {
+                _expireTime = Google.Apis.Util.Utilities.DeserializeForGoogleFormat(value);
+                _expireTimeRaw = value;
+            }
+        }
+
+        /// <summary><seealso cref="object"/> representation of <see cref="ExpireTimeRaw"/>.</summary>
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use ExpireTimeDateTimeOffset instead.")]
+        public virtual object ExpireTime
+        {
+            get => _expireTime;
+            set
+            {
+                _expireTimeRaw = Google.Apis.Util.Utilities.SerializeForGoogleFormat(value);
+                _expireTime = value;
+            }
+        }
+
+        /// <summary><seealso cref="System.DateTimeOffset"/> representation of <see cref="ExpireTimeRaw"/>.</summary>
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        public virtual System.DateTimeOffset? ExpireTimeDateTimeOffset
+        {
+            get => Google.Apis.Util.DiscoveryFormat.ParseGoogleDateTimeToDateTimeOffset(ExpireTimeRaw);
+            set => ExpireTimeRaw = Google.Apis.Util.DiscoveryFormat.FormatDateTimeOffsetToGoogleDateTime(value);
+        }
+
+        /// <summary>The duration from the current time until the DND state expires.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("ttl")]
+        public virtual object Ttl { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
     /// <summary>
     /// A matched URL in a Chat message. Chat apps can preview matched URLs. For more information, see [Preview
     /// links](https://developers.google.com/chat/how-tos/preview-links).
@@ -10058,11 +10831,20 @@ namespace Google.Apis.HangoutsChat.v1.Data
         public virtual string ETag { get; set; }
     }
 
+    /// <summary>A principal representing an entity granted access.</summary>
+    public class Principal : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>An audience.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("audience")]
+        public virtual Audience Audience { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
     /// <summary>
-    /// Information about a message that another message quotes. When you create a message, you can quote messages
-    /// within the same thread, or quote a root message to create a new root message. However, you can't quote a message
-    /// reply from a different thread. When you update a message, you can't add or replace the `quotedMessageMetadata`
-    /// field, but you can remove it. For example usage, see [Quote another
+    /// Information about a message that another message quotes. When you update a message, you can't add or replace the
+    /// `quotedMessageMetadata` field, but you can remove it. For example usage, see [Quote another
     /// message](https://developers.google.com/workspace/chat/create-messages#quote-a-message).
     /// </summary>
     public class QuotedMessageMetadata : Google.Apis.Requests.IDirectResponseSchema
@@ -10289,7 +11071,10 @@ namespace Google.Apis.HangoutsChat.v1.Data
         [Newtonsoft.Json.JsonPropertyAttribute("nextPageToken")]
         public virtual string NextPageToken { get; set; }
 
-        /// <summary>A page of the requested spaces.</summary>
+        /// <summary>
+        /// Deprecated: Please use the new `results` field instead. A page of the requested spaces. This field will be
+        /// populated only when `useAdminAccess` is set to `true` and deprecated in favor of the new `results` field.
+        /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("spaces")]
         public virtual System.Collections.Generic.IList<Space> Spaces { get; set; }
 

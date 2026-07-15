@@ -2,8 +2,8 @@
 
   <!-- nupkg information -->
   <PropertyGroup>
-    <Title>Google.Apis.ApigeeRegistry.v1 Client Library</Title>
-    <Version>1.74.0.3192</Version>
+    <Title>Google.Apis.AgentRegistry.v1 Client Library</Title>
+    <Version>1.75.0.4185</Version>
     <Authors>Google LLC</Authors>
     <Copyright>Copyright 2026 Google LLC</Copyright>
     <PackageTags>Google</PackageTags>
@@ -14,17 +14,16 @@
     <PackageIconUrl>https://www.gstatic.com/images/branding/product/1x/google_developers_64dp.png</PackageIconUrl>
     <PackageIcon>NuGetIcon.png</PackageIcon>
     <Description>
-      This is not the recommended package for working with Apigeeregistry, please use the Google.Cloud.ApigeeRegistry.V1 package.
-      This Google APIs Client Library for working with Apigeeregistry v1 uses older code generation, and is harder to use.
+      Google APIs Client Library for working with Agentregistry v1.
 
       Product documentation is available at:
-      https://cloud.google.com/apigee/docs/api-hub/what-is-api-hub
+      https://docs.cloud.google.com/agent-registry/overview
 
       API reference documentation for this package is available at:
-      https://googleapis.dev/dotnet/Google.Apis.ApigeeRegistry.v1/latest/api/Google.Apis.ApigeeRegistry.v1.html
+      https://googleapis.dev/dotnet/Google.Apis.AgentRegistry.v1/latest/api/Google.Apis.AgentRegistry.v1.html
 
       The source code for this package is available at:
-      https://github.com/google/google-api-dotnet-client/tree/master/Src/Generated/Google.Apis.ApigeeRegistry.v1
+      https://github.com/google/google-api-dotnet-client/tree/master/Src/Generated/Google.Apis.AgentRegistry.v1
 
       Supported Platforms:
       - .NET Framework 4.6.2+
@@ -60,8 +59,8 @@
   <!-- common dependencies -->
   <ItemGroup>
     <PackageReference Include="ConfigureAwaitChecker.Analyzer" Version="5.0.0" PrivateAssets="All" />
-    <PackageReference Include="Google.Apis" Version="1.74.0" />
-    <PackageReference Include="Google.Apis.Auth" Version="1.74.0" />
+    <PackageReference Include="Google.Apis" Version="1.75.0" />
+    <PackageReference Include="Google.Apis.Auth" Version="1.75.0" />
   </ItemGroup>
 
 </Project>

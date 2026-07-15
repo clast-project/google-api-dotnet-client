@@ -66,6 +66,12 @@ namespace Google.Apis.CloudAsset.v1p7beta1
             /// Account.
             /// </summary>
             public static string CloudPlatform = "https://www.googleapis.com/auth/cloud-platform";
+
+            /// <summary>
+            /// See, edit, configure, and delete your Google Cloud Asset data and see the email address for your Google
+            /// Account
+            /// </summary>
+            public static string Cloudasset = "https://www.googleapis.com/auth/cloudasset";
         }
 
         /// <summary>Available OAuth 2.0 scope constants for use with the Cloud Asset API.</summary>
@@ -76,6 +82,12 @@ namespace Google.Apis.CloudAsset.v1p7beta1
             /// Account.
             /// </summary>
             public const string CloudPlatform = "https://www.googleapis.com/auth/cloud-platform";
+
+            /// <summary>
+            /// See, edit, configure, and delete your Google Cloud Asset data and see the email address for your Google
+            /// Account
+            /// </summary>
+            public const string Cloudasset = "https://www.googleapis.com/auth/cloudasset";
         }
 
         /// <summary>Gets the Operations resource.</summary>
@@ -1413,6 +1425,21 @@ namespace Google.Apis.CloudAsset.v1p7beta1.Data
         public virtual string Title { get; set; }
     }
 
+    /// <summary>Adds a request header to the API.</summary>
+    public class GoogleIdentityAccesscontextmanagerV1AddRequestHeader : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>HTTP header key.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("key")]
+        public virtual string Key { get; set; }
+
+        /// <summary>HTTP header value.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("value")]
+        public virtual string Value { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
     /// <summary>Identification for an API Operation.</summary>
     public class GoogleIdentityAccesscontextmanagerV1ApiOperation : Google.Apis.Requests.IDirectResponseSchema
     {
@@ -1667,6 +1694,13 @@ namespace Google.Apis.CloudAsset.v1p7beta1.Data
         public virtual string AccessLevel { get; set; }
 
         /// <summary>
+        /// A PrivateServiceConnectEndpoint that is allowed to access data outside the perimeter. The Private Service
+        /// Connect endpoint may be in any organization, not just the organization that the perimeter is defined in.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("pscEndpoint")]
+        public virtual GoogleIdentityAccesscontextmanagerV1PrivateServiceConnectEndpoint PscEndpoint { get; set; }
+
+        /// <summary>
         /// A Google Cloud resource from the service perimeter that you want to allow to access data outside the
         /// perimeter. This field supports only projects. The project format is `projects/{project_number}`. You can't
         /// use `*` in this field to allow all Google Cloud resources.
@@ -1802,6 +1836,13 @@ namespace Google.Apis.CloudAsset.v1p7beta1.Data
         public virtual string AccessLevel { get; set; }
 
         /// <summary>
+        /// A PrivateServiceConnectEndpoint that is allowed to access the perimeter. The Private Service Connect
+        /// endpoint may be in any organization, not just the organization that the perimeter is defined in.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("pscEndpoint")]
+        public virtual GoogleIdentityAccesscontextmanagerV1PrivateServiceConnectEndpoint PscEndpoint { get; set; }
+
+        /// <summary>
         /// A Google Cloud resource that is allowed to ingress the perimeter. Requests from these resources will be
         /// allowed to access perimeter data. Currently only projects and VPCs are allowed. Project format:
         /// `projects/{project_number}` VPC network format:
@@ -1867,6 +1908,17 @@ namespace Google.Apis.CloudAsset.v1p7beta1.Data
         public virtual string ETag { get; set; }
     }
 
+    /// <summary>Modifier to apply to the API requests.</summary>
+    public class GoogleIdentityAccesscontextmanagerV1Modifier : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Adds additional HTTP request headers.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("addRequestHeader")]
+        public virtual GoogleIdentityAccesscontextmanagerV1AddRequestHeader AddRequestHeader { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
     /// <summary>A restriction on the OS type and version of devices making requests.</summary>
     public class GoogleIdentityAccesscontextmanagerV1OsConstraint : Google.Apis.Requests.IDirectResponseSchema
     {
@@ -1888,6 +1940,43 @@ namespace Google.Apis.CloudAsset.v1p7beta1.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("requireVerifiedChromeOs")]
         public virtual System.Nullable<bool> RequireVerifiedChromeOs { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Specifies the Private Service Connect endpoint that an API call refers to.</summary>
+    public class GoogleIdentityAccesscontextmanagerV1PrivateServiceConnectEndpoint : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>
+        /// The full resource name of the global forwarding rule that identifies a Private Service Connect endpoint.
+        /// Forwarding rule format:
+        /// `//compute.googleapis.com/projects/{PROJECT_ID}/global/forwardingRules/{FORWARDING_RULE_ID}`.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("forwardingRule")]
+        public virtual string ForwardingRule { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Service patterns used to allow access.</summary>
+    public class GoogleIdentityAccesscontextmanagerV1ServicePattern : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Modifiers to apply to the requests that match the URL pattern.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("modifiers")]
+        public virtual System.Collections.Generic.IList<GoogleIdentityAccesscontextmanagerV1Modifier> Modifiers { get; set; }
+
+        /// <summary>
+        /// URL pattern to allow. Only patterns of ".googleapis.com/*", "www.googleapis.com//*" and "*.appspot.com/*
+        /// forms are supported, where should be alphanumerical name.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("pattern")]
+        public virtual string Pattern { get; set; }
+
+        /// <summary>Supported service to allow.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("service")]
+        public virtual string Service { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -2026,6 +2115,12 @@ namespace Google.Apis.CloudAsset.v1p7beta1.Data
     public class GoogleIdentityAccesscontextmanagerV1VpcAccessibleServices : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>
+        /// Specifies which Google services are allowed to be accessed from VPC networks in the service perimeter.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("allowedServicePatterns")]
+        public virtual System.Collections.Generic.IList<GoogleIdentityAccesscontextmanagerV1ServicePattern> AllowedServicePatterns { get; set; }
+
+        /// <summary>
         /// The list of APIs usable within the Service Perimeter. Must be empty unless 'enable_restriction' is True. You
         /// can specify a list of individual services, as well as include the 'RESTRICTED-SERVICES' value, which
         /// automatically includes all of the services protected by the perimeter.
@@ -2039,6 +2134,10 @@ namespace Google.Apis.CloudAsset.v1p7beta1.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("enableRestriction")]
         public virtual System.Nullable<bool> EnableRestriction { get; set; }
+
+        /// <summary>Defines the enforcement scopes of service patterns.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("servicePatternsEnforcementScopes")]
+        public virtual System.Collections.Generic.IList<string> ServicePatternsEnforcementScopes { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }

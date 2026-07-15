@@ -1252,28 +1252,6 @@ namespace Google.Apis.Storage.v1.Data
                 P("uploadType", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.ObjectsResource.UpdateRequest)r).UploadType),
                 P("userIp", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.ObjectsResource.UpdateRequest)r).UserIp),
             });
-            RequestParameterRegistry.Register(typeof(global::Google.Apis.Storage.v1.ObjectsResource.WatchAllRequest), new RequestParameterDescriptor[]
-            {
-                P("bucket", RequestParameterType.Path, false, r => ((global::Google.Apis.Storage.v1.ObjectsResource.WatchAllRequest)r).Bucket),
-                P("delimiter", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.ObjectsResource.WatchAllRequest)r).Delimiter),
-                P("endOffset", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.ObjectsResource.WatchAllRequest)r).EndOffset),
-                P("includeTrailingDelimiter", RequestParameterType.Query, true, r => ((global::Google.Apis.Storage.v1.ObjectsResource.WatchAllRequest)r).IncludeTrailingDelimiter),
-                P("maxResults", RequestParameterType.Query, true, r => ((global::Google.Apis.Storage.v1.ObjectsResource.WatchAllRequest)r).MaxResults),
-                P("pageToken", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.ObjectsResource.WatchAllRequest)r).PageToken),
-                P("prefix", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.ObjectsResource.WatchAllRequest)r).Prefix),
-                P("projection", RequestParameterType.Query, true, r => ((global::Google.Apis.Storage.v1.ObjectsResource.WatchAllRequest)r).Projection),
-                P("startOffset", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.ObjectsResource.WatchAllRequest)r).StartOffset),
-                P("userProject", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.ObjectsResource.WatchAllRequest)r).UserProject),
-                P("versions", RequestParameterType.Query, true, r => ((global::Google.Apis.Storage.v1.ObjectsResource.WatchAllRequest)r).Versions),
-                P("alt", RequestParameterType.Query, true, r => ((global::Google.Apis.Storage.v1.ObjectsResource.WatchAllRequest)r).Alt),
-                P("fields", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.ObjectsResource.WatchAllRequest)r).Fields),
-                P("key", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.ObjectsResource.WatchAllRequest)r).Key),
-                P("oauth_token", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.ObjectsResource.WatchAllRequest)r).OauthToken),
-                P("prettyPrint", RequestParameterType.Query, true, r => ((global::Google.Apis.Storage.v1.ObjectsResource.WatchAllRequest)r).PrettyPrint),
-                P("quotaUser", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.ObjectsResource.WatchAllRequest)r).QuotaUser),
-                P("uploadType", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.ObjectsResource.WatchAllRequest)r).UploadType),
-                P("userIp", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.ObjectsResource.WatchAllRequest)r).UserIp),
-            });
             RequestParameterRegistry.Register(typeof(global::Google.Apis.Storage.v1.OperationsResource.AdvanceRelocateBucketRequest), new RequestParameterDescriptor[]
             {
                 P("bucket", RequestParameterType.Path, false, r => ((global::Google.Apis.Storage.v1.OperationsResource.AdvanceRelocateBucketRequest)r).Bucket),
@@ -1735,15 +1713,6 @@ namespace Google.Apis.Storage.v1.Data
                 }
             });
             EnumStringValueRegistry.Register(typeof(global::Google.Apis.Storage.v1.ObjectsResource.UpdateRequest.ProjectionEnum), value =>
-            {
-                switch (value.ToString())
-                {
-                    case "Full": return "full";
-                    case "NoAcl": return "noAcl";
-                    default: return value.ToString();
-                }
-            });
-            EnumStringValueRegistry.Register(typeof(global::Google.Apis.Storage.v1.ObjectsResource.WatchAllRequest.ProjectionEnum), value =>
             {
                 switch (value.ToString())
                 {

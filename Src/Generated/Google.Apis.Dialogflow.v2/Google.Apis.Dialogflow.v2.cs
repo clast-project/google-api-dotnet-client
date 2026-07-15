@@ -24316,6 +24316,9 @@ namespace Google.Apis.Dialogflow.v2.Data
         [Newtonsoft.Json.JsonPropertyAttribute("enableAutomaticPunctuation")]
         public virtual System.Nullable<bool> EnableAutomaticPunctuation { get; set; }
 
+        [Newtonsoft.Json.JsonPropertyAttribute("enableVoiceActivityEvents")]
+        public virtual System.Nullable<bool> EnableVoiceActivityEvents { get; set; }
+
         [Newtonsoft.Json.JsonPropertyAttribute("enableWordInfo")]
         public virtual System.Nullable<bool> EnableWordInfo { get; set; }
 
@@ -24973,6 +24976,9 @@ namespace Google.Apis.Dialogflow.v2.Data
 
     public class GoogleCloudDialogflowV2KnowledgeAssistAnswerAdditionalSuggestedQueryResult : Google.Apis.Requests.IDirectResponseSchema
     {
+        [Newtonsoft.Json.JsonPropertyAttribute("answerRecord")]
+        public virtual string AnswerRecord { get; set; }
+
         [Newtonsoft.Json.JsonPropertyAttribute("suggestedQuery")]
         public virtual GoogleCloudDialogflowV2KnowledgeAssistAnswerSuggestedQuery SuggestedQuery { get; set; }
 
@@ -25930,6 +25936,9 @@ namespace Google.Apis.Dialogflow.v2.Data
 
     public class GoogleCloudDialogflowV2SearchKnowledgeDebugInfo : Google.Apis.Requests.IDirectResponseSchema
     {
+        [Newtonsoft.Json.JsonPropertyAttribute("cesDebugInfo")]
+        public virtual System.Collections.Generic.IDictionary<string, object> CesDebugInfo { get; set; }
+
         [Newtonsoft.Json.JsonPropertyAttribute("datastoreResponseReason")]
         public virtual string DatastoreResponseReason { get; set; }
 
@@ -29146,6 +29155,9 @@ namespace Google.Apis.Dialogflow.v2.Data
 
     public class GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerAdditionalSuggestedQueryResult : Google.Apis.Requests.IDirectResponseSchema
     {
+        [Newtonsoft.Json.JsonPropertyAttribute("answerRecord")]
+        public virtual string AnswerRecord { get; set; }
+
         [Newtonsoft.Json.JsonPropertyAttribute("suggestedQuery")]
         public virtual GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerSuggestedQuery SuggestedQuery { get; set; }
 

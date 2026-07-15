@@ -30,6 +30,51 @@ upstream and publish on a unified version. The mechanism spans four sibling fork
    four repos at that single version and pushes them to NuGet.org. The Clast version is its own
    line (independent of each library's upstream version).
 
+## Running the sync locally (recommended)
+
+The scheduled cloud **Claude routine** (step 2) currently can't complete a sync: its
+environment was granted **read-only** GitHub credentials, so it can merge/build in its
+sandbox but can never `git push` the branch or open the PR — the run ends with nothing on
+GitHub. It also reinstalls the .NET SDK every run (~16 min+). Until that environment is
+re-granted write access (and given a prebuilt .NET image), run the sync **locally**: a dev
+box has the .NET 10 SDK and all four sibling forks checked out under one parent dir, which
+is exactly what the cross-repo build needs.
+
+Steps (example is this repo; take the target versions from the `upstream-sync` issue body):
+
+1. From a clean `main`, fetch upstream and branch. The upstream default branch is `main`
+   for the googleapis repos but `master` for grpc/grpc-dotnet — detect it, don't assume:
+   `UB=$(git remote show upstream | sed -n 's/.*HEAD branch: //p')`
+   then `git checkout -b sync/upstream-<YYYY-MM-DD> main` and `git merge upstream/$UB`.
+2. Resolve conflicts, always **preserving the Clast ports**:
+   - `.csproj`: keep the Clast `ProjectReference`s to the STJ support libs, the
+     `netstandard2.0` `System.Text.Json` ref, and the `Clast=true` metadata group; **take
+     upstream's `<Version>` bump** (it auto-merges — don't `checkout --ours` the whole file,
+     which would revert it).
+   - generated `.cs`: keep upstream's functional change, re-apply the STJ attribute.
+3. **Sweep for un-ported Newtonsoft that auto-merged in.** Upstream regenerates clients with
+   Newtonsoft; only lines *both* sides edited conflict, so new upstream properties slip in
+   un-ported. `grep -rn 'Newtonsoft' <republished-project-dirs>` and replace
+   `[Newtonsoft.Json.JsonPropertyAttribute("x")]` → `[System.Text.Json.Serialization.JsonPropertyName("x")]`.
+   int64 (`long`) body fields need only the plain attribute — the source-gen serializer
+   handles long-as-string globally. Compare the count against pre-merge `main` to be sure
+   the support libs didn't regress.
+4. **Reconcile `*.JsonContext.cs`** (the Clast transform's committed AOT registry) with the
+   new client surface. If upstream **removed** a request type/method, delete its
+   `RequestParameterRegistry.Register(...)` and any `EnumStringValueRegistry.Register(...)`
+   blocks (a build error like `CS0426: type 'XxxRequest' does not exist` points right at it).
+   ⚠️ **The transform tool that emits these files is not in this repo**, so newly **added**
+   request types won't be registered automatically — they silently fall back to reflection
+   (an AOT gap that the build won't catch). Locating/committing that tool is an open task.
+5. **Build + test exactly as `.github/workflows/clast-ci.yml` does:**
+   `dotnet build` the Storage.v1 and Bigquery.v2 generated clients (all TFMs, incl. net10),
+   and `dotnet test` `Google.Apis.Tests` + `Google.Apis.Auth.Tests` (`-c Release`). Then
+   validate the publish path itself: `dotnet pack <proj> -c Release -p:Clast=true` — the
+   package should come out as `Clast.<Name>.<version>.nupkg`.
+6. Update `.clast/upstream-baseline.json` to the merged versions.
+7. Commit, push, open a PR with `Closes #<issue>`. A human still merges it, then pushes the
+   unified `v*` release tag on `google-api-dotnet-client` to publish.
+
 ## Requirements
 
 - `clast-publish.yml` needs a `NUGET_API_KEY` secret (org-level secret on `clast-project` covers

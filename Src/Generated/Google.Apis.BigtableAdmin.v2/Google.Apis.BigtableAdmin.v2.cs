@@ -5619,8 +5619,8 @@ namespace Google.Apis.BigtableAdmin.v2
                     /// Currently UpdateTable is only supported for the following fields: * `change_stream_config` *
                     /// `change_stream_config.retention_period` * `deletion_protection` * `automated_backup_policy` *
                     /// `automated_backup_policy.retention_period` * `automated_backup_policy.frequency` *
-                    /// `row_key_schema` If `column_families` is set in `update_mask`, it will return an UNIMPLEMENTED
-                    /// error.
+                    /// `automated_backup_policy.locations` * `row_key_schema` If `column_families` is set in
+                    /// `update_mask`, it will return an UNIMPLEMENTED error.
                     /// </summary>
                     [Google.Apis.Util.RequestParameterAttribute("updateMask", Google.Apis.Util.RequestParameterType.Query)]
                     public virtual object UpdateMask { get; set; }
@@ -9502,6 +9502,13 @@ namespace Google.Apis.BigtableAdmin.v2.Data
         /// <summary>Optional. The edition of the instance. See Edition for details.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("edition")]
         public virtual string Edition { get; set; }
+
+        /// <summary>
+        /// Output only. The region where Knowledge Catalog data is synced to and stored, including user-created
+        /// aspects.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("knowledgeCatalogRegion")]
+        public virtual string KnowledgeCatalogRegion { get; set; }
 
         /// <summary>
         /// Labels are a flexible and lightweight mechanism for organizing cloud resources into groups that reflect a

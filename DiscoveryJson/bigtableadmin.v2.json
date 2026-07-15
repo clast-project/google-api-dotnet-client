@@ -2362,7 +2362,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Required. The list of fields to update. A mask specifying which fields (e.g. `change_stream_config`) in the `table` field should be updated. This mask is relative to the `table` field, not to the request message. The wildcard (*) path is currently not supported. Currently UpdateTable is only supported for the following fields: * `change_stream_config` * `change_stream_config.retention_period` * `deletion_protection` * `automated_backup_policy` * `automated_backup_policy.retention_period` * `automated_backup_policy.frequency` * `row_key_schema` If `column_families` is set in `update_mask`, it will return an UNIMPLEMENTED error.",
+                      "description": "Required. The list of fields to update. A mask specifying which fields (e.g. `change_stream_config`) in the `table` field should be updated. This mask is relative to the `table` field, not to the request message. The wildcard (*) path is currently not supported. Currently UpdateTable is only supported for the following fields: * `change_stream_config` * `change_stream_config.retention_period` * `deletion_protection` * `automated_backup_policy` * `automated_backup_policy.retention_period` * `automated_backup_policy.frequency` * `automated_backup_policy.locations` * `row_key_schema` If `column_families` is set in `update_mask`, it will return an UNIMPLEMENTED error.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -3194,7 +3194,7 @@
       }
     }
   },
-  "revision": "20260514",
+  "revision": "20260708",
   "rootUrl": "https://bigtableadmin.googleapis.com/",
   "schemas": {
     "AppProfile": {
@@ -4830,6 +4830,11 @@
             "The Enterprise edition. This is the default offering that is designed to meet the needs of most enterprise workloads.",
             "The Enterprise Plus edition. This is a premium tier that is designed for demanding, multi-tenant workloads requiring the highest levels of performance, scale, and global availability. The nodes in the Enterprise Plus tier come at a higher cost than the Enterprise tier. Any Enterprise Plus features must be disabled before downgrading to Enterprise."
           ],
+          "type": "string"
+        },
+        "knowledgeCatalogRegion": {
+          "description": "Output only. The region where Knowledge Catalog data is synced to and stored, including user-created aspects.",
+          "readOnly": true,
           "type": "string"
         },
         "labels": {

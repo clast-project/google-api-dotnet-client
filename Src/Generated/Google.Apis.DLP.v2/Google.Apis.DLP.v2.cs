@@ -7643,6 +7643,7 @@ namespace Google.Apis.DLP.v2
                 ColumnDataProfiles = new ColumnDataProfilesResource(service);
                 Connections = new ConnectionsResource(service);
                 Content = new ContentResource(service);
+                ContentPolicies = new ContentPoliciesResource(service);
                 DeidentifyTemplates = new DeidentifyTemplatesResource(service);
                 DiscoveryConfigs = new DiscoveryConfigsResource(service);
                 DlpJobs = new DlpJobsResource(service);
@@ -8541,6 +8542,325 @@ namespace Google.Apis.DLP.v2
                             ParameterType = "path",
                             DefaultValue = null,
                             Pattern = @"^projects/[^/]+/locations/[^/]+$",
+                        });
+                    }
+                }
+            }
+
+            /// <summary>Gets the ContentPolicies resource.</summary>
+            public virtual ContentPoliciesResource ContentPolicies { get; }
+
+            /// <summary>The "contentPolicies" collection of methods.</summary>
+            public class ContentPoliciesResource
+            {
+                private const string Resource = "contentPolicies";
+
+                /// <summary>The service which this resource belongs to.</summary>
+                private readonly Google.Apis.Services.IClientService service;
+
+                /// <summary>Constructs a new resource.</summary>
+                public ContentPoliciesResource(Google.Apis.Services.IClientService service)
+                {
+                    this.service = service;
+                }
+
+                /// <summary>Create a ContentPolicy.</summary>
+                /// <param name="body">The body of the request.</param>
+                /// <param name="parent">
+                /// Required. Parent resource name. The format of this value varies depending on the scope of the
+                /// request (project or organization): + Projects scope: `projects/{project_id}/locations/{location_id}`
+                /// + Organizations scope: `organizations/{org_id}/locations/{location_id}`
+                /// </param>
+                public virtual CreateRequest Create(Google.Apis.DLP.v2.Data.GooglePrivacyDlpV2CreateContentPolicyRequest body, string parent)
+                {
+                    return new CreateRequest(this.service, body, parent);
+                }
+
+                /// <summary>Create a ContentPolicy.</summary>
+                public class CreateRequest : DLPBaseServiceRequest<Google.Apis.DLP.v2.Data.GooglePrivacyDlpV2ContentPolicy>
+                {
+                    /// <summary>Constructs a new Create request.</summary>
+                    public CreateRequest(Google.Apis.Services.IClientService service, Google.Apis.DLP.v2.Data.GooglePrivacyDlpV2CreateContentPolicyRequest body, string parent) : base(service)
+                    {
+                        Parent = parent;
+                        Body = body;
+                        InitParameters();
+                    }
+
+                    /// <summary>
+                    /// Required. Parent resource name. The format of this value varies depending on the scope of the
+                    /// request (project or organization): + Projects scope:
+                    /// `projects/{project_id}/locations/{location_id}` + Organizations scope:
+                    /// `organizations/{org_id}/locations/{location_id}`
+                    /// </summary>
+                    [Google.Apis.Util.RequestParameterAttribute("parent", Google.Apis.Util.RequestParameterType.Path)]
+                    public virtual string Parent { get; private set; }
+
+                    /// <summary>Gets or sets the body of this request.</summary>
+                    Google.Apis.DLP.v2.Data.GooglePrivacyDlpV2CreateContentPolicyRequest Body { get; set; }
+
+                    /// <summary>Returns the body of the request.</summary>
+                    protected override object GetBody() => Body;
+
+                    /// <summary>Gets the method name.</summary>
+                    public override string MethodName => "create";
+
+                    /// <summary>Gets the HTTP method.</summary>
+                    public override string HttpMethod => "POST";
+
+                    /// <summary>Gets the REST path.</summary>
+                    public override string RestPath => "v2/{+parent}/contentPolicies";
+
+                    /// <summary>Initializes Create parameter list.</summary>
+                    protected override void InitParameters()
+                    {
+                        base.InitParameters();
+                        RequestParameters.Add("parent", new Google.Apis.Discovery.Parameter
+                        {
+                            Name = "parent",
+                            IsRequired = true,
+                            ParameterType = "path",
+                            DefaultValue = null,
+                            Pattern = @"^projects/[^/]+/locations/[^/]+$",
+                        });
+                    }
+                }
+
+                /// <summary>Delete a ContentPolicy.</summary>
+                /// <param name="name">
+                /// Required. Resource name of the ContentPolicy to be deleted, in the format:
+                /// `projects/{project}/locations/{location}/contentPolicies/{content_policy}`.
+                /// </param>
+                public virtual DeleteRequest Delete(string name)
+                {
+                    return new DeleteRequest(this.service, name);
+                }
+
+                /// <summary>Delete a ContentPolicy.</summary>
+                public class DeleteRequest : DLPBaseServiceRequest<Google.Apis.DLP.v2.Data.GoogleProtobufEmpty>
+                {
+                    /// <summary>Constructs a new Delete request.</summary>
+                    public DeleteRequest(Google.Apis.Services.IClientService service, string name) : base(service)
+                    {
+                        Name = name;
+                        InitParameters();
+                    }
+
+                    /// <summary>
+                    /// Required. Resource name of the ContentPolicy to be deleted, in the format:
+                    /// `projects/{project}/locations/{location}/contentPolicies/{content_policy}`.
+                    /// </summary>
+                    [Google.Apis.Util.RequestParameterAttribute("name", Google.Apis.Util.RequestParameterType.Path)]
+                    public virtual string Name { get; private set; }
+
+                    /// <summary>Gets the method name.</summary>
+                    public override string MethodName => "delete";
+
+                    /// <summary>Gets the HTTP method.</summary>
+                    public override string HttpMethod => "DELETE";
+
+                    /// <summary>Gets the REST path.</summary>
+                    public override string RestPath => "v2/{+name}";
+
+                    /// <summary>Initializes Delete parameter list.</summary>
+                    protected override void InitParameters()
+                    {
+                        base.InitParameters();
+                        RequestParameters.Add("name", new Google.Apis.Discovery.Parameter
+                        {
+                            Name = "name",
+                            IsRequired = true,
+                            ParameterType = "path",
+                            DefaultValue = null,
+                            Pattern = @"^projects/[^/]+/locations/[^/]+/contentPolicies/[^/]+$",
+                        });
+                    }
+                }
+
+                /// <summary>Get a ContentPolicy.</summary>
+                /// <param name="name">
+                /// Required. Resource name in the format:
+                /// `projects/{project}/locations/{location}/contentPolicies/{content_policy}`.
+                /// </param>
+                public virtual GetRequest Get(string name)
+                {
+                    return new GetRequest(this.service, name);
+                }
+
+                /// <summary>Get a ContentPolicy.</summary>
+                public class GetRequest : DLPBaseServiceRequest<Google.Apis.DLP.v2.Data.GooglePrivacyDlpV2ContentPolicy>
+                {
+                    /// <summary>Constructs a new Get request.</summary>
+                    public GetRequest(Google.Apis.Services.IClientService service, string name) : base(service)
+                    {
+                        Name = name;
+                        InitParameters();
+                    }
+
+                    /// <summary>
+                    /// Required. Resource name in the format:
+                    /// `projects/{project}/locations/{location}/contentPolicies/{content_policy}`.
+                    /// </summary>
+                    [Google.Apis.Util.RequestParameterAttribute("name", Google.Apis.Util.RequestParameterType.Path)]
+                    public virtual string Name { get; private set; }
+
+                    /// <summary>Gets the method name.</summary>
+                    public override string MethodName => "get";
+
+                    /// <summary>Gets the HTTP method.</summary>
+                    public override string HttpMethod => "GET";
+
+                    /// <summary>Gets the REST path.</summary>
+                    public override string RestPath => "v2/{+name}";
+
+                    /// <summary>Initializes Get parameter list.</summary>
+                    protected override void InitParameters()
+                    {
+                        base.InitParameters();
+                        RequestParameters.Add("name", new Google.Apis.Discovery.Parameter
+                        {
+                            Name = "name",
+                            IsRequired = true,
+                            ParameterType = "path",
+                            DefaultValue = null,
+                            Pattern = @"^projects/[^/]+/locations/[^/]+/contentPolicies/[^/]+$",
+                        });
+                    }
+                }
+
+                /// <summary>Lists ContentPolicies in a parent.</summary>
+                /// <param name="parent">
+                /// Required. Resource name of the organization or project, for example,
+                /// `organizations/433245324/locations/europe` or `projects/project-id/locations/asia`.
+                /// </param>
+                public virtual ListRequest List(string parent)
+                {
+                    return new ListRequest(this.service, parent);
+                }
+
+                /// <summary>Lists ContentPolicies in a parent.</summary>
+                public class ListRequest : DLPBaseServiceRequest<Google.Apis.DLP.v2.Data.GooglePrivacyDlpV2ListContentPoliciesResponse>
+                {
+                    /// <summary>Constructs a new List request.</summary>
+                    public ListRequest(Google.Apis.Services.IClientService service, string parent) : base(service)
+                    {
+                        Parent = parent;
+                        InitParameters();
+                    }
+
+                    /// <summary>
+                    /// Required. Resource name of the organization or project, for example,
+                    /// `organizations/433245324/locations/europe` or `projects/project-id/locations/asia`.
+                    /// </summary>
+                    [Google.Apis.Util.RequestParameterAttribute("parent", Google.Apis.Util.RequestParameterType.Path)]
+                    public virtual string Parent { get; private set; }
+
+                    /// <summary>Optional. Number of results per page, max 1000.</summary>
+                    [Google.Apis.Util.RequestParameterAttribute("pageSize", Google.Apis.Util.RequestParameterType.Query)]
+                    public virtual System.Nullable<int> PageSize { get; set; }
+
+                    /// <summary>
+                    /// Optional. Page token from a previous page to return the next set of results. If set, all other
+                    /// request fields must match the original request.
+                    /// </summary>
+                    [Google.Apis.Util.RequestParameterAttribute("pageToken", Google.Apis.Util.RequestParameterType.Query)]
+                    public virtual string PageToken { get; set; }
+
+                    /// <summary>Gets the method name.</summary>
+                    public override string MethodName => "list";
+
+                    /// <summary>Gets the HTTP method.</summary>
+                    public override string HttpMethod => "GET";
+
+                    /// <summary>Gets the REST path.</summary>
+                    public override string RestPath => "v2/{+parent}/contentPolicies";
+
+                    /// <summary>Initializes List parameter list.</summary>
+                    protected override void InitParameters()
+                    {
+                        base.InitParameters();
+                        RequestParameters.Add("parent", new Google.Apis.Discovery.Parameter
+                        {
+                            Name = "parent",
+                            IsRequired = true,
+                            ParameterType = "path",
+                            DefaultValue = null,
+                            Pattern = @"^projects/[^/]+/locations/[^/]+$",
+                        });
+                        RequestParameters.Add("pageSize", new Google.Apis.Discovery.Parameter
+                        {
+                            Name = "pageSize",
+                            IsRequired = false,
+                            ParameterType = "query",
+                            DefaultValue = null,
+                            Pattern = null,
+                        });
+                        RequestParameters.Add("pageToken", new Google.Apis.Discovery.Parameter
+                        {
+                            Name = "pageToken",
+                            IsRequired = false,
+                            ParameterType = "query",
+                            DefaultValue = null,
+                            Pattern = null,
+                        });
+                    }
+                }
+
+                /// <summary>Update a ContentPolicy.</summary>
+                /// <param name="body">The body of the request.</param>
+                /// <param name="name">
+                /// Required. Resource name in the format:
+                /// `projects/{project}/locations/{location}/contentPolicies/{content_policy}`.
+                /// </param>
+                public virtual PatchRequest Patch(Google.Apis.DLP.v2.Data.GooglePrivacyDlpV2UpdateContentPolicyRequest body, string name)
+                {
+                    return new PatchRequest(this.service, body, name);
+                }
+
+                /// <summary>Update a ContentPolicy.</summary>
+                public class PatchRequest : DLPBaseServiceRequest<Google.Apis.DLP.v2.Data.GooglePrivacyDlpV2ContentPolicy>
+                {
+                    /// <summary>Constructs a new Patch request.</summary>
+                    public PatchRequest(Google.Apis.Services.IClientService service, Google.Apis.DLP.v2.Data.GooglePrivacyDlpV2UpdateContentPolicyRequest body, string name) : base(service)
+                    {
+                        Name = name;
+                        Body = body;
+                        InitParameters();
+                    }
+
+                    /// <summary>
+                    /// Required. Resource name in the format:
+                    /// `projects/{project}/locations/{location}/contentPolicies/{content_policy}`.
+                    /// </summary>
+                    [Google.Apis.Util.RequestParameterAttribute("name", Google.Apis.Util.RequestParameterType.Path)]
+                    public virtual string Name { get; private set; }
+
+                    /// <summary>Gets or sets the body of this request.</summary>
+                    Google.Apis.DLP.v2.Data.GooglePrivacyDlpV2UpdateContentPolicyRequest Body { get; set; }
+
+                    /// <summary>Returns the body of the request.</summary>
+                    protected override object GetBody() => Body;
+
+                    /// <summary>Gets the method name.</summary>
+                    public override string MethodName => "patch";
+
+                    /// <summary>Gets the HTTP method.</summary>
+                    public override string HttpMethod => "PATCH";
+
+                    /// <summary>Gets the REST path.</summary>
+                    public override string RestPath => "v2/{+name}";
+
+                    /// <summary>Initializes Patch parameter list.</summary>
+                    protected override void InitParameters()
+                    {
+                        base.InitParameters();
+                        RequestParameters.Add("name", new Google.Apis.Discovery.Parameter
+                        {
+                            Name = "name",
+                            IsRequired = true,
+                            ParameterType = "path",
+                            DefaultValue = null,
+                            Pattern = @"^projects/[^/]+/locations/[^/]+/contentPolicies/[^/]+$",
                         });
                     }
                 }
@@ -14121,9 +14441,153 @@ namespace Google.Apis.DLP.v2.Data
     /// <summary>Metadata on content to be scanned.</summary>
     public class GooglePrivacyDlpV2ContentMetadata : Google.Apis.Requests.IDirectResponseSchema
     {
+        /// <summary>Optional. The file labels associated with the content.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("fileLabels")]
+        public virtual System.Collections.Generic.IList<GooglePrivacyDlpV2FileLabel> FileLabels { get; set; }
+
         /// <summary>User provided key-value pairs of content metadata.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("properties")]
         public virtual System.Collections.Generic.IList<GooglePrivacyDlpV2KeyValueMetadataProperty> Properties { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>A policy to apply to content based on its inspection findings.</summary>
+    public class GooglePrivacyDlpV2ContentPolicy : Google.Apis.Requests.IDirectResponseSchema
+    {
+        private string _createTimeRaw;
+
+        private object _createTime;
+
+        /// <summary>Output only. The creation timestamp of a contentPolicy; output-only field.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("createTime")]
+        public virtual string CreateTimeRaw
+        {
+            get => _createTimeRaw;
+            set
+            {
+                _createTime = Google.Apis.Util.Utilities.DeserializeForGoogleFormat(value);
+                _createTimeRaw = value;
+            }
+        }
+
+        /// <summary><seealso cref="object"/> representation of <see cref="CreateTimeRaw"/>.</summary>
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use CreateTimeDateTimeOffset instead.")]
+        public virtual object CreateTime
+        {
+            get => _createTime;
+            set
+            {
+                _createTimeRaw = Google.Apis.Util.Utilities.SerializeForGoogleFormat(value);
+                _createTime = value;
+            }
+        }
+
+        /// <summary><seealso cref="System.DateTimeOffset"/> representation of <see cref="CreateTimeRaw"/>.</summary>
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        public virtual System.DateTimeOffset? CreateTimeDateTimeOffset
+        {
+            get => Google.Apis.Util.DiscoveryFormat.ParseGoogleDateTimeToDateTimeOffset(CreateTimeRaw);
+            set => CreateTimeRaw = Google.Apis.Util.DiscoveryFormat.FormatDateTimeOffsetToGoogleDateTime(value);
+        }
+
+        /// <summary>
+        /// Action to take if the content is scanned and no rules match. Defaults to returning an ALLOW verdict if not
+        /// set.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("defaultAction")]
+        public virtual GooglePrivacyDlpV2PolicyAction DefaultAction { get; set; }
+
+        /// <summary>Optional. Display name (max 63 chars)</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("displayName")]
+        public virtual string DisplayName { get; set; }
+
+        /// <summary>
+        /// Output only. A stream of errors encountered when the policy was applied. Output only field. Will return the
+        /// last 100 errors. Whenever the policy is modified this list will be cleared.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("errors")]
+        public virtual System.Collections.Generic.IList<GooglePrivacyDlpV2Error> Errors { get; set; }
+
+        /// <summary>
+        /// Optional. Action to take if the content is a supported file type and size but fails to be scanned, for
+        /// example because the file is encrypted or corrupted.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("failedToScanSupportedFileType")]
+        public virtual GooglePrivacyDlpV2PolicyAction FailedToScanSupportedFileType { get; set; }
+
+        /// <summary>
+        /// Optional. Action to take if the content is a supported file type but is too large to be scanned.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("inputTooLarge")]
+        public virtual GooglePrivacyDlpV2PolicyAction InputTooLarge { get; set; }
+
+        /// <summary>Optional. InspectConfig to use to produce findings.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("inspectConfig")]
+        public virtual GooglePrivacyDlpV2InspectConfig InspectConfig { get; set; }
+
+        /// <summary>
+        /// Optional. InspectTemplate to use to produce findings. Deprecated: use inspect_config instead.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("inspectTemplate")]
+        public virtual GooglePrivacyDlpV2InspectTemplate InspectTemplate { get; set; }
+
+        /// <summary>Optional. Log the actions taken by the content policy to external systems.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("loggingConfigs")]
+        public virtual System.Collections.Generic.IList<GooglePrivacyDlpV2LoggingConfig> LoggingConfigs { get; set; }
+
+        /// <summary>Output only. Resource name of the policy.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("name")]
+        public virtual string Name { get; set; }
+
+        /// <summary>
+        /// Required. Policies to apply, based on the findings returned by inspection. The first rule to match applies.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("rules")]
+        public virtual System.Collections.Generic.IList<GooglePrivacyDlpV2PolicyRule> Rules { get; set; }
+
+        /// <summary>Optional. Action to take if the content is an unsupported file type.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("unsupportedFileType")]
+        public virtual GooglePrivacyDlpV2PolicyAction UnsupportedFileType { get; set; }
+
+        private string _updateTimeRaw;
+
+        private object _updateTime;
+
+        /// <summary>Output only. The last update timestamp of a contentPolicy; output-only field.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("updateTime")]
+        public virtual string UpdateTimeRaw
+        {
+            get => _updateTimeRaw;
+            set
+            {
+                _updateTime = Google.Apis.Util.Utilities.DeserializeForGoogleFormat(value);
+                _updateTimeRaw = value;
+            }
+        }
+
+        /// <summary><seealso cref="object"/> representation of <see cref="UpdateTimeRaw"/>.</summary>
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use UpdateTimeDateTimeOffset instead.")]
+        public virtual object UpdateTime
+        {
+            get => _updateTime;
+            set
+            {
+                _updateTimeRaw = Google.Apis.Util.Utilities.SerializeForGoogleFormat(value);
+                _updateTime = value;
+            }
+        }
+
+        /// <summary><seealso cref="System.DateTimeOffset"/> representation of <see cref="UpdateTimeRaw"/>.</summary>
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        public virtual System.DateTimeOffset? UpdateTimeDateTimeOffset
+        {
+            get => Google.Apis.Util.DiscoveryFormat.ParseGoogleDateTimeToDateTimeOffset(UpdateTimeRaw);
+            set => UpdateTimeRaw = Google.Apis.Util.DiscoveryFormat.FormatDateTimeOffsetToGoogleDateTime(value);
+        }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -14190,6 +14654,25 @@ namespace Google.Apis.DLP.v2.Data
         /// <summary>Required. The connection resource.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("connection")]
         public virtual GooglePrivacyDlpV2Connection Connection { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Request message for CreateContentPolicy.</summary>
+    public class GooglePrivacyDlpV2CreateContentPolicyRequest : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Required. The content_policy resource.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("contentPolicy")]
+        public virtual GooglePrivacyDlpV2ContentPolicy ContentPolicy { get; set; }
+
+        /// <summary>
+        /// Optional. The content policy ID can contain uppercase and lowercase letters, numbers, and hyphens; that is,
+        /// it must match the regular expression: `[a-zA-Z\d-_]+`. The maximum length is 100 characters. If empty, the
+        /// system will generate a random id.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("contentPolicyId")]
+        public virtual string ContentPolicyId { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -14519,6 +15002,10 @@ namespace Google.Apis.DLP.v2.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("exclusionType")]
         public virtual string ExclusionType { get; set; }
+
+        /// <summary>File label to detect.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("fileLabelInfoType")]
+        public virtual GooglePrivacyDlpV2FileLabelInfoType FileLabelInfoType { get; set; }
 
         /// <summary>
         /// CustomInfoType can either be a new infoType, or an extension of built-in infoType, when the name matches one
@@ -16379,7 +16866,7 @@ namespace Google.Apis.DLP.v2.Data
 
         private object _createTime;
 
-        /// <summary>Time when the job was created.</summary>
+        /// <summary>Output only. Time when the job was created.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("createTime")]
         public virtual string CreateTimeRaw
         {
@@ -16416,7 +16903,7 @@ namespace Google.Apis.DLP.v2.Data
 
         private object _endTime;
 
-        /// <summary>Time when the job finished.</summary>
+        /// <summary>Output only. Time when the job finished.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("endTime")]
         public virtual string EndTimeRaw
         {
@@ -16449,7 +16936,7 @@ namespace Google.Apis.DLP.v2.Data
             set => EndTimeRaw = Google.Apis.Util.DiscoveryFormat.FormatDateTimeOffsetToGoogleDateTime(value);
         }
 
-        /// <summary>A stream of errors encountered running the job.</summary>
+        /// <summary>Output only. A stream of errors encountered running the job.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("errors")]
         public virtual System.Collections.Generic.IList<GooglePrivacyDlpV2Error> Errors { get; set; }
 
@@ -16457,7 +16944,9 @@ namespace Google.Apis.DLP.v2.Data
         [Newtonsoft.Json.JsonPropertyAttribute("inspectDetails")]
         public virtual GooglePrivacyDlpV2InspectDataSourceDetails InspectDetails { get; set; }
 
-        /// <summary>If created by a job trigger, the resource name of the trigger that instantiated the job.</summary>
+        /// <summary>
+        /// Output only. If created by a job trigger, the resource name of the trigger that instantiated the job.
+        /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("jobTriggerName")]
         public virtual string JobTriggerName { get; set; }
 
@@ -16465,7 +16954,7 @@ namespace Google.Apis.DLP.v2.Data
 
         private object _lastModified;
 
-        /// <summary>Time when the job was last modified by the system.</summary>
+        /// <summary>Output only. Time when the job was last modified by the system.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("lastModified")]
         public virtual string LastModifiedRaw
         {
@@ -16498,7 +16987,7 @@ namespace Google.Apis.DLP.v2.Data
             set => LastModifiedRaw = Google.Apis.Util.DiscoveryFormat.FormatDateTimeOffsetToGoogleDateTime(value);
         }
 
-        /// <summary>The server-assigned name.</summary>
+        /// <summary>Output only. The server-assigned name.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("name")]
         public virtual string Name { get; set; }
 
@@ -16510,7 +16999,7 @@ namespace Google.Apis.DLP.v2.Data
 
         private object _startTime;
 
-        /// <summary>Time when the job started.</summary>
+        /// <summary>Output only. Time when the job started.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("startTime")]
         public virtual string StartTimeRaw
         {
@@ -16543,7 +17032,7 @@ namespace Google.Apis.DLP.v2.Data
             set => StartTimeRaw = Google.Apis.Util.DiscoveryFormat.FormatDateTimeOffsetToGoogleDateTime(value);
         }
 
-        /// <summary>State of a job.</summary>
+        /// <summary>Output only. State of a job.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("state")]
         public virtual string State { get; set; }
 
@@ -16928,6 +17417,36 @@ namespace Google.Apis.DLP.v2.Data
         /// <summary>The file extension if set. (aka .pdf, .jpg, .txt)</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("fileExtension")]
         public virtual string FileExtension { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Represents a file label.</summary>
+    public class GooglePrivacyDlpV2FileLabel : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Google Drive labels published by Google.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("googleDriveLabel")]
+        public virtual GooglePrivacyDlpV2GoogleDriveLabelMetadata GoogleDriveLabel { get; set; }
+
+        /// <summary>Sensitivity labels published by Microsoft.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("sensitivityLabel")]
+        public virtual GooglePrivacyDlpV2SensitivityLabelMetadata SensitivityLabel { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Configuration for a custom infoType that detects file labels.</summary>
+    public class GooglePrivacyDlpV2FileLabelInfoType : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Google Drive labels published by Google.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("googleDriveLabel")]
+        public virtual GooglePrivacyDlpV2GoogleDriveLabel GoogleDriveLabel { get; set; }
+
+        /// <summary>Sensitivity labels published by Microsoft.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("sensitivityLabel")]
+        public virtual GooglePrivacyDlpV2SensitivityLabel SensitivityLabel { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -17500,6 +18019,42 @@ namespace Google.Apis.DLP.v2.Data
         public virtual string ETag { get; set; }
     }
 
+    /// <summary>Google Drive labels published by Google.</summary>
+    public class GooglePrivacyDlpV2GoogleDriveLabel : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The field values of the Google Drive label to match.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("labelFieldsToMatch")]
+        public virtual System.Collections.Generic.IList<GooglePrivacyDlpV2LabelField> LabelFieldsToMatch { get; set; }
+
+        /// <summary>
+        /// The [label ID](https://developers.google.com/workspace/drive/labels/guides/overview) of the Google Drive
+        /// label.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("labelId")]
+        public virtual string LabelId { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Google Drive labels published by Google.</summary>
+    public class GooglePrivacyDlpV2GoogleDriveLabelMetadata : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The field values of the Google Drive label</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("labelFields")]
+        public virtual System.Collections.Generic.IList<GooglePrivacyDlpV2LabelFieldMetadata> LabelFields { get; set; }
+
+        /// <summary>
+        /// The [label ID](https://developers.google.com/workspace/drive/labels/guides/overview) of the Google Drive
+        /// label.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("labelId")]
+        public virtual string LabelId { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
     /// <summary>The rule that adjusts the likelihood of findings within a certain proximity of hotwords.</summary>
     public class GooglePrivacyDlpV2HotwordRule : Google.Apis.Requests.IDirectResponseSchema
     {
@@ -17852,6 +18407,21 @@ namespace Google.Apis.DLP.v2.Data
         public virtual string ETag { get; set; }
     }
 
+    /// <summary>A info type based condition.</summary>
+    public class GooglePrivacyDlpV2InfoTypeCondition : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>match any info types.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("anyInfoType")]
+        public virtual GoogleProtobufEmpty AnyInfoType { get; set; }
+
+        /// <summary>match any of these info types.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("infoTypes")]
+        public virtual GooglePrivacyDlpV2InfoTypes InfoTypes { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
     /// <summary>InfoType description.</summary>
     public class GooglePrivacyDlpV2InfoTypeDescription : Google.Apis.Requests.IDirectResponseSchema
     {
@@ -18011,6 +18581,17 @@ namespace Google.Apis.DLP.v2.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("transformations")]
         public virtual System.Collections.Generic.IList<GooglePrivacyDlpV2InfoTypeTransformation> Transformations { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Info types to match.</summary>
+    public class GooglePrivacyDlpV2InfoTypes : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Required. A list of info types to match.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("infoTypeNames")]
+        public virtual System.Collections.Generic.IList<string> InfoTypeNames { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -18879,6 +19460,36 @@ namespace Google.Apis.DLP.v2.Data
         public virtual string ETag { get; set; }
     }
 
+    /// <summary>The field values of the Google Drive label to match.</summary>
+    public class GooglePrivacyDlpV2LabelField : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The identifier of the Label Field.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("id")]
+        public virtual string Id { get; set; }
+
+        /// <summary>The value of the Label Field to match.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("value")]
+        public virtual string Value { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>The field values of the Google Drive label</summary>
+    public class GooglePrivacyDlpV2LabelFieldMetadata : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The identifier of the Label Field.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("id")]
+        public virtual string Id { get; set; }
+
+        /// <summary>The value of the Label Field.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("value")]
+        public virtual GooglePrivacyDlpV2Value Value { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
     /// <summary>
     /// Configuration for a custom dictionary created from a data source of any size up to the maximum size defined in
     /// the [limits](https://cloud.google.com/sensitive-data-protection/limits) page. The artifacts of dictionary
@@ -18973,6 +19584,23 @@ namespace Google.Apis.DLP.v2.Data
         /// <summary>List of connections.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("connections")]
         public virtual System.Collections.Generic.IList<GooglePrivacyDlpV2Connection> Connections { get; set; }
+
+        /// <summary>
+        /// Token to retrieve the next page of results. An empty value means there are no more results.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("nextPageToken")]
+        public virtual string NextPageToken { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Response message for ListContentPolicies.</summary>
+    public class GooglePrivacyDlpV2ListContentPoliciesResponse : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>List of content policies.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("contentPolicies")]
+        public virtual System.Collections.Generic.IList<GooglePrivacyDlpV2ContentPolicy> ContentPolicies { get; set; }
 
         /// <summary>
         /// Token to retrieve the next page of results. An empty value means there are no more results.
@@ -19190,6 +19818,36 @@ namespace Google.Apis.DLP.v2.Data
         /// <summary>The current scope for location on this feature. This may expand over time.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("regionalizationScope")]
         public virtual string RegionalizationScope { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Configuration for logging content policy actions to BigQuery.</summary>
+    public class GooglePrivacyDlpV2LogToBigQuery : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Required. The ID of the dataset containing the BigQuery table to write to.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("datasetId")]
+        public virtual string DatasetId { get; set; }
+
+        /// <summary>Required. The ID of the project containing the BigQuery table to write to.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("projectId")]
+        public virtual string ProjectId { get; set; }
+
+        /// <summary>Required. The ID of the BigQuery table to write to.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("tableId")]
+        public virtual string TableId { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>A single logging configuration.</summary>
+    public class GooglePrivacyDlpV2LoggingConfig : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Optional. Log the actions taken to a BigQuery table.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("logToBigQuery")]
+        public virtual GooglePrivacyDlpV2LogToBigQuery LogToBigQuery { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -19534,6 +20192,50 @@ namespace Google.Apis.DLP.v2.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("name")]
         public virtual string Name { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>A possible action to take when applying a content policy.</summary>
+    public class GooglePrivacyDlpV2PolicyAction : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Optional. If set, the verdict will be returned to the user.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("returnVerdict")]
+        public virtual string ReturnVerdict { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>A condition that must match for this rule to apply.</summary>
+    public class GooglePrivacyDlpV2PolicyCondition : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>A condition based on info types.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("infoTypeCondition")]
+        public virtual GooglePrivacyDlpV2InfoTypeCondition InfoTypeCondition { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>A single policy rule. The first rule to match from the list above controls the result.</summary>
+    public class GooglePrivacyDlpV2PolicyRule : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Required. Action to take if this rule applies.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("action")]
+        public virtual GooglePrivacyDlpV2PolicyAction Action { get; set; }
+
+        /// <summary>
+        /// Optional. Conditions that must match for this rule to apply. All conditions must match (`AND`). For `OR`
+        /// conditions, use multiple rules.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("conditions")]
+        public virtual System.Collections.Generic.IList<GooglePrivacyDlpV2PolicyCondition> Conditions { get; set; }
+
+        /// <summary>If set, the verdict will be returned to the user. Deprecated: Use `action` instead.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("returnVerdict")]
+        public virtual string ReturnVerdict { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -20654,6 +21356,28 @@ namespace Google.Apis.DLP.v2.Data
         public virtual string ETag { get; set; }
     }
 
+    /// <summary>Sensitivity labels published by Microsoft.</summary>
+    public class GooglePrivacyDlpV2SensitivityLabel : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The GUID of the sensitivity label.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("guid")]
+        public virtual string Guid { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Sensitivity labels published by Microsoft.</summary>
+    public class GooglePrivacyDlpV2SensitivityLabelMetadata : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Required. The GUID of the sensitivity label.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("guid")]
+        public virtual string Guid { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
     /// <summary>
     /// Score is calculated from of all elements in the data profile. A higher level means the data is more sensitive.
     /// </summary>
@@ -20741,7 +21465,7 @@ namespace Google.Apis.DLP.v2.Data
         [Newtonsoft.Json.JsonPropertyAttribute("currentVersion")]
         public virtual GooglePrivacyDlpV2StoredInfoTypeVersion CurrentVersion { get; set; }
 
-        /// <summary>Resource name.</summary>
+        /// <summary>Output only. Resource name.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("name")]
         public virtual string Name { get; set; }
 
@@ -20808,7 +21532,8 @@ namespace Google.Apis.DLP.v2.Data
         private object _createTime;
 
         /// <summary>
-        /// Create timestamp of the version. Read-only, determined by the system when the version is created.
+        /// Output only. Create timestamp of the version. Read-only, determined by the system when the version is
+        /// created.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("createTime")]
         public virtual string CreateTimeRaw
@@ -20843,11 +21568,11 @@ namespace Google.Apis.DLP.v2.Data
         }
 
         /// <summary>
-        /// Errors that occurred when creating this storedInfoType version, or anomalies detected in the storedInfoType
-        /// data that render it unusable. Only the five most recent errors will be displayed, with the most recent error
-        /// appearing first. For example, some of the data for stored custom dictionaries is put in the user's Cloud
-        /// Storage bucket, and if this data is modified or deleted by the user or another system, the dictionary
-        /// becomes invalid. If any errors occur, fix the problem indicated by the error message and use the
+        /// Output only. Errors that occurred when creating this storedInfoType version, or anomalies detected in the
+        /// storedInfoType data that render it unusable. Only the five most recent errors will be displayed, with the
+        /// most recent error appearing first. For example, some of the data for stored custom dictionaries is put in
+        /// the user's Cloud Storage bucket, and if this data is modified or deleted by the user or another system, the
+        /// dictionary becomes invalid. If any errors occur, fix the problem indicated by the error message and use the
         /// UpdateStoredInfoType API method to create another version of the storedInfoType to continue using it,
         /// reusing the same `config` if it was not the source of the error.
         /// </summary>
@@ -20855,12 +21580,12 @@ namespace Google.Apis.DLP.v2.Data
         public virtual System.Collections.Generic.IList<GooglePrivacyDlpV2Error> Errors { get; set; }
 
         /// <summary>
-        /// Stored info type version state. Read-only, updated by the system during dictionary creation.
+        /// Output only. Stored info type version state. Read-only, updated by the system during dictionary creation.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("state")]
         public virtual string State { get; set; }
 
-        /// <summary>Statistics about this storedInfoType version.</summary>
+        /// <summary>Output only. Statistics about this storedInfoType version.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("stats")]
         public virtual GooglePrivacyDlpV2StoredInfoTypeStats Stats { get; set; }
 
@@ -21949,6 +22674,21 @@ namespace Google.Apis.DLP.v2.Data
         /// <summary>Required. The connection with new values for the relevant fields.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("connection")]
         public virtual GooglePrivacyDlpV2Connection Connection { get; set; }
+
+        /// <summary>Optional. Mask to control which fields get updated.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("updateMask")]
+        public virtual object UpdateMask { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Request message for UpdateContentPolicy.</summary>
+    public class GooglePrivacyDlpV2UpdateContentPolicyRequest : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Required. The content_policy with new values for the relevant fields.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("contentPolicy")]
+        public virtual GooglePrivacyDlpV2ContentPolicy ContentPolicy { get; set; }
 
         /// <summary>Optional. Mask to control which fields get updated.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("updateMask")]

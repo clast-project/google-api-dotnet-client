@@ -1170,6 +1170,65 @@ namespace Google.Apis.SQLAdmin.v1beta4
                 });
             }
         }
+
+        /// <summary>Retrieves connect settings about a Cloud SQL instance using the instance DNS name.</summary>
+        /// <param name="location">Required. The region of the instance.</param>
+        /// <param name="dnsName">Required. Cloud SQL instance ID. This does not include the project ID.</param>
+        public virtual ResolveRequest Resolve(string location, string dnsName)
+        {
+            return new ResolveRequest(this.service, location, dnsName);
+        }
+
+        /// <summary>Retrieves connect settings about a Cloud SQL instance using the instance DNS name.</summary>
+        public class ResolveRequest : SQLAdminBaseServiceRequest<Google.Apis.SQLAdmin.v1beta4.Data.ConnectSettings>
+        {
+            /// <summary>Constructs a new Resolve request.</summary>
+            public ResolveRequest(Google.Apis.Services.IClientService service, string location, string dnsName) : base(service)
+            {
+                Location = location;
+                DnsName = dnsName;
+                InitParameters();
+            }
+
+            /// <summary>Required. The region of the instance.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("location", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string Location { get; private set; }
+
+            /// <summary>Required. Cloud SQL instance ID. This does not include the project ID.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("dnsName", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string DnsName { get; private set; }
+
+            /// <summary>Gets the method name.</summary>
+            public override string MethodName => "resolve";
+
+            /// <summary>Gets the HTTP method.</summary>
+            public override string HttpMethod => "GET";
+
+            /// <summary>Gets the REST path.</summary>
+            public override string RestPath => "sql/v1beta4/locations/{location}/dns/{dnsName}:resolveConnectSettings";
+
+            /// <summary>Initializes Resolve parameter list.</summary>
+            protected override void InitParameters()
+            {
+                base.InitParameters();
+                RequestParameters.Add("location", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "location",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+                RequestParameters.Add("dnsName", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "dnsName",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+            }
+        }
     }
 
     /// <summary>The "databases" collection of methods.</summary>
@@ -3251,6 +3310,19 @@ namespace Google.Apis.SQLAdmin.v1beta4
             [Google.Apis.Util.RequestParameterAttribute("instance", Google.Apis.Util.RequestParameterType.Path)]
             public virtual string Instance { get; private set; }
 
+            /// <summary>
+            /// Optional. Set PSC config to the same value as the existing config to reconcile the PSC networking.
+            /// </summary>
+            [Google.Apis.Util.RequestParameterAttribute("reconcilePscNetworking", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual System.Nullable<bool> ReconcilePscNetworking { get; set; }
+
+            /// <summary>
+            /// Optional. Set PSC config to the same value as the existing config and force reconcile the PSC
+            /// networking.
+            /// </summary>
+            [Google.Apis.Util.RequestParameterAttribute("reconcilePscNetworkingForce", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual System.Nullable<bool> ReconcilePscNetworkingForce { get; set; }
+
             /// <summary>Gets or sets the body of this request.</summary>
             Google.Apis.SQLAdmin.v1beta4.Data.DatabaseInstance Body { get; set; }
 
@@ -3283,6 +3355,22 @@ namespace Google.Apis.SQLAdmin.v1beta4
                     Name = "instance",
                     IsRequired = true,
                     ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+                RequestParameters.Add("reconcilePscNetworking", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "reconcilePscNetworking",
+                    IsRequired = false,
+                    ParameterType = "query",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+                RequestParameters.Add("reconcilePscNetworkingForce", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "reconcilePscNetworkingForce",
+                    IsRequired = false,
+                    ParameterType = "query",
                     DefaultValue = null,
                     Pattern = null,
                 });
@@ -6270,7 +6358,10 @@ namespace Google.Apis.SQLAdmin.v1beta4.Data
         [Newtonsoft.Json.JsonPropertyAttribute("pointInTimeRecoveryEnabled")]
         public virtual System.Nullable<bool> PointInTimeRecoveryEnabled { get; set; }
 
-        /// <summary>Reserved for future use.</summary>
+        /// <summary>
+        /// Optional. Deprecated: replication_log_archiving_enabled is deprecated and will be removed from a future
+        /// version of the API. Use point_in_time_recovery_enabled instead.
+        /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("replicationLogArchivingEnabled")]
         public virtual System.Nullable<bool> ReplicationLogArchivingEnabled { get; set; }
 
@@ -6659,7 +6750,7 @@ namespace Google.Apis.SQLAdmin.v1beta4.Data
 
         /// <summary>
         /// Optional. The fully qualified URI of the VPC network to which the cloned instance will be connected via
-        /// Private Services Access for private IP. For
+        /// private services access for private IP. For
         /// example:`projects/my-network-project/global/networks/my-network`. This field is only required for
         /// cross-project cloning.
         /// </summary>
@@ -6829,6 +6920,13 @@ namespace Google.Apis.SQLAdmin.v1beta4.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("backendType")]
         public virtual string BackendType { get; set; }
+
+        /// <summary>
+        /// Optional. Output only. Connection name of the Cloud SQL instance used in connection strings, in the format
+        /// project:region:instance.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("connectionName")]
+        public virtual string ConnectionName { get; set; }
 
         /// <summary>Custom subject alternative names for the server certificate.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("customSubjectAlternativeNames")]
@@ -9716,9 +9814,30 @@ namespace Google.Apis.SQLAdmin.v1beta4.Data
     /// <summary>Performance capture configuration.</summary>
     public class PerformanceCaptureConfig : Google.Apis.Requests.IDirectResponseSchema
     {
+        /// <summary>
+        /// Optional. Specifies the minimum percentage of CPU utilization to trigger the performance capture. Valid
+        /// integers range from `10` to `99`. Enter `0` to disable the check.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("cpuUtilizationThresholdPercent")]
+        public virtual System.Nullable<int> CpuUtilizationThresholdPercent { get; set; }
+
         /// <summary>Optional. Enables or disables the performance capture feature.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("enabled")]
         public virtual System.Nullable<bool> Enabled { get; set; }
+
+        /// <summary>
+        /// Optional. Specifies the minimum number of undo log entries in the history list length to trigger the
+        /// performance capture. Valid integers range from `10000` to `10000000`. Enter `0` to disable the check.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("historyListLengthThresholdCount")]
+        public virtual System.Nullable<int> HistoryListLengthThresholdCount { get; set; }
+
+        /// <summary>
+        /// Optional. Specifies the minimum percentage of memory usage to trigger the performance capture. Valid
+        /// integers range from `10` to `99`. Enter `0` to disable the check.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("memoryUsageThresholdPercent")]
+        public virtual System.Nullable<int> MemoryUsageThresholdPercent { get; set; }
 
         /// <summary>
         /// Optional. Specifies the minimum number of consecutive probe threshold that triggers performance capture.
@@ -9748,11 +9867,52 @@ namespace Google.Apis.SQLAdmin.v1beta4.Data
         public virtual System.Nullable<int> SecondsBehindSourceThreshold { get; set; }
 
         /// <summary>
+        /// Optional. Specifies the minimum allowed number of semaphore waits to trigger the performance capture. Valid
+        /// integers range from `10` to `10000`. Enter `0` to disable the check.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("semaphoreWaitThresholdCount")]
+        public virtual System.Nullable<int> SemaphoreWaitThresholdCount { get; set; }
+
+        /// <summary>
         /// Optional. Specifies the amount of time in seconds that a transaction needs to have been open before the
         /// watcher starts recording it.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("transactionDurationThreshold")]
         public virtual System.Nullable<int> TransactionDurationThreshold { get; set; }
+
+        /// <summary>
+        /// Optional. Specifies a customer-defined list of users to exclude from transaction termination. Entries can be
+        /// in the format 'user@host' or just 'user'. A standalone 'user' implies 'user@%', excluding the user from any
+        /// host. Wildcard '%' is allowed in the host part of the 'user@host' format. Example: `["app_user",
+        /// "db_admin@10.1.2.3", "report_user@%"]`
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("transactionKillExcludedUserHosts")]
+        public virtual System.Collections.Generic.IList<string> TransactionKillExcludedUserHosts { get; set; }
+
+        /// <summary>
+        /// Optional. Specifies the amount of time in seconds that a transaction needs to have been open before the
+        /// watcher starts terminating it. Valid integers range from `60` to `604800` (7 days). Enter `0` to disable. If
+        /// enabled (i.e., &amp;gt; 0), this value must be greater than or equal to `transaction_duration_threshold`.
+        /// Configurations where `0 &amp;lt; transaction_kill_threshold_seconds &amp;lt; transaction_duration_threshold`
+        /// will be rejected.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("transactionKillThresholdSeconds")]
+        public virtual System.Nullable<int> TransactionKillThresholdSeconds { get; set; }
+
+        /// <summary>
+        /// Optional. Determines which transactions are allowed to be terminated when they exceed
+        /// `transaction_kill_threshold_seconds`. This allows protecting write-heavy transactions from auto-termination
+        /// if desired. Defaults to `READ_ONLY_TRANSACTIONS` if unspecified.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("transactionKillType")]
+        public virtual string TransactionKillType { get; set; }
+
+        /// <summary>
+        /// Optional. Specifies the minimum allowed number of transactions in lock wait state to trigger the performance
+        /// capture. Valid integers range from `10` to `10000`. Enter `0` to disable the check.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("transactionLockWaitThresholdCount")]
+        public virtual System.Nullable<int> TransactionLockWaitThresholdCount { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -9974,13 +10134,34 @@ namespace Google.Apis.SQLAdmin.v1beta4.Data
         [Newtonsoft.Json.JsonPropertyAttribute("consumerProject")]
         public virtual string ConsumerProject { get; set; }
 
+        /// <summary>Output only. The status of automated DNS provisioning.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("instanceAutoDnsStatus")]
+        public virtual string InstanceAutoDnsStatus { get; set; }
+
         /// <summary>The IP address of the consumer endpoint.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("ipAddress")]
         public virtual string IpAddress { get; set; }
 
+        /// <summary>
+        /// Output only. The service connection policy created automatically for the consumer network when
+        /// `psc_auto_connection_policy_enabled` is true. It is in the format of:
+        /// `projects/{project}/regions/{region}/serviceConnectionPolicies/{policy_id}` The `policy_id` is in format of
+        /// `$NETWORK-$RANDOM`.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("serviceConnectionPolicy")]
+        public virtual string ServiceConnectionPolicy { get; set; }
+
+        /// <summary>Output only. The status of service connection policy creation.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("serviceConnectionPolicyCreationResult")]
+        public virtual string ServiceConnectionPolicyCreationResult { get; set; }
+
         /// <summary>The connection status of the consumer endpoint.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("status")]
         public virtual string Status { get; set; }
+
+        /// <summary>Output only. The status of automated DNS provisioning for the write endpoint.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("writeEndpointAutoDnsStatus")]
+        public virtual string WriteEndpointAutoDnsStatus { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -10005,6 +10186,10 @@ namespace Google.Apis.SQLAdmin.v1beta4.Data
         [Newtonsoft.Json.JsonPropertyAttribute("networkAttachmentUri")]
         public virtual string NetworkAttachmentUri { get; set; }
 
+        /// <summary>Optional. Whether to set up the PSC service connection policy automatically.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("pscAutoConnectionPolicyEnabled")]
+        public virtual System.Nullable<bool> PscAutoConnectionPolicyEnabled { get; set; }
+
         /// <summary>
         /// Optional. The list of settings for requested Private Service Connect consumer endpoints that can be used to
         /// connect to this Cloud SQL instance.
@@ -10013,9 +10198,10 @@ namespace Google.Apis.SQLAdmin.v1beta4.Data
         public virtual System.Collections.Generic.IList<PscAutoConnectionConfig> PscAutoConnections { get; set; }
 
         /// <summary>
-        /// Optional. Indicates whether PSC DNS automation is enabled for this instance. When enabled, Cloud SQL
-        /// provisions a universal DNS record across all networks configured with Private Service Connect (PSC)
-        /// auto-connections. This will default to true for new instances when Private Service Connect is enabled.
+        /// Optional. Indicates whether Private Service Connect DNS automation is enabled for this instance. When
+        /// enabled, Cloud SQL provisions a universal DNS record across all networks configured with Private Service
+        /// Connect auto-connections. This will default to true for new instances when Private Service Connect is
+        /// enabled.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("pscAutoDnsEnabled")]
         public virtual System.Nullable<bool> PscAutoDnsEnabled { get; set; }
@@ -10025,10 +10211,10 @@ namespace Google.Apis.SQLAdmin.v1beta4.Data
         public virtual System.Nullable<bool> PscEnabled { get; set; }
 
         /// <summary>
-        /// Optional. Indicates whether PSC write endpoint DNS automation is enabled for this instance. When enabled,
-        /// Cloud SQL provisions a universal global DNS record across all networks configured with Private Service
-        /// Connect (PSC) auto-connections that always points to the cluster primary instance. This feature is only
-        /// supported for Enterprise Plus edition. This will default to true for new enterprise plus instances when
+        /// Optional. Indicates whether Private Service Connect write endpoint DNS automation is enabled for this
+        /// instance. When enabled, Cloud SQL provisions a universal global DNS record across all networks configured
+        /// with Private Service Connect auto-connections that points to the cluster primary instance. This feature is
+        /// only supported for Enterprise Plus edition. This will default to true for new enterprise plus instances when
         /// `psc_auto_dns_enabled` is enabled.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("pscWriteEndpointDnsEnabled")]

@@ -857,7 +857,7 @@ namespace Google.Apis.FirebaseCloudMessaging.v1.Data
         public virtual Color Color { get; set; }
 
         /// <summary>
-        /// Required. Along with `light_on_duration `, define the blink rate of LED flashes. Resolution defined by
+        /// Required. Along with `light_on_duration`, define the blink rate of LED flashes. Resolution defined by
         /// [proto.Duration](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Duration)
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("lightOffDuration")]
@@ -905,6 +905,10 @@ namespace Google.Apis.FirebaseCloudMessaging.v1.Data
         [Newtonsoft.Json.JsonPropertyAttribute("fcmOptions")]
         public virtual FcmOptions FcmOptions { get; set; }
 
+        /// <summary>Firebase Installation ID to send a message to.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("fid")]
+        public virtual string Fid { get; set; }
+
         /// <summary>
         /// Output Only. The identifier of the message sent, in the format of `projects/*/messages/{message_id}`.
         /// </summary>
@@ -915,7 +919,10 @@ namespace Google.Apis.FirebaseCloudMessaging.v1.Data
         [Newtonsoft.Json.JsonPropertyAttribute("notification")]
         public virtual Notification Notification { get; set; }
 
-        /// <summary>Registration token to send a message to.</summary>
+        /// <summary>
+        /// Deprecated: Use `fid` instead. Registration token to send a message to. During the transition period, this
+        /// field also accepts a Firebase Installation ID (FID).
+        /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("token")]
         public virtual string Token { get; set; }
 
