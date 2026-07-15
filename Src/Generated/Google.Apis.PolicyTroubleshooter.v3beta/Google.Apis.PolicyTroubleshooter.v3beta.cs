@@ -320,10 +320,88 @@ namespace Google.Apis.PolicyTroubleshooter.v3beta
                 base.InitParameters();
             }
         }
+
+        /// <summary>
+        /// Checks the access request associated with the error identifier and explains why the access is denied by IAM
+        /// policies.
+        /// </summary>
+        /// <param name="body">The body of the request.</param>
+        public virtual TroubleshootErrorRequest TroubleshootError(Google.Apis.PolicyTroubleshooter.v3beta.Data.GoogleCloudPolicytroubleshooterIamV3betaTroubleshootIamPolicyErrorRequest body)
+        {
+            return new TroubleshootErrorRequest(this.service, body);
+        }
+
+        /// <summary>
+        /// Checks the access request associated with the error identifier and explains why the access is denied by IAM
+        /// policies.
+        /// </summary>
+        public class TroubleshootErrorRequest : PolicyTroubleshooterBaseServiceRequest<Google.Apis.PolicyTroubleshooter.v3beta.Data.GoogleCloudPolicytroubleshooterIamV3betaTroubleshootIamPolicyErrorResponse>
+        {
+            /// <summary>Constructs a new TroubleshootError request.</summary>
+            public TroubleshootErrorRequest(Google.Apis.Services.IClientService service, Google.Apis.PolicyTroubleshooter.v3beta.Data.GoogleCloudPolicytroubleshooterIamV3betaTroubleshootIamPolicyErrorRequest body) : base(service)
+            {
+                Body = body;
+                InitParameters();
+            }
+
+            /// <summary>Gets or sets the body of this request.</summary>
+            Google.Apis.PolicyTroubleshooter.v3beta.Data.GoogleCloudPolicytroubleshooterIamV3betaTroubleshootIamPolicyErrorRequest Body { get; set; }
+
+            /// <summary>Returns the body of the request.</summary>
+            protected override object GetBody() => Body;
+
+            /// <summary>Gets the method name.</summary>
+            public override string MethodName => "troubleshootError";
+
+            /// <summary>Gets the HTTP method.</summary>
+            public override string HttpMethod => "POST";
+
+            /// <summary>Gets the REST path.</summary>
+            public override string RestPath => "v3beta/iam:troubleshootError";
+
+            /// <summary>Initializes TroubleshootError parameter list.</summary>
+            protected override void InitParameters()
+            {
+                base.InitParameters();
+            }
+        }
     }
 }
 namespace Google.Apis.PolicyTroubleshooter.v3beta.Data
 {
+    /// <summary>Information about the principal, resource, and permission for the ErrorInfoId.</summary>
+    public class GoogleCloudPolicytroubleshooterIamV3betaAccessContext : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>
+        /// The relative resource name, not including the / prefix. For example, `projects/project-id`,
+        /// `projects/-/serviceAccounts/11112222`
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("name")]
+        public virtual string Name { get; set; }
+
+        /// <summary>
+        /// The full resource name of the parent where IAM policy is configured. For example,
+        /// `//cloudresourcemanager.googleapis.com/folders/444446666`
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("parent")]
+        public virtual string Parent { get; set; }
+
+        /// <summary>Required. The IAM permission name provided by the user in the access denied request.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("permission")]
+        public virtual string Permission { get; set; }
+
+        /// <summary>
+        /// The email address of the principal who requested access. For example, `alice@example.com` or
+        /// `my-service-account@my-project.iam.gserviceaccount.com`. The principal must be a Google Account or a service
+        /// account. Other types of principals are not supported.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("principal")]
+        public virtual string Principal { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
     /// <summary>Information about the principal, resource, and permission to check.</summary>
     public class GoogleCloudPolicytroubleshooterIamV3betaAccessTuple : Google.Apis.Requests.IDirectResponseSchema
     {
@@ -1115,6 +1193,10 @@ namespace Google.Apis.PolicyTroubleshooter.v3beta.Data
         [Newtonsoft.Json.JsonPropertyAttribute("combinedResourceInclusionState")]
         public virtual string CombinedResourceInclusionState { get; set; }
 
+        /// <summary>The relevance of the combined resource inclusion state to the overall access state.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("combinedResourceRelevance")]
+        public virtual string CombinedResourceRelevance { get; set; }
+
         /// <summary>Required. The effect of the rule which describes the access relationship.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("effect")]
         public virtual string Effect { get; set; }
@@ -1125,6 +1207,13 @@ namespace Google.Apis.PolicyTroubleshooter.v3beta.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("explainedResources")]
         public virtual System.Collections.Generic.IList<GoogleCloudPolicytroubleshooterIamV3betaExplainedPABRuleExplainedResource> ExplainedResources { get; set; }
+
+        /// <summary>
+        /// Output only. Unsupported features detected in this rule. Supported values: * `OPERATION`: Permission
+        /// Subsetting (Operation constraints). See google.iam.v3.PrincipalAccessBoundaryPolicyRule.operation.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("pabUnsupportedFeatures")]
+        public virtual System.Collections.Generic.IList<string> PabUnsupportedFeatures { get; set; }
 
         /// <summary>The relevance of this rule to the overall access state.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("relevance")]
@@ -1217,6 +1306,52 @@ namespace Google.Apis.PolicyTroubleshooter.v3beta.Data
         /// <summary>The relevance of the principal access boundary access state to the overall access state.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("relevance")]
         public virtual string Relevance { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Request to troubleshoot access denial with the IAM error identifier.</summary>
+    public class GoogleCloudPolicytroubleshooterIamV3betaTroubleshootIamPolicyErrorRequest : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>
+        /// This identifier is returned in the `ErrorInfo.metadata` with key 'error_info_id' when an access requests is
+        /// denied by the IAM service.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("errorInfoId")]
+        public virtual string ErrorInfoId { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Response for troubleshoot access denial with the IAM error identifier.</summary>
+    public class GoogleCloudPolicytroubleshooterIamV3betaTroubleshootIamPolicyErrorResponse : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The access context associated with the ErrorInfoId.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("accessContext")]
+        public virtual GoogleCloudPolicytroubleshooterIamV3betaAccessContext AccessContext { get; set; }
+
+        /// <summary>An explanation of how the applicable IAM allow policies affect the final access state.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("allowPolicyExplanation")]
+        public virtual GoogleCloudPolicytroubleshooterIamV3betaAllowPolicyExplanation AllowPolicyExplanation { get; set; }
+
+        /// <summary>An explanation of how the applicable IAM deny policies affect the final access state.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("denyPolicyExplanation")]
+        public virtual GoogleCloudPolicytroubleshooterIamV3betaDenyPolicyExplanation DenyPolicyExplanation { get; set; }
+
+        /// <summary>
+        /// Indicates whether the principal has the permission to access the resource, based on evaluating all types of
+        /// the applicable IAM policies.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("overallAccessState")]
+        public virtual string OverallAccessState { get; set; }
+
+        /// <summary>
+        /// An explanation of how the applicable principal access boundary policies affect the final access state.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("pabPolicyExplanation")]
+        public virtual GoogleCloudPolicytroubleshooterIamV3betaPABPolicyExplanation PabPolicyExplanation { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -2086,6 +2221,19 @@ namespace Google.Apis.PolicyTroubleshooter.v3beta.Data
         public virtual string Effect { get; set; }
 
         /// <summary>
+        /// Optional. A list of Resource Manager resources. If an excluded resource is listed in the rule, then the rule
+        /// does not apply for that resource and its descendants. This takes precedence over the `resources` field. The
+        /// number of excluded resources in this field is limited to 500 across all rules in the policy. The following
+        /// resource types are supported: * Organizations, such as
+        /// `//cloudresourcemanager.googleapis.com/organizations/123`. * Folders, such as
+        /// `//cloudresourcemanager.googleapis.com/folders/123`. * Projects, such as
+        /// `//cloudresourcemanager.googleapis.com/projects/123` or
+        /// `//cloudresourcemanager.googleapis.com/projects/my-project-id`.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("excludedResources")]
+        public virtual System.Collections.Generic.IList<string> ExcludedResources { get; set; }
+
+        /// <summary>
         /// Optional. The operation attributes that determine whether this rule applies to a request. If this field is
         /// not specified, the rule applies to all operations.
         /// </summary>
@@ -2113,25 +2261,27 @@ namespace Google.Apis.PolicyTroubleshooter.v3beta.Data
     {
         /// <summary>
         /// Optional. Specifies the permissions that this rule excludes from the set of affected permissions given by
-        /// `permissions`. The number of excluded permission strings in this field is limited to 50. If a permission
-        /// appears in both `permissions` and `excluded_permissions` then it will _not_ be subject to the policy effect.
-        /// The excluded permissions can be specified using the same syntax as `permissions`.
+        /// `permissions`. The number of excluded permission strings in this field is limited to 50 across all rules in
+        /// the policy. If a permission appears in both `permissions` and `excluded_permissions` then it will _not_ be
+        /// subject to the policy effect. The excluded permissions can be specified using the same syntax as
+        /// `permissions`.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("excludedPermissions")]
         public virtual System.Collections.Generic.IList<string> ExcludedPermissions { get; set; }
 
         /// <summary>
         /// Optional. The permissions that are explicitly affected by this rule. The number of permission strings in
-        /// this field is limited to 50. Each permission uses the format `{service_fqdn}/{resource}.{verb}`, where
-        /// `{service_fqdn}` is the fully qualified domain name for the service. `*` can be used as a wildcard to match
-        /// all permissions for a specific service, resource type, or verb. The following formats are supported: *
-        /// `{service_fqdn}/{resource}.{verb}`: A specific permission. * `{service_fqdn}/{resource}.*`: All permissions
-        /// for a specific resource type. * `{service_fqdn}/*.*`: All permissions for all resource types under a
-        /// specific service. * `{service_fqdn}/*.{verb}`: All permissions with a specific verb under a specific
-        /// service. * `*`: All permissions across all services. For example, `compute.googleapis.com/*.setIamPolicy`
-        /// refers to all setIamPolicy permissions for any compute resource. Wildcards expand only to the permissions
-        /// specified in the `enforcement_version` of the policy. If the `enforcement_version` is updated, the wildcard
-        /// will automatically expand to include new permissions in the updated version.
+        /// this field is limited to 50 across all rules in the policy. Each permission uses the format
+        /// `{service_fqdn}/{resource}.{verb}`, where `{service_fqdn}` is the fully qualified domain name for the
+        /// service. `*` can be used as a wildcard to match all permissions for a specific service, resource type, or
+        /// verb. The following formats are supported: * `{service_fqdn}/{resource}.{verb}`: A specific permission. *
+        /// `{service_fqdn}/{resource}.*`: All permissions for a specific resource type. * `{service_fqdn}/*.*`: All
+        /// permissions for all resource types under a specific service. * `{service_fqdn}/*.{verb}`: All permissions
+        /// with a specific verb under a specific service. * `*`: All permissions across all services. For example,
+        /// `compute.googleapis.com/*.setIamPolicy` refers to all setIamPolicy permissions for any compute resource.
+        /// Wildcards expand only to the permissions specified in the `enforcement_version` of the policy. If the
+        /// `enforcement_version` is updated, the wildcard will automatically expand to include new permissions in the
+        /// updated version.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("permissions")]
         public virtual System.Collections.Generic.IList<string> Permissions { get; set; }

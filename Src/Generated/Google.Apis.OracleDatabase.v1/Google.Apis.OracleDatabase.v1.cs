@@ -899,6 +899,57 @@ namespace Google.Apis.OracleDatabase.v1
                     }
                 }
 
+                /// <summary>Gets the refreshable clones for a given Autonomous Database.</summary>
+                /// <param name="name">
+                /// Required. The Autonomous Database resource whose refreshable clones are to be listed. Format:
+                /// projects/{project}/locations/{location}/autonomousDatabases/{autonomous_database}
+                /// </param>
+                public virtual GetRefreshableClonesRequest GetRefreshableClones(string name)
+                {
+                    return new GetRefreshableClonesRequest(this.service, name);
+                }
+
+                /// <summary>Gets the refreshable clones for a given Autonomous Database.</summary>
+                public class GetRefreshableClonesRequest : OracleDatabaseBaseServiceRequest<Google.Apis.OracleDatabase.v1.Data.AutonomousDatabaseRefreshableClones>
+                {
+                    /// <summary>Constructs a new GetRefreshableClones request.</summary>
+                    public GetRefreshableClonesRequest(Google.Apis.Services.IClientService service, string name) : base(service)
+                    {
+                        Name = name;
+                        InitParameters();
+                    }
+
+                    /// <summary>
+                    /// Required. The Autonomous Database resource whose refreshable clones are to be listed. Format:
+                    /// projects/{project}/locations/{location}/autonomousDatabases/{autonomous_database}
+                    /// </summary>
+                    [Google.Apis.Util.RequestParameterAttribute("name", Google.Apis.Util.RequestParameterType.Path)]
+                    public virtual string Name { get; private set; }
+
+                    /// <summary>Gets the method name.</summary>
+                    public override string MethodName => "getRefreshableClones";
+
+                    /// <summary>Gets the HTTP method.</summary>
+                    public override string HttpMethod => "GET";
+
+                    /// <summary>Gets the REST path.</summary>
+                    public override string RestPath => "v1/{+name}:getRefreshableClones";
+
+                    /// <summary>Initializes GetRefreshableClones parameter list.</summary>
+                    protected override void InitParameters()
+                    {
+                        base.InitParameters();
+                        RequestParameters.Add("name", new Google.Apis.Discovery.Parameter
+                        {
+                            Name = "name",
+                            IsRequired = true,
+                            ParameterType = "path",
+                            DefaultValue = null,
+                            Pattern = @"^projects/[^/]+/locations/[^/]+/autonomousDatabases/[^/]+$",
+                        });
+                    }
+                }
+
                 /// <summary>Lists the Autonomous Databases in a given project and location.</summary>
                 /// <param name="parent">
                 /// Required. The parent value for the Autonomous Database in the following format:
@@ -1091,6 +1142,65 @@ namespace Google.Apis.OracleDatabase.v1
                             ParameterType = "query",
                             DefaultValue = null,
                             Pattern = null,
+                        });
+                    }
+                }
+
+                /// <summary>Refreshes the refreshable clone of an Autonomous Database.</summary>
+                /// <param name="body">The body of the request.</param>
+                /// <param name="name">
+                /// Required. The name of the AutonomousDatabase resource. Format:
+                /// projects/{project}/location/{location}/autonomousDatabases/{autonomous_database}
+                /// </param>
+                public virtual RefreshRequest Refresh(Google.Apis.OracleDatabase.v1.Data.RefreshAutonomousDatabaseRequest body, string name)
+                {
+                    return new RefreshRequest(this.service, body, name);
+                }
+
+                /// <summary>Refreshes the refreshable clone of an Autonomous Database.</summary>
+                public class RefreshRequest : OracleDatabaseBaseServiceRequest<Google.Apis.OracleDatabase.v1.Data.Operation>
+                {
+                    /// <summary>Constructs a new Refresh request.</summary>
+                    public RefreshRequest(Google.Apis.Services.IClientService service, Google.Apis.OracleDatabase.v1.Data.RefreshAutonomousDatabaseRequest body, string name) : base(service)
+                    {
+                        Name = name;
+                        Body = body;
+                        InitParameters();
+                    }
+
+                    /// <summary>
+                    /// Required. The name of the AutonomousDatabase resource. Format:
+                    /// projects/{project}/location/{location}/autonomousDatabases/{autonomous_database}
+                    /// </summary>
+                    [Google.Apis.Util.RequestParameterAttribute("name", Google.Apis.Util.RequestParameterType.Path)]
+                    public virtual string Name { get; private set; }
+
+                    /// <summary>Gets or sets the body of this request.</summary>
+                    Google.Apis.OracleDatabase.v1.Data.RefreshAutonomousDatabaseRequest Body { get; set; }
+
+                    /// <summary>Returns the body of the request.</summary>
+                    protected override object GetBody() => Body;
+
+                    /// <summary>Gets the method name.</summary>
+                    public override string MethodName => "refresh";
+
+                    /// <summary>Gets the HTTP method.</summary>
+                    public override string HttpMethod => "POST";
+
+                    /// <summary>Gets the REST path.</summary>
+                    public override string RestPath => "v1/{+name}:refresh";
+
+                    /// <summary>Initializes Refresh parameter list.</summary>
+                    protected override void InitParameters()
+                    {
+                        base.InitParameters();
+                        RequestParameters.Add("name", new Google.Apis.Discovery.Parameter
+                        {
+                            Name = "name",
+                            IsRequired = true,
+                            ParameterType = "path",
+                            DefaultValue = null,
+                            Pattern = @"^projects/[^/]+/locations/[^/]+/autonomousDatabases/[^/]+$",
                         });
                     }
                 }
@@ -1602,6 +1712,65 @@ namespace Google.Apis.OracleDatabase.v1
                                 Pattern = null,
                             });
                         }
+                    }
+                }
+
+                /// <summary>Configures Exascale for a single Exadata Infrastructure.</summary>
+                /// <param name="body">The body of the request.</param>
+                /// <param name="name">
+                /// Required. The name of the Cloud Exadata Infrastructure in the following format:
+                /// projects/{project}/locations/{location}/cloudExadataInfrastructures/{cloud_exadata_infrastructure}.
+                /// </param>
+                public virtual ConfigureExascaleRequest ConfigureExascale(Google.Apis.OracleDatabase.v1.Data.ConfigureExascaleCloudExadataInfrastructureRequest body, string name)
+                {
+                    return new ConfigureExascaleRequest(this.service, body, name);
+                }
+
+                /// <summary>Configures Exascale for a single Exadata Infrastructure.</summary>
+                public class ConfigureExascaleRequest : OracleDatabaseBaseServiceRequest<Google.Apis.OracleDatabase.v1.Data.Operation>
+                {
+                    /// <summary>Constructs a new ConfigureExascale request.</summary>
+                    public ConfigureExascaleRequest(Google.Apis.Services.IClientService service, Google.Apis.OracleDatabase.v1.Data.ConfigureExascaleCloudExadataInfrastructureRequest body, string name) : base(service)
+                    {
+                        Name = name;
+                        Body = body;
+                        InitParameters();
+                    }
+
+                    /// <summary>
+                    /// Required. The name of the Cloud Exadata Infrastructure in the following format:
+                    /// projects/{project}/locations/{location}/cloudExadataInfrastructures/{cloud_exadata_infrastructure}.
+                    /// </summary>
+                    [Google.Apis.Util.RequestParameterAttribute("name", Google.Apis.Util.RequestParameterType.Path)]
+                    public virtual string Name { get; private set; }
+
+                    /// <summary>Gets or sets the body of this request.</summary>
+                    Google.Apis.OracleDatabase.v1.Data.ConfigureExascaleCloudExadataInfrastructureRequest Body { get; set; }
+
+                    /// <summary>Returns the body of the request.</summary>
+                    protected override object GetBody() => Body;
+
+                    /// <summary>Gets the method name.</summary>
+                    public override string MethodName => "configureExascale";
+
+                    /// <summary>Gets the HTTP method.</summary>
+                    public override string HttpMethod => "POST";
+
+                    /// <summary>Gets the REST path.</summary>
+                    public override string RestPath => "v1/{+name}:configureExascale";
+
+                    /// <summary>Initializes ConfigureExascale parameter list.</summary>
+                    protected override void InitParameters()
+                    {
+                        base.InitParameters();
+                        RequestParameters.Add("name", new Google.Apis.Discovery.Parameter
+                        {
+                            Name = "name",
+                            IsRequired = true,
+                            ParameterType = "path",
+                            DefaultValue = null,
+                            Pattern = @"^projects/[^/]+/locations/[^/]+/cloudExadataInfrastructures/[^/]+$",
+                        });
                     }
                 }
 
@@ -5001,57 +5170,6 @@ namespace Google.Apis.OracleDatabase.v1
                     this.service = service;
                 }
 
-                /// <summary>Gets details of a single GoldengateConnectionType.</summary>
-                /// <param name="name">
-                /// Required. Name of the resource in the format:
-                /// projects/{project}/locations/{location}/goldengateConnectionTypes/{goldengate_connection_type}
-                /// </param>
-                public virtual GetRequest Get(string name)
-                {
-                    return new GetRequest(this.service, name);
-                }
-
-                /// <summary>Gets details of a single GoldengateConnectionType.</summary>
-                public class GetRequest : OracleDatabaseBaseServiceRequest<Google.Apis.OracleDatabase.v1.Data.GoldengateConnectionType>
-                {
-                    /// <summary>Constructs a new Get request.</summary>
-                    public GetRequest(Google.Apis.Services.IClientService service, string name) : base(service)
-                    {
-                        Name = name;
-                        InitParameters();
-                    }
-
-                    /// <summary>
-                    /// Required. Name of the resource in the format:
-                    /// projects/{project}/locations/{location}/goldengateConnectionTypes/{goldengate_connection_type}
-                    /// </summary>
-                    [Google.Apis.Util.RequestParameterAttribute("name", Google.Apis.Util.RequestParameterType.Path)]
-                    public virtual string Name { get; private set; }
-
-                    /// <summary>Gets the method name.</summary>
-                    public override string MethodName => "get";
-
-                    /// <summary>Gets the HTTP method.</summary>
-                    public override string HttpMethod => "GET";
-
-                    /// <summary>Gets the REST path.</summary>
-                    public override string RestPath => "v1/{+name}";
-
-                    /// <summary>Initializes Get parameter list.</summary>
-                    protected override void InitParameters()
-                    {
-                        base.InitParameters();
-                        RequestParameters.Add("name", new Google.Apis.Discovery.Parameter
-                        {
-                            Name = "name",
-                            IsRequired = true,
-                            ParameterType = "path",
-                            DefaultValue = null,
-                            Pattern = @"^projects/[^/]+/locations/[^/]+/goldengateConnectionTypes/[^/]+$",
-                        });
-                    }
-                }
-
                 /// <summary>Lists GoldengateConnectionTypes in a given project and location.</summary>
                 /// <param name="parent">
                 /// Required. Parent value for ListGoldengateConnectionTypesRequest Format:
@@ -5503,57 +5621,6 @@ namespace Google.Apis.OracleDatabase.v1
                     this.service = service;
                 }
 
-                /// <summary>Gets details of a single GoldengateDeploymentEnvironment.</summary>
-                /// <param name="name">
-                /// Required. Name of the resource with the format:
-                /// projects/{project}/locations/{location}/goldengateDeploymentEnvironments/{goldengate_deployment_environment}
-                /// </param>
-                public virtual GetRequest Get(string name)
-                {
-                    return new GetRequest(this.service, name);
-                }
-
-                /// <summary>Gets details of a single GoldengateDeploymentEnvironment.</summary>
-                public class GetRequest : OracleDatabaseBaseServiceRequest<Google.Apis.OracleDatabase.v1.Data.GoldengateDeploymentEnvironment>
-                {
-                    /// <summary>Constructs a new Get request.</summary>
-                    public GetRequest(Google.Apis.Services.IClientService service, string name) : base(service)
-                    {
-                        Name = name;
-                        InitParameters();
-                    }
-
-                    /// <summary>
-                    /// Required. Name of the resource with the format:
-                    /// projects/{project}/locations/{location}/goldengateDeploymentEnvironments/{goldengate_deployment_environment}
-                    /// </summary>
-                    [Google.Apis.Util.RequestParameterAttribute("name", Google.Apis.Util.RequestParameterType.Path)]
-                    public virtual string Name { get; private set; }
-
-                    /// <summary>Gets the method name.</summary>
-                    public override string MethodName => "get";
-
-                    /// <summary>Gets the HTTP method.</summary>
-                    public override string HttpMethod => "GET";
-
-                    /// <summary>Gets the REST path.</summary>
-                    public override string RestPath => "v1/{+name}";
-
-                    /// <summary>Initializes Get parameter list.</summary>
-                    protected override void InitParameters()
-                    {
-                        base.InitParameters();
-                        RequestParameters.Add("name", new Google.Apis.Discovery.Parameter
-                        {
-                            Name = "name",
-                            IsRequired = true,
-                            ParameterType = "path",
-                            DefaultValue = null,
-                            Pattern = @"^projects/[^/]+/locations/[^/]+/goldengateDeploymentEnvironments/[^/]+$",
-                        });
-                    }
-                }
-
                 /// <summary>Lists GoldengateDeploymentEnvironments in a given project and location.</summary>
                 /// <param name="parent">
                 /// Required. The parent, which owns this collection of GoldengateDeploymentEnvironments. Format:
@@ -5649,57 +5716,6 @@ namespace Google.Apis.OracleDatabase.v1
                 public GoldengateDeploymentTypesResource(Google.Apis.Services.IClientService service)
                 {
                     this.service = service;
-                }
-
-                /// <summary>Gets details of a single GoldenGateDeploymentType.</summary>
-                /// <param name="name">
-                /// Required. The name of the GoldengateDeploymentType to retrieve. Format:
-                /// projects/{project}/locations/{location}/goldengateDeploymentTypes/{goldengate_deployment_type}
-                /// </param>
-                public virtual GetRequest Get(string name)
-                {
-                    return new GetRequest(this.service, name);
-                }
-
-                /// <summary>Gets details of a single GoldenGateDeploymentType.</summary>
-                public class GetRequest : OracleDatabaseBaseServiceRequest<Google.Apis.OracleDatabase.v1.Data.GoldengateDeploymentType>
-                {
-                    /// <summary>Constructs a new Get request.</summary>
-                    public GetRequest(Google.Apis.Services.IClientService service, string name) : base(service)
-                    {
-                        Name = name;
-                        InitParameters();
-                    }
-
-                    /// <summary>
-                    /// Required. The name of the GoldengateDeploymentType to retrieve. Format:
-                    /// projects/{project}/locations/{location}/goldengateDeploymentTypes/{goldengate_deployment_type}
-                    /// </summary>
-                    [Google.Apis.Util.RequestParameterAttribute("name", Google.Apis.Util.RequestParameterType.Path)]
-                    public virtual string Name { get; private set; }
-
-                    /// <summary>Gets the method name.</summary>
-                    public override string MethodName => "get";
-
-                    /// <summary>Gets the HTTP method.</summary>
-                    public override string HttpMethod => "GET";
-
-                    /// <summary>Gets the REST path.</summary>
-                    public override string RestPath => "v1/{+name}";
-
-                    /// <summary>Initializes Get parameter list.</summary>
-                    protected override void InitParameters()
-                    {
-                        base.InitParameters();
-                        RequestParameters.Add("name", new Google.Apis.Discovery.Parameter
-                        {
-                            Name = "name",
-                            IsRequired = true,
-                            ParameterType = "path",
-                            DefaultValue = null,
-                            Pattern = @"^projects/[^/]+/locations/[^/]+/goldengateDeploymentTypes/[^/]+$",
-                        });
-                    }
                 }
 
                 /// <summary>Lists GoldenGateDeploymentTypes in a given project and location.</summary>
@@ -5824,57 +5840,6 @@ namespace Google.Apis.OracleDatabase.v1
                 public GoldengateDeploymentVersionsResource(Google.Apis.Services.IClientService service)
                 {
                     this.service = service;
-                }
-
-                /// <summary>Gets details of a single GoldengateDeploymentVersion.</summary>
-                /// <param name="name">
-                /// Required. The name of the GoldengateDeploymentVersion to retrieve. Format:
-                /// projects/{project}/locations/{location}/goldengateDeploymentVersions/{goldengate_deployment_version}
-                /// </param>
-                public virtual GetRequest Get(string name)
-                {
-                    return new GetRequest(this.service, name);
-                }
-
-                /// <summary>Gets details of a single GoldengateDeploymentVersion.</summary>
-                public class GetRequest : OracleDatabaseBaseServiceRequest<Google.Apis.OracleDatabase.v1.Data.GoldengateDeploymentVersion>
-                {
-                    /// <summary>Constructs a new Get request.</summary>
-                    public GetRequest(Google.Apis.Services.IClientService service, string name) : base(service)
-                    {
-                        Name = name;
-                        InitParameters();
-                    }
-
-                    /// <summary>
-                    /// Required. The name of the GoldengateDeploymentVersion to retrieve. Format:
-                    /// projects/{project}/locations/{location}/goldengateDeploymentVersions/{goldengate_deployment_version}
-                    /// </summary>
-                    [Google.Apis.Util.RequestParameterAttribute("name", Google.Apis.Util.RequestParameterType.Path)]
-                    public virtual string Name { get; private set; }
-
-                    /// <summary>Gets the method name.</summary>
-                    public override string MethodName => "get";
-
-                    /// <summary>Gets the HTTP method.</summary>
-                    public override string HttpMethod => "GET";
-
-                    /// <summary>Gets the REST path.</summary>
-                    public override string RestPath => "v1/{+name}";
-
-                    /// <summary>Initializes Get parameter list.</summary>
-                    protected override void InitParameters()
-                    {
-                        base.InitParameters();
-                        RequestParameters.Add("name", new Google.Apis.Discovery.Parameter
-                        {
-                            Name = "name",
-                            IsRequired = true,
-                            ParameterType = "path",
-                            DefaultValue = null,
-                            Pattern = @"^projects/[^/]+/locations/[^/]+/goldengateDeploymentVersions/[^/]+$",
-                        });
-                    }
                 }
 
                 /// <summary>Lists GoldengateDeploymentVersions in a given project and location.</summary>
@@ -8759,6 +8724,13 @@ namespace Google.Apis.OracleDatabase.v1.Data
         [Newtonsoft.Json.JsonPropertyAttribute("privateEndpointLabel")]
         public virtual string PrivateEndpointLabel { get; set; }
 
+        /// <summary>
+        /// Optional. Indicates if the Autonomous Database is a refreshable clone. This field is used in update flow to
+        /// connect / disconnect a refreshable clone from its source database.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("refreshableClone")]
+        public virtual System.Nullable<bool> RefreshableClone { get; set; }
+
         /// <summary>Output only. The refresh mode of the cloned Autonomous Database.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("refreshableMode")]
         public virtual string RefreshableMode { get; set; }
@@ -8813,6 +8785,32 @@ namespace Google.Apis.OracleDatabase.v1.Data
         /// <summary>Optional. Immutable. The ID of the Oracle Cloud Infrastructure vault.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("vaultId")]
         public virtual string VaultId { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>An Autonomous Database refreshable clone</summary>
+    public class AutonomousDatabaseRefreshableClone : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Output only. The GCP resource name of the Autonomous Database.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("name")]
+        public virtual string Name { get; set; }
+
+        /// <summary>Output only. The Google Cloud region where the refreshable clone exists.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("region")]
+        public virtual string Region { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Response message for getting the Autonomous Database refreshable clones.</summary>
+    public class AutonomousDatabaseRefreshableClones : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The list of Autonomous Database refreshable clones.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("autonomousDatabaseRefreshableClones")]
+        public virtual System.Collections.Generic.IList<AutonomousDatabaseRefreshableClone> AutonomousDatabaseRefreshableClonesValue { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -9160,6 +9158,10 @@ namespace Google.Apis.OracleDatabase.v1.Data
         [Newtonsoft.Json.JsonPropertyAttribute("dbServerVersion")]
         public virtual string DbServerVersion { get; set; }
 
+        /// <summary>Output only. The Exascale configuration for the Exadata Infrastructure.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("exascaleConfig")]
+        public virtual ExascaleConfig ExascaleConfig { get; set; }
+
         /// <summary>Optional. Maintenance window for repair.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("maintenanceWindow")]
         public virtual MaintenanceWindow MaintenanceWindow { get; set; }
@@ -9399,6 +9401,13 @@ namespace Google.Apis.OracleDatabase.v1.Data
         public virtual string ExadataInfrastructure { get; set; }
 
         /// <summary>
+        /// Optional. The name of ExascaleDbStorageVault associated with the VM Cluster. Format:
+        /// projects/{project}/locations/{location}/exascaleDbStorageVaults/{exascale_db_storage_vault}
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("exascaleDbStorageVault")]
+        public virtual string ExascaleDbStorageVault { get; set; }
+
+        /// <summary>
         /// Output only. The GCP Oracle zone where Oracle CloudVmCluster is hosted. This will be the same as the
         /// gcp_oracle_zone of the CloudExadataInfrastructure. Example: us-east4-b-r2.
         /// </summary>
@@ -9581,6 +9590,10 @@ namespace Google.Apis.OracleDatabase.v1.Data
         [Newtonsoft.Json.JsonPropertyAttribute("state")]
         public virtual string State { get; set; }
 
+        /// <summary>Output only. The storage management type of the VM Cluster.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("storageManagementType")]
+        public virtual string StorageManagementType { get; set; }
+
         /// <summary>Output only. The storage allocation for the disk group, in gigabytes (GB).</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("storageSizeGb")]
         public virtual System.Nullable<int> StorageSizeGb { get; set; }
@@ -9592,6 +9605,21 @@ namespace Google.Apis.OracleDatabase.v1.Data
         /// <summary>Optional. Time zone of VM Cluster to set. Defaults to UTC if not specified.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("timeZone")]
         public virtual TimeZone TimeZone { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>The request for `CloudExadataInfrastructure.ConfigureExascale`.</summary>
+    public class ConfigureExascaleCloudExadataInfrastructureRequest : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Optional. An optional ID to identify the request.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("requestId")]
+        public virtual string RequestId { get; set; }
+
+        /// <summary>Required. The total storage to be allocated to Exascale in GBs.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("totalStorageSizeGb")]
+        public virtual System.Nullable<int> TotalStorageSizeGb { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -10954,6 +10982,21 @@ namespace Google.Apis.OracleDatabase.v1.Data
         public virtual string ETag { get; set; }
     }
 
+    /// <summary>Details of the Exascale configuration for the Exadata Infrastructure.</summary>
+    public class ExascaleConfig : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Output only. Available storage size for Exascale in GBs.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("availableStorageSizeGb")]
+        public virtual System.Nullable<int> AvailableStorageSizeGb { get; set; }
+
+        /// <summary>Output only. Total storage size needed for Exascale in GBs.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("totalStorageSizeGb")]
+        public virtual System.Nullable<int> TotalStorageSizeGb { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
     /// <summary>The storage details of the ExascaleDbStorageVault.</summary>
     public class ExascaleDbStorageDetails : Google.Apis.Requests.IDirectResponseSchema
     {
@@ -11026,6 +11069,14 @@ namespace Google.Apis.OracleDatabase.v1.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("entitlementId")]
         public virtual string EntitlementId { get; set; }
+
+        /// <summary>
+        /// Optional. The Exadata Infrastructure resource on which ExascaleDbStorageVault resource is created, in the
+        /// following format:
+        /// projects/{project}/locations/{region}/cloudExadataInfrastuctures/{cloud_extradata_infrastructure}
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("exadataInfrastructure")]
+        public virtual string ExadataInfrastructure { get; set; }
 
         /// <summary>
         /// Optional. The GCP Oracle zone where Oracle ExascaleDbStorageVault is hosted. Example: us-east4-b-r2. If not
@@ -15469,6 +15520,55 @@ namespace Google.Apis.OracleDatabase.v1.Data
         public virtual string ETag { get; set; }
     }
 
+    /// <summary>Request message for RefreshAutonomousDatabase method.</summary>
+    public class RefreshAutonomousDatabaseRequest : Google.Apis.Requests.IDirectResponseSchema
+    {
+        private string _refreshCutoffTimeRaw;
+
+        private object _refreshCutoffTime;
+
+        /// <summary>
+        /// Required. The timestamp to which the Autonomous Database refreshable clone will be refreshed. Changes made
+        /// in the primary database after this timestamp are not part of the data refresh.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("refreshCutoffTime")]
+        public virtual string RefreshCutoffTimeRaw
+        {
+            get => _refreshCutoffTimeRaw;
+            set
+            {
+                _refreshCutoffTime = Google.Apis.Util.Utilities.DeserializeForGoogleFormat(value);
+                _refreshCutoffTimeRaw = value;
+            }
+        }
+
+        /// <summary><seealso cref="object"/> representation of <see cref="RefreshCutoffTimeRaw"/>.</summary>
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use RefreshCutoffTimeDateTimeOffset instead.")]
+        public virtual object RefreshCutoffTime
+        {
+            get => _refreshCutoffTime;
+            set
+            {
+                _refreshCutoffTimeRaw = Google.Apis.Util.Utilities.SerializeForGoogleFormat(value);
+                _refreshCutoffTime = value;
+            }
+        }
+
+        /// <summary>
+        /// <seealso cref="System.DateTimeOffset"/> representation of <see cref="RefreshCutoffTimeRaw"/>.
+        /// </summary>
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        public virtual System.DateTimeOffset? RefreshCutoffTimeDateTimeOffset
+        {
+            get => Google.Apis.Util.DiscoveryFormat.ParseGoogleDateTimeToDateTimeOffset(RefreshCutoffTimeRaw);
+            set => RefreshCutoffTimeRaw = Google.Apis.Util.DiscoveryFormat.FormatDateTimeOffsetToGoogleDateTime(value);
+        }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
     /// <summary>The request for `ExadbVmCluster.RemoveVirtualMachine`.</summary>
     public class RemoveVirtualMachineExadbVmClusterRequest : Google.Apis.Requests.IDirectResponseSchema
     {
@@ -15585,6 +15685,61 @@ namespace Google.Apis.OracleDatabase.v1.Data
     public class SourceConfig : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>
+        /// Optional. The frequency in seconds a refreshable clone is refreshed after auto-refresh is enabled.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("autoRefreshFrequencySeconds")]
+        public virtual System.Nullable<int> AutoRefreshFrequencySeconds { get; set; }
+
+        /// <summary>
+        /// Optional. The time, in seconds, the data of the automatic refreshable clone lags the primary database at the
+        /// point of refresh.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("autoRefreshPointLagSeconds")]
+        public virtual System.Nullable<int> AutoRefreshPointLagSeconds { get; set; }
+
+        private string _autoRefreshStartTimeRaw;
+
+        private object _autoRefreshStartTime;
+
+        /// <summary>
+        /// Optional. The date and time that auto-refreshing will begin for an Autonomous Database refreshable clone.
+        /// This value controls only the start time for the first refresh operation.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("autoRefreshStartTime")]
+        public virtual string AutoRefreshStartTimeRaw
+        {
+            get => _autoRefreshStartTimeRaw;
+            set
+            {
+                _autoRefreshStartTime = Google.Apis.Util.Utilities.DeserializeForGoogleFormat(value);
+                _autoRefreshStartTimeRaw = value;
+            }
+        }
+
+        /// <summary><seealso cref="object"/> representation of <see cref="AutoRefreshStartTimeRaw"/>.</summary>
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use AutoRefreshStartTimeDateTimeOffset instead.")]
+        public virtual object AutoRefreshStartTime
+        {
+            get => _autoRefreshStartTime;
+            set
+            {
+                _autoRefreshStartTimeRaw = Google.Apis.Util.Utilities.SerializeForGoogleFormat(value);
+                _autoRefreshStartTime = value;
+            }
+        }
+
+        /// <summary>
+        /// <seealso cref="System.DateTimeOffset"/> representation of <see cref="AutoRefreshStartTimeRaw"/>.
+        /// </summary>
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        public virtual System.DateTimeOffset? AutoRefreshStartTimeDateTimeOffset
+        {
+            get => Google.Apis.Util.DiscoveryFormat.ParseGoogleDateTimeToDateTimeOffset(AutoRefreshStartTimeRaw);
+            set => AutoRefreshStartTimeRaw = Google.Apis.Util.DiscoveryFormat.FormatDateTimeOffsetToGoogleDateTime(value);
+        }
+
+        /// <summary>
         /// Optional. This field specifies if the replication of automatic backups is enabled when creating a Data
         /// Guard.
         /// </summary>
@@ -15597,6 +15752,76 @@ namespace Google.Apis.OracleDatabase.v1.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("autonomousDatabase")]
         public virtual string AutonomousDatabase { get; set; }
+
+        /// <summary>
+        /// Optional. The name of the Autonomous Database Backup resource with the format:
+        /// projects/{project}/locations/{region}/autonomousDatabaseBackups/{autonomous_database_backup} Required when
+        /// source_type is BACKUP_FROM_ID.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("autonomousDatabaseBackup")]
+        public virtual string AutonomousDatabaseBackup { get; set; }
+
+        private string _backupTimeRaw;
+
+        private object _backupTime;
+
+        /// <summary>
+        /// Optional. The timestamp specified for the point-in-time clone of the source Autonomous Database. This field
+        /// is only applicable in case of BACKUP_FROM_TIMESTAMP source type and when use_latest_available_backup is
+        /// false.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("backupTime")]
+        public virtual string BackupTimeRaw
+        {
+            get => _backupTimeRaw;
+            set
+            {
+                _backupTime = Google.Apis.Util.Utilities.DeserializeForGoogleFormat(value);
+                _backupTimeRaw = value;
+            }
+        }
+
+        /// <summary><seealso cref="object"/> representation of <see cref="BackupTimeRaw"/>.</summary>
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use BackupTimeDateTimeOffset instead.")]
+        public virtual object BackupTime
+        {
+            get => _backupTime;
+            set
+            {
+                _backupTimeRaw = Google.Apis.Util.Utilities.SerializeForGoogleFormat(value);
+                _backupTime = value;
+            }
+        }
+
+        /// <summary><seealso cref="System.DateTimeOffset"/> representation of <see cref="BackupTimeRaw"/>.</summary>
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        public virtual System.DateTimeOffset? BackupTimeDateTimeOffset
+        {
+            get => Google.Apis.Util.DiscoveryFormat.ParseGoogleDateTimeToDateTimeOffset(BackupTimeRaw);
+            set => BackupTimeRaw = Google.Apis.Util.DiscoveryFormat.FormatDateTimeOffsetToGoogleDateTime(value);
+        }
+
+        /// <summary>
+        /// Optional. The clone type of the Autonomous Database. This field is only applicable in case of cloning
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("cloneType")]
+        public virtual string CloneType { get; set; }
+
+        /// <summary>Optional. The refresh mode of the clone.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("refreshableMode")]
+        public virtual string RefreshableMode { get; set; }
+
+        /// <summary>Optional. The source type of the Autonomous Database.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("sourceType")]
+        public virtual string SourceType { get; set; }
+
+        /// <summary>
+        /// Optional. Clone from latest available backup timestamp. This field is only applicable in case of
+        /// BACKUP_FROM_TIMESTAMP source type.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("useLatestAvailableBackup")]
+        public virtual System.Nullable<bool> UseLatestAvailableBackup { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }

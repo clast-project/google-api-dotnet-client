@@ -1488,6 +1488,59 @@ namespace Google.Apis.CloudWorkstations.v1beta
                             }
                         }
 
+                        /// <summary>Suspends a workstation to reduce costs.</summary>
+                        /// <param name="body">The body of the request.</param>
+                        /// <param name="name">Required. Name of the workstation to suspend.</param>
+                        public virtual SuspendRequest Suspend(Google.Apis.CloudWorkstations.v1beta.Data.SuspendWorkstationRequest body, string name)
+                        {
+                            return new SuspendRequest(this.service, body, name);
+                        }
+
+                        /// <summary>Suspends a workstation to reduce costs.</summary>
+                        public class SuspendRequest : CloudWorkstationsBaseServiceRequest<Google.Apis.CloudWorkstations.v1beta.Data.Operation>
+                        {
+                            /// <summary>Constructs a new Suspend request.</summary>
+                            public SuspendRequest(Google.Apis.Services.IClientService service, Google.Apis.CloudWorkstations.v1beta.Data.SuspendWorkstationRequest body, string name) : base(service)
+                            {
+                                Name = name;
+                                Body = body;
+                                InitParameters();
+                            }
+
+                            /// <summary>Required. Name of the workstation to suspend.</summary>
+                            [Google.Apis.Util.RequestParameterAttribute("name", Google.Apis.Util.RequestParameterType.Path)]
+                            public virtual string Name { get; private set; }
+
+                            /// <summary>Gets or sets the body of this request.</summary>
+                            Google.Apis.CloudWorkstations.v1beta.Data.SuspendWorkstationRequest Body { get; set; }
+
+                            /// <summary>Returns the body of the request.</summary>
+                            protected override object GetBody() => Body;
+
+                            /// <summary>Gets the method name.</summary>
+                            public override string MethodName => "suspend";
+
+                            /// <summary>Gets the HTTP method.</summary>
+                            public override string HttpMethod => "POST";
+
+                            /// <summary>Gets the REST path.</summary>
+                            public override string RestPath => "v1beta/{+name}:suspend";
+
+                            /// <summary>Initializes Suspend parameter list.</summary>
+                            protected override void InitParameters()
+                            {
+                                base.InitParameters();
+                                RequestParameters.Add("name", new Google.Apis.Discovery.Parameter
+                                {
+                                    Name = "name",
+                                    IsRequired = true,
+                                    ParameterType = "path",
+                                    DefaultValue = null,
+                                    Pattern = @"^projects/[^/]+/locations/[^/]+/workstationClusters/[^/]+/workstationConfigs/[^/]+/workstations/[^/]+$",
+                                });
+                            }
+                        }
+
                         /// <summary>
                         /// Returns permissions that a caller has on the specified resource. If the resource does not
                         /// exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This
@@ -3061,6 +3114,13 @@ namespace Google.Apis.CloudWorkstations.v1beta.Data
         public virtual object ArchiveTimeout { get; set; }
 
         /// <summary>
+        /// Optional. Maximum size in GB to which this persistent directory can be resized. Defaults to unlimited if not
+        /// set.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("maxSizeGb")]
+        public virtual System.Nullable<int> MaxSizeGb { get; set; }
+
+        /// <summary>
         /// Optional. Whether the persistent disk should be deleted when the workstation is deleted. Valid values are
         /// `DELETE` and `RETAIN`. Defaults to `DELETE`.
         /// </summary>
@@ -3332,6 +3392,13 @@ namespace Google.Apis.CloudWorkstations.v1beta.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("fsType")]
         public virtual string FsType { get; set; }
+
+        /// <summary>
+        /// Optional. Maximum size in GB to which this persistent directory can be resized. Defaults to unlimited if not
+        /// set.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("maxSizeGb")]
+        public virtual System.Nullable<int> MaxSizeGb { get; set; }
 
         /// <summary>
         /// Optional. Whether the persistent disk should be deleted when the workstation is deleted. Valid values are
@@ -3667,14 +3734,14 @@ namespace Google.Apis.CloudWorkstations.v1beta.Data
         public virtual string ETag { get; set; }
     }
 
-    /// <summary>OAuth token.</summary>
+    /// <summary>Represents an OAuth 2.0 access token and its associated metadata.</summary>
     public class OAuthToken : Google.Apis.Requests.IDirectResponseSchema
     {
-        /// <summary>Required. The OAuth token.</summary>
+        /// <summary>Required. The OAuth 2.0 access token value.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("accessToken")]
         public virtual string AccessToken { get; set; }
 
-        /// <summary>Optional. The email address encapsulated in the OAuth token.</summary>
+        /// <summary>Optional. The email address associated with the OAuth 2.0 access token.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("email")]
         public virtual string Email { get; set; }
 
@@ -3684,7 +3751,8 @@ namespace Google.Apis.CloudWorkstations.v1beta.Data
 
         /// <summary>
         /// Optional. The time the OAuth access token will expire. This should be the time the access token was
-        /// generated plus the expires_in offset returned from the Access Token Response.
+        /// generated plus the expires_in offset returned from the Access Token Response. Only one of `expire_time` or
+        /// `expires_in` should be specified.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("expireTime")]
         public virtual string ExpireTimeRaw
@@ -3719,7 +3787,14 @@ namespace Google.Apis.CloudWorkstations.v1beta.Data
         }
 
         /// <summary>
-        /// Optional. The scopes encapsulated in the OAuth token. See
+        /// Optional. The lifetime duration of the access token. Only one of `expire_time` or `expires_in` should be
+        /// specified.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("expiresIn")]
+        public virtual object ExpiresIn { get; set; }
+
+        /// <summary>
+        /// Optional. The scopes associated with the OAuth 2.0 access token. See
         /// https://developers.google.com/identity/protocols/oauth2/scopes for more information.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("scopes")]
@@ -4036,7 +4111,8 @@ namespace Google.Apis.CloudWorkstations.v1beta.Data
     {
         /// <summary>
         /// Optional. Credentials used by Cloud Client Libraries, Google API Client Libraries, and other tooling within
-        /// the user conainer: https://cloud.google.com/docs/authentication/application-default-credentials
+        /// the user container. For more information, see
+        /// https://cloud.google.com/docs/authentication/application-default-credentials
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("applicationDefaultCredentials")]
         public virtual OAuthToken ApplicationDefaultCredentials { get; set; }
@@ -4172,6 +4248,23 @@ namespace Google.Apis.CloudWorkstations.v1beta.Data
 
     /// <summary>Request message for StopWorkstation.</summary>
     public class StopWorkstationRequest : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>
+        /// Optional. If set, the request will be rejected if the latest version of the workstation on the server does
+        /// not have this ETag.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("etag")]
+        public virtual string ETag { get; set; }
+
+        /// <summary>
+        /// Optional. If set, validate the request and preview the result, but do not actually apply it.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("validateOnly")]
+        public virtual System.Nullable<bool> ValidateOnly { get; set; }
+    }
+
+    /// <summary>Request message for SuspendWorkstation.</summary>
+    public class SuspendWorkstationRequest : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>
         /// Optional. If set, the request will be rejected if the latest version of the workstation on the server does
@@ -4910,6 +5003,13 @@ namespace Google.Apis.CloudWorkstations.v1beta.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("httpOptions")]
         public virtual HttpOptions HttpOptions { get; set; }
+
+        /// <summary>
+        /// Optional. The action to take when the workstation has been idle for the duration specified in idle_timeout.
+        /// Defaults to STOP.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("idleAction")]
+        public virtual string IdleAction { get; set; }
 
         /// <summary>
         /// Optional. Number of seconds to wait before automatically stopping a workstation after it last received user

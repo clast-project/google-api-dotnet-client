@@ -15402,6 +15402,10 @@ namespace Google.Apis.Contactcenterinsights.v1.Data
     /// <summary>The action to be taken when the chart is clicked.</summary>
     public class GoogleCloudContactcenterinsightsV1ChartAction : Google.Apis.Requests.IDirectResponseSchema
     {
+        /// <summary>The conversation filter string.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("conversationFilter")]
+        public virtual string ConversationFilter { get; set; }
+
         /// <summary>Redirect action.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("redirectAction")]
         public virtual GoogleCloudContactcenterinsightsV1RedirectAction RedirectAction { get; set; }
@@ -15635,7 +15639,7 @@ namespace Google.Apis.Contactcenterinsights.v1.Data
         public virtual string Medium { get; set; }
 
         /// <summary>
-        /// Input only. JSON metadata encoded as a string. This field is primarily used by Insights integrations with
+        /// Optional. JSON metadata encoded as a string. This field is primarily used by Insights integrations with
         /// various telephony systems and must be in one of Insight's supported formats.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("metadataJson")]
@@ -24316,7 +24320,7 @@ namespace Google.Apis.Contactcenterinsights.v1.Data
         public virtual string Medium { get; set; }
 
         /// <summary>
-        /// Input only. JSON metadata encoded as a string. This field is primarily used by Insights integrations with
+        /// Optional. JSON metadata encoded as a string. This field is primarily used by Insights integrations with
         /// various telephony systems and must be in one of Insight's supported formats.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("metadataJson")]
@@ -30660,7 +30664,7 @@ namespace Google.Apis.Contactcenterinsights.v1.Data
         public virtual string Medium { get; set; }
 
         /// <summary>
-        /// Input only. JSON metadata encoded as a string. This field is primarily used by Insights integrations with
+        /// Optional. JSON metadata encoded as a string. This field is primarily used by Insights integrations with
         /// various telephony systems and must be in one of Insight's supported formats.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("metadataJson")]

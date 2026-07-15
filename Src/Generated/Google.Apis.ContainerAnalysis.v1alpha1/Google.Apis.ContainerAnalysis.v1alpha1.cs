@@ -3695,6 +3695,10 @@ namespace Google.Apis.ContainerAnalysis.v1alpha1.Data
         [Newtonsoft.Json.JsonPropertyAttribute("confidentialityImpact")]
         public virtual string ConfidentialityImpact { get; set; }
 
+        /// <summary>Optional. Exploit Maturity (E). Defined in CVSS v4.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("exploitMaturity")]
+        public virtual string ExploitMaturity { get; set; }
+
         [Newtonsoft.Json.JsonPropertyAttribute("exploitabilityScore")]
         public virtual System.Nullable<float> ExploitabilityScore { get; set; }
 
@@ -6630,6 +6634,10 @@ namespace Google.Apis.ContainerAnalysis.v1alpha1.Data
         /// <summary>Optional. Category of the finding.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("category")]
         public virtual string Category { get; set; }
+
+        /// <summary>Optional. Description of the finding category.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("details")]
+        public virtual string Details { get; set; }
 
         /// <summary>Optional. Location (path and line) where the finding was detected.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("location")]
@@ -9924,6 +9932,10 @@ namespace Google.Apis.ContainerAnalysis.v1alpha1.Data
         [Newtonsoft.Json.JsonPropertyAttribute("cvssV3")]
         public virtual CVSS CvssV3 { get; set; }
 
+        /// <summary>Optional. The CVSS v4 score of this vulnerability.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("cvssV4")]
+        public virtual CVSS CvssV4 { get; set; }
+
         /// <summary>Output only. CVSS version used to populate cvss_score and severity.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("cvssVersion")]
         public virtual string CvssVersion { get; set; }
@@ -10053,6 +10065,10 @@ namespace Google.Apis.ContainerAnalysis.v1alpha1.Data
         /// <summary>The full description of the CVSS for version 2.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("cvssV2")]
         public virtual CVSS CvssV2 { get; set; }
+
+        /// <summary>Optional. The full description of the CVSS for version 4.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("cvssV4")]
+        public virtual CVSS CvssV4 { get; set; }
 
         /// <summary>CVSS version used to populate cvss_score and severity.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("cvssVersion")]

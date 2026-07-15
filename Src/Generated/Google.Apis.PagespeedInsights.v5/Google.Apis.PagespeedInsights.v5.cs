@@ -359,6 +359,13 @@ namespace Google.Apis.PagespeedInsights.v5
                 /// </summary>
                 [Google.Apis.Util.StringValueAttribute("SEO")]
                 SEO = 5,
+
+                /// <summary>
+                /// Agentic Browsing, category pertaining to a website's ability to be rendered by an agentic browsing
+                /// system.
+                /// </summary>
+                [Google.Apis.Util.StringValueAttribute("AGENTIC_BROWSING")]
+                AGENTICBROWSING = 6,
             }
 
             /// <summary>The locale used to localize formatted results</summary>
@@ -523,6 +530,10 @@ namespace Google.Apis.PagespeedInsights.v5.Data
         /// <summary>The accessibility category, containing all accessibility related audits.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("accessibility")]
         public virtual LighthouseCategoryV5 Accessibility { get; set; }
+
+        /// <summary>The agentic browsing category, containing all agentic browsing related audits.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("agentic-browsing")]
+        public virtual LighthouseCategoryV5 AgenticBrowsing { get; set; }
 
         /// <summary>The best practices category, containing all best practices related audits.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("best-practices")]
@@ -727,6 +738,10 @@ namespace Google.Apis.PagespeedInsights.v5.Data
         /// <summary>An array of references to all the audit members of this category.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("auditRefs")]
         public virtual System.Collections.Generic.IList<AuditRefs> AuditRefs { get; set; }
+
+        /// <summary>Optional. How the category score should be displayed (e.g. as a fraction).</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("categoryScoreDisplayMode")]
+        public virtual string CategoryScoreDisplayMode { get; set; }
 
         /// <summary>A more detailed description of the category and its importance.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("description")]

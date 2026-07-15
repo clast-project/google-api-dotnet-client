@@ -1173,8 +1173,8 @@ namespace Google.Apis.AuthorizedBuyersMarketplace.v1beta
             public virtual System.Nullable<int> PageSize { get; set; }
 
             /// <summary>
-            /// A token identifying a page of results the server should return. This value is received from a previous
-            /// `ListMediaPlanners` call in ListMediaPlannersResponse.nextPageToken.
+            /// Optional. A token identifying a page of results the server should return. This value is received from a
+            /// previous `ListMediaPlanners` call in ListMediaPlannersResponse.nextPageToken.
             /// </summary>
             [Google.Apis.Util.RequestParameterAttribute("pageToken", Google.Apis.Util.RequestParameterType.Query)]
             public virtual string PageToken { get; set; }
@@ -1369,6 +1369,13 @@ namespace Google.Apis.AuthorizedBuyersMarketplace.v1beta.Data
         public virtual Money FloorPriceCpm { get; set; }
 
         /// <summary>
+        /// Optional. The fee will be charged as a percentage of the impression cost, represented in millipercent. For
+        /// example, 1% is represented as 1000.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("millipercentOfMediaFee")]
+        public virtual System.Nullable<long> MillipercentOfMediaFee { get; set; }
+
+        /// <summary>
         /// Identifier. The unique resource name for the curated package. Format:
         /// `curators/{accountId}/curatedPackages/{curatedPackageId}`
         /// </summary>
@@ -1478,6 +1485,13 @@ namespace Google.Apis.AuthorizedBuyersMarketplace.v1beta.Data
             get => Google.Apis.Util.DiscoveryFormat.ParseGoogleDateTimeToDateTimeOffset(CreateTimeRaw);
             set => CreateTimeRaw = Google.Apis.Util.DiscoveryFormat.FormatDateTimeOffsetToGoogleDateTime(value);
         }
+
+        /// <summary>
+        /// Optional. The fee will be charged as a percentage of the impression cost, represented in millipercent. For
+        /// example, 1% is represented as 1000.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("millipercentOfMediaFee")]
+        public virtual System.Nullable<long> MillipercentOfMediaFee { get; set; }
 
         /// <summary>
         /// Immutable. Identifier. The unique identifier for the data segment. Account ID corresponds to the account ID

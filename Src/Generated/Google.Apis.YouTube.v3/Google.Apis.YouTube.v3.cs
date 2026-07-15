@@ -11611,6 +11611,23 @@ namespace Google.Apis.YouTube.v3.Data
     }
 
     /// <summary>
+    /// Details about the brand partner linked to the video for Creator Initiated Linking (CIL). Next ID: 6
+    /// </summary>
+    public class BrandPartner : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Required. Channel handle, must begin with "@"</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("channelHandle")]
+        public virtual string ChannelHandle { get; set; }
+
+        /// <summary>Required. External Channel ID, must begin with "UC"</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("channelId")]
+        public virtual string ChannelId { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>
     /// A *caption* resource represents a YouTube caption track. A caption track is associated with exactly one YouTube
     /// video.
     /// </summary>
@@ -14534,9 +14551,10 @@ namespace Google.Apis.YouTube.v3.Data
         /// that wrote the message fanFundingEvent - the user that funded the broadcast newSponsorEvent - the user that
         /// just became a sponsor memberMilestoneChatEvent - the member that sent the message membershipGiftingEvent -
         /// the user that made the purchase giftMembershipReceivedEvent - the user that received the gift membership
-        /// messageDeletedEvent - the moderator that took the action messageRetractedEvent - the author that retracted
-        /// their message userBannedEvent - the moderator that took the action superChatEvent - the user that made the
-        /// purchase superStickerEvent - the user that made the purchase pollEvent - the user that created the poll
+        /// messageDeletedEvent - the moderator that took the action. Unused. messageRetractedEvent - the author that
+        /// retracted their message. Unused. userBannedEvent - the moderator that took the action superChatEvent - the
+        /// user that made the purchase superStickerEvent - the user that made the purchase pollEvent - the user that
+        /// created the poll
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("authorChannelId")]
         public virtual string AuthorChannelId { get; set; }
@@ -16627,6 +16645,9 @@ namespace Google.Apis.YouTube.v3.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("ageGating")]
         public virtual VideoAgeGating AgeGating { get; set; }
+
+        [Newtonsoft.Json.JsonPropertyAttribute("brandPartner")]
+        public virtual BrandPartner BrandPartner { get; set; }
 
         /// <summary>
         /// The contentDetails object contains information about the video content, including the length of the video

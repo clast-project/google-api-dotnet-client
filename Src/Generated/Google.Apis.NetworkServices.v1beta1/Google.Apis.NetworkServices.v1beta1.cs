@@ -7541,14 +7541,14 @@ namespace Google.Apis.NetworkServices.v1beta1.Data
         [Newtonsoft.Json.JsonPropertyAttribute("networkConfig")]
         public virtual AgentGatewayNetworkConfig NetworkConfig { get; set; }
 
-        /// <summary>Required. List of protocols supported by an Agent Gateway</summary>
+        /// <summary>Optional. Deprecated.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("protocols")]
         public virtual System.Collections.Generic.IList<string> Protocols { get; set; }
 
         /// <summary>
         /// Optional. A list of Agent registries containing the agents, MCP servers and tools governed by the Agent
         /// Gateway. Note: Currently limited to project-scoped registries Must be of format
-        /// `//agentregistry.googleapis.com/projects/{project}/locations/{location}/
+        /// `//agentregistry.googleapis.com/projects/{project}/locations/{location}/`
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("registries")]
         public virtual System.Collections.Generic.IList<string> Registries { get; set; }

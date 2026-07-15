@@ -3085,7 +3085,9 @@ namespace Google.Apis.FirebaseAppHosting.v1beta.Data
     /// Runtime is a string that represents the runtime that is used to build the backend. Users can specify one of the
     /// following runtimes: nodejs20, nodejs22, nodejs24, nodejs. Runtime "nodejs" means that nodejs version will be
     /// determined at build time. If not specified or specified with a value that is not in the list above, the default
-    /// runtime `nodejs` will be used and Automatic Base Image Updates will be disabled.
+    /// runtime `nodejs` will be used and Automatic Base Image Updates will be disabled. See [Firebase
+    /// documentation](https://firebase.google.com/docs/app-hosting/frameworks-tooling#managing_runtime_versions) for
+    /// more details.
     /// </summary>
     public class BackendRuntime : Google.Apis.Requests.IDirectResponseSchema
     {
@@ -3318,6 +3320,10 @@ namespace Google.Apis.FirebaseAppHosting.v1beta.Data
         /// <summary>An Artifact Registry container image source.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("container")]
         public virtual ContainerSource Container { get; set; }
+
+        /// <summary>A source that was pre-built locally.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("locallyBuilt")]
+        public virtual LocallyBuiltSource LocallyBuilt { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -4261,6 +4267,55 @@ namespace Google.Apis.FirebaseAppHosting.v1beta.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("stepState")]
         public virtual string StepState { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>The URI of an storage archive to use as the build source.</summary>
+    public class LocallyBuiltSource : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Optional. An optional message that describes the uploaded version of the source code.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("description")]
+        public virtual string Description { get; set; }
+
+        /// <summary>
+        /// Optional. Supplied runtime environment variables for a specific build. Provided at Build creation time and
+        /// immutable afterwards.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("env")]
+        public virtual System.Collections.Generic.IList<EnvironmentVariable> Env { get; set; }
+
+        /// <summary>
+        /// Optional. The directory relative to the root of the archive to use as the root for the deployed web app.
+        /// Defaults to use the root of the repository if not provided. If deploying a
+        /// [monorepo](https://firebase.google.com/docs/app-hosting/monorepos), this should be the directory that
+        /// contains the built source of the app.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("rootDirectory")]
+        public virtual string RootDirectory { get; set; }
+
+        /// <summary>
+        /// Optional. The command to run to start the app. If provided, it will override apphosting's default run
+        /// commands. See [`Override build and run
+        /// scripts`](https://firebase.google.com/docs/app-hosting/configure#override-scripts)
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("runCommand")]
+        public virtual string RunCommand { get; set; }
+
+        /// <summary>
+        /// Optional. Additional configuration of the Cloud Run
+        /// [`service`](https://cloud.google.com/run/docs/reference/rest/v2/projects.locations.services#resource:-service).
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("runConfig")]
+        public virtual RunConfig RunConfig { get; set; }
+
+        /// <summary>
+        /// URI to an archive in Cloud Storage. The object must be a gzipped archive file (.tar.gz) containing source to
+        /// deploy.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("userStorageUri")]
+        public virtual string UserStorageUri { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }

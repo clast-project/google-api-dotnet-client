@@ -8358,6 +8358,13 @@ namespace Google.Apis.ArtifactRegistry.v1.Data
         public virtual string ETag { get; set; }
     }
 
+    /// <summary>The configuration for the no-cache fetching mode, which acts as a non-caching proxy.</summary>
+    public class NoCacheFetching : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
     /// <summary>NpmPackage represents an npm artifact.</summary>
     public class NpmPackage : Google.Apis.Requests.IDirectResponseSchema
     {
@@ -8721,6 +8728,10 @@ namespace Google.Apis.ArtifactRegistry.v1.Data
         [Newtonsoft.Json.JsonPropertyAttribute("force")]
         public virtual System.Nullable<bool> Force { get; set; }
 
+        /// <summary>Optional. The platform (architecture and OS) of the image or tag.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("platform")]
+        public virtual PrewarmPlatform Platform { get; set; }
+
         /// <summary>
         /// Optional. The retention days of the prewarmed artifact. If not specified, the artifact will be cached for 3
         /// days.
@@ -8764,7 +8775,25 @@ namespace Google.Apis.ArtifactRegistry.v1.Data
         public virtual string ETag { get; set; }
     }
 
-    /// <summary>PrewarmedArtifact represents a streamed artifact.</summary>
+    /// <summary>The platform (architecture and OS) of the image. This is a sub-message.</summary>
+    public class PrewarmPlatform : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Optional. The architecture of the image or tag. For example, "arm64" or "amd64".</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("architecture")]
+        public virtual string Architecture { get; set; }
+
+        /// <summary>Optional. The OS of the image or tag. For example, "linux" or "windows".</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("os")]
+        public virtual string Os { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>
+    /// PrewarmedArtifact represents a streamed artifact. This is not a request message, so field_behavior annotations
+    /// are not required.
+    /// </summary>
     public class PrewarmedArtifact : Google.Apis.Requests.IDirectResponseSchema
     {
         private string _expirationTimeRaw;
@@ -9011,6 +9040,10 @@ namespace Google.Apis.ArtifactRegistry.v1.Data
         /// <summary>Specific settings for a Maven remote repository.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("mavenRepository")]
         public virtual MavenRepository MavenRepository { get; set; }
+
+        /// <summary>The remote repository will act as a non-caching proxy.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("noCache")]
+        public virtual NoCacheFetching NoCache { get; set; }
 
         /// <summary>Specific settings for an Npm remote repository.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("npmRepository")]

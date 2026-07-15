@@ -63,6 +63,12 @@ namespace Google.Apis.Backupdr.v1
         public class Scope
         {
             /// <summary>
+            /// See, edit, configure, and delete your Google Cloud Backup and DR data and see the email address for your
+            /// Google Account
+            /// </summary>
+            public static string CloudBackupdr = "https://www.googleapis.com/auth/cloud-backupdr";
+
+            /// <summary>
             /// See, edit, configure, and delete your Google Cloud data and see the email address for your Google
             /// Account.
             /// </summary>
@@ -72,6 +78,12 @@ namespace Google.Apis.Backupdr.v1
         /// <summary>Available OAuth 2.0 scope constants for use with the Backup and DR Service API.</summary>
         public static class ScopeConstants
         {
+            /// <summary>
+            /// See, edit, configure, and delete your Google Cloud Backup and DR data and see the email address for your
+            /// Google Account
+            /// </summary>
+            public const string CloudBackupdr = "https://www.googleapis.com/auth/cloud-backupdr";
+
             /// <summary>
             /// See, edit, configure, and delete your Google Cloud data and see the email address for your Google
             /// Account.
@@ -9351,7 +9363,7 @@ namespace Google.Apis.Backupdr.v1.Data
         [Newtonsoft.Json.JsonPropertyAttribute("readLocation")]
         public virtual string ReadLocation { get; set; }
 
-        /// <summary>The downscoped token that was created.</summary>
+        /// <summary>Input only. The downscoped token that was created.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("token")]
         public virtual string Token { get; set; }
 
@@ -11420,7 +11432,7 @@ namespace Google.Apis.Backupdr.v1.Data
         /// from start time till end time defined. This is required for `recurrence_type`, `HOURLY` and is not
         /// applicable otherwise. A validation error will occur if a value is supplied and `recurrence_type` is not
         /// `HOURLY`. The supported values for each resource type are as follows: * `compute.googleapis.com/Instance`:
-        /// 4-23 * `compute.googleapis.com/Disk`: 1-23 * `sqladmin.googleapis.com/Instance`: 6-23 *
+        /// 1-23 * `compute.googleapis.com/Disk`: 1-23 * `sqladmin.googleapis.com/Instance`: 6-23 *
         /// `alloydb.googleapis.com/Cluster`: 1-23 * `file.googleapis.com/Instance`: 1-23 Refer to link
         /// https://cloud.google.com/backup-disaster-recovery/docs/concepts/cloud_best_practices for more details.
         /// </summary>

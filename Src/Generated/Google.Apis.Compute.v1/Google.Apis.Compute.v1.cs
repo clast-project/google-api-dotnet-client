@@ -5604,14 +5604,22 @@ namespace Google.Apis.Compute.v1
             }
         }
 
-        /// <summary>Retrieves a list of all usable backend services in the specified project.</summary>
+        /// <summary>
+        /// Retrieves a list of all usable backend services for Application Load Balancers and Proxy Network Load
+        /// Balancers in the specified project. Backend services for external and internal passthrough Network Load
+        /// Balancers are not included in the response.
+        /// </summary>
         /// <param name="project">Project ID for this request.</param>
         public virtual ListUsableRequest ListUsable(string project)
         {
             return new ListUsableRequest(this.service, project);
         }
 
-        /// <summary>Retrieves a list of all usable backend services in the specified project.</summary>
+        /// <summary>
+        /// Retrieves a list of all usable backend services for Application Load Balancers and Proxy Network Load
+        /// Balancers in the specified project. Backend services for external and internal passthrough Network Load
+        /// Balancers are not included in the response.
+        /// </summary>
         public class ListUsableRequest : ComputeBaseServiceRequest<Google.Apis.Compute.v1.Data.BackendServiceListUsable>
         {
             /// <summary>Constructs a new ListUsable request.</summary>
@@ -22270,6 +22278,12 @@ namespace Google.Apis.Compute.v1
             public virtual string InstanceGroupManager { get; private set; }
 
             /// <summary>
+            /// When set, graceful shutdown is skipped for instance deletion even if it's configured for the instances.
+            /// </summary>
+            [Google.Apis.Util.RequestParameterAttribute("noGracefulShutdown", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual System.Nullable<bool> NoGracefulShutdown { get; set; }
+
+            /// <summary>
             /// An optional request ID to identify requests. Specify a unique request ID so that if you must retry your
             /// request, the server will know to ignore the request if it has already been completed.  For example,
             /// consider a situation where you make an initial request and the request times out. If you make the
@@ -22316,6 +22330,14 @@ namespace Google.Apis.Compute.v1
                     IsRequired = true,
                     ParameterType = "path",
                     DefaultValue = null,
+                    Pattern = null,
+                });
+                RequestParameters.Add("noGracefulShutdown", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "noGracefulShutdown",
+                    IsRequired = false,
+                    ParameterType = "query",
+                    DefaultValue = "false",
                     Pattern = null,
                 });
                 RequestParameters.Add("requestId", new Google.Apis.Discovery.Parameter
@@ -22383,6 +22405,12 @@ namespace Google.Apis.Compute.v1
             public virtual string InstanceGroupManager { get; private set; }
 
             /// <summary>
+            /// When set, graceful shutdown is skipped for instance deletion even if it's configured for the instances.
+            /// </summary>
+            [Google.Apis.Util.RequestParameterAttribute("noGracefulShutdown", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual System.Nullable<bool> NoGracefulShutdown { get; set; }
+
+            /// <summary>
             /// An optional request ID to identify requests. Specify a unique request ID so that if you must retry your
             /// request, the server will know to ignore the request if it has already been completed.  For example,
             /// consider a situation where you make an initial request and the request times out. If you make the
@@ -22435,6 +22463,14 @@ namespace Google.Apis.Compute.v1
                     IsRequired = true,
                     ParameterType = "path",
                     DefaultValue = null,
+                    Pattern = null,
+                });
+                RequestParameters.Add("noGracefulShutdown", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "noGracefulShutdown",
+                    IsRequired = false,
+                    ParameterType = "query",
+                    DefaultValue = "false",
                     Pattern = null,
                 });
                 RequestParameters.Add("requestId", new Google.Apis.Discovery.Parameter
@@ -23767,6 +23803,13 @@ namespace Google.Apis.Compute.v1
             public virtual string InstanceGroupManager { get; private set; }
 
             /// <summary>
+            /// When set, graceful shutdown is skipped for instance recreation even if it's configured for the
+            /// instances.
+            /// </summary>
+            [Google.Apis.Util.RequestParameterAttribute("noGracefulShutdown", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual System.Nullable<bool> NoGracefulShutdown { get; set; }
+
+            /// <summary>
             /// An optional request ID to identify requests. Specify a unique request ID so that if you must retry your
             /// request, the server will know to ignore the request if it has already been completed.  For example,
             /// consider a situation where you make an initial request and the request times out. If you make the
@@ -23819,6 +23862,14 @@ namespace Google.Apis.Compute.v1
                     IsRequired = true,
                     ParameterType = "path",
                     DefaultValue = null,
+                    Pattern = null,
+                });
+                RequestParameters.Add("noGracefulShutdown", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "noGracefulShutdown",
+                    IsRequired = false,
+                    ParameterType = "query",
+                    DefaultValue = "false",
                     Pattern = null,
                 });
                 RequestParameters.Add("requestId", new Google.Apis.Discovery.Parameter
@@ -24496,6 +24547,12 @@ namespace Google.Apis.Compute.v1
             public virtual string InstanceGroupManager { get; private set; }
 
             /// <summary>
+            /// When set, graceful shutdown is skipped for instance stopping even if it's configured for the instances.
+            /// </summary>
+            [Google.Apis.Util.RequestParameterAttribute("noGracefulShutdown", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual System.Nullable<bool> NoGracefulShutdown { get; set; }
+
+            /// <summary>
             /// An optional request ID to identify requests. Specify a unique request ID so that if you must retry your
             /// request, the server will know to ignore the request if it has already been completed.  For example,
             /// consider a situation where you make an initial request and the request times out. If you make the
@@ -24548,6 +24605,14 @@ namespace Google.Apis.Compute.v1
                     IsRequired = true,
                     ParameterType = "path",
                     DefaultValue = null,
+                    Pattern = null,
+                });
+                RequestParameters.Add("noGracefulShutdown", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "noGracefulShutdown",
+                    IsRequired = false,
+                    ParameterType = "query",
+                    DefaultValue = "false",
                     Pattern = null,
                 });
                 RequestParameters.Add("requestId", new Google.Apis.Discovery.Parameter
@@ -57304,7 +57369,9 @@ namespace Google.Apis.Compute.v1
         }
 
         /// <summary>
-        /// Retrieves a list of all usable backend services in the specified project in the given region.
+        /// Retrieves a list of all usable backend services for Application Load Balancers and Proxy Network Load
+        /// Balancers in the specified project in the given region. Backend services for external and internal
+        /// passthrough Network Load Balancers are not included in the response.
         /// </summary>
         /// <param name="project">Project ID for this request.</param>
         /// <param name="region">
@@ -57316,7 +57383,9 @@ namespace Google.Apis.Compute.v1
         }
 
         /// <summary>
-        /// Retrieves a list of all usable backend services in the specified project in the given region.
+        /// Retrieves a list of all usable backend services for Application Load Balancers and Proxy Network Load
+        /// Balancers in the specified project in the given region. Backend services for external and internal
+        /// passthrough Network Load Balancers are not included in the response.
         /// </summary>
         public class ListUsableRequest : ComputeBaseServiceRequest<Google.Apis.Compute.v1.Data.BackendServiceListUsable>
         {
@@ -66022,6 +66091,12 @@ namespace Google.Apis.Compute.v1
             public virtual string InstanceGroupManager { get; private set; }
 
             /// <summary>
+            /// When set, graceful shutdown is skipped for instance deletion even if it's configured for the instances.
+            /// </summary>
+            [Google.Apis.Util.RequestParameterAttribute("noGracefulShutdown", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual System.Nullable<bool> NoGracefulShutdown { get; set; }
+
+            /// <summary>
             /// An optional request ID to identify requests. Specify a unique request ID so that if you must retry your
             /// request, the server will know to ignore the request if it has already been completed.  For example,
             /// consider a situation where you make an initial request and the request times out. If you make the
@@ -66068,6 +66143,14 @@ namespace Google.Apis.Compute.v1
                     IsRequired = true,
                     ParameterType = "path",
                     DefaultValue = null,
+                    Pattern = null,
+                });
+                RequestParameters.Add("noGracefulShutdown", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "noGracefulShutdown",
+                    IsRequired = false,
+                    ParameterType = "query",
+                    DefaultValue = "false",
                     Pattern = null,
                 });
                 RequestParameters.Add("requestId", new Google.Apis.Discovery.Parameter
@@ -66135,6 +66218,12 @@ namespace Google.Apis.Compute.v1
             public virtual string InstanceGroupManager { get; private set; }
 
             /// <summary>
+            /// When set, graceful shutdown is skipped for instance deletion even if it's configured for the instances.
+            /// </summary>
+            [Google.Apis.Util.RequestParameterAttribute("noGracefulShutdown", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual System.Nullable<bool> NoGracefulShutdown { get; set; }
+
+            /// <summary>
             /// An optional request ID to identify requests. Specify a unique request ID so that if you must retry your
             /// request, the server will know to ignore the request if it has already been completed.  For example,
             /// consider a situation where you make an initial request and the request times out. If you make the
@@ -66187,6 +66276,14 @@ namespace Google.Apis.Compute.v1
                     IsRequired = true,
                     ParameterType = "path",
                     DefaultValue = null,
+                    Pattern = null,
+                });
+                RequestParameters.Add("noGracefulShutdown", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "noGracefulShutdown",
+                    IsRequired = false,
+                    ParameterType = "query",
+                    DefaultValue = "false",
                     Pattern = null,
                 });
                 RequestParameters.Add("requestId", new Google.Apis.Discovery.Parameter
@@ -67497,6 +67594,13 @@ namespace Google.Apis.Compute.v1
             public virtual string InstanceGroupManager { get; private set; }
 
             /// <summary>
+            /// When set, graceful shutdown is skipped for instance recreation even if it's configured for the
+            /// instances.
+            /// </summary>
+            [Google.Apis.Util.RequestParameterAttribute("noGracefulShutdown", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual System.Nullable<bool> NoGracefulShutdown { get; set; }
+
+            /// <summary>
             /// An optional request ID to identify requests. Specify a unique request ID so that if you must retry your
             /// request, the server will know to ignore the request if it has already been completed.  For example,
             /// consider a situation where you make an initial request and the request times out. If you make the
@@ -67549,6 +67653,14 @@ namespace Google.Apis.Compute.v1
                     IsRequired = true,
                     ParameterType = "path",
                     DefaultValue = null,
+                    Pattern = null,
+                });
+                RequestParameters.Add("noGracefulShutdown", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "noGracefulShutdown",
+                    IsRequired = false,
+                    ParameterType = "query",
+                    DefaultValue = "false",
                     Pattern = null,
                 });
                 RequestParameters.Add("requestId", new Google.Apis.Discovery.Parameter
@@ -68205,6 +68317,12 @@ namespace Google.Apis.Compute.v1
             public virtual string InstanceGroupManager { get; private set; }
 
             /// <summary>
+            /// When set, graceful shutdown is skipped for instance stopping even if it's configured for the instances.
+            /// </summary>
+            [Google.Apis.Util.RequestParameterAttribute("noGracefulShutdown", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual System.Nullable<bool> NoGracefulShutdown { get; set; }
+
+            /// <summary>
             /// An optional request ID to identify requests. Specify a unique request ID so that if you must retry your
             /// request, the server will know to ignore the request if it has already been completed.  For example,
             /// consider a situation where you make an initial request and the request times out. If you make the
@@ -68257,6 +68375,14 @@ namespace Google.Apis.Compute.v1
                     IsRequired = true,
                     ParameterType = "path",
                     DefaultValue = null,
+                    Pattern = null,
+                });
+                RequestParameters.Add("noGracefulShutdown", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "noGracefulShutdown",
+                    IsRequired = false,
+                    ParameterType = "query",
+                    DefaultValue = "false",
                     Pattern = null,
                 });
                 RequestParameters.Add("requestId", new Google.Apis.Discovery.Parameter
@@ -87149,6 +87275,111 @@ namespace Google.Apis.Compute.v1
             }
         }
 
+        /// <summary>Deletes Named Set</summary>
+        /// <param name="project">Project ID for this request.</param>
+        /// <param name="region">Name of the region for this request.</param>
+        /// <param name="router">Name of the Router resource where Named Set is defined.</param>
+        public virtual DeleteNamedSetRequest DeleteNamedSet(string project, string region, string router)
+        {
+            return new DeleteNamedSetRequest(this.service, project, region, router);
+        }
+
+        /// <summary>Deletes Named Set</summary>
+        public class DeleteNamedSetRequest : ComputeBaseServiceRequest<Google.Apis.Compute.v1.Data.Operation>
+        {
+            /// <summary>Constructs a new DeleteNamedSet request.</summary>
+            public DeleteNamedSetRequest(Google.Apis.Services.IClientService service, string project, string region, string router) : base(service)
+            {
+                Project = project;
+                Region = region;
+                Router = router;
+                InitParameters();
+            }
+
+            /// <summary>Project ID for this request.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("project", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string Project { get; private set; }
+
+            /// <summary>Name of the region for this request.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("region", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string Region { get; private set; }
+
+            /// <summary>Name of the Router resource where Named Set is defined.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("router", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string Router { get; private set; }
+
+            /// <summary>The Named Set name for this request. Name must conform to RFC1035</summary>
+            [Google.Apis.Util.RequestParameterAttribute("namedSet", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual string NamedSet { get; set; }
+
+            /// <summary>
+            /// An optional request ID to identify requests. Specify a unique request ID so that if you must retry your
+            /// request, the server will know to ignore the request if it has already been completed.  For example,
+            /// consider a situation where you make an initial request and the request times out. If you make the
+            /// request again with the same request ID, the server can check if original operation with the same request
+            /// ID was received, and if so, will ignore the second request. This prevents clients from accidentally
+            /// creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID
+            /// is not supported (00000000-0000-0000-0000-000000000000).
+            /// </summary>
+            [Google.Apis.Util.RequestParameterAttribute("requestId", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual string RequestId { get; set; }
+
+            /// <summary>Gets the method name.</summary>
+            public override string MethodName => "deleteNamedSet";
+
+            /// <summary>Gets the HTTP method.</summary>
+            public override string HttpMethod => "POST";
+
+            /// <summary>Gets the REST path.</summary>
+            public override string RestPath => "projects/{project}/regions/{region}/routers/{router}/deleteNamedSet";
+
+            /// <summary>Initializes DeleteNamedSet parameter list.</summary>
+            protected override void InitParameters()
+            {
+                base.InitParameters();
+                RequestParameters.Add("project", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "project",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = @"(?:(?:[-a-z0-9]{1,63}\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+                });
+                RequestParameters.Add("region", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "region",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = @"[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+                });
+                RequestParameters.Add("router", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "router",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = @"[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+                });
+                RequestParameters.Add("namedSet", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "namedSet",
+                    IsRequired = false,
+                    ParameterType = "query",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+                RequestParameters.Add("requestId", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "requestId",
+                    IsRequired = false,
+                    ParameterType = "query",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+            }
+        }
+
         /// <summary>Deletes Route Policy</summary>
         /// <param name="project">Project ID for this request.</param>
         /// <param name="region">Name of the region for this request.</param>
@@ -87323,6 +87554,95 @@ namespace Google.Apis.Compute.v1
                     ParameterType = "path",
                     DefaultValue = null,
                     Pattern = @"[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+                });
+            }
+        }
+
+        /// <summary>Returns specified Named Set</summary>
+        /// <param name="project">Project ID for this request.</param>
+        /// <param name="region">Name of the region for this request.</param>
+        /// <param name="router">
+        /// Name of the Router resource to query for the named set. The name should conform to RFC1035.
+        /// </param>
+        public virtual GetNamedSetRequest GetNamedSet(string project, string region, string router)
+        {
+            return new GetNamedSetRequest(this.service, project, region, router);
+        }
+
+        /// <summary>Returns specified Named Set</summary>
+        public class GetNamedSetRequest : ComputeBaseServiceRequest<Google.Apis.Compute.v1.Data.RoutersGetNamedSetResponse>
+        {
+            /// <summary>Constructs a new GetNamedSet request.</summary>
+            public GetNamedSetRequest(Google.Apis.Services.IClientService service, string project, string region, string router) : base(service)
+            {
+                Project = project;
+                Region = region;
+                Router = router;
+                InitParameters();
+            }
+
+            /// <summary>Project ID for this request.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("project", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string Project { get; private set; }
+
+            /// <summary>Name of the region for this request.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("region", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string Region { get; private set; }
+
+            /// <summary>
+            /// Name of the Router resource to query for the named set. The name should conform to RFC1035.
+            /// </summary>
+            [Google.Apis.Util.RequestParameterAttribute("router", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string Router { get; private set; }
+
+            /// <summary>The Named Set name for this request. Name must conform to RFC1035</summary>
+            [Google.Apis.Util.RequestParameterAttribute("namedSet", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual string NamedSet { get; set; }
+
+            /// <summary>Gets the method name.</summary>
+            public override string MethodName => "getNamedSet";
+
+            /// <summary>Gets the HTTP method.</summary>
+            public override string HttpMethod => "GET";
+
+            /// <summary>Gets the REST path.</summary>
+            public override string RestPath => "projects/{project}/regions/{region}/routers/{router}/getNamedSet";
+
+            /// <summary>Initializes GetNamedSet parameter list.</summary>
+            protected override void InitParameters()
+            {
+                base.InitParameters();
+                RequestParameters.Add("project", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "project",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = @"(?:(?:[-a-z0-9]{1,63}\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+                });
+                RequestParameters.Add("region", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "region",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = @"[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+                });
+                RequestParameters.Add("router", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "router",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+                RequestParameters.Add("namedSet", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "namedSet",
+                    IsRequired = false,
+                    ParameterType = "query",
+                    DefaultValue = null,
+                    Pattern = null,
                 });
             }
         }
@@ -88329,6 +88649,192 @@ namespace Google.Apis.Compute.v1
             }
         }
 
+        /// <summary>Retrieves a list of router named set subresources available to the specified project.</summary>
+        /// <param name="project">Project ID for this request.</param>
+        /// <param name="region">Name of the region for this request.</param>
+        /// <param name="router">Name or id of the resource for this request. Name should conform to RFC1035.</param>
+        public virtual ListNamedSetsRequest ListNamedSets(string project, string region, string router)
+        {
+            return new ListNamedSetsRequest(this.service, project, region, router);
+        }
+
+        /// <summary>Retrieves a list of router named set subresources available to the specified project.</summary>
+        public class ListNamedSetsRequest : ComputeBaseServiceRequest<Google.Apis.Compute.v1.Data.RoutersListNamedSets>
+        {
+            /// <summary>Constructs a new ListNamedSets request.</summary>
+            public ListNamedSetsRequest(Google.Apis.Services.IClientService service, string project, string region, string router) : base(service)
+            {
+                Project = project;
+                Region = region;
+                Router = router;
+                InitParameters();
+            }
+
+            /// <summary>Project ID for this request.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("project", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string Project { get; private set; }
+
+            /// <summary>Name of the region for this request.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("region", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string Region { get; private set; }
+
+            /// <summary>Name or id of the resource for this request. Name should conform to RFC1035.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("router", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string Router { get; private set; }
+
+            /// <summary>
+            /// A filter expression that filters resources listed in the response. Most Compute resources support two
+            /// types of filter expressions: expressions that support regular expressions and expressions that follow
+            /// API improvement proposal AIP-160. These two types of filter expressions cannot be mixed in one request.
+            /// If you want to use AIP-160, your expression must specify the field name, an operator, and the value that
+            /// you want to use for filtering. The value must be a string, a number, or a boolean. The operator must be
+            /// either `=`, `!=`, `&amp;gt;`, `&amp;lt;`, `&amp;lt;=`, `&amp;gt;=` or `:`.  For example, if you are
+            /// filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying
+            /// `name != example-instance`.  The `:*` comparison can be used to test whether a key has been defined. For
+            /// example, to find all objects with `owner` label use:
+            /// ```
+            /// labels.owner:*
+            /// ```
+            /// You can also filter nested
+            /// fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only
+            /// if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based
+            /// onresource labels.  To filter on multiple expressions, provide each separate expression within
+            /// parentheses. For example:
+            /// ```
+            /// (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake")
+            /// ```
+            /// By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions
+            /// explicitly. For example:
+            /// ```
+            /// (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND
+            /// (scheduling.automaticRestart = true)
+            /// ```
+            /// If you want to use a regular expression, use the `eq` (equal)
+            /// or `ne` (not equal) operator against a single un-parenthesized expression with or without quotes or
+            /// against multiple parenthesized expressions. Examples:  `fieldname eq unquoted literal` `fieldname eq
+            /// 'single quoted literal'` `fieldname eq "double quoted literal"` `(fieldname1 eq literal) (fieldname2 ne
+            /// "literal")`  The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+            /// The literal value must match the entire field.  For example, to filter for instances that do not end
+            /// with name "instance", you would use `name ne .*instance`.  You cannot combine constraints on multiple
+            /// fields using regular expressions.
+            /// </summary>
+            [Google.Apis.Util.RequestParameterAttribute("filter", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual string Filter { get; set; }
+
+            /// <summary>
+            /// The maximum number of results per page that should be returned. If the number of available results is
+            /// larger than `maxResults`, Compute Engine returns a `nextPageToken` that can be used to get the next page
+            /// of results in subsequent list requests. Acceptable values are `0` to `500`, inclusive. (Default: `500`)
+            /// </summary>
+            [Google.Apis.Util.RequestParameterAttribute("maxResults", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual System.Nullable<long> MaxResults { get; set; }
+
+            /// <summary>
+            /// Sorts list results by a certain order. By default, results are returned in alphanumerical order based on
+            /// the resource name.  You can also sort results in descending order based on the creation timestamp using
+            /// `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse
+            /// chronological order (newest result first). Use this to sort resources like operations so that the newest
+            /// operation is returned first.  Currently, only sorting by `name` or `creationTimestamp desc` is
+            /// supported.
+            /// </summary>
+            [Google.Apis.Util.RequestParameterAttribute("orderBy", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual string OrderBy { get; set; }
+
+            /// <summary>
+            /// Specifies a page token to use. Set `pageToken` to the `nextPageToken` returned by a previous list
+            /// request to get the next page of results.
+            /// </summary>
+            [Google.Apis.Util.RequestParameterAttribute("pageToken", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual string PageToken { get; set; }
+
+            /// <summary>
+            /// Opt-in for partial success behavior which provides partial results in case of failure. The default value
+            /// is false.  For example, when partial success behavior is enabled, aggregatedList for a single zone scope
+            /// either returns all resources in the zone or no resources, with an error code.
+            /// </summary>
+            [Google.Apis.Util.RequestParameterAttribute("returnPartialSuccess", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual System.Nullable<bool> ReturnPartialSuccess { get; set; }
+
+            /// <summary>Gets the method name.</summary>
+            public override string MethodName => "listNamedSets";
+
+            /// <summary>Gets the HTTP method.</summary>
+            public override string HttpMethod => "GET";
+
+            /// <summary>Gets the REST path.</summary>
+            public override string RestPath => "projects/{project}/regions/{region}/routers/{router}/listNamedSets";
+
+            /// <summary>Initializes ListNamedSets parameter list.</summary>
+            protected override void InitParameters()
+            {
+                base.InitParameters();
+                RequestParameters.Add("project", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "project",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = @"(?:(?:[-a-z0-9]{1,63}\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+                });
+                RequestParameters.Add("region", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "region",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = @"[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+                });
+                RequestParameters.Add("router", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "router",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = @"[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+                });
+                RequestParameters.Add("filter", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "filter",
+                    IsRequired = false,
+                    ParameterType = "query",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+                RequestParameters.Add("maxResults", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "maxResults",
+                    IsRequired = false,
+                    ParameterType = "query",
+                    DefaultValue = "500",
+                    Pattern = null,
+                });
+                RequestParameters.Add("orderBy", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "orderBy",
+                    IsRequired = false,
+                    ParameterType = "query",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+                RequestParameters.Add("pageToken", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "pageToken",
+                    IsRequired = false,
+                    ParameterType = "query",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+                RequestParameters.Add("returnPartialSuccess", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "returnPartialSuccess",
+                    IsRequired = false,
+                    ParameterType = "query",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+            }
+        }
+
         /// <summary>Retrieves a list of router route policy subresources available to the specified project.</summary>
         /// <param name="project">Project ID for this request.</param>
         /// <param name="region">Name of the region for this request.</param>
@@ -88584,6 +89090,107 @@ namespace Google.Apis.Compute.v1
             public override string RestPath => "projects/{project}/regions/{region}/routers/{router}";
 
             /// <summary>Initializes Patch parameter list.</summary>
+            protected override void InitParameters()
+            {
+                base.InitParameters();
+                RequestParameters.Add("project", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "project",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = @"(?:(?:[-a-z0-9]{1,63}\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+                });
+                RequestParameters.Add("region", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "region",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = @"[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+                });
+                RequestParameters.Add("router", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "router",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = @"[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+                });
+                RequestParameters.Add("requestId", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "requestId",
+                    IsRequired = false,
+                    ParameterType = "query",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+            }
+        }
+
+        /// <summary>Patches Named Set</summary>
+        /// <param name="body">The body of the request.</param>
+        /// <param name="project">Project ID for this request.</param>
+        /// <param name="region">Name of the region for this request.</param>
+        /// <param name="router">Name of the Router resource where Named Set is defined.</param>
+        public virtual PatchNamedSetRequest PatchNamedSet(Google.Apis.Compute.v1.Data.NamedSet body, string project, string region, string router)
+        {
+            return new PatchNamedSetRequest(this.service, body, project, region, router);
+        }
+
+        /// <summary>Patches Named Set</summary>
+        public class PatchNamedSetRequest : ComputeBaseServiceRequest<Google.Apis.Compute.v1.Data.Operation>
+        {
+            /// <summary>Constructs a new PatchNamedSet request.</summary>
+            public PatchNamedSetRequest(Google.Apis.Services.IClientService service, Google.Apis.Compute.v1.Data.NamedSet body, string project, string region, string router) : base(service)
+            {
+                Project = project;
+                Region = region;
+                Router = router;
+                Body = body;
+                InitParameters();
+            }
+
+            /// <summary>Project ID for this request.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("project", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string Project { get; private set; }
+
+            /// <summary>Name of the region for this request.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("region", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string Region { get; private set; }
+
+            /// <summary>Name of the Router resource where Named Set is defined.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("router", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string Router { get; private set; }
+
+            /// <summary>
+            /// An optional request ID to identify requests. Specify a unique request ID so that if you must retry your
+            /// request, the server will know to ignore the request if it has already been completed.  For example,
+            /// consider a situation where you make an initial request and the request times out. If you make the
+            /// request again with the same request ID, the server can check if original operation with the same request
+            /// ID was received, and if so, will ignore the second request. This prevents clients from accidentally
+            /// creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID
+            /// is not supported (00000000-0000-0000-0000-000000000000).
+            /// </summary>
+            [Google.Apis.Util.RequestParameterAttribute("requestId", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual string RequestId { get; set; }
+
+            /// <summary>Gets or sets the body of this request.</summary>
+            Google.Apis.Compute.v1.Data.NamedSet Body { get; set; }
+
+            /// <summary>Returns the body of the request.</summary>
+            protected override object GetBody() => Body;
+
+            /// <summary>Gets the method name.</summary>
+            public override string MethodName => "patchNamedSet";
+
+            /// <summary>Gets the HTTP method.</summary>
+            public override string HttpMethod => "POST";
+
+            /// <summary>Gets the REST path.</summary>
+            public override string RestPath => "projects/{project}/regions/{region}/routers/{router}/patchNamedSet";
+
+            /// <summary>Initializes PatchNamedSet parameter list.</summary>
             protected override void InitParameters()
             {
                 base.InitParameters();
@@ -88881,6 +89488,107 @@ namespace Google.Apis.Compute.v1
             public override string RestPath => "projects/{project}/regions/{region}/routers/{router}";
 
             /// <summary>Initializes Update parameter list.</summary>
+            protected override void InitParameters()
+            {
+                base.InitParameters();
+                RequestParameters.Add("project", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "project",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = @"(?:(?:[-a-z0-9]{1,63}\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+                });
+                RequestParameters.Add("region", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "region",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = @"[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+                });
+                RequestParameters.Add("router", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "router",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = @"[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+                });
+                RequestParameters.Add("requestId", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "requestId",
+                    IsRequired = false,
+                    ParameterType = "query",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+            }
+        }
+
+        /// <summary>Updates or creates new Named Set</summary>
+        /// <param name="body">The body of the request.</param>
+        /// <param name="project">Project ID for this request.</param>
+        /// <param name="region">Name of the region for this request.</param>
+        /// <param name="router">Name of the Router resource where Named Set is defined.</param>
+        public virtual UpdateNamedSetRequest UpdateNamedSet(Google.Apis.Compute.v1.Data.NamedSet body, string project, string region, string router)
+        {
+            return new UpdateNamedSetRequest(this.service, body, project, region, router);
+        }
+
+        /// <summary>Updates or creates new Named Set</summary>
+        public class UpdateNamedSetRequest : ComputeBaseServiceRequest<Google.Apis.Compute.v1.Data.Operation>
+        {
+            /// <summary>Constructs a new UpdateNamedSet request.</summary>
+            public UpdateNamedSetRequest(Google.Apis.Services.IClientService service, Google.Apis.Compute.v1.Data.NamedSet body, string project, string region, string router) : base(service)
+            {
+                Project = project;
+                Region = region;
+                Router = router;
+                Body = body;
+                InitParameters();
+            }
+
+            /// <summary>Project ID for this request.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("project", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string Project { get; private set; }
+
+            /// <summary>Name of the region for this request.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("region", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string Region { get; private set; }
+
+            /// <summary>Name of the Router resource where Named Set is defined.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("router", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string Router { get; private set; }
+
+            /// <summary>
+            /// An optional request ID to identify requests. Specify a unique request ID so that if you must retry your
+            /// request, the server will know to ignore the request if it has already been completed.  For example,
+            /// consider a situation where you make an initial request and the request times out. If you make the
+            /// request again with the same request ID, the server can check if original operation with the same request
+            /// ID was received, and if so, will ignore the second request. This prevents clients from accidentally
+            /// creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID
+            /// is not supported (00000000-0000-0000-0000-000000000000).
+            /// </summary>
+            [Google.Apis.Util.RequestParameterAttribute("requestId", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual string RequestId { get; set; }
+
+            /// <summary>Gets or sets the body of this request.</summary>
+            Google.Apis.Compute.v1.Data.NamedSet Body { get; set; }
+
+            /// <summary>Returns the body of the request.</summary>
+            protected override object GetBody() => Body;
+
+            /// <summary>Gets the method name.</summary>
+            public override string MethodName => "updateNamedSet";
+
+            /// <summary>Gets the HTTP method.</summary>
+            public override string HttpMethod => "POST";
+
+            /// <summary>Gets the REST path.</summary>
+            public override string RestPath => "projects/{project}/regions/{region}/routers/{router}/updateNamedSet";
+
+            /// <summary>Initializes UpdateNamedSet parameter list.</summary>
             protected override void InitParameters()
             {
                 base.InitParameters();
@@ -109366,13 +110074,15 @@ namespace Google.Apis.Compute.v1.Data
         public virtual System.Nullable<ulong> Id { get; set; }
 
         /// <summary>
-        /// Reference to the source of external IPv4 addresses, like a PublicDelegatedPrefix (PDP) for BYOIP. The PDP
-        /// must support enhanced IPv4 allocations.  Use one of the following formats to specify a PDP when reserving an
-        /// external IPv4 address using BYOIP.        -     Full resource URL, as
-        /// inhttps://www.googleapis.com/compute/v1/projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name
-        ///  -     Partial URL, as in                        -
-        /// projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name           -
-        /// regions/region/publicDelegatedPrefixes/pdp-name
+        /// Reference to the source of IP addresses.  It supports the following cases:        -       Case 1:
+        /// PublicDelegatedPrefix (PDP) for BYOIP external IPv4      addresses. The PDP must support enhanced IPv4
+        /// allocations.    -       Case 2: Internal Range for global internal addresses.    Use one of the following
+        /// formats to specify the resource:  For a Public Delegated Prefix:        -     Full resource
+        /// URL:https://www.googleapis.com/compute/v1/projects/projectId/regions/region/publicDelegatedPrefixes/pdp    -
+        /// Partial URL:       - projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name       -
+        /// regions/region/publicDelegatedPrefixes/pdp-name       For an Internal Range:        - Full
+        /// URL:https://networkconnectivity.googleapis.com/v1/projects/project/locations/global/internalRanges/internal-range
+        ///    - Partial URL:projects/project/locations/global/internalRanges/internal-range
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("ipCollection")]
         public virtual string IpCollection { get; set; }
@@ -117694,8 +118404,9 @@ namespace Google.Apis.Compute.v1.Data
     {
         /// <summary>
         /// The Action to perform when the client connection triggers the rule. Valid actions for firewall rules are:
-        /// "allow", "deny", "apply_security_profile_group" and "goto_next". Valid actions for packet mirroring rules
-        /// are: "mirror", "do_not_mirror" and "goto_next".
+        /// "allow", "deny", "apply_security_profile_group" and "goto_next" ( "apply_security_profile_group" can be
+        /// specified only for global network firewall policies or hierarchical firewall policies). Valid actions for
+        /// packet mirroring rules are: "mirror", "do_not_mirror" and "goto_next".
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("action")]
         public virtual string Action { get; set; }
@@ -117757,10 +118468,10 @@ namespace Google.Apis.Compute.v1.Data
         public virtual System.Nullable<int> RuleTupleCount { get; set; }
 
         /// <summary>
-        /// A fully-qualified URL of a SecurityProfile resource instance. Example:
+        /// A fully-qualified URL of a SecurityProfileGroup resource instance. Example:
         /// https://networksecurity.googleapis.com/v1/projects/{project}/locations/{location}/securityProfileGroups/my-security-profile-group
         /// Must be specified if action is one of 'apply_security_profile_group' or 'mirror'. Cannot be specified for
-        /// other actions.
+        /// other actions. Can be specified only for global network firewall policies or hierarchical firewall policies.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("securityProfileGroup")]
         public virtual string SecurityProfileGroup { get; set; }
@@ -123474,6 +124185,10 @@ namespace Google.Apis.Compute.v1.Data
         [Newtonsoft.Json.JsonPropertyAttribute("lastSuspendedTimestamp")]
         public virtual string LastSuspendedTimestamp { get; set; }
 
+        /// <summary>Specifies which method should be used for encrypting the Local SSDs attached to the VM.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("localSsdEncryptionMode")]
+        public virtual string LocalSsdEncryptionMode { get; set; }
+
         /// <summary>
         /// Full or partial URL of the machine type resource to use for this instance, in the
         /// format:zones/zone/machineTypes/machine-type. This is provided by the client when the instance is created.
@@ -124529,10 +125244,11 @@ namespace Google.Apis.Compute.v1.Data
     public class InstanceGroupManagerInstanceLifecyclePolicy : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>
-        /// The action that a MIG performs on a failed or an unhealthy VM. A VM is marked as unhealthy when the
-        /// application running on that VM fails a health check. Valid values are         - REPAIR (default): MIG
-        /// automatically repairs a failed or    an unhealthy VM by recreating it. For more information, see About
-        /// repairing VMs in a MIG.    - DO_NOTHING: MIG does not repair a failed or an unhealthy    VM.
+        /// The action that a MIG performs on a failed VM. If the value of the onFailedHealthCheck field is
+        /// `DEFAULT_ACTION`, then the same action also applies to the VMs on which your application fails a health
+        /// check. Valid values are         - REPAIR (default): MIG automatically repairs a failed VM    by recreating
+        /// it. For more information, see About    repairing VMs in a MIG.    - DO_NOTHING: MIG does not repair a failed
+        /// VM.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("defaultActionOnFailure")]
         public virtual string DefaultActionOnFailure { get; set; }
@@ -124555,6 +125271,25 @@ namespace Google.Apis.Compute.v1.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("onFailedHealthCheck")]
         public virtual string OnFailedHealthCheck { get; set; }
+
+        /// <summary>Configuration for VM repairs in the MIG.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("onRepair")]
+        public virtual InstanceGroupManagerInstanceLifecyclePolicyOnRepair OnRepair { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Configuration for VM repairs in the MIG.</summary>
+    public class InstanceGroupManagerInstanceLifecyclePolicyOnRepair : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>
+        /// Specifies whether the MIG can change a VM's zone during a repair. Valid values are:        - NO (default):
+        /// MIG cannot change a VM's zone during a    repair.    - YES: MIG can select a different zone for the VM
+        /// during    a repair.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("allowChangingZone")]
+        public virtual string AllowChangingZone { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -124662,6 +125397,14 @@ namespace Google.Apis.Compute.v1.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("id")]
         public virtual System.Nullable<ulong> Id { get; set; }
+
+        /// <summary>
+        /// The names of instances to be created by this resize request. The number of names specified determines the
+        /// number of instances to create. The group's target size will be increased by this number. This field cannot
+        /// be used together with 'resize_by'.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("instances")]
+        public virtual System.Collections.Generic.IList<PerInstanceConfig> Instances { get; set; }
 
         /// <summary>
         /// Output only. The resource type, which is alwayscompute#instanceGroupManagerResizeRequest for resize
@@ -126492,6 +127235,10 @@ namespace Google.Apis.Compute.v1.Data
         [Newtonsoft.Json.JsonPropertyAttribute("labels")]
         public virtual System.Collections.Generic.IDictionary<string, string> Labels { get; set; }
 
+        /// <summary>Specifies which method should be used for encrypting the Local SSDs attached to the VM.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("localSsdEncryptionMode")]
+        public virtual string LocalSsdEncryptionMode { get; set; }
+
         /// <summary>
         /// The machine type to use for instances that are created from these properties. This field only accepts a
         /// machine type name, for example `n2-standard-4`. If you use the machine type full or partial URL, for example
@@ -127916,6 +128663,13 @@ namespace Google.Apis.Compute.v1.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("description")]
         public virtual string Description { get; set; }
+
+        /// <summary>
+        /// Output only. URL of the InterconnectLocation object that represents where this connection is to be
+        /// provisioned. By default it will be the same as the location field.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("effectiveLocation")]
+        public virtual string EffectiveLocation { get; set; }
 
         /// <summary>Output only. [Output Only] A list of outages expected for this Interconnect.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("expectedOutages")]
@@ -132133,6 +132887,17 @@ namespace Google.Apis.Compute.v1.Data
         [Newtonsoft.Json.JsonPropertyAttribute("propertiesFromFlexibilityPolicy")]
         public virtual ManagedInstancePropertiesFromFlexibilityPolicy PropertiesFromFlexibilityPolicy { get; set; }
 
+        /// <summary>Output only. Information about the termination timestamp of the instance, if applicable.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("scheduling")]
+        public virtual ManagedInstanceScheduling Scheduling { get; set; }
+
+        /// <summary>
+        /// Output only. Specifies the graceful shutdown details if the instance is in `PENDING_STOP` state or there is
+        /// a programmed stop scheduled.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("shutdownDetails")]
+        public virtual ManagedInstanceShutdownDetails ShutdownDetails { get; set; }
+
         /// <summary>Output only. [Output Only] Intended version of this instance.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("version")]
         public virtual ManagedInstanceVersion Version { get; set; }
@@ -132230,6 +132995,150 @@ namespace Google.Apis.Compute.v1.Data
         /// <summary>Output only. The machine type to be used for this instance.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("machineType")]
         public virtual string MachineType { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    public class ManagedInstanceScheduling : Google.Apis.Requests.IDirectResponseSchema
+    {
+        private string _gracefulShutdownTimestampRaw;
+
+        private object _gracefulShutdownTimestamp;
+
+        /// <summary>
+        /// Output only. The timestamp at which the underlying instance will be triggered for graceful shutdown if it is
+        /// configured. This is in RFC3339 text format.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("gracefulShutdownTimestamp")]
+        public virtual string GracefulShutdownTimestampRaw
+        {
+            get => _gracefulShutdownTimestampRaw;
+            set
+            {
+                _gracefulShutdownTimestamp = Google.Apis.Util.Utilities.DeserializeForGoogleFormat(value);
+                _gracefulShutdownTimestampRaw = value;
+            }
+        }
+
+        /// <summary><seealso cref="object"/> representation of <see cref="GracefulShutdownTimestampRaw"/>.</summary>
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use GracefulShutdownTimestampDateTimeOffset instead.")]
+        public virtual object GracefulShutdownTimestamp
+        {
+            get => _gracefulShutdownTimestamp;
+            set
+            {
+                _gracefulShutdownTimestampRaw = Google.Apis.Util.Utilities.SerializeForGoogleFormat(value);
+                _gracefulShutdownTimestamp = value;
+            }
+        }
+
+        /// <summary>
+        /// <seealso cref="System.DateTimeOffset"/> representation of <see cref="GracefulShutdownTimestampRaw"/>.
+        /// </summary>
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        public virtual System.DateTimeOffset? GracefulShutdownTimestampDateTimeOffset
+        {
+            get => Google.Apis.Util.DiscoveryFormat.ParseGoogleDateTimeToDateTimeOffset(GracefulShutdownTimestampRaw);
+            set => GracefulShutdownTimestampRaw = Google.Apis.Util.DiscoveryFormat.FormatDateTimeOffsetToGoogleDateTime(value);
+        }
+
+        private string _terminationTimestampRaw;
+
+        private object _terminationTimestamp;
+
+        /// <summary>
+        /// Output only. The timestamp at which the managed instance will be terminated. This is in RFC3339 text format.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("terminationTimestamp")]
+        public virtual string TerminationTimestampRaw
+        {
+            get => _terminationTimestampRaw;
+            set
+            {
+                _terminationTimestamp = Google.Apis.Util.Utilities.DeserializeForGoogleFormat(value);
+                _terminationTimestampRaw = value;
+            }
+        }
+
+        /// <summary><seealso cref="object"/> representation of <see cref="TerminationTimestampRaw"/>.</summary>
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use TerminationTimestampDateTimeOffset instead.")]
+        public virtual object TerminationTimestamp
+        {
+            get => _terminationTimestamp;
+            set
+            {
+                _terminationTimestampRaw = Google.Apis.Util.Utilities.SerializeForGoogleFormat(value);
+                _terminationTimestamp = value;
+            }
+        }
+
+        /// <summary>
+        /// <seealso cref="System.DateTimeOffset"/> representation of <see cref="TerminationTimestampRaw"/>.
+        /// </summary>
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        public virtual System.DateTimeOffset? TerminationTimestampDateTimeOffset
+        {
+            get => Google.Apis.Util.DiscoveryFormat.ParseGoogleDateTimeToDateTimeOffset(TerminationTimestampRaw);
+            set => TerminationTimestampRaw = Google.Apis.Util.DiscoveryFormat.FormatDateTimeOffsetToGoogleDateTime(value);
+        }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    public class ManagedInstanceShutdownDetails : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>
+        /// Output only. The duration for graceful shutdown. Only applicable when the instance is in `PENDING_STOP`
+        /// state.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("maxDuration")]
+        public virtual Duration MaxDuration { get; set; }
+
+        private string _requestTimestampRaw;
+
+        private object _requestTimestamp;
+
+        /// <summary>
+        /// Output only. Past timestamp indicating the beginning of `PENDING_STOP` state of instance in RFC3339 text
+        /// format.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("requestTimestamp")]
+        public virtual string RequestTimestampRaw
+        {
+            get => _requestTimestampRaw;
+            set
+            {
+                _requestTimestamp = Google.Apis.Util.Utilities.DeserializeForGoogleFormat(value);
+                _requestTimestampRaw = value;
+            }
+        }
+
+        /// <summary><seealso cref="object"/> representation of <see cref="RequestTimestampRaw"/>.</summary>
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use RequestTimestampDateTimeOffset instead.")]
+        public virtual object RequestTimestamp
+        {
+            get => _requestTimestamp;
+            set
+            {
+                _requestTimestampRaw = Google.Apis.Util.Utilities.SerializeForGoogleFormat(value);
+                _requestTimestamp = value;
+            }
+        }
+
+        /// <summary>
+        /// <seealso cref="System.DateTimeOffset"/> representation of <see cref="RequestTimestampRaw"/>.
+        /// </summary>
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        public virtual System.DateTimeOffset? RequestTimestampDateTimeOffset
+        {
+            get => Google.Apis.Util.DiscoveryFormat.ParseGoogleDateTimeToDateTimeOffset(RequestTimestampRaw);
+            set => RequestTimestampRaw = Google.Apis.Util.DiscoveryFormat.FormatDateTimeOffsetToGoogleDateTime(value);
+        }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -132365,6 +133274,43 @@ namespace Google.Apis.Compute.v1.Data
         /// <summary>The port number, which can be a value between 1 and 65535.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("port")]
         public virtual System.Nullable<int> Port { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    public class NamedSet : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>An optional description of named set.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("description")]
+        public virtual string Description { get; set; }
+
+        /// <summary>
+        /// CEL expressions that are comparable to constructs of this set's type (see Policy Language).
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("elements")]
+        public virtual System.Collections.Generic.IList<Expr> Elements { get; set; }
+
+        /// <summary>
+        /// A fingerprint for the Named Set being applied to this Router, which is essentially a hash of the Named Set
+        /// used for optimistic locking. The fingerprint is initially generated by Compute Engine and changes after
+        /// every request to modify or update the Named Set. You must always provide an up-to-date fingerprint hash in
+        /// order to update or change labels.  To see the latest fingerprint, make a getNamedSet() request to retrieve a
+        /// Named Set.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("fingerprint")]
+        public virtual string Fingerprint { get; set; }
+
+        /// <summary>
+        /// This set's name, which must be a resource ID segment and unique within all named sets owned by the Router.
+        /// Name should conform to RFC1035.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("name")]
+        public virtual string Name { get; set; }
+
+        /// <summary>This named set's type</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("type")]
+        public virtual string Type { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -132615,15 +133561,15 @@ namespace Google.Apis.Compute.v1.Data
         public virtual string Network { get; set; }
 
         /// <summary>
-        /// Projects that are allowed to connect to this network attachment. The project can be specified using its id
-        /// or number.
+        /// Projects or service class ids that are allowed to connect to this network attachment. The project can be
+        /// specified using its id or number. Service class id can be specified as "serviceclasses/{service_class_id}".
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("producerAcceptLists")]
         public virtual System.Collections.Generic.IList<string> ProducerAcceptLists { get; set; }
 
         /// <summary>
-        /// Projects that are not allowed to connect to this network attachment. The project can be specified using its
-        /// id or number.
+        /// Projects or service class ids that are not allowed to connect to this network attachment. The project can be
+        /// specified using its id or number. Service class id can be specified as "serviceclasses/{service_class_id}".
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("producerRejectLists")]
         public virtual System.Collections.Generic.IList<string> ProducerRejectLists { get; set; }
@@ -133921,6 +134867,13 @@ namespace Google.Apis.Compute.v1.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("aliasIpRanges")]
         public virtual System.Collections.Generic.IList<AliasIpRange> AliasIpRanges { get; set; }
+
+        /// <summary>
+        /// An array of alias IPv6 ranges for this network interface. You can only specify this field for network
+        /// interfaces in VPC networks.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("aliasIpv6Ranges")]
+        public virtual System.Collections.Generic.IList<AliasIpRange> AliasIpv6Ranges { get; set; }
 
         /// <summary>
         /// Optional. If true, DNS resolution will be enabled over this interface. Only valid with network_attachment.
@@ -143972,6 +144925,14 @@ namespace Google.Apis.Compute.v1.Data
         public virtual System.Collections.Generic.IList<string> DrainNatIps { get; set; }
 
         /// <summary>
+        /// Output only. Effective timeout (in seconds) for TCP connections that are in TIME_WAIT state. This value is
+        /// equal to tcp_time_wait_timeout_sec. If tcp_time_wait_timeout_sec isn't set, the effective timeout is 30s or
+        /// 120s. The field is output only.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("effectiveTcpTimeWaitTimeoutSec")]
+        public virtual System.Nullable<int> EffectiveTcpTimeWaitTimeoutSec { get; set; }
+
+        /// <summary>
         /// Enable Dynamic Port Allocation.   If not specified, it is disabled by default.   If set to true,        -
         /// Dynamic Port Allocation will be enabled on this NAT    config.    - enableEndpointIndependentMapping cannot
         /// be set to true.    - If minPorts is set, minPortsPerVm must be set to a    power of two greater than or
@@ -144490,6 +145451,16 @@ namespace Google.Apis.Compute.v1.Data
         public virtual string ETag { get; set; }
     }
 
+    public class RoutersGetNamedSetResponse : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>end_interface: MixerGetResponseWithEtagBuilder</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("etag")]
+        public virtual string ETag { get; set; }
+
+        [Newtonsoft.Json.JsonPropertyAttribute("resource")]
+        public virtual NamedSet Resource { get; set; }
+    }
+
     public class RoutersGetRoutePolicyResponse : Google.Apis.Requests.IDirectResponseSchema
     {
         [Newtonsoft.Json.JsonPropertyAttribute("resource")]
@@ -144528,6 +145499,92 @@ namespace Google.Apis.Compute.v1.Data
         /// <summary>[Output Only] A list of bgp routes.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("result")]
         public virtual System.Collections.Generic.IList<BgpRoute> Result { get; set; }
+
+        /// <summary>Output only. [Output Only] Server-defined URL for this resource.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("selfLink")]
+        public virtual string SelfLink { get; set; }
+
+        /// <summary>Output only. [Output Only] Unreachable resources.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("unreachables")]
+        public virtual System.Collections.Generic.IList<string> Unreachables { get; set; }
+
+        /// <summary>[Output Only] Informational warning message.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("warning")]
+        public virtual WarningData Warning { get; set; }
+
+        /// <summary>[Output Only] Informational warning message.</summary>
+        public class WarningData
+        {
+            /// <summary>
+            /// [Output Only] A warning code, if applicable. For example, Compute Engine returns NO_RESULTS_ON_PAGE if
+            /// there are no results in the response.
+            /// </summary>
+            [Newtonsoft.Json.JsonPropertyAttribute("code")]
+            public virtual string Code { get; set; }
+
+            /// <summary>
+            /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
+            /// "scope",    "value": "zones/us-east1-d"   }
+            /// </summary>
+            [Newtonsoft.Json.JsonPropertyAttribute("data")]
+            public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
+
+            /// <summary>[Output Only] A human-readable description of the warning code.</summary>
+            [Newtonsoft.Json.JsonPropertyAttribute("message")]
+            public virtual string Message { get; set; }
+
+            /// <summary>
+            /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
+            /// "scope",    "value": "zones/us-east1-d"   }
+            /// </summary>
+            public class DataData
+            {
+                /// <summary>
+                /// [Output Only] A key that provides more detail on the warning being returned. For example, for
+                /// warnings where there are no results in a list request for a particular zone, this key might be scope
+                /// and the key value might be the zone name. Other examples might be a key indicating a deprecated
+                /// resource and a suggested replacement, or a warning about invalid network settings (for example, if
+                /// an instance attempts to perform IP forwarding but is not enabled for IP forwarding).
+                /// </summary>
+                [Newtonsoft.Json.JsonPropertyAttribute("key")]
+                public virtual string Key { get; set; }
+
+                /// <summary>[Output Only] A warning data value corresponding to the key.</summary>
+                [Newtonsoft.Json.JsonPropertyAttribute("value")]
+                public virtual string Value { get; set; }
+            }
+        }
+    }
+
+    public class RoutersListNamedSets : Google.Apis.Requests.IDirectResponseSchema
+    {
+        [Newtonsoft.Json.JsonPropertyAttribute("etag")]
+        public virtual string ETag { get; set; }
+
+        /// <summary>
+        /// [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("id")]
+        public virtual string Id { get; set; }
+
+        /// <summary>
+        /// Output only. [Output Only] Type of resource. Alwayscompute#routersListNamedSets for lists of named sets.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("kind")]
+        public virtual string Kind { get; set; }
+
+        /// <summary>
+        /// [Output Only] This token allows you to get the next page of results for list requests. If the number of
+        /// results is larger thanmaxResults, use the nextPageToken as a value for the query parameter pageToken in the
+        /// next list request. Subsequent list requests will have their own nextPageToken to continue paging through the
+        /// results.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("nextPageToken")]
+        public virtual string NextPageToken { get; set; }
+
+        /// <summary>[Output Only] A list of named sets.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("result")]
+        public virtual System.Collections.Generic.IList<NamedSet> Result { get; set; }
 
         /// <summary>Output only. [Output Only] Server-defined URL for this resource.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("selfLink")]
@@ -145608,6 +146665,23 @@ namespace Google.Apis.Compute.v1.Data
 
     public class SecurityPolicyDdosProtectionConfig : Google.Apis.Requests.IDirectResponseSchema
     {
+        [Newtonsoft.Json.JsonPropertyAttribute("ddosAdaptiveProtection")]
+        public virtual string DdosAdaptiveProtection { get; set; }
+
+        /// <summary>
+        /// DDoS Protection for Network Load Balancers (and VMs with public IPs) builds DDoS mitigations that minimize
+        /// collateral damage. It quantifies this as the fraction of a non-abuse baseline that's inadvertently blocked.
+        /// Rules whose collateral damage exceeds ddosImpactedBaselineThreshold will not be deployed. Using a lower
+        /// value will prioritize keeping collateral damage low, possibly at the cost of its effectiveness in rate
+        /// limiting some or all of the attack. It should typically be unset, so Advanced DDoS (and Adaptive Protection)
+        /// uses the best mitigation it can find. Setting the threshold is advised if there are logs for false positive
+        /// detections with high collateral damage, and will cause Advanced DDoS to attempt to find a less aggressive
+        /// rule that satisfies the constraint. If a suitable rule cannot be found, the system falls back to either no
+        /// mitigation for smaller attacks or broader network throttles for larger ones.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("ddosImpactedBaselineThreshold")]
+        public virtual System.Nullable<float> DdosImpactedBaselineThreshold { get; set; }
+
         [Newtonsoft.Json.JsonPropertyAttribute("ddosProtection")]
         public virtual string DdosProtection { get; set; }
 
@@ -146466,6 +147540,13 @@ namespace Google.Apis.Compute.v1.Data
         public virtual string Name { get; set; }
 
         /// <summary>
+        /// The number of NAT IP addresses to be allocated per connected endpoint. If not specified, the default value
+        /// is 1.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("natIpsPerEndpoint")]
+        public virtual System.Nullable<long> NatIpsPerEndpoint { get; set; }
+
+        /// <summary>
         /// An array of URLs where each entry is the URL of a subnet provided by the service producer to use for NAT in
         /// this service attachment.
         /// </summary>
@@ -147237,9 +148318,10 @@ namespace Google.Apis.Compute.v1.Data
         public virtual System.Nullable<long> StorageBytes { get; set; }
 
         /// <summary>
-        /// Output only. [Output Only] An indicator whether storageBytes is in a stable state or it is being adjusted as
-        /// a result of shared storage reallocation. This status can either be UPDATING, meaning the size of the
-        /// snapshot is being updated, or UP_TO_DATE, meaning the size of the snapshot is up-to-date.
+        /// Output only. [Deprecated] Instead, check the storageBytes field. After snapshot creation, the
+        /// storageBytesStatus field is alwaysUP_TO_DATE. [Output Only] An indicator whether storageBytes is in a stable
+        /// state or it is being adjusted as a result of shared storage reallocation. This status can either be unset,
+        /// meaning the snapshot is being created, or UP_TO_DATE, meaning the size of the snapshot is up-to-date.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("storageBytesStatus")]
         public virtual string StorageBytesStatus { get; set; }
@@ -148350,10 +149432,6 @@ namespace Google.Apis.Compute.v1.Data
 
     public class SslPolicyReference : Google.Apis.Requests.IDirectResponseSchema
     {
-        /// <summary>
-        /// URL of the SSL policy resource. Set this to empty string to clear any existing SSL policy associated with
-        /// the target proxy resource.
-        /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("sslPolicy")]
         public virtual string SslPolicy { get; set; }
 
@@ -149872,6 +150950,18 @@ namespace Google.Apis.Compute.v1.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("ipCidrRange")]
         public virtual string IpCidrRange { get; set; }
+
+        /// <summary>
+        /// Reference to a Public Delegated Prefix (PDP) for BYOIP. This field should be specified for configuring
+        /// BYOGUA internal IPv6 secondary range. When specified along with the ip_cidr_range, the ip_cidr_range must
+        /// lie within the PDP referenced by the `ipCollection` field. When specified without the ip_cidr_range, the
+        /// range is auto-allocated from the PDP referenced by the `ipCollection` field.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("ipCollection")]
+        public virtual string IpCollection { get; set; }
+
+        [Newtonsoft.Json.JsonPropertyAttribute("ipVersion")]
+        public virtual string IpVersion { get; set; }
 
         /// <summary>
         /// The name associated with this subnetwork secondary range, used when adding an alias IP/IPv6 range to a VM
@@ -152060,6 +153150,10 @@ namespace Google.Apis.Compute.v1.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("kind")]
         public virtual string Kind { get; set; }
+
+        /// <summary>Specifies the type of load balancing scheme used by this target proxy.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("loadBalancingScheme")]
+        public virtual string LoadBalancingScheme { get; set; }
 
         /// <summary>
         /// Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters

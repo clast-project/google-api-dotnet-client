@@ -21691,6 +21691,9 @@ namespace Google.Apis.Dialogflow.v2beta1.Data
 
     public class GoogleCloudDialogflowV2KnowledgeAssistAnswerAdditionalSuggestedQueryResult : Google.Apis.Requests.IDirectResponseSchema
     {
+        [Newtonsoft.Json.JsonPropertyAttribute("answerRecord")]
+        public virtual string AnswerRecord { get; set; }
+
         [Newtonsoft.Json.JsonPropertyAttribute("suggestedQuery")]
         public virtual GoogleCloudDialogflowV2KnowledgeAssistAnswerSuggestedQuery SuggestedQuery { get; set; }
 
@@ -25364,18 +25367,6 @@ namespace Google.Apis.Dialogflow.v2beta1.Data
         public virtual string ETag { get; set; }
     }
 
-    public class GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigConversationModelConfig : Google.Apis.Requests.IDirectResponseSchema
-    {
-        [Newtonsoft.Json.JsonPropertyAttribute("baselineModelVersion")]
-        public virtual string BaselineModelVersion { get; set; }
-
-        [Newtonsoft.Json.JsonPropertyAttribute("model")]
-        public virtual string Model { get; set; }
-
-        /// <summary>The ETag of the item.</summary>
-        public virtual string ETag { get; set; }
-    }
-
     public class GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigConversationProcessConfig : Google.Apis.Requests.IDirectResponseSchema
     {
         [Newtonsoft.Json.JsonPropertyAttribute("recentSentencesCount")]
@@ -25429,9 +25420,6 @@ namespace Google.Apis.Dialogflow.v2beta1.Data
 
     public class GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigSuggestionFeatureConfig : Google.Apis.Requests.IDirectResponseSchema
     {
-        [Newtonsoft.Json.JsonPropertyAttribute("conversationModelConfig")]
-        public virtual GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigConversationModelConfig ConversationModelConfig { get; set; }
-
         [Newtonsoft.Json.JsonPropertyAttribute("conversationProcessConfig")]
         public virtual GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigConversationProcessConfig ConversationProcessConfig { get; set; }
 
@@ -25782,6 +25770,9 @@ namespace Google.Apis.Dialogflow.v2beta1.Data
 
         [Newtonsoft.Json.JsonPropertyAttribute("enableAutomaticPunctuation")]
         public virtual System.Nullable<bool> EnableAutomaticPunctuation { get; set; }
+
+        [Newtonsoft.Json.JsonPropertyAttribute("enableVoiceActivityEvents")]
+        public virtual System.Nullable<bool> EnableVoiceActivityEvents { get; set; }
 
         [Newtonsoft.Json.JsonPropertyAttribute("enableWordInfo")]
         public virtual System.Nullable<bool> EnableWordInfo { get; set; }
@@ -26656,6 +26647,9 @@ namespace Google.Apis.Dialogflow.v2beta1.Data
 
     public class GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerAdditionalSuggestedQueryResult : Google.Apis.Requests.IDirectResponseSchema
     {
+        [Newtonsoft.Json.JsonPropertyAttribute("answerRecord")]
+        public virtual string AnswerRecord { get; set; }
+
         [Newtonsoft.Json.JsonPropertyAttribute("suggestedQuery")]
         public virtual GoogleCloudDialogflowV2beta1KnowledgeAssistAnswerSuggestedQuery SuggestedQuery { get; set; }
 
@@ -27763,6 +27757,9 @@ namespace Google.Apis.Dialogflow.v2beta1.Data
 
     public class GoogleCloudDialogflowV2beta1SearchKnowledgeDebugInfo : Google.Apis.Requests.IDirectResponseSchema
     {
+        [Newtonsoft.Json.JsonPropertyAttribute("cesDebugInfo")]
+        public virtual System.Collections.Generic.IDictionary<string, object> CesDebugInfo { get; set; }
+
         [Newtonsoft.Json.JsonPropertyAttribute("datastoreResponseReason")]
         public virtual string DatastoreResponseReason { get; set; }
 

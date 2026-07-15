@@ -1106,7 +1106,8 @@ namespace Google.Apis.GoogleAnalyticsAdmin.v1alpha
         /// <summary>
         /// Returns all accounts accessible by the caller. Note that these accounts might not currently have GA
         /// properties. Soft-deleted (ie: "trashed") accounts are excluded by default. Returns an empty list if no
-        /// relevant accounts are found.
+        /// relevant accounts are found. Note: The easiest way to retrieve a list of all properties you have access to
+        /// is by using `ListAccountSummaries`.
         /// </summary>
         public virtual ListRequest List()
         {
@@ -1116,7 +1117,8 @@ namespace Google.Apis.GoogleAnalyticsAdmin.v1alpha
         /// <summary>
         /// Returns all accounts accessible by the caller. Note that these accounts might not currently have GA
         /// properties. Soft-deleted (ie: "trashed") accounts are excluded by default. Returns an empty list if no
-        /// relevant accounts are found.
+        /// relevant accounts are found. Note: The easiest way to retrieve a list of all properties you have access to
+        /// is by using `ListAccountSummaries`.
         /// </summary>
         public class ListRequest : GoogleAnalyticsAdminBaseServiceRequest<Google.Apis.GoogleAnalyticsAdmin.v1alpha.Data.GoogleAnalyticsAdminV1alphaListAccountsResponse>
         {
@@ -11166,6 +11168,82 @@ namespace Google.Apis.GoogleAnalyticsAdmin.v1alpha
                     ParameterType = "path",
                     DefaultValue = null,
                     Pattern = @"^properties/[^/]+/googleSignalsSettings$",
+                });
+                RequestParameters.Add("updateMask", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "updateMask",
+                    IsRequired = false,
+                    ParameterType = "query",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+            }
+        }
+
+        /// <summary>Updates the reporting identity settings for this property.</summary>
+        /// <param name="body">The body of the request.</param>
+        /// <param name="name">
+        /// Output only. Identifier. Resource name for this reporting identity settings singleton resource. Format:
+        /// properties/{property_id}/reportingIdentitySettings Example: "properties/1234/reportingIdentitySettings"
+        /// </param>
+        public virtual UpdateReportingIdentitySettingsRequest UpdateReportingIdentitySettings(Google.Apis.GoogleAnalyticsAdmin.v1alpha.Data.GoogleAnalyticsAdminV1alphaReportingIdentitySettings body, string name)
+        {
+            return new UpdateReportingIdentitySettingsRequest(this.service, body, name);
+        }
+
+        /// <summary>Updates the reporting identity settings for this property.</summary>
+        public class UpdateReportingIdentitySettingsRequest : GoogleAnalyticsAdminBaseServiceRequest<Google.Apis.GoogleAnalyticsAdmin.v1alpha.Data.GoogleAnalyticsAdminV1alphaReportingIdentitySettings>
+        {
+            /// <summary>Constructs a new UpdateReportingIdentitySettings request.</summary>
+            public UpdateReportingIdentitySettingsRequest(Google.Apis.Services.IClientService service, Google.Apis.GoogleAnalyticsAdmin.v1alpha.Data.GoogleAnalyticsAdminV1alphaReportingIdentitySettings body, string name) : base(service)
+            {
+                Name = name;
+                Body = body;
+                InitParameters();
+            }
+
+            /// <summary>
+            /// Output only. Identifier. Resource name for this reporting identity settings singleton resource. Format:
+            /// properties/{property_id}/reportingIdentitySettings Example: "properties/1234/reportingIdentitySettings"
+            /// </summary>
+            [Google.Apis.Util.RequestParameterAttribute("name", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string Name { get; private set; }
+
+            /// <summary>
+            /// Optional. The list of fields to be updated. Field names must be in snake case (for example,
+            /// "field_to_update"). Omitted fields will not be updated. To replace the entire entity, use one path with
+            /// the string "*" to match all fields. If omitted, the service will treat it as an implied field mask
+            /// equivalent to all fields that are populated.
+            /// </summary>
+            [Google.Apis.Util.RequestParameterAttribute("updateMask", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual object UpdateMask { get; set; }
+
+            /// <summary>Gets or sets the body of this request.</summary>
+            Google.Apis.GoogleAnalyticsAdmin.v1alpha.Data.GoogleAnalyticsAdminV1alphaReportingIdentitySettings Body { get; set; }
+
+            /// <summary>Returns the body of the request.</summary>
+            protected override object GetBody() => Body;
+
+            /// <summary>Gets the method name.</summary>
+            public override string MethodName => "updateReportingIdentitySettings";
+
+            /// <summary>Gets the HTTP method.</summary>
+            public override string HttpMethod => "PATCH";
+
+            /// <summary>Gets the REST path.</summary>
+            public override string RestPath => "v1alpha/{+name}";
+
+            /// <summary>Initializes UpdateReportingIdentitySettings parameter list.</summary>
+            protected override void InitParameters()
+            {
+                base.InitParameters();
+                RequestParameters.Add("name", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "name",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = @"^properties/[^/]+/reportingIdentitySettings$",
                 });
                 RequestParameters.Add("updateMask", new Google.Apis.Discovery.Parameter
                 {
