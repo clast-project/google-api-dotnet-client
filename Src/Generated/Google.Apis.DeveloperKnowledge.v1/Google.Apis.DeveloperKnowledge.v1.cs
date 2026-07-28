@@ -35,6 +35,7 @@ namespace Google.Apis.DeveloperKnowledge.v1
         public DeveloperKnowledgeService(Google.Apis.Services.BaseClientService.Initializer initializer) : base(initializer)
         {
             Documents = new DocumentsResource(this);
+            V1 = new V1Resource(this);
             BaseUri = GetEffectiveUri(BaseUriOverride, "https://developerknowledge.googleapis.com/");
             BatchUri = GetEffectiveUri(null, "https://developerknowledge.googleapis.com/batch");
         }
@@ -79,6 +80,9 @@ namespace Google.Apis.DeveloperKnowledge.v1
 
         /// <summary>Gets the Documents resource.</summary>
         public virtual DocumentsResource Documents { get; }
+
+        /// <summary>Gets the V1 resource.</summary>
+        public virtual V1Resource V1 { get; }
     }
 
     /// <summary>A base abstract class for DeveloperKnowledge requests.</summary>
@@ -499,25 +503,24 @@ namespace Google.Apis.DeveloperKnowledge.v1
             /// <summary>
             /// Optional. Applies a strict filter to the search results. The expression supports a subset of the syntax
             /// described at https://google.aip.dev/160. While `SearchDocumentChunks` returns DocumentChunks, the filter
-            /// is applied to `DocumentChunk.document` fields. Supported fields for filtering: * `content_length_bytes`
-            /// (INTEGER): The length of the `Document.content` field in bytes. * `data_source` (STRING): The source of
-            /// the document, e.g. `docs.cloud.google.com`. See
+            /// is applied to `DocumentChunk.document` fields. Supported fields for filtering: * `data_source` (STRING):
+            /// The source of the document, e.g. `docs.cloud.google.com`. See
             /// https://developers.google.com/knowledge/reference/corpus-reference for the complete list of data sources
             /// in the corpus. * `update_time` (TIMESTAMP): The timestamp of when the document was last meaningfully
             /// updated. A meaningful update is one that changes document's markdown content or metadata. * `uri`
-            /// (STRING): The document URI, e.g. `https://docs.cloud.google.com/bigquery/docs/tables`. INTEGER fields
-            /// support `=`, `&amp;lt;`, `&amp;lt;=`, `&amp;gt;`, and `&amp;gt;=` operators. STRING fields support `=`
-            /// (equals) and `!=` (not equals) operators for **exact match** on the whole string. Partial match, prefix
-            /// match, and regexp match are not supported. TIMESTAMP fields support `=`, `&amp;lt;`, `&amp;lt;=`,
-            /// `&amp;gt;`, and `&amp;gt;=` operators. Timestamps must be in RFC-3339 format, e.g.,
-            /// `"2025-01-01T00:00:00Z"`. You can combine expressions using `AND`, `OR`, and `NOT` (or `-`) logical
+            /// (STRING): The document URI, e.g. `https://docs.cloud.google.com/bigquery/docs/tables`. STRING fields
+            /// support `=` (equals) and `!=` (not equals) operators for **exact match** on the whole string. Partial
+            /// match, prefix match, and regexp match are not supported. TIMESTAMP fields support `=`, `&amp;lt;`,
+            /// `&amp;lt;=`, `&amp;gt;`, and `&amp;gt;=` operators. Timestamps must be in RFC-3339 format, e.g.,
+            /// `"2025-01-01T00:00:00Z"`. Note: Field names must be in `snake_case` (e.g., `data_source`). Values on the
+            /// right-hand side of filtering expressions must be string literals enclosed in double quotes (e.g.,
+            /// `"docs.cloud.google.com"`). You can combine expressions using `AND`, `OR`, and `NOT` (or `-`) logical
             /// operators. `OR` has higher precedence than `AND`. Use parentheses for explicit precedence grouping.
-            /// Examples: * Filter by `Document.content_length_bytes`: `content_length_bytes &amp;lt; 50000` *
-            /// `data_source = "docs.cloud.google.com" OR data_source = "firebase.google.com"` * `data_source !=
-            /// "firebase.google.com"` * `update_time &amp;lt; "2024-01-01T00:00:00Z"` * `update_time &amp;gt;=
-            /// "2025-01-22T00:00:00Z" AND (data_source = "developer.chrome.com" OR data_source = "web.dev")` * `uri =
-            /// "https://docs.cloud.google.com/release-notes"` The `filter` string must not exceed 500 characters;
-            /// values longer than 500 characters will result in an `INVALID_ARGUMENT` error.
+            /// Examples: * `data_source = "docs.cloud.google.com" OR data_source = "firebase.google.com"` *
+            /// `data_source != "firebase.google.com"` * `update_time &amp;lt; "2024-01-01T00:00:00Z"` * `update_time
+            /// &amp;gt;= "2025-01-22T00:00:00Z" AND (data_source = "developer.chrome.com" OR data_source = "web.dev")`
+            /// * `uri = "https://docs.cloud.google.com/release-notes"` The `filter` string must not exceed 500
+            /// characters; values longer than 500 characters will result in an `INVALID_ARGUMENT` error.
             /// </summary>
             [Google.Apis.Util.RequestParameterAttribute("filter", Google.Apis.Util.RequestParameterType.Query)]
             public virtual string Filter { get; set; }
@@ -592,15 +595,159 @@ namespace Google.Apis.DeveloperKnowledge.v1
             }
         }
     }
+
+    /// <summary>The "v1" collection of methods.</summary>
+    public class V1Resource
+    {
+        private const string Resource = "v1";
+
+        /// <summary>The service which this resource belongs to.</summary>
+        private readonly Google.Apis.Services.IClientService service;
+
+        /// <summary>Constructs a new resource.</summary>
+        public V1Resource(Google.Apis.Services.IClientService service)
+        {
+            this.service = service;
+        }
+
+        /// <summary>Answers a query using grounded generation.</summary>
+        /// <param name="body">The body of the request.</param>
+        public virtual AnswerQueryRequest AnswerQuery(Google.Apis.DeveloperKnowledge.v1.Data.AnswerQueryRequest body)
+        {
+            return new AnswerQueryRequest(this.service, body);
+        }
+
+        /// <summary>Answers a query using grounded generation.</summary>
+        public class AnswerQueryRequest : DeveloperKnowledgeBaseServiceRequest<Google.Apis.DeveloperKnowledge.v1.Data.AnswerQueryResponse>
+        {
+            /// <summary>Constructs a new AnswerQuery request.</summary>
+            public AnswerQueryRequest(Google.Apis.Services.IClientService service, Google.Apis.DeveloperKnowledge.v1.Data.AnswerQueryRequest body) : base(service)
+            {
+                Body = body;
+                InitParameters();
+            }
+
+            /// <summary>Gets or sets the body of this request.</summary>
+            Google.Apis.DeveloperKnowledge.v1.Data.AnswerQueryRequest Body { get; set; }
+
+            /// <summary>Returns the body of the request.</summary>
+            protected override object GetBody() => Body;
+
+            /// <summary>Gets the method name.</summary>
+            public override string MethodName => "answerQuery";
+
+            /// <summary>Gets the HTTP method.</summary>
+            public override string HttpMethod => "POST";
+
+            /// <summary>Gets the REST path.</summary>
+            public override string RestPath => "v1:answerQuery";
+
+            /// <summary>Initializes AnswerQuery parameter list.</summary>
+            protected override void InitParameters()
+            {
+                base.InitParameters();
+            }
+        }
+    }
 }
 namespace Google.Apis.DeveloperKnowledge.v1.Data
 {
+    /// <summary>An answer to a query.</summary>
+    public class Answer : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Contains the text of the answer.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("answerText")]
+        public virtual string AnswerText { get; set; }
+
+        /// <summary>Output only. Contains citations for the answer.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("citations")]
+        public virtual System.Collections.Generic.IList<AnswerCitation> Citations { get; set; }
+
+        /// <summary>Output only. Contains references for the answer.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("references")]
+        public virtual System.Collections.Generic.IList<AnswerReference> References { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Citation info for a segment.</summary>
+    public class AnswerCitation : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>
+        /// Output only. Indicates the end of the segment, measured in bytes (UTF-8 unicode), exclusive. If there are
+        /// multi-byte characters, such as non-ASCII characters, the index measurement is longer than the string length.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("endIndex")]
+        public virtual System.Nullable<int> EndIndex { get; set; }
+
+        /// <summary>Output only. Contains citation sources for the attributed segment.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("sources")]
+        public virtual System.Collections.Generic.IList<CitationSource> Sources { get; set; }
+
+        /// <summary>
+        /// Output only. Indicates the start of the segment, measured in bytes (UTF-8 unicode), inclusive. If there are
+        /// multi-byte characters, such as non-ASCII characters, the index measurement is longer than the string length.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("startIndex")]
+        public virtual System.Nullable<int> StartIndex { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Request message for DeveloperKnowledge.AnswerQuery.</summary>
+    public class AnswerQueryRequest : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Required. The query to answer.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("query")]
+        public virtual string Query { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Response message for DeveloperKnowledge.AnswerQuery.</summary>
+    public class AnswerQueryResponse : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The answer to the query.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("answer")]
+        public virtual Answer Answer { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Represents a reference to a source.</summary>
+    public class AnswerReference : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Output only. The reference document.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("documentReference")]
+        public virtual DocumentReference DocumentReference { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
     /// <summary>Response message for DeveloperKnowledge.BatchGetDocuments.</summary>
     public class BatchGetDocumentsResponse : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>Contains the documents requested.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("documents")]
         public virtual System.Collections.Generic.IList<Document> Documents { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Citation source.</summary>
+    public class CitationSource : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>
+        /// Output only. Contains the index of the Answer.AnswerReference in the `references` repeated field.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("referenceIndex")]
+        public virtual System.Nullable<int> ReferenceIndex { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -725,6 +872,19 @@ namespace Google.Apis.DeveloperKnowledge.v1.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("parent")]
         public virtual string Parent { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Represents a reference to a document.</summary>
+    public class DocumentReference : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>
+        /// Output only. Contains the document chunk. The `document_chunk.id` field is not set and will be empty.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("documentChunk")]
+        public virtual DocumentChunk DocumentChunk { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }

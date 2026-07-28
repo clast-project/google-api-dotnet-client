@@ -56,6 +56,7 @@ namespace Google.Apis.Compute.v1
             GlobalPublicDelegatedPrefixes = new GlobalPublicDelegatedPrefixesResource(this);
             GlobalVmExtensionPolicies = new GlobalVmExtensionPoliciesResource(this);
             HealthChecks = new HealthChecksResource(this);
+            Hosts = new HostsResource(this);
             HttpHealthChecks = new HttpHealthChecksResource(this);
             HttpsHealthChecks = new HttpsHealthChecksResource(this);
             ImageFamilyViews = new ImageFamilyViewsResource(this);
@@ -126,6 +127,7 @@ namespace Google.Apis.Compute.v1
             RegionUrlMaps = new RegionUrlMapsResource(this);
             RegionZones = new RegionZonesResource(this);
             Regions = new RegionsResource(this);
+            ReliabilityRisks = new ReliabilityRisksResource(this);
             ReservationBlocks = new ReservationBlocksResource(this);
             ReservationSlots = new ReservationSlotsResource(this);
             ReservationSubBlocks = new ReservationSubBlocksResource(this);
@@ -300,6 +302,9 @@ namespace Google.Apis.Compute.v1
 
         /// <summary>Gets the HealthChecks resource.</summary>
         public virtual HealthChecksResource HealthChecks { get; }
+
+        /// <summary>Gets the Hosts resource.</summary>
+        public virtual HostsResource Hosts { get; }
 
         /// <summary>Gets the HttpHealthChecks resource.</summary>
         public virtual HttpHealthChecksResource HttpHealthChecks { get; }
@@ -510,6 +515,9 @@ namespace Google.Apis.Compute.v1
 
         /// <summary>Gets the Regions resource.</summary>
         public virtual RegionsResource Regions { get; }
+
+        /// <summary>Gets the ReliabilityRisks resource.</summary>
+        public virtual ReliabilityRisksResource ReliabilityRisks { get; }
 
         /// <summary>Gets the ReservationBlocks resource.</summary>
         public virtual ReservationBlocksResource ReservationBlocks { get; }
@@ -18709,6 +18717,430 @@ namespace Google.Apis.Compute.v1
         }
     }
 
+    /// <summary>The "hosts" collection of methods.</summary>
+    public class HostsResource
+    {
+        private const string Resource = "hosts";
+
+        /// <summary>The service which this resource belongs to.</summary>
+        private readonly Google.Apis.Services.IClientService service;
+
+        /// <summary>Constructs a new resource.</summary>
+        public HostsResource(Google.Apis.Services.IClientService service)
+        {
+            this.service = service;
+        }
+
+        /// <summary>Retrieves information about the specified host.</summary>
+        /// <param name="project">The project ID for this request.</param>
+        /// <param name="zone">The name of the zone for this request, formatted as RFC1035.</param>
+        /// <param name="association">
+        /// The parent resource association for the Host. This field specifies the hierarchical context (e.g.,
+        /// reservation, block, sub-block) when accessing the host. For example, reservations/reservation_name,
+        /// reservations/reservation_name/reservationBlocks/reservation_block_name or
+        /// reservations/reservation_name/reservationBlocks/reservation_block_name/reservationSubBlocks/reservation_sub_block_name.
+        /// </param>
+        /// <param name="host">The name of the host, formatted as RFC1035 or a resource ID number.</param>
+        public virtual GetRequest Get(string project, string zone, string association, string host)
+        {
+            return new GetRequest(this.service, project, zone, association, host);
+        }
+
+        /// <summary>Retrieves information about the specified host.</summary>
+        public class GetRequest : ComputeBaseServiceRequest<Google.Apis.Compute.v1.Data.Host>
+        {
+            /// <summary>Constructs a new Get request.</summary>
+            public GetRequest(Google.Apis.Services.IClientService service, string project, string zone, string association, string host) : base(service)
+            {
+                Project = project;
+                Zone = zone;
+                Association = association;
+                Host = host;
+                InitParameters();
+            }
+
+            /// <summary>The project ID for this request.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("project", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string Project { get; private set; }
+
+            /// <summary>The name of the zone for this request, formatted as RFC1035.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("zone", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string Zone { get; private set; }
+
+            /// <summary>
+            /// The parent resource association for the Host. This field specifies the hierarchical context (e.g.,
+            /// reservation, block, sub-block) when accessing the host. For example, reservations/reservation_name,
+            /// reservations/reservation_name/reservationBlocks/reservation_block_name or
+            /// reservations/reservation_name/reservationBlocks/reservation_block_name/reservationSubBlocks/reservation_sub_block_name.
+            /// </summary>
+            [Google.Apis.Util.RequestParameterAttribute("association", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string Association { get; private set; }
+
+            /// <summary>The name of the host, formatted as RFC1035 or a resource ID number.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("host", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string Host { get; private set; }
+
+            /// <summary>Gets the method name.</summary>
+            public override string MethodName => "get";
+
+            /// <summary>Gets the HTTP method.</summary>
+            public override string HttpMethod => "GET";
+
+            /// <summary>Gets the REST path.</summary>
+            public override string RestPath => "projects/{project}/zones/{zone}/{association}/hosts/{host}";
+
+            /// <summary>Initializes Get parameter list.</summary>
+            protected override void InitParameters()
+            {
+                base.InitParameters();
+                RequestParameters.Add("project", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "project",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+                RequestParameters.Add("zone", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "zone",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+                RequestParameters.Add("association", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "association",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+                RequestParameters.Add("host", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "host",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+            }
+        }
+
+        /// <summary>Allows customers to get SBOM versions of a host.</summary>
+        /// <param name="body">The body of the request.</param>
+        /// <param name="project">Project ID for this request.</param>
+        /// <param name="zone">Name of the zone for this request. Zone name should conform to RFC1035.</param>
+        /// <param name="association">
+        /// The parent resource association for the Host. This field specifies the hierarchical context (e.g.,
+        /// reservation, block, sub-block) when accessing the host.
+        /// </param>
+        /// <param name="host">The name of the host, formatted as RFC1035 or a resource ID number.</param>
+        public virtual GetVersionRequest GetVersion(Google.Apis.Compute.v1.Data.HostsGetVersionRequest body, string project, string zone, string association, string host)
+        {
+            return new GetVersionRequest(this.service, body, project, zone, association, host);
+        }
+
+        /// <summary>Allows customers to get SBOM versions of a host.</summary>
+        public class GetVersionRequest : ComputeBaseServiceRequest<Google.Apis.Compute.v1.Data.Operation>
+        {
+            /// <summary>Constructs a new GetVersion request.</summary>
+            public GetVersionRequest(Google.Apis.Services.IClientService service, Google.Apis.Compute.v1.Data.HostsGetVersionRequest body, string project, string zone, string association, string host) : base(service)
+            {
+                Project = project;
+                Zone = zone;
+                Association = association;
+                Host = host;
+                Body = body;
+                InitParameters();
+            }
+
+            /// <summary>Project ID for this request.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("project", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string Project { get; private set; }
+
+            /// <summary>Name of the zone for this request. Zone name should conform to RFC1035.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("zone", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string Zone { get; private set; }
+
+            /// <summary>
+            /// The parent resource association for the Host. This field specifies the hierarchical context (e.g.,
+            /// reservation, block, sub-block) when accessing the host.
+            /// </summary>
+            [Google.Apis.Util.RequestParameterAttribute("association", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string Association { get; private set; }
+
+            /// <summary>The name of the host, formatted as RFC1035 or a resource ID number.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("host", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string Host { get; private set; }
+
+            /// <summary>
+            /// An optional request ID to identify requests. Specify a unique request ID so that if you must retry your
+            /// request, the server will know to ignore the request if it has already been completed.
+            /// </summary>
+            [Google.Apis.Util.RequestParameterAttribute("requestId", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual string RequestId { get; set; }
+
+            /// <summary>Gets or sets the body of this request.</summary>
+            Google.Apis.Compute.v1.Data.HostsGetVersionRequest Body { get; set; }
+
+            /// <summary>Returns the body of the request.</summary>
+            protected override object GetBody() => Body;
+
+            /// <summary>Gets the method name.</summary>
+            public override string MethodName => "getVersion";
+
+            /// <summary>Gets the HTTP method.</summary>
+            public override string HttpMethod => "POST";
+
+            /// <summary>Gets the REST path.</summary>
+            public override string RestPath => "projects/{project}/zones/{zone}/{association}/hosts/{host}/getVersion";
+
+            /// <summary>Initializes GetVersion parameter list.</summary>
+            protected override void InitParameters()
+            {
+                base.InitParameters();
+                RequestParameters.Add("project", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "project",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+                RequestParameters.Add("zone", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "zone",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+                RequestParameters.Add("association", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "association",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+                RequestParameters.Add("host", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "host",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+                RequestParameters.Add("requestId", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "requestId",
+                    IsRequired = false,
+                    ParameterType = "query",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+            }
+        }
+
+        /// <summary>Retrieves a list of hosts.</summary>
+        /// <param name="project">The project ID for this request.</param>
+        /// <param name="zone">The name of the zone for this request, formatted as RFC1035.</param>
+        /// <param name="association">
+        /// The parent resource association for the Host. This field specifies the hierarchical context (e.g.,
+        /// reservation, block, sub-block) when accessing the host. For example, reservations/reservation_name,
+        /// reservations/reservation_name/reservationBlocks/reservation_block_name or
+        /// reservations/reservation_name/reservationBlocks/reservation_block_name/reservationSubBlocks/reservation_sub_block_name.
+        /// </param>
+        public virtual ListRequest List(string project, string zone, string association)
+        {
+            return new ListRequest(this.service, project, zone, association);
+        }
+
+        /// <summary>Retrieves a list of hosts.</summary>
+        public class ListRequest : ComputeBaseServiceRequest<Google.Apis.Compute.v1.Data.HostsListResponse>
+        {
+            /// <summary>Constructs a new List request.</summary>
+            public ListRequest(Google.Apis.Services.IClientService service, string project, string zone, string association) : base(service)
+            {
+                Project = project;
+                Zone = zone;
+                Association = association;
+                InitParameters();
+            }
+
+            /// <summary>The project ID for this request.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("project", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string Project { get; private set; }
+
+            /// <summary>The name of the zone for this request, formatted as RFC1035.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("zone", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string Zone { get; private set; }
+
+            /// <summary>
+            /// The parent resource association for the Host. This field specifies the hierarchical context (e.g.,
+            /// reservation, block, sub-block) when accessing the host. For example, reservations/reservation_name,
+            /// reservations/reservation_name/reservationBlocks/reservation_block_name or
+            /// reservations/reservation_name/reservationBlocks/reservation_block_name/reservationSubBlocks/reservation_sub_block_name.
+            /// </summary>
+            [Google.Apis.Util.RequestParameterAttribute("association", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string Association { get; private set; }
+
+            /// <summary>
+            /// A filter expression that filters resources listed in the response. Most Compute resources support two
+            /// types of filter expressions: expressions that support regular expressions and expressions that follow
+            /// API improvement proposal AIP-160. These two types of filter expressions cannot be mixed in one request.
+            /// If you want to use AIP-160, your expression must specify the field name, an operator, and the value that
+            /// you want to use for filtering. The value must be a string, a number, or a boolean. The operator must be
+            /// either `=`, `!=`, `&amp;gt;`, `&amp;lt;`, `&amp;lt;=`, `&amp;gt;=` or `:`.  For example, if you are
+            /// filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying
+            /// `name != example-instance`.  The `:*` comparison can be used to test whether a key has been defined. For
+            /// example, to find all objects with `owner` label use:
+            /// ```
+            /// labels.owner:*
+            /// ```
+            /// You can also filter nested
+            /// fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only
+            /// if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based
+            /// onresource labels.  To filter on multiple expressions, provide each separate expression within
+            /// parentheses. For example:
+            /// ```
+            /// (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake")
+            /// ```
+            /// By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions
+            /// explicitly. For example:
+            /// ```
+            /// (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND
+            /// (scheduling.automaticRestart = true)
+            /// ```
+            /// If you want to use a regular expression, use the `eq` (equal)
+            /// or `ne` (not equal) operator against a single un-parenthesized expression with or without quotes or
+            /// against multiple parenthesized expressions. Examples:  `fieldname eq unquoted literal` `fieldname eq
+            /// 'single quoted literal'` `fieldname eq "double quoted literal"` `(fieldname1 eq literal) (fieldname2 ne
+            /// "literal")`  The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+            /// The literal value must match the entire field.  For example, to filter for instances that do not end
+            /// with name "instance", you would use `name ne .*instance`.  You cannot combine constraints on multiple
+            /// fields using regular expressions.
+            /// </summary>
+            [Google.Apis.Util.RequestParameterAttribute("filter", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual string Filter { get; set; }
+
+            /// <summary>
+            /// The maximum number of results per page that should be returned. If the number of available results is
+            /// larger than `maxResults`, Compute Engine returns a `nextPageToken` that can be used to get the next page
+            /// of results in subsequent list requests. Acceptable values are `0` to `500`, inclusive. (Default: `500`)
+            /// </summary>
+            [Google.Apis.Util.RequestParameterAttribute("maxResults", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual System.Nullable<long> MaxResults { get; set; }
+
+            /// <summary>
+            /// Sorts list results by a certain order. By default, results are returned in alphanumerical order based on
+            /// the resource name.  You can also sort results in descending order based on the creation timestamp using
+            /// `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse
+            /// chronological order (newest result first). Use this to sort resources like operations so that the newest
+            /// operation is returned first.  Currently, only sorting by `name` or `creationTimestamp desc` is
+            /// supported.
+            /// </summary>
+            [Google.Apis.Util.RequestParameterAttribute("orderBy", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual string OrderBy { get; set; }
+
+            /// <summary>
+            /// Specifies a page token to use. Set `pageToken` to the `nextPageToken` returned by a previous list
+            /// request to get the next page of results.
+            /// </summary>
+            [Google.Apis.Util.RequestParameterAttribute("pageToken", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual string PageToken { get; set; }
+
+            /// <summary>
+            /// Opt-in for partial success behavior which provides partial results in case of failure. The default value
+            /// is false.  For example, when partial success behavior is enabled, aggregatedList for a single zone scope
+            /// either returns all resources in the zone or no resources, with an error code.
+            /// </summary>
+            [Google.Apis.Util.RequestParameterAttribute("returnPartialSuccess", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual System.Nullable<bool> ReturnPartialSuccess { get; set; }
+
+            /// <summary>Gets the method name.</summary>
+            public override string MethodName => "list";
+
+            /// <summary>Gets the HTTP method.</summary>
+            public override string HttpMethod => "GET";
+
+            /// <summary>Gets the REST path.</summary>
+            public override string RestPath => "projects/{project}/zones/{zone}/{association}/hosts";
+
+            /// <summary>Initializes List parameter list.</summary>
+            protected override void InitParameters()
+            {
+                base.InitParameters();
+                RequestParameters.Add("project", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "project",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+                RequestParameters.Add("zone", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "zone",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+                RequestParameters.Add("association", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "association",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+                RequestParameters.Add("filter", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "filter",
+                    IsRequired = false,
+                    ParameterType = "query",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+                RequestParameters.Add("maxResults", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "maxResults",
+                    IsRequired = false,
+                    ParameterType = "query",
+                    DefaultValue = "500",
+                    Pattern = null,
+                });
+                RequestParameters.Add("orderBy", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "orderBy",
+                    IsRequired = false,
+                    ParameterType = "query",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+                RequestParameters.Add("pageToken", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "pageToken",
+                    IsRequired = false,
+                    ParameterType = "query",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+                RequestParameters.Add("returnPartialSuccess", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "returnPartialSuccess",
+                    IsRequired = false,
+                    ParameterType = "query",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+            }
+        }
+    }
+
     /// <summary>The "httpHealthChecks" collection of methods.</summary>
     public class HttpHealthChecksResource
     {
@@ -27907,6 +28339,10 @@ namespace Google.Apis.Compute.v1
             [Google.Apis.Util.RequestParameterAttribute("instance", Google.Apis.Util.RequestParameterType.Path)]
             public virtual string Instance { get; private set; }
 
+            /// <summary>If set to true, Graceful Shutdown is skipped.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("noGracefulShutdown", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual System.Nullable<bool> NoGracefulShutdown { get; set; }
+
             /// <summary>
             /// An optional request ID to identify requests. Specify a unique request ID so that if you must retry your
             /// request, the server will know to ignore the request if it has already been completed.  For example,
@@ -27955,6 +28391,14 @@ namespace Google.Apis.Compute.v1
                     ParameterType = "path",
                     DefaultValue = null,
                     Pattern = @"[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+                });
+                RequestParameters.Add("noGracefulShutdown", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "noGracefulShutdown",
+                    IsRequired = false,
+                    ParameterType = "query",
+                    DefaultValue = null,
+                    Pattern = null,
                 });
                 RequestParameters.Add("requestId", new Google.Apis.Discovery.Parameter
                 {
@@ -31826,6 +32270,10 @@ namespace Google.Apis.Compute.v1
             [Google.Apis.Util.RequestParameterAttribute("discardLocalSsd", Google.Apis.Util.RequestParameterType.Query)]
             public virtual System.Nullable<bool> DiscardLocalSsd { get; set; }
 
+            /// <summary>If set to true, Graceful Shutdown is skipped.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("noGracefulShutdown", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual System.Nullable<bool> NoGracefulShutdown { get; set; }
+
             /// <summary>
             /// An optional request ID to identify requests. Specify a unique request ID so that if you must retry your
             /// request, the server will know to ignore the request if it has already been completed.  For example,
@@ -31878,6 +32326,14 @@ namespace Google.Apis.Compute.v1
                 RequestParameters.Add("discardLocalSsd", new Google.Apis.Discovery.Parameter
                 {
                     Name = "discardLocalSsd",
+                    IsRequired = false,
+                    ParameterType = "query",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+                RequestParameters.Add("noGracefulShutdown", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "noGracefulShutdown",
                     IsRequired = false,
                     ParameterType = "query",
                     DefaultValue = null,
@@ -81409,6 +81865,238 @@ namespace Google.Apis.Compute.v1
         }
     }
 
+    /// <summary>The "reliabilityRisks" collection of methods.</summary>
+    public class ReliabilityRisksResource
+    {
+        private const string Resource = "reliabilityRisks";
+
+        /// <summary>The service which this resource belongs to.</summary>
+        private readonly Google.Apis.Services.IClientService service;
+
+        /// <summary>Constructs a new resource.</summary>
+        public ReliabilityRisksResource(Google.Apis.Services.IClientService service)
+        {
+            this.service = service;
+        }
+
+        /// <summary>Returns the specified ReliabilityRisk resource.</summary>
+        /// <param name="project">Project ID for this request.</param>
+        /// <param name="reliabilityRisk">Name of the ReliabilityRisk resource to return.</param>
+        public virtual GetRequest Get(string project, string reliabilityRisk)
+        {
+            return new GetRequest(this.service, project, reliabilityRisk);
+        }
+
+        /// <summary>Returns the specified ReliabilityRisk resource.</summary>
+        public class GetRequest : ComputeBaseServiceRequest<Google.Apis.Compute.v1.Data.ReliabilityRisk>
+        {
+            /// <summary>Constructs a new Get request.</summary>
+            public GetRequest(Google.Apis.Services.IClientService service, string project, string reliabilityRisk) : base(service)
+            {
+                Project = project;
+                ReliabilityRisk = reliabilityRisk;
+                InitParameters();
+            }
+
+            /// <summary>Project ID for this request.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("project", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string Project { get; private set; }
+
+            /// <summary>Name of the ReliabilityRisk resource to return.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("reliabilityRisk", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string ReliabilityRisk { get; private set; }
+
+            /// <summary>Gets the method name.</summary>
+            public override string MethodName => "get";
+
+            /// <summary>Gets the HTTP method.</summary>
+            public override string HttpMethod => "GET";
+
+            /// <summary>Gets the REST path.</summary>
+            public override string RestPath => "projects/{project}/global/reliabilityRisks/{reliabilityRisk}";
+
+            /// <summary>Initializes Get parameter list.</summary>
+            protected override void InitParameters()
+            {
+                base.InitParameters();
+                RequestParameters.Add("project", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "project",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = @"(?:(?:[-a-z0-9]{1,63}\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+                });
+                RequestParameters.Add("reliabilityRisk", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "reliabilityRisk",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = @"[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+                });
+            }
+        }
+
+        /// <summary>Retrieves the list of reliabilityRisks available in the specified project.</summary>
+        /// <param name="project">Project ID for this request.</param>
+        public virtual ListRequest List(string project)
+        {
+            return new ListRequest(this.service, project);
+        }
+
+        /// <summary>Retrieves the list of reliabilityRisks available in the specified project.</summary>
+        public class ListRequest : ComputeBaseServiceRequest<Google.Apis.Compute.v1.Data.ReliabilityRisksListResponse>
+        {
+            /// <summary>Constructs a new List request.</summary>
+            public ListRequest(Google.Apis.Services.IClientService service, string project) : base(service)
+            {
+                Project = project;
+                InitParameters();
+            }
+
+            /// <summary>Project ID for this request.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("project", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string Project { get; private set; }
+
+            /// <summary>
+            /// A filter expression that filters resources listed in the response. Most Compute resources support two
+            /// types of filter expressions: expressions that support regular expressions and expressions that follow
+            /// API improvement proposal AIP-160. These two types of filter expressions cannot be mixed in one request.
+            /// If you want to use AIP-160, your expression must specify the field name, an operator, and the value that
+            /// you want to use for filtering. The value must be a string, a number, or a boolean. The operator must be
+            /// either `=`, `!=`, `&amp;gt;`, `&amp;lt;`, `&amp;lt;=`, `&amp;gt;=` or `:`.  For example, if you are
+            /// filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying
+            /// `name != example-instance`.  The `:*` comparison can be used to test whether a key has been defined. For
+            /// example, to find all objects with `owner` label use:
+            /// ```
+            /// labels.owner:*
+            /// ```
+            /// You can also filter nested
+            /// fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only
+            /// if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based
+            /// onresource labels.  To filter on multiple expressions, provide each separate expression within
+            /// parentheses. For example:
+            /// ```
+            /// (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake")
+            /// ```
+            /// By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions
+            /// explicitly. For example:
+            /// ```
+            /// (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND
+            /// (scheduling.automaticRestart = true)
+            /// ```
+            /// If you want to use a regular expression, use the `eq` (equal)
+            /// or `ne` (not equal) operator against a single un-parenthesized expression with or without quotes or
+            /// against multiple parenthesized expressions. Examples:  `fieldname eq unquoted literal` `fieldname eq
+            /// 'single quoted literal'` `fieldname eq "double quoted literal"` `(fieldname1 eq literal) (fieldname2 ne
+            /// "literal")`  The literal value is interpreted as a regular expression using GoogleRE2 library syntax.
+            /// The literal value must match the entire field.  For example, to filter for instances that do not end
+            /// with name "instance", you would use `name ne .*instance`.  You cannot combine constraints on multiple
+            /// fields using regular expressions.
+            /// </summary>
+            [Google.Apis.Util.RequestParameterAttribute("filter", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual string Filter { get; set; }
+
+            /// <summary>
+            /// The maximum number of results per page that should be returned. If the number of available results is
+            /// larger than `maxResults`, Compute Engine returns a `nextPageToken` that can be used to get the next page
+            /// of results in subsequent list requests. Acceptable values are `0` to `500`, inclusive. (Default: `500`)
+            /// </summary>
+            [Google.Apis.Util.RequestParameterAttribute("maxResults", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual System.Nullable<long> MaxResults { get; set; }
+
+            /// <summary>
+            /// Sorts list results by a certain order. By default, results are returned in alphanumerical order based on
+            /// the resource name.  You can also sort results in descending order based on the creation timestamp using
+            /// `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse
+            /// chronological order (newest result first). Use this to sort resources like operations so that the newest
+            /// operation is returned first.  Currently, only sorting by `name` or `creationTimestamp desc` is
+            /// supported.
+            /// </summary>
+            [Google.Apis.Util.RequestParameterAttribute("orderBy", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual string OrderBy { get; set; }
+
+            /// <summary>
+            /// Specifies a page token to use. Set `pageToken` to the `nextPageToken` returned by a previous list
+            /// request to get the next page of results.
+            /// </summary>
+            [Google.Apis.Util.RequestParameterAttribute("pageToken", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual string PageToken { get; set; }
+
+            /// <summary>
+            /// Opt-in for partial success behavior which provides partial results in case of failure. The default value
+            /// is false.  For example, when partial success behavior is enabled, aggregatedList for a single zone scope
+            /// either returns all resources in the zone or no resources, with an error code.
+            /// </summary>
+            [Google.Apis.Util.RequestParameterAttribute("returnPartialSuccess", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual System.Nullable<bool> ReturnPartialSuccess { get; set; }
+
+            /// <summary>Gets the method name.</summary>
+            public override string MethodName => "list";
+
+            /// <summary>Gets the HTTP method.</summary>
+            public override string HttpMethod => "GET";
+
+            /// <summary>Gets the REST path.</summary>
+            public override string RestPath => "projects/{project}/global/reliabilityRisks";
+
+            /// <summary>Initializes List parameter list.</summary>
+            protected override void InitParameters()
+            {
+                base.InitParameters();
+                RequestParameters.Add("project", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "project",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = @"(?:(?:[-a-z0-9]{1,63}\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+                });
+                RequestParameters.Add("filter", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "filter",
+                    IsRequired = false,
+                    ParameterType = "query",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+                RequestParameters.Add("maxResults", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "maxResults",
+                    IsRequired = false,
+                    ParameterType = "query",
+                    DefaultValue = "500",
+                    Pattern = null,
+                });
+                RequestParameters.Add("orderBy", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "orderBy",
+                    IsRequired = false,
+                    ParameterType = "query",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+                RequestParameters.Add("pageToken", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "pageToken",
+                    IsRequired = false,
+                    ParameterType = "query",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+                RequestParameters.Add("returnPartialSuccess", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "returnPartialSuccess",
+                    IsRequired = false,
+                    ParameterType = "query",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+            }
+        }
+    }
+
     /// <summary>The "reservationBlocks" collection of methods.</summary>
     public class ReservationBlocksResource
     {
@@ -110075,9 +110763,11 @@ namespace Google.Apis.Compute.v1.Data
 
         /// <summary>
         /// Reference to the source of IP addresses.  It supports the following cases:        -       Case 1:
-        /// PublicDelegatedPrefix (PDP) for BYOIP external IPv4      addresses. The PDP must support enhanced IPv4
-        /// allocations.    -       Case 2: Internal Range for global internal addresses.    Use one of the following
-        /// formats to specify the resource:  For a Public Delegated Prefix:        -     Full resource
+        /// PublicDelegatedPrefix (PDP) for BYOIP external      addresses. If an IPv4 PDP is used, the PDP must support
+        /// enhanced IPv4      allocations. If an IPv6 PDP is used, the PDP must be in
+        /// EXTERNAL_IPV6_FORWARDING_RULE_CREATION mode.    -       Case 2: Internal Range for global internal
+        /// addresses.    Use one of the following formats to specify the resource:  For a Public Delegated Prefix:
+        ///   -     Full resource
         /// URL:https://www.googleapis.com/compute/v1/projects/projectId/regions/region/publicDelegatedPrefixes/pdp    -
         /// Partial URL:       - projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name       -
         /// regions/region/publicDelegatedPrefixes/pdp-name       For an Internal Range:        - Full
@@ -110161,7 +110851,11 @@ namespace Google.Apis.Compute.v1.Data
         /// configuration. These addresses      are regional resources.      - `SHARED_LOADBALANCER_VIP` for an internal
         /// IP address that is assigned      to multiple internal forwarding rules.      - `PRIVATE_SERVICE_CONNECT` for
         /// a private network address that is      used to configure Private Service Connect. Only global internal
-        /// addresses      can use this purpose.
+        /// addresses      can use this purpose.      - `PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP0` for addresses
+        ///   that can only be assigned to global external Passthrough Network Load      Balancer forwarding rules, as
+        /// an Availability Group 0 address.      - `PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP1` for addresses that
+        ///    can only be assigned to global external Passthrough Network Load Balancer      forwarding rules, as an
+        /// Availability Group 1 address.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("purpose")]
         public virtual string Purpose { get; set; }
@@ -110873,6 +111567,23 @@ namespace Google.Apis.Compute.v1.Data
         [Newtonsoft.Json.JsonPropertyAttribute("diskSizeGb")]
         public virtual System.Nullable<long> DiskSizeGb { get; set; }
 
+        /// <summary>
+        /// Specifies the disk type used for the boot disk or an additional data disk. For valid disk type values, see
+        /// Supported types for Hyperdisk volumes and Persistent Disk type variables.  When creating a single instance,
+        /// you must provide either the full or partial URL of the disk type. For example, the following values are
+        /// valid:               - https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/diskType
+        ///     - projects/project/zones/zone/diskTypes/diskType      - zones/zone/diskTypes/diskType    When creating
+        /// an instance template, instance flexibility policy, or when creating or updating an all-instances
+        /// configuration, you specify the disk type without a URL, for example, hyperdisk-balanced.  If you omit this
+        /// field for a disk, the default disk type depends on the instance's machine series, as follows.             -
+        /// For first- and second-generation machine series like N1, N2, T2, and     M1, the        default disk type is
+        /// Standard Persistent Disk        (pd-standard).     - For C3, C3D, and M3 the default is Balanced Persistent
+        /// Disk     (pd-balanced).     - For other third-generation machine     series like A3, H3, Z3, all
+        /// fourth-generation types like C4, N4, M4, and newer machine series,         the default is Hyperdisk Balanced
+        ///         (hyperdisk-balanced).    The disk type you specify must be compatible with the instance's machine
+        /// series. For a list of machine series that support Persistent Disk, see Machine series support for Persistent
+        /// Disk.  For a list of machine series that support Hyperdisk, seeMachine series support for Hyperdisk.
+        /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("diskType")]
         public virtual string DiskType { get; set; }
 
@@ -112876,7 +113587,10 @@ namespace Google.Apis.Compute.v1.Data
 
         /// <summary>
         /// URL to networkservices.ServiceLbPolicy resource.  Can only be set if load balancing scheme is
-        /// EXTERNAL_MANAGED, INTERNAL_MANAGED or INTERNAL_SELF_MANAGED and the scope is global.
+        /// EXTERNAL_MANAGED, INTERNAL_MANAGED or INTERNAL_SELF_MANAGED for a global backend service, and
+        /// EXTERNAL_MANAGED or INTERNAL_MANAGED for a regional backend service. For a global backend service, the
+        /// service lb policy must be global. For a regional backend service, the service lb policy must be regional and
+        /// in the same region.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("serviceLbPolicy")]
         public virtual string ServiceLbPolicy { get; set; }
@@ -115955,17 +116669,18 @@ namespace Google.Apis.Compute.v1.Data
         public virtual string KmsKeyServiceAccount { get; set; }
 
         /// <summary>
-        /// Specifies a 256-bit customer-supplied encryption key, encoded in RFC 4648 base64 to either encrypt or
-        /// decrypt this resource. You can provide either the rawKey or thersaEncryptedKey. For example:  "rawKey":
-        /// "SGVsbG8gZnJvbSBHb29nbGUgQ2xvdWQgUGxhdGZvcm0="
+        /// [DEPRECATED] CSEK is no longer supported. Use CMEK instead. Specifies a 256-bit customer-supplied encryption
+        /// key, encoded in RFC 4648 base64 to either encrypt or decrypt this resource. You can provide either the
+        /// rawKey or thersaEncryptedKey. For example:  "rawKey": "SGVsbG8gZnJvbSBHb29nbGUgQ2xvdWQgUGxhdGZvcm0="
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("rawKey")]
         public virtual string RawKey { get; set; }
 
         /// <summary>
-        /// Specifies an RFC 4648 base64 encoded, RSA-wrapped 2048-bit customer-supplied encryption key to either
-        /// encrypt or decrypt this resource. You can provide either the rawKey or thersaEncryptedKey. For example:
-        /// "rsaEncryptedKey": "ieCx/NcW06PcT7Ep1X6LUTc/hLvUDYyzSZPPVCVPTVEohpeHASqC8uw5TzyO9U+Fka9JFH
+        /// [DEPRECATED] CSEK is no longer supported. Use CMEK instead. Specifies an RFC 4648 base64 encoded,
+        /// RSA-wrapped 2048-bit customer-supplied encryption key to either encrypt or decrypt this resource. You can
+        /// provide either the rawKey or thersaEncryptedKey. For example:  "rsaEncryptedKey":
+        /// "ieCx/NcW06PcT7Ep1X6LUTc/hLvUDYyzSZPPVCVPTVEohpeHASqC8uw5TzyO9U+Fka9JFH
         /// z0mBibXUInrC/jEk014kCK/NPjYgEMOyssZ4ZINPKxlUh2zn1bV+MCaTICrdmuSBTWlUUiFoD
         /// D6PYznLwh8ZNdaheCeZ8ewEXgFQ8V+sDroLaN3Xs3MDTXQEMMoNUXMCZEIpg9Vtp9x2oe=="  The key must meet the following
         /// requirements before you can provide it to  Compute Engine:         1. The key is wrapped using a RSA public
@@ -115977,8 +116692,8 @@ namespace Google.Apis.Compute.v1.Data
         public virtual string RsaEncryptedKey { get; set; }
 
         /// <summary>
-        /// [Output only] TheRFC 4648 base64 encoded SHA-256 hash of the customer-supplied encryption key that protects
-        /// this resource.
+        /// [DEPRECATED] CSEK is no longer supported. Use CMEK instead. [Output only] TheRFC 4648 base64 encoded SHA-256
+        /// hash of the customer-supplied encryption key that protects this resource.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("sha256")]
         public virtual string Sha256 { get; set; }
@@ -121584,10 +122299,11 @@ namespace Google.Apis.Compute.v1.Data
         /// The list of cloud regions from which health checks are performed. If any regions are specified, then exactly
         /// 3 regions should be specified. The region names must be valid names of Google Cloud regions. This can only
         /// be set for global health check. If this list is non-empty, then there are restrictions on what other health
-        /// check fields are supported and what other resources can use this health check:        - SSL, HTTP2, and GRPC
-        /// protocols are not supported.    - The TCP request field is not supported.    - The proxyHeader field for
-        /// HTTP, HTTPS, and TCP is not    supported.    - The checkIntervalSec field must be at least 30.    - The
-        /// health check cannot be used with BackendService nor with managed    instance group auto-healing.
+        /// check fields are supported and what other resources can use this health check:        - SSL, HTTP2, GRPC,
+        /// and GRPC_WITH_TLS protocols are not supported.    - The TCP request field is not supported.    - The
+        /// proxyHeader field for HTTP, HTTPS, and TCP is not    supported.    - The checkIntervalSec field must be at
+        /// least 30.    - The health check cannot be used with BackendService nor with managed    instance group
+        /// auto-healing.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("sourceRegions")]
         public virtual System.Collections.Generic.IList<string> SourceRegions { get; set; }
@@ -121606,8 +122322,8 @@ namespace Google.Apis.Compute.v1.Data
         public virtual System.Nullable<int> TimeoutSec { get; set; }
 
         /// <summary>
-        /// Specifies the type of the healthCheck, either TCP,SSL, HTTP, HTTPS,HTTP2 or GRPC. Exactly one of the
-        /// protocol-specific health check fields must be specified, which must matchtype field.
+        /// Specifies the type of the healthCheck, either TCP,SSL, HTTP, HTTPS,HTTP2, GRPC or GRPC_WITH_TLS. Exactly one
+        /// of the protocol-specific health check fields must be specified, which must match type field.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("type")]
         public virtual string Type { get; set; }
@@ -122697,6 +123413,84 @@ namespace Google.Apis.Compute.v1.Data
         public virtual string ETag { get; set; }
     }
 
+    /// <summary>Represents a host resource.</summary>
+    public class Host : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>
+        /// Output only. All aliases for this resource. e.g.
+        /// projects/123/zones/us-centra1-a/reservation/r1/reservationBlock/b1/hosts/h1
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("aliasLinks")]
+        public virtual System.Collections.Generic.IList<string> AliasLinks { get; set; }
+
+        /// <summary>Output only. The creation timestamp, formatted asRFC3339 text.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("creationTimestamp")]
+        public virtual string CreationTimestamp { get; set; }
+
+        /// <summary>An optional description of this resource.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("description")]
+        public virtual string Description { get; set; }
+
+        /// <summary>
+        /// Output only. The unique identifier for this resource. This identifier is defined by the server.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("id")]
+        public virtual System.Nullable<ulong> Id { get; set; }
+
+        /// <summary>Output only. The type of resource. Alwayscompute#host for hosts.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("kind")]
+        public virtual string Kind { get; set; }
+
+        /// <summary>Output only. The name of the host.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("name")]
+        public virtual string Name { get; set; }
+
+        /// <summary>Output only. The self link of the host.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("selfLink")]
+        public virtual string SelfLink { get; set; }
+
+        /// <summary>Output only. The self link with id of the host.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("selfLinkWithId")]
+        public virtual string SelfLinkWithId { get; set; }
+
+        /// <summary>Output only. The state of the host.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("state")]
+        public virtual string State { get; set; }
+
+        /// <summary>Output only. The status of the host</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("status")]
+        public virtual HostStatus Status { get; set; }
+
+        /// <summary>Output only. The zone in which the host resides.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("zone")]
+        public virtual string Zone { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    public class HostPhysicalTopology : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The unique identifier of the capacity block within the cluster.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("block")]
+        public virtual string Block { get; set; }
+
+        /// <summary>The cluster name of the reservation sub-block.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("cluster")]
+        public virtual string Cluster { get; set; }
+
+        /// <summary>The unique identifier of the capacity host within the capacity sub-block.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("host")]
+        public virtual string Host { get; set; }
+
+        /// <summary>The unique identifier of the capacity sub-block within the capacity block.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("subBlock")]
+        public virtual string SubBlock { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
     /// <summary>
     /// UrlMaps A host-matching rule for a URL. If matched, will use the namedPathMatcher to select the BackendService.
     /// </summary>
@@ -122727,6 +123521,111 @@ namespace Google.Apis.Compute.v1.Data
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
+    }
+
+    public class HostStatus : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Output only. The physical topology of the reservation sub-block, if present</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("physicalTopology")]
+        public virtual HostPhysicalTopology PhysicalTopology { get; set; }
+
+        /// <summary>Output only. The URIs of the instances currently running on this host.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("runningInstances")]
+        public virtual System.Collections.Generic.IList<string> RunningInstances { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    public class HostsGetVersionRequest : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The SBOM selection to return. Duplicate values in the list will be ignored.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("sbomSelections")]
+        public virtual System.Collections.Generic.IList<string> SbomSelections { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    public class HostsListResponse : Google.Apis.Requests.IDirectResponseSchema
+    {
+        [Newtonsoft.Json.JsonPropertyAttribute("etag")]
+        public virtual string ETag { get; set; }
+
+        /// <summary>The unique identifier for the resource; defined by the server.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("id")]
+        public virtual string Id { get; set; }
+
+        /// <summary>A list of host resources.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("items")]
+        public virtual System.Collections.Generic.IList<Host> Items { get; set; }
+
+        /// <summary>The type of resource. Always compute#host for a list of hosts.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("kind")]
+        public virtual string Kind { get; set; }
+
+        /// <summary>
+        /// This token allows you to get the next page of results for list requests. If the number of results is larger
+        /// thanmaxResults, use the nextPageToken as a value for the query parameter pageToken in the next list request.
+        /// Subsequent list requests will have their own nextPageToken to continue paging through the results.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("nextPageToken")]
+        public virtual string NextPageToken { get; set; }
+
+        /// <summary>The server-defined URL for this resource.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("selfLink")]
+        public virtual string SelfLink { get; set; }
+
+        /// <summary>Unreachable resources. end_interface: MixerListResponseWithEtagBuilder</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("unreachables")]
+        public virtual System.Collections.Generic.IList<string> Unreachables { get; set; }
+
+        /// <summary>An informational warning message.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("warning")]
+        public virtual WarningData Warning { get; set; }
+
+        /// <summary>An informational warning message.</summary>
+        public class WarningData
+        {
+            /// <summary>
+            /// [Output Only] A warning code, if applicable. For example, Compute Engine returns NO_RESULTS_ON_PAGE if
+            /// there are no results in the response.
+            /// </summary>
+            [Newtonsoft.Json.JsonPropertyAttribute("code")]
+            public virtual string Code { get; set; }
+
+            /// <summary>
+            /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
+            /// "scope",    "value": "zones/us-east1-d"   }
+            /// </summary>
+            [Newtonsoft.Json.JsonPropertyAttribute("data")]
+            public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
+
+            /// <summary>[Output Only] A human-readable description of the warning code.</summary>
+            [Newtonsoft.Json.JsonPropertyAttribute("message")]
+            public virtual string Message { get; set; }
+
+            /// <summary>
+            /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
+            /// "scope",    "value": "zones/us-east1-d"   }
+            /// </summary>
+            public class DataData
+            {
+                /// <summary>
+                /// [Output Only] A key that provides more detail on the warning being returned. For example, for
+                /// warnings where there are no results in a list request for a particular zone, this key might be scope
+                /// and the key value might be the zone name. Other examples might be a key indicating a deprecated
+                /// resource and a suggested replacement, or a warning about invalid network settings (for example, if
+                /// an instance attempts to perform IP forwarding but is not enabled for IP forwarding).
+                /// </summary>
+                [Newtonsoft.Json.JsonPropertyAttribute("key")]
+                public virtual string Key { get; set; }
+
+                /// <summary>[Output Only] A warning data value corresponding to the key.</summary>
+                [Newtonsoft.Json.JsonPropertyAttribute("value")]
+                public virtual string Value { get; set; }
+            }
+        }
     }
 
     /// <summary>Specification for how requests are aborted as part of fault injection.</summary>
@@ -125534,15 +126433,19 @@ namespace Google.Apis.Compute.v1.Data
                 /// </summary>
                 public class ErrorDetailsData
                 {
+                    /// <summary>Error information containing structured domain, reason, and metadata.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("errorInfo")]
                     public virtual ErrorInfo ErrorInfo { get; set; }
 
+                    /// <summary>Links and information to help the user resolve the error.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("help")]
                     public virtual Help Help { get; set; }
 
+                    /// <summary>A localized human-readable error message intended for end users.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("localizedMessage")]
                     public virtual LocalizedMessage LocalizedMessage { get; set; }
 
+                    /// <summary>Details about quota limits and metrics when a quota is exceeded.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("quotaInfo")]
                     public virtual QuotaExceededInfo QuotaInfo { get; set; }
                 }
@@ -125598,15 +126501,19 @@ namespace Google.Apis.Compute.v1.Data
                 /// </summary>
                 public class ErrorDetailsData
                 {
+                    /// <summary>Error information containing structured domain, reason, and metadata.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("errorInfo")]
                     public virtual ErrorInfo ErrorInfo { get; set; }
 
+                    /// <summary>Links and information to help the user resolve the error.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("help")]
                     public virtual Help Help { get; set; }
 
+                    /// <summary>A localized human-readable error message intended for end users.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("localizedMessage")]
                     public virtual LocalizedMessage LocalizedMessage { get; set; }
 
+                    /// <summary>Details about quota limits and metrics when a quota is exceeded.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("quotaInfo")]
                     public virtual QuotaExceededInfo QuotaInfo { get; set; }
                 }
@@ -125893,15 +126800,19 @@ namespace Google.Apis.Compute.v1.Data
                 /// </summary>
                 public class ErrorDetailsData
                 {
+                    /// <summary>Error information containing structured domain, reason, and metadata.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("errorInfo")]
                     public virtual ErrorInfo ErrorInfo { get; set; }
 
+                    /// <summary>Links and information to help the user resolve the error.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("help")]
                     public virtual Help Help { get; set; }
 
+                    /// <summary>A localized human-readable error message intended for end users.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("localizedMessage")]
                     public virtual LocalizedMessage LocalizedMessage { get; set; }
 
+                    /// <summary>Details about quota limits and metrics when a quota is exceeded.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("quotaInfo")]
                     public virtual QuotaExceededInfo QuotaInfo { get; set; }
                 }
@@ -126033,15 +126944,19 @@ namespace Google.Apis.Compute.v1.Data
                 /// </summary>
                 public class ErrorDetailsData
                 {
+                    /// <summary>Error information containing structured domain, reason, and metadata.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("errorInfo")]
                     public virtual ErrorInfo ErrorInfo { get; set; }
 
+                    /// <summary>Links and information to help the user resolve the error.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("help")]
                     public virtual Help Help { get; set; }
 
+                    /// <summary>A localized human-readable error message intended for end users.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("localizedMessage")]
                     public virtual LocalizedMessage LocalizedMessage { get; set; }
 
+                    /// <summary>Details about quota limits and metrics when a quota is exceeded.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("quotaInfo")]
                     public virtual QuotaExceededInfo QuotaInfo { get; set; }
                 }
@@ -126323,7 +127238,7 @@ namespace Google.Apis.Compute.v1.Data
     public class InstanceGroupManagersApplyUpdatesRequest : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>
-        /// Flag to update all instances instead of specified list of “instances”. If the flag is set to true then the
+        /// Flag to update all instances instead of specified list of "instances". If the flag is set to true then the
         /// instances may not be specified in the request.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("allInstances")]
@@ -126410,15 +127325,15 @@ namespace Google.Apis.Compute.v1.Data
 
     public class InstanceGroupManagersListErrorsResponse : Google.Apis.Requests.IDirectResponseSchema
     {
-        /// <summary>Output only. [Output Only] The list of errors of the managed instance group.</summary>
+        /// <summary>Output only. The list of errors of the managed instance group.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("items")]
         public virtual System.Collections.Generic.IList<InstanceManagedByIgmError> Items { get; set; }
 
         /// <summary>
-        /// Output only. [Output Only] This token allows you to get the next page of results for list requests. If the
-        /// number of results is larger thanmaxResults, use the nextPageToken as a value for the query parameter
-        /// pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue
-        /// paging through the results.
+        /// Output only. This token allows you to get the next page of results for list requests. If the number of
+        /// results is larger than maxResults , then use the nextPageToken as a value for the query parameter pageToken
+        /// in the next list request. Subsequent list requests will have their own nextPageToken to continue paging
+        /// through the results.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("nextPageToken")]
         public virtual string NextPageToken { get; set; }
@@ -132974,15 +133889,19 @@ namespace Google.Apis.Compute.v1.Data
                 /// </summary>
                 public class ErrorDetailsData
                 {
+                    /// <summary>Error information containing structured domain, reason, and metadata.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("errorInfo")]
                     public virtual ErrorInfo ErrorInfo { get; set; }
 
+                    /// <summary>Links and information to help the user resolve the error.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("help")]
                     public virtual Help Help { get; set; }
 
+                    /// <summary>A localized human-readable error message intended for end users.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("localizedMessage")]
                     public virtual LocalizedMessage LocalizedMessage { get; set; }
 
+                    /// <summary>Details about quota limits and metrics when a quota is exceeded.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("quotaInfo")]
                     public virtual QuotaExceededInfo QuotaInfo { get; set; }
                 }
@@ -137556,15 +138475,19 @@ namespace Google.Apis.Compute.v1.Data
                 /// </summary>
                 public class ErrorDetailsData
                 {
+                    /// <summary>Error information containing structured domain, reason, and metadata.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("errorInfo")]
                     public virtual ErrorInfo ErrorInfo { get; set; }
 
+                    /// <summary>Links and information to help the user resolve the error.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("help")]
                     public virtual Help Help { get; set; }
 
+                    /// <summary>A localized human-readable error message intended for end users.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("localizedMessage")]
                     public virtual LocalizedMessage LocalizedMessage { get; set; }
 
+                    /// <summary>Details about quota limits and metrics when a quota is exceeded.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("quotaInfo")]
                     public virtual QuotaExceededInfo QuotaInfo { get; set; }
                 }
@@ -140572,7 +141495,7 @@ namespace Google.Apis.Compute.v1.Data
     public class RegionInstanceGroupManagersApplyUpdatesRequest : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>
-        /// Flag to update all instances instead of specified list of “instances”. If the flag is set to true then the
+        /// Flag to update all instances instead of specified list of "instances". If the flag is set to true then the
         /// instances may not be specified in the request.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("allInstances")]
@@ -141201,6 +142124,135 @@ namespace Google.Apis.Compute.v1.Data
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Represents a ReliabilityRisk resource.</summary>
+    public class ReliabilityRisk : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Output only. [Output Only] Creation timestamp in RFC3339 text format.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("creationTimestamp")]
+        public virtual string CreationTimestamp { get; set; }
+
+        /// <summary>An optional textual description of the resource; provided when the resource is created.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("description")]
+        public virtual string Description { get; set; }
+
+        /// <summary>[Output Only] Details of the reliability risk resource</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("details")]
+        public virtual RiskDetails Details { get; set; }
+
+        /// <summary>
+        /// [Output Only] The unique identifier for the resource. This identifier is defined by the server.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("id")]
+        public virtual System.Nullable<ulong> Id { get; set; }
+
+        /// <summary>
+        /// Output only. [Output Only] Type of resource. Always compute#reliabilityRisk for reliability risks.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("kind")]
+        public virtual string Kind { get; set; }
+
+        /// <summary>Name of the resource. The name must be 1-63 characters long and comply with RFC1035.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("name")]
+        public virtual string Name { get; set; }
+
+        /// <summary>The recommendation to mitigate the risk.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("recommendation")]
+        public virtual RiskRecommendation Recommendation { get; set; }
+
+        /// <summary>Output only. [Output Only] Server-defined URL for the resource.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("selfLink")]
+        public virtual string SelfLink { get; set; }
+
+        /// <summary>Output only. [Output Only] Server-defined URL for this resource with the resource id.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("selfLinkWithId")]
+        public virtual string SelfLinkWithId { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Response message for the List method of ReliabilityRisksService.</summary>
+    public class ReliabilityRisksListResponse : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>[Output Only] An ETag of the resource.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("etag")]
+        public virtual string ETag { get; set; }
+
+        /// <summary>[Output Only] Unique identifier for the resource; defined by the server.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("id")]
+        public virtual string Id { get; set; }
+
+        /// <summary>A list of ReliabilityRisk resources.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("items")]
+        public virtual System.Collections.Generic.IList<ReliabilityRisk> Items { get; set; }
+
+        /// <summary>
+        /// [Output Only] This token allows you to get the next page of results for list requests. If the number of
+        /// results is larger thanmaxResults, use the nextPageToken as a value for the query parameter pageToken in the
+        /// next list request. Subsequent list requests will have their own nextPageToken to continue paging through the
+        /// results.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("nextPageToken")]
+        public virtual string NextPageToken { get; set; }
+
+        /// <summary>Output only. [Output Only] Server-defined URL for this resource.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("selfLink")]
+        public virtual string SelfLink { get; set; }
+
+        /// <summary>
+        /// Output only. [Output Only] Unreachable resources. end_interface: MixerListResponseWithEtagBuilder
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("unreachables")]
+        public virtual System.Collections.Generic.IList<string> Unreachables { get; set; }
+
+        /// <summary>[Output Only] Informational warning message.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("warning")]
+        public virtual WarningData Warning { get; set; }
+
+        /// <summary>[Output Only] Informational warning message.</summary>
+        public class WarningData
+        {
+            /// <summary>
+            /// [Output Only] A warning code, if applicable. For example, Compute Engine returns NO_RESULTS_ON_PAGE if
+            /// there are no results in the response.
+            /// </summary>
+            [Newtonsoft.Json.JsonPropertyAttribute("code")]
+            public virtual string Code { get; set; }
+
+            /// <summary>
+            /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
+            /// "scope",    "value": "zones/us-east1-d"   }
+            /// </summary>
+            [Newtonsoft.Json.JsonPropertyAttribute("data")]
+            public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
+
+            /// <summary>[Output Only] A human-readable description of the warning code.</summary>
+            [Newtonsoft.Json.JsonPropertyAttribute("message")]
+            public virtual string Message { get; set; }
+
+            /// <summary>
+            /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
+            /// "scope",    "value": "zones/us-east1-d"   }
+            /// </summary>
+            public class DataData
+            {
+                /// <summary>
+                /// [Output Only] A key that provides more detail on the warning being returned. For example, for
+                /// warnings where there are no results in a list request for a particular zone, this key might be scope
+                /// and the key value might be the zone name. Other examples might be a key indicating a deprecated
+                /// resource and a suggested replacement, or a warning about invalid network settings (for example, if
+                /// an instance attempts to perform IP forwarding but is not enabled for IP forwarding).
+                /// </summary>
+                [Newtonsoft.Json.JsonPropertyAttribute("key")]
+                public virtual string Key { get; set; }
+
+                /// <summary>[Output Only] A warning data value corresponding to the key.</summary>
+                [Newtonsoft.Json.JsonPropertyAttribute("value")]
+                public virtual string Value { get; set; }
+            }
+        }
     }
 
     /// <summary>
@@ -143121,6 +144173,10 @@ namespace Google.Apis.Compute.v1.Data
         [Newtonsoft.Json.JsonPropertyAttribute("scheduling")]
         public virtual ResourceStatusScheduling Scheduling { get; set; }
 
+        /// <summary>Output only. [Output Only] Details about the instance stopping state.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("shutdownDetails")]
+        public virtual ResourceStatusShutdownDetails ShutdownDetails { get; set; }
+
         [Newtonsoft.Json.JsonPropertyAttribute("upcomingMaintenance")]
         public virtual UpcomingMaintenance UpcomingMaintenance { get; set; }
 
@@ -143232,6 +144288,20 @@ namespace Google.Apis.Compute.v1.Data
         [Newtonsoft.Json.JsonPropertyAttribute("consumedReservation")]
         public virtual string ConsumedReservation { get; set; }
 
+        /// <summary>
+        /// Output only. [Output Only] The full resource name of the reservation block that this instance is consuming
+        /// from.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("consumedReservationBlock")]
+        public virtual string ConsumedReservationBlock { get; set; }
+
+        /// <summary>
+        /// Output only. [Output Only] The full resource name of the reservation sub-block that this instance is
+        /// consuming from.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("consumedReservationSubBlock")]
+        public virtual string ConsumedReservationSubBlock { get; set; }
+
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
     }
@@ -143244,6 +144314,142 @@ namespace Google.Apis.Compute.v1.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("availabilityDomain")]
         public virtual System.Nullable<int> AvailabilityDomain { get; set; }
+
+        /// <summary>
+        /// Output only. Specifies the timestamp, when the instance will start graceful shutdown process, in RFC3339
+        /// text format.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("gracefulShutdownTimestamp")]
+        public virtual string GracefulShutdownTimestamp { get; set; }
+
+        /// <summary>Time in future when the instance will be terminated inRFC3339 text format.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("terminationTimestamp")]
+        public virtual string TerminationTimestamp { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Specifies if the instance is in `PENDING_STOP` state or there is a programmed stop scheduled.</summary>
+    public class ResourceStatusShutdownDetails : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The duration for graceful shutdown. Only applicable when `stop_state=PENDING_STOP`.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("maxDuration")]
+        public virtual Duration MaxDuration { get; set; }
+
+        /// <summary>Past timestamp indicating the beginning of current `stopState` in RFC3339 text format.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("requestTimestamp")]
+        public virtual string RequestTimestamp { get; set; }
+
+        /// <summary>Current stopping state of the instance.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("stopState")]
+        public virtual string StopState { get; set; }
+
+        /// <summary>Target instance state.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("targetState")]
+        public virtual string TargetState { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Detailed insights and metrics about a detected reliability risk.</summary>
+    public class RiskDetails : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The duration of the risk since it was detected.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("duration")]
+        public virtual object Duration { get; set; }
+
+        /// <summary>Insight details for global DNS risk.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("globalDnsInsight")]
+        public virtual RiskDetailsGlobalDnsInsight GlobalDnsInsight { get; set; }
+
+        private string _lastUpdateTimestampRaw;
+
+        private object _lastUpdateTimestamp;
+
+        /// <summary>The last time the risk was updated.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("lastUpdateTimestamp")]
+        public virtual string LastUpdateTimestampRaw
+        {
+            get => _lastUpdateTimestampRaw;
+            set
+            {
+                _lastUpdateTimestamp = Google.Apis.Util.Utilities.DeserializeForGoogleFormat(value);
+                _lastUpdateTimestampRaw = value;
+            }
+        }
+
+        /// <summary><seealso cref="object"/> representation of <see cref="LastUpdateTimestampRaw"/>.</summary>
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use LastUpdateTimestampDateTimeOffset instead.")]
+        public virtual object LastUpdateTimestamp
+        {
+            get => _lastUpdateTimestamp;
+            set
+            {
+                _lastUpdateTimestampRaw = Google.Apis.Util.Utilities.SerializeForGoogleFormat(value);
+                _lastUpdateTimestamp = value;
+            }
+        }
+
+        /// <summary>
+        /// <seealso cref="System.DateTimeOffset"/> representation of <see cref="LastUpdateTimestampRaw"/>.
+        /// </summary>
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        public virtual System.DateTimeOffset? LastUpdateTimestampDateTimeOffset
+        {
+            get => Google.Apis.Util.DiscoveryFormat.ParseGoogleDateTimeToDateTimeOffset(LastUpdateTimestampRaw);
+            set => LastUpdateTimestampRaw = Google.Apis.Util.DiscoveryFormat.FormatDateTimeOffsetToGoogleDateTime(value);
+        }
+
+        /// <summary>The severity of the risk.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("severity")]
+        public virtual string Severity { get; set; }
+
+        /// <summary>The type of risk.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("type")]
+        public virtual string Type { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Detailed insights for a global DNS reliability risk.</summary>
+    public class RiskDetailsGlobalDnsInsight : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Indicates whether the project's default DNS setting is global DNS.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("projectDefaultIsGlobalDns")]
+        public virtual System.Nullable<bool> ProjectDefaultIsGlobalDns { get; set; }
+
+        /// <summary>The observation window for the query counts.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("queryObservationWindow")]
+        public virtual object QueryObservationWindow { get; set; }
+
+        /// <summary>
+        /// The number of queries that are risky. This is always less than or equal to total_query_count.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("riskyQueryCount")]
+        public virtual System.Nullable<long> RiskyQueryCount { get; set; }
+
+        /// <summary>The total number of queries in the observation window.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("totalQueryCount")]
+        public virtual System.Nullable<long> TotalQueryCount { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Recommendation for mitigating a reliability risk, including a reference URL.</summary>
+    public class RiskRecommendation : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Mitigation guide for the risk.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("content")]
+        public virtual string Content { get; set; }
+
+        /// <summary>URL referencing a more detailed mitigation guide.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("referenceUrl")]
+        public virtual string ReferenceUrl { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -146030,6 +147236,9 @@ namespace Google.Apis.Compute.v1.Data
         [Newtonsoft.Json.JsonPropertyAttribute("availabilityDomain")]
         public virtual System.Nullable<int> AvailabilityDomain { get; set; }
 
+        [Newtonsoft.Json.JsonPropertyAttribute("gracefulShutdown")]
+        public virtual SchedulingGracefulShutdown GracefulShutdown { get; set; }
+
         /// <summary>
         /// Specify the time in seconds for host error detection, the value must be within the range of [90, 330] with
         /// the increment of 30, if unset, the default behavior of host error recovery will be used.
@@ -146095,6 +147304,14 @@ namespace Google.Apis.Compute.v1.Data
         [Newtonsoft.Json.JsonPropertyAttribute("preemptible")]
         public virtual System.Nullable<bool> Preemptible { get; set; }
 
+        /// <summary>
+        /// Specifies the Metadata Service preemption notice duration before the GCE ACPI G2 Soft Off signal is
+        /// triggered for Spot VMs only. If not specified, there will be no wait before the G2 Soft Off signal is
+        /// triggered.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("preemptionNoticeDuration")]
+        public virtual Duration PreemptionNoticeDuration { get; set; }
+
         /// <summary>Specifies the provisioning model of the instance.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("provisioningModel")]
         public virtual string ProvisioningModel { get; set; }
@@ -146112,6 +147329,24 @@ namespace Google.Apis.Compute.v1.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("terminationTime")]
         public virtual string TerminationTime { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>The configuration for gracefully shutting down the instance.</summary>
+    public class SchedulingGracefulShutdown : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Opts-in for graceful shutdown.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("enabled")]
+        public virtual System.Nullable<bool> Enabled { get; set; }
+
+        /// <summary>
+        /// The time allotted for the instance to gracefully shut down. If the graceful shutdown isn't complete after
+        /// this time, then the instance transitions to the STOPPING state.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("maxDuration")]
+        public virtual Duration MaxDuration { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -149551,7 +150786,7 @@ namespace Google.Apis.Compute.v1.Data
         [Newtonsoft.Json.JsonPropertyAttribute("description")]
         public virtual string Description { get; set; }
 
-        /// <summary>Output only. [Output Only] Provisioned capacities for each SKU for this Exapool in GiB</summary>
+        /// <summary>Provisioned capacities for each SKU for this Exapool in GiB</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("exapoolProvisionedCapacityGb")]
         public virtual StoragePoolExapoolProvisionedCapacityGb ExapoolProvisionedCapacityGb { get; set; }
 
@@ -149636,6 +150871,10 @@ namespace Google.Apis.Compute.v1.Data
         /// <summary>Output only. [Output Only] Server-defined URL for this resource's resource id.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("selfLinkWithId")]
         public virtual string SelfLinkWithId { get; set; }
+
+        /// <summary>Share settings for the storage pool.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("shareSettings")]
+        public virtual StoragePoolShareSettings ShareSettings { get; set; }
 
         /// <summary>
         /// Output only. [Output Only] The status of storage pool creation.              - CREATING: Storage pool is
@@ -150082,6 +151321,28 @@ namespace Google.Apis.Compute.v1.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("totalProvisionedDiskThroughput")]
         public virtual System.Nullable<long> TotalProvisionedDiskThroughput { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Share settings for the storage pool.</summary>
+    public class StoragePoolShareSettings : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>A map of project id and project config.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("projectMap")]
+        public virtual System.Collections.Generic.IDictionary<string, StoragePoolShareSettingsProjectConfig> ProjectMap { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Config for each project in the share settings.</summary>
+    public class StoragePoolShareSettingsProjectConfig : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The project ID, should be same as the key of this project config in the parent map.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("projectId")]
+        public virtual string ProjectId { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }

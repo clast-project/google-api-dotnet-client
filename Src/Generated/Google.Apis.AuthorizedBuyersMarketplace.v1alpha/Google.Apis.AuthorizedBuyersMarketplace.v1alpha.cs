@@ -4827,6 +4827,13 @@ namespace Google.Apis.AuthorizedBuyersMarketplace.v1alpha.Data
             set => CreateTimeRaw = Google.Apis.Util.DiscoveryFormat.FormatDateTimeOffsetToGoogleDateTime(value);
         }
 
+        /// <summary>
+        /// Optional. Immutable. The visibility of the combined curation package fee and data segment fees (the total
+        /// curation fee).
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("curationFeeVisibility")]
+        public virtual string CurationFeeVisibility { get; set; }
+
         /// <summary>Optional. A description of the curated package, provided by the curator.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("description")]
         public virtual string Description { get; set; }
@@ -4923,7 +4930,7 @@ namespace Google.Apis.AuthorizedBuyersMarketplace.v1alpha.Data
 
     /// <summary>
     /// Defines an identifier for a segment of inventory that can be targeted by curators or media planners in the deals
-    /// or auction packages UI. Curation of inventory is done by curators on external platforms.
+    /// or auction packages UI. Curation of inventory is done by curators on external platforms. -- Next ID: 9 --
     /// </summary>
     public class DataSegment : Google.Apis.Requests.IDirectResponseSchema
     {

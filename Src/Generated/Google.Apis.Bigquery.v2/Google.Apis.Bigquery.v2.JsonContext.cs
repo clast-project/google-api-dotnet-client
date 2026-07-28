@@ -160,6 +160,7 @@ namespace Google.Apis.Bigquery.v2.Data
     [JsonSerializable(typeof(global::Google.Apis.Bigquery.v2.Data.ModelExtractOptions), TypeInfoPropertyName = "Schema_ModelExtractOptions")]
     [JsonSerializable(typeof(global::Google.Apis.Bigquery.v2.Data.ModelReference), TypeInfoPropertyName = "Schema_ModelReference")]
     [JsonSerializable(typeof(global::Google.Apis.Bigquery.v2.Data.MultiClassClassificationMetrics), TypeInfoPropertyName = "Schema_MultiClassClassificationMetrics")]
+    [JsonSerializable(typeof(global::Google.Apis.Bigquery.v2.Data.ObjectStorageStats), TypeInfoPropertyName = "Schema_ObjectStorageStats")]
     [JsonSerializable(typeof(global::Google.Apis.Bigquery.v2.Data.ParquetOptions), TypeInfoPropertyName = "Schema_ParquetOptions")]
     [JsonSerializable(typeof(global::Google.Apis.Bigquery.v2.Data.PartitionedColumn), TypeInfoPropertyName = "Schema_PartitionedColumn")]
     [JsonSerializable(typeof(global::Google.Apis.Bigquery.v2.Data.PartitioningDefinition), TypeInfoPropertyName = "Schema_PartitioningDefinition")]

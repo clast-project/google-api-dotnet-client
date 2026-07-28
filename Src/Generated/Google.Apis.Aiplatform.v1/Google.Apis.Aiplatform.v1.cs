@@ -52149,6 +52149,7 @@ namespace Google.Apis.Aiplatform.v1
                 {
                     this.service = service;
                     Models = new ModelsResource(service);
+                    V1 = new V1Resource(service);
                 }
 
                 /// <summary>Gets the Models resource.</summary>
@@ -52932,6 +52933,101 @@ namespace Google.Apis.Aiplatform.v1
                                 ParameterType = "path",
                                 DefaultValue = null,
                                 Pattern = @"^projects/[^/]+/locations/[^/]+/publishers/[^/]+/models/[^/]+$",
+                            });
+                        }
+                    }
+                }
+
+                /// <summary>Gets the V1 resource.</summary>
+                public virtual V1Resource V1 { get; }
+
+                /// <summary>The "v1" collection of methods.</summary>
+                public class V1Resource
+                {
+                    private const string Resource = "v1";
+
+                    /// <summary>The service which this resource belongs to.</summary>
+                    private readonly Google.Apis.Services.IClientService service;
+
+                    /// <summary>Constructs a new resource.</summary>
+                    public V1Resource(Google.Apis.Services.IClientService service)
+                    {
+                        this.service = service;
+                    }
+
+                    /// <summary>
+                    /// Forwards arbitrary HTTP requests for both streaming and non-streaming cases. To use this method,
+                    /// invoke_route_prefix must be set to allow the paths that will be specified in the request.
+                    /// </summary>
+                    /// <param name="body">The body of the request.</param>
+                    /// <param name="endpoint">
+                    /// Required. The name of the Endpoint requested to serve the prediction. Format:
+                    /// `projects/{project}/locations/{location}/endpoints/{endpoint}`
+                    /// </param>
+                    public virtual ResponsesRequest Responses(Google.Apis.Aiplatform.v1.Data.GoogleApiHttpBody body, string endpoint)
+                    {
+                        return new ResponsesRequest(this.service, body, endpoint);
+                    }
+
+                    /// <summary>
+                    /// Forwards arbitrary HTTP requests for both streaming and non-streaming cases. To use this method,
+                    /// invoke_route_prefix must be set to allow the paths that will be specified in the request.
+                    /// </summary>
+                    public class ResponsesRequest : AiplatformBaseServiceRequest<Google.Apis.Aiplatform.v1.Data.GoogleApiHttpBody>
+                    {
+                        /// <summary>Constructs a new Responses request.</summary>
+                        public ResponsesRequest(Google.Apis.Services.IClientService service, Google.Apis.Aiplatform.v1.Data.GoogleApiHttpBody body, string endpoint) : base(service)
+                        {
+                            Endpoint = endpoint;
+                            Body = body;
+                            InitParameters();
+                        }
+
+                        /// <summary>
+                        /// Required. The name of the Endpoint requested to serve the prediction. Format:
+                        /// `projects/{project}/locations/{location}/endpoints/{endpoint}`
+                        /// </summary>
+                        [Google.Apis.Util.RequestParameterAttribute("endpoint", Google.Apis.Util.RequestParameterType.Path)]
+                        public virtual string Endpoint { get; private set; }
+
+                        /// <summary>ID of the DeployedModel that serves the invoke request.</summary>
+                        [Google.Apis.Util.RequestParameterAttribute("deployedModelId", Google.Apis.Util.RequestParameterType.Query)]
+                        public virtual string DeployedModelId { get; set; }
+
+                        /// <summary>Gets or sets the body of this request.</summary>
+                        Google.Apis.Aiplatform.v1.Data.GoogleApiHttpBody Body { get; set; }
+
+                        /// <summary>Returns the body of the request.</summary>
+                        protected override object GetBody() => Body;
+
+                        /// <summary>Gets the method name.</summary>
+                        public override string MethodName => "responses";
+
+                        /// <summary>Gets the HTTP method.</summary>
+                        public override string HttpMethod => "POST";
+
+                        /// <summary>Gets the REST path.</summary>
+                        public override string RestPath => "v1/{+endpoint}/v1/responses";
+
+                        /// <summary>Initializes Responses parameter list.</summary>
+                        protected override void InitParameters()
+                        {
+                            base.InitParameters();
+                            RequestParameters.Add("endpoint", new Google.Apis.Discovery.Parameter
+                            {
+                                Name = "endpoint",
+                                IsRequired = true,
+                                ParameterType = "path",
+                                DefaultValue = null,
+                                Pattern = @"^projects/[^/]+/locations/[^/]+/publishers/[^/]+$",
+                            });
+                            RequestParameters.Add("deployedModelId", new Google.Apis.Discovery.Parameter
+                            {
+                                Name = "deployedModelId",
+                                IsRequired = false,
+                                ParameterType = "query",
+                                DefaultValue = null,
+                                Pattern = null,
                             });
                         }
                     }
@@ -81014,6 +81110,10 @@ namespace Google.Apis.Aiplatform.v1.Data
         [Newtonsoft.Json.JsonPropertyAttribute("codec")]
         public virtual string Codec { get; set; }
 
+        /// <summary>Optional. Color alignment configuration.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("colorAlignment")]
+        public virtual CloudAiLargeModelsVisionGenerateVideoExperimentsColorAlignmentConfig ColorAlignment { get; set; }
+
         /// <summary>
         /// Conditioning frames for veo experimental models ONLY, not to be confused with keyframes (ID:31) in
         /// GenerateVideoRequest.
@@ -81074,6 +81174,10 @@ namespace Google.Apis.Aiplatform.v1.Data
         [Newtonsoft.Json.JsonPropertyAttribute("seamless")]
         public virtual CloudAiLargeModelsVisionSeamless Seamless { get; set; }
 
+        /// <summary>Optional. Spatial alignment configuration.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("spatialAlignment")]
+        public virtual CloudAiLargeModelsVisionGenerateVideoExperimentsSpatialAlignmentConfig SpatialAlignment { get; set; }
+
         /// <summary>
         /// If true (default), truncate input videos that exceed the model's maximum frame count by applying a
         /// frame_selection_config to __video_file__ inputs. Set to false to preserve the existing fail-fast behavior.
@@ -81095,6 +81199,17 @@ namespace Google.Apis.Aiplatform.v1.Data
         public virtual string ETag { get; set; }
     }
 
+    /// <summary>Configuration for color alignment.</summary>
+    public class CloudAiLargeModelsVisionGenerateVideoExperimentsColorAlignmentConfig : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Optional. If true, enable alignment.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("enable")]
+        public virtual System.Nullable<bool> Enable { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
     public class CloudAiLargeModelsVisionGenerateVideoExperimentsConditioningFrame : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>The index of the frame, starts with zero and must be a multiple of 8.</summary>
@@ -81104,6 +81219,17 @@ namespace Google.Apis.Aiplatform.v1.Data
         /// <summary>The image data for this conditioning frame.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("image")]
         public virtual CloudAiLargeModelsVisionGenerateVideoRequestImage Image { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Configuration for spatial alignment.</summary>
+    public class CloudAiLargeModelsVisionGenerateVideoExperimentsSpatialAlignmentConfig : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Optional. If true, enable alignment.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("enable")]
+        public virtual System.Nullable<bool> Enable { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -88150,6 +88276,12 @@ namespace Google.Apis.Aiplatform.v1.Data
     /// </summary>
     public class GoogleCloudAiplatformV1DeprovisionSemanticGovernancePolicyEngineRequest : Google.Apis.Requests.IDirectResponseSchema
     {
+        /// <summary>
+        /// Optional. If true, the operation bypass checks on current state and force the deprovisioning operation.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("force")]
+        public virtual System.Nullable<bool> Force { get; set; }
+
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
     }
@@ -96669,6 +96801,13 @@ namespace Google.Apis.Aiplatform.v1.Data
         /// <summary>Optional. Output only. Metadata related to the retrieval grounding source.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("retrievalMetadata")]
         public virtual GoogleCloudAiplatformV1RetrievalMetadata RetrievalMetadata { get; set; }
+
+        /// <summary>
+        /// Optional. The queries that were executed by the retrieval tools. This field is populated only when the
+        /// grounding source is a retrieval tool, such as Vertex AI Search.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("retrievalQueries")]
+        public virtual System.Collections.Generic.IList<string> RetrievalQueries { get; set; }
 
         /// <summary>
         /// Optional. A web search entry point that can be used to display search results. This field is populated only

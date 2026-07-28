@@ -36,6 +36,8 @@ namespace Google.Apis.AndroidPublisher.v3
         {
             Applications = new ApplicationsResource(this);
             Apprecovery = new ApprecoveryResource(this);
+            Appstoreappsreview = new AppstoreappsreviewResource(this);
+            Appstorecatalog = new AppstorecatalogResource(this);
             Edits = new EditsResource(this);
             Externaltransactions = new ExternaltransactionsResource(this);
             Generatedapks = new GeneratedapksResource(this);
@@ -89,6 +91,12 @@ namespace Google.Apis.AndroidPublisher.v3
 
         /// <summary>Gets the Apprecovery resource.</summary>
         public virtual ApprecoveryResource Apprecovery { get; }
+
+        /// <summary>Gets the Appstoreappsreview resource.</summary>
+        public virtual AppstoreappsreviewResource Appstoreappsreview { get; }
+
+        /// <summary>Gets the Appstorecatalog resource.</summary>
+        public virtual AppstorecatalogResource Appstorecatalog { get; }
 
         /// <summary>Gets the Edits resource.</summary>
         public virtual EditsResource Edits { get; }
@@ -1049,6 +1057,1123 @@ namespace Google.Apis.AndroidPublisher.v3
                     DefaultValue = null,
                     Pattern = null,
                 });
+            }
+        }
+    }
+
+    /// <summary>The "appstoreappsreview" collection of methods.</summary>
+    public class AppstoreappsreviewResource
+    {
+        private const string Resource = "appstoreappsreview";
+
+        /// <summary>The service which this resource belongs to.</summary>
+        private readonly Google.Apis.Services.IClientService service;
+
+        /// <summary>Constructs a new resource.</summary>
+        public AppstoreappsreviewResource(Google.Apis.Services.IClientService service)
+        {
+            this.service = service;
+        }
+
+        /// <summary>
+        /// Creates an app store hosted app. This must be called before any other RPCs for this hosted app.
+        /// </summary>
+        /// <param name="body">The body of the request.</param>
+        /// <param name="appStorePackageName">Required. Package name of the third-party app store.</param>
+        public virtual CreateappstorehostedappRequest Createappstorehostedapp(Google.Apis.AndroidPublisher.v3.Data.CreateAppStoreHostedAppRequest body, string appStorePackageName)
+        {
+            return new CreateappstorehostedappRequest(this.service, body, appStorePackageName);
+        }
+
+        /// <summary>
+        /// Creates an app store hosted app. This must be called before any other RPCs for this hosted app.
+        /// </summary>
+        public class CreateappstorehostedappRequest : AndroidPublisherBaseServiceRequest<Google.Apis.AndroidPublisher.v3.Data.CreateAppStoreHostedAppResponse>
+        {
+            /// <summary>Constructs a new Createappstorehostedapp request.</summary>
+            public CreateappstorehostedappRequest(Google.Apis.Services.IClientService service, Google.Apis.AndroidPublisher.v3.Data.CreateAppStoreHostedAppRequest body, string appStorePackageName) : base(service)
+            {
+                AppStorePackageName = appStorePackageName;
+                Body = body;
+                InitParameters();
+            }
+
+            /// <summary>Required. Package name of the third-party app store.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("appStorePackageName", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string AppStorePackageName { get; private set; }
+
+            /// <summary>Gets or sets the body of this request.</summary>
+            Google.Apis.AndroidPublisher.v3.Data.CreateAppStoreHostedAppRequest Body { get; set; }
+
+            /// <summary>Returns the body of the request.</summary>
+            protected override object GetBody() => Body;
+
+            /// <summary>Gets the method name.</summary>
+            public override string MethodName => "createappstorehostedapp";
+
+            /// <summary>Gets the HTTP method.</summary>
+            public override string HttpMethod => "POST";
+
+            /// <summary>Gets the REST path.</summary>
+            public override string RestPath => "androidpublisher/v3/appstore/{appStorePackageName}/apps:create";
+
+            /// <summary>Initializes Createappstorehostedapp parameter list.</summary>
+            protected override void InitParameters()
+            {
+                base.InitParameters();
+                RequestParameters.Add("appStorePackageName", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "appStorePackageName",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+            }
+        }
+
+        /// <summary>
+        /// Updates details for an app hosted on an app store. Use this to provide details for a new app, or to update
+        /// details for an existing app. The update will be sent for review immediately after creation.
+        /// </summary>
+        /// <param name="body">The body of the request.</param>
+        /// <param name="appStorePackageName">Required. Package name of the third-party app store.</param>
+        public virtual UpdateappstorehostedappRequest Updateappstorehostedapp(Google.Apis.AndroidPublisher.v3.Data.UpdateAppStoreHostedAppRequest body, string appStorePackageName)
+        {
+            return new UpdateappstorehostedappRequest(this.service, body, appStorePackageName);
+        }
+
+        /// <summary>
+        /// Updates details for an app hosted on an app store. Use this to provide details for a new app, or to update
+        /// details for an existing app. The update will be sent for review immediately after creation.
+        /// </summary>
+        public class UpdateappstorehostedappRequest : AndroidPublisherBaseServiceRequest<Google.Apis.AndroidPublisher.v3.Data.UpdateAppStoreHostedAppResponse>
+        {
+            /// <summary>Constructs a new Updateappstorehostedapp request.</summary>
+            public UpdateappstorehostedappRequest(Google.Apis.Services.IClientService service, Google.Apis.AndroidPublisher.v3.Data.UpdateAppStoreHostedAppRequest body, string appStorePackageName) : base(service)
+            {
+                AppStorePackageName = appStorePackageName;
+                Body = body;
+                InitParameters();
+            }
+
+            /// <summary>Required. Package name of the third-party app store.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("appStorePackageName", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string AppStorePackageName { get; private set; }
+
+            /// <summary>Gets or sets the body of this request.</summary>
+            Google.Apis.AndroidPublisher.v3.Data.UpdateAppStoreHostedAppRequest Body { get; set; }
+
+            /// <summary>Returns the body of the request.</summary>
+            protected override object GetBody() => Body;
+
+            /// <summary>Gets the method name.</summary>
+            public override string MethodName => "updateappstorehostedapp";
+
+            /// <summary>Gets the HTTP method.</summary>
+            public override string HttpMethod => "POST";
+
+            /// <summary>Gets the REST path.</summary>
+            public override string RestPath => "androidpublisher/v3/appstore/{appStorePackageName}/apps:update";
+
+            /// <summary>Initializes Updateappstorehostedapp parameter list.</summary>
+            protected override void InitParameters()
+            {
+                base.InitParameters();
+                RequestParameters.Add("appStorePackageName", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "appStorePackageName",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+            }
+        }
+
+        /// <summary>
+        /// Updates the publish status of an app store hosted app. The default state after calling
+        /// UpdateAppStoreHostedApp is PUBLISHED. It is not necessary to call this RPC explicitly to set an app to
+        /// PUBLISHED.
+        /// </summary>
+        /// <param name="body">The body of the request.</param>
+        /// <param name="appStorePackageName">Required. Package name of the third-party app store.</param>
+        /// <param name="packageName">Required. Package name of the app.</param>
+        public virtual UpdateappstorehostedapppublishstatusRequest Updateappstorehostedapppublishstatus(Google.Apis.AndroidPublisher.v3.Data.UpdateAppStoreHostedAppPublishStatusRequest body, string appStorePackageName, string packageName)
+        {
+            return new UpdateappstorehostedapppublishstatusRequest(this.service, body, appStorePackageName, packageName);
+        }
+
+        /// <summary>
+        /// Updates the publish status of an app store hosted app. The default state after calling
+        /// UpdateAppStoreHostedApp is PUBLISHED. It is not necessary to call this RPC explicitly to set an app to
+        /// PUBLISHED.
+        /// </summary>
+        public class UpdateappstorehostedapppublishstatusRequest : AndroidPublisherBaseServiceRequest<Google.Apis.AndroidPublisher.v3.Data.UpdateAppStoreHostedAppPublishStatusResponse>
+        {
+            /// <summary>Constructs a new Updateappstorehostedapppublishstatus request.</summary>
+            public UpdateappstorehostedapppublishstatusRequest(Google.Apis.Services.IClientService service, Google.Apis.AndroidPublisher.v3.Data.UpdateAppStoreHostedAppPublishStatusRequest body, string appStorePackageName, string packageName) : base(service)
+            {
+                AppStorePackageName = appStorePackageName;
+                PackageName = packageName;
+                Body = body;
+                InitParameters();
+            }
+
+            /// <summary>Required. Package name of the third-party app store.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("appStorePackageName", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string AppStorePackageName { get; private set; }
+
+            /// <summary>Required. Package name of the app.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("packageName", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string PackageName { get; private set; }
+
+            /// <summary>Gets or sets the body of this request.</summary>
+            Google.Apis.AndroidPublisher.v3.Data.UpdateAppStoreHostedAppPublishStatusRequest Body { get; set; }
+
+            /// <summary>Returns the body of the request.</summary>
+            protected override object GetBody() => Body;
+
+            /// <summary>Gets the method name.</summary>
+            public override string MethodName => "updateappstorehostedapppublishstatus";
+
+            /// <summary>Gets the HTTP method.</summary>
+            public override string HttpMethod => "POST";
+
+            /// <summary>Gets the REST path.</summary>
+            public override string RestPath => "androidpublisher/v3/appstore/{appStorePackageName}/apps/{packageName}:updateAppStoreHostedAppPublishStatus";
+
+            /// <summary>Initializes Updateappstorehostedapppublishstatus parameter list.</summary>
+            protected override void InitParameters()
+            {
+                base.InitParameters();
+                RequestParameters.Add("appStorePackageName", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "appStorePackageName",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+                RequestParameters.Add("packageName", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "packageName",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+            }
+        }
+
+        /// <summary>Upload an APK file for the hosted app. Returns an ID to track this APK.</summary>
+        /// <param name="body">The body of the request.</param>
+        /// <param name="appStorePackageName">Required. Package name of the third-party app store.</param>
+        /// <param name="packageName">Required. Package name of the app.</param>
+        public virtual UploadapkRequest Uploadapk(Google.Apis.AndroidPublisher.v3.Data.UploadApkRequest body, string appStorePackageName, string packageName)
+        {
+            return new UploadapkRequest(this.service, body, appStorePackageName, packageName);
+        }
+
+        /// <summary>Upload an APK file for the hosted app. Returns an ID to track this APK.</summary>
+        public class UploadapkRequest : AndroidPublisherBaseServiceRequest<Google.Apis.AndroidPublisher.v3.Data.UploadApkResponse>
+        {
+            /// <summary>Constructs a new Uploadapk request.</summary>
+            public UploadapkRequest(Google.Apis.Services.IClientService service, Google.Apis.AndroidPublisher.v3.Data.UploadApkRequest body, string appStorePackageName, string packageName) : base(service)
+            {
+                AppStorePackageName = appStorePackageName;
+                PackageName = packageName;
+                Body = body;
+                InitParameters();
+            }
+
+            /// <summary>Required. Package name of the third-party app store.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("appStorePackageName", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string AppStorePackageName { get; private set; }
+
+            /// <summary>Required. Package name of the app.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("packageName", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string PackageName { get; private set; }
+
+            /// <summary>Gets or sets the body of this request.</summary>
+            Google.Apis.AndroidPublisher.v3.Data.UploadApkRequest Body { get; set; }
+
+            /// <summary>Returns the body of the request.</summary>
+            protected override object GetBody() => Body;
+
+            /// <summary>Gets the method name.</summary>
+            public override string MethodName => "uploadapk";
+
+            /// <summary>Gets the HTTP method.</summary>
+            public override string HttpMethod => "POST";
+
+            /// <summary>Gets the REST path.</summary>
+            public override string RestPath => "androidpublisher/v3/appstore/{appStorePackageName}/apps/{packageName}/apks:upload";
+
+            /// <summary>Initializes Uploadapk parameter list.</summary>
+            protected override void InitParameters()
+            {
+                base.InitParameters();
+                RequestParameters.Add("appStorePackageName", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "appStorePackageName",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+                RequestParameters.Add("packageName", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "packageName",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+            }
+        }
+
+        /// <summary>Upload an APK file for the hosted app. Returns an ID to track this APK.</summary>
+        /// <remarks>
+        /// Considerations regarding <paramref name="stream"/>:
+        /// <list type="bullet">
+        /// <item>
+        /// <description>
+        /// If <paramref name="stream"/> is seekable, then the stream position will be reset to <c>0</c> before reading
+        /// commences. If <paramref name="stream"/> is not seekable, then it will be read from its current position
+        /// </description>
+        /// </item>
+        /// <item>
+        /// <description>
+        /// Caller is responsible for maintaining the <paramref name="stream"/> open until the upload is completed
+        /// </description>
+        /// </item>
+        /// <item><description>Caller is responsible for closing the <paramref name="stream"/></description></item>
+        /// </list>
+        /// </remarks>
+        /// <param name="body">The body of the request.</param>
+        /// <param name="appStorePackageName">Required. Package name of the third-party app store.</param>
+        /// <param name="packageName">Required. Package name of the app.</param>
+        /// <param name="stream">The stream to upload. See remarks for further information.</param>
+        /// <param name="contentType">The content type of the stream to upload.</param>
+        public virtual UploadapkMediaUpload Uploadapk(Google.Apis.AndroidPublisher.v3.Data.UploadApkRequest body, string appStorePackageName, string packageName, System.IO.Stream stream, string contentType)
+        {
+            return new UploadapkMediaUpload(service, body, appStorePackageName, packageName, stream, contentType);
+        }
+
+        /// <summary>Uploadapk media upload which supports resumable upload.</summary>
+        public class UploadapkMediaUpload : Google.Apis.Upload.ResumableUpload<Google.Apis.AndroidPublisher.v3.Data.UploadApkRequest, Google.Apis.AndroidPublisher.v3.Data.UploadApkResponse>
+        {
+            /// <summary>V1 error format.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("$.xgafv", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual System.Nullable<XgafvEnum> Xgafv { get; set; }
+
+            /// <summary>V1 error format.</summary>
+            public enum XgafvEnum
+            {
+                /// <summary>v1 error format</summary>
+                [Google.Apis.Util.StringValueAttribute("1")]
+                Value1 = 0,
+
+                /// <summary>v2 error format</summary>
+                [Google.Apis.Util.StringValueAttribute("2")]
+                Value2 = 1,
+            }
+
+            /// <summary>OAuth access token.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("access_token", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual string AccessToken { get; set; }
+
+            /// <summary>Data format for response.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("alt", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual System.Nullable<AltEnum> Alt { get; set; }
+
+            /// <summary>Data format for response.</summary>
+            public enum AltEnum
+            {
+                /// <summary>Responses with Content-Type of application/json</summary>
+                [Google.Apis.Util.StringValueAttribute("json")]
+                Json = 0,
+
+                /// <summary>Media download with context-dependent Content-Type</summary>
+                [Google.Apis.Util.StringValueAttribute("media")]
+                Media = 1,
+
+                /// <summary>Responses with Content-Type of application/x-protobuf</summary>
+                [Google.Apis.Util.StringValueAttribute("proto")]
+                Proto = 2,
+            }
+
+            /// <summary>JSONP</summary>
+            [Google.Apis.Util.RequestParameterAttribute("callback", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual string Callback { get; set; }
+
+            /// <summary>Selector specifying which fields to include in a partial response.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("fields", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual string Fields { get; set; }
+
+            /// <summary>
+            /// API key. Your API key identifies your project and provides you with API access, quota, and reports.
+            /// Required unless you provide an OAuth 2.0 token.
+            /// </summary>
+            [Google.Apis.Util.RequestParameterAttribute("key", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual string Key { get; set; }
+
+            /// <summary>OAuth 2.0 token for the current user.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("oauth_token", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual string OauthToken { get; set; }
+
+            /// <summary>Returns response with indentations and line breaks.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("prettyPrint", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual System.Nullable<bool> PrettyPrint { get; set; }
+
+            /// <summary>
+            /// Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned
+            /// to a user, but should not exceed 40 characters.
+            /// </summary>
+            [Google.Apis.Util.RequestParameterAttribute("quotaUser", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual string QuotaUser { get; set; }
+
+            /// <summary>Legacy upload protocol for media (e.g. "media", "multipart").</summary>
+            [Google.Apis.Util.RequestParameterAttribute("uploadType", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual string UploadType { get; set; }
+
+            /// <summary>Upload protocol for media (e.g. "raw", "multipart").</summary>
+            [Google.Apis.Util.RequestParameterAttribute("upload_protocol", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual string UploadProtocol { get; set; }
+
+            /// <summary>Required. Package name of the third-party app store.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("appStorePackageName", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string AppStorePackageName { get; private set; }
+
+            /// <summary>Required. Package name of the app.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("packageName", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string PackageName { get; private set; }
+
+            /// <summary>Constructs a new Uploadapk media upload instance.</summary>
+            /// <remarks>
+            /// Considerations regarding <paramref name="stream"/>:
+            /// <list type="bullet">
+            /// <item>
+            /// <description>
+            /// If <paramref name="stream"/> is seekable, then the stream position will be reset to <c>0</c> before
+            /// reading commences. If <paramref name="stream"/> is not seekable, then it will be read from its current
+            /// position
+            /// </description>
+            /// </item>
+            /// <item>
+            /// <description>
+            /// Caller is responsible for maintaining the <paramref name="stream"/> open until the upload is completed
+            /// </description>
+            /// </item>
+            /// <item><description>Caller is responsible for closing the <paramref name="stream"/></description></item>
+            /// </list>
+            /// </remarks>
+            public UploadapkMediaUpload(Google.Apis.Services.IClientService service, Google.Apis.AndroidPublisher.v3.Data.UploadApkRequest body, string appStorePackageName, string packageName, System.IO.Stream stream, string contentType)
+                : base(service, string.Format("/{0}/{1}{2}", "upload", service.BasePath, "androidpublisher/v3/appstore/{appStorePackageName}/apps/{packageName}/apks:upload"), "POST", stream, contentType)
+            {
+                AppStorePackageName = appStorePackageName;
+                PackageName = packageName;
+                Body = body;
+            }
+        }
+
+        /// <summary>Upload a policy declaration file for the hosted app. Returns an ID to track the file.</summary>
+        /// <param name="body">The body of the request.</param>
+        /// <param name="appStorePackageName">Required. Package name of the third-party app store.</param>
+        /// <param name="packageName">Required. Package name of the app.</param>
+        public virtual UploadappstoreapppolicydeclarationfileRequest Uploadappstoreapppolicydeclarationfile(Google.Apis.AndroidPublisher.v3.Data.UploadAppStoreAppPolicyDeclarationFileRequest body, string appStorePackageName, string packageName)
+        {
+            return new UploadappstoreapppolicydeclarationfileRequest(this.service, body, appStorePackageName, packageName);
+        }
+
+        /// <summary>Upload a policy declaration file for the hosted app. Returns an ID to track the file.</summary>
+        public class UploadappstoreapppolicydeclarationfileRequest : AndroidPublisherBaseServiceRequest<Google.Apis.AndroidPublisher.v3.Data.UploadAppStoreAppPolicyDeclarationFileResponse>
+        {
+            /// <summary>Constructs a new Uploadappstoreapppolicydeclarationfile request.</summary>
+            public UploadappstoreapppolicydeclarationfileRequest(Google.Apis.Services.IClientService service, Google.Apis.AndroidPublisher.v3.Data.UploadAppStoreAppPolicyDeclarationFileRequest body, string appStorePackageName, string packageName) : base(service)
+            {
+                AppStorePackageName = appStorePackageName;
+                PackageName = packageName;
+                Body = body;
+                InitParameters();
+            }
+
+            /// <summary>Required. Package name of the third-party app store.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("appStorePackageName", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string AppStorePackageName { get; private set; }
+
+            /// <summary>Required. Package name of the app.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("packageName", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string PackageName { get; private set; }
+
+            /// <summary>Gets or sets the body of this request.</summary>
+            Google.Apis.AndroidPublisher.v3.Data.UploadAppStoreAppPolicyDeclarationFileRequest Body { get; set; }
+
+            /// <summary>Returns the body of the request.</summary>
+            protected override object GetBody() => Body;
+
+            /// <summary>Gets the method name.</summary>
+            public override string MethodName => "uploadappstoreapppolicydeclarationfile";
+
+            /// <summary>Gets the HTTP method.</summary>
+            public override string HttpMethod => "POST";
+
+            /// <summary>Gets the REST path.</summary>
+            public override string RestPath => "androidpublisher/v3/appstore/{appStorePackageName}/apps/{packageName}/policyDeclarationFiles:upload";
+
+            /// <summary>Initializes Uploadappstoreapppolicydeclarationfile parameter list.</summary>
+            protected override void InitParameters()
+            {
+                base.InitParameters();
+                RequestParameters.Add("appStorePackageName", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "appStorePackageName",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+                RequestParameters.Add("packageName", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "packageName",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+            }
+        }
+
+        /// <summary>Upload a policy declaration file for the hosted app. Returns an ID to track the file.</summary>
+        /// <remarks>
+        /// Considerations regarding <paramref name="stream"/>:
+        /// <list type="bullet">
+        /// <item>
+        /// <description>
+        /// If <paramref name="stream"/> is seekable, then the stream position will be reset to <c>0</c> before reading
+        /// commences. If <paramref name="stream"/> is not seekable, then it will be read from its current position
+        /// </description>
+        /// </item>
+        /// <item>
+        /// <description>
+        /// Caller is responsible for maintaining the <paramref name="stream"/> open until the upload is completed
+        /// </description>
+        /// </item>
+        /// <item><description>Caller is responsible for closing the <paramref name="stream"/></description></item>
+        /// </list>
+        /// </remarks>
+        /// <param name="body">The body of the request.</param>
+        /// <param name="appStorePackageName">Required. Package name of the third-party app store.</param>
+        /// <param name="packageName">Required. Package name of the app.</param>
+        /// <param name="stream">The stream to upload. See remarks for further information.</param>
+        /// <param name="contentType">The content type of the stream to upload.</param>
+        public virtual UploadappstoreapppolicydeclarationfileMediaUpload Uploadappstoreapppolicydeclarationfile(Google.Apis.AndroidPublisher.v3.Data.UploadAppStoreAppPolicyDeclarationFileRequest body, string appStorePackageName, string packageName, System.IO.Stream stream, string contentType)
+        {
+            return new UploadappstoreapppolicydeclarationfileMediaUpload(service, body, appStorePackageName, packageName, stream, contentType);
+        }
+
+        /// <summary>Uploadappstoreapppolicydeclarationfile media upload which supports resumable upload.</summary>
+        public class UploadappstoreapppolicydeclarationfileMediaUpload : Google.Apis.Upload.ResumableUpload<Google.Apis.AndroidPublisher.v3.Data.UploadAppStoreAppPolicyDeclarationFileRequest, Google.Apis.AndroidPublisher.v3.Data.UploadAppStoreAppPolicyDeclarationFileResponse>
+        {
+            /// <summary>V1 error format.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("$.xgafv", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual System.Nullable<XgafvEnum> Xgafv { get; set; }
+
+            /// <summary>V1 error format.</summary>
+            public enum XgafvEnum
+            {
+                /// <summary>v1 error format</summary>
+                [Google.Apis.Util.StringValueAttribute("1")]
+                Value1 = 0,
+
+                /// <summary>v2 error format</summary>
+                [Google.Apis.Util.StringValueAttribute("2")]
+                Value2 = 1,
+            }
+
+            /// <summary>OAuth access token.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("access_token", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual string AccessToken { get; set; }
+
+            /// <summary>Data format for response.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("alt", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual System.Nullable<AltEnum> Alt { get; set; }
+
+            /// <summary>Data format for response.</summary>
+            public enum AltEnum
+            {
+                /// <summary>Responses with Content-Type of application/json</summary>
+                [Google.Apis.Util.StringValueAttribute("json")]
+                Json = 0,
+
+                /// <summary>Media download with context-dependent Content-Type</summary>
+                [Google.Apis.Util.StringValueAttribute("media")]
+                Media = 1,
+
+                /// <summary>Responses with Content-Type of application/x-protobuf</summary>
+                [Google.Apis.Util.StringValueAttribute("proto")]
+                Proto = 2,
+            }
+
+            /// <summary>JSONP</summary>
+            [Google.Apis.Util.RequestParameterAttribute("callback", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual string Callback { get; set; }
+
+            /// <summary>Selector specifying which fields to include in a partial response.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("fields", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual string Fields { get; set; }
+
+            /// <summary>
+            /// API key. Your API key identifies your project and provides you with API access, quota, and reports.
+            /// Required unless you provide an OAuth 2.0 token.
+            /// </summary>
+            [Google.Apis.Util.RequestParameterAttribute("key", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual string Key { get; set; }
+
+            /// <summary>OAuth 2.0 token for the current user.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("oauth_token", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual string OauthToken { get; set; }
+
+            /// <summary>Returns response with indentations and line breaks.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("prettyPrint", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual System.Nullable<bool> PrettyPrint { get; set; }
+
+            /// <summary>
+            /// Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned
+            /// to a user, but should not exceed 40 characters.
+            /// </summary>
+            [Google.Apis.Util.RequestParameterAttribute("quotaUser", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual string QuotaUser { get; set; }
+
+            /// <summary>Legacy upload protocol for media (e.g. "media", "multipart").</summary>
+            [Google.Apis.Util.RequestParameterAttribute("uploadType", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual string UploadType { get; set; }
+
+            /// <summary>Upload protocol for media (e.g. "raw", "multipart").</summary>
+            [Google.Apis.Util.RequestParameterAttribute("upload_protocol", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual string UploadProtocol { get; set; }
+
+            /// <summary>Required. Package name of the third-party app store.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("appStorePackageName", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string AppStorePackageName { get; private set; }
+
+            /// <summary>Required. Package name of the app.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("packageName", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string PackageName { get; private set; }
+
+            /// <summary>Constructs a new Uploadappstoreapppolicydeclarationfile media upload instance.</summary>
+            /// <remarks>
+            /// Considerations regarding <paramref name="stream"/>:
+            /// <list type="bullet">
+            /// <item>
+            /// <description>
+            /// If <paramref name="stream"/> is seekable, then the stream position will be reset to <c>0</c> before
+            /// reading commences. If <paramref name="stream"/> is not seekable, then it will be read from its current
+            /// position
+            /// </description>
+            /// </item>
+            /// <item>
+            /// <description>
+            /// Caller is responsible for maintaining the <paramref name="stream"/> open until the upload is completed
+            /// </description>
+            /// </item>
+            /// <item><description>Caller is responsible for closing the <paramref name="stream"/></description></item>
+            /// </list>
+            /// </remarks>
+            public UploadappstoreapppolicydeclarationfileMediaUpload(Google.Apis.Services.IClientService service, Google.Apis.AndroidPublisher.v3.Data.UploadAppStoreAppPolicyDeclarationFileRequest body, string appStorePackageName, string packageName, System.IO.Stream stream, string contentType)
+                : base(service, string.Format("/{0}/{1}{2}", "upload", service.BasePath, "androidpublisher/v3/appstore/{appStorePackageName}/apps/{packageName}/policyDeclarationFiles:upload"), "POST", stream, contentType)
+            {
+                AppStorePackageName = appStorePackageName;
+                PackageName = packageName;
+                Body = body;
+            }
+        }
+
+        /// <summary>Upload a screenshot or app icon for the hosted app. Returns an ID to track the image.</summary>
+        /// <param name="body">The body of the request.</param>
+        /// <param name="appStorePackageName">Required. Package name of the third-party app store.</param>
+        /// <param name="packageName">Required. Package name of the app.</param>
+        public virtual UploadimageRequest Uploadimage(Google.Apis.AndroidPublisher.v3.Data.UploadImageRequest body, string appStorePackageName, string packageName)
+        {
+            return new UploadimageRequest(this.service, body, appStorePackageName, packageName);
+        }
+
+        /// <summary>Upload a screenshot or app icon for the hosted app. Returns an ID to track the image.</summary>
+        public class UploadimageRequest : AndroidPublisherBaseServiceRequest<Google.Apis.AndroidPublisher.v3.Data.UploadImageResponse>
+        {
+            /// <summary>Constructs a new Uploadimage request.</summary>
+            public UploadimageRequest(Google.Apis.Services.IClientService service, Google.Apis.AndroidPublisher.v3.Data.UploadImageRequest body, string appStorePackageName, string packageName) : base(service)
+            {
+                AppStorePackageName = appStorePackageName;
+                PackageName = packageName;
+                Body = body;
+                InitParameters();
+            }
+
+            /// <summary>Required. Package name of the third-party app store.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("appStorePackageName", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string AppStorePackageName { get; private set; }
+
+            /// <summary>Required. Package name of the app.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("packageName", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string PackageName { get; private set; }
+
+            /// <summary>Gets or sets the body of this request.</summary>
+            Google.Apis.AndroidPublisher.v3.Data.UploadImageRequest Body { get; set; }
+
+            /// <summary>Returns the body of the request.</summary>
+            protected override object GetBody() => Body;
+
+            /// <summary>Gets the method name.</summary>
+            public override string MethodName => "uploadimage";
+
+            /// <summary>Gets the HTTP method.</summary>
+            public override string HttpMethod => "POST";
+
+            /// <summary>Gets the REST path.</summary>
+            public override string RestPath => "androidpublisher/v3/appstore/{appStorePackageName}/apps/{packageName}/images:upload";
+
+            /// <summary>Initializes Uploadimage parameter list.</summary>
+            protected override void InitParameters()
+            {
+                base.InitParameters();
+                RequestParameters.Add("appStorePackageName", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "appStorePackageName",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+                RequestParameters.Add("packageName", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "packageName",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+            }
+        }
+
+        /// <summary>Upload a screenshot or app icon for the hosted app. Returns an ID to track the image.</summary>
+        /// <remarks>
+        /// Considerations regarding <paramref name="stream"/>:
+        /// <list type="bullet">
+        /// <item>
+        /// <description>
+        /// If <paramref name="stream"/> is seekable, then the stream position will be reset to <c>0</c> before reading
+        /// commences. If <paramref name="stream"/> is not seekable, then it will be read from its current position
+        /// </description>
+        /// </item>
+        /// <item>
+        /// <description>
+        /// Caller is responsible for maintaining the <paramref name="stream"/> open until the upload is completed
+        /// </description>
+        /// </item>
+        /// <item><description>Caller is responsible for closing the <paramref name="stream"/></description></item>
+        /// </list>
+        /// </remarks>
+        /// <param name="body">The body of the request.</param>
+        /// <param name="appStorePackageName">Required. Package name of the third-party app store.</param>
+        /// <param name="packageName">Required. Package name of the app.</param>
+        /// <param name="stream">The stream to upload. See remarks for further information.</param>
+        /// <param name="contentType">The content type of the stream to upload.</param>
+        public virtual UploadimageMediaUpload Uploadimage(Google.Apis.AndroidPublisher.v3.Data.UploadImageRequest body, string appStorePackageName, string packageName, System.IO.Stream stream, string contentType)
+        {
+            return new UploadimageMediaUpload(service, body, appStorePackageName, packageName, stream, contentType);
+        }
+
+        /// <summary>Uploadimage media upload which supports resumable upload.</summary>
+        public class UploadimageMediaUpload : Google.Apis.Upload.ResumableUpload<Google.Apis.AndroidPublisher.v3.Data.UploadImageRequest, Google.Apis.AndroidPublisher.v3.Data.UploadImageResponse>
+        {
+            /// <summary>V1 error format.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("$.xgafv", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual System.Nullable<XgafvEnum> Xgafv { get; set; }
+
+            /// <summary>V1 error format.</summary>
+            public enum XgafvEnum
+            {
+                /// <summary>v1 error format</summary>
+                [Google.Apis.Util.StringValueAttribute("1")]
+                Value1 = 0,
+
+                /// <summary>v2 error format</summary>
+                [Google.Apis.Util.StringValueAttribute("2")]
+                Value2 = 1,
+            }
+
+            /// <summary>OAuth access token.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("access_token", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual string AccessToken { get; set; }
+
+            /// <summary>Data format for response.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("alt", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual System.Nullable<AltEnum> Alt { get; set; }
+
+            /// <summary>Data format for response.</summary>
+            public enum AltEnum
+            {
+                /// <summary>Responses with Content-Type of application/json</summary>
+                [Google.Apis.Util.StringValueAttribute("json")]
+                Json = 0,
+
+                /// <summary>Media download with context-dependent Content-Type</summary>
+                [Google.Apis.Util.StringValueAttribute("media")]
+                Media = 1,
+
+                /// <summary>Responses with Content-Type of application/x-protobuf</summary>
+                [Google.Apis.Util.StringValueAttribute("proto")]
+                Proto = 2,
+            }
+
+            /// <summary>JSONP</summary>
+            [Google.Apis.Util.RequestParameterAttribute("callback", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual string Callback { get; set; }
+
+            /// <summary>Selector specifying which fields to include in a partial response.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("fields", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual string Fields { get; set; }
+
+            /// <summary>
+            /// API key. Your API key identifies your project and provides you with API access, quota, and reports.
+            /// Required unless you provide an OAuth 2.0 token.
+            /// </summary>
+            [Google.Apis.Util.RequestParameterAttribute("key", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual string Key { get; set; }
+
+            /// <summary>OAuth 2.0 token for the current user.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("oauth_token", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual string OauthToken { get; set; }
+
+            /// <summary>Returns response with indentations and line breaks.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("prettyPrint", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual System.Nullable<bool> PrettyPrint { get; set; }
+
+            /// <summary>
+            /// Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned
+            /// to a user, but should not exceed 40 characters.
+            /// </summary>
+            [Google.Apis.Util.RequestParameterAttribute("quotaUser", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual string QuotaUser { get; set; }
+
+            /// <summary>Legacy upload protocol for media (e.g. "media", "multipart").</summary>
+            [Google.Apis.Util.RequestParameterAttribute("uploadType", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual string UploadType { get; set; }
+
+            /// <summary>Upload protocol for media (e.g. "raw", "multipart").</summary>
+            [Google.Apis.Util.RequestParameterAttribute("upload_protocol", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual string UploadProtocol { get; set; }
+
+            /// <summary>Required. Package name of the third-party app store.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("appStorePackageName", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string AppStorePackageName { get; private set; }
+
+            /// <summary>Required. Package name of the app.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("packageName", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string PackageName { get; private set; }
+
+            /// <summary>Constructs a new Uploadimage media upload instance.</summary>
+            /// <remarks>
+            /// Considerations regarding <paramref name="stream"/>:
+            /// <list type="bullet">
+            /// <item>
+            /// <description>
+            /// If <paramref name="stream"/> is seekable, then the stream position will be reset to <c>0</c> before
+            /// reading commences. If <paramref name="stream"/> is not seekable, then it will be read from its current
+            /// position
+            /// </description>
+            /// </item>
+            /// <item>
+            /// <description>
+            /// Caller is responsible for maintaining the <paramref name="stream"/> open until the upload is completed
+            /// </description>
+            /// </item>
+            /// <item><description>Caller is responsible for closing the <paramref name="stream"/></description></item>
+            /// </list>
+            /// </remarks>
+            public UploadimageMediaUpload(Google.Apis.Services.IClientService service, Google.Apis.AndroidPublisher.v3.Data.UploadImageRequest body, string appStorePackageName, string packageName, System.IO.Stream stream, string contentType)
+                : base(service, string.Format("/{0}/{1}{2}", "upload", service.BasePath, "androidpublisher/v3/appstore/{appStorePackageName}/apps/{packageName}/images:upload"), "POST", stream, contentType)
+            {
+                AppStorePackageName = appStorePackageName;
+                PackageName = packageName;
+                Body = body;
+            }
+        }
+    }
+
+    /// <summary>The "appstorecatalog" collection of methods.</summary>
+    public class AppstorecatalogResource
+    {
+        private const string Resource = "appstorecatalog";
+
+        /// <summary>The service which this resource belongs to.</summary>
+        private readonly Google.Apis.Services.IClientService service;
+
+        /// <summary>Constructs a new resource.</summary>
+        public AppstorecatalogResource(Google.Apis.Services.IClientService service)
+        {
+            this.service = service;
+            Recentappviews = new RecentappviewsResource(service);
+            Recentupdateevents = new RecentupdateeventsResource(service);
+        }
+
+        /// <summary>Gets the Recentappviews resource.</summary>
+        public virtual RecentappviewsResource Recentappviews { get; }
+
+        /// <summary>The "recentappviews" collection of methods.</summary>
+        public class RecentappviewsResource
+        {
+            private const string Resource = "recentappviews";
+
+            /// <summary>The service which this resource belongs to.</summary>
+            private readonly Google.Apis.Services.IClientService service;
+
+            /// <summary>Constructs a new resource.</summary>
+            public RecentappviewsResource(Google.Apis.Services.IClientService service)
+            {
+                this.service = service;
+            }
+
+            /// <summary>Returns metadata about a recently updated app.</summary>
+            /// <param name="appStorePackageName">
+            /// Required. The package name of the app store on behalf of which the request is made.
+            /// </param>
+            /// <param name="playAppPackageName">Required. The package name of the requested Play app.</param>
+            public virtual GetRequest Get(string appStorePackageName, string playAppPackageName)
+            {
+                return new GetRequest(this.service, appStorePackageName, playAppPackageName);
+            }
+
+            /// <summary>Returns metadata about a recently updated app.</summary>
+            public class GetRequest : AndroidPublisherBaseServiceRequest<Google.Apis.AndroidPublisher.v3.Data.RecentAppView>
+            {
+                /// <summary>Constructs a new Get request.</summary>
+                public GetRequest(Google.Apis.Services.IClientService service, string appStorePackageName, string playAppPackageName) : base(service)
+                {
+                    AppStorePackageName = appStorePackageName;
+                    PlayAppPackageName = playAppPackageName;
+                    InitParameters();
+                }
+
+                /// <summary>
+                /// Required. The package name of the app store on behalf of which the request is made.
+                /// </summary>
+                [Google.Apis.Util.RequestParameterAttribute("appStorePackageName", Google.Apis.Util.RequestParameterType.Path)]
+                public virtual string AppStorePackageName { get; private set; }
+
+                /// <summary>Required. The package name of the requested Play app.</summary>
+                [Google.Apis.Util.RequestParameterAttribute("playAppPackageName", Google.Apis.Util.RequestParameterType.Path)]
+                public virtual string PlayAppPackageName { get; private set; }
+
+                /// <summary>Gets the method name.</summary>
+                public override string MethodName => "get";
+
+                /// <summary>Gets the HTTP method.</summary>
+                public override string HttpMethod => "GET";
+
+                /// <summary>Gets the REST path.</summary>
+                public override string RestPath => "androidpublisher/v3/appstorecatalog/{appStorePackageName}/recentAppViews/{playAppPackageName}";
+
+                /// <summary>Initializes Get parameter list.</summary>
+                protected override void InitParameters()
+                {
+                    base.InitParameters();
+                    RequestParameters.Add("appStorePackageName", new Google.Apis.Discovery.Parameter
+                    {
+                        Name = "appStorePackageName",
+                        IsRequired = true,
+                        ParameterType = "path",
+                        DefaultValue = null,
+                        Pattern = null,
+                    });
+                    RequestParameters.Add("playAppPackageName", new Google.Apis.Discovery.Parameter
+                    {
+                        Name = "playAppPackageName",
+                        IsRequired = true,
+                        ParameterType = "path",
+                        DefaultValue = null,
+                        Pattern = null,
+                    });
+                }
+            }
+        }
+
+        /// <summary>Gets the Recentupdateevents resource.</summary>
+        public virtual RecentupdateeventsResource Recentupdateevents { get; }
+
+        /// <summary>The "recentupdateevents" collection of methods.</summary>
+        public class RecentupdateeventsResource
+        {
+            private const string Resource = "recentupdateevents";
+
+            /// <summary>The service which this resource belongs to.</summary>
+            private readonly Google.Apis.Services.IClientService service;
+
+            /// <summary>Constructs a new resource.</summary>
+            public RecentupdateeventsResource(Google.Apis.Services.IClientService service)
+            {
+                this.service = service;
+            }
+
+            /// <summary>Lists update events for eligible apps in the given time range.</summary>
+            /// <param name="appStorePackageName">
+            /// Required. The package name of the app store on behalf of which the request is made.
+            /// </param>
+            public virtual ListRequest List(string appStorePackageName)
+            {
+                return new ListRequest(this.service, appStorePackageName);
+            }
+
+            /// <summary>Lists update events for eligible apps in the given time range.</summary>
+            public class ListRequest : AndroidPublisherBaseServiceRequest<Google.Apis.AndroidPublisher.v3.Data.ListRecentUpdateEventsResponse>
+            {
+                /// <summary>Constructs a new List request.</summary>
+                public ListRequest(Google.Apis.Services.IClientService service, string appStorePackageName) : base(service)
+                {
+                    AppStorePackageName = appStorePackageName;
+                    InitParameters();
+                }
+
+                /// <summary>
+                /// Required. The package name of the app store on behalf of which the request is made.
+                /// </summary>
+                [Google.Apis.Util.RequestParameterAttribute("appStorePackageName", Google.Apis.Util.RequestParameterType.Path)]
+                public virtual string AppStorePackageName { get; private set; }
+
+                private object _endTime;
+
+                /// <summary>
+                /// String representation of <see cref="EndTimeDateTimeOffset"/>, formatted for inclusion in the HTTP
+                /// request.
+                /// </summary>
+                [Google.Apis.Util.RequestParameterAttribute("endTime", Google.Apis.Util.RequestParameterType.Query)]
+                public virtual string EndTimeRaw { get; private set; }
+
+                /// <summary><seealso cref="object"/> representation of <see cref="EndTimeRaw"/>.</summary>
+                [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use EndTimeDateTimeOffset instead.")]
+                public virtual object EndTime
+                {
+                    get => _endTime;
+                    set
+                    {
+                        EndTimeRaw = Google.Apis.Util.Utilities.ConvertToString(value);
+                        _endTime = value;
+                    }
+                }
+
+                public virtual System.DateTimeOffset? EndTimeDateTimeOffset
+                {
+                    get => Google.Apis.Util.DiscoveryFormat.ParseGoogleDateTimeToDateTimeOffset(EndTimeRaw);
+                    set
+                    {
+                        EndTimeRaw = Google.Apis.Util.DiscoveryFormat.FormatDateTimeOffsetToGoogleDateTime(value);
+                        _endTime = value;
+                    }
+                }
+
+                /// <summary>
+                /// Optional. The maximum number of update events to return. The service may return fewer than this
+                /// value. If unspecified, at most 100 update events will be returned. The maximum value is 1000; values
+                /// above 1000 will be coerced to 1000.
+                /// </summary>
+                [Google.Apis.Util.RequestParameterAttribute("pageSize", Google.Apis.Util.RequestParameterType.Query)]
+                public virtual System.Nullable<int> PageSize { get; set; }
+
+                /// <summary>
+                /// Optional. A page token, received from a previous `ListRecentUpdateEvents` call. Provide this to
+                /// retrieve the subsequent page. When paginating, all other parameters provided to
+                /// `ListRecentUpdateEvents` must match the call that provided the page token.
+                /// </summary>
+                [Google.Apis.Util.RequestParameterAttribute("pageToken", Google.Apis.Util.RequestParameterType.Query)]
+                public virtual string PageToken { get; set; }
+
+                private object _startTime;
+
+                /// <summary>
+                /// String representation of <see cref="StartTimeDateTimeOffset"/>, formatted for inclusion in the HTTP
+                /// request.
+                /// </summary>
+                [Google.Apis.Util.RequestParameterAttribute("startTime", Google.Apis.Util.RequestParameterType.Query)]
+                public virtual string StartTimeRaw { get; private set; }
+
+                /// <summary><seealso cref="object"/> representation of <see cref="StartTimeRaw"/>.</summary>
+                [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use StartTimeDateTimeOffset instead.")]
+                public virtual object StartTime
+                {
+                    get => _startTime;
+                    set
+                    {
+                        StartTimeRaw = Google.Apis.Util.Utilities.ConvertToString(value);
+                        _startTime = value;
+                    }
+                }
+
+                public virtual System.DateTimeOffset? StartTimeDateTimeOffset
+                {
+                    get => Google.Apis.Util.DiscoveryFormat.ParseGoogleDateTimeToDateTimeOffset(StartTimeRaw);
+                    set
+                    {
+                        StartTimeRaw = Google.Apis.Util.DiscoveryFormat.FormatDateTimeOffsetToGoogleDateTime(value);
+                        _startTime = value;
+                    }
+                }
+
+                /// <summary>Gets the method name.</summary>
+                public override string MethodName => "list";
+
+                /// <summary>Gets the HTTP method.</summary>
+                public override string HttpMethod => "GET";
+
+                /// <summary>Gets the REST path.</summary>
+                public override string RestPath => "androidpublisher/v3/appstorecatalog/{appStorePackageName}/recentUpdateEvents";
+
+                /// <summary>Initializes List parameter list.</summary>
+                protected override void InitParameters()
+                {
+                    base.InitParameters();
+                    RequestParameters.Add("appStorePackageName", new Google.Apis.Discovery.Parameter
+                    {
+                        Name = "appStorePackageName",
+                        IsRequired = true,
+                        ParameterType = "path",
+                        DefaultValue = null,
+                        Pattern = null,
+                    });
+                    RequestParameters.Add("endTime", new Google.Apis.Discovery.Parameter
+                    {
+                        Name = "endTime",
+                        IsRequired = false,
+                        ParameterType = "query",
+                        DefaultValue = null,
+                        Pattern = null,
+                    });
+                    RequestParameters.Add("pageSize", new Google.Apis.Discovery.Parameter
+                    {
+                        Name = "pageSize",
+                        IsRequired = false,
+                        ParameterType = "query",
+                        DefaultValue = null,
+                        Pattern = null,
+                    });
+                    RequestParameters.Add("pageToken", new Google.Apis.Discovery.Parameter
+                    {
+                        Name = "pageToken",
+                        IsRequired = false,
+                        ParameterType = "query",
+                        DefaultValue = null,
+                        Pattern = null,
+                    });
+                    RequestParameters.Add("startTime", new Google.Apis.Discovery.Parameter
+                    {
+                        Name = "startTime",
+                        IsRequired = false,
+                        ParameterType = "query",
+                        DefaultValue = null,
+                        Pattern = null,
+                    });
+                }
             }
         }
     }
@@ -12332,263 +13457,6 @@ namespace Google.Apis.AndroidPublisher.v3
                     });
                 }
             }
-
-            /// <summary>
-            /// Deprecated: Use purchases.subscriptionsv2.get instead. Checks whether a user's subscription purchase is
-            /// valid and returns its expiry time.
-            /// </summary>
-            /// <param name="packageName">
-            /// The package name of the application for which this subscription was purchased (for example,
-            /// 'com.some.thing').
-            /// </param>
-            /// <param name="subscriptionId">The purchased subscription ID (for example, 'monthly001').</param>
-            /// <param name="token">The token provided to the user's device when the subscription was purchased.</param>
-            public virtual GetRequest Get(string packageName, string subscriptionId, string token)
-            {
-                return new GetRequest(this.service, packageName, subscriptionId, token);
-            }
-
-            /// <summary>
-            /// Deprecated: Use purchases.subscriptionsv2.get instead. Checks whether a user's subscription purchase is
-            /// valid and returns its expiry time.
-            /// </summary>
-            public class GetRequest : AndroidPublisherBaseServiceRequest<Google.Apis.AndroidPublisher.v3.Data.SubscriptionPurchase>
-            {
-                /// <summary>Constructs a new Get request.</summary>
-                public GetRequest(Google.Apis.Services.IClientService service, string packageName, string subscriptionId, string token) : base(service)
-                {
-                    PackageName = packageName;
-                    SubscriptionId = subscriptionId;
-                    Token = token;
-                    InitParameters();
-                }
-
-                /// <summary>
-                /// The package name of the application for which this subscription was purchased (for example,
-                /// 'com.some.thing').
-                /// </summary>
-                [Google.Apis.Util.RequestParameterAttribute("packageName", Google.Apis.Util.RequestParameterType.Path)]
-                public virtual string PackageName { get; private set; }
-
-                /// <summary>The purchased subscription ID (for example, 'monthly001').</summary>
-                [Google.Apis.Util.RequestParameterAttribute("subscriptionId", Google.Apis.Util.RequestParameterType.Path)]
-                public virtual string SubscriptionId { get; private set; }
-
-                /// <summary>The token provided to the user's device when the subscription was purchased.</summary>
-                [Google.Apis.Util.RequestParameterAttribute("token", Google.Apis.Util.RequestParameterType.Path)]
-                public virtual string Token { get; private set; }
-
-                /// <summary>Gets the method name.</summary>
-                public override string MethodName => "get";
-
-                /// <summary>Gets the HTTP method.</summary>
-                public override string HttpMethod => "GET";
-
-                /// <summary>Gets the REST path.</summary>
-                public override string RestPath => "androidpublisher/v3/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}";
-
-                /// <summary>Initializes Get parameter list.</summary>
-                protected override void InitParameters()
-                {
-                    base.InitParameters();
-                    RequestParameters.Add("packageName", new Google.Apis.Discovery.Parameter
-                    {
-                        Name = "packageName",
-                        IsRequired = true,
-                        ParameterType = "path",
-                        DefaultValue = null,
-                        Pattern = null,
-                    });
-                    RequestParameters.Add("subscriptionId", new Google.Apis.Discovery.Parameter
-                    {
-                        Name = "subscriptionId",
-                        IsRequired = true,
-                        ParameterType = "path",
-                        DefaultValue = null,
-                        Pattern = null,
-                    });
-                    RequestParameters.Add("token", new Google.Apis.Discovery.Parameter
-                    {
-                        Name = "token",
-                        IsRequired = true,
-                        ParameterType = "path",
-                        DefaultValue = null,
-                        Pattern = null,
-                    });
-                }
-            }
-
-            /// <summary>
-            /// Deprecated: Use orders.refund instead. Refunds a user's subscription purchase, but the subscription
-            /// remains valid until its expiration time and it will continue to recur.
-            /// </summary>
-            /// <param name="packageName">
-            /// The package name of the application for which this subscription was purchased (for example,
-            /// 'com.some.thing').
-            /// </param>
-            /// <param name="subscriptionId">"The purchased subscription ID (for example, 'monthly001').</param>
-            /// <param name="token">The token provided to the user's device when the subscription was purchased.</param>
-            public virtual RefundRequest Refund(string packageName, string subscriptionId, string token)
-            {
-                return new RefundRequest(this.service, packageName, subscriptionId, token);
-            }
-
-            /// <summary>
-            /// Deprecated: Use orders.refund instead. Refunds a user's subscription purchase, but the subscription
-            /// remains valid until its expiration time and it will continue to recur.
-            /// </summary>
-            public class RefundRequest : AndroidPublisherBaseServiceRequest<string>
-            {
-                /// <summary>Constructs a new Refund request.</summary>
-                public RefundRequest(Google.Apis.Services.IClientService service, string packageName, string subscriptionId, string token) : base(service)
-                {
-                    PackageName = packageName;
-                    SubscriptionId = subscriptionId;
-                    Token = token;
-                    InitParameters();
-                }
-
-                /// <summary>
-                /// The package name of the application for which this subscription was purchased (for example,
-                /// 'com.some.thing').
-                /// </summary>
-                [Google.Apis.Util.RequestParameterAttribute("packageName", Google.Apis.Util.RequestParameterType.Path)]
-                public virtual string PackageName { get; private set; }
-
-                /// <summary>"The purchased subscription ID (for example, 'monthly001').</summary>
-                [Google.Apis.Util.RequestParameterAttribute("subscriptionId", Google.Apis.Util.RequestParameterType.Path)]
-                public virtual string SubscriptionId { get; private set; }
-
-                /// <summary>The token provided to the user's device when the subscription was purchased.</summary>
-                [Google.Apis.Util.RequestParameterAttribute("token", Google.Apis.Util.RequestParameterType.Path)]
-                public virtual string Token { get; private set; }
-
-                /// <summary>Gets the method name.</summary>
-                public override string MethodName => "refund";
-
-                /// <summary>Gets the HTTP method.</summary>
-                public override string HttpMethod => "POST";
-
-                /// <summary>Gets the REST path.</summary>
-                public override string RestPath => "androidpublisher/v3/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:refund";
-
-                /// <summary>Initializes Refund parameter list.</summary>
-                protected override void InitParameters()
-                {
-                    base.InitParameters();
-                    RequestParameters.Add("packageName", new Google.Apis.Discovery.Parameter
-                    {
-                        Name = "packageName",
-                        IsRequired = true,
-                        ParameterType = "path",
-                        DefaultValue = null,
-                        Pattern = null,
-                    });
-                    RequestParameters.Add("subscriptionId", new Google.Apis.Discovery.Parameter
-                    {
-                        Name = "subscriptionId",
-                        IsRequired = true,
-                        ParameterType = "path",
-                        DefaultValue = null,
-                        Pattern = null,
-                    });
-                    RequestParameters.Add("token", new Google.Apis.Discovery.Parameter
-                    {
-                        Name = "token",
-                        IsRequired = true,
-                        ParameterType = "path",
-                        DefaultValue = null,
-                        Pattern = null,
-                    });
-                }
-            }
-
-            /// <summary>
-            /// Deprecated: Use purchases.subscriptionsv2.revoke instead. Refunds and immediately revokes a user's
-            /// subscription purchase. Access to the subscription will be terminated immediately and it will stop
-            /// recurring.
-            /// </summary>
-            /// <param name="packageName">
-            /// The package name of the application for which this subscription was purchased (for example,
-            /// 'com.some.thing').
-            /// </param>
-            /// <param name="subscriptionId">The purchased subscription ID (for example, 'monthly001').</param>
-            /// <param name="token">The token provided to the user's device when the subscription was purchased.</param>
-            public virtual RevokeRequest Revoke(string packageName, string subscriptionId, string token)
-            {
-                return new RevokeRequest(this.service, packageName, subscriptionId, token);
-            }
-
-            /// <summary>
-            /// Deprecated: Use purchases.subscriptionsv2.revoke instead. Refunds and immediately revokes a user's
-            /// subscription purchase. Access to the subscription will be terminated immediately and it will stop
-            /// recurring.
-            /// </summary>
-            public class RevokeRequest : AndroidPublisherBaseServiceRequest<string>
-            {
-                /// <summary>Constructs a new Revoke request.</summary>
-                public RevokeRequest(Google.Apis.Services.IClientService service, string packageName, string subscriptionId, string token) : base(service)
-                {
-                    PackageName = packageName;
-                    SubscriptionId = subscriptionId;
-                    Token = token;
-                    InitParameters();
-                }
-
-                /// <summary>
-                /// The package name of the application for which this subscription was purchased (for example,
-                /// 'com.some.thing').
-                /// </summary>
-                [Google.Apis.Util.RequestParameterAttribute("packageName", Google.Apis.Util.RequestParameterType.Path)]
-                public virtual string PackageName { get; private set; }
-
-                /// <summary>The purchased subscription ID (for example, 'monthly001').</summary>
-                [Google.Apis.Util.RequestParameterAttribute("subscriptionId", Google.Apis.Util.RequestParameterType.Path)]
-                public virtual string SubscriptionId { get; private set; }
-
-                /// <summary>The token provided to the user's device when the subscription was purchased.</summary>
-                [Google.Apis.Util.RequestParameterAttribute("token", Google.Apis.Util.RequestParameterType.Path)]
-                public virtual string Token { get; private set; }
-
-                /// <summary>Gets the method name.</summary>
-                public override string MethodName => "revoke";
-
-                /// <summary>Gets the HTTP method.</summary>
-                public override string HttpMethod => "POST";
-
-                /// <summary>Gets the REST path.</summary>
-                public override string RestPath => "androidpublisher/v3/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:revoke";
-
-                /// <summary>Initializes Revoke parameter list.</summary>
-                protected override void InitParameters()
-                {
-                    base.InitParameters();
-                    RequestParameters.Add("packageName", new Google.Apis.Discovery.Parameter
-                    {
-                        Name = "packageName",
-                        IsRequired = true,
-                        ParameterType = "path",
-                        DefaultValue = null,
-                        Pattern = null,
-                    });
-                    RequestParameters.Add("subscriptionId", new Google.Apis.Discovery.Parameter
-                    {
-                        Name = "subscriptionId",
-                        IsRequired = true,
-                        ParameterType = "path",
-                        DefaultValue = null,
-                        Pattern = null,
-                    });
-                    RequestParameters.Add("token", new Google.Apis.Discovery.Parameter
-                    {
-                        Name = "token",
-                        IsRequired = true,
-                        ParameterType = "path",
-                        DefaultValue = null,
-                        Pattern = null,
-                    });
-                }
-            }
         }
 
         /// <summary>Gets the Subscriptionsv2 resource.</summary>
@@ -14358,6 +15226,25 @@ namespace Google.Apis.AndroidPublisher.v3.Data
         public virtual string ETag { get; set; }
     }
 
+    /// <summary>Contact information for the app.</summary>
+    public class AppContactInformation : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The contact email for this app. Always set.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("contactEmail")]
+        public virtual string ContactEmail { get; set; }
+
+        /// <summary>The contact phone for this app. Optionally provided by the developer.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("phoneNumber")]
+        public virtual string PhoneNumber { get; set; }
+
+        /// <summary>The contact website url for this app. Optionally provided by the developer.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("websiteUrl")]
+        public virtual string WebsiteUrl { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
     /// <summary>The app details. The resource for DetailsService.</summary>
     public class AppDetails : Google.Apis.Requests.IDirectResponseSchema
     {
@@ -14585,6 +15472,113 @@ namespace Google.Apis.AndroidPublisher.v3.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("targeting")]
         public virtual Targeting Targeting { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>
+    /// An installable set of active APKs. A set of APKs might only contain 1 APK if the app in question publishes using
+    /// APKs. If the app uses app bundles (or a similar technology), this set should contain all APKs (even optional
+    /// ones) that might be installed for this app. A set of APKs should be installable together. If certain APKs are
+    /// exclusive to one another and cannot be installed together, then a separate AppStoreAppActiveApkSet should be
+    /// created.
+    /// </summary>
+    public class AppStoreAppActiveApkSet : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Required. The ID for the main base application module. Example: base.apk or app.apk.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("baseApkId")]
+        public virtual string BaseApkId { get; set; }
+
+        /// <summary>
+        /// Optional. IDs for split modules that might be installed in combination with the base APK. Can be empty if
+        /// app bundles (or a similar technology) are not used. Example: config.en.apk.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("splitApkId")]
+        public virtual System.Collections.Generic.IList<string> SplitApkId { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Information about active APKs of an app store hosted app.</summary>
+    public class AppStoreAppActiveApks : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>
+        /// Required. List specifying which APK sets are distributed together. This list should contain all APKs that
+        /// you're distributing for this app. Add an entry for each individual installable set of APKs.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("activeApkSets")]
+        public virtual System.Collections.Generic.IList<AppStoreAppActiveApkSet> ActiveApkSets { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Details about the app.</summary>
+    public class AppStoreAppDetails : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Required. The app developer's contact email address.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("contactEmail")]
+        public virtual string ContactEmail { get; set; }
+
+        /// <summary>Required. The app developer's name.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("developerName")]
+        public virtual string DeveloperName { get; set; }
+
+        /// <summary>Optional. Website link for the developer or app.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("developerWebsite")]
+        public virtual string DeveloperWebsite { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>A policy declaration with its responses.</summary>
+    public class AppStoreAppPolicyDeclaration : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Required. ID of the policy declaration.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("declarationId")]
+        public virtual string DeclarationId { get; set; }
+
+        /// <summary>Required. Responses provided for this declaration.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("responses")]
+        public virtual System.Collections.Generic.IList<PolicyResponse> Responses { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>A localized store listing. These are the details about the app as shown in your app store.</summary>
+    public class AppStoreAppStoreListing : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Required. Image ID generated from UploadImage for the main app icon.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("appIconId")]
+        public virtual string AppIconId { get; set; }
+
+        /// <summary>Required. The title of the app.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("appName")]
+        public virtual string AppName { get; set; }
+
+        /// <summary>Required. Comprehensive description text about the app.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("fullDescription")]
+        public virtual string FullDescription { get; set; }
+
+        /// <summary>Required. Language code (e.g., "en-US") of the listing.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("languageCode")]
+        public virtual string LanguageCode { get; set; }
+
+        /// <summary>Required. Multiple image IDs for screenshot galleries.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("screenshotId")]
+        public virtual System.Collections.Generic.IList<string> ScreenshotId { get; set; }
+
+        /// <summary>Optional. Quick summary about the app.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("shortDescription")]
+        public virtual string ShortDescription { get; set; }
+
+        /// <summary>Optional. Link to a video about the app.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("videoLink")]
+        public virtual string VideoLink { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -15398,6 +16392,213 @@ namespace Google.Apis.AndroidPublisher.v3.Data
         public virtual string ETag { get; set; }
     }
 
+    /// <summary>LINT.IfChange A view of a Google Play app within the Catalog Export for app stores.</summary>
+    public class CatalogAppView : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Active versions of the app mapped from `android:versionName` manifest attributes.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("activeVersionNames")]
+        public virtual System.Collections.Generic.IList<string> ActiveVersionNames { get; set; }
+
+        /// <summary>The category of the app.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("appCategory")]
+        public virtual string AppCategory { get; set; }
+
+        /// <summary>Developer-provided contact information for the app.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("appContactInformation")]
+        public virtual AppContactInformation AppContactInformation { get; set; }
+
+        /// <summary>The subcategory of the app e.g. "GAME_ACTION".</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("appSubcategory")]
+        public virtual string AppSubcategory { get; set; }
+
+        /// <summary>The token used for delivery of the app with the Google Play Inline Install API.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("deliveryToken")]
+        public virtual string DeliveryToken { get; set; }
+
+        /// <summary>The developer details of the app.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("developerDetails")]
+        public virtual DeveloperDetails DeveloperDetails { get; set; }
+
+        /// <summary>
+        /// The app may specify multiple sets of device compatibility requirements, and a device is considered
+        /// compatible with the app if it satisfies at least one of `DeviceCompatibilityRequirements`.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("deviceCompatibilityRequirements")]
+        public virtual System.Collections.Generic.IList<DeviceCompatibilityRequirements> DeviceCompatibilityRequirements { get; set; }
+
+        /// <summary>
+        /// List of devices excluded from the app's distribution even if they are otherwise compatible with the
+        /// requirements from device_compatibility_requirements. These are OR-ed, i.e. a device is excluded if it
+        /// matches any of the identifiers.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("excludedDevicesByIdentifier")]
+        public virtual System.Collections.Generic.IList<DeviceIdentifier> ExcludedDevicesByIdentifier { get; set; }
+
+        /// <summary>
+        /// List of devices excluded from the app's distribution even if they are otherwise compatible with the
+        /// requirements from device_compatibility_requirements. A device is excluded if it matches any of given the
+        /// selectors.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("excludedDevicesBySelector")]
+        public virtual System.Collections.Generic.IList<CatalogDeviceSelector> ExcludedDevicesBySelector { get; set; }
+
+        /// <summary>The date when the app was first released.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("firstReleaseDate")]
+        public virtual Date FirstReleaseDate { get; set; }
+
+        /// <summary>Whether the app has ads.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("hasInAppAds")]
+        public virtual System.Nullable<bool> HasInAppAds { get; set; }
+
+        /// <summary>Whether the app has in-app purchases through Google Play.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("hasInAppPurchases")]
+        public virtual System.Nullable<bool> HasInAppPurchases { get; set; }
+
+        /// <summary>The IARC certificate ID for the app.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("iarcCertificateId")]
+        public virtual string IarcCertificateId { get; set; }
+
+        /// <summary>Whether the app is targeted to an adult-only (18+) audience.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("isAdultOnlyAudience")]
+        public virtual System.Nullable<bool> IsAdultOnlyAudience { get; set; }
+
+        private string _lastPublishTimeRaw;
+
+        private object _lastPublishTime;
+
+        /// <summary>The timestamp when the app was last published.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("lastPublishTime")]
+        public virtual string LastPublishTimeRaw
+        {
+            get => _lastPublishTimeRaw;
+            set
+            {
+                _lastPublishTime = Google.Apis.Util.Utilities.DeserializeForGoogleFormat(value);
+                _lastPublishTimeRaw = value;
+            }
+        }
+
+        /// <summary><seealso cref="object"/> representation of <see cref="LastPublishTimeRaw"/>.</summary>
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use LastPublishTimeDateTimeOffset instead.")]
+        public virtual object LastPublishTime
+        {
+            get => _lastPublishTime;
+            set
+            {
+                _lastPublishTimeRaw = Google.Apis.Util.Utilities.SerializeForGoogleFormat(value);
+                _lastPublishTime = value;
+            }
+        }
+
+        /// <summary>
+        /// <seealso cref="System.DateTimeOffset"/> representation of <see cref="LastPublishTimeRaw"/>.
+        /// </summary>
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        public virtual System.DateTimeOffset? LastPublishTimeDateTimeOffset
+        {
+            get => Google.Apis.Util.DiscoveryFormat.ParseGoogleDateTimeToDateTimeOffset(LastPublishTimeRaw);
+            set => LastPublishTimeRaw = Google.Apis.Util.DiscoveryFormat.FormatDateTimeOffsetToGoogleDateTime(value);
+        }
+
+        /// <summary>The localized store listings of the app which are shown on Google Play.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("localizedStoreListings")]
+        public virtual LocalizedStoreListings LocalizedStoreListings { get; set; }
+
+        /// <summary>The package name of the app.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("packageName")]
+        public virtual string PackageName { get; set; }
+
+        /// <summary>Required permissions declared by the app which apply for all Android SDK versions.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("permissions")]
+        public virtual System.Collections.Generic.IList<CatalogPermission> Permissions { get; set; }
+
+        /// <summary>
+        /// Required permissions declared by the app which apply for Android SDK versions SDK 23 and above.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("permissionsSdk23")]
+        public virtual System.Collections.Generic.IList<CatalogPermission> PermissionsSdk23 { get; set; }
+
+        /// <summary>The price of the app in the United States. Empty if the app is free.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("priceInTheUnitedStates")]
+        public virtual Money PriceInTheUnitedStates { get; set; }
+
+        /// <summary>The URL of the app's privacy policy.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("privacyPolicyUrl")]
+        public virtual string PrivacyPolicyUrl { get; set; }
+
+        /// <summary>
+        /// The sale price of the app in the United States. Only populated for paid apps with an active US sale.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("salePriceInTheUnitedStates")]
+        public virtual Money SalePriceInTheUnitedStates { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>
+    /// Defines a device selector for a device. A device is considered matched if it matches any of given the selectors.
+    /// </summary>
+    public class CatalogDeviceSelector : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The device type selector.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("deviceTypeSelector")]
+        public virtual string DeviceTypeSelector { get; set; }
+
+        /// <summary>Defines a RAM selector for a device.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("ramSelector")]
+        public virtual RamSelector RamSelector { get; set; }
+
+        /// <summary>
+        /// The SOC selectors. A device matches the device selector if it matches any of the SOC selectors.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("socSelectors")]
+        public virtual System.Collections.Generic.IList<SocSelector> SocSelectors { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>A permission declared by an app.</summary>
+    public class CatalogPermission : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>
+        /// The `maxSdkVersion` attribute indicating up to which Android SDK version the permission is requested.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("maxSdkVersion")]
+        public virtual System.Nullable<int> MaxSdkVersion { get; set; }
+
+        /// <summary>The `name` attribute indicating the permission name.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("name")]
+        public virtual string Name { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>
+    /// Defines a range of SDK versions. A device is considered compatible uf its\ SDK version falls within the
+    /// min_sdk_version and max_sdk_version range.
+    /// </summary>
+    public class CatalogSdkVersion : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The maximum SDK version required for the app (inclusive).</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("maxSdkVersion")]
+        public virtual System.Nullable<long> MaxSdkVersion { get; set; }
+
+        /// <summary>The minimum SDK version required for the app (inclusive).</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("minSdkVersion")]
+        public virtual System.Nullable<long> MinSdkVersion { get; set; }
+
+        /// <summary>The target SDK version for the app.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("targetSdkVersion")]
+        public virtual System.Nullable<long> TargetSdkVersion { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
     /// <summary>Coarse Geographic location details for where the consumption happened.</summary>
     public class CoarseLocation : Google.Apis.Requests.IDirectResponseSchema
     {
@@ -15446,6 +16647,21 @@ namespace Google.Apis.AndroidPublisher.v3.Data
         /// <summary>A comment from a user.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("userComment")]
         public virtual UserComment UserComment { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Compatible screens as listed in the `compatible-screens` Manifest tag.</summary>
+    public class CompatibleScreen : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Screen density.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("density")]
+        public virtual string Density { get; set; }
+
+        /// <summary>The screen size.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("screenSize")]
+        public virtual string ScreenSize { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -15622,6 +16838,24 @@ namespace Google.Apis.AndroidPublisher.v3.Data
         public virtual string ETag { get; set; }
     }
 
+    /// <summary>Request to create a new app record for an app store hosted app.</summary>
+    public class CreateAppStoreHostedAppRequest : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Required. Package name of the app.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("packageName")]
+        public virtual string PackageName { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Response for creating a new app record for an app store hosted app.</summary>
+    public class CreateAppStoreHostedAppResponse : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
     /// <summary>Request message for CreateDraftAppRecovery.</summary>
     public class CreateDraftAppRecoveryRequest : Google.Apis.Requests.IDirectResponseSchema
     {
@@ -15638,6 +16872,35 @@ namespace Google.Apis.AndroidPublisher.v3.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("targeting")]
         public virtual Targeting Targeting { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>
+    /// Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either
+    /// specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one
+    /// of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year
+    /// (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a
+    /// zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay *
+    /// google.type.DateTime * google.protobuf.Timestamp
+    /// </summary>
+    public class Date : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>
+        /// Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a
+        /// year and month where the day isn't significant.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("day")]
+        public virtual System.Nullable<int> Day { get; set; }
+
+        /// <summary>Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("month")]
+        public virtual System.Nullable<int> Month { get; set; }
+
+        /// <summary>Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("year")]
+        public virtual System.Nullable<int> Year { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -15948,9 +17211,101 @@ namespace Google.Apis.AndroidPublisher.v3.Data
         public virtual string ETag { get; set; }
     }
 
+    /// <summary>The developer details of a Google Play app.</summary>
+    public class DeveloperDetails : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The physical address of the developer.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("address")]
+        public virtual string Address { get; set; }
+
+        /// <summary>The contact email of the developer.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("contactEmail")]
+        public virtual string ContactEmail { get; set; }
+
+        /// <summary>The developer name of the app.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("developerName")]
+        public virtual string DeveloperName { get; set; }
+
+        /// <summary>The phone number of the developer.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("phoneNumber")]
+        public virtual string PhoneNumber { get; set; }
+
+        /// <summary>The website of the developer.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("website")]
+        public virtual string Website { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
     /// <summary>Information specific to cancellations initiated by developers.</summary>
     public class DeveloperInitiatedCancellation : Google.Apis.Requests.IDirectResponseSchema
     {
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>
+    /// Defines a set of device compatibility requirements for the app. A device must satisfy all of the requirements in
+    /// a set to be considered compatible with the app.
+    /// </summary>
+    public class DeviceCompatibilityRequirements : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Compatible screens as listed in the `compatible-screens` Manifest tag.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("compatibleScreens")]
+        public virtual System.Collections.Generic.IList<CompatibleScreen> CompatibleScreens { get; set; }
+
+        /// <summary>Required version of OpenGL ES.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("glEsVersion")]
+        public virtual System.Nullable<int> GlEsVersion { get; set; }
+
+        /// <summary>Specifies if the app requires a screen.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("isScreenRequired")]
+        public virtual System.Nullable<bool> IsScreenRequired { get; set; }
+
+        /// <summary>List of required ABIs (Application Binary Interface), e.g. `armeabi` or `x86`.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("nativePlatforms")]
+        public virtual System.Collections.Generic.IList<string> NativePlatforms { get; set; }
+
+        /// <summary>List of required libraries as declared in the `uses-library` manifest tag.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("requiredSoftwareLibraries")]
+        public virtual System.Collections.Generic.IList<string> RequiredSoftwareLibraries { get; set; }
+
+        /// <summary>
+        /// The system features that the app requires. A device must have all of the system features to be considered
+        /// compatible with the app.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("requiredSystemFeatures")]
+        public virtual System.Collections.Generic.IList<string> RequiredSystemFeatures { get; set; }
+
+        /// <summary>Specifies the minimum smallest width required of the screen.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("requiresSmallestWidthDp")]
+        public virtual System.Nullable<long> RequiresSmallestWidthDp { get; set; }
+
+        /// <summary>Defines a range of SDK versions that the app is compatible with.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("sdkVersion")]
+        public virtual CatalogSdkVersion SdkVersion { get; set; }
+
+        /// <summary>Supported gl textures as specified by the `supported-gl-texture` Manifest tag.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("supportedGlTextures")]
+        public virtual System.Collections.Generic.IList<string> SupportedGlTextures { get; set; }
+
+        /// <summary>Compatible screens as listed in the `supports-screens` Manifest tag.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("supportedScreens")]
+        public virtual System.Collections.Generic.IList<string> SupportedScreens { get; set; }
+
+        /// <summary>Value of `android:use32BitAbi` flag retrieved from the Manifest.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("use32BitAbi")]
+        public virtual string Use32BitAbi { get; set; }
+
+        /// <summary>
+        /// Lists all configurations marked as required by use of the `uses-configuration` manifest tag. Each instance
+        /// of this proto represents a single `uses-configuration` entry. See
+        /// http://developer.android.com/guide/topics/manifest/uses-configuration-element.html
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("usesConfigurations")]
+        public virtual System.Collections.Generic.IList<UsesConfiguration> UsesConfigurations { get; set; }
+
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
     }
@@ -16013,6 +17368,21 @@ namespace Google.Apis.AndroidPublisher.v3.Data
         /// <summary>Value of Build.DEVICE.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("buildDevice")]
         public virtual string BuildDevice { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Defines a device identifier for a device.</summary>
+    public class DeviceIdentifier : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The brand of the device.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("deviceBrand")]
+        public virtual string DeviceBrand { get; set; }
+
+        /// <summary>The model of the device.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("deviceModel")]
+        public virtual string DeviceModel { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -16905,6 +18275,17 @@ namespace Google.Apis.AndroidPublisher.v3.Data
         public virtual string ETag { get; set; }
     }
 
+    /// <summary>A group of responses.</summary>
+    public class Group : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Required. Responses within a group.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("responses")]
+        public virtual System.Collections.Generic.IList<NestedPolicyResponse> Responses { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
     /// <summary>An uploaded image. The resource for ImagesService.</summary>
     public class Image : Google.Apis.Requests.IDirectResponseSchema
     {
@@ -16927,6 +18308,17 @@ namespace Google.Apis.AndroidPublisher.v3.Data
         /// <summary>A URL that will serve a preview of the image.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("url")]
         public virtual string Url { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>An image asset.</summary>
+    public class ImageAsset : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The URL of the image asset.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("imageUrl")]
+        public virtual string ImageUrl { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -17330,39 +18722,6 @@ namespace Google.Apis.AndroidPublisher.v3.Data
         public virtual string ETag { get; set; }
     }
 
-    /// <summary>Contains the introductory price information for a subscription.</summary>
-    public class IntroductoryPriceInfo : Google.Apis.Requests.IDirectResponseSchema
-    {
-        /// <summary>
-        /// Introductory price of the subscription, not including tax. The currency is the same as price_currency_code.
-        /// Price is expressed in micro-units, where 1,000,000 micro-units represents one unit of the currency. For
-        /// example, if the subscription price is €1.99, price_amount_micros is 1990000.
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("introductoryPriceAmountMicros")]
-        public virtual System.Nullable<long> IntroductoryPriceAmountMicros { get; set; }
-
-        /// <summary>
-        /// ISO 4217 currency code for the introductory subscription price. For example, if the price is specified in
-        /// British pounds sterling, price_currency_code is "GBP".
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("introductoryPriceCurrencyCode")]
-        public virtual string IntroductoryPriceCurrencyCode { get; set; }
-
-        /// <summary>The number of billing period to offer introductory pricing.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("introductoryPriceCycles")]
-        public virtual System.Nullable<int> IntroductoryPriceCycles { get; set; }
-
-        /// <summary>
-        /// Introductory price period, specified in ISO 8601 format. Common values are (but not limited to) "P1W" (one
-        /// week), "P1M" (one month), "P3M" (three months), "P6M" (six months), and "P1Y" (one year).
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("introductoryPricePeriod")]
-        public virtual string IntroductoryPricePeriod { get; set; }
-
-        /// <summary>The ETag of the item.</summary>
-        public virtual string ETag { get; set; }
-    }
-
     /// <summary>Details about introductory price offer phase.</summary>
     public class IntroductoryPriceOfferPhase : Google.Apis.Requests.IDirectResponseSchema
     {
@@ -17436,6 +18795,21 @@ namespace Google.Apis.AndroidPublisher.v3.Data
         /// <summary>The replacement mode applied during the purchase.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("replacementMode")]
         public virtual string ReplacementMode { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>A group of responses, with a key.</summary>
+    public class KeyedGroup : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Required. Key for this group.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("key")]
+        public virtual string Key { get; set; }
+
+        /// <summary>Required. Responses in this group.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("responses")]
+        public virtual System.Collections.Generic.IList<NestedPolicyResponse> Responses { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -17571,6 +18945,24 @@ namespace Google.Apis.AndroidPublisher.v3.Data
         public virtual string ETag { get; set; }
     }
 
+    /// <summary>Response message for ListRecentUpdateEvents.</summary>
+    public class ListRecentUpdateEventsResponse : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>
+        /// A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no
+        /// subsequent pages.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("nextPageToken")]
+        public virtual string NextPageToken { get; set; }
+
+        /// <summary>The list of recent update events.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("recentUpdateEvents")]
+        public virtual System.Collections.Generic.IList<RecentUpdateEvent> RecentUpdateEvents { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
     /// <summary>
     /// Response listing all releases for a given track that are either ready to be sent for review, in review,
     /// approved, not approved or available.
@@ -17678,6 +19070,70 @@ namespace Google.Apis.AndroidPublisher.v3.Data
         /// <summary>All localized listings.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("listings")]
         public virtual System.Collections.Generic.IList<Listing> Listings { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>A localized store listings of the app.</summary>
+    public class LocalizedStoreListing : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The name of the app in this localization.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("appName")]
+        public virtual string AppName { get; set; }
+
+        /// <summary>The feature graphic of the app.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("featureGraphic")]
+        public virtual ImageAsset FeatureGraphic { get; set; }
+
+        /// <summary>A longer description of the app in this localization.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("fullDescription")]
+        public virtual string FullDescription { get; set; }
+
+        /// <summary>The icon of the app.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("icon")]
+        public virtual ImageAsset Icon { get; set; }
+
+        /// <summary>The BCP-47 language code for this localization.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("languageCode")]
+        public virtual string LanguageCode { get; set; }
+
+        /// <summary>The phone screenshots of the app.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("phoneScreenshots")]
+        public virtual ScreenshotSet PhoneScreenshots { get; set; }
+
+        /// <summary>A short description of the app in this localization.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("shortDescription")]
+        public virtual string ShortDescription { get; set; }
+
+        /// <summary>The regular tablet screenshots of the app.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("tabletRegularScreenshots")]
+        public virtual ScreenshotSet TabletRegularScreenshots { get; set; }
+
+        /// <summary>The small tablet screenshots of the app.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("tabletSmallScreenshots")]
+        public virtual ScreenshotSet TabletSmallScreenshots { get; set; }
+
+        /// <summary>The video of the app.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("video")]
+        public virtual VideoAsset Video { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>The localized store listings of an app.</summary>
+    public class LocalizedStoreListings : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>
+        /// The default language code of the app. If a localized store listing is not available for a given language,
+        /// assets from the default language are used instead.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("defaultLanguageCode")]
+        public virtual string DefaultLanguageCode { get; set; }
+
+        [Newtonsoft.Json.JsonPropertyAttribute("localizedStoreListings")]
+        public virtual System.Collections.Generic.IList<LocalizedStoreListing> LocalizedStoreListingsValue { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -17889,6 +19345,40 @@ namespace Google.Apis.AndroidPublisher.v3.Data
         /// <summary>Value of a multi abi.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("value")]
         public virtual System.Collections.Generic.IList<MultiAbi> Value { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>
+    /// An individual nested response to a policy question about an app. Nested responses are like regular responses but
+    /// without groups.
+    /// </summary>
+    public class NestedPolicyResponse : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Optional. A boolean response.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("booleanResponse")]
+        public virtual PolicyBooleanResponse BooleanResponse { get; set; }
+
+        /// <summary>Optional. A document response.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("documentResponse")]
+        public virtual PolicyDocumentResponse DocumentResponse { get; set; }
+
+        /// <summary>Optional. A multiple choice response.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("multipleChoiceResponse")]
+        public virtual PolicyMultipleChoiceResponse MultipleChoiceResponse { get; set; }
+
+        /// <summary>Required. ID of the question being answered.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("questionId")]
+        public virtual string QuestionId { get; set; }
+
+        /// <summary>Optional. A single choice response.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("singleChoiceResponse")]
+        public virtual PolicySingleChoiceResponse SingleChoiceResponse { get; set; }
+
+        /// <summary>Optional. A string response.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("stringResponse")]
+        public virtual PolicyStringResponse StringResponse { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -19197,6 +20687,132 @@ namespace Google.Apis.AndroidPublisher.v3.Data
         public virtual string ETag { get; set; }
     }
 
+    /// <summary>Responses that will only ever be a boolean.</summary>
+    public class PolicyBooleanResponse : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Required. Provided boolean value.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("value")]
+        public virtual System.Nullable<bool> Value { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>An uploaded document. Must be a single logical document (e.g. a financial license).</summary>
+    public class PolicyDocumentResponse : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Required. ID of the uploaded document.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("documentId")]
+        public virtual string DocumentId { get; set; }
+
+        /// <summary>Optional. Expiry date for the document.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("expiryDate")]
+        public virtual Date ExpiryDate { get; set; }
+
+        /// <summary>Optional. True if confirmed that the document does not have an expiry date.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("nonExpiring")]
+        public virtual System.Nullable<bool> NonExpiring { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>A repeated group of responses.</summary>
+    public class PolicyGroupResponse : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Optional. Groups of responses to questions.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("groups")]
+        public virtual System.Collections.Generic.IList<Group> Groups { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>A group of responses each identified by a distinct key within an allowed set.</summary>
+    public class PolicyKeyedGroupResponse : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>
+        /// Optional. Groups of responses to questions. Each KeyedGroup.key must be unique within this list.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("groups")]
+        public virtual System.Collections.Generic.IList<KeyedGroup> Groups { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Any response where multiple options can be chosen from several possibilities.</summary>
+    public class PolicyMultipleChoiceResponse : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Optional. Provided values.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("values")]
+        public virtual System.Collections.Generic.IList<string> Values { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>An individual response to a policy question about an app.</summary>
+    public class PolicyResponse : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Optional. A boolean response.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("booleanResponse")]
+        public virtual PolicyBooleanResponse BooleanResponse { get; set; }
+
+        /// <summary>Optional. A document response.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("documentResponse")]
+        public virtual PolicyDocumentResponse DocumentResponse { get; set; }
+
+        /// <summary>Optional. A group response.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("groupResponse")]
+        public virtual PolicyGroupResponse GroupResponse { get; set; }
+
+        /// <summary>Optional. A keyed group response.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("keyedGroupResponse")]
+        public virtual PolicyKeyedGroupResponse KeyedGroupResponse { get; set; }
+
+        /// <summary>Optional. A multiple choice response.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("multipleChoiceResponse")]
+        public virtual PolicyMultipleChoiceResponse MultipleChoiceResponse { get; set; }
+
+        /// <summary>Required. ID of the question being answered.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("questionId")]
+        public virtual string QuestionId { get; set; }
+
+        /// <summary>Optional. A single choice response.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("singleChoiceResponse")]
+        public virtual PolicySingleChoiceResponse SingleChoiceResponse { get; set; }
+
+        /// <summary>Optional. A string response.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("stringResponse")]
+        public virtual PolicyStringResponse StringResponse { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Any response where a single option is chosen from several possibilities.</summary>
+    public class PolicySingleChoiceResponse : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Required. Provided value.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("value")]
+        public virtual string Value { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Any response best encoded as a string. Includes URLs and multiline text fields.</summary>
+    public class PolicyStringResponse : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Required. Provided string value.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("value")]
+        public virtual string Value { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
     /// <summary>Details of a pre-order purchase.</summary>
     public class PreorderDetails : Google.Apis.Requests.IDirectResponseSchema
     {
@@ -19766,6 +21382,82 @@ namespace Google.Apis.AndroidPublisher.v3.Data
         /// <summary>Output only. The purchase state of the purchase.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("purchaseState")]
         public virtual string PurchaseState { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Defines a RAM selector for a device.</summary>
+    public class RamSelector : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>
+        /// This will match any device that has less than or equal ram_mb_less_than_or_equal mb of RAM.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("ramMbLessThanOrEqual")]
+        public virtual System.Nullable<long> RamMbLessThanOrEqual { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Metadata about a recently updated app.</summary>
+    public class RecentAppView : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Recently updated app view.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("appView")]
+        public virtual CatalogAppView AppView { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>A recent update event.</summary>
+    public class RecentUpdateEvent : Google.Apis.Requests.IDirectResponseSchema
+    {
+        private string _eventTimeRaw;
+
+        private object _eventTime;
+
+        /// <summary>The timestamp of the update.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("eventTime")]
+        public virtual string EventTimeRaw
+        {
+            get => _eventTimeRaw;
+            set
+            {
+                _eventTime = Google.Apis.Util.Utilities.DeserializeForGoogleFormat(value);
+                _eventTimeRaw = value;
+            }
+        }
+
+        /// <summary><seealso cref="object"/> representation of <see cref="EventTimeRaw"/>.</summary>
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use EventTimeDateTimeOffset instead.")]
+        public virtual object EventTime
+        {
+            get => _eventTime;
+            set
+            {
+                _eventTimeRaw = Google.Apis.Util.Utilities.SerializeForGoogleFormat(value);
+                _eventTime = value;
+            }
+        }
+
+        /// <summary><seealso cref="System.DateTimeOffset"/> representation of <see cref="EventTimeRaw"/>.</summary>
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        public virtual System.DateTimeOffset? EventTimeDateTimeOffset
+        {
+            get => Google.Apis.Util.DiscoveryFormat.ParseGoogleDateTimeToDateTimeOffset(EventTimeRaw);
+            set => EventTimeRaw = Google.Apis.Util.DiscoveryFormat.FormatDateTimeOffsetToGoogleDateTime(value);
+        }
+
+        /// <summary>The package name of the app.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("playAppPackageName")]
+        public virtual string PlayAppPackageName { get; set; }
+
+        /// <summary>The type of the update event.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("updateType")]
+        public virtual string UpdateType { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -20528,6 +22220,17 @@ namespace Google.Apis.AndroidPublisher.v3.Data
         public virtual string ETag { get; set; }
     }
 
+    /// <summary>A set of screenshots.</summary>
+    public class ScreenshotSet : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The image assets of the screenshots.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("screenshots")]
+        public virtual System.Collections.Generic.IList<ImageAsset> Screenshots { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
     /// <summary>Represents an sdk version.</summary>
     public class SdkVersion : Google.Apis.Requests.IDirectResponseSchema
     {
@@ -20567,6 +22270,24 @@ namespace Google.Apis.AndroidPublisher.v3.Data
         /// <summary>A vanity code was applied.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("vanityCode")]
         public virtual VanityCode VanityCode { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>
+    /// Defines a SOC selector for a device. This will match any device whose SoC (System on Chip) matches all fields in
+    /// the selector.
+    /// </summary>
+    public class SocSelector : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The manufacturer of the SoC.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("socMake")]
+        public virtual string SocMake { get; set; }
+
+        /// <summary>The model of the SoC.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("socModel")]
+        public virtual string SocModel { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -20694,27 +22415,6 @@ namespace Google.Apis.AndroidPublisher.v3.Data
         /// <summary>Details about taxes and legal compliance.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("taxAndComplianceSettings")]
         public virtual SubscriptionTaxAndComplianceSettings TaxAndComplianceSettings { get; set; }
-
-        /// <summary>The ETag of the item.</summary>
-        public virtual string ETag { get; set; }
-    }
-
-    /// <summary>
-    /// Information provided by the user when they complete the subscription cancellation flow (cancellation reason
-    /// survey).
-    /// </summary>
-    public class SubscriptionCancelSurveyResult : Google.Apis.Requests.IDirectResponseSchema
-    {
-        /// <summary>
-        /// The cancellation reason the user chose in the survey. Possible values are: 0. Other 1. I don't use this
-        /// service enough 2. Technical issues 3. Cost-related reasons 4. I found a better app
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("cancelSurveyReason")]
-        public virtual System.Nullable<int> CancelSurveyReason { get; set; }
-
-        /// <summary>The customized input cancel reason from the user. Only present when cancelReason is 0.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("userInputCancelReason")]
-        public virtual string UserInputCancelReason { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -21054,248 +22754,6 @@ namespace Google.Apis.AndroidPublisher.v3.Data
         public virtual string ETag { get; set; }
     }
 
-    /// <summary>
-    /// Contains the price change information for a subscription that can be used to control the user journey for the
-    /// price change in the app. This can be in the form of seeking confirmation from the user or tailoring the
-    /// experience for a successful conversion.
-    /// </summary>
-    public class SubscriptionPriceChange : Google.Apis.Requests.IDirectResponseSchema
-    {
-        /// <summary>
-        /// The new price the subscription will renew with if the price change is accepted by the user.
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("newPrice")]
-        public virtual Price NewPrice { get; set; }
-
-        /// <summary>
-        /// The current state of the price change. Possible values are: 0. Outstanding: State for a pending price change
-        /// waiting for the user to agree. In this state, you can optionally seek confirmation from the user using the
-        /// In-App API. 1. Accepted: State for an accepted price change that the subscription will renew with unless
-        /// it's canceled. The price change takes effect on a future date when the subscription renews. Note that the
-        /// change might not occur when the subscription is renewed next.
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("state")]
-        public virtual System.Nullable<int> State { get; set; }
-
-        /// <summary>The ETag of the item.</summary>
-        public virtual string ETag { get; set; }
-    }
-
-    /// <summary>
-    /// Deprecated: Use SubscriptionPurchaseV2 instead. A SubscriptionPurchase resource indicates the status of a user's
-    /// subscription purchase.
-    /// </summary>
-    public class SubscriptionPurchase : Google.Apis.Requests.IDirectResponseSchema
-    {
-        /// <summary>
-        /// The acknowledgement state of the subscription product. Possible values are: 0. Yet to be acknowledged 1.
-        /// Acknowledged
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("acknowledgementState")]
-        public virtual System.Nullable<int> AcknowledgementState { get; set; }
-
-        /// <summary>
-        /// Whether the subscription will automatically be renewed when it reaches its current expiry time.
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("autoRenewing")]
-        public virtual System.Nullable<bool> AutoRenewing { get; set; }
-
-        /// <summary>
-        /// Time at which the subscription will be automatically resumed, in milliseconds since the Epoch. Only present
-        /// if the user has requested to pause the subscription.
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("autoResumeTimeMillis")]
-        public virtual System.Nullable<long> AutoResumeTimeMillis { get; set; }
-
-        /// <summary>
-        /// The reason why a subscription was canceled or is not auto-renewing. Possible values are: 0. User canceled
-        /// the subscription 1. Subscription was canceled by the system, for example because of a billing problem 2.
-        /// Subscription was replaced with a new subscription 3. Subscription was canceled by the developer
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("cancelReason")]
-        public virtual System.Nullable<int> CancelReason { get; set; }
-
-        /// <summary>
-        /// Information provided by the user when they complete the subscription cancellation flow (cancellation reason
-        /// survey).
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("cancelSurveyResult")]
-        public virtual SubscriptionCancelSurveyResult CancelSurveyResult { get; set; }
-
-        /// <summary>
-        /// ISO 3166-1 alpha-2 billing country/region code of the user at the time the subscription was granted.
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("countryCode")]
-        public virtual string CountryCode { get; set; }
-
-        /// <summary>A developer-specified string that contains supplemental information about an order.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("developerPayload")]
-        public virtual string DeveloperPayload { get; set; }
-
-        /// <summary>
-        /// The email address of the user when the subscription was purchased. Only present for purchases made with
-        /// 'Subscribe with Google'.
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("emailAddress")]
-        public virtual string EmailAddress { get; set; }
-
-        /// <summary>Time at which the subscription will expire, in milliseconds since the Epoch.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("expiryTimeMillis")]
-        public virtual System.Nullable<long> ExpiryTimeMillis { get; set; }
-
-        /// <summary>
-        /// User account identifier in the third-party service. Only present if account linking happened as part of the
-        /// subscription purchase flow.
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("externalAccountId")]
-        public virtual string ExternalAccountId { get; set; }
-
-        /// <summary>
-        /// The family name of the user when the subscription was purchased. Only present for purchases made with
-        /// 'Subscribe with Google'.
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("familyName")]
-        public virtual string FamilyName { get; set; }
-
-        /// <summary>
-        /// The given name of the user when the subscription was purchased. Only present for purchases made with
-        /// 'Subscribe with Google'.
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("givenName")]
-        public virtual string GivenName { get; set; }
-
-        /// <summary>
-        /// Introductory price information of the subscription. This is only present when the subscription was purchased
-        /// with an introductory price. This field does not indicate the subscription is currently in introductory price
-        /// period.
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("introductoryPriceInfo")]
-        public virtual IntroductoryPriceInfo IntroductoryPriceInfo { get; set; }
-
-        /// <summary>This kind represents a subscriptionPurchase object in the androidpublisher service.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("kind")]
-        public virtual string Kind { get; set; }
-
-        /// <summary>
-        /// The purchase token of the originating purchase if this subscription is one of the following: 0. Re-signup of
-        /// a canceled but non-lapsed subscription 1. Upgrade/downgrade from a previous subscription For example,
-        /// suppose a user originally signs up and you receive purchase token X, then the user cancels and goes through
-        /// the resignup flow (before their subscription lapses) and you receive purchase token Y, and finally the user
-        /// upgrades their subscription and you receive purchase token Z. If you call this API with purchase token Z,
-        /// this field will be set to Y. If you call this API with purchase token Y, this field will be set to X. If you
-        /// call this API with purchase token X, this field will not be set.
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("linkedPurchaseToken")]
-        public virtual string LinkedPurchaseToken { get; set; }
-
-        /// <summary>
-        /// An obfuscated version of the id that is uniquely associated with the user's account in your app. Present for
-        /// the following purchases: * If account linking happened as part of the subscription purchase flow. * It was
-        /// specified using
-        /// https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setobfuscatedaccountid
-        /// when the purchase was made.
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("obfuscatedExternalAccountId")]
-        public virtual string ObfuscatedExternalAccountId { get; set; }
-
-        /// <summary>
-        /// An obfuscated version of the id that is uniquely associated with the user's profile in your app. Only
-        /// present if specified using
-        /// https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setobfuscatedprofileid
-        /// when the purchase was made.
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("obfuscatedExternalProfileId")]
-        public virtual string ObfuscatedExternalProfileId { get; set; }
-
-        /// <summary>
-        /// The order id of the latest recurring order associated with the purchase of the subscription. If the
-        /// subscription was canceled because payment was declined, this will be the order id from the payment declined
-        /// order.
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("orderId")]
-        public virtual string OrderId { get; set; }
-
-        /// <summary>
-        /// The payment state of the subscription. Possible values are: 0. Payment pending 1. Payment received 2. Free
-        /// trial 3. Pending deferred upgrade/downgrade Not present for canceled, expired subscriptions.
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("paymentState")]
-        public virtual System.Nullable<int> PaymentState { get; set; }
-
-        /// <summary>
-        /// Price of the subscription, For tax exclusive countries, the price doesn't include tax. For tax inclusive
-        /// countries, the price includes tax. Price is expressed in micro-units, where 1,000,000 micro-units represents
-        /// one unit of the currency. For example, if the subscription price is €1.99, price_amount_micros is 1990000.
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("priceAmountMicros")]
-        public virtual System.Nullable<long> PriceAmountMicros { get; set; }
-
-        /// <summary>
-        /// The latest price change information available. This is present only when there is an upcoming price change
-        /// for the subscription yet to be applied. Once the subscription renews with the new price or the subscription
-        /// is canceled, no price change information will be returned.
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("priceChange")]
-        public virtual SubscriptionPriceChange PriceChange { get; set; }
-
-        /// <summary>
-        /// ISO 4217 currency code for the subscription price. For example, if the price is specified in British pounds
-        /// sterling, price_currency_code is "GBP".
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("priceCurrencyCode")]
-        public virtual string PriceCurrencyCode { get; set; }
-
-        /// <summary>
-        /// The Google profile id of the user when the subscription was purchased. Only present for purchases made with
-        /// 'Subscribe with Google'.
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("profileId")]
-        public virtual string ProfileId { get; set; }
-
-        /// <summary>
-        /// The profile name of the user when the subscription was purchased. Only present for purchases made with
-        /// 'Subscribe with Google'.
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("profileName")]
-        public virtual string ProfileName { get; set; }
-
-        /// <summary>
-        /// The promotion code applied on this purchase. This field is only set if a vanity code promotion is applied
-        /// when the subscription was purchased.
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("promotionCode")]
-        public virtual string PromotionCode { get; set; }
-
-        /// <summary>
-        /// The type of promotion applied on this purchase. This field is only set if a promotion is applied when the
-        /// subscription was purchased. Possible values are: 0. One time code 1. Vanity code
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("promotionType")]
-        public virtual System.Nullable<int> PromotionType { get; set; }
-
-        /// <summary>
-        /// The type of purchase of the subscription. This field is only set if this purchase was not made using the
-        /// standard in-app billing flow. Possible values are: 0. Test (i.e. purchased from a license testing account)
-        /// 1. Promo (i.e. purchased using a promo code)
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("purchaseType")]
-        public virtual System.Nullable<int> PurchaseType { get; set; }
-
-        /// <summary>Time at which the subscription was granted, in milliseconds since the Epoch.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("startTimeMillis")]
-        public virtual System.Nullable<long> StartTimeMillis { get; set; }
-
-        /// <summary>
-        /// The time at which the subscription was canceled by the user, in milliseconds since the epoch. Only present
-        /// if cancelReason is 0.
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("userCancellationTimeMillis")]
-        public virtual System.Nullable<long> UserCancellationTimeMillis { get; set; }
-
-        /// <summary>The ETag of the item.</summary>
-        public virtual string ETag { get; set; }
-    }
-
     /// <summary>Item-level info for a subscription purchase.</summary>
     public class SubscriptionPurchaseLineItem : Google.Apis.Requests.IDirectResponseSchema
     {
@@ -21423,15 +22881,6 @@ namespace Google.Apis.AndroidPublisher.v3.Data
         /// <summary>This kind represents a SubscriptionPurchaseV2 object in the androidpublisher service.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("kind")]
         public virtual string Kind { get; set; }
-
-        /// <summary>
-        /// Deprecated: Use line_items.latest_successful_order_id instead. The order id of the latest order associated
-        /// with the purchase of the subscription. For autoRenewing subscription, this is the order id of signup order
-        /// if it is not renewed yet, or the last recurring order id (success, pending, or declined order). For prepaid
-        /// subscription, this is the order id associated with the queried purchase token.
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("latestOrderId")]
-        public virtual string LatestOrderId { get; set; }
 
         /// <summary>
         /// Item-level info for a subscription purchase. The items in the same purchase should be either all with
@@ -22043,6 +23492,61 @@ namespace Google.Apis.AndroidPublisher.v3.Data
         public virtual string ETag { get; set; }
     }
 
+    /// <summary>
+    /// Request to update the publish status of an app store hosted app. The default state for any app with an update is
+    /// PUBLISHED. It is not necessary to call this RPC explicitly to set an app to PUBLISHED.
+    /// </summary>
+    public class UpdateAppStoreHostedAppPublishStatusRequest : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Required. The new publish state for the hosted app.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("publishState")]
+        public virtual string PublishState { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Response for updating the publish status of an app store hosted app.</summary>
+    public class UpdateAppStoreHostedAppPublishStatusResponse : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Request to update an app record for an app store hosted app.</summary>
+    public class UpdateAppStoreHostedAppRequest : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Required. Actively distributed APKs of the app.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("activeApks")]
+        public virtual AppStoreAppActiveApks ActiveApks { get; set; }
+
+        /// <summary>Required. Localized store listings details of the update.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("activeLocalizedStoreListings")]
+        public virtual System.Collections.Generic.IList<AppStoreAppStoreListing> ActiveLocalizedStoreListings { get; set; }
+
+        /// <summary>Required. General developer details for the app.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("appDetails")]
+        public virtual AppStoreAppDetails AppDetails { get; set; }
+
+        /// <summary>Required. Package name of the app.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("packageName")]
+        public virtual string PackageName { get; set; }
+
+        /// <summary>Required. Policy declarations provided for the app.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("policyDeclarations")]
+        public virtual System.Collections.Generic.IList<AppStoreAppPolicyDeclaration> PolicyDeclarations { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Response for updating an app record for an app store hosted app.</summary>
+    public class UpdateAppStoreHostedAppResponse : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
     /// <summary>Request message to update the state of a subscription base plan.</summary>
     public class UpdateBasePlanStateRequest : Google.Apis.Requests.IDirectResponseSchema
     {
@@ -22276,6 +23780,64 @@ namespace Google.Apis.AndroidPublisher.v3.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("scope")]
         public virtual TargetingRuleScope Scope { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Request to upload an APK.</summary>
+    public class UploadApkRequest : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Response for uploading an APK.</summary>
+    public class UploadApkResponse : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The unique ID of the uploaded APK.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("apkId")]
+        public virtual string ApkId { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Request to upload a policy declaration file.</summary>
+    public class UploadAppStoreAppPolicyDeclarationFileRequest : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Required. Type of the policy declaration file.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("fileType")]
+        public virtual string FileType { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Response for uploading a policy declaration file.</summary>
+    public class UploadAppStoreAppPolicyDeclarationFileResponse : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The unique ID of the uploaded file.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("fileId")]
+        public virtual string FileId { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Request to upload an image.</summary>
+    public class UploadImageRequest : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Response for uploading an image.</summary>
+    public class UploadImageResponse : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The unique ID of the uploaded image.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("imageId")]
+        public virtual string ImageId { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -22524,6 +24086,35 @@ namespace Google.Apis.AndroidPublisher.v3.Data
         public virtual string ETag { get; set; }
     }
 
+    /// <summary>
+    /// Represents all configurations marked as required by use of the uses-configuration manifest tag.
+    /// </summary>
+    public class UsesConfiguration : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The type of keyboard required.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("requiredKeyboardType")]
+        public virtual string RequiredKeyboardType { get; set; }
+
+        /// <summary>The navigation device required.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("requiredNavigationType")]
+        public virtual string RequiredNavigationType { get; set; }
+
+        /// <summary>The type of touchscreen required.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("requiredTouchscreenType")]
+        public virtual string RequiredTouchscreenType { get; set; }
+
+        /// <summary>Whether or not the application requires a five-way navigation control.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("requiresFiveWayNavigation")]
+        public virtual System.Nullable<bool> RequiresFiveWayNavigation { get; set; }
+
+        /// <summary>Whether or not the application requires a hardware keyboard.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("requiresHardwareKeyboard")]
+        public virtual System.Nullable<bool> RequiresHardwareKeyboard { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
     /// <summary>A permission used by this APK.</summary>
     public class UsesPermission : Google.Apis.Requests.IDirectResponseSchema
     {
@@ -22591,6 +24182,17 @@ namespace Google.Apis.AndroidPublisher.v3.Data
         /// <summary>Texture-compression-format-level targeting</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("textureCompressionFormatTargeting")]
         public virtual TextureCompressionFormatTargeting TextureCompressionFormatTargeting { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>A video asset.</summary>
+    public class VideoAsset : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The URL of the video asset.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("videoUrl")]
+        public virtual string VideoUrl { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }

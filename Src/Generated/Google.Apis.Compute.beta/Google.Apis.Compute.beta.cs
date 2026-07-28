@@ -136266,15 +136266,19 @@ namespace Google.Apis.Compute.beta.Data
                 /// </summary>
                 public class ErrorDetailsData
                 {
+                    /// <summary>Error information containing structured domain, reason, and metadata.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("errorInfo")]
                     public virtual ErrorInfo ErrorInfo { get; set; }
 
+                    /// <summary>Links and information to help the user resolve the error.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("help")]
                     public virtual Help Help { get; set; }
 
+                    /// <summary>A localized human-readable error message intended for end users.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("localizedMessage")]
                     public virtual LocalizedMessage LocalizedMessage { get; set; }
 
+                    /// <summary>Details about quota limits and metrics when a quota is exceeded.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("quotaInfo")]
                     public virtual QuotaExceededInfo QuotaInfo { get; set; }
                 }
@@ -136330,15 +136334,19 @@ namespace Google.Apis.Compute.beta.Data
                 /// </summary>
                 public class ErrorDetailsData
                 {
+                    /// <summary>Error information containing structured domain, reason, and metadata.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("errorInfo")]
                     public virtual ErrorInfo ErrorInfo { get; set; }
 
+                    /// <summary>Links and information to help the user resolve the error.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("help")]
                     public virtual Help Help { get; set; }
 
+                    /// <summary>A localized human-readable error message intended for end users.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("localizedMessage")]
                     public virtual LocalizedMessage LocalizedMessage { get; set; }
 
+                    /// <summary>Details about quota limits and metrics when a quota is exceeded.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("quotaInfo")]
                     public virtual QuotaExceededInfo QuotaInfo { get; set; }
                 }
@@ -136625,15 +136633,19 @@ namespace Google.Apis.Compute.beta.Data
                 /// </summary>
                 public class ErrorDetailsData
                 {
+                    /// <summary>Error information containing structured domain, reason, and metadata.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("errorInfo")]
                     public virtual ErrorInfo ErrorInfo { get; set; }
 
+                    /// <summary>Links and information to help the user resolve the error.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("help")]
                     public virtual Help Help { get; set; }
 
+                    /// <summary>A localized human-readable error message intended for end users.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("localizedMessage")]
                     public virtual LocalizedMessage LocalizedMessage { get; set; }
 
+                    /// <summary>Details about quota limits and metrics when a quota is exceeded.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("quotaInfo")]
                     public virtual QuotaExceededInfo QuotaInfo { get; set; }
                 }
@@ -136765,15 +136777,19 @@ namespace Google.Apis.Compute.beta.Data
                 /// </summary>
                 public class ErrorDetailsData
                 {
+                    /// <summary>Error information containing structured domain, reason, and metadata.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("errorInfo")]
                     public virtual ErrorInfo ErrorInfo { get; set; }
 
+                    /// <summary>Links and information to help the user resolve the error.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("help")]
                     public virtual Help Help { get; set; }
 
+                    /// <summary>A localized human-readable error message intended for end users.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("localizedMessage")]
                     public virtual LocalizedMessage LocalizedMessage { get; set; }
 
+                    /// <summary>Details about quota limits and metrics when a quota is exceeded.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("quotaInfo")]
                     public virtual QuotaExceededInfo QuotaInfo { get; set; }
                 }
@@ -137076,7 +137092,7 @@ namespace Google.Apis.Compute.beta.Data
     public class InstanceGroupManagersApplyUpdatesRequest : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>
-        /// Flag to update all instances instead of specified list of “instances”. If the flag is set to true then the
+        /// Flag to update all instances instead of specified list of "instances". If the flag is set to true then the
         /// instances may not be specified in the request.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("allInstances")]
@@ -137344,15 +137360,19 @@ namespace Google.Apis.Compute.beta.Data
                 /// </summary>
                 public class ErrorDetailsData
                 {
+                    /// <summary>Error information containing structured domain, reason, and metadata.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("errorInfo")]
                     public virtual ErrorInfo ErrorInfo { get; set; }
 
+                    /// <summary>Links and information to help the user resolve the error.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("help")]
                     public virtual Help Help { get; set; }
 
+                    /// <summary>A localized human-readable error message intended for end users.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("localizedMessage")]
                     public virtual LocalizedMessage LocalizedMessage { get; set; }
 
+                    /// <summary>Details about quota limits and metrics when a quota is exceeded.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("quotaInfo")]
                     public virtual QuotaExceededInfo QuotaInfo { get; set; }
                 }
@@ -137362,15 +137382,15 @@ namespace Google.Apis.Compute.beta.Data
 
     public class InstanceGroupManagersListErrorsResponse : Google.Apis.Requests.IDirectResponseSchema
     {
-        /// <summary>Output only. [Output Only] The list of errors of the managed instance group.</summary>
+        /// <summary>Output only. The list of errors of the managed instance group.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("items")]
         public virtual System.Collections.Generic.IList<InstanceManagedByIgmError> Items { get; set; }
 
         /// <summary>
-        /// Output only. [Output Only] This token allows you to get the next page of results for list requests. If the
-        /// number of results is larger thanmaxResults, use the nextPageToken as a value for the query parameter
-        /// pageToken in the next list request. Subsequent list requests will have their own nextPageToken to continue
-        /// paging through the results.
+        /// Output only. This token allows you to get the next page of results for list requests. If the number of
+        /// results is larger than maxResults , then use the nextPageToken as a value for the query parameter pageToken
+        /// in the next list request. Subsequent list requests will have their own nextPageToken to continue paging
+        /// through the results.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("nextPageToken")]
         public virtual string NextPageToken { get; set; }
@@ -144239,15 +144259,19 @@ namespace Google.Apis.Compute.beta.Data
                 /// </summary>
                 public class ErrorDetailsData
                 {
+                    /// <summary>Error information containing structured domain, reason, and metadata.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("errorInfo")]
                     public virtual ErrorInfo ErrorInfo { get; set; }
 
+                    /// <summary>Links and information to help the user resolve the error.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("help")]
                     public virtual Help Help { get; set; }
 
+                    /// <summary>A localized human-readable error message intended for end users.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("localizedMessage")]
                     public virtual LocalizedMessage LocalizedMessage { get; set; }
 
+                    /// <summary>Details about quota limits and metrics when a quota is exceeded.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("quotaInfo")]
                     public virtual QuotaExceededInfo QuotaInfo { get; set; }
                 }
@@ -144898,15 +144922,19 @@ namespace Google.Apis.Compute.beta.Data
                 /// </summary>
                 public class ErrorDetailsData
                 {
+                    /// <summary>Error information containing structured domain, reason, and metadata.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("errorInfo")]
                     public virtual ErrorInfo ErrorInfo { get; set; }
 
+                    /// <summary>Links and information to help the user resolve the error.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("help")]
                     public virtual Help Help { get; set; }
 
+                    /// <summary>A localized human-readable error message intended for end users.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("localizedMessage")]
                     public virtual LocalizedMessage LocalizedMessage { get; set; }
 
+                    /// <summary>Details about quota limits and metrics when a quota is exceeded.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("quotaInfo")]
                     public virtual QuotaExceededInfo QuotaInfo { get; set; }
                 }
@@ -149881,15 +149909,19 @@ namespace Google.Apis.Compute.beta.Data
                 /// </summary>
                 public class ErrorDetailsData
                 {
+                    /// <summary>Error information containing structured domain, reason, and metadata.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("errorInfo")]
                     public virtual ErrorInfo ErrorInfo { get; set; }
 
+                    /// <summary>Links and information to help the user resolve the error.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("help")]
                     public virtual Help Help { get; set; }
 
+                    /// <summary>A localized human-readable error message intended for end users.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("localizedMessage")]
                     public virtual LocalizedMessage LocalizedMessage { get; set; }
 
+                    /// <summary>Details about quota limits and metrics when a quota is exceeded.</summary>
                     [Newtonsoft.Json.JsonPropertyAttribute("quotaInfo")]
                     public virtual QuotaExceededInfo QuotaInfo { get; set; }
                 }
@@ -151752,6 +151784,13 @@ namespace Google.Apis.Compute.beta.Data
         public virtual string Name { get; set; }
 
         /// <summary>
+        /// Network tier to be used for this prefix. All child delegated prefixes will inherit this field. If this field
+        /// is not specified, it defaults to the network tier of the project that the PublicAdvertisedPrefix belongs to.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("networkTier")]
+        public virtual string NetworkTier { get; set; }
+
+        /// <summary>
         /// Specifies how child public delegated prefix will be scoped. It could be one of following values:
         ///  - `REGIONAL`: The public delegated prefix is regional only. The      provisioning will take a few minutes.
         ///     - `GLOBAL`: The public delegated prefix is global only. The      provisioning will take ~4 weeks.      -
@@ -151993,6 +152032,14 @@ namespace Google.Apis.Compute.beta.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("name")]
         public virtual string Name { get; set; }
+
+        /// <summary>
+        /// Network tier of the public delegated prefix. If populated, it must match the network tier of the parent
+        /// public advertised prefix. If not populated, it defaults to the network tier of the parent public advertised
+        /// prefix.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("networkTier")]
+        public virtual string NetworkTier { get; set; }
 
         /// <summary>The URL of parent prefix. Either PublicAdvertisedPrefix or PublicDelegatedPrefix.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("parentPrefix")]
@@ -153118,7 +153165,7 @@ namespace Google.Apis.Compute.beta.Data
     public class RegionInstanceGroupManagersApplyUpdatesRequest : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>
-        /// Flag to update all instances instead of specified list of “instances”. If the flag is set to true then the
+        /// Flag to update all instances instead of specified list of "instances". If the flag is set to true then the
         /// instances may not be specified in the request.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("allInstances")]
