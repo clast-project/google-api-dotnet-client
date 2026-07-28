@@ -691,6 +691,100 @@ namespace Google.Apis.DisplayVideo.v4
             }
 
             /// <summary>
+            /// Updates an ad asset. Returns the updated ad asset if successful. Supports updating assets of AdAssetType
+            /// `AD_ASSET_TYPE_YOUTUBE_VIDEO` and `AD_ASSET_TYPE_IMAGE`. Only the `synthetic_content_attestation_status`
+            /// field is mutable.
+            /// </summary>
+            /// <param name="body">The body of the request.</param>
+            /// <param name="advertiserId">Required. The ID of the advertiser this ad asset belongs to.</param>
+            /// <param name="adAssetId">
+            /// Output only. The ID of the ad asset. Referred to as the asset ID when assigned to an ad.
+            /// </param>
+            public virtual PatchRequest Patch(Google.Apis.DisplayVideo.v4.Data.AdAsset body, long advertiserId, long adAssetId)
+            {
+                return new PatchRequest(this.service, body, advertiserId, adAssetId);
+            }
+
+            /// <summary>
+            /// Updates an ad asset. Returns the updated ad asset if successful. Supports updating assets of AdAssetType
+            /// `AD_ASSET_TYPE_YOUTUBE_VIDEO` and `AD_ASSET_TYPE_IMAGE`. Only the `synthetic_content_attestation_status`
+            /// field is mutable.
+            /// </summary>
+            public class PatchRequest : DisplayVideoBaseServiceRequest<Google.Apis.DisplayVideo.v4.Data.AdAsset>
+            {
+                /// <summary>Constructs a new Patch request.</summary>
+                public PatchRequest(Google.Apis.Services.IClientService service, Google.Apis.DisplayVideo.v4.Data.AdAsset body, long advertiserId, long adAssetId) : base(service)
+                {
+                    AdvertiserId = advertiserId;
+                    AdAssetId = adAssetId;
+                    Body = body;
+                    InitParameters();
+                }
+
+                /// <summary>Required. The ID of the advertiser this ad asset belongs to.</summary>
+                [Google.Apis.Util.RequestParameterAttribute("advertiserId", Google.Apis.Util.RequestParameterType.Path)]
+                public virtual long AdvertiserId { get; private set; }
+
+                /// <summary>
+                /// Output only. The ID of the ad asset. Referred to as the asset ID when assigned to an ad.
+                /// </summary>
+                [Google.Apis.Util.RequestParameterAttribute("adAssetId", Google.Apis.Util.RequestParameterType.Path)]
+                public virtual long AdAssetId { get; private set; }
+
+                /// <summary>
+                /// Required. The list of fields to update. Only AdAsset.synthetic_content_attestation_status is
+                /// mutable.
+                /// </summary>
+                [Google.Apis.Util.RequestParameterAttribute("updateMask", Google.Apis.Util.RequestParameterType.Query)]
+                public virtual object UpdateMask { get; set; }
+
+                /// <summary>Gets or sets the body of this request.</summary>
+                Google.Apis.DisplayVideo.v4.Data.AdAsset Body { get; set; }
+
+                /// <summary>Returns the body of the request.</summary>
+                protected override object GetBody() => Body;
+
+                /// <summary>Gets the method name.</summary>
+                public override string MethodName => "patch";
+
+                /// <summary>Gets the HTTP method.</summary>
+                public override string HttpMethod => "PATCH";
+
+                /// <summary>Gets the REST path.</summary>
+                public override string RestPath => "v4/advertisers/{+advertiserId}/adAssets/{+adAssetId}";
+
+                /// <summary>Initializes Patch parameter list.</summary>
+                protected override void InitParameters()
+                {
+                    base.InitParameters();
+                    RequestParameters.Add("advertiserId", new Google.Apis.Discovery.Parameter
+                    {
+                        Name = "advertiserId",
+                        IsRequired = true,
+                        ParameterType = "path",
+                        DefaultValue = null,
+                        Pattern = @"^[^/]+$",
+                    });
+                    RequestParameters.Add("adAssetId", new Google.Apis.Discovery.Parameter
+                    {
+                        Name = "adAssetId",
+                        IsRequired = true,
+                        ParameterType = "path",
+                        DefaultValue = null,
+                        Pattern = @"^[^/]+$",
+                    });
+                    RequestParameters.Add("updateMask", new Google.Apis.Discovery.Parameter
+                    {
+                        Name = "updateMask",
+                        IsRequired = false,
+                        ParameterType = "query",
+                        DefaultValue = null,
+                        Pattern = null,
+                    });
+                }
+            }
+
+            /// <summary>
             /// Uploads and creates an ad asset. Returns the ID of the newly-created ad asset if successful. Only
             /// supports the uploading of assets with the AdAssetType `AD_ASSET_TYPE_IMAGE`.
             /// </summary>
@@ -22534,6 +22628,10 @@ namespace Google.Apis.DisplayVideo.v4.Data
         [Newtonsoft.Json.JsonPropertyAttribute("name")]
         public virtual string Name { get; set; }
 
+        /// <summary>Optional. Whether the asset contains synthetic content or was created using AI.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("syntheticContentAttestationStatus")]
+        public virtual string SyntheticContentAttestationStatus { get; set; }
+
         /// <summary>Youtube video asset data.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("youtubeVideoAsset")]
         public virtual YoutubeVideoAsset YoutubeVideoAsset { get; set; }
@@ -23436,6 +23534,21 @@ namespace Google.Apis.DisplayVideo.v4.Data
         /// <summary>Settings that control how advertiser data may be accessed.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("dataAccessConfig")]
         public virtual AdvertiserDataAccessConfig DataAccessConfig { get; set; }
+
+        /// <summary>
+        /// Optional. The default business name for the advertiser. This is the value used by YouTube and Demand Gen ads
+        /// under this advertiser if a business name is not provided.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("defaultBusinessName")]
+        public virtual string DefaultBusinessName { get; set; }
+
+        /// <summary>
+        /// Optional. The asset ID of the default logo image for the advertiser. This is the asset ID that will be used
+        /// by YouTube and Demand ads under this advertiser if a logo asset is not provided. You must use
+        /// advertisers.adAssets.upload to upload this asset using the API.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("defaultLogoAssetId")]
+        public virtual System.Nullable<long> DefaultLogoAssetId { get; set; }
 
         /// <summary>
         /// Required. The display name of the advertiser. Must be UTF-8 encoded with a maximum size of 240 bytes.
@@ -26784,6 +26897,10 @@ namespace Google.Apis.DisplayVideo.v4.Data
         [Newtonsoft.Json.JsonPropertyAttribute("skippable")]
         public virtual System.Nullable<bool> Skippable { get; set; }
 
+        /// <summary>Optional. Whether the creative contains synthetic content or was created using AI.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("syntheticContentAttestationStatus")]
+        public virtual string SyntheticContentAttestationStatus { get; set; }
+
         /// <summary>
         /// Optional. The original third-party tag used for the creative. Required and only valid for third-party tag
         /// creatives. Third-party tag creatives are creatives with following hosting_source: *
@@ -27453,9 +27570,8 @@ namespace Google.Apis.DisplayVideo.v4.Data
     public class DemandGenCarouselAd : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>
-        /// Required. The business name shown on the ad. *Warning*: Starting **July 13, 2026**, this setting will no
-        /// longer be required if a default value is set at the advertiser level. If left unset, the default value will
-        /// be applied.
+        /// Optional. The business name shown on the ad. This setting is required unless a default value is set at the
+        /// advertiser level. If left unset, the default value will be applied.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("businessName")]
         public virtual string BusinessName { get; set; }
@@ -27485,9 +27601,8 @@ namespace Google.Apis.DisplayVideo.v4.Data
         public virtual string Headline { get; set; }
 
         /// <summary>
-        /// Required. The logo image used by this ad. *Warning*: Starting **July 13, 2026**, this setting will no longer
-        /// be required if a default value is set at the advertiser level. If left unset, the default value will be
-        /// applied.
+        /// Optional. The logo image used by this ad. This setting is required unless a default value is set at the
+        /// advertiser level. If left unset, the default value will be applied.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("logo")]
         public virtual ImageAsset Logo { get; set; }
@@ -27508,9 +27623,8 @@ namespace Google.Apis.DisplayVideo.v4.Data
     public class DemandGenImageAd : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>
-        /// Required. The business name shown on the ad. *Warning*: Starting **July 13, 2026**, this setting will no
-        /// longer be required if a default value is set at the advertiser level. If left unset, the default value will
-        /// be applied.
+        /// Optional. The business name shown on the ad. This setting is required unless a default value is set at the
+        /// advertiser level. If left unset, the default value will be applied.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("businessName")]
         public virtual string BusinessName { get; set; }
@@ -27546,9 +27660,8 @@ namespace Google.Apis.DisplayVideo.v4.Data
         public virtual System.Collections.Generic.IList<string> Headlines { get; set; }
 
         /// <summary>
-        /// The list of logo images shown on the ad. *Warning*: Starting **July 13, 2026**, this setting will no longer
-        /// be required if a default value is set at the advertiser level. If left unset, the default value will be
-        /// applied.
+        /// The list of logo images shown on the ad. This setting is required unless a default value is set at the
+        /// advertiser level. If left unset, the default value will be applied.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("logoImages")]
         public virtual System.Collections.Generic.IList<ImageAsset> LogoImages { get; set; }
@@ -27581,9 +27694,8 @@ namespace Google.Apis.DisplayVideo.v4.Data
     public class DemandGenProductAd : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>
-        /// Required. The business name shown on the ad. *Warning*: Starting **July 13, 2026**, this setting will no
-        /// longer be required if a default value is set at the advertiser level. If left unset, the default value will
-        /// be applied.
+        /// Optional. The business name shown on the ad. This setting is required unless a default value is set at the
+        /// advertiser level. If left unset, the default value will be applied.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("businessName")]
         public virtual string BusinessName { get; set; }
@@ -27624,9 +27736,8 @@ namespace Google.Apis.DisplayVideo.v4.Data
         public virtual string Headline { get; set; }
 
         /// <summary>
-        /// Required. The logo image used by this ad. *Warning*: Starting **July 13, 2026**, this setting will no longer
-        /// be required if a default value is set at the advertiser level. If left unset, the default value will be
-        /// applied.
+        /// Optional. The logo image used by this ad. This setting is required unless a default value is set at the
+        /// advertiser level. If left unset, the default value will be applied.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("logo")]
         public virtual ImageAsset Logo { get; set; }
@@ -27672,9 +27783,8 @@ namespace Google.Apis.DisplayVideo.v4.Data
     public class DemandGenVideoAd : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>
-        /// Required. The business name shown on the ad. *Warning*: Starting **July 13, 2026**, this setting will no
-        /// longer be required if a default value is set at the advertiser level. If left unset, the default value will
-        /// be applied.
+        /// Optional. The business name shown on the ad. This setting is required unless a default value is set at the
+        /// advertiser level. If left unset, the default value will be applied.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("businessName")]
         public virtual string BusinessName { get; set; }
@@ -27727,9 +27837,8 @@ namespace Google.Apis.DisplayVideo.v4.Data
         public virtual System.Collections.Generic.IList<string> Headlines { get; set; }
 
         /// <summary>
-        /// Required. The logo image used by this ad. *Warning*: Starting **July 13, 2026**, this setting will no longer
-        /// be required if a default value is set at the advertiser level. If left unset, the default value will be
-        /// applied.
+        /// Optional. The logo image used by this ad. This setting is required unless a default value is set at the
+        /// advertiser level. If left unset, the default value will be applied.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("logo")]
         public virtual ImageAsset Logo { get; set; }
@@ -31884,9 +31993,9 @@ namespace Google.Apis.DisplayVideo.v4.Data
         [Newtonsoft.Json.JsonPropertyAttribute("genders")]
         public virtual System.Collections.Generic.IList<string> Genders { get; set; }
 
-        /// <summary>Output only. Targetable network for the ad product.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("network")]
-        public virtual string Network { get; set; }
+        /// <summary>Output only. Targetable networks for the ad product.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("networks")]
+        public virtual System.Collections.Generic.IList<string> Networks { get; set; }
 
         /// <summary>Output only. Targetable surface combinations for the ad product.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("surfaceTargetingCombinations")]
@@ -31975,6 +32084,14 @@ namespace Google.Apis.DisplayVideo.v4.Data
     /// <summary>Performance metrics for a forecast point.</summary>
     public class PlannedProductForecast : Google.Apis.Requests.IDirectResponseSchema
     {
+        /// <summary>Number of on-target impressions including co-viewers.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("onTargetCoviewImpressions")]
+        public virtual System.Nullable<long> OnTargetCoviewImpressions { get; set; }
+
+        /// <summary>Number of unique people reached that match the on-target definition including co-viewers.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("onTargetCoviewReach")]
+        public virtual System.Nullable<long> OnTargetCoviewReach { get; set; }
+
         /// <summary>Number of on-target impressions.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("onTargetImpressions")]
         public virtual System.Nullable<long> OnTargetImpressions { get; set; }
@@ -31982,6 +32099,14 @@ namespace Google.Apis.DisplayVideo.v4.Data
         /// <summary>Number of unique people reached that match the on-target definition.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("onTargetReach")]
         public virtual System.Nullable<long> OnTargetReach { get; set; }
+
+        /// <summary>Total number of impressions including co-viewers.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("totalCoviewImpressions")]
+        public virtual System.Nullable<long> TotalCoviewImpressions { get; set; }
+
+        /// <summary>Total number of unique people reached including co-viewers.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("totalCoviewReach")]
+        public virtual System.Nullable<long> TotalCoviewReach { get; set; }
 
         /// <summary>Total number of impressions.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("totalImpressions")]
@@ -33131,8 +33256,7 @@ namespace Google.Apis.DisplayVideo.v4.Data
         /// <summary>
         /// Optional. The third-party vendors measuring brand lift. The following third-party vendors are applicable: *
         /// `THIRD_PARTY_VENDOR_DYNATA` * `THIRD_PARTY_VENDOR_KANTAR` * `THIRD_PARTY_VENDOR_INTAGE` *
-        /// `THIRD_PARTY_VENDOR_NIELSEN` * `THIRD_PARTY_VENDOR_MACROMILL` *Warning*: Starting **July 13, 2026**, this
-        /// field will no longer support `THIRD_PARTY_VENDOR_NIELSEN`.
+        /// `THIRD_PARTY_VENDOR_MACROMILL`
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("brandLiftVendorConfigs")]
         public virtual System.Collections.Generic.IList<ThirdPartyVendorConfig> BrandLiftVendorConfigs { get; set; }
@@ -33435,6 +33559,10 @@ namespace Google.Apis.DisplayVideo.v4.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("filename")]
         public virtual string Filename { get; set; }
+
+        /// <summary>Optional. Whether the asset contains synthetic content or was created using AI.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("syntheticContentAttestationStatus")]
+        public virtual string SyntheticContentAttestationStatus { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }

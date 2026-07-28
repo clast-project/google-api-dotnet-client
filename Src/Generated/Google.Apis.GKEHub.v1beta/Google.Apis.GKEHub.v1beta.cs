@@ -7195,8 +7195,9 @@ namespace Google.Apis.GKEHub.v1beta.Data
         public virtual ConfigManagementHierarchyControllerConfig HierarchyController { get; set; }
 
         /// <summary>
-        /// Optional. Deprecated: From version 1.21.0, automatic Feature management is unavailable, and Config Sync only
-        /// supports manual upgrades.
+        /// Optional. Deprecated: Automatic Feature management is in Preview and is unavailable in version 1.21.0 and
+        /// later, after which Config Sync only supports manual upgrades. If set to manual upgrades, clear this field
+        /// instead, which is behaviorally equivalent but helps prevent compatibility issues with newer fields.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("management")]
         public virtual string Management { get; set; }
@@ -11876,6 +11877,10 @@ namespace Google.Apis.GKEHub.v1beta.Data
         /// <summary>Optional. Specifies modernization compatibility for the fleet.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("modernizationCompatibility")]
         public virtual string ModernizationCompatibility { get; set; }
+
+        /// <summary>Optional. Declares your intended modernization strategy for the fleet.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("modernizationStrategy")]
+        public virtual string ModernizationStrategy { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
