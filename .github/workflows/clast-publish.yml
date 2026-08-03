@@ -2,22 +2,32 @@ name: Clast Publish
 
 # Orchestrated build + publish of all 12 Clast.* packages to NuGet.org.
 # Checks out the whole closure (this repo + gax-dotnet + grpc-dotnet + google-cloud-dotnet) as siblings so the cross-repo
-# ProjectReferences resolve, packs every shippable project with -p:Clast=true (renamed assemblies + Clast.snk)
-# at a single version, then pushes to NuGet.org.
+# ProjectReferences resolve, packs every shippable project with -p:Clast=true (renamed assemblies + Clast.snk),
+# then pushes to NuGet.org.
 #
-# Trigger:
-#   - push a tag like v0.1.0  -> publishes version 0.1.0
-#   - manual run (workflow_dispatch) -> choose a version; dry_run=true (default) packs without pushing.
+# VERSIONING: each Clast.* package publishes at the SAME version as the Google/gRPC package it mirrors,
+# so a consumer can swap the id (Google.X -> Clast.Google.X) and keep the version — a drop-in AOT build.
+# That version comes from each project's own <Version> (the sync keeps it at the upstream NuGet release),
+# NOT from a single unified number. We deliberately DO NOT pass a global -p:Version: a global property
+# propagates into referenced projects and would rewrite the inter-package dependency versions too
+# (e.g. Storage.v1 1.75.0.4193 depends on Google.Apis 1.75.0, not 1.75.0.4193). Per-csproj <Version> is
+# project-local, so both the package version and its dependency versions come out correct. A guard below
+# refuses to publish a placeholder/prerelease version (e.g. grpc's committed 2.x-dev), which would mean a
+# source repo's <Version> wasn't pinned to its upstream NuGet release.
+#
+# Trigger (the tag/label only names the run + artifact bundle; it does NOT set package versions):
+#   - push a tag like v2026.07.15  -> packs each package at its own upstream version and pushes.
+#   - manual run (workflow_dispatch) -> dry_run=true (default) packs without pushing.
 
 on:
   push:
     tags: ['v*']
   workflow_dispatch:
     inputs:
-      version:
-        description: 'Package version (e.g. 0.1.0 or 0.1.0-preview.1)'
-        required: true
-        default: '0.1.0'
+      label:
+        description: 'Run label for the artifact bundle (does NOT set package versions; those mirror upstream)'
+        required: false
+        default: 'manual'
       dry_run:
         description: 'Pack only; do not push to NuGet.org'
         type: boolean
@@ -85,22 +95,21 @@ jobs:
             8.0.x
             10.0.x
 
-      - name: Determine version
+      - name: Determine run label
         id: ver
         shell: bash
         run: |
           if [ "${{ github.event_name }}" = "push" ]; then
-            V="${GITHUB_REF_NAME#v}"
+            L="${GITHUB_REF_NAME#v}"
           else
-            V="${{ github.event.inputs.version }}"
+            L="${{ github.event.inputs.label }}"
           fi
-          echo "version=$V" >> "$GITHUB_OUTPUT"
-          echo "Clast version: $V"
+          echo "label=$L" >> "$GITHUB_OUTPUT"
+          echo "Run label (artifact naming only; package versions mirror upstream): $L"
 
-      - name: Pack all 12 Clast.* packages
+      - name: Pack all 12 Clast.* packages (each at its own upstream version)
         shell: bash
         env:
-          VERSION: ${{ steps.ver.outputs.version }}
           KEY: ${{ github.workspace }}/google-api-dotnet-client/Clast.snk
           OUT: ${{ github.workspace }}/clast-packages
         run: |
@@ -120,15 +129,24 @@ jobs:
             google-cloud-dotnet/apis/Google.Cloud.BigQuery.Storage.V1/Google.Cloud.BigQuery.Storage.V1/Google.Cloud.BigQuery.Storage.V1.csproj
           )
           for p in "${projects[@]}"; do
-            dotnet pack "$p" -c Release -o "$OUT" \
-              -p:Clast=true -p:ClastKeyPath="$KEY" -p:Version="$VERSION"
+            # Resolve the project's own <Version> (no global -p:Version — see header comment) and
+            # refuse to publish a placeholder/prerelease, which would mean this repo's <Version>
+            # wasn't pinned to its upstream NuGet release (e.g. grpc-dotnet's committed 2.x-dev).
+            v=$(dotnet msbuild "$p" -getProperty:Version -p:Clast=true -nologo | tr -d '[:space:]')
+            case "$v" in
+              ''|*-*)
+                echo "::error::$(basename "$p" .csproj) resolves to non-stable version '$v'; pin its <Version> to the upstream NuGet release before publishing."
+                exit 1 ;;
+            esac
+            echo "packing $(basename "$p" .csproj) @ $v"
+            dotnet pack "$p" -c Release -o "$OUT" -p:Clast=true -p:ClastKeyPath="$KEY"
           done
           ls -l "$OUT"
 
       - name: Upload packages artifact
         uses: actions/upload-artifact@v4
         with:
-          name: clast-packages-${{ steps.ver.outputs.version }}
+          name: clast-packages-${{ steps.ver.outputs.label }}
           path: ${{ github.workspace }}/clast-packages/*.nupkg
 
       - name: Push to NuGet.org
