@@ -11132,18 +11132,17 @@ namespace Google.Apis.YouTube.v3.Data
     }
 
     /// <summary>
-    /// An *activity* resource contains information about an action that a particular channel, or user, has taken on
-    /// YouTube.The actions reported in activity feeds include rating a video, sharing a video, marking a video as a
-    /// favorite, commenting on a video, uploading a video, and so forth. Each activity resource identifies the type of
-    /// action, the channel associated with the action, and the resource(s) associated with the action, such as the
-    /// video that was rated or uploaded.
+    /// An `activity` resource contains information about an action that a particular channel, or user, has taken on
+    /// YouTube. The actions reported in activity feeds include sharing a video, uploading a video, and so forth. Each
+    /// `activity` resource identifies the type of action, the channel associated with the action, and the resource(s)
+    /// associated with the action, such as the video that was rated or uploaded.
     /// </summary>
     public class Activity : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>
-        /// The contentDetails object contains information about the content associated with the activity. For example,
-        /// if the snippet.type value is videoRated, then the contentDetails object's content identifies the rated
-        /// video.
+        /// The `contentDetails` object contains information about the content associated with the activity. For
+        /// example, if the `snippet.type` value is `videoRated`, then the `contentDetails` object's content identifies
+        /// the rated video.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("contentDetails")]
         public virtual ActivityContentDetails ContentDetails { get; set; }
@@ -11156,12 +11155,12 @@ namespace Google.Apis.YouTube.v3.Data
         [Newtonsoft.Json.JsonPropertyAttribute("id")]
         public virtual string Id { get; set; }
 
-        /// <summary>Identifies what kind of resource this is. Value: the fixed string "youtube#activity".</summary>
+        /// <summary>Identifies what kind of resource this is. Value: The fixed string `"youtube#activity"`.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("kind")]
         public virtual string Kind { get; set; }
 
         /// <summary>
-        /// The snippet object contains basic details about the activity, including the activity's type and group ID.
+        /// The `snippet` object contains basic details about the activity, including the activity's type and group ID.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("snippet")]
         public virtual ActivitySnippet Snippet { get; set; }
@@ -11173,78 +11172,78 @@ namespace Google.Apis.YouTube.v3.Data
     public class ActivityContentDetails : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>
-        /// The bulletin object contains details about a channel bulletin post. This object is only present if the
-        /// snippet.type is bulletin.
+        /// The `bulletin` object contains details about a channel bulletin post. This object is only present if the
+        /// `snippet.type` is `bulletin`.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("bulletin")]
         public virtual ActivityContentDetailsBulletin Bulletin { get; set; }
 
         /// <summary>
-        /// The channelItem object contains details about a resource which was added to a channel. This property is only
-        /// present if the snippet.type is channelItem.
+        /// The `channelItem` object contains details about a resource which was added to a channel. This property is
+        /// only present if the `snippet.type` is `channelItem`.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("channelItem")]
         public virtual ActivityContentDetailsChannelItem ChannelItem { get; set; }
 
         /// <summary>
-        /// The comment object contains information about a resource that received a comment. This property is only
-        /// present if the snippet.type is comment.
+        /// The `comment` object contains information about a resource that received a comment. This property is only
+        /// present if the `snippet.type` is `comment`.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("comment")]
         public virtual ActivityContentDetailsComment Comment { get; set; }
 
         /// <summary>
-        /// The favorite object contains information about a video that was marked as a favorite video. This property is
-        /// only present if the snippet.type is favorite.
+        /// The `favorite` object contains information about a video that was marked as a favorite video. This property
+        /// is only present if the `snippet.type` is `favorite`. Deprecated: This property is no longer returned.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("favorite")]
         public virtual ActivityContentDetailsFavorite Favorite { get; set; }
 
         /// <summary>
-        /// The like object contains information about a resource that received a positive (like) rating. This property
-        /// is only present if the snippet.type is like.
+        /// The `like` object contains information about a resource that received a positive (like) rating. This
+        /// property is only present if the `snippet.type` is `like`. Deprecated: This property is no longer returned.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("like")]
         public virtual ActivityContentDetailsLike Like { get; set; }
 
         /// <summary>
-        /// The playlistItem object contains information about a new playlist item. This property is only present if the
-        /// snippet.type is playlistItem.
+        /// The `playlistItem` object contains information about a new playlist item. This property is only present if
+        /// the `snippet.type` is `playlistItem`.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("playlistItem")]
         public virtual ActivityContentDetailsPlaylistItem PlaylistItem { get; set; }
 
         /// <summary>
-        /// The promotedItem object contains details about a resource which is being promoted. This property is only
-        /// present if the snippet.type is promotedItem.
+        /// The `promotedItem` object contains details about a resource which is being promoted. This property is only
+        /// present if the `snippet.type` is `promotedItem`.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("promotedItem")]
         public virtual ActivityContentDetailsPromotedItem PromotedItem { get; set; }
 
         /// <summary>
-        /// The recommendation object contains information about a recommended resource. This property is only present
-        /// if the snippet.type is recommendation.
+        /// The `recommendation` object contains information about a recommended resource. This property is only present
+        /// if the `snippet.type` is `recommendation`.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("recommendation")]
         public virtual ActivityContentDetailsRecommendation Recommendation { get; set; }
 
         /// <summary>
-        /// The social object contains details about a social network post. This property is only present if the
-        /// snippet.type is social.
+        /// The `social` object contains details about a social network post. This property is only present if the
+        /// `snippet.type` is `social`.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("social")]
         public virtual ActivityContentDetailsSocial Social { get; set; }
 
         /// <summary>
-        /// The subscription object contains information about a channel that a user subscribed to. This property is
-        /// only present if the snippet.type is subscription.
+        /// The `subscription` object contains information about a channel that a user subscribed to. This property is
+        /// only present if the `snippet.type` is `subscription`. Deprecated: This property is no longer returned.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("subscription")]
         public virtual ActivityContentDetailsSubscription Subscription { get; set; }
 
         /// <summary>
-        /// The upload object contains information about the uploaded video. This property is only present if the
-        /// snippet.type is upload.
+        /// The `upload` object contains information about the uploaded video. This property is only present if the
+        /// `snippet.type` is `upload`.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("upload")]
         public virtual ActivityContentDetailsUpload Upload { get; set; }
@@ -11257,7 +11256,7 @@ namespace Google.Apis.YouTube.v3.Data
     public class ActivityContentDetailsBulletin : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>
-        /// The resourceId object contains information that identifies the resource associated with a bulletin post.
+        /// The `resourceId` object contains information that identifies the resource associated with a bulletin post.
         /// @mutable youtube.activities.insert
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("resourceId")]
@@ -11271,7 +11270,7 @@ namespace Google.Apis.YouTube.v3.Data
     public class ActivityContentDetailsChannelItem : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>
-        /// The resourceId object contains information that identifies the resource that was added to the channel.
+        /// The `resourceId` object contains information that identifies the resource that was added to the channel.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("resourceId")]
         public virtual ResourceId ResourceId { get; set; }
@@ -11284,7 +11283,7 @@ namespace Google.Apis.YouTube.v3.Data
     public class ActivityContentDetailsComment : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>
-        /// The resourceId object contains information that identifies the resource associated with the comment.
+        /// The `resourceId` object contains information that identifies the resource associated with the comment.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("resourceId")]
         public virtual ResourceId ResourceId { get; set; }
@@ -11293,11 +11292,13 @@ namespace Google.Apis.YouTube.v3.Data
         public virtual string ETag { get; set; }
     }
 
-    /// <summary>Information about a video that was marked as a favorite video.</summary>
+    /// <summary>
+    /// Information about a video that was marked as a favorite video. Deprecated: This resource is no longer returned.
+    /// </summary>
     public class ActivityContentDetailsFavorite : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>
-        /// The resourceId object contains information that identifies the resource that was marked as a favorite.
+        /// The `resourceId` object contains information that identifies the resource that was marked as a favorite.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("resourceId")]
         public virtual ResourceId ResourceId { get; set; }
@@ -11306,10 +11307,13 @@ namespace Google.Apis.YouTube.v3.Data
         public virtual string ETag { get; set; }
     }
 
-    /// <summary>Information about a resource that received a positive (like) rating.</summary>
+    /// <summary>
+    /// Information about a resource that received a positive (like) rating. Deprecated: This resource is no longer
+    /// returned.
+    /// </summary>
     public class ActivityContentDetailsLike : Google.Apis.Requests.IDirectResponseSchema
     {
-        /// <summary>The resourceId object contains information that identifies the rated resource.</summary>
+        /// <summary>The `resourceId` object contains information that identifies the rated resource.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("resourceId")]
         public virtual ResourceId ResourceId { get; set; }
 
@@ -11329,7 +11333,7 @@ namespace Google.Apis.YouTube.v3.Data
         public virtual string PlaylistItemId { get; set; }
 
         /// <summary>
-        /// The resourceId object contains information about the resource that was added to the playlist.
+        /// The `resourceId` object contains information about the resource that was added to the playlist.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("resourceId")]
         public virtual ResourceId ResourceId { get; set; }
@@ -11405,12 +11409,12 @@ namespace Google.Apis.YouTube.v3.Data
         [Newtonsoft.Json.JsonPropertyAttribute("reason")]
         public virtual string Reason { get; set; }
 
-        /// <summary>The resourceId object contains information that identifies the recommended resource.</summary>
+        /// <summary>The `resourceId` object contains information that identifies the recommended resource.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("resourceId")]
         public virtual ResourceId ResourceId { get; set; }
 
         /// <summary>
-        /// The seedResourceId object contains information about the resource that caused the recommendation.
+        /// The `seedResourceId` object contains information about the resource that caused the recommendation.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("seedResourceId")]
         public virtual ResourceId SeedResourceId { get; set; }
@@ -11435,8 +11439,8 @@ namespace Google.Apis.YouTube.v3.Data
         public virtual string ReferenceUrl { get; set; }
 
         /// <summary>
-        /// The resourceId object encapsulates information that identifies the resource associated with a social network
-        /// post.
+        /// The `resourceId` object encapsulates information that identifies the resource associated with a social
+        /// network post.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("resourceId")]
         public virtual ResourceId ResourceId { get; set; }
@@ -11449,11 +11453,13 @@ namespace Google.Apis.YouTube.v3.Data
         public virtual string ETag { get; set; }
     }
 
-    /// <summary>Information about a channel that a user subscribed to.</summary>
+    /// <summary>
+    /// Information about a channel that a user subscribed to. Deprecated: This resource is no longer returned.
+    /// </summary>
     public class ActivityContentDetailsSubscription : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>
-        /// The resourceId object contains information that identifies the resource that the user subscribed to.
+        /// The `resourceId` object contains information that identifies the resource that the user subscribed to.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("resourceId")]
         public virtual ResourceId ResourceId { get; set; }
@@ -11539,9 +11545,9 @@ namespace Google.Apis.YouTube.v3.Data
 
         /// <summary>
         /// The group ID associated with the activity. A group ID identifies user events that are associated with the
-        /// same user and resource. For example, if a user rates a video and marks the same video as a favorite, the
-        /// entries for those events would have the same group ID in the user's activity feed. In your user interface,
-        /// you can avoid repetition by grouping events with the same groupId value.
+        /// same user and resource. For example, if a user uploads a video and watches the same video, the entries for
+        /// those events would have the same group ID in the user's activity feed. In your user interface, you can avoid
+        /// repetition by grouping events with the same `groupId` value.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("groupId")]
         public virtual string GroupId { get; set; }
@@ -11582,6 +11588,75 @@ namespace Google.Apis.YouTube.v3.Data
         /// <summary>The type of activity that the resource describes.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("type")]
         public virtual string Type { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Common proto for Live and VOD geo-restrictions</summary>
+    public class AvailabilityConfig : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Video is available in all regions except the ones specified in the config.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("globalConfig")]
+        public virtual AvailabilityConfigGlobalConfig GlobalConfig { get; set; }
+
+        /// <summary>Video is available in the specified regions only.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("regionsConfig")]
+        public virtual AvailabilityConfigRegionsConfig RegionsConfig { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>
+    /// Video is available in all regions except the ones specified in the excluded_region_codes list.
+    /// </summary>
+    public class AvailabilityConfigGlobalConfig : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Optional. Regions where video is blocked</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("excludedRegionCodes")]
+        public virtual System.Collections.Generic.IList<string> ExcludedRegionCodes { get; set; }
+
+        /// <summary>
+        /// Default time window where video is available for all non-blocked regions Not supported for upcoming / active
+        /// live broadcasts. If start time is unspecified, video is already available If end time is unspecified, video
+        /// is available forever Specified start and end times cannot be more than five years in the future.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("interval")]
+        public virtual Interval Interval { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Video is available in the specified regions only.</summary>
+    public class AvailabilityConfigRegionsConfig : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>
+        /// Required. List of regions and time windows where video is available. If a region is specified multiple
+        /// times, the union of all intervals is used.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("regionIntervals")]
+        public virtual System.Collections.Generic.IList<AvailabilityConfigRegionsConfigRegionInterval> RegionIntervals { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Region and time window where video is available for the region.</summary>
+    public class AvailabilityConfigRegionsConfigRegionInterval : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>
+        /// Time window where video is available for the region. Not supported for upcoming / active live broadcasts. If
+        /// start time is unspecified, video is already available If end time is unspecified, video is available forever
+        /// Specified start and end times cannot be more than five years in the future.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("interval")]
+        public virtual Interval Interval { get; set; }
+
+        /// <summary>Required. Region where video is available</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("regionCode")]
+        public virtual string RegionCode { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -13654,6 +13729,97 @@ namespace Google.Apis.YouTube.v3.Data
         public virtual string ETag { get; set; }
     }
 
+    /// <summary>
+    /// Represents a time interval, encoded as a Timestamp start (inclusive) and a Timestamp end (exclusive). The start
+    /// must be less than or equal to the end. When the start equals the end, the interval is empty (matches no time).
+    /// When both start and end are unspecified, the interval matches any time.
+    /// </summary>
+    public class Interval : Google.Apis.Requests.IDirectResponseSchema
+    {
+        private string _endTimeRaw;
+
+        private object _endTime;
+
+        /// <summary>
+        /// Optional. Exclusive end of the interval. If specified, a Timestamp matching this interval will have to be
+        /// before the end.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("endTime")]
+        public virtual string EndTimeRaw
+        {
+            get => _endTimeRaw;
+            set
+            {
+                _endTime = Google.Apis.Util.Utilities.DeserializeForGoogleFormat(value);
+                _endTimeRaw = value;
+            }
+        }
+
+        /// <summary><seealso cref="object"/> representation of <see cref="EndTimeRaw"/>.</summary>
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use EndTimeDateTimeOffset instead.")]
+        public virtual object EndTime
+        {
+            get => _endTime;
+            set
+            {
+                _endTimeRaw = Google.Apis.Util.Utilities.SerializeForGoogleFormat(value);
+                _endTime = value;
+            }
+        }
+
+        /// <summary><seealso cref="System.DateTimeOffset"/> representation of <see cref="EndTimeRaw"/>.</summary>
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        public virtual System.DateTimeOffset? EndTimeDateTimeOffset
+        {
+            get => Google.Apis.Util.DiscoveryFormat.ParseGoogleDateTimeToDateTimeOffset(EndTimeRaw);
+            set => EndTimeRaw = Google.Apis.Util.DiscoveryFormat.FormatDateTimeOffsetToGoogleDateTime(value);
+        }
+
+        private string _startTimeRaw;
+
+        private object _startTime;
+
+        /// <summary>
+        /// Optional. Inclusive start of the interval. If specified, a Timestamp matching this interval will have to be
+        /// the same or after the start.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("startTime")]
+        public virtual string StartTimeRaw
+        {
+            get => _startTimeRaw;
+            set
+            {
+                _startTime = Google.Apis.Util.Utilities.DeserializeForGoogleFormat(value);
+                _startTimeRaw = value;
+            }
+        }
+
+        /// <summary><seealso cref="object"/> representation of <see cref="StartTimeRaw"/>.</summary>
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use StartTimeDateTimeOffset instead.")]
+        public virtual object StartTime
+        {
+            get => _startTime;
+            set
+            {
+                _startTimeRaw = Google.Apis.Util.Utilities.SerializeForGoogleFormat(value);
+                _startTime = value;
+            }
+        }
+
+        /// <summary><seealso cref="System.DateTimeOffset"/> representation of <see cref="StartTimeRaw"/>.</summary>
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        public virtual System.DateTimeOffset? StartTimeDateTimeOffset
+        {
+            get => Google.Apis.Util.DiscoveryFormat.ParseGoogleDateTimeToDateTimeOffset(StartTimeRaw);
+            set => StartTimeRaw = Google.Apis.Util.DiscoveryFormat.FormatDateTimeOffsetToGoogleDateTime(value);
+        }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
     /// <summary>Describes an invideo branding.</summary>
     public class InvideoBranding : Google.Apis.Requests.IDirectResponseSchema
     {
@@ -13806,6 +13972,13 @@ namespace Google.Apis.YouTube.v3.Data
     /// <summary>Detailed settings of a broadcast.</summary>
     public class LiveBroadcastContentDetails : Google.Apis.Requests.IDirectResponseSchema
     {
+        /// <summary>
+        /// Optional. The broadcast's availability config. Used to set specific region availability or block specific
+        /// regions It is optional - if not set, it is not enforced.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("availabilityConfig")]
+        public virtual AvailabilityConfig AvailabilityConfig { get; set; }
+
         /// <summary>This value uniquely identifies the live stream bound to the broadcast.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("boundStreamId")]
         public virtual string BoundStreamId { get; set; }
@@ -14051,6 +14224,10 @@ namespace Google.Apis.YouTube.v3.Data
             get => Google.Apis.Util.Utilities.GetDateTimeFromString(ActualStartTimeRaw);
             set => ActualStartTimeRaw = Google.Apis.Util.Utilities.GetStringFromDateTime(value);
         }
+
+        /// <summary>The YouTube video category associated with the video broadcast.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("categoryId")]
+        public virtual string CategoryId { get; set; }
 
         /// <summary>
         /// The ID that YouTube uses to uniquely identify the channel that is publishing the broadcast.

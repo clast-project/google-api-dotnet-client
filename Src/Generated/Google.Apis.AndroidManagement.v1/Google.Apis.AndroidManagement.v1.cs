@@ -4373,6 +4373,27 @@ namespace Google.Apis.AndroidManagement.v1.Data
         public virtual string ETag { get; set; }
     }
 
+    /// <summary>Policies controlling cross-device communication.</summary>
+    public class CrossDevicePolicies : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>
+        /// Optional. Manages video streaming of apps on the device for fully managed devices or in the work profile for
+        /// devices with work profiles to nearby devices. This is supported on Android 13 and above.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("nearbyAppStreaming")]
+        public virtual string NearbyAppStreaming { get; set; }
+
+        /// <summary>
+        /// Optional. Manages streaming of notifications from apps on the device for fully managed devices or in the
+        /// work profile for devices with work profiles to nearby devices. This is supported on Android 13 and above.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("nearbyNotificationStreaming")]
+        public virtual string NearbyNotificationStreaming { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
     /// <summary>
     /// Controls the data from the work profile that can be accessed from the personal profile and vice versa. A
     /// NonComplianceDetail with MANAGEMENT_MODE is reported if the device does not have a work profile.
@@ -7366,6 +7387,10 @@ namespace Google.Apis.AndroidManagement.v1.Data
         [Newtonsoft.Json.JsonPropertyAttribute("credentialsConfigDisabled")]
         public virtual System.Nullable<bool> CredentialsConfigDisabled { get; set; }
 
+        /// <summary>Optional. Policies controlling cross-device communication.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("crossDevicePolicies")]
+        public virtual CrossDevicePolicies CrossDevicePolicies { get; set; }
+
         /// <summary>Cross-profile policies applied on the device.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("crossProfilePolicies")]
         public virtual CrossProfilePolicies CrossProfilePolicies { get; set; }
@@ -9329,7 +9354,7 @@ namespace Google.Apis.AndroidManagement.v1.Data
         /// Optional. The specific google work account email address to be added. This field is only relevant if
         /// authenticationType is GOOGLE_AUTHENTICATED. This must be an enterprise account and not a consumer account.
         /// Once set and a Google authenticated account is added to the device, changing this field will have no effect,
-        /// and thus recommended to be set only once.
+        /// and thus recommended to be set only once. The email address must be all lowercase.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("requiredAccountEmail")]
         public virtual string RequiredAccountEmail { get; set; }

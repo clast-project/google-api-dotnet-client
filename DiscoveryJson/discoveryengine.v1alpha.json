@@ -9,7 +9,7 @@
           "description": "Search your organization's data in the Cloud Search index"
         },
         "https://www.googleapis.com/auth/discoveryengine.assist.readwrite": {
-          "description": "View your Agentspace chat history, including uploaded files and generated reports and visualizations, and interact with the Agentspace assistant on your behalf."
+          "description": "View your Agentspace chat history, including uploaded files and generated reports and visualizations, and interact with the Agentspace assistant on your behalf. Also view the artifacts you access through NotebookLM Enterprise."
         },
         "https://www.googleapis.com/auth/discoveryengine.readwrite": {
           "description": "View, edit, create, and delete all your data associated with any Discovery Engine API product, such as Agentspace, Vertex AI Search, or NotebookLM Enterprise, including both end user data and administration or configuration data."
@@ -587,6 +587,36 @@
               },
               "response": {
                 "$ref": "GoogleCloudDiscoveryengineV1alphaObtainCrawlRateResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/discoveryengine.readwrite",
+                "https://www.googleapis.com/auth/discoveryengine.serving.readwrite"
+              ]
+            },
+            "provision": {
+              "description": "Provisions the project resource. During the process, related systems will get prepared and initialized. Caller must read the [Terms for data use](https://cloud.google.com/retail/data-use-terms), and optionally specify in request to provide consent to that service terms.",
+              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}:provision",
+              "httpMethod": "POST",
+              "id": "discoveryengine.projects.locations.provision",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Full resource name of a Project, such as `projects/{project_id_or_number}`.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}:provision",
+              "request": {
+                "$ref": "GoogleCloudDiscoveryengineV1alphaProvisionProjectRequest"
+              },
+              "response": {
+                "$ref": "GoogleLongrunningOperation"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform",
@@ -13397,7 +13427,7 @@
       }
     }
   },
-  "revision": "20260718",
+  "revision": "20260815",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GoogleApiDistribution": {
@@ -15013,7 +15043,7 @@
           "type": "string"
         },
         "dataSource": {
-          "description": "Required. The identifier for the data source. This is a partial list of supported connectors. Please refer to the [documentation](https://docs.cloud.google.com/gemini/enterprise/docs/connectors/introduction-to-connectors-and-data-stores) for the full list of connectors. Supported first-party connectors include: * `gcs` * `bigquery` * `gcp_fhir` * `google_mail` * `google_drive` * `google_calendar` * `google_chat` Supported third-party connectors include: Generally available (GA) connectors: * `onedrive` * `outlook` * `confluence` * `jira` * `servicenow` * `sharepoint` Preview connectors: * `asana` * `azure_active_directory` * `box` * `canva` * `confluence_server` * `custom_connector` * `docusign` * `dropbox` * `dynamics365` * `github` * `gitlab` * `hubspot` * `jira_server` * `linear` * `native_cloud_identity` * `notion` * `okta` * `pagerduty` * `peoplesoft` * `salesforce` * `shopify` * `slack` * `snowflake` * `teams` * `trello` * `workday` * `zendesk`",
+          "description": "Required. The identifier for the data source. For the full, up-to-date list of supported connectors and their values, see [Connect a third-party data source](https://docs.cloud.google.com/gemini/enterprise/docs/connectors/connect-third-party-data-source#sources-by-launch-stage).",
           "type": "string"
         },
         "destinationConfigs": {
@@ -15104,6 +15134,10 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "metadata": {
+          "$ref": "GoogleCloudDiscoveryengineV1DataConnectorConnectorMetadata",
+          "description": "Optional. User-facing metadata for the connector. Populated from the connector's generated metadata / registry `ConnectorSource`."
         },
         "name": {
           "description": "Identifier. The full resource name of the Data Connector. Format: `projects/*/locations/*/collections/*/dataConnector`.",
@@ -15240,6 +15274,33 @@
           "description": "Output only. Whether the connector is created with VPC-SC enabled.",
           "readOnly": true,
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1DataConnectorConnectorMetadata": {
+      "description": "User-facing metadata for the connector, shown on the connector detail page (title, description, short_description, author, note).",
+      "id": "GoogleCloudDiscoveryengineV1DataConnectorConnectorMetadata",
+      "properties": {
+        "author": {
+          "description": "Optional. The party that authored the connector, e.g. \"Google\" or a third-party provider name. Lets end users see who authored a connector (future: third-party-authored connectors).",
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. Human-readable description of the connector, shown on the connector detail page. One connector has a single description.",
+          "type": "string"
+        },
+        "note": {
+          "description": "Optional. Free-form, multi-line note about the connector's capabilities or a custom note that can be set for the connector.",
+          "type": "string"
+        },
+        "shortDescription": {
+          "description": "Optional. Short, subtitle-length description of the connector (e.g. shown beneath the connector name in list and detail views).",
+          "type": "string"
+        },
+        "title": {
+          "description": "Optional. Display title of the connector.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -16215,7 +16276,7 @@
             ],
             "type": "string"
           },
-          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `disable-skills` * `disable-projects` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence`",
+          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`",
           "type": "object"
         },
         "industryVertical": {
@@ -17391,7 +17452,7 @@
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1PurgeCompletionSuggestionsResponse": {
-      "description": "Response message for CompletionService.PurgeCompletionSuggestions method.",
+      "description": "Response message for CompletionService.PurgeCompletionSuggestions method. If the long running operation is successfully done, then this message is returned by the google.longrunning.Operations.response field.",
       "id": "GoogleCloudDiscoveryengineV1PurgeCompletionSuggestionsResponse",
       "properties": {
         "errorSamples": {
@@ -18769,12 +18830,14 @@
           "enum": [
             "PERSON_TYPE_UNSPECIFIED",
             "CLOUD_IDENTITY",
-            "THIRD_PARTY_IDENTITY"
+            "THIRD_PARTY_IDENTITY",
+            "GOOGLE_GROUP"
           ],
           "enumDescriptions": [
             "Default value.",
             "The suggestion is from a GOOGLE_IDENTITY source.",
-            "The suggestion is from a THIRD_PARTY_IDENTITY source."
+            "The suggestion is from a THIRD_PARTY_IDENTITY source.",
+            "The suggestion is a group (e.g. a Google Group), not an individual."
           ],
           "type": "string"
         },
@@ -18878,6 +18941,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "creationFailureReason": {
+          "description": "Output only. The reason why the agent creation (provisioning) failed. Only set if the state is CREATION_FAILED.",
+          "readOnly": true,
+          "type": "string"
+        },
         "customPlaceholderText": {
           "description": "Optional. The custom placeholder text that appears in the text box before the user enters any text.",
           "type": "string"
@@ -18946,7 +19014,8 @@
             "PRIVATE",
             "ENABLED",
             "SUSPENDED",
-            "CREATING"
+            "CREATING",
+            "CREATION_FAILED"
           ],
           "enumDescriptions": [
             "The state is unspecified.",
@@ -18957,7 +19026,8 @@
             "Agent is available only to its creator..",
             "Agent is available for users who have access.",
             "Agent is temporarily unavailable, though visible to users who have access.",
-            "Agent is being created."
+            "Agent is being created.",
+            "Agent creation (provisioning) failed. Terminal. To retry, the caller must `DeleteAgent` to clear the failed resource and then create again; there is no in-place overwrite of a failed agent. Only set for asynchronously-provisioned agents."
           ],
           "readOnly": true,
           "type": "string"
@@ -21003,6 +21073,23 @@
             "Processing was blocked by the customer policy."
           ],
           "type": "string"
+        },
+        "violationSource": {
+          "description": "Output only. The source of the violation.",
+          "enum": [
+            "VIOLATION_SOURCE_UNSPECIFIED",
+            "SYSTEM",
+            "PROMPT",
+            "ATTACHMENT"
+          ],
+          "enumDescriptions": [
+            "Unknown value.",
+            "Violation found in the system response.",
+            "Violation found in the user prompt.",
+            "Violation found in the user attachment."
+          ],
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -21847,7 +21934,7 @@
         },
         "inlineSource": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaBatchUpdateUserLicensesRequestInlineSource",
-          "description": "The inline source for the input content for document embeddings."
+          "description": "The inline source for the input content for license assignment."
         }
       },
       "type": "object"
@@ -23041,7 +23128,8 @@
           "type": "string"
         },
         "filterPiiSuggestionsUsingDlp": {
-          "description": "If true, with best effort, try to detect and remove the suggestions containing certain types of PII information. This detection is performated by [DLP](https://cloud.google.com/security/products/dlp) under the hood.",
+          "deprecated": true,
+          "description": "Deprecated: this field has no effect. As of May 2025, PII suggestion filtering using [DLP](https://cloud.google.com/security/products/dlp) is always on for all data stores and can't be configured per data store.",
           "type": "boolean"
         },
         "matchingOrder": {
@@ -24198,7 +24286,7 @@
           "description": "Optional. Specifies the data protection policy for the connector."
         },
         "dataSource": {
-          "description": "Required. The identifier for the data source. This is a partial list of supported connectors. Please refer to the [documentation](https://docs.cloud.google.com/gemini/enterprise/docs/connectors/introduction-to-connectors-and-data-stores) for the full list of connectors. Supported first-party connectors include: * `gcs` * `bigquery` * `gcp_fhir` * `google_mail` * `google_drive` * `google_calendar` * `google_chat` Supported third-party connectors include: Generally available (GA) connectors: * `onedrive` * `outlook` * `confluence` * `jira` * `servicenow` * `sharepoint` Preview connectors: * `asana` * `azure_active_directory` * `box` * `canva` * `confluence_server` * `custom_connector` * `docusign` * `dropbox` * `dynamics365` * `github` * `gitlab` * `hubspot` * `jira_server` * `linear` * `native_cloud_identity` * `notion` * `okta` * `pagerduty` * `peoplesoft` * `salesforce` * `shopify` * `slack` * `snowflake` * `teams` * `trello` * `workday` * `zendesk`",
+          "description": "Required. The identifier for the data source. For the full, up-to-date list of supported connectors and their values, see [Connect a third-party data source](https://docs.cloud.google.com/gemini/enterprise/docs/connectors/connect-third-party-data-source#sources-by-launch-stage).",
           "type": "string"
         },
         "destinationConfigs": {
@@ -24289,6 +24377,10 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "metadata": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaDataConnectorConnectorMetadata",
+          "description": "Optional. User-facing metadata for the connector. Populated from the connector's generated metadata / registry `ConnectorSource`."
         },
         "name": {
           "description": "Identifier. The full resource name of the Data Connector. Format: `projects/*/locations/*/collections/*/dataConnector`.",
@@ -24425,6 +24517,33 @@
           "description": "Output only. Whether the connector is created with VPC-SC enabled.",
           "readOnly": true,
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaDataConnectorConnectorMetadata": {
+      "description": "User-facing metadata for the connector, shown on the connector detail page (title, description, short_description, author, note).",
+      "id": "GoogleCloudDiscoveryengineV1alphaDataConnectorConnectorMetadata",
+      "properties": {
+        "author": {
+          "description": "Optional. The party that authored the connector, e.g. \"Google\" or a third-party provider name. Lets end users see who authored a connector (future: third-party-authored connectors).",
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. Human-readable description of the connector, shown on the connector detail page. One connector has a single description.",
+          "type": "string"
+        },
+        "note": {
+          "description": "Optional. Free-form, multi-line note about the connector's capabilities or a custom note that can be set for the connector.",
+          "type": "string"
+        },
+        "shortDescription": {
+          "description": "Optional. Short, subtitle-length description of the connector (e.g. shown beneath the connector name in list and detail views).",
+          "type": "string"
+        },
+        "title": {
+          "description": "Optional. Display title of the connector.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -25788,7 +25907,7 @@
             ],
             "type": "string"
           },
-          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `disable-skills` * `disable-projects` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence`",
+          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`",
           "type": "object"
         },
         "industryVertical": {
@@ -29406,7 +29525,7 @@
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1alphaPurgeCompletionSuggestionsResponse": {
-      "description": "Response message for CompletionService.PurgeCompletionSuggestions method.",
+      "description": "Response message for CompletionService.PurgeCompletionSuggestions method. If the long running operation is successfully done, then this message is returned by the google.longrunning.Operations.response field.",
       "id": "GoogleCloudDiscoveryengineV1alphaPurgeCompletionSuggestionsResponse",
       "properties": {
         "errorSamples": {
@@ -31911,7 +32030,7 @@
       "id": "GoogleCloudDiscoveryengineV1alphaSearchResponse",
       "properties": {
         "appliedControls": {
-          "description": "Controls applied as part of the Control service.",
+          "description": "Optional. Controls applied as part of the Control service.",
           "items": {
             "type": "string"
           },
@@ -34128,11 +34247,11 @@
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1alphaUserInfoPreciseLocation": {
-      "description": "Precise location info with multiple representation options. Currently only latitude and longitude point is supported.",
+      "description": "Precise location info with multiple representation options.",
       "id": "GoogleCloudDiscoveryengineV1alphaUserInfoPreciseLocation",
       "properties": {
         "address": {
-          "description": "Optional. Location represented by a natural language address. Will later be geocoded and converted to either a point or a polygon.",
+          "description": "Location represented by a natural language address. Will later be geocoded and converted to either a point or a polygon.",
           "type": "string"
         },
         "point": {
@@ -34663,6 +34782,17 @@
           "readOnly": true,
           "type": "string"
         },
+        "dataSourceEndUserDisplayName": {
+          "description": "Output only. The end-user-facing display name of the data source, sourced from `ConnectorSource.end_user_display_name`. When unset, clients fall back to `data_source_display_name`.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "dataSourceVersion": {
+          "description": "Output only. The version of the connector definition backing this collection, mirroring `DataConnector.data_source_version`.",
+          "format": "double",
+          "readOnly": true,
+          "type": "number"
+        },
         "dataStoreComponents": {
           "description": "For the data store collection, list of the children data stores.",
           "items": {
@@ -34678,6 +34808,16 @@
           "description": "Output only. the identifier of the collection, used for widget service. For now it refers to collection_id, in the future we will migrate the field to encrypted collection name UUID. For synthetic placeholder entries (see message-level comment) this is a synthetic placeholder id, not a real collection_id.",
           "readOnly": true,
           "type": "string"
+        },
+        "isFirstParty": {
+          "description": "Output only. Whether this is a first-party (Google-owned) connector, as opposed to a third-party connector. Used by the frontend to group 1P vs 3P connectors. Sourced from `ConnectorSource.is_first_party` once that field is universally populated (b/534727761); until then derived from `ConnectorSource.connector_type == FIRST_PARTY`.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "metadata": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaDataConnectorConnectorMetadata",
+          "description": "Output only. User-facing connector metadata (`title`, `description`, `short_description`, `author`, `note`), retrieved from the registry `ConnectorSource.metadata` (joined by data source). Shown on the connector detail page.",
+          "readOnly": true
         },
         "name": {
           "description": "The name of the collection. It should be collection resource name. Format: `projects/{project}/locations/{location}/collections/{collection_id}`. For APIs under WidgetService, such as WidgetService.LookupWidgetConfig, the project number and location part is erased in this field. For synthetic placeholder entries (see message-level comment) this carries a synthetic placeholder collection id that does not correspond to a real collection. Callers must not attempt to resolve / GET this resource until the user authorizes the connector.",
@@ -35081,7 +35221,7 @@
             ],
             "type": "string"
           },
-          "description": "Output only. Feature config for the engine to opt in or opt out of features. Supported keys: * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `disable-skills` * `disable-projects` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence`",
+          "description": "Output only. Feature config for the engine to opt in or opt out of features. Supported keys: * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`",
           "readOnly": true,
           "type": "object"
         },
@@ -35155,6 +35295,10 @@
         "searchAddonSpec": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaWidgetConfigUiSettingsSearchAddonSpec",
           "description": "Optional. SearchAddonSpec is used to disable add-ons for search. This field is only supported for search requests."
+        },
+        "sourceAdminDisplayNameEnabled": {
+          "description": "Optional. Whether to show the admin-configured display name for data connectors in the widget sources UI (instead of the connector kind). Opt-in; defaults to false.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -35268,6 +35412,11 @@
           "description": "Output only. Whether the model is currently in preview. Clients should surface this via a \"Preview\" badge in the selector UI.",
           "readOnly": true,
           "type": "boolean"
+        },
+        "label": {
+          "description": "Output only. Short label shown in the compact selector bar chip (e.g. `3.x Flash`) as opposed to the full `display_name` (`Gemini 3.x Flash`). Falls back to `display_name` when the backend registry does not specify a distinct short label.",
+          "readOnly": true,
+          "type": "string"
         },
         "modelId": {
           "description": "Output only. Unique identifier of the model (e.g. `gemini-2.5-flash`, `gemini-3.1-pro-preview`). This is the same identifier that clients pass back to the assistant service to select this model. Virtual / \"pseudo\" models (e.g. `gemini-fast`) are also valid values here; they are resolved to the underlying concrete model on the backend.",
@@ -36738,7 +36887,7 @@
             ],
             "type": "string"
           },
-          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `disable-skills` * `disable-projects` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence`",
+          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` * `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` * `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `skills` * `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`",
           "type": "object"
         },
         "industryVertical": {
@@ -39667,11 +39816,11 @@
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1betaUserInfoPreciseLocation": {
-      "description": "Precise location info with multiple representation options. Currently only latitude and longitude point is supported.",
+      "description": "Precise location info with multiple representation options.",
       "id": "GoogleCloudDiscoveryengineV1betaUserInfoPreciseLocation",
       "properties": {
         "address": {
-          "description": "Optional. Location represented by a natural language address. Will later be geocoded and converted to either a point or a polygon.",
+          "description": "Location represented by a natural language address. Will later be geocoded and converted to either a point or a polygon.",
           "type": "string"
         },
         "point": {
