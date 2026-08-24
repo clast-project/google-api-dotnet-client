@@ -2819,6 +2819,107 @@ namespace Google.Apis.Compute.alpha
                 });
             }
         }
+
+        /// <summary>Set a custom ptr domain name on regional address.</summary>
+        /// <param name="body">The body of the request.</param>
+        /// <param name="project">Source project ID where the address belongs.</param>
+        /// <param name="region">Name of the region for this request.</param>
+        /// <param name="address">Name of the address resource to update.</param>
+        public virtual UpdatePublicPtrRequest UpdatePublicPtr(Google.Apis.Compute.alpha.Data.RegionAddressesUpdatePublicPtrRequest body, string project, string region, string address)
+        {
+            return new UpdatePublicPtrRequest(this.service, body, project, region, address);
+        }
+
+        /// <summary>Set a custom ptr domain name on regional address.</summary>
+        public class UpdatePublicPtrRequest : ComputeBaseServiceRequest<Google.Apis.Compute.alpha.Data.Operation>
+        {
+            /// <summary>Constructs a new UpdatePublicPtr request.</summary>
+            public UpdatePublicPtrRequest(Google.Apis.Services.IClientService service, Google.Apis.Compute.alpha.Data.RegionAddressesUpdatePublicPtrRequest body, string project, string region, string address) : base(service)
+            {
+                Project = project;
+                Region = region;
+                Address = address;
+                Body = body;
+                InitParameters();
+            }
+
+            /// <summary>Source project ID where the address belongs.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("project", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string Project { get; private set; }
+
+            /// <summary>Name of the region for this request.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("region", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string Region { get; private set; }
+
+            /// <summary>Name of the address resource to update.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("address", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string Address { get; private set; }
+
+            /// <summary>
+            /// An optional request ID to identify requests. Specify a unique request ID so that if you must retry your
+            /// request, the server will know to ignore the request if it has already been completed.  For example,
+            /// consider a situation where you make an initial request and the request times out. If you make the
+            /// request again with the same request ID, the server can check if original operation with the same request
+            /// ID was received, and if so, will ignore the second request. This prevents clients from accidentally
+            /// creating duplicate commitments.  The request ID must be a valid UUID with the exception that zero UUID
+            /// is not supported (00000000-0000-0000-0000-000000000000).
+            /// </summary>
+            [Google.Apis.Util.RequestParameterAttribute("requestId", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual string RequestId { get; set; }
+
+            /// <summary>Gets or sets the body of this request.</summary>
+            Google.Apis.Compute.alpha.Data.RegionAddressesUpdatePublicPtrRequest Body { get; set; }
+
+            /// <summary>Returns the body of the request.</summary>
+            protected override object GetBody() => Body;
+
+            /// <summary>Gets the method name.</summary>
+            public override string MethodName => "updatePublicPtr";
+
+            /// <summary>Gets the HTTP method.</summary>
+            public override string HttpMethod => "POST";
+
+            /// <summary>Gets the REST path.</summary>
+            public override string RestPath => "projects/{project}/regions/{region}/addresses/{address}:updatePublicPtr";
+
+            /// <summary>Initializes UpdatePublicPtr parameter list.</summary>
+            protected override void InitParameters()
+            {
+                base.InitParameters();
+                RequestParameters.Add("project", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "project",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = @"(?:(?:[-a-z0-9]{1,63}\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+                });
+                RequestParameters.Add("region", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "region",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = @"[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+                });
+                RequestParameters.Add("address", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "address",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = @"[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+                });
+                RequestParameters.Add("requestId", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "requestId",
+                    IsRequired = false,
+                    ParameterType = "query",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+            }
+        }
     }
 
     /// <summary>The "advice" collection of methods.</summary>
@@ -2888,6 +2989,81 @@ namespace Google.Apis.Compute.alpha
             public override string RestPath => "projects/{project}/regions/{region}/advice/calendarMode";
 
             /// <summary>Initializes CalendarMode parameter list.</summary>
+            protected override void InitParameters()
+            {
+                base.InitParameters();
+                RequestParameters.Add("project", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "project",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = @"(?:(?:[-a-z0-9]{1,63}\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+                });
+                RequestParameters.Add("region", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "region",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = @"[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+                });
+            }
+        }
+
+        /// <summary>
+        /// Advise on whether extending an existing Future Reservation is possible based on the desired extension end
+        /// time. If capacity is not available for the entire requested duration, the method will recommend the longest
+        /// possible extension.
+        /// </summary>
+        /// <param name="body">The body of the request.</param>
+        /// <param name="project">Project ID for this request.</param>
+        /// <param name="region">Name of the region for this request.</param>
+        public virtual CalendarModeExtensionRequest CalendarModeExtension(Google.Apis.Compute.alpha.Data.CalendarModeExtensionAdviceRequest body, string project, string region)
+        {
+            return new CalendarModeExtensionRequest(this.service, body, project, region);
+        }
+
+        /// <summary>
+        /// Advise on whether extending an existing Future Reservation is possible based on the desired extension end
+        /// time. If capacity is not available for the entire requested duration, the method will recommend the longest
+        /// possible extension.
+        /// </summary>
+        public class CalendarModeExtensionRequest : ComputeBaseServiceRequest<Google.Apis.Compute.alpha.Data.CalendarModeExtensionAdviceResponse>
+        {
+            /// <summary>Constructs a new CalendarModeExtension request.</summary>
+            public CalendarModeExtensionRequest(Google.Apis.Services.IClientService service, Google.Apis.Compute.alpha.Data.CalendarModeExtensionAdviceRequest body, string project, string region) : base(service)
+            {
+                Project = project;
+                Region = region;
+                Body = body;
+                InitParameters();
+            }
+
+            /// <summary>Project ID for this request.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("project", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string Project { get; private set; }
+
+            /// <summary>Name of the region for this request.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("region", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string Region { get; private set; }
+
+            /// <summary>Gets or sets the body of this request.</summary>
+            Google.Apis.Compute.alpha.Data.CalendarModeExtensionAdviceRequest Body { get; set; }
+
+            /// <summary>Returns the body of the request.</summary>
+            protected override object GetBody() => Body;
+
+            /// <summary>Gets the method name.</summary>
+            public override string MethodName => "calendarModeExtension";
+
+            /// <summary>Gets the HTTP method.</summary>
+            public override string HttpMethod => "POST";
+
+            /// <summary>Gets the REST path.</summary>
+            public override string RestPath => "projects/{project}/regions/{region}/advice/calendarModeExtension";
+
+            /// <summary>Initializes CalendarModeExtension parameter list.</summary>
             protected override void InitParameters()
             {
                 base.InitParameters();
@@ -64246,7 +64422,13 @@ namespace Google.Apis.Compute.alpha
             this.service = service;
         }
 
-        /// <summary>Returns the specified global ProjectViews resource, with a regional context.</summary>
+        /// <summary>
+        /// Returns the specified global ProjectViews resource, with a regional context. This regional API endpoint
+        /// reads resource metadata from regional read-only replicas. Because changes are copied to these regional
+        /// replicas asynchronously, for real-time resource reads or any write operations (creating, updating, or
+        /// deleting resources), use the global
+        /// [projects.get](https://cloud.google.com/compute/docs/reference/rest/v1/projects/get) endpoint.
+        /// </summary>
         /// <param name="project">Required. Project ID for this request. This is part of the URL path.</param>
         /// <param name="region">Required. Name of the region for this request. This is part of the URL path.</param>
         public virtual GetRequest Get(string project, string region)
@@ -64254,7 +64436,13 @@ namespace Google.Apis.Compute.alpha
             return new GetRequest(this.service, project, region);
         }
 
-        /// <summary>Returns the specified global ProjectViews resource, with a regional context.</summary>
+        /// <summary>
+        /// Returns the specified global ProjectViews resource, with a regional context. This regional API endpoint
+        /// reads resource metadata from regional read-only replicas. Because changes are copied to these regional
+        /// replicas asynchronously, for real-time resource reads or any write operations (creating, updating, or
+        /// deleting resources), use the global
+        /// [projects.get](https://cloud.google.com/compute/docs/reference/rest/v1/projects/get) endpoint.
+        /// </summary>
         public class GetRequest : ComputeBaseServiceRequest<Google.Apis.Compute.alpha.Data.ProjectView>
         {
             /// <summary>Constructs a new Get request.</summary>
@@ -95457,6 +95645,95 @@ namespace Google.Apis.Compute.alpha
         }
 
         /// <summary>
+        /// Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+        /// </summary>
+        /// <param name="project">Project ID for this request.</param>
+        /// <param name="region">The name of the region for this request.</param>
+        /// <param name="resource">Name or id of the resource for this request.</param>
+        public virtual GetIamPolicyRequest GetIamPolicy(string project, string region, string resource)
+        {
+            return new GetIamPolicyRequest(this.service, project, region, resource);
+        }
+
+        /// <summary>
+        /// Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+        /// </summary>
+        public class GetIamPolicyRequest : ComputeBaseServiceRequest<Google.Apis.Compute.alpha.Data.Policy>
+        {
+            /// <summary>Constructs a new GetIamPolicy request.</summary>
+            public GetIamPolicyRequest(Google.Apis.Services.IClientService service, string project, string region, string resource) : base(service)
+            {
+                Project = project;
+                Region = region;
+                Resource = resource;
+                InitParameters();
+            }
+
+            /// <summary>Project ID for this request.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("project", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string Project { get; private set; }
+
+            /// <summary>The name of the region for this request.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("region", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string Region { get; private set; }
+
+            /// <summary>Name or id of the resource for this request.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("resource", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string Resource { get; private set; }
+
+            /// <summary>Requested IAM Policy version.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("optionsRequestedPolicyVersion", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual System.Nullable<int> OptionsRequestedPolicyVersion { get; set; }
+
+            /// <summary>Gets the method name.</summary>
+            public override string MethodName => "getIamPolicy";
+
+            /// <summary>Gets the HTTP method.</summary>
+            public override string HttpMethod => "GET";
+
+            /// <summary>Gets the REST path.</summary>
+            public override string RestPath => "projects/{project}/regions/{region}/sslPolicies/{resource}/getIamPolicy";
+
+            /// <summary>Initializes GetIamPolicy parameter list.</summary>
+            protected override void InitParameters()
+            {
+                base.InitParameters();
+                RequestParameters.Add("project", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "project",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = @"(?:(?:[-a-z0-9]{1,63}\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+                });
+                RequestParameters.Add("region", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "region",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = @"[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+                });
+                RequestParameters.Add("resource", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "resource",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = @"[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+                });
+                RequestParameters.Add("optionsRequestedPolicyVersion", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "optionsRequestedPolicyVersion",
+                    IsRequired = false,
+                    ParameterType = "query",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+            }
+        }
+
+        /// <summary>
         /// Creates a new policy in the specified project and region using the data included in the request.
         /// </summary>
         /// <param name="body">The body of the request.</param>
@@ -95996,6 +96273,87 @@ namespace Google.Apis.Compute.alpha
                     ParameterType = "query",
                     DefaultValue = null,
                     Pattern = null,
+                });
+            }
+        }
+
+        /// <summary>Sets the access control policy on the specified resource. Replaces any existing policy.</summary>
+        /// <param name="body">The body of the request.</param>
+        /// <param name="project">Project ID for this request.</param>
+        /// <param name="region">The name of the region for this request.</param>
+        /// <param name="resource">Name or id of the resource for this request.</param>
+        public virtual SetIamPolicyRequest SetIamPolicy(Google.Apis.Compute.alpha.Data.RegionSetPolicyRequest body, string project, string region, string resource)
+        {
+            return new SetIamPolicyRequest(this.service, body, project, region, resource);
+        }
+
+        /// <summary>Sets the access control policy on the specified resource. Replaces any existing policy.</summary>
+        public class SetIamPolicyRequest : ComputeBaseServiceRequest<Google.Apis.Compute.alpha.Data.Policy>
+        {
+            /// <summary>Constructs a new SetIamPolicy request.</summary>
+            public SetIamPolicyRequest(Google.Apis.Services.IClientService service, Google.Apis.Compute.alpha.Data.RegionSetPolicyRequest body, string project, string region, string resource) : base(service)
+            {
+                Project = project;
+                Region = region;
+                Resource = resource;
+                Body = body;
+                InitParameters();
+            }
+
+            /// <summary>Project ID for this request.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("project", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string Project { get; private set; }
+
+            /// <summary>The name of the region for this request.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("region", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string Region { get; private set; }
+
+            /// <summary>Name or id of the resource for this request.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("resource", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string Resource { get; private set; }
+
+            /// <summary>Gets or sets the body of this request.</summary>
+            Google.Apis.Compute.alpha.Data.RegionSetPolicyRequest Body { get; set; }
+
+            /// <summary>Returns the body of the request.</summary>
+            protected override object GetBody() => Body;
+
+            /// <summary>Gets the method name.</summary>
+            public override string MethodName => "setIamPolicy";
+
+            /// <summary>Gets the HTTP method.</summary>
+            public override string HttpMethod => "POST";
+
+            /// <summary>Gets the REST path.</summary>
+            public override string RestPath => "projects/{project}/regions/{region}/sslPolicies/{resource}/setIamPolicy";
+
+            /// <summary>Initializes SetIamPolicy parameter list.</summary>
+            protected override void InitParameters()
+            {
+                base.InitParameters();
+                RequestParameters.Add("project", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "project",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = @"(?:(?:[-a-z0-9]{1,63}\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+                });
+                RequestParameters.Add("region", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "region",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = @"[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
+                });
+                RequestParameters.Add("resource", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "resource",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = @"[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
                 });
             }
         }
@@ -100139,7 +100497,10 @@ namespace Google.Apis.Compute.alpha
         /// <summary>Lists the instances consuming capacity from a specific reservation.</summary>
         /// <param name="project">Required. Project ID for this request.</param>
         /// <param name="zone">Required. Zone name for this request.</param>
-        /// <param name="reservation">Required. The name of the reservation to list consumed instances for.</param>
+        /// <param name="reservation">
+        /// Required. The name of the reservation to list consumed instances for. In the format of
+        /// reservations/{reservation_name}
+        /// </param>
         public virtual ListRequest List(string project, string zone, string reservation)
         {
             return new ListRequest(this.service, project, zone, reservation);
@@ -100165,7 +100526,10 @@ namespace Google.Apis.Compute.alpha
             [Google.Apis.Util.RequestParameterAttribute("zone", Google.Apis.Util.RequestParameterType.Path)]
             public virtual string Zone { get; private set; }
 
-            /// <summary>Required. The name of the reservation to list consumed instances for.</summary>
+            /// <summary>
+            /// Required. The name of the reservation to list consumed instances for. In the format of
+            /// reservations/{reservation_name}
+            /// </summary>
             [Google.Apis.Util.RequestParameterAttribute("reservation", Google.Apis.Util.RequestParameterType.Path)]
             public virtual string Reservation { get; private set; }
 
@@ -100277,7 +100641,7 @@ namespace Google.Apis.Compute.alpha
                     IsRequired = true,
                     ParameterType = "path",
                     DefaultValue = null,
-                    Pattern = @"^reservations/[^/]+$",
+                    Pattern = @"reservations/[^/]+",
                 });
                 RequestParameters.Add("filter", new Google.Apis.Discovery.Parameter
                 {
@@ -100426,6 +100790,113 @@ namespace Google.Apis.Compute.alpha
                     Name = "reservationSlot",
                     IsRequired = true,
                     ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+            }
+        }
+
+        /// <summary>Get health info on a reservation slot.</summary>
+        /// <param name="project">Project ID for this request.</param>
+        /// <param name="zone">Name of the zone for this request. Zone name should conform to RFC1035.</param>
+        /// <param name="parentName">
+        /// The name of the parent reservation, parent block and parent sub-block. In the format of
+        /// reservations/{reservation_name}/reservationBlocks/{reservation_block_name}/reservationSubBlocks/{reservation_sub_block_name}
+        /// </param>
+        /// <param name="reservationSlot">
+        /// The name of the reservation slot. Name should conform to RFC1035 or be a resource ID.
+        /// </param>
+        public virtual GetHealthRequest GetHealth(string project, string zone, string parentName, string reservationSlot)
+        {
+            return new GetHealthRequest(this.service, project, zone, parentName, reservationSlot);
+        }
+
+        /// <summary>Get health info on a reservation slot.</summary>
+        public class GetHealthRequest : ComputeBaseServiceRequest<Google.Apis.Compute.alpha.Data.Operation>
+        {
+            /// <summary>Constructs a new GetHealth request.</summary>
+            public GetHealthRequest(Google.Apis.Services.IClientService service, string project, string zone, string parentName, string reservationSlot) : base(service)
+            {
+                Project = project;
+                Zone = zone;
+                ParentName = parentName;
+                ReservationSlot = reservationSlot;
+                InitParameters();
+            }
+
+            /// <summary>Project ID for this request.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("project", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string Project { get; private set; }
+
+            /// <summary>Name of the zone for this request. Zone name should conform to RFC1035.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("zone", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string Zone { get; private set; }
+
+            /// <summary>
+            /// The name of the parent reservation, parent block and parent sub-block. In the format of
+            /// reservations/{reservation_name}/reservationBlocks/{reservation_block_name}/reservationSubBlocks/{reservation_sub_block_name}
+            /// </summary>
+            [Google.Apis.Util.RequestParameterAttribute("parentName", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string ParentName { get; private set; }
+
+            /// <summary>The name of the reservation slot. Name should conform to RFC1035 or be a resource ID.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("reservationSlot", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string ReservationSlot { get; private set; }
+
+            /// <summary>An optional request ID to identify requests.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("requestId", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual string RequestId { get; set; }
+
+            /// <summary>Gets the method name.</summary>
+            public override string MethodName => "getHealth";
+
+            /// <summary>Gets the HTTP method.</summary>
+            public override string HttpMethod => "POST";
+
+            /// <summary>Gets the REST path.</summary>
+            public override string RestPath => "projects/{project}/zones/{zone}/{+parentName}/reservationSlots/{reservationSlot}/getHealth";
+
+            /// <summary>Initializes GetHealth parameter list.</summary>
+            protected override void InitParameters()
+            {
+                base.InitParameters();
+                RequestParameters.Add("project", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "project",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+                RequestParameters.Add("zone", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "zone",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+                RequestParameters.Add("parentName", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "parentName",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = @"reservations/([a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19})/reservationBlocks/([a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19})/reservationSubBlocks/([a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19})",
+                });
+                RequestParameters.Add("reservationSlot", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "reservationSlot",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+                RequestParameters.Add("requestId", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "requestId",
+                    IsRequired = false,
+                    ParameterType = "query",
                     DefaultValue = null,
                     Pattern = null,
                 });
@@ -105238,6 +105709,14 @@ namespace Google.Apis.Compute.alpha
             public virtual string Router { get; private set; }
 
             /// <summary>
+            /// ETag for optimistic concurrency control as described by AIP 154. Used to prevent conflicting updates. If
+            /// provided, the request will succeed only if the etag matches the current etag of the router; otherwise,
+            /// the request fails with an ABORTED error.
+            /// </summary>
+            [Google.Apis.Util.RequestParameterAttribute("etag", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual string Etag { get; set; }
+
+            /// <summary>
             /// An optional request ID to identify requests. Specify a unique request ID so that if you must retry your
             /// request, the server will know to ignore the request if it has already been completed.  For example,
             /// consider a situation where you make an initial request and the request times out. If you make the
@@ -105285,6 +105764,14 @@ namespace Google.Apis.Compute.alpha
                     ParameterType = "path",
                     DefaultValue = null,
                     Pattern = @"[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+                });
+                RequestParameters.Add("etag", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "etag",
+                    IsRequired = false,
+                    ParameterType = "query",
+                    DefaultValue = null,
+                    Pattern = null,
                 });
                 RequestParameters.Add("requestId", new Google.Apis.Discovery.Parameter
                 {
@@ -113560,6 +114047,81 @@ namespace Google.Apis.Compute.alpha
             }
         }
 
+        /// <summary>
+        /// Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+        /// </summary>
+        /// <param name="project">Project ID for this request.</param>
+        /// <param name="resource">Name or id of the resource for this request.</param>
+        public virtual GetIamPolicyRequest GetIamPolicy(string project, string resource)
+        {
+            return new GetIamPolicyRequest(this.service, project, resource);
+        }
+
+        /// <summary>
+        /// Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+        /// </summary>
+        public class GetIamPolicyRequest : ComputeBaseServiceRequest<Google.Apis.Compute.alpha.Data.Policy>
+        {
+            /// <summary>Constructs a new GetIamPolicy request.</summary>
+            public GetIamPolicyRequest(Google.Apis.Services.IClientService service, string project, string resource) : base(service)
+            {
+                Project = project;
+                Resource = resource;
+                InitParameters();
+            }
+
+            /// <summary>Project ID for this request.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("project", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string Project { get; private set; }
+
+            /// <summary>Name or id of the resource for this request.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("resource", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string Resource { get; private set; }
+
+            /// <summary>Requested IAM Policy version.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("optionsRequestedPolicyVersion", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual System.Nullable<int> OptionsRequestedPolicyVersion { get; set; }
+
+            /// <summary>Gets the method name.</summary>
+            public override string MethodName => "getIamPolicy";
+
+            /// <summary>Gets the HTTP method.</summary>
+            public override string HttpMethod => "GET";
+
+            /// <summary>Gets the REST path.</summary>
+            public override string RestPath => "projects/{project}/global/sslPolicies/{resource}/getIamPolicy";
+
+            /// <summary>Initializes GetIamPolicy parameter list.</summary>
+            protected override void InitParameters()
+            {
+                base.InitParameters();
+                RequestParameters.Add("project", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "project",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = @"(?:(?:[-a-z0-9]{1,63}\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+                });
+                RequestParameters.Add("resource", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "resource",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = @"[a-z](?:[-a-z0-9_]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+                });
+                RequestParameters.Add("optionsRequestedPolicyVersion", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "optionsRequestedPolicyVersion",
+                    IsRequired = false,
+                    ParameterType = "query",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+            }
+        }
+
         /// <summary>Returns the specified SSL policy resource.</summary>
         /// <param name="body">The body of the request.</param>
         /// <param name="project">Project ID for this request.</param>
@@ -114036,6 +114598,73 @@ namespace Google.Apis.Compute.alpha
                     ParameterType = "query",
                     DefaultValue = null,
                     Pattern = null,
+                });
+            }
+        }
+
+        /// <summary>Sets the access control policy on the specified resource. Replaces any existing policy.</summary>
+        /// <param name="body">The body of the request.</param>
+        /// <param name="project">Project ID for this request.</param>
+        /// <param name="resource">Name or id of the resource for this request.</param>
+        public virtual SetIamPolicyRequest SetIamPolicy(Google.Apis.Compute.alpha.Data.GlobalSetPolicyRequest body, string project, string resource)
+        {
+            return new SetIamPolicyRequest(this.service, body, project, resource);
+        }
+
+        /// <summary>Sets the access control policy on the specified resource. Replaces any existing policy.</summary>
+        public class SetIamPolicyRequest : ComputeBaseServiceRequest<Google.Apis.Compute.alpha.Data.Policy>
+        {
+            /// <summary>Constructs a new SetIamPolicy request.</summary>
+            public SetIamPolicyRequest(Google.Apis.Services.IClientService service, Google.Apis.Compute.alpha.Data.GlobalSetPolicyRequest body, string project, string resource) : base(service)
+            {
+                Project = project;
+                Resource = resource;
+                Body = body;
+                InitParameters();
+            }
+
+            /// <summary>Project ID for this request.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("project", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string Project { get; private set; }
+
+            /// <summary>Name or id of the resource for this request.</summary>
+            [Google.Apis.Util.RequestParameterAttribute("resource", Google.Apis.Util.RequestParameterType.Path)]
+            public virtual string Resource { get; private set; }
+
+            /// <summary>Gets or sets the body of this request.</summary>
+            Google.Apis.Compute.alpha.Data.GlobalSetPolicyRequest Body { get; set; }
+
+            /// <summary>Returns the body of the request.</summary>
+            protected override object GetBody() => Body;
+
+            /// <summary>Gets the method name.</summary>
+            public override string MethodName => "setIamPolicy";
+
+            /// <summary>Gets the HTTP method.</summary>
+            public override string HttpMethod => "POST";
+
+            /// <summary>Gets the REST path.</summary>
+            public override string RestPath => "projects/{project}/global/sslPolicies/{resource}/setIamPolicy";
+
+            /// <summary>Initializes SetIamPolicy parameter list.</summary>
+            protected override void InitParameters()
+            {
+                base.InitParameters();
+                RequestParameters.Add("project", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "project",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = @"(?:(?:[-a-z0-9]{1,63}\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+                });
+                RequestParameters.Add("resource", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "resource",
+                    IsRequired = true,
+                    ParameterType = "path",
+                    DefaultValue = null,
+                    Pattern = @"[a-z](?:[-a-z0-9_]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
                 });
             }
         }
@@ -131002,7 +131631,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -131013,7 +131642,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -131186,7 +131815,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -131197,7 +131826,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -131268,7 +131897,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -131279,7 +131908,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -131329,7 +131958,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -131340,7 +131969,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -131490,9 +132119,11 @@ namespace Google.Apis.Compute.alpha.Data
 
         /// <summary>
         /// Reference to the source of IP addresses.  It supports the following cases:        -       Case 1:
-        /// PublicDelegatedPrefix (PDP) for BYOIP external IPv4      addresses. The PDP must support enhanced IPv4
-        /// allocations.    -       Case 2: Internal Range for global internal addresses.    Use one of the following
-        /// formats to specify the resource:  For a Public Delegated Prefix:        -     Full resource
+        /// PublicDelegatedPrefix (PDP) for BYOIP external      addresses. If an IPv4 PDP is used, the PDP must support
+        /// enhanced IPv4      allocations. If an IPv6 PDP is used, the PDP must be in
+        /// EXTERNAL_IPV6_FORWARDING_RULE_CREATION mode.    -       Case 2: Internal Range for global internal
+        /// addresses.    Use one of the following formats to specify the resource:  For a Public Delegated Prefix:
+        ///   -     Full resource
         /// URL:https://www.googleapis.com/compute/v1/projects/projectId/regions/region/publicDelegatedPrefixes/pdp    -
         /// Partial URL:       - projects/projectId/regions/region/publicDelegatedPrefixes/pdp-name       -
         /// regions/region/publicDelegatedPrefixes/pdp-name       For an Internal Range:        - Full
@@ -131552,6 +132183,13 @@ namespace Google.Apis.Compute.alpha.Data
         public virtual string Network { get; set; }
 
         /// <summary>
+        /// Optional. The URL of the network attachment that this address comes from in the following format:
+        /// projects/{project}/regions/{region_name}/networkAttachments/{network_attachment_name}.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("networkAttachment")]
+        public virtual string NetworkAttachment { get; set; }
+
+        /// <summary>
         /// This signifies the networking tier used for configuring this address and can only take the following values:
         /// PREMIUM orSTANDARD. Internal IP addresses are always Premium Tier; global external IP addresses are always
         /// Premium Tier; regional external IP addresses can be either Standard or Premium Tier.  If this field is not
@@ -131563,6 +132201,14 @@ namespace Google.Apis.Compute.alpha.Data
         /// <summary>The prefix length if the resource represents an IP range.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("prefixLength")]
         public virtual System.Nullable<int> PrefixLength { get; set; }
+
+        /// <summary>The public DNS PTR record to be configured for this external IP.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("ptrDomainName")]
+        public virtual string PtrDomainName { get; set; }
+
+        /// <summary>The TTL in seconds for public DNS PTR record.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("ptrDomainNameTtl")]
+        public virtual System.Nullable<int> PtrDomainNameTtl { get; set; }
 
         /// <summary>
         /// The purpose of this resource, which can be one of the following values:              - GCE_ENDPOINT for
@@ -131576,7 +132222,11 @@ namespace Google.Apis.Compute.alpha.Data
         /// configuration. These addresses      are regional resources.      - `SHARED_LOADBALANCER_VIP` for an internal
         /// IP address that is assigned      to multiple internal forwarding rules.      - `PRIVATE_SERVICE_CONNECT` for
         /// a private network address that is      used to configure Private Service Connect. Only global internal
-        /// addresses      can use this purpose.
+        /// addresses      can use this purpose.      - `PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP0` for addresses
+        ///   that can only be assigned to global external Passthrough Network Load      Balancer forwarding rules, as
+        /// an Availability Group 0 address.      - `PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP1` for addresses that
+        ///    can only be assigned to global external Passthrough Network Load Balancer      forwarding rules, as an
+        /// Availability Group 1 address.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("purpose")]
         public virtual string Purpose { get; set; }
@@ -131596,6 +132246,14 @@ namespace Google.Apis.Compute.alpha.Data
         /// <summary>Output only. [Output Only] Server-defined URL for this resource with the resource id.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("selfLinkWithId")]
         public virtual string SelfLinkWithId { get; set; }
+
+        /// <summary>
+        /// Optional. Producer Service's Service class ID for the region of this address. Can only be used with
+        /// network_attachment. It is not possible to use on its own; however, network_attachment can be used without
+        /// service_class_id.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("serviceClassId")]
+        public virtual string ServiceClassId { get; set; }
 
         /// <summary>
         /// Output only. [Output Only] The status of the address, which can be one ofRESERVING, RESERVED, or IN_USE. An
@@ -131675,7 +132333,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -131686,7 +132344,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -131756,7 +132414,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -131767,7 +132425,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -131817,7 +132475,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -131828,7 +132486,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -132383,6 +133041,23 @@ namespace Google.Apis.Compute.alpha.Data
         [Newtonsoft.Json.JsonPropertyAttribute("diskSizeGb")]
         public virtual System.Nullable<long> DiskSizeGb { get; set; }
 
+        /// <summary>
+        /// Specifies the disk type used for the boot disk or an additional data disk. For valid disk type values, see
+        /// Supported types for Hyperdisk volumes and Persistent Disk type variables.  When creating a single instance,
+        /// you must provide either the full or partial URL of the disk type. For example, the following values are
+        /// valid:               - https://www.googleapis.com/compute/v1/projects/project/zones/zone/diskTypes/diskType
+        ///     - projects/project/zones/zone/diskTypes/diskType      - zones/zone/diskTypes/diskType    When creating
+        /// an instance template, instance flexibility policy, or when creating or updating an all-instances
+        /// configuration, you specify the disk type without a URL, for example, hyperdisk-balanced.  If you omit this
+        /// field for a disk, the default disk type depends on the instance's machine series, as follows.             -
+        /// For first- and second-generation machine series like N1, N2, T2, and     M1, the        default disk type is
+        /// Standard Persistent Disk        (pd-standard).     - For C3, C3D, and M3 the default is Balanced Persistent
+        /// Disk     (pd-balanced).     - For other third-generation machine     series like A3, H3, Z3, all
+        /// fourth-generation types like C4, N4, M4, and newer machine series,         the default is Hyperdisk Balanced
+        ///         (hyperdisk-balanced).    The disk type you specify must be compatible with the instance's machine
+        /// series. For a list of machine series that support Persistent Disk, see Machine series support for Persistent
+        /// Disk.  For a list of machine series that support Hyperdisk, seeMachine series support for Hyperdisk.
+        /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("diskType")]
         public virtual string DiskType { get; set; }
 
@@ -132828,7 +133503,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -132839,7 +133514,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -132909,7 +133584,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -132920,7 +133595,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -133010,7 +133685,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -133021,7 +133696,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -133338,11 +134013,11 @@ namespace Google.Apis.Compute.alpha.Data
         /// <summary>
         /// Specifies how to determine whether the backend of a load balancer can handle additional traffic or is fully
         /// loaded. For usage guidelines, see Connection balancing mode.  Backends must use compatible balancing modes.
-        /// For more information, see Supported balancing modes and target capacity settings and Restrictions and
-        /// guidance for instance groups.  Note: Currently, if you use the API to configure incompatible balancing
-        /// modes, the configuration might be accepted even though it has no impact and is ignored. Specifically,
-        /// Backend.maxUtilization is ignored when Backend.balancingMode is RATE. In the future, this incompatible
-        /// combination will be rejected.
+        /// Backends of a backend service may use different balancing modes. For more information, see  Supported
+        /// balancing modes and target capacity settings and Restrictions and guidance for instance groups.  Note:
+        /// Currently, if you use the API to configure incompatible balancing modes, the configuration might be accepted
+        /// even though it has no impact and is ignored. Specifically, Backend.maxUtilization is ignored when
+        /// Backend.balancingMode is RATE. In the future, this incompatible combination will be rejected.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("balancingMode")]
         public virtual string BalancingMode { get; set; }
@@ -133371,7 +134046,8 @@ namespace Google.Apis.Compute.alpha.Data
 
         /// <summary>
         /// This field designates whether this is a failover backend. More than one failover backend can be configured
-        /// for a given BackendService.
+        /// for a given BackendService.  This field can only be used for a regional external Passthrough Network Load
+        /// Balancer or a regional internal Passthrough Network Load Balancer.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("failover")]
         public virtual System.Nullable<bool> Failover { get; set; }
@@ -133466,7 +134142,9 @@ namespace Google.Apis.Compute.alpha.Data
         /// default preference. The possible values are:        - PREFERRED: Backends with this preference level will be
         ///    filled up to their capacity limits first, based on RTT.    - DEFAULT:  If preferred backends don't have
         /// enough    capacity, backends in this layer would be used and traffic would be    assigned based on the load
-        /// balancing algorithm you use. This is the    default
+        /// balancing algorithm you use. This is the    default    For global external Passthrough Network Load
+        /// Balancers, the following restrictions apply:        - At most one backend can be marked as PREFERRED.    -
+        /// PREFERRED and DEFAULT backends cannot reside    in the same Cloud region.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("preference")]
         public virtual string Preference { get; set; }
@@ -133645,7 +134323,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -133656,7 +134334,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -133692,12 +134370,12 @@ namespace Google.Apis.Compute.alpha.Data
         public virtual BackendBucketCdnPolicyCacheKeyPolicy CacheKeyPolicy { get; set; }
 
         /// <summary>
-        /// Specifies the cache setting for all responses from this backend. The possible values are:USE_ORIGIN_HEADERS
+        /// Specifies the cache setting for all responses from this backend. The possible values are: USE_ORIGIN_HEADERS
         /// Requires the origin to set valid caching headers to cache content. Responses without these headers will not
         /// be cached at Google's edge, and will require a full trip to the origin on every request, potentially
-        /// impacting performance and increasing load on the origin server.FORCE_CACHE_ALL Cache all content, ignoring
+        /// impacting performance and increasing load on the origin server. FORCE_CACHE_ALL Cache all content, ignoring
         /// any "private", "no-store" or "no-cache" directives in Cache-Control response headers. Warning: this may
-        /// result in Cloud CDN caching private, per-user (user identifiable) content.CACHE_ALL_STATIC Automatically
+        /// result in Cloud CDN caching private, per-user (user identifiable) content. CACHE_ALL_STATIC Automatically
         /// cache static content, including common image formats, media (video and audio), and web assets (JavaScript
         /// and CSS). Requests and responses that are marked as uncacheable, as well as dynamic content (including
         /// HTML), will not be cached.  If no value is provided for cdnPolicy.cacheMode, it defaults to
@@ -133901,7 +134579,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -133912,7 +134590,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -133982,7 +134660,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -133993,7 +134671,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -134067,7 +134745,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -134078,7 +134756,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -134279,8 +134957,9 @@ namespace Google.Apis.Compute.alpha.Data
         /// balancers that have configurable failover: [Internal passthrough Network Load
         /// Balancers](https://cloud.google.com/load-balancing/docs/internal/failover-overview) and [external
         /// passthrough Network Load
-        /// Balancers](https://cloud.google.com/load-balancing/docs/network/networklb-failover-overview).
-        /// failoverPolicy cannot be specified with haPolicy.
+        /// Balancers](https://cloud.google.com/load-balancing/docs/network/networklb-failover-overview). failoverPolicy
+        /// cannot be specified with haPolicy.failoverPolicy cannot be used by global external Passthrough Network Load
+        /// Balancers.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("failoverPolicy")]
         public virtual BackendServiceFailoverPolicy FailoverPolicy { get; set; }
@@ -134305,8 +134984,9 @@ namespace Google.Apis.Compute.alpha.Data
         /// time. Once set up, it cannot be deleted.  Note that haPolicy is not for load balancing, and therefore cannot
         /// be specified with sessionAffinity, connectionTrackingPolicy, and failoverPolicy.  haPolicy requires
         /// customers to be responsible for tracking backend endpoint health and electing a leader among the healthy
-        /// endpoints. Therefore, haPolicy cannot be specified with healthChecks.  haPolicy can only be specified for
-        /// External Passthrough Network Load Balancers and Internal Passthrough Network Load Balancers.
+        /// endpoints. Therefore, haPolicy cannot be specified with healthChecks. haPolicy can only be specified for
+        /// External Passthrough Network Load Balancers and Internal Passthrough Network Load Balancers.haPolicy cannot
+        /// be used by global external Passthrough Network Load Balancers.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("haPolicy")]
         public virtual BackendServiceHAPolicy HaPolicy { get; set; }
@@ -134361,7 +135041,7 @@ namespace Google.Apis.Compute.alpha.Data
 
         /// <summary>
         /// Specifies the load balancer type. A backend service created for one type of load balancer cannot be used
-        /// with another. For more information, refer toChoosing a load balancer.
+        /// with another. For more information, refer to Backend services product and scheme table.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("loadBalancingScheme")]
         public virtual string LoadBalancingScheme { get; set; }
@@ -134392,16 +135072,21 @@ namespace Google.Apis.Compute.alpha.Data
         /// Reliable Software Network Load Balancer.    - WEIGHTED_ROUND_ROBIN: Per-endpoint Weighted Round Robin
         /// Load Balancing using weights computed from Backend reported Custom Metrics.    If set, the Backend Service
         /// responses are expected to contain non-standard    HTTP response header field Endpoint-Load-Metrics. The
-        /// reported    metrics to use for computing the weights are specified via thecustomMetrics field.        This
-        /// field is applicable to either:       - A regional backend service with the service protocol set to HTTP,
-        ///   HTTPS, HTTP2 or H2C, and load_balancing_scheme set to       INTERNAL_MANAGED.        - A global backend
-        /// service with the       load_balancing_scheme set to INTERNAL_SELF_MANAGED, INTERNAL_MANAGED, or
-        /// EXTERNAL_MANAGED.            If sessionAffinity is not configured—that is, if session    affinity remains at
-        /// the default value of NONE—then the    default value for localityLbPolicy    is ROUND_ROBIN. If session
-        /// affinity is set to a value other    than NONE,    then the default value for localityLbPolicy isMAGLEV.
-        ///   Only ROUND_ROBIN and RING_HASH are supported    when the backend service is referenced by a URL map that
-        /// is bound to    target gRPC proxy that has validateForProxyless field set to true.        localityLbPolicy
-        /// cannot be specified with haPolicy.
+        /// reported    metrics to use for computing the weights are specified via thecustomMetrics field.    -
+        /// WEIGHTED_MAGLEV: Per-endpoint weighted load balancing via    health check reported weights. If set, the
+        /// backend service must configure    an HTTP-based Health Check, and health check replies are expected to
+        /// contain the non-standard HTTP response header fieldX-Load-Balancing-Endpoint-Weight to specify the
+        /// per-endpoint    weights. If set, load balancing is weighted based on the per-endpoint    weights reported in
+        /// the last processed health check replies, as long as    every instance either reported a valid weight or had
+        /// UNAVAILABLE_WEIGHT.    Otherwise, load balancing remains equal-weight.    This field is applicable to
+        /// either:        - A regional backend service with the service protocol set to HTTP,    HTTPS, HTTP2 or H2C,
+        /// and load_balancing_scheme set to    INTERNAL_MANAGED.     - A global backend service with the
+        /// load_balancing_scheme set to INTERNAL_SELF_MANAGED, INTERNAL_MANAGED, or    EXTERNAL_MANAGED.    If
+        /// sessionAffinity is not configured—that is, if session affinity remains at the default value of NONE—then the
+        /// default value for localityLbPolicy is ROUND_ROBIN. If session affinity is set to a value other than NONE,
+        /// then the default value for localityLbPolicy isMAGLEV.  Only ROUND_ROBIN and RING_HASH are supported when the
+        /// backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless
+        /// field set to true.  localityLbPolicy cannot be specified with haPolicy.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("localityLbPolicy")]
         public virtual string LocalityLbPolicy { get; set; }
@@ -134510,9 +135195,9 @@ namespace Google.Apis.Compute.alpha.Data
 
         /// <summary>
         /// The protocol this BackendService uses to communicate with backends.  Possible values are HTTP, HTTPS, HTTP2,
-        /// H2C, TCP, SSL, UDP or GRPC. depending on the chosen load balancer or Traffic Director configuration. Refer
-        /// to the documentation for the load balancers or for Traffic Director for more information.  Must be set to
-        /// GRPC when the backend service is referenced by a URL map that is bound to target gRPC proxy.
+        /// H2C, TCP, SSL, UDP, GRPC, or UNSPECIFIED, depending on the chosen load balancer or Traffic Director
+        /// configuration. Refer to  Load balancing features for more information.  Must be set to GRPC when the backend
+        /// service is referenced by a URL map that is bound to target gRPC proxy.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("protocol")]
         public virtual string Protocol { get; set; }
@@ -134555,7 +135240,10 @@ namespace Google.Apis.Compute.alpha.Data
 
         /// <summary>
         /// URL to networkservices.ServiceLbPolicy resource.  Can only be set if load balancing scheme is
-        /// EXTERNAL_MANAGED, INTERNAL_MANAGED or INTERNAL_SELF_MANAGED and the scope is global.
+        /// EXTERNAL_MANAGED, INTERNAL_MANAGED or INTERNAL_SELF_MANAGED for a global backend service, and
+        /// EXTERNAL_MANAGED or INTERNAL_MANAGED for a regional backend service. For a global backend service, the
+        /// service lb policy must be global. For a regional backend service, the service lb policy must be regional and
+        /// in the same region.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("serviceLbPolicy")]
         public virtual string ServiceLbPolicy { get; set; }
@@ -134658,7 +135346,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -134669,7 +135357,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -134705,12 +135393,12 @@ namespace Google.Apis.Compute.alpha.Data
         public virtual CacheKeyPolicy CacheKeyPolicy { get; set; }
 
         /// <summary>
-        /// Specifies the cache setting for all responses from this backend. The possible values are:USE_ORIGIN_HEADERS
+        /// Specifies the cache setting for all responses from this backend. The possible values are: USE_ORIGIN_HEADERS
         /// Requires the origin to set valid caching headers to cache content. Responses without these headers will not
         /// be cached at Google's edge, and will require a full trip to the origin on every request, potentially
-        /// impacting performance and increasing load on the origin server.FORCE_CACHE_ALL Cache all content, ignoring
+        /// impacting performance and increasing load on the origin server. FORCE_CACHE_ALL Cache all content, ignoring
         /// any "private", "no-store" or "no-cache" directives in Cache-Control response headers. Warning: this may
-        /// result in Cloud CDN caching private, per-user (user identifiable) content.CACHE_ALL_STATIC Automatically
+        /// result in Cloud CDN caching private, per-user (user identifiable) content. CACHE_ALL_STATIC Automatically
         /// cache static content, including common image formats, media (video and audio), and web assets (JavaScript
         /// and CSS). Requests and responses that are marked as uncacheable, as well as dynamic content (including
         /// HTML), will not be cached.  If no value is provided for cdnPolicy.cacheMode, it defaults to
@@ -135252,7 +135940,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -135263,7 +135951,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -135334,7 +136022,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -135345,7 +136033,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -135687,7 +136375,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -135698,7 +136386,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -136572,6 +137260,144 @@ namespace Google.Apis.Compute.alpha.Data
     }
 
     /// <summary>
+    /// A request to recommend the best duration for extending an existing Future Reservation in CALENDAR mode, that is
+    /// equal or less than the specified extension duration.
+    /// </summary>
+    public class CalendarModeExtensionAdviceRequest : Google.Apis.Requests.IDirectResponseSchema
+    {
+        private string _endTimeNotLaterThanRaw;
+
+        private object _endTimeNotLaterThan;
+
+        /// <summary>Required. The desired end time after the Future Reservation is extended.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("endTimeNotLaterThan")]
+        public virtual string EndTimeNotLaterThanRaw
+        {
+            get => _endTimeNotLaterThanRaw;
+            set
+            {
+                _endTimeNotLaterThan = Google.Apis.Util.Utilities.DeserializeForGoogleFormat(value);
+                _endTimeNotLaterThanRaw = value;
+            }
+        }
+
+        /// <summary><seealso cref="object"/> representation of <see cref="EndTimeNotLaterThanRaw"/>.</summary>
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use EndTimeNotLaterThanDateTimeOffset instead.")]
+        public virtual object EndTimeNotLaterThan
+        {
+            get => _endTimeNotLaterThan;
+            set
+            {
+                _endTimeNotLaterThanRaw = Google.Apis.Util.Utilities.SerializeForGoogleFormat(value);
+                _endTimeNotLaterThan = value;
+            }
+        }
+
+        /// <summary>
+        /// <seealso cref="System.DateTimeOffset"/> representation of <see cref="EndTimeNotLaterThanRaw"/>.
+        /// </summary>
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        public virtual System.DateTimeOffset? EndTimeNotLaterThanDateTimeOffset
+        {
+            get => Google.Apis.Util.DiscoveryFormat.ParseGoogleDateTimeToDateTimeOffset(EndTimeNotLaterThanRaw);
+            set => EndTimeNotLaterThanRaw = Google.Apis.Util.DiscoveryFormat.FormatDateTimeOffsetToGoogleDateTime(value);
+        }
+
+        /// <summary>
+        /// Required. Reference to the Future Reservation, in the format:
+        /// projects/{project}/zones/{zone}/futureReservations/{name} Full URIs that include hostnames (like
+        /// compute.googleapis.com or www.googleapis.com) are also supported.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("futureReservation")]
+        public virtual string FutureReservation { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>
+    /// A response containing the recommended duration to extend a Future Reservation in CALENDAR mode based on the
+    /// available capacity during the extension period.
+    /// </summary>
+    public class CalendarModeExtensionAdviceResponse : Google.Apis.Requests.IDirectResponseSchema
+    {
+        private string _endTimeRaw;
+
+        private object _endTime;
+
+        /// <summary>
+        /// The recommended end time for the extension, which will either be the end time requested by the caller or the
+        /// longest alternative for which there is sufficient capacity. If extension is not possible, this field will be
+        /// empty, and not_recommended_reason will be populated instead.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("endTime")]
+        public virtual string EndTimeRaw
+        {
+            get => _endTimeRaw;
+            set
+            {
+                _endTime = Google.Apis.Util.Utilities.DeserializeForGoogleFormat(value);
+                _endTimeRaw = value;
+            }
+        }
+
+        /// <summary><seealso cref="object"/> representation of <see cref="EndTimeRaw"/>.</summary>
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use EndTimeDateTimeOffset instead.")]
+        public virtual object EndTime
+        {
+            get => _endTime;
+            set
+            {
+                _endTimeRaw = Google.Apis.Util.Utilities.SerializeForGoogleFormat(value);
+                _endTime = value;
+            }
+        }
+
+        /// <summary><seealso cref="System.DateTimeOffset"/> representation of <see cref="EndTimeRaw"/>.</summary>
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        public virtual System.DateTimeOffset? EndTimeDateTimeOffset
+        {
+            get => Google.Apis.Util.DiscoveryFormat.ParseGoogleDateTimeToDateTimeOffset(EndTimeRaw);
+            set => EndTimeRaw = Google.Apis.Util.DiscoveryFormat.FormatDateTimeOffsetToGoogleDateTime(value);
+        }
+
+        /// <summary>
+        /// Information regarding the reason why the Future Reservation cannot be extended at all. If a recommendation
+        /// is provided, whether that is the requested end time or an alternative, this field will be empty.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("notRecommendedReason")]
+        public virtual CalendarModeExtensionAdviceResponseNotRecommendedReason NotRecommendedReason { get; set; }
+
+        /// <summary>Unique id of the recommendation, a UUID string generated by the API.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("recommendationId")]
+        public virtual string RecommendationId { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Information about why no recommendation was provided.</summary>
+    public class CalendarModeExtensionAdviceResponseNotRecommendedReason : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>
+        /// Details (human readable) describing why the recommendation was not provided. For example, if the status is
+        /// CONDITION_NOT_MET, then this field will contain information about why the requested extension duration is
+        /// not eligible.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("details")]
+        public virtual string Details { get; set; }
+
+        /// <summary>Status of recommendation.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("status")]
+        public virtual string Status { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>
     /// A single recommendation to create requested resources. Contains detailed recommendations for every future
     /// resources specification specified in CalendarModeAdviceRequest.
     /// </summary>
@@ -136702,7 +137528,7 @@ namespace Google.Apis.Compute.alpha.Data
     /// <summary>Attached disk configuration.</summary>
     public class CapacityAdviceRequestInstanceFlexibilityPolicyInstanceSelectionAttachedDisk : Google.Apis.Requests.IDirectResponseSchema
     {
-        /// <summary>Specifies the type of the disk. This field must be set to SCRATCH.</summary>
+        /// <summary>Specifies the type of the disk.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("type")]
         public virtual string Type { get; set; }
 
@@ -137307,7 +138133,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -137318,7 +138144,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -137388,7 +138214,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -137399,7 +138225,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -137522,7 +138348,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -137533,7 +138359,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -137690,7 +138516,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -137701,7 +138527,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -137793,7 +138619,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -137804,7 +138630,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -137868,7 +138694,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -137879,7 +138705,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -138161,7 +138987,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -138172,7 +138998,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -138285,17 +139111,18 @@ namespace Google.Apis.Compute.alpha.Data
         public virtual string KmsKeyServiceAccount { get; set; }
 
         /// <summary>
-        /// Specifies a 256-bit customer-supplied encryption key, encoded in RFC 4648 base64 to either encrypt or
-        /// decrypt this resource. You can provide either the rawKey or thersaEncryptedKey. For example:  "rawKey":
-        /// "SGVsbG8gZnJvbSBHb29nbGUgQ2xvdWQgUGxhdGZvcm0="
+        /// [DEPRECATED] CSEK is no longer supported. Use CMEK instead. Specifies a 256-bit customer-supplied encryption
+        /// key, encoded in RFC 4648 base64 to either encrypt or decrypt this resource. You can provide either the
+        /// rawKey or thersaEncryptedKey. For example:  "rawKey": "SGVsbG8gZnJvbSBHb29nbGUgQ2xvdWQgUGxhdGZvcm0="
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("rawKey")]
         public virtual string RawKey { get; set; }
 
         /// <summary>
-        /// Specifies an RFC 4648 base64 encoded, RSA-wrapped 2048-bit customer-supplied encryption key to either
-        /// encrypt or decrypt this resource. You can provide either the rawKey or thersaEncryptedKey. For example:
-        /// "rsaEncryptedKey": "ieCx/NcW06PcT7Ep1X6LUTc/hLvUDYyzSZPPVCVPTVEohpeHASqC8uw5TzyO9U+Fka9JFH
+        /// [DEPRECATED] CSEK is no longer supported. Use CMEK instead. Specifies an RFC 4648 base64 encoded,
+        /// RSA-wrapped 2048-bit customer-supplied encryption key to either encrypt or decrypt this resource. You can
+        /// provide either the rawKey or thersaEncryptedKey. For example:  "rsaEncryptedKey":
+        /// "ieCx/NcW06PcT7Ep1X6LUTc/hLvUDYyzSZPPVCVPTVEohpeHASqC8uw5TzyO9U+Fka9JFH
         /// z0mBibXUInrC/jEk014kCK/NPjYgEMOyssZ4ZINPKxlUh2zn1bV+MCaTICrdmuSBTWlUUiFoD
         /// D6PYznLwh8ZNdaheCeZ8ewEXgFQ8V+sDroLaN3Xs3MDTXQEMMoNUXMCZEIpg9Vtp9x2oe=="  The key must meet the following
         /// requirements before you can provide it to  Compute Engine:         1. The key is wrapped using a RSA public
@@ -138307,8 +139134,8 @@ namespace Google.Apis.Compute.alpha.Data
         public virtual string RsaEncryptedKey { get; set; }
 
         /// <summary>
-        /// [Output only] TheRFC 4648 base64 encoded SHA-256 hash of the customer-supplied encryption key that protects
-        /// this resource.
+        /// [DEPRECATED] CSEK is no longer supported. Use CMEK instead. [Output only] TheRFC 4648 base64 encoded SHA-256
+        /// hash of the customer-supplied encryption key that protects this resource.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("sha256")]
         public virtual string Sha256 { get; set; }
@@ -138717,7 +139544,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -138728,7 +139555,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -139233,7 +140060,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -139244,7 +140071,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -139424,7 +140251,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -139435,7 +140262,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -139746,7 +140573,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -139757,7 +140584,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -139825,7 +140652,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -139836,7 +140663,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -139886,7 +140713,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -139897,7 +140724,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -140004,7 +140831,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -140015,7 +140842,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -140264,7 +141091,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -140275,7 +141102,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -140508,7 +141335,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -140519,7 +141346,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -140846,7 +141673,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -140857,7 +141684,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -140960,7 +141787,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -140971,7 +141798,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -141220,7 +142047,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -141231,7 +142058,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -141908,7 +142735,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -141919,7 +142746,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -141962,15 +142789,49 @@ namespace Google.Apis.Compute.alpha.Data
         /// `100.1.2.3` * IPv6 address range, as in `2600:1234::/96` * Full resource URL, as
         /// inhttps://www.googleapis.com/compute/v1/projects/project_id/regions/region/addresses/address-name * Partial
         /// URL or by name, as in:        - projects/project_id/regions/region/addresses/address-name    -
-        /// regions/region/addresses/address-name    - global/addresses/address-name    - address-name    The forwarding
-        /// rule's target or backendService, and in most cases, also the loadBalancingScheme, determine the type of IP
-        /// address that you can use. For detailed information, see [IP address
+        /// regions/region/addresses/address-name    - global/addresses/address-name    - address-name    The IP address
+        /// can only be set at creation. Once set, it cannot be updated.  The forwarding rule's target or
+        /// backendService, and in most cases, also the loadBalancingScheme, determine the type of IP address that you
+        /// can use. For detailed information, see [IP address
         /// specifications](https://cloud.google.com/load-balancing/docs/forwarding-rule-concepts#ip_address_specifications).
-        ///  When reading an IPAddress, the API always returns the IP address number.
+        ///  When reading an IPAddress, the API always returns the IP address number.  When creating a global external
+        /// Passthrough Network Load Balancer forwarding rule (a parent forwarding rule), you must use theIPAddresses
+        /// field, but the Google Cloud generated child forwarding rules set the IPAddress field instead. Refer to
+        /// theavailabilityGroup field for further details.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("IPAddress")]
         public virtual string IPAddress { get; set; }
 
+        /// <summary>
+        /// IP addresses for which this forwarding rule accepts traffic. All IP addresses must have the same IP version,
+        /// IPv4 or IPv6. When a client sends traffic that matches one of the specified IP addresses, protocol and
+        /// ports, the forwarding rule directs the traffic to the referencedbackendService. All IP addresses are served
+        /// by the same set of backends, and they share the target capacities specified in the backend service fairly.
+        /// Global external Passthrough Network Load Balancer requires two IP addresses for each forwarding rule to
+        /// provide high availability when both IP addresses are used to serve client requests. The two IP addresses
+        /// must come from global IP pools that belong to two distinct Availability Groups, represented by the
+        /// purposePASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP0 andPASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP1.
+        /// TheIPAddresses field specifies zero, one, or two IP addresses:        - If omitted, Google Cloud assigns two
+        /// ephemeral IP addresses, one from    each Availability Group.    - If you specify one IP address that
+        /// references an existing static IP    address resource from one Availability Group, Google Cloud assigns an
+        /// ephemeral IP address from the other Availability Group.    - If you specify two IP addresses that reference
+        /// existing static IP    address resources, they are required to be from different Availability    Groups.
+        /// For global external Passthrough Network Load Balancer, each IP address can be one of the following:        -
+        /// A static or ephemeral IPv4 address from a Google-owned IP pool.    - A static IPv4 address from a global
+        /// public delegated prefix.    - A static or ephemeral IPv6 /96 prefix from a Google-owned IP pool.    For
+        /// global external Passthrough Network Load Balancer, the two IP addresses can be of different types. One IP
+        /// address can be from a BYOIP prefix while the other is from a Google-owned IP pool. One IP address can be
+        /// static while the other is ephemeral. However, both IP addresses must have the same IP version, IPv4 or IPv6.
+        ///  The IP addresses can only be set at creation and cannot be updated.  When creating a global external
+        /// Passthrough Network Load Balancer forwarding rule (a parent forwarding rule), you must use theIPAddresses
+        /// field, but the Google Cloud-generated child forwarding rules set the IPAddress field instead. Refer to
+        /// theavailabilityGroup field for further details.  Refer to the IPAddress field for the formats that can be
+        /// used to specify IP addresses while creating a forwarding rule.  Because Passthrough Network Load Balancers
+        /// do not terminate or translate traffic, the backend stack types must be compatible with the forwarding rule
+        /// IP version:        - If the forwarding rule IP version is IPv4, backends should be    configured as
+        /// dual-stack or IPv4-only.    - If the forwarding rule IP version is IPv6, backends should be    configured as
+        /// dual-stack or IPv6-only.
+        /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("IPAddresses")]
         public virtual System.Collections.Generic.IList<string> IPAddresses { get; set; }
 
@@ -142018,16 +142879,29 @@ namespace Google.Apis.Compute.alpha.Data
         public virtual System.Collections.Generic.IList<ForwardingRuleAttachedExtension> AttachedExtensions { get; set; }
 
         /// <summary>
-        /// [Output Only] Specifies the availability group of the forwarding rule. This field is for use by global
-        /// external passthrough load balancers (load balancing scheme EXTERNAL_PASSTHROUGH) and is set for the child
-        /// forwarding rules only.
+        /// Output only. [Output Only] Specifies the load balancing availability group, one of the two that collectively
+        /// provide high availability.  Specifies the availability group of the forwarding rule. This field is for use
+        /// by global external passthrough load balancers (load balancing scheme EXTERNAL_PASSTHROUGH) and is set for
+        /// the child forwarding rules only. The possible values are:        - AVAILABILITY_GROUP0: Set for the child
+        /// forwarding rule    that is programmed on the AVAILABILITY_GROUP0 load balancing    stack. The child
+        /// forwarding rule has the same IP protocol, port, and    backend service settings as the parent forwarding
+        /// rule, but has only one of    the two IP addresses of the parent forwarding rule, the one with the    purpose
+        /// PASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP0.    - AVAILABILITY_GROUP1: Set for the child forwarding rule
+        ///  that is programmed on the AVAILABILITY_GROUP1 load balancing    stack. The child forwarding rule has the
+        /// same IP protocol, port and backend    service settings as the parent forwarding rule, but has only one of
+        /// the two    IP addresses of the parent forwarding rule, the one with the
+        /// purposePASSTHROUGH_LOAD_BALANCER_AVAILABILITY_GROUP1.    For each global external Passthrough Network Load
+        /// Balancer forwarding rule (a parent forwarding rule) that you create, Google Cloud generates two output-only
+        /// child forwarding rules, one forAVAILABILITY_GROUP0 and one forAVAILABILITY_GROUP1.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("availabilityGroup")]
         public virtual string AvailabilityGroup { get; set; }
 
         /// <summary>
-        /// Identifies the backend service to which the forwarding rule sends traffic. Required for internal and
-        /// external passthrough Network Load Balancers; must be omitted for all other load balancer types.
+        /// Identifies the backend service to which the forwarding rule sends traffic.  It is a required field for the
+        /// following load balancers:        - Internal passthrough Network Load Balancers    - Backend service-based
+        /// regional external passthrough Network Load    Balancers    - Global external passthrough Network Load
+        /// Balancers    It cannot be set by other load balancer types and protocol forwarding rules.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("backendService")]
         public virtual string BackendService { get; set; }
@@ -142042,10 +142916,11 @@ namespace Google.Apis.Compute.alpha.Data
         public virtual string BaseForwardingRule { get; set; }
 
         /// <summary>
-        /// Output only. [Output Only] Applicable only to the parent forwarding rule of global external passthrough load
-        /// balancers. This field contains the list of child forwarding rule URLs associated with the parent forwarding
-        /// rule: one for each availability group. AVAILABILITY_GROUP0 will be the first element, and
-        /// AVAILABILITY_GROUP1 will be the second element.
+        /// Output only. [Output Only] The resource URLs for the child forwarding rules.  Applicable only to the parent
+        /// forwarding rule of global external passthrough load balancers. This field contains the list of child
+        /// forwarding rule URLs associated with the parent forwarding rule: one for each availability group.
+        /// AVAILABILITY_GROUP0 will be the first element, and AVAILABILITY_GROUP1 will be the second element. Refer to
+        /// theavailabilityGroup field for further details. It cannot be set by any other forwarding rules.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("childForwardingRules")]
         public virtual System.Collections.Generic.IList<string> ChildForwardingRules { get; set; }
@@ -142148,8 +143023,8 @@ namespace Google.Apis.Compute.alpha.Data
         public virtual System.Collections.Generic.IDictionary<string, string> Labels { get; set; }
 
         /// <summary>
-        /// Specifies the forwarding rule type.  For more information about forwarding rules, refer to Forwarding rule
-        /// concepts.
+        /// Specifies the forwarding rule type.  For more information, refer to  Forwarding rule product and scheme
+        /// table.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("loadBalancingScheme")]
         public virtual string LoadBalancingScheme { get; set; }
@@ -142177,6 +143052,11 @@ namespace Google.Apis.Compute.alpha.Data
         /// following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be
         /// a dash.  For Private Service Connect forwarding rules that forward traffic to Google APIs, the forwarding
         /// rule name must be a 1-20 characters string with lowercase letters and numbers and must start with a letter.
+        /// For global external Passthrough Network Load Balancer forwarding rules, the forwarding rule name must be
+        /// 1-43 characters long. For each global external Passthrough Network Load Balancer forwarding rule (a parent
+        /// forwarding rule) that you create, Google Cloud generates two output-only child forwarding rules that are
+        /// named by concatenating the parent forwarding rule name with the `-ag0` and `-ag1` suffixes, respectively.
+        /// Refer to theavailabilityGroup field for further details.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("name")]
         public virtual string Name { get; set; }
@@ -142208,8 +143088,9 @@ namespace Google.Apis.Compute.alpha.Data
         public virtual System.Nullable<bool> NoAutomateDnsZone { get; set; }
 
         /// <summary>
-        /// Output only. [Output Only] Applicable only to the child forwarding rules of global external passthrough load
-        /// balancers. This field contains the URL of the parent forwarding rule.
+        /// Output only. [Output Only] The resource URL for the parent forwarding rule.  Applicable only to the child
+        /// forwarding rules of global external passthrough load balancers. This field contains the URL of the parent
+        /// forwarding rule.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("parentForwardingRule")]
         public virtual string ParentForwardingRule { get; set; }
@@ -142222,9 +143103,10 @@ namespace Google.Apis.Compute.alpha.Data
         /// Balancers, internal and external proxy Network Load Balancers,    internal and external Application Load
         /// Balancers, external protocol    forwarding, and Classic VPN.    - Some products have restrictions on what
         /// ports can be used. See     port specifications for details.    For external forwarding rules, two or more
-        /// forwarding rules cannot use the same [IPAddress, IPProtocol] pair, and cannot have overlappingportRanges.
-        /// For internal forwarding rules within the same VPC network, two or more forwarding rules cannot use the same
-        /// [IPAddress, IPProtocol] pair, and cannot have overlapping portRanges.  @pattern: \\d+(?:-\\d+)?
+        /// forwarding rules cannot use the same [IPAddress, IPProtocol] pair (specified inIPAddress, IPAddresses,
+        /// IPProtocol fields) if they have overlapping portRanges.  For internal forwarding rules within the same VPC
+        /// network, two or more forwarding rules cannot use the same [IPAddress, IPProtocol] pair, and cannot have
+        /// overlapping portRanges.  @pattern: \\d+(?:-\\d+)?
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("portRange")]
         public virtual string PortRange { get; set; }
@@ -142237,9 +143119,10 @@ namespace Google.Apis.Compute.alpha.Data
         /// backend service-based external passthrough Network    Load Balancers, and internal protocol forwarding.    -
         /// You can specify a list of up to five ports by number, separated by    commas. The ports can be contiguous or
         /// discontiguous.    For external forwarding rules, two or more forwarding rules cannot use the same
-        /// [IPAddress, IPProtocol] pair if they share at least one port number.  For internal forwarding rules within
-        /// the same VPC network, two or more forwarding rules cannot use the same [IPAddress, IPProtocol] pair if they
-        /// share at least one port number.  @pattern: \\d+(?:-\\d+)?
+        /// [IPAddress, IPProtocol] pair (specified inIPAddress, IPAddresses, IPProtocol fields) if they share at least
+        /// one port number.  For internal forwarding rules within the same VPC network, two or more forwarding rules
+        /// cannot use the same [IPAddress, IPProtocol] pair if they share at least one port number.  @pattern:
+        /// \\d+(?:-\\d+)?
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("ports")]
         public virtual System.Collections.Generic.IList<string> Ports { get; set; }
@@ -142321,7 +143204,10 @@ namespace Google.Apis.Compute.alpha.Data
         /// of a supported Google API bundle:                            -  vpc-sc -  APIs that support VPC Service
         /// Controls.              -  all-apis - All supported Google APIs.                        -  For Private
         /// Service Connect forwarding rules that forward traffic to managed services, the target must be a service
-        /// attachment. The target is not mutable once set as a service attachment.
+        /// attachment. The target is not mutable once set as a service attachment.     The following load balancers
+        /// cannot set the target field (they should set the backendService field instead):        - Internal
+        /// passthrough Network Load Balancers    - Backend service-based regional external passthrough Network Load
+        /// Balancers    - Global external passthrough Network Load Balancers
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("target")]
         public virtual string Target { get; set; }
@@ -142383,7 +143269,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -142394,7 +143280,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -142473,7 +143359,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -142484,7 +143370,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -142565,7 +143451,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -142576,7 +143462,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -143112,7 +143998,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -143123,7 +144009,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -143199,7 +144085,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -143210,7 +144096,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -143260,7 +144146,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -143271,7 +144157,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -143635,6 +144521,77 @@ namespace Google.Apis.Compute.alpha.Data
         public virtual string ETag { get; set; }
     }
 
+    /// <summary>Metadata for GetHealth operations.</summary>
+    public class GetHealthOperationMetadata : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Output only. The health information.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("healthInfo")]
+        public virtual GetHealthOperationMetadataHealthInfo HealthInfo { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Health information.</summary>
+    public class GetHealthOperationMetadataHealthInfo : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Output only. The availability SLO status.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("availabilitySloStatus")]
+        public virtual string AvailabilitySloStatus { get; set; }
+
+        /// <summary>Output only. The health status.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("healthStatus")]
+        public virtual string HealthStatus { get; set; }
+
+        /// <summary>Output only. The repair category.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("repairCategory")]
+        public virtual string RepairCategory { get; set; }
+
+        /// <summary>Output only. The reason for unhealthy status.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("unhealthyReason")]
+        public virtual string UnhealthyReason { get; set; }
+
+        private string _updateTimeRaw;
+
+        private object _updateTime;
+
+        /// <summary>Output only. The time when health info was updated.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("updateTime")]
+        public virtual string UpdateTimeRaw
+        {
+            get => _updateTimeRaw;
+            set
+            {
+                _updateTime = Google.Apis.Util.Utilities.DeserializeForGoogleFormat(value);
+                _updateTimeRaw = value;
+            }
+        }
+
+        /// <summary><seealso cref="object"/> representation of <see cref="UpdateTimeRaw"/>.</summary>
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use UpdateTimeDateTimeOffset instead.")]
+        public virtual object UpdateTime
+        {
+            get => _updateTime;
+            set
+            {
+                _updateTimeRaw = Google.Apis.Util.Utilities.SerializeForGoogleFormat(value);
+                _updateTime = value;
+            }
+        }
+
+        /// <summary><seealso cref="System.DateTimeOffset"/> representation of <see cref="UpdateTimeRaw"/>.</summary>
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        public virtual System.DateTimeOffset? UpdateTimeDateTimeOffset
+        {
+            get => Google.Apis.Util.DiscoveryFormat.ParseGoogleDateTimeToDateTimeOffset(UpdateTimeRaw);
+            set => UpdateTimeRaw = Google.Apis.Util.DiscoveryFormat.FormatDateTimeOffsetToGoogleDateTime(value);
+        }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
     public class GetOwnerInstanceResponse : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>Full instance resource URL.</summary>
@@ -143746,7 +144703,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -143757,7 +144714,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -143989,6 +144946,13 @@ namespace Google.Apis.Compute.alpha.Data
     public class GlobalVmExtensionPolicyExtensionPolicy : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>
+        /// Optional. Only deploy this extension if the specified software is detected on the VM. For a live list of
+        /// valid software values, see: https://cloud.google.com/compute/docs/vm-extensions/supported-software
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("installedSoftwareSelector")]
+        public virtual GlobalVmExtensionPolicyInstalledSoftwareSelector InstalledSoftwareSelector { get; set; }
+
+        /// <summary>
         /// Optional. The version pinning for the extension. If empty, the extension will be installed with the latest
         /// version released by the extension producer.
         /// </summary>
@@ -143998,6 +144962,33 @@ namespace Google.Apis.Compute.alpha.Data
         /// <summary>Optional. String configuration. Any string payload that the extension understands.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("stringConfig")]
         public virtual string StringConfig { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Defines the software requirements for a VM extension policy.</summary>
+    public class GlobalVmExtensionPolicyInstalledSoftwareSelector : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>
+        /// Optional. If any of these SelectorSets are satisfied, the condition is met (OR logic). The key is a
+        /// user-provided name for this set.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("anyOfSelectors")]
+        public virtual System.Collections.Generic.IDictionary<string, GlobalVmExtensionPolicyInstalledSoftwareSelectorSelectorSet> AnyOfSelectors { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    public class GlobalVmExtensionPolicyInstalledSoftwareSelectorSelectorSet : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>
+        /// Optional. All software in this list must be detected (AND logic). Valid software names (e.g. "Apache Web
+        /// Server").
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("allOfSelectors")]
+        public virtual System.Collections.Generic.IList<string> AllOfSelectors { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -144079,7 +145070,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -144090,7 +145081,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -144609,13 +145600,6 @@ namespace Google.Apis.Compute.alpha.Data
         [Newtonsoft.Json.JsonPropertyAttribute("description")]
         public virtual string Description { get; set; }
 
-        /// <summary>
-        /// Capacity guarantee settings for the event of a failover. This determines whether capacity is guaranteed to
-        /// be available in the zones used by the HaController. Deprecated: This field is deprecated and has no effect.
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("failoverCapacity")]
-        public virtual string FailoverCapacity { get; set; }
-
         /// <summary>Indicates how failover should be initiated.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("failoverInitiation")]
         public virtual string FailoverInitiation { get; set; }
@@ -144666,10 +145650,6 @@ namespace Google.Apis.Compute.alpha.Data
         [Newtonsoft.Json.JsonPropertyAttribute("region")]
         public virtual string Region { get; set; }
 
-        /// <summary>Indicates the capacity guarantees in the secondary zone.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("secondaryZoneCapacity")]
-        public virtual string SecondaryZoneCapacity { get; set; }
-
         /// <summary>Output only. [Output only] Server-defined URL for the resource.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("selfLink")]
         public virtual string SelfLink { get; set; }
@@ -144677,6 +145657,10 @@ namespace Google.Apis.Compute.alpha.Data
         /// <summary>Output only. [Output Only] Server-defined URL for this resource with the resource id.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("selfLinkWithId")]
         public virtual string SelfLinkWithId { get; set; }
+
+        /// <summary>Output only. The current state of the HA Controller.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("state")]
+        public virtual string State { get; set; }
 
         /// <summary>Output only. [Output Only] Status information for the HaController resource.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("status")]
@@ -144819,6 +145803,10 @@ namespace Google.Apis.Compute.alpha.Data
             get => Google.Apis.Util.DiscoveryFormat.ParseGoogleDateTimeToDateTimeOffset(FailoverCompleteTimestampRaw);
             set => FailoverCompleteTimestampRaw = Google.Apis.Util.DiscoveryFormat.FormatDateTimeOffsetToGoogleDateTime(value);
         }
+
+        /// <summary>Output only. The duration of the last failover.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("failoverDuration")]
+        public virtual object FailoverDuration { get; set; }
 
         /// <summary>
         /// Output only. [Output Only] Indicates if failover has been triggered automatically or manually.
@@ -145237,7 +146225,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -145248,7 +146236,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -145324,7 +146312,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -145335,7 +146323,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -145381,7 +146369,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -145392,7 +146380,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -145442,7 +146430,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -145453,7 +146441,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -145624,7 +146612,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -145635,7 +146623,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -145705,7 +146693,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -145716,7 +146704,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -145828,10 +146816,11 @@ namespace Google.Apis.Compute.alpha.Data
         /// The list of cloud regions from which health checks are performed. If any regions are specified, then exactly
         /// 3 regions should be specified. The region names must be valid names of Google Cloud regions. This can only
         /// be set for global health check. If this list is non-empty, then there are restrictions on what other health
-        /// check fields are supported and what other resources can use this health check:        - SSL, HTTP2, and GRPC
-        /// protocols are not supported.    - The TCP request field is not supported.    - The proxyHeader field for
-        /// HTTP, HTTPS, and TCP is not    supported.    - The checkIntervalSec field must be at least 30.    - The
-        /// health check cannot be used with BackendService nor with managed    instance group auto-healing.
+        /// check fields are supported and what other resources can use this health check:        - SSL, HTTP2, GRPC,
+        /// and GRPC_WITH_TLS protocols are not supported.    - The TCP request field is not supported.    - The
+        /// proxyHeader field for HTTP, HTTPS, and TCP is not    supported.    - The checkIntervalSec field must be at
+        /// least 30.    - The health check cannot be used with BackendService nor with managed    instance group
+        /// auto-healing.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("sourceRegions")]
         public virtual System.Collections.Generic.IList<string> SourceRegions { get; set; }
@@ -145850,8 +146839,8 @@ namespace Google.Apis.Compute.alpha.Data
         public virtual System.Nullable<int> TimeoutSec { get; set; }
 
         /// <summary>
-        /// Specifies the type of the healthCheck, either TCP,SSL, HTTP, HTTPS,HTTP2 or GRPC. Exactly one of the
-        /// protocol-specific health check fields must be specified, which must matchtype field.
+        /// Specifies the type of the healthCheck, either TCP,SSL, HTTP, HTTPS,HTTP2, GRPC or GRPC_WITH_TLS. Exactly one
+        /// of the protocol-specific health check fields must be specified, which must match type field.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("type")]
         public virtual string Type { get; set; }
@@ -145917,7 +146906,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -145928,7 +146917,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -146143,7 +147132,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -146154,7 +147143,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -146239,7 +147228,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -146250,7 +147239,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -146296,7 +147285,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -146307,7 +147296,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -146378,7 +147367,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -146389,7 +147378,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -146435,7 +147424,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -146446,7 +147435,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -146609,7 +147598,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -146620,7 +147609,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -146711,7 +147700,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -146722,7 +147711,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -146814,7 +147803,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -146825,7 +147814,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -147141,7 +148130,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -147152,7 +148141,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -147544,7 +148533,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -147555,7 +148544,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -148153,7 +149142,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -148164,7 +149153,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -148533,7 +149522,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -148544,7 +149533,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -148651,7 +149640,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -148662,7 +149651,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -148852,11 +149841,17 @@ namespace Google.Apis.Compute.alpha.Data
         /// type in the following format, where CPUS is 1 or an even number up to 32 (2, 4, 6, ... 24, etc), and MEMORY
         /// is the total memory for this instance. Memory must be a multiple of 256 MB and must be supplied in MB (e.g.
         /// 5 GB of memory is 5120 MB):  zones/zone/machineTypes/custom-CPUS-MEMORY   For example:
-        /// zones/us-central1-f/machineTypes/custom-4-5120 For a full list of restrictions, read theSpecifications for
+        /// zones/us-central1-f/machineTypes/custom-4-5120  For a full list of restrictions, read theSpecifications for
         /// custom machine types.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("machineType")]
         public virtual string MachineType { get; set; }
+
+        /// <summary>
+        /// Map of management interfaces. Keys must be valid RFC1035 names and at most 63 characters long.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("managementInterfaces")]
+        public virtual System.Collections.Generic.IDictionary<string, InstanceManagementInterface> ManagementInterfaces { get; set; }
 
         /// <summary>
         /// The metadata key/value pairs assigned to this instance. This includes metadata keys that were explicitly
@@ -149103,7 +150098,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -149114,7 +150109,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -149380,7 +150375,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -149391,7 +150386,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -149462,7 +150457,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -149473,7 +150468,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -149919,7 +150914,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -149930,7 +150925,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -150219,7 +151214,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -150230,7 +151225,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -150584,7 +151579,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -150595,7 +151590,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -151661,7 +152656,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -151672,7 +152667,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -151798,7 +152793,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -151809,7 +152804,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -152002,7 +152997,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -152013,7 +153008,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -152088,7 +153083,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -152099,7 +153094,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -152189,7 +153184,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -152200,7 +153195,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -152271,7 +153266,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -152282,7 +153277,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -152360,6 +153355,72 @@ namespace Google.Apis.Compute.alpha.Data
         /// <summary>Output only. Error message.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("message")]
         public virtual string Message { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>
+    /// Represents Out-of-Band (OOB) Host Management Interface configuration details for direct host control.
+    /// </summary>
+    public class InstanceManagementInterface : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The authentication configuration for secure connection.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("authenticationConfig")]
+        public virtual InstanceManagementInterfaceAuthenticationConfig AuthenticationConfig { get; set; }
+
+        /// <summary>
+        /// The IPv4 internal IP address assigned to this management interface endpoint. This address will be used by
+        /// the customer to route traffic to the management interface.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("ipv4Address")]
+        public virtual string Ipv4Address { get; set; }
+
+        /// <summary>
+        /// The IPv6 internal IP address assigned to this management interface endpoint. This address will be used by
+        /// the customer to route traffic to the management interface if IPv6 is supported and configured.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("ipv6Address")]
+        public virtual string Ipv6Address { get; set; }
+
+        /// <summary>
+        /// The URL of the VPC network to which the management interface endpoint is attached. The customer must ensure
+        /// that this network is correctly configured for routing to the instance.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("network")]
+        public virtual string Network { get; set; }
+
+        /// <summary>Output only. [Output Only] The current state of the management interface endpoint.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("state")]
+        public virtual string State { get; set; }
+
+        /// <summary>
+        /// The URL of the subnetwork from which to assign the IP address for the endpoint. The subnetwork must belong
+        /// to the specified network and have available IP addresses.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("subnetwork")]
+        public virtual string Subnetwork { get; set; }
+
+        /// <summary>
+        /// Required. The type of management service this interface provides. Supported types include HOST_MANAGEMENT
+        /// for direct host control.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("type")]
+        public virtual string Type { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Authentication configuration for the management interface, typically using mTLS.</summary>
+    public class InstanceManagementInterfaceAuthenticationConfig : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>
+        /// Required. Resource name of the Cloud Certificate Manager TrustConfig used to validate client certificates
+        /// for mTLS. Format: projects/{project}/locations/{location}/trustConfigs/{trust_config}
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("trustConfig")]
+        public virtual string TrustConfig { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -152603,6 +153664,10 @@ namespace Google.Apis.Compute.alpha.Data
     /// <summary>Represents the change that you want to make to the instance properties.</summary>
     public class InstancePropertiesPatch : Google.Apis.Requests.IDirectResponseSchema
     {
+        /// <summary>This optional flag exposes the hashed physical host ID.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("exposeHostTopology")]
+        public virtual System.Nullable<bool> ExposeHostTopology { get; set; }
+
         /// <summary>The label key-value pairs that you want to patch onto the instance.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("labels")]
         public virtual System.Collections.Generic.IDictionary<string, string> Labels { get; set; }
@@ -152821,7 +153886,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -152832,7 +153897,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -152903,7 +153968,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -152914,7 +153979,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -152966,7 +154031,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -152977,7 +154042,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -153206,7 +154271,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -153217,7 +154282,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -153572,7 +154637,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -153583,7 +154648,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -153806,7 +154871,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -153817,7 +154882,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -153894,7 +154959,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -153905,7 +154970,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -154709,7 +155774,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -154720,7 +155785,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -155361,7 +156426,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -155372,7 +156437,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -155601,7 +156666,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -155612,7 +156677,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -155724,7 +156789,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -155735,7 +156800,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -156360,7 +157425,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -156371,7 +157436,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -156492,7 +157557,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -156503,7 +157568,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -156737,7 +157802,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -156748,7 +157813,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -157221,7 +158286,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -157232,7 +158297,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -157489,7 +158554,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -157500,7 +158565,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -157574,7 +158639,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -157585,7 +158650,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -158025,7 +159090,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -158036,7 +159101,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -158110,7 +159175,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -158121,7 +159186,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -158195,7 +159260,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -158206,7 +159271,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -158283,7 +159348,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -158294,7 +159359,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -158371,7 +159436,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -158382,7 +159447,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -158725,7 +159790,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -158736,7 +159801,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -158940,7 +160005,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -158951,7 +160016,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -159021,7 +160086,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -159032,7 +160097,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -159078,7 +160143,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -159089,7 +160154,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -159670,7 +160735,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -159681,7 +160746,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -160039,7 +161104,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -160050,7 +161115,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -160296,7 +161361,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -160307,7 +161372,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -160739,7 +161804,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -160750,7 +161815,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -160863,7 +161928,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -160874,7 +161939,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -160924,7 +161989,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -160935,7 +162000,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -161080,7 +162145,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -161091,7 +162156,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -161141,7 +162206,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -161152,7 +162217,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -161440,7 +162505,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -161451,7 +162516,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -161661,7 +162726,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -161672,7 +162737,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -161866,7 +162931,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -161877,7 +162942,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -161931,7 +162996,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -161942,7 +163007,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -162033,7 +163098,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -162044,7 +163109,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -162121,6 +163186,18 @@ namespace Google.Apis.Compute.alpha.Data
         /// <summary>The prefix length of the primary internal IPv6 range.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("internalIpv6PrefixLength")]
         public virtual System.Nullable<int> InternalIpv6PrefixLength { get; set; }
+
+        /// <summary>
+        /// [Output Only] This field specifies the internal IPv6 network address assigned to the CX9 Network Interface
+        /// Card, which facilitates the routing of traffic between NICs. For any single CX9 Network Interface Card, the
+        /// identical internalNicLoadBalancingIpv6Address is assigned across all four associated ports.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("internalNicLoadBalancingIpv6Address")]
+        public virtual string InternalNicLoadBalancingIpv6Address { get; set; }
+
+        /// <summary>[Output Only] The prefix length of the internal IPv6 Nic load balancing prefix.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("internalNicLoadBalancingIpv6PrefixLength")]
+        public virtual System.Nullable<int> InternalNicLoadBalancingIpv6PrefixLength { get; set; }
 
         /// <summary>
         /// An array of IPv6 access configurations for this interface. Currently, only one IPv6 access config,
@@ -162337,7 +163414,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -162348,7 +163425,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -162600,7 +163677,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -162611,7 +163688,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -162750,7 +163827,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -162761,7 +163838,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -162840,7 +163917,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -162851,7 +163928,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -163351,7 +164428,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -163362,7 +164439,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -163755,7 +164832,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -163766,7 +164843,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -163860,7 +164937,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -163871,7 +164948,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -164053,7 +165130,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -164064,7 +165141,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -164124,7 +165201,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -164135,7 +165212,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -164327,7 +165404,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -164338,7 +165415,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -164408,7 +165485,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -164419,7 +165496,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -164484,7 +165561,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -164495,7 +165572,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -164643,7 +165720,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -164654,7 +165731,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -164724,7 +165801,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -164735,7 +165812,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -164781,7 +165858,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -164792,7 +165869,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -164926,7 +166003,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -164937,7 +166014,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -165047,7 +166124,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -165058,7 +166135,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -165108,7 +166185,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -165119,7 +166196,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -165188,6 +166265,10 @@ namespace Google.Apis.Compute.alpha.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("firewallPolicyRuleOperationMetadata")]
         public virtual FirewallPolicyRuleOperationMetadata FirewallPolicyRuleOperationMetadata { get; set; }
+
+        /// <summary>Output only. [Output Only] Metadata for GetHealth operations.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("getHealthOperationMetadata")]
+        public virtual GetHealthOperationMetadata GetHealthOperationMetadata { get; set; }
 
         [Newtonsoft.Json.JsonPropertyAttribute("getVersionOperationMetadata")]
         public virtual GetVersionOperationMetadata GetVersionOperationMetadata { get; set; }
@@ -165401,7 +166482,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -165412,7 +166493,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -165488,7 +166569,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -165499,7 +166580,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -165571,7 +166652,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -165582,7 +166663,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -165632,7 +166713,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -165643,7 +166724,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -165712,7 +166793,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -165723,7 +166804,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -165814,7 +166895,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -165825,7 +166906,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -166136,7 +167217,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -166147,7 +167228,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -166262,7 +167343,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -166273,7 +167354,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -166392,7 +167473,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -166403,7 +167484,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -167055,7 +168136,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -167066,7 +168147,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -167308,7 +168389,11 @@ namespace Google.Apis.Compute.alpha.Data
     /// </summary>
     public class ProjectView : Google.Apis.Requests.IDirectResponseSchema
     {
-        /// <summary>The project data.</summary>
+        /// <summary>
+        /// The project data. The returned Project data does not contain regional or zonal quota usage data. Global
+        /// quota limits are present. For accurate, real-time quota usage numbers, query the global
+        /// [projects.get](https://cloud.google.com/compute/docs/reference/rest/v1/projects/get) endpoint.
+        /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("project")]
         public virtual Project Project { get; set; }
 
@@ -167592,7 +168677,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -167603,7 +168688,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -167861,7 +168946,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -167872,7 +168957,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -167942,7 +169027,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -167953,7 +169038,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -168073,7 +169158,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -168084,7 +169169,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -168228,7 +169313,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -168239,7 +169324,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -168407,7 +169492,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -168418,7 +169503,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -168464,7 +169549,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -168475,7 +169560,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -168708,7 +169793,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -168719,7 +169804,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -168795,7 +169880,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -168806,7 +169891,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -169086,7 +170171,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -169097,7 +170182,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -169148,7 +170233,7 @@ namespace Google.Apis.Compute.alpha.Data
     public class RegexRewrite : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>
-        /// The regular expression used to match against the URL path. It uses RE2 syntax with the following
+        /// Required. The regular expression used to match against the URL path. It uses RE2 syntax with the following
         /// constraints:              - Any single character operators      - Groups are allowed to have only submatch
         /// operator inside      - Groups are allowed only without any char repetition, e.g.      .*      - Any char
         /// repetition, e.g. .*, is      only allowed to be used in a single regex together with:
@@ -169159,7 +170244,9 @@ namespace Google.Apis.Compute.alpha.Data
         [Newtonsoft.Json.JsonPropertyAttribute("pathPattern")]
         public virtual string PathPattern { get; set; }
 
-        /// <summary>Required when path pattern is specified. Used to rewrite matching parts of the path.</summary>
+        /// <summary>
+        /// Required. Required when path pattern is specified. Used to rewrite matching parts of the path.
+        /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("pathSubstitution")]
         public virtual string PathSubstitution { get; set; }
 
@@ -169248,7 +170335,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -169259,7 +170346,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -169295,6 +170382,20 @@ namespace Google.Apis.Compute.alpha.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("destinationAddress")]
         public virtual string DestinationAddress { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    public class RegionAddressesUpdatePublicPtrRequest : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The public DNS PTR record to be configured for this external IP.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("ptrDomainName")]
+        public virtual string PtrDomainName { get; set; }
+
+        /// <summary>The TTL in seconds for public DNS PTR record.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("ptrDomainNameTtl")]
+        public virtual System.Nullable<int> PtrDomainNameTtl { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -169347,7 +170448,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -169358,7 +170459,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -169437,7 +170538,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -169448,7 +170549,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -169578,7 +170679,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -169589,7 +170690,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -169673,7 +170774,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -169684,7 +170785,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -169771,7 +170872,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -169782,7 +170883,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -169982,7 +171083,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -169993,7 +171094,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -170232,7 +171333,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -170243,7 +171344,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -170352,7 +171453,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -170363,7 +171464,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -170592,6 +171693,7 @@ namespace Google.Apis.Compute.alpha.Data
     /// <summary>Response message for the List method of ReliabilityRisksService.</summary>
     public class ReliabilityRisksListResponse : Google.Apis.Requests.IDirectResponseSchema
     {
+        /// <summary>[Output Only] An ETag of the resource.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("etag")]
         public virtual string ETag { get; set; }
 
@@ -170638,7 +171740,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -170649,7 +171751,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -171039,7 +172141,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -171050,7 +172152,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -171295,7 +172397,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -171306,7 +172408,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -171457,7 +172559,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -171468,7 +172570,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -171539,7 +172641,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -171550,7 +172652,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -171752,7 +172854,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -171763,7 +172865,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -171985,7 +173087,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -171996,7 +173098,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -172105,7 +173207,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -172116,7 +173218,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -172208,7 +173310,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -172219,7 +173321,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -172373,7 +173475,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -172384,7 +173486,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -172614,7 +173716,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -172625,7 +173727,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -173113,6 +174215,13 @@ namespace Google.Apis.Compute.alpha.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("acceleratorTopologyIds")]
         public virtual System.Collections.Generic.IDictionary<string, string> AcceleratorTopologyIds { get; set; }
+
+        /// <summary>
+        /// Output only. Key-value store for arbitrary network topology identifiers defined by the underlying
+        /// infrastructure. The key will be the topology label and the value will be the location ID for the topology.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("networkTopologyIds")]
+        public virtual System.Collections.Generic.IDictionary<string, string> NetworkTopologyIds { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -173694,7 +174803,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -173705,7 +174814,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -173913,7 +175022,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -173924,7 +175033,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -174171,7 +175280,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -174182,7 +175291,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -174270,7 +175379,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -174281,7 +175390,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -174415,6 +175524,14 @@ namespace Google.Apis.Compute.alpha.Data
         public virtual System.Nullable<bool> EncryptedInterconnectRouter { get; set; }
 
         /// <summary>
+        /// ETag for optimistic concurrency control as described by AIP 154. Used to prevent conflicting updates. If
+        /// provided, the request will succeed only if the etag matches the current etag of the router; otherwise, the
+        /// request fails with an ABORTED error.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("etag")]
+        public virtual string ETag { get; set; }
+
+        /// <summary>
         /// [Output Only] The unique identifier for the resource. This identifier is defined by the server.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("id")]
@@ -174480,9 +175597,6 @@ namespace Google.Apis.Compute.alpha.Data
         /// <summary>Output only. [Output Only] Server-defined URL for this resource with the resource id.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("selfLinkWithId")]
         public virtual string SelfLinkWithId { get; set; }
-
-        /// <summary>The ETag of the item.</summary>
-        public virtual string ETag { get; set; }
     }
 
     /// <summary>Description-tagged IP ranges for the router to advertise.</summary>
@@ -174551,7 +175665,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -174562,7 +175676,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -175009,7 +176123,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -175020,7 +176134,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -175700,7 +176814,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -175711,7 +176825,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -175786,7 +176900,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -175797,7 +176911,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -175873,7 +176987,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -175884,7 +176998,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -175940,7 +177054,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -175951,7 +177065,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -176219,6 +177333,12 @@ namespace Google.Apis.Compute.alpha.Data
         [Newtonsoft.Json.JsonPropertyAttribute("currentMemoryMb")]
         public virtual System.Nullable<long> CurrentMemoryMb { get; set; }
 
+        /// <summary>
+        /// This optional flag exposes the hashed physical host ID in the ResourceStatus resource of the VM.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("exposeHostTopology")]
+        public virtual System.Nullable<bool> ExposeHostTopology { get; set; }
+
         [Newtonsoft.Json.JsonPropertyAttribute("gracefulShutdown")]
         public virtual SchedulingGracefulShutdown GracefulShutdown { get; set; }
 
@@ -176308,8 +177428,8 @@ namespace Google.Apis.Compute.alpha.Data
         public virtual System.Nullable<bool> Preemptible { get; set; }
 
         /// <summary>
-        /// Specifies the Metadata Service preemption notice duration before the  GCE ACPI G2 Soft  Off signal is
-        /// triggered for Spot  VMs only. If not specified, there will be no wait before the G2 Soft  Off signal is
+        /// Specifies the Metadata Service preemption notice duration before the GCE ACPI G2 Soft Off signal is
+        /// triggered for Spot VMs only. If not specified, there will be no wait before the G2 Soft Off signal is
         /// triggered.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("preemptionNoticeDuration")]
@@ -176505,7 +177625,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -176516,7 +177636,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -176575,7 +177695,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -176586,7 +177706,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -177076,7 +178196,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -177087,7 +178207,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -177652,9 +178772,11 @@ namespace Google.Apis.Compute.alpha.Data
         /// HTTPS, HTTP/2 or HTTP/3. If not available, the    key type defaults to ALL.     - USER_IP: The IP address of
         /// the originating client,    which is resolved based on "userIpRequestHeaders" configured with the    security
         /// policy. If there is no "userIpRequestHeaders" configuration or    an IP address cannot be resolved from it,
-        /// the key type defaults toIP.   - TLS_JA4_FINGERPRINT: JA4 TLS/SSL fingerprint if the client connects using
-        /// HTTPS, HTTP/2 or HTTP/3. If not available, the key type defaults to ALL.  For "fairshare" action, this value
-        /// is limited to ALL i.e. a single rate limit threshold is enforced for all the requests matching the rule.
+        /// the key type defaults toIP.     - ASN: The autonomous system number of the originating    client. If not
+        /// available, the key type defaults toALL.    - TLS_JA4_FINGERPRINT: JA4 TLS/SSL fingerprint if the    client
+        /// connects using HTTPS, HTTP/2 or HTTP/3. If not available, the    key type defaults to ALL.    For
+        /// "fairshare" action, this value is limited to ALL i.e. a single rate limit threshold is enforced for all the
+        /// requests matching the rule.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("enforceOnKey")]
         public virtual string EnforceOnKey { get; set; }
@@ -177736,8 +178858,9 @@ namespace Google.Apis.Compute.alpha.Data
         /// HTTPS, HTTP/2 or HTTP/3. If not available, the    key type defaults to ALL.     - USER_IP: The IP address of
         /// the originating client,    which is resolved based on "userIpRequestHeaders" configured with the    security
         /// policy. If there is no "userIpRequestHeaders" configuration    or an IP address cannot be resolved from it,
-        /// the key type defaults toIP.   - TLS_JA4_FINGERPRINT: JA4 TLS/SSL fingerprint if the client connects using
-        /// HTTPS, HTTP/2 or HTTP/3. If not available, the key type defaults to ALL.
+        /// the key type defaults toIP.     - ASN: The autonomous system number of the originating    client. If not
+        /// available, the key type defaults toALL.    - TLS_JA4_FINGERPRINT: JA4 TLS/SSL fingerprint if the    client
+        /// connects using HTTPS, HTTP/2 or HTTP/3. If not available, the    key type defaults to ALL.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("enforceOnKeyType")]
         public virtual string EnforceOnKeyType { get; set; }
@@ -178206,7 +179329,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -178217,7 +179340,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -178346,7 +179469,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -178357,7 +179480,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -178430,7 +179553,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -178441,7 +179564,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -179093,7 +180216,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -179104,7 +180227,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -179290,7 +180413,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -179301,7 +180424,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -179566,7 +180689,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -179577,7 +180700,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -179896,7 +181019,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -179907,7 +181030,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -179975,7 +181098,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -179986,7 +181109,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -180075,7 +181198,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -180086,7 +181209,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -180160,7 +181283,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -180171,7 +181294,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -180240,7 +181363,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -180251,7 +181374,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -180306,7 +181429,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -180317,7 +181440,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -180468,7 +181591,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -180479,7 +181602,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -180621,7 +181744,7 @@ namespace Google.Apis.Compute.alpha.Data
         [Newtonsoft.Json.JsonPropertyAttribute("description")]
         public virtual string Description { get; set; }
 
-        /// <summary>Output only. [Output Only] Provisioned capacities for each SKU for this Exapool in GiB</summary>
+        /// <summary>Provisioned capacities for each SKU for this Exapool in GiB</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("exapoolProvisionedCapacityGb")]
         public virtual StoragePoolExapoolProvisionedCapacityGb ExapoolProvisionedCapacityGb { get; set; }
 
@@ -180803,7 +181926,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -180814,7 +181937,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -180961,7 +182084,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -180972,7 +182095,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -181048,7 +182171,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -181059,7 +182182,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -181350,7 +182473,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -181361,7 +182484,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -181431,7 +182554,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -181442,7 +182565,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -181492,7 +182615,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -181503,7 +182626,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -181553,7 +182676,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -181564,7 +182687,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -181956,7 +183079,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -181967,7 +183090,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -182037,7 +183160,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -182048,7 +183171,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -182281,7 +183404,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -182292,7 +183415,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -182338,7 +183461,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -182349,7 +183472,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -182610,7 +183733,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -182621,7 +183744,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -182667,7 +183790,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -182678,7 +183801,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -182861,7 +183984,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -182872,7 +183995,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -182942,7 +184065,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -182953,7 +184076,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -182999,7 +184122,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -183010,7 +184133,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -183325,7 +184448,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -183336,7 +184459,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -183406,7 +184529,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -183417,7 +184540,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -183576,7 +184699,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -183587,7 +184710,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -183655,7 +184778,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -183666,7 +184789,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -183712,7 +184835,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -183723,7 +184846,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -183754,7 +184877,7 @@ namespace Google.Apis.Compute.alpha.Data
         /// <summary>
         /// The server-defined URL for the resource. This field is applicable only when the containing target pool is
         /// serving a forwarding rule as the primary pool, and its failoverRatio field is properly set to a value
-        /// between [0, 1].backupPool and failoverRatio together define the fallback behavior of the primary target
+        /// between [0, 1]. backupPool and failoverRatio together define the fallback behavior of the primary target
         /// pool: if the ratio of the healthy instances in the primary pool is at or belowfailoverRatio, traffic
         /// arriving at the load-balanced IP will be directed to the backup pool.  In case where failoverRatio and
         /// backupPool are not set, or all the instances in the backup pool are unhealthy, the traffic will be directed
@@ -183906,7 +185029,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -183917,7 +185040,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -184003,7 +185126,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -184014,7 +185137,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -184110,7 +185233,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -184121,7 +185244,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -184327,7 +185450,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -184338,7 +185461,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -184384,7 +185507,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -184395,7 +185518,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -184571,7 +185694,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -184582,7 +185705,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -184650,7 +185773,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -184661,7 +185784,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -184839,7 +185962,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -184850,7 +185973,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -184920,7 +186043,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -184931,7 +186054,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -184999,7 +186122,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -185010,7 +186133,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -185533,7 +186656,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -185544,7 +186667,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -185765,7 +186888,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -185776,7 +186899,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -185822,7 +186945,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -185833,7 +186956,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -186074,7 +187197,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -186085,7 +187208,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -186293,7 +187416,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -186304,7 +187427,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -186365,7 +187488,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -186376,7 +187499,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -186536,7 +187659,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -186547,7 +187670,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -186572,6 +187695,13 @@ namespace Google.Apis.Compute.alpha.Data
     public class VmExtensionPolicyExtensionPolicy : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>
+        /// Optional. Only deploy this extension if the specified software is detected on the VM. For a live list of
+        /// valid software values, see: https://cloud.google.com/compute/docs/vm-extensions/supported-software
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("installedSoftwareSelector")]
+        public virtual VmExtensionPolicyInstalledSoftwareSelector InstalledSoftwareSelector { get; set; }
+
+        /// <summary>
         /// Optional. The specific version of the extension to install. If not set, the latest version is used.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("pinnedVersion")]
@@ -186580,6 +187710,33 @@ namespace Google.Apis.Compute.alpha.Data
         /// <summary>Optional. String-based configuration data for the extension.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("stringConfig")]
         public virtual string StringConfig { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Defines the software requirements for a VM extension policy.</summary>
+    public class VmExtensionPolicyInstalledSoftwareSelector : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>
+        /// Optional. If any of these SelectorSets are satisfied, the condition is met (OR logic). The key is a
+        /// user-provided name for this set.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("anyOfSelectors")]
+        public virtual System.Collections.Generic.IDictionary<string, VmExtensionPolicyInstalledSoftwareSelectorSelectorSet> AnyOfSelectors { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    public class VmExtensionPolicyInstalledSoftwareSelectorSelectorSet : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>
+        /// Optional. All software in this list must be detected (AND logic). Valid software names (e.g. "Apache Web
+        /// Server").
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("allOfSelectors")]
+        public virtual System.Collections.Generic.IList<string> AllOfSelectors { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -186669,7 +187826,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -186680,7 +187837,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -186887,7 +188044,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -186898,7 +188055,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -186966,7 +188123,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -186977,7 +188134,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -187182,7 +188339,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -187193,7 +188350,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -187335,6 +188492,18 @@ namespace Google.Apis.Compute.alpha.Data
         public virtual string PeerIp { get; set; }
 
         /// <summary>
+        /// User specified list of PQC key exchange mechanisms (KEMs) to use for the phase 1 of the IKE protocol.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("pqcPhase1")]
+        public virtual VpnTunnelPqc PqcPhase1 { get; set; }
+
+        /// <summary>
+        /// User specified list of PQC key exchange mechanisms (KEMs) to use for the phase 2 of the IKE protocol.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("pqcPhase2")]
+        public virtual VpnTunnelPqc PqcPhase2 { get; set; }
+
+        /// <summary>
         /// [Output Only] URL of the region where the VPN tunnel resides. You must specify this field as part of the
         /// HTTP request URL. It is not settable as a field in the request body.
         /// </summary>
@@ -187411,6 +188580,34 @@ namespace Google.Apis.Compute.alpha.Data
         public virtual string ETag { get; set; }
     }
 
+    /// <summary>User specified list of PQC key exchanges.</summary>
+    public class VpnTunnelAdditionalKeyExchanges : Google.Apis.Requests.IDirectResponseSchema
+    {
+        [Newtonsoft.Json.JsonPropertyAttribute("ke1s")]
+        public virtual System.Collections.Generic.IList<string> Ke1s { get; set; }
+
+        [Newtonsoft.Json.JsonPropertyAttribute("ke2s")]
+        public virtual System.Collections.Generic.IList<string> Ke2s { get; set; }
+
+        [Newtonsoft.Json.JsonPropertyAttribute("ke3s")]
+        public virtual System.Collections.Generic.IList<string> Ke3s { get; set; }
+
+        [Newtonsoft.Json.JsonPropertyAttribute("ke4s")]
+        public virtual System.Collections.Generic.IList<string> Ke4s { get; set; }
+
+        [Newtonsoft.Json.JsonPropertyAttribute("ke5s")]
+        public virtual System.Collections.Generic.IList<string> Ke5s { get; set; }
+
+        [Newtonsoft.Json.JsonPropertyAttribute("ke6s")]
+        public virtual System.Collections.Generic.IList<string> Ke6s { get; set; }
+
+        [Newtonsoft.Json.JsonPropertyAttribute("ke7s")]
+        public virtual System.Collections.Generic.IList<string> Ke7s { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
     public class VpnTunnelAggregatedList : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>[Output Only] Unique identifier for the resource; defined by the server.</summary>
@@ -187461,7 +188658,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -187472,7 +188669,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -187552,7 +188749,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -187563,7 +188760,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -187635,6 +188832,18 @@ namespace Google.Apis.Compute.alpha.Data
         public virtual string ETag { get; set; }
     }
 
+    public class VpnTunnelPqc : Google.Apis.Requests.IDirectResponseSchema
+    {
+        [Newtonsoft.Json.JsonPropertyAttribute("keys")]
+        public virtual VpnTunnelAdditionalKeyExchanges Keys { get; set; }
+
+        [Newtonsoft.Json.JsonPropertyAttribute("mode")]
+        public virtual string Mode { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
     public class VpnTunnelsScopedList : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>A list of VPN tunnels contained in this scope.</summary>
@@ -187660,7 +188869,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -187671,7 +188880,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -188025,7 +189234,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -188036,7 +189245,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -188190,6 +189399,10 @@ namespace Google.Apis.Compute.alpha.Data
         [Newtonsoft.Json.JsonPropertyAttribute("faultResponse")]
         public virtual string FaultResponse { get; set; }
 
+        /// <summary>The flow management configuration for the wire.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("flowManagement")]
+        public virtual string FlowManagement { get; set; }
+
         /// <summary>The network service class.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("networkServiceClass")]
         public virtual string NetworkServiceClass { get; set; }
@@ -188261,7 +189474,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -188272,7 +189485,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {
@@ -188417,7 +189630,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             [Newtonsoft.Json.JsonPropertyAttribute("data")]
             public virtual System.Collections.Generic.IList<DataData> Data { get; set; }
@@ -188428,7 +189641,7 @@ namespace Google.Apis.Compute.alpha.Data
 
             /// <summary>
             /// [Output Only] Metadata about this warning in key: value format. For example:  "data": [   {    "key":
-            /// "scope",    "value": "zones/us-east1-d"   }
+            /// "scope",    "value": "zones/us-east1-d"   }]
             /// </summary>
             public class DataData
             {

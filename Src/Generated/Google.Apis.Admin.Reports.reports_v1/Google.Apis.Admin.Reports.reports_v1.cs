@@ -614,6 +614,13 @@ namespace Google.Apis.Admin.Reports.reports_v1
                 /// </summary>
                 [Google.Apis.Util.StringValueAttribute("chrome_sync")]
                 ChromeSync = 41,
+
+                /// <summary>
+                /// The Workspace Studio application's activity reports return information about various types of
+                /// Workspace Studio activity events.
+                /// </summary>
+                [Google.Apis.Util.StringValueAttribute("workspace_studio")]
+                WorkspaceStudio = 42,
             }
 
             /// <summary>
@@ -625,6 +632,14 @@ namespace Google.Apis.Admin.Reports.reports_v1
             /// </summary>
             [Google.Apis.Util.RequestParameterAttribute("actorIpAddress", Google.Apis.Util.RequestParameterType.Query)]
             public virtual string ActorIpAddress { get; set; }
+
+            /// <summary>
+            /// Optional. Filters on agent info fields in the activity. This filter gets applied in conjunction(AND)
+            /// with other filters. Example: "agentInfoFilter=agentId=\"agent-id\" AND agentName=\"agent-name\" AND
+            /// agentOwnerEmail=\"agent-owner-email\""
+            /// </summary>
+            [Google.Apis.Util.RequestParameterAttribute("agentInfoFilter", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual string AgentInfoFilter { get; set; }
 
             /// <summary>
             /// Optional. Used to filter on the `oAuthClientId` field present in [`ApplicationInfo`](#applicationinfo)
@@ -640,6 +655,17 @@ namespace Google.Apis.Admin.Reports.reports_v1
             /// <summary>The unique ID of the customer to retrieve data for.</summary>
             [Google.Apis.Util.RequestParameterAttribute("customerId", Google.Apis.Util.RequestParameterType.Query)]
             public virtual string CustomerId { get; set; }
+
+            /// <summary>
+            /// Optional. Used to filter on the fields present in [`UserDeviceInfo`](#userdeviceinfo) message like
+            /// `deviceId`, `deviceType`, and `deviceOsVersion`. **Usage**
+            /// ```
+            /// GET...&amp;amp;deviceFilter=deviceId="123" GET...&amp;amp;deviceFilter=deviceType="ANDROID"
+            /// GET...&amp;amp;deviceFilter=deviceOsVersion="14.0"
+            /// ```
+            /// </summary>
+            [Google.Apis.Util.RequestParameterAttribute("deviceFilter", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual string DeviceFilter { get; set; }
 
             /// <summary>
             /// Sets the end of the range of time shown in the report. The date is in the RFC 3339 format, for example
@@ -846,11 +872,19 @@ namespace Google.Apis.Admin.Reports.reports_v1
                     IsRequired = true,
                     ParameterType = "path",
                     DefaultValue = null,
-                    Pattern = @"(access_evaluation)|(access_transparency)|(admin)|(admin_data_action)|(assignments)|(calendar)|(chat)|(chrome)|(classroom)|(cloud_search)|(contacts)|(context_aware_access)|(data_studio)|(data_migration)|(directory_sync)|(drive)|(gcp)|(gmail)|(gplus)|(graduation)|(groups)|(groups_enterprise)|(jamboard)|(keep)|(ldap)|(login)|(meet)|(meet_hardware)|(mobile)|(profile)|(rules)|(saml)|(token)|(user_accounts)|(vault)|(gemini_in_workspace_apps)|(tasks)|(takeout)|(voice)|(chrome_sync)",
+                    Pattern = @"(access_evaluation)|(access_transparency)|(admin)|(admin_data_action)|(assignments)|(calendar)|(chat)|(chrome)|(classroom)|(cloud_search)|(contacts)|(context_aware_access)|(data_studio)|(data_migration)|(directory_sync)|(drive)|(gcp)|(gmail)|(gplus)|(graduation)|(groups)|(groups_enterprise)|(jamboard)|(keep)|(ldap)|(login)|(meet)|(meet_hardware)|(mobile)|(profile)|(rules)|(saml)|(token)|(user_accounts)|(vault)|(gemini_in_workspace_apps)|(tasks)|(takeout)|(voice)|(chrome_sync)|(workspace_studio)",
                 });
                 RequestParameters.Add("actorIpAddress", new Google.Apis.Discovery.Parameter
                 {
                     Name = "actorIpAddress",
+                    IsRequired = false,
+                    ParameterType = "query",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
+                RequestParameters.Add("agentInfoFilter", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "agentInfoFilter",
                     IsRequired = false,
                     ParameterType = "query",
                     DefaultValue = null,
@@ -871,6 +905,14 @@ namespace Google.Apis.Admin.Reports.reports_v1
                     ParameterType = "query",
                     DefaultValue = null,
                     Pattern = @"C.+|my_customer",
+                });
+                RequestParameters.Add("deviceFilter", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "deviceFilter",
+                    IsRequired = false,
+                    ParameterType = "query",
+                    DefaultValue = null,
+                    Pattern = null,
                 });
                 RequestParameters.Add("endTime", new Google.Apis.Discovery.Parameter
                 {
@@ -2786,6 +2828,10 @@ namespace Google.Apis.Admin.Reports.reports_v1.Data
         [Newtonsoft.Json.JsonPropertyAttribute("groupIdentity")]
         public virtual GroupIdentity GroupIdentity { get; set; }
 
+        /// <summary>Identity of the shared drive who owns the resource.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("sharedDriveIdentity")]
+        public virtual SharedDriveIdentity SharedDriveIdentity { get; set; }
+
         /// <summary>Identity of the user who owns the resource.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("userIdentity")]
         public virtual UserIdentity UserIdentity { get; set; }
@@ -2837,6 +2883,21 @@ namespace Google.Apis.Admin.Reports.reports_v1.Data
         /// <summary>Type of the resource - document, email, chat message</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("type")]
         public virtual string Type { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Identity of the shared drive who owns the resource.</summary>
+    public class SharedDriveIdentity : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Shared drive gaia id.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("id")]
+        public virtual string Id { get; set; }
+
+        /// <summary>Shared drive name.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("sharedDriveName")]
+        public virtual string SharedDriveName { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }

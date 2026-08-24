@@ -703,14 +703,16 @@ namespace Google.Apis.ThreatIntelligenceService.v1beta
             }
 
             /// <summary>Get the decrypted password of an alert.</summary>
-            /// <param name="name">Required. Name of the alert to get. Format: projects/{project}/alerts/{alert}</param>
+            /// <param name="name">
+            /// Required. Name of the alert to get password for. Format: projects/{project}/alerts/{alert}
+            /// </param>
             public virtual GetPasswordRequest GetPassword(string name)
             {
                 return new GetPasswordRequest(this.service, name);
             }
 
             /// <summary>Get the decrypted password of an alert.</summary>
-            public class GetPasswordRequest : ThreatIntelligenceServiceBaseServiceRequest<Google.Apis.ThreatIntelligenceService.v1beta.Data.Alert>
+            public class GetPasswordRequest : ThreatIntelligenceServiceBaseServiceRequest<Google.Apis.ThreatIntelligenceService.v1beta.Data.GetPasswordResponse>
             {
                 /// <summary>Constructs a new GetPassword request.</summary>
                 public GetPasswordRequest(Google.Apis.Services.IClientService service, string name) : base(service)
@@ -719,7 +721,9 @@ namespace Google.Apis.ThreatIntelligenceService.v1beta
                     InitParameters();
                 }
 
-                /// <summary>Required. Name of the alert to get. Format: projects/{project}/alerts/{alert}</summary>
+                /// <summary>
+                /// Required. Name of the alert to get password for. Format: projects/{project}/alerts/{alert}
+                /// </summary>
                 [Google.Apis.Util.RequestParameterAttribute("name", Google.Apis.Util.RequestParameterType.Path)]
                 public virtual string Name { get; private set; }
 
@@ -730,7 +734,7 @@ namespace Google.Apis.ThreatIntelligenceService.v1beta
                 public override string HttpMethod => "GET";
 
                 /// <summary>Gets the REST path.</summary>
-                public override string RestPath => "v1beta/{+name}:GetPassword";
+                public override string RestPath => "v1beta/{+name}:getPassword";
 
                 /// <summary>Initializes GetPassword parameter list.</summary>
                 protected override void InitParameters()
@@ -2338,6 +2342,10 @@ namespace Google.Apis.ThreatIntelligenceService.v1beta.Data
     /// </summary>
     public class ConfigurationDetail : Google.Apis.Requests.IDirectResponseSchema
     {
+        /// <summary>Custom Threat Scenario detail config.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("customThreatScenario")]
+        public virtual CustomThreatScenarioConfig CustomThreatScenario { get; set; }
+
         /// <summary>Customer Profile detail config.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("customerProfile")]
         public virtual CustomerProfileConfig CustomerProfile { get; set; }
@@ -2406,6 +2414,20 @@ namespace Google.Apis.ThreatIntelligenceService.v1beta.Data
         /// <summary>The snapshot of the configuration</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("snapshot")]
         public virtual Configuration Snapshot { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>CustomThreatScenarioConfig represents a user-defined threat scenario configuration.</summary>
+    public class CustomThreatScenarioConfig : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>
+        /// Required. The condition driving the scenario, stored as a stringified JSON. This is used to query/filter
+        /// documents.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("documentCondition")]
+        public virtual string DocumentCondition { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -2994,6 +3016,17 @@ namespace Google.Apis.ThreatIntelligenceService.v1beta.Data
         /// <summary>Required. The domain of the organization to generate the profile for.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("domain")]
         public virtual string Domain { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Response message for GetPassword.</summary>
+    public class GetPasswordResponse : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The decrypted cleartext password for the compromised credential.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("password")]
+        public virtual string Password { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }

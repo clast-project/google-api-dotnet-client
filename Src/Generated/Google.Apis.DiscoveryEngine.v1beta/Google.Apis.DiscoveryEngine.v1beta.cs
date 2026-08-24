@@ -72,7 +72,8 @@ namespace Google.Apis.DiscoveryEngine.v1beta
 
             /// <summary>
             /// View your Agentspace chat history, including uploaded files and generated reports and visualizations,
-            /// and interact with the Agentspace assistant on your behalf.
+            /// and interact with the Agentspace assistant on your behalf. Also view the artifacts you access through
+            /// NotebookLM Enterprise.
             /// </summary>
             public static string DiscoveryengineAssistReadwrite = "https://www.googleapis.com/auth/discoveryengine.assist.readwrite";
 
@@ -105,7 +106,8 @@ namespace Google.Apis.DiscoveryEngine.v1beta
 
             /// <summary>
             /// View your Agentspace chat history, including uploaded files and generated reports and visualizations,
-            /// and interact with the Agentspace assistant on your behalf.
+            /// and interact with the Agentspace assistant on your behalf. Also view the artifacts you access through
+            /// NotebookLM Enterprise.
             /// </summary>
             public const string DiscoveryengineAssistReadwrite = "https://www.googleapis.com/auth/discoveryengine.assist.readwrite";
 
@@ -20811,6 +20813,71 @@ namespace Google.Apis.DiscoveryEngine.v1beta
             }
 
             /// <summary>
+            /// Provisions the project resource. During the process, related systems will get prepared and initialized.
+            /// Caller must read the [Terms for data use](https://cloud.google.com/retail/data-use-terms), and
+            /// optionally specify in request to provide consent to that service terms.
+            /// </summary>
+            /// <param name="body">The body of the request.</param>
+            /// <param name="name">
+            /// Required. Full resource name of a Project, such as `projects/{project_id_or_number}`.
+            /// </param>
+            public virtual ProvisionRequest Provision(Google.Apis.DiscoveryEngine.v1beta.Data.GoogleCloudDiscoveryengineV1betaProvisionProjectRequest body, string name)
+            {
+                return new ProvisionRequest(this.service, body, name);
+            }
+
+            /// <summary>
+            /// Provisions the project resource. During the process, related systems will get prepared and initialized.
+            /// Caller must read the [Terms for data use](https://cloud.google.com/retail/data-use-terms), and
+            /// optionally specify in request to provide consent to that service terms.
+            /// </summary>
+            public class ProvisionRequest : DiscoveryEngineBaseServiceRequest<Google.Apis.DiscoveryEngine.v1beta.Data.GoogleLongrunningOperation>
+            {
+                /// <summary>Constructs a new Provision request.</summary>
+                public ProvisionRequest(Google.Apis.Services.IClientService service, Google.Apis.DiscoveryEngine.v1beta.Data.GoogleCloudDiscoveryengineV1betaProvisionProjectRequest body, string name) : base(service)
+                {
+                    Name = name;
+                    Body = body;
+                    InitParameters();
+                }
+
+                /// <summary>
+                /// Required. Full resource name of a Project, such as `projects/{project_id_or_number}`.
+                /// </summary>
+                [Google.Apis.Util.RequestParameterAttribute("name", Google.Apis.Util.RequestParameterType.Path)]
+                public virtual string Name { get; private set; }
+
+                /// <summary>Gets or sets the body of this request.</summary>
+                Google.Apis.DiscoveryEngine.v1beta.Data.GoogleCloudDiscoveryengineV1betaProvisionProjectRequest Body { get; set; }
+
+                /// <summary>Returns the body of the request.</summary>
+                protected override object GetBody() => Body;
+
+                /// <summary>Gets the method name.</summary>
+                public override string MethodName => "provision";
+
+                /// <summary>Gets the HTTP method.</summary>
+                public override string HttpMethod => "POST";
+
+                /// <summary>Gets the REST path.</summary>
+                public override string RestPath => "v1beta/{+name}:provision";
+
+                /// <summary>Initializes Provision parameter list.</summary>
+                protected override void InitParameters()
+                {
+                    base.InitParameters();
+                    RequestParameters.Add("name", new Google.Apis.Discovery.Parameter
+                    {
+                        Name = "name",
+                        IsRequired = true,
+                        ParameterType = "path",
+                        DefaultValue = null,
+                        Pattern = @"^projects/[^/]+/locations/[^/]+$",
+                    });
+                }
+            }
+
+            /// <summary>
             /// Removes the dedicated crawl rate for a craw_rate_scope. If the dedicated crawl rate was set, this will
             /// disable vertex AI's crawl bot from using the dedicated crawl rate for crawling. If the dedicated crawl
             /// rate was not set, this is a no-op.
@@ -23697,16 +23764,9 @@ namespace Google.Apis.DiscoveryEngine.v1beta.Data
         }
 
         /// <summary>
-        /// Required. The identifier for the data source. This is a partial list of supported connectors. Please refer
-        /// to the
-        /// [documentation](https://docs.cloud.google.com/gemini/enterprise/docs/connectors/introduction-to-connectors-and-data-stores)
-        /// for the full list of connectors. Supported first-party connectors include: * `gcs` * `bigquery` * `gcp_fhir`
-        /// * `google_mail` * `google_drive` * `google_calendar` * `google_chat` Supported third-party connectors
-        /// include: Generally available (GA) connectors: * `onedrive` * `outlook` * `confluence` * `jira` *
-        /// `servicenow` * `sharepoint` Preview connectors: * `asana` * `azure_active_directory` * `box` * `canva` *
-        /// `confluence_server` * `custom_connector` * `docusign` * `dropbox` * `dynamics365` * `github` * `gitlab` *
-        /// `hubspot` * `jira_server` * `linear` * `native_cloud_identity` * `notion` * `okta` * `pagerduty` *
-        /// `peoplesoft` * `salesforce` * `shopify` * `slack` * `snowflake` * `teams` * `trello` * `workday` * `zendesk`
+        /// Required. The identifier for the data source. For the full, up-to-date list of supported connectors and
+        /// their values, see [Connect a third-party data
+        /// source](https://docs.cloud.google.com/gemini/enterprise/docs/connectors/connect-third-party-data-source#sources-by-launch-stage).
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("dataSource")]
         public virtual string DataSource { get; set; }
@@ -23879,6 +23939,13 @@ namespace Google.Apis.DiscoveryEngine.v1beta.Data
         }
 
         /// <summary>
+        /// Optional. User-facing metadata for the connector. Populated from the connector's generated metadata /
+        /// registry `ConnectorSource`.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("metadata")]
+        public virtual GoogleCloudDiscoveryengineV1DataConnectorConnectorMetadata Metadata { get; set; }
+
+        /// <summary>
         /// Identifier. The full resource name of the Data Connector. Format:
         /// `projects/*/locations/*/collections/*/dataConnector`.
         /// </summary>
@@ -24005,6 +24072,48 @@ namespace Google.Apis.DiscoveryEngine.v1beta.Data
         /// <summary>Output only. Whether the connector is created with VPC-SC enabled.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("vpcscEnabled")]
         public virtual System.Nullable<bool> VpcscEnabled { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>
+    /// User-facing metadata for the connector, shown on the connector detail page (title, description,
+    /// short_description, author, note).
+    /// </summary>
+    public class GoogleCloudDiscoveryengineV1DataConnectorConnectorMetadata : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>
+        /// Optional. The party that authored the connector, e.g. "Google" or a third-party provider name. Lets end
+        /// users see who authored a connector (future: third-party-authored connectors).
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("author")]
+        public virtual string Author { get; set; }
+
+        /// <summary>
+        /// Optional. Human-readable description of the connector, shown on the connector detail page. One connector has
+        /// a single description.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("description")]
+        public virtual string Description { get; set; }
+
+        /// <summary>
+        /// Optional. Free-form, multi-line note about the connector's capabilities or a custom note that can be set for
+        /// the connector.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("note")]
+        public virtual string Note { get; set; }
+
+        /// <summary>
+        /// Optional. Short, subtitle-length description of the connector (e.g. shown beneath the connector name in list
+        /// and detail views).
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("shortDescription")]
+        public virtual string ShortDescription { get; set; }
+
+        /// <summary>Optional. Display title of the connector.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("title")]
+        public virtual string Title { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -25807,13 +25916,14 @@ namespace Google.Apis.DiscoveryEngine.v1beta.Data
         /// Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all
         /// features, if it's present, all other feature state settings are ignored. * `agent-gallery` *
         /// `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` *
-        /// `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` *
+        /// `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` *
         /// `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` *
         /// `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` *
         /// `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` *
-        /// `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `disable-skills` * `disable-projects` *
-        /// `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` *
-        /// `cross-product-intelligence`
+        /// `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `skills` * `skill-sharing` *
+        /// `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups`
+        /// * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` *
+        /// `workflow-agents` * `in-app-notifications`
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("features")]
         public virtual System.Collections.Generic.IDictionary<string, string> Features { get; set; }
@@ -27699,7 +27809,10 @@ namespace Google.Apis.DiscoveryEngine.v1beta.Data
         public virtual string ETag { get; set; }
     }
 
-    /// <summary>Response message for CompletionService.PurgeCompletionSuggestions method.</summary>
+    /// <summary>
+    /// Response message for CompletionService.PurgeCompletionSuggestions method. If the long running operation is
+    /// successfully done, then this message is returned by the google.longrunning.Operations.response field.
+    /// </summary>
     public class GoogleCloudDiscoveryengineV1PurgeCompletionSuggestionsResponse : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>A sample of errors encountered while processing the request.</summary>
@@ -30671,6 +30784,10 @@ namespace Google.Apis.DiscoveryEngine.v1beta.Data
         [Newtonsoft.Json.JsonPropertyAttribute("verdict")]
         public virtual string Verdict { get; set; }
 
+        /// <summary>Output only. The source of the violation.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("violationSource")]
+        public virtual string ViolationSource { get; set; }
+
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
     }
@@ -32743,16 +32860,9 @@ namespace Google.Apis.DiscoveryEngine.v1beta.Data
         public virtual GoogleCloudDiscoveryengineV1alphaDataProtectionPolicy DataProtectionPolicy { get; set; }
 
         /// <summary>
-        /// Required. The identifier for the data source. This is a partial list of supported connectors. Please refer
-        /// to the
-        /// [documentation](https://docs.cloud.google.com/gemini/enterprise/docs/connectors/introduction-to-connectors-and-data-stores)
-        /// for the full list of connectors. Supported first-party connectors include: * `gcs` * `bigquery` * `gcp_fhir`
-        /// * `google_mail` * `google_drive` * `google_calendar` * `google_chat` Supported third-party connectors
-        /// include: Generally available (GA) connectors: * `onedrive` * `outlook` * `confluence` * `jira` *
-        /// `servicenow` * `sharepoint` Preview connectors: * `asana` * `azure_active_directory` * `box` * `canva` *
-        /// `confluence_server` * `custom_connector` * `docusign` * `dropbox` * `dynamics365` * `github` * `gitlab` *
-        /// `hubspot` * `jira_server` * `linear` * `native_cloud_identity` * `notion` * `okta` * `pagerduty` *
-        /// `peoplesoft` * `salesforce` * `shopify` * `slack` * `snowflake` * `teams` * `trello` * `workday` * `zendesk`
+        /// Required. The identifier for the data source. For the full, up-to-date list of supported connectors and
+        /// their values, see [Connect a third-party data
+        /// source](https://docs.cloud.google.com/gemini/enterprise/docs/connectors/connect-third-party-data-source#sources-by-launch-stage).
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("dataSource")]
         public virtual string DataSource { get; set; }
@@ -32925,6 +33035,13 @@ namespace Google.Apis.DiscoveryEngine.v1beta.Data
         }
 
         /// <summary>
+        /// Optional. User-facing metadata for the connector. Populated from the connector's generated metadata /
+        /// registry `ConnectorSource`.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("metadata")]
+        public virtual GoogleCloudDiscoveryengineV1alphaDataConnectorConnectorMetadata Metadata { get; set; }
+
+        /// <summary>
         /// Identifier. The full resource name of the Data Connector. Format:
         /// `projects/*/locations/*/collections/*/dataConnector`.
         /// </summary>
@@ -33051,6 +33168,48 @@ namespace Google.Apis.DiscoveryEngine.v1beta.Data
         /// <summary>Output only. Whether the connector is created with VPC-SC enabled.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("vpcscEnabled")]
         public virtual System.Nullable<bool> VpcscEnabled { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>
+    /// User-facing metadata for the connector, shown on the connector detail page (title, description,
+    /// short_description, author, note).
+    /// </summary>
+    public class GoogleCloudDiscoveryengineV1alphaDataConnectorConnectorMetadata : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>
+        /// Optional. The party that authored the connector, e.g. "Google" or a third-party provider name. Lets end
+        /// users see who authored a connector (future: third-party-authored connectors).
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("author")]
+        public virtual string Author { get; set; }
+
+        /// <summary>
+        /// Optional. Human-readable description of the connector, shown on the connector detail page. One connector has
+        /// a single description.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("description")]
+        public virtual string Description { get; set; }
+
+        /// <summary>
+        /// Optional. Free-form, multi-line note about the connector's capabilities or a custom note that can be set for
+        /// the connector.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("note")]
+        public virtual string Note { get; set; }
+
+        /// <summary>
+        /// Optional. Short, subtitle-length description of the connector (e.g. shown beneath the connector name in list
+        /// and detail views).
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("shortDescription")]
+        public virtual string ShortDescription { get; set; }
+
+        /// <summary>Optional. Display title of the connector.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("title")]
+        public virtual string Title { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -35104,13 +35263,14 @@ namespace Google.Apis.DiscoveryEngine.v1beta.Data
         /// Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all
         /// features, if it's present, all other feature state settings are ignored. * `agent-gallery` *
         /// `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` *
-        /// `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` *
+        /// `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` *
         /// `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` *
         /// `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` *
         /// `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` *
-        /// `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `disable-skills` * `disable-projects` *
-        /// `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` *
-        /// `cross-product-intelligence`
+        /// `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `skills` * `skill-sharing` *
+        /// `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups`
+        /// * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` *
+        /// `workflow-agents` * `in-app-notifications`
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("features")]
         public virtual System.Collections.Generic.IDictionary<string, string> Features { get; set; }
@@ -37980,7 +38140,10 @@ namespace Google.Apis.DiscoveryEngine.v1beta.Data
         public virtual string ETag { get; set; }
     }
 
-    /// <summary>Response message for CompletionService.PurgeCompletionSuggestions method.</summary>
+    /// <summary>
+    /// Response message for CompletionService.PurgeCompletionSuggestions method. If the long running operation is
+    /// successfully done, then this message is returned by the google.longrunning.Operations.response field.
+    /// </summary>
     public class GoogleCloudDiscoveryengineV1alphaPurgeCompletionSuggestionsResponse : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>A sample of errors encountered while processing the request.</summary>
@@ -41613,15 +41776,12 @@ namespace Google.Apis.DiscoveryEngine.v1beta.Data
         public virtual string ETag { get; set; }
     }
 
-    /// <summary>
-    /// Precise location info with multiple representation options. Currently only latitude and longitude point is
-    /// supported.
-    /// </summary>
+    /// <summary>Precise location info with multiple representation options.</summary>
     public class GoogleCloudDiscoveryengineV1alphaUserInfoPreciseLocation : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>
-        /// Optional. Location represented by a natural language address. Will later be geocoded and converted to either
-        /// a point or a polygon.
+        /// Location represented by a natural language address. Will later be geocoded and converted to either a point
+        /// or a polygon.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("address")]
         public virtual string Address { get; set; }
@@ -43527,6 +43687,10 @@ namespace Google.Apis.DiscoveryEngine.v1beta.Data
         [Newtonsoft.Json.JsonPropertyAttribute("verdict")]
         public virtual string Verdict { get; set; }
 
+        /// <summary>Output only. The source of the violation.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("violationSource")]
+        public virtual string ViolationSource { get; set; }
+
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
     }
@@ -44462,7 +44626,7 @@ namespace Google.Apis.DiscoveryEngine.v1beta.Data
         [Newtonsoft.Json.JsonPropertyAttribute("deleteUnassignedUserLicenses")]
         public virtual System.Nullable<bool> DeleteUnassignedUserLicenses { get; set; }
 
-        /// <summary>The inline source for the input content for document embeddings.</summary>
+        /// <summary>The inline source for the input content for license assignment.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("inlineSource")]
         public virtual GoogleCloudDiscoveryengineV1betaBatchUpdateUserLicensesRequestInlineSource InlineSource { get; set; }
 
@@ -48290,13 +48454,14 @@ namespace Google.Apis.DiscoveryEngine.v1beta.Data
         /// Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all
         /// features, if it's present, all other feature state settings are ignored. * `agent-gallery` *
         /// `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` *
-        /// `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` *
+        /// `people-search-org-chart` * `bi-directional-audio` * `speech-to-text` * `feedback` * `session-sharing` *
         /// `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` *
         /// `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` *
         /// `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` *
-        /// `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `disable-skills` * `disable-projects` *
-        /// `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` *
-        /// `cross-product-intelligence`
+        /// `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `skills` * `skill-sharing` *
+        /// `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups`
+        /// * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` *
+        /// `workflow-agents` * `in-app-notifications`
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("features")]
         public virtual System.Collections.Generic.IDictionary<string, string> Features { get; set; }
@@ -54125,7 +54290,7 @@ namespace Google.Apis.DiscoveryEngine.v1beta.Data
     /// <summary>Response message for SearchService.Search method.</summary>
     public class GoogleCloudDiscoveryengineV1betaSearchResponse : Google.Apis.Requests.IDirectResponseSchema
     {
-        /// <summary>Controls applied as part of the Control service.</summary>
+        /// <summary>Optional. Controls applied as part of the Control service.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("appliedControls")]
         public virtual System.Collections.Generic.IList<string> AppliedControls { get; set; }
 
@@ -54551,6 +54716,13 @@ namespace Google.Apis.DiscoveryEngine.v1beta.Data
         [Newtonsoft.Json.JsonPropertyAttribute("rankSignals")]
         public virtual GoogleCloudDiscoveryengineV1betaSearchResponseSearchResultRankSignals RankSignals { get; set; }
 
+        /// <summary>
+        /// Optional. A set of signals used by the relevance filter meant for use to fine-tune the relevance filter
+        /// thresholds.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("retrievalSignals")]
+        public virtual GoogleCloudDiscoveryengineV1betaSearchResponseSearchResultRetrievalSignals RetrievalSignals { get; set; }
+
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
     }
@@ -54615,6 +54787,21 @@ namespace Google.Apis.DiscoveryEngine.v1beta.Data
         /// <summary>Optional. Float value representing the ranking signal (e.g. 1.25 for BM25).</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("value")]
         public virtual System.Nullable<float> Value { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Contains a set of signals used by the relevance filter.</summary>
+    public class GoogleCloudDiscoveryengineV1betaSearchResponseSearchResultRetrievalSignals : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Optional. Indicates how the result was retrieved.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("retrievalSources")]
+        public virtual System.Collections.Generic.IList<string> RetrievalSources { get; set; }
+
+        /// <summary>Optional. Relevance score used by the filter when semantic_relevance_threshold is set.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("semanticRelevanceScore")]
+        public virtual System.Nullable<float> SemanticRelevanceScore { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -56675,15 +56862,12 @@ namespace Google.Apis.DiscoveryEngine.v1beta.Data
         public virtual string ETag { get; set; }
     }
 
-    /// <summary>
-    /// Precise location info with multiple representation options. Currently only latitude and longitude point is
-    /// supported.
-    /// </summary>
+    /// <summary>Precise location info with multiple representation options.</summary>
     public class GoogleCloudDiscoveryengineV1betaUserInfoPreciseLocation : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>
-        /// Optional. Location represented by a natural language address. Will later be geocoded and converted to either
-        /// a point or a polygon.
+        /// Location represented by a natural language address. Will later be geocoded and converted to either a point
+        /// or a polygon.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("address")]
         public virtual string Address { get; set; }

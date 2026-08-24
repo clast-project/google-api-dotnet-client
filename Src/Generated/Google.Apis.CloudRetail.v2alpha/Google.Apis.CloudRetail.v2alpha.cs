@@ -4559,8 +4559,8 @@ namespace Google.Apis.CloudRetail.v2alpha
                     /// <summary>
                     /// Writes a single user event from the browser. For larger user event payload over 16 KB, the POST
                     /// method should be used instead, otherwise a 400 Bad Request error is returned. This method is
-                    /// used only by the Retail API JavaScript pixel and Google Tag Manager. Users should not call this
-                    /// method directly.
+                    /// used only by the AI Commerce Search API JavaScript pixel and Google Tag Manager. Users should
+                    /// not call this method directly.
                     /// </summary>
                     /// <param name="body">The body of the request.</param>
                     /// <param name="parent">
@@ -4575,8 +4575,8 @@ namespace Google.Apis.CloudRetail.v2alpha
                     /// <summary>
                     /// Writes a single user event from the browser. For larger user event payload over 16 KB, the POST
                     /// method should be used instead, otherwise a 400 Bad Request error is returned. This method is
-                    /// used only by the Retail API JavaScript pixel and Google Tag Manager. Users should not call this
-                    /// method directly.
+                    /// used only by the AI Commerce Search API JavaScript pixel and Google Tag Manager. Users should
+                    /// not call this method directly.
                     /// </summary>
                     public class CollectRequest : CloudRetailBaseServiceRequest<Google.Apis.CloudRetail.v2alpha.Data.GoogleApiHttpBody>
                     {
@@ -6561,8 +6561,8 @@ namespace Google.Apis.CloudRetail.v2alpha
 
         /// <summary>
         /// The method enrolls a solution of type Retail Search into a project. The Recommendations AI solution type is
-        /// enrolled by default when your project enables Retail API, so you don't need to call the enrollSolution
-        /// method for recommendations.
+        /// enrolled by default when your project enables AI Commerce Search API, so you don't need to call the
+        /// enrollSolution method for recommendations.
         /// </summary>
         /// <param name="body">The body of the request.</param>
         /// <param name="project">
@@ -6575,8 +6575,8 @@ namespace Google.Apis.CloudRetail.v2alpha
 
         /// <summary>
         /// The method enrolls a solution of type Retail Search into a project. The Recommendations AI solution type is
-        /// enrolled by default when your project enables Retail API, so you don't need to call the enrollSolution
-        /// method for recommendations.
+        /// enrolled by default when your project enables AI Commerce Search API, so you don't need to call the
+        /// enrollSolution method for recommendations.
         /// </summary>
         public class EnrollSolutionRequest : CloudRetailBaseServiceRequest<Google.Apis.CloudRetail.v2alpha.Data.GoogleLongrunningOperation>
         {
@@ -6721,7 +6721,8 @@ namespace Google.Apis.CloudRetail.v2alpha
         }
 
         /// <summary>
-        /// Gets the project. Throws `NOT_FOUND` if the project wasn't initialized for the Retail API service.
+        /// Gets the project. Throws `NOT_FOUND` if the project wasn't initialized for the AI Commerce Search API
+        /// service.
         /// </summary>
         /// <param name="name">
         /// Required. Full resource name of the project. Format: `projects/{project_number_or_id}/retailProject`
@@ -6732,7 +6733,8 @@ namespace Google.Apis.CloudRetail.v2alpha
         }
 
         /// <summary>
-        /// Gets the project. Throws `NOT_FOUND` if the project wasn't initialized for the Retail API service.
+        /// Gets the project. Throws `NOT_FOUND` if the project wasn't initialized for the AI Commerce Search API
+        /// service.
         /// </summary>
         public class GetRetailProjectRequest : CloudRetailBaseServiceRequest<Google.Apis.CloudRetail.v2alpha.Data.GoogleCloudRetailV2alphaProject>
         {
@@ -6773,7 +6775,7 @@ namespace Google.Apis.CloudRetail.v2alpha
             }
         }
 
-        /// <summary>Lists all the retail API solutions the project has enrolled.</summary>
+        /// <summary>Lists all the AI Commerce Search API solutions the project has enrolled.</summary>
         /// <param name="parent">
         /// Required. Full resource name of parent. Format: `projects/{project_number_or_id}`
         /// </param>
@@ -6782,7 +6784,7 @@ namespace Google.Apis.CloudRetail.v2alpha
             return new ListEnrolledSolutionsRequest(this.service, parent);
         }
 
-        /// <summary>Lists all the retail API solutions the project has enrolled.</summary>
+        /// <summary>Lists all the AI Commerce Search API solutions the project has enrolled.</summary>
         public class ListEnrolledSolutionsRequest : CloudRetailBaseServiceRequest<Google.Apis.CloudRetail.v2alpha.Data.GoogleCloudRetailV2alphaListEnrolledSolutionsResponse>
         {
             /// <summary>Constructs a new ListEnrolledSolutions request.</summary>
@@ -9123,6 +9125,14 @@ namespace Google.Apis.CloudRetail.v2alpha.Data
     public class GoogleCloudRetailV2alphaCompleteQueryResponseCompletionResult : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>
+        /// Conversational prompts to trigger agents like Shopping Agent. There may be multiple prompts for a single
+        /// suggestion. This is an experimental feature for select customers. If you want to receive this prompt
+        /// information, reach out to the Retail support team.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("agentPrompts")]
+        public virtual System.Collections.Generic.IList<GoogleCloudRetailV2alphaCompleteQueryResponseCompletionResultAgentPrompt> AgentPrompts { get; set; }
+
+        /// <summary>
         /// Custom attributes for the suggestion term. * For `user-data`, the attributes are additional custom
         /// attributes ingested through BigQuery. * For `cloud-retail`, the attributes are product attributes generated
         /// by Cloud Retail. It requires UserEvent.product_details is imported properly.
@@ -9149,6 +9159,17 @@ namespace Google.Apis.CloudRetail.v2alpha.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("totalProductCount")]
         public virtual System.Nullable<int> TotalProductCount { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>A conversational prompt to trigger agents like Shopping Agent.</summary>
+    public class GoogleCloudRetailV2alphaCompleteQueryResponseCompletionResultAgentPrompt : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The conversational prompt string.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("prompt")]
+        public virtual string Prompt { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -9976,7 +9997,7 @@ namespace Google.Apis.CloudRetail.v2alpha.Data
     /// <summary>Response for EnrollSolution method.</summary>
     public class GoogleCloudRetailV2alphaEnrollSolutionResponse : Google.Apis.Requests.IDirectResponseSchema
     {
-        /// <summary>Retail API solution that the project has enrolled.</summary>
+        /// <summary>AI Commerce Search API solution that the project has enrolled.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("enrolledSolution")]
         public virtual string EnrolledSolution { get; set; }
 
@@ -10916,7 +10937,7 @@ namespace Google.Apis.CloudRetail.v2alpha.Data
     /// <summary>Response for ListEnrolledSolutions method.</summary>
     public class GoogleCloudRetailV2alphaListEnrolledSolutionsResponse : Google.Apis.Requests.IDirectResponseSchema
     {
-        /// <summary>Retail API solutions that the project has enrolled.</summary>
+        /// <summary>AI Commerce Search API solutions that the project has enrolled.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("enrolledSolutions")]
         public virtual System.Collections.Generic.IList<string> EnrolledSolutions { get; set; }
 
@@ -12662,7 +12683,7 @@ namespace Google.Apis.CloudRetail.v2alpha.Data
     /// <summary>Metadata that describes a Cloud Retail Project.</summary>
     public class GoogleCloudRetailV2alphaProject : Google.Apis.Requests.IDirectResponseSchema
     {
-        /// <summary>Output only. Retail API solutions that the project has enrolled.</summary>
+        /// <summary>Output only. AI Commerce Search API solutions that the project has enrolled.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("enrolledSolutions")]
         public virtual System.Collections.Generic.IList<string> EnrolledSolutions { get; set; }
 
@@ -13596,6 +13617,15 @@ namespace Google.Apis.CloudRetail.v2alpha.Data
         public virtual GoogleCloudRetailV2alphaSearchRequestConversationalSearchSpec ConversationalSearchSpec { get; set; }
 
         /// <summary>
+        /// Optional. A set of controls that are applied dynamically to the search request. These controls are applied
+        /// in addition to the controls specified in the serving config. These controls are expected to not yet be
+        /// persisted in storage. A control could be applied twice if it is in both the serving config and specified
+        /// here. A maximum of 5 values are allowed. Otherwise, an INVALID_ARGUMENT error is returned.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("dynamicControls")]
+        public virtual System.Collections.Generic.IList<GoogleCloudRetailV2alphaControl> DynamicControls { get; set; }
+
+        /// <summary>
         /// Deprecated. Refer to https://cloud.google.com/retail/docs/configs#dynamic to enable dynamic facets. Do not
         /// set this field. The specification for dynamically generated facets. Notice that only textual facets can be
         /// dynamically generated.
@@ -13630,6 +13660,13 @@ namespace Google.Apis.CloudRetail.v2alpha.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("filter")]
         public virtual string Filter { get; set; }
+
+        /// <summary>
+        /// Optional. A list of control IDs to ignore. These controls will not be applied to the search request, even if
+        /// they are specified in the serving config.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("ignoredControlIds")]
+        public virtual System.Collections.Generic.IList<string> IgnoredControlIds { get; set; }
 
         /// <summary>
         /// The labels applied to a resource must meet the following requirements: * Each resource can have multiple
@@ -14889,8 +14926,8 @@ namespace Google.Apis.CloudRetail.v2alpha.Data
     }
 
     /// <summary>
-    /// UserEvent captures all metadata information Retail API needs to know about how end users interact with
-    /// customers' website.
+    /// UserEvent captures all metadata information AI Commerce Search API needs to know about how end users interact
+    /// with customers' website.
     /// </summary>
     public class GoogleCloudRetailV2alphaUserEvent : Google.Apis.Requests.IDirectResponseSchema
     {
@@ -14898,14 +14935,14 @@ namespace Google.Apis.CloudRetail.v2alpha.Data
         /// Extra user event features to include in the recommendation model. If you provide custom attributes for
         /// ingested user events, also include them in the user events that you associate with prediction requests.
         /// Custom attribute formatting must be consistent between imported events and events provided with prediction
-        /// requests. This lets the Retail API use those custom attributes when training models and serving predictions,
-        /// which helps improve recommendation quality. This field needs to pass all below criteria, otherwise an
-        /// INVALID_ARGUMENT error is returned: * The key must be a UTF-8 encoded string with a length limit of 5,000
-        /// characters. * For text attributes, at most 400 values are allowed. Empty values are not allowed. Each value
-        /// must be a UTF-8 encoded string with a length limit of 256 characters. * For number attributes, at most 400
-        /// values are allowed. For product recommendations, an example of extra user information is traffic_channel,
-        /// which is how a user arrives at the site. Users can arrive at the site by coming to the site directly, coming
-        /// through Google search, or in other ways.
+        /// requests. This lets the AI Commerce Search API use those custom attributes when training models and serving
+        /// predictions, which helps improve recommendation quality. This field needs to pass all below criteria,
+        /// otherwise an INVALID_ARGUMENT error is returned: * The key must be a UTF-8 encoded string with a length
+        /// limit of 5,000 characters. * For text attributes, at most 400 values are allowed. Empty values are not
+        /// allowed. Each value must be a UTF-8 encoded string with a length limit of 256 characters. * For number
+        /// attributes, at most 400 values are allowed. For product recommendations, an example of extra user
+        /// information is traffic_channel, which is how a user arrives at the site. Users can arrive at the site by
+        /// coming to the site directly, coming through Google search, or in other ways.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("attributes")]
         public virtual System.Collections.Generic.IDictionary<string, GoogleCloudRetailV2alphaCustomAttribute> Attributes { get; set; }
@@ -14997,8 +15034,8 @@ namespace Google.Apis.CloudRetail.v2alpha.Data
 
         /// <summary>
         /// A list of identifiers for the independent experiment groups this user event belongs to. This is used to
-        /// distinguish between user events associated with different experiment setups (e.g. using Retail API, using
-        /// different recommendation models).
+        /// distinguish between user events associated with different experiment setups (such as by using AI Commerce
+        /// Search API, or using different recommendation models).
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("experimentIds")]
         public virtual System.Collections.Generic.IList<string> ExperimentIds { get; set; }

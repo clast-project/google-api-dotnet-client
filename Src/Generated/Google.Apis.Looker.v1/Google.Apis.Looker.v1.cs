@@ -1841,6 +1841,13 @@ namespace Google.Apis.Looker.v1.Data
     /// </summary>
     public class ExportMetadata : Google.Apis.Requests.IDirectResponseSchema
     {
+        /// <summary>
+        /// Source BigQuery dataset (formatted as `project_id:dataset_id`) for O2C Elite System Activity (ESA) direct
+        /// dataset migration.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("esaSourceDatasetId")]
+        public virtual string EsaSourceDatasetId { get; set; }
+
         /// <summary>Encryption key that was used to encrypt the export artifacts.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("exportEncryptionKey")]
         public virtual ExportMetadataEncryptionKey ExportEncryptionKey { get; set; }
@@ -2340,15 +2347,13 @@ namespace Google.Apis.Looker.v1.Data
     /// <summary>Response from ListInstances.</summary>
     public class ListInstancesResponse : Google.Apis.Requests.IDirectResponseSchema
     {
-        /// <summary>
-        /// The list of instances matching the request filters, up to the requested ListInstancesRequest.pageSize.
-        /// </summary>
+        /// <summary>The list of instances matching the request filters, up to the requested `pageSize`.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("instances")]
         public virtual System.Collections.Generic.IList<Instance> Instances { get; set; }
 
         /// <summary>
-        /// If provided, a page token that can look up the next ListInstancesRequest.pageSize results. If empty, the
-        /// results list is exhausted.
+        /// If provided, a page token that can look up the next `pageSize` results. If empty, the results list is
+        /// exhausted.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("nextPageToken")]
         public virtual string NextPageToken { get; set; }

@@ -84,6 +84,10 @@ namespace Google.Apis.Storage.v1.Data
     [JsonSerializable(typeof(global::Google.Apis.Storage.v1.Data.Objects), TypeInfoPropertyName = "Schema_Objects")]
     [JsonSerializable(typeof(global::Google.Apis.Storage.v1.Data.Policy), TypeInfoPropertyName = "Schema_Policy")]
     [JsonSerializable(typeof(global::Google.Apis.Storage.v1.Data.Policy.BindingsData), TypeInfoPropertyName = "Schema_Policy_BindingsData")]
+    [JsonSerializable(typeof(global::Google.Apis.Storage.v1.Data.RapidCache), TypeInfoPropertyName = "Schema_RapidCache")]
+    [JsonSerializable(typeof(global::Google.Apis.Storage.v1.Data.RapidCacheConfig), TypeInfoPropertyName = "Schema_RapidCacheConfig")]
+    [JsonSerializable(typeof(global::Google.Apis.Storage.v1.Data.RapidCachePolicy), TypeInfoPropertyName = "Schema_RapidCachePolicy")]
+    [JsonSerializable(typeof(global::Google.Apis.Storage.v1.Data.RapidCaches), TypeInfoPropertyName = "Schema_RapidCaches")]
     [JsonSerializable(typeof(global::Google.Apis.Storage.v1.Data.RelocateBucketRequest), TypeInfoPropertyName = "Schema_RelocateBucketRequest")]
     [JsonSerializable(typeof(global::Google.Apis.Storage.v1.Data.RelocateBucketRequest.DestinationCustomPlacementConfigData), TypeInfoPropertyName = "Schema_RelocateBucketRequest_DestinationCustomPlacementConfigData")]
     [JsonSerializable(typeof(global::Google.Apis.Storage.v1.Data.RewriteResponse), TypeInfoPropertyName = "Schema_RewriteResponse")]
@@ -767,6 +771,21 @@ namespace Google.Apis.Storage.v1.Data
                 P("uploadType", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.ManagedFoldersResource.TestIamPermissionsRequest)r).UploadType),
                 P("userIp", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.ManagedFoldersResource.TestIamPermissionsRequest)r).UserIp),
             });
+            RequestParameterRegistry.Register(typeof(global::Google.Apis.Storage.v1.ManagedFoldersResource.UpdateRequest), new RequestParameterDescriptor[]
+            {
+                P("bucket", RequestParameterType.Path, false, r => ((global::Google.Apis.Storage.v1.ManagedFoldersResource.UpdateRequest)r).Bucket),
+                P("managedFolder", RequestParameterType.Path, false, r => ((global::Google.Apis.Storage.v1.ManagedFoldersResource.UpdateRequest)r).ManagedFolder),
+                P("ifMetagenerationMatch", RequestParameterType.Query, true, r => ((global::Google.Apis.Storage.v1.ManagedFoldersResource.UpdateRequest)r).IfMetagenerationMatch),
+                P("ifMetagenerationNotMatch", RequestParameterType.Query, true, r => ((global::Google.Apis.Storage.v1.ManagedFoldersResource.UpdateRequest)r).IfMetagenerationNotMatch),
+                P("alt", RequestParameterType.Query, true, r => ((global::Google.Apis.Storage.v1.ManagedFoldersResource.UpdateRequest)r).Alt),
+                P("fields", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.ManagedFoldersResource.UpdateRequest)r).Fields),
+                P("key", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.ManagedFoldersResource.UpdateRequest)r).Key),
+                P("oauth_token", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.ManagedFoldersResource.UpdateRequest)r).OauthToken),
+                P("prettyPrint", RequestParameterType.Query, true, r => ((global::Google.Apis.Storage.v1.ManagedFoldersResource.UpdateRequest)r).PrettyPrint),
+                P("quotaUser", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.ManagedFoldersResource.UpdateRequest)r).QuotaUser),
+                P("uploadType", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.ManagedFoldersResource.UpdateRequest)r).UploadType),
+                P("userIp", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.ManagedFoldersResource.UpdateRequest)r).UserIp),
+            });
             RequestParameterRegistry.Register(typeof(global::Google.Apis.Storage.v1.NotificationsResource.DeleteRequest), new RequestParameterDescriptor[]
             {
                 P("bucket", RequestParameterType.Path, false, r => ((global::Google.Apis.Storage.v1.NotificationsResource.DeleteRequest)r).Bucket),
@@ -1391,6 +1410,71 @@ namespace Google.Apis.Storage.v1.Data
                 P("quotaUser", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.ProjectsResource.ServiceAccountResource.GetRequest)r).QuotaUser),
                 P("uploadType", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.ProjectsResource.ServiceAccountResource.GetRequest)r).UploadType),
                 P("userIp", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.ProjectsResource.ServiceAccountResource.GetRequest)r).UserIp),
+            });
+            RequestParameterRegistry.Register(typeof(global::Google.Apis.Storage.v1.RapidCachesResource.DisableRequest), new RequestParameterDescriptor[]
+            {
+                P("bucket", RequestParameterType.Path, false, r => ((global::Google.Apis.Storage.v1.RapidCachesResource.DisableRequest)r).Bucket),
+                P("rapidCacheId", RequestParameterType.Path, false, r => ((global::Google.Apis.Storage.v1.RapidCachesResource.DisableRequest)r).RapidCacheId),
+                P("alt", RequestParameterType.Query, true, r => ((global::Google.Apis.Storage.v1.RapidCachesResource.DisableRequest)r).Alt),
+                P("fields", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.RapidCachesResource.DisableRequest)r).Fields),
+                P("key", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.RapidCachesResource.DisableRequest)r).Key),
+                P("oauth_token", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.RapidCachesResource.DisableRequest)r).OauthToken),
+                P("prettyPrint", RequestParameterType.Query, true, r => ((global::Google.Apis.Storage.v1.RapidCachesResource.DisableRequest)r).PrettyPrint),
+                P("quotaUser", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.RapidCachesResource.DisableRequest)r).QuotaUser),
+                P("uploadType", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.RapidCachesResource.DisableRequest)r).UploadType),
+                P("userIp", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.RapidCachesResource.DisableRequest)r).UserIp),
+            });
+            RequestParameterRegistry.Register(typeof(global::Google.Apis.Storage.v1.RapidCachesResource.GetRequest), new RequestParameterDescriptor[]
+            {
+                P("bucket", RequestParameterType.Path, false, r => ((global::Google.Apis.Storage.v1.RapidCachesResource.GetRequest)r).Bucket),
+                P("rapidCacheId", RequestParameterType.Path, false, r => ((global::Google.Apis.Storage.v1.RapidCachesResource.GetRequest)r).RapidCacheId),
+                P("alt", RequestParameterType.Query, true, r => ((global::Google.Apis.Storage.v1.RapidCachesResource.GetRequest)r).Alt),
+                P("fields", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.RapidCachesResource.GetRequest)r).Fields),
+                P("key", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.RapidCachesResource.GetRequest)r).Key),
+                P("oauth_token", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.RapidCachesResource.GetRequest)r).OauthToken),
+                P("prettyPrint", RequestParameterType.Query, true, r => ((global::Google.Apis.Storage.v1.RapidCachesResource.GetRequest)r).PrettyPrint),
+                P("quotaUser", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.RapidCachesResource.GetRequest)r).QuotaUser),
+                P("uploadType", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.RapidCachesResource.GetRequest)r).UploadType),
+                P("userIp", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.RapidCachesResource.GetRequest)r).UserIp),
+            });
+            RequestParameterRegistry.Register(typeof(global::Google.Apis.Storage.v1.RapidCachesResource.InsertRequest), new RequestParameterDescriptor[]
+            {
+                P("bucket", RequestParameterType.Path, false, r => ((global::Google.Apis.Storage.v1.RapidCachesResource.InsertRequest)r).Bucket),
+                P("alt", RequestParameterType.Query, true, r => ((global::Google.Apis.Storage.v1.RapidCachesResource.InsertRequest)r).Alt),
+                P("fields", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.RapidCachesResource.InsertRequest)r).Fields),
+                P("key", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.RapidCachesResource.InsertRequest)r).Key),
+                P("oauth_token", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.RapidCachesResource.InsertRequest)r).OauthToken),
+                P("prettyPrint", RequestParameterType.Query, true, r => ((global::Google.Apis.Storage.v1.RapidCachesResource.InsertRequest)r).PrettyPrint),
+                P("quotaUser", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.RapidCachesResource.InsertRequest)r).QuotaUser),
+                P("uploadType", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.RapidCachesResource.InsertRequest)r).UploadType),
+                P("userIp", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.RapidCachesResource.InsertRequest)r).UserIp),
+            });
+            RequestParameterRegistry.Register(typeof(global::Google.Apis.Storage.v1.RapidCachesResource.ListRequest), new RequestParameterDescriptor[]
+            {
+                P("bucket", RequestParameterType.Path, false, r => ((global::Google.Apis.Storage.v1.RapidCachesResource.ListRequest)r).Bucket),
+                P("pageSize", RequestParameterType.Query, true, r => ((global::Google.Apis.Storage.v1.RapidCachesResource.ListRequest)r).PageSize),
+                P("pageToken", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.RapidCachesResource.ListRequest)r).PageToken),
+                P("alt", RequestParameterType.Query, true, r => ((global::Google.Apis.Storage.v1.RapidCachesResource.ListRequest)r).Alt),
+                P("fields", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.RapidCachesResource.ListRequest)r).Fields),
+                P("key", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.RapidCachesResource.ListRequest)r).Key),
+                P("oauth_token", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.RapidCachesResource.ListRequest)r).OauthToken),
+                P("prettyPrint", RequestParameterType.Query, true, r => ((global::Google.Apis.Storage.v1.RapidCachesResource.ListRequest)r).PrettyPrint),
+                P("quotaUser", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.RapidCachesResource.ListRequest)r).QuotaUser),
+                P("uploadType", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.RapidCachesResource.ListRequest)r).UploadType),
+                P("userIp", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.RapidCachesResource.ListRequest)r).UserIp),
+            });
+            RequestParameterRegistry.Register(typeof(global::Google.Apis.Storage.v1.RapidCachesResource.UpdateRequest), new RequestParameterDescriptor[]
+            {
+                P("bucket", RequestParameterType.Path, false, r => ((global::Google.Apis.Storage.v1.RapidCachesResource.UpdateRequest)r).Bucket),
+                P("rapidCacheId", RequestParameterType.Path, false, r => ((global::Google.Apis.Storage.v1.RapidCachesResource.UpdateRequest)r).RapidCacheId),
+                P("alt", RequestParameterType.Query, true, r => ((global::Google.Apis.Storage.v1.RapidCachesResource.UpdateRequest)r).Alt),
+                P("fields", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.RapidCachesResource.UpdateRequest)r).Fields),
+                P("key", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.RapidCachesResource.UpdateRequest)r).Key),
+                P("oauth_token", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.RapidCachesResource.UpdateRequest)r).OauthToken),
+                P("prettyPrint", RequestParameterType.Query, true, r => ((global::Google.Apis.Storage.v1.RapidCachesResource.UpdateRequest)r).PrettyPrint),
+                P("quotaUser", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.RapidCachesResource.UpdateRequest)r).QuotaUser),
+                P("uploadType", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.RapidCachesResource.UpdateRequest)r).UploadType),
+                P("userIp", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.RapidCachesResource.UpdateRequest)r).UserIp),
             });
 
             EnumStringValueRegistry.Register(typeof(global::Google.Apis.Storage.v1.StorageBaseServiceRequest<object>.AltEnum), value =>

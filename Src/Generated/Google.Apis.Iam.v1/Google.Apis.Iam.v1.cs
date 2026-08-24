@@ -10751,21 +10751,6 @@ namespace Google.Apis.Iam.v1.Data
     /// <summary>The service account key disable request.</summary>
     public class DisableServiceAccountKeyRequest : Google.Apis.Requests.IDirectResponseSchema
     {
-        /// <summary>
-        /// Optional. Usable by internal google services only. An extended_status_message can be used to include
-        /// additional information about the key, such as its private key data being exposed on a public repository like
-        /// GitHub.
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("extendedStatusMessage")]
-        public virtual string ExtendedStatusMessage { get; set; }
-
-        /// <summary>
-        /// Optional. Describes the reason this key is being disabled. If unspecified, the default value of
-        /// SERVICE_ACCOUNT_KEY_DISABLE_REASON_USER_INITIATED will be used.
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("serviceAccountKeyDisableReason")]
-        public virtual string ServiceAccountKeyDisableReason { get; set; }
-
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
     }
@@ -11763,7 +11748,7 @@ namespace Google.Apis.Iam.v1.Data
         public virtual System.Collections.Generic.IList<string> AllowedAudiences { get; set; }
 
         /// <summary>
-        /// Required. The OIDC issuer URL. Must be an HTTPS endpoint. Per OpenID Connect Discovery 1.0 spec, the OIDC
+        /// Required. The OIDC `issuer_uri`. Must be an HTTPS endpoint. Per OpenID Connect Discovery 1.0 spec, the OIDC
         /// issuer URL is used to locate the provider's public keys (via `jwks_uri`) for verifying tokens like the OIDC
         /// ID token. These public key types must be 'EC' or 'RSA'.
         /// </summary>

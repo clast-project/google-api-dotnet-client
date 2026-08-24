@@ -35809,6 +35809,15 @@ namespace Google.Apis.Aiplatform.v1
                     [Google.Apis.Util.RequestParameterAttribute("indexEndpoint", Google.Apis.Util.RequestParameterType.Path)]
                     public virtual string IndexEndpoint { get; private set; }
 
+                    /// <summary>
+                    /// Optional. The update mask applies to the resource. The supported paths are
+                    /// `automatic_resources`, `dedicated_resources`, `enable_access_logging` and
+                    /// `deployed_index_auth_config`. When omitted, the service will perform a full update of all
+                    /// fields. See google.protobuf.FieldMask.
+                    /// </summary>
+                    [Google.Apis.Util.RequestParameterAttribute("updateMask", Google.Apis.Util.RequestParameterType.Query)]
+                    public virtual object UpdateMask { get; set; }
+
                     /// <summary>Gets or sets the body of this request.</summary>
                     Google.Apis.Aiplatform.v1.Data.GoogleCloudAiplatformV1DeployedIndex Body { get; set; }
 
@@ -35835,6 +35844,14 @@ namespace Google.Apis.Aiplatform.v1
                             ParameterType = "path",
                             DefaultValue = null,
                             Pattern = @"^projects/[^/]+/locations/[^/]+/indexEndpoints/[^/]+$",
+                        });
+                        RequestParameters.Add("updateMask", new Google.Apis.Discovery.Parameter
+                        {
+                            Name = "updateMask",
+                            IsRequired = false,
+                            ParameterType = "query",
+                            DefaultValue = null,
+                            Pattern = null,
                         });
                     }
                 }
@@ -38400,6 +38417,65 @@ namespace Google.Apis.Aiplatform.v1
                                 Pattern = null,
                             });
                         }
+                    }
+                }
+
+                /// <summary>Ingests events for a Memory Bank.</summary>
+                /// <param name="body">The body of the request.</param>
+                /// <param name="parent">
+                /// Required. The resource name of the ReasoningEngine to ingest events to. Format:
+                /// `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}`
+                /// </param>
+                public virtual IngestEventsRequest IngestEvents(Google.Apis.Aiplatform.v1.Data.GoogleCloudAiplatformV1IngestEventsRequest body, string parent)
+                {
+                    return new IngestEventsRequest(this.service, body, parent);
+                }
+
+                /// <summary>Ingests events for a Memory Bank.</summary>
+                public class IngestEventsRequest : AiplatformBaseServiceRequest<Google.Apis.Aiplatform.v1.Data.GoogleLongrunningOperation>
+                {
+                    /// <summary>Constructs a new IngestEvents request.</summary>
+                    public IngestEventsRequest(Google.Apis.Services.IClientService service, Google.Apis.Aiplatform.v1.Data.GoogleCloudAiplatformV1IngestEventsRequest body, string parent) : base(service)
+                    {
+                        Parent = parent;
+                        Body = body;
+                        InitParameters();
+                    }
+
+                    /// <summary>
+                    /// Required. The resource name of the ReasoningEngine to ingest events to. Format:
+                    /// `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}`
+                    /// </summary>
+                    [Google.Apis.Util.RequestParameterAttribute("parent", Google.Apis.Util.RequestParameterType.Path)]
+                    public virtual string Parent { get; private set; }
+
+                    /// <summary>Gets or sets the body of this request.</summary>
+                    Google.Apis.Aiplatform.v1.Data.GoogleCloudAiplatformV1IngestEventsRequest Body { get; set; }
+
+                    /// <summary>Returns the body of the request.</summary>
+                    protected override object GetBody() => Body;
+
+                    /// <summary>Gets the method name.</summary>
+                    public override string MethodName => "ingestEvents";
+
+                    /// <summary>Gets the HTTP method.</summary>
+                    public override string HttpMethod => "POST";
+
+                    /// <summary>Gets the REST path.</summary>
+                    public override string RestPath => "v1/{+parent}:ingestEvents";
+
+                    /// <summary>Initializes IngestEvents parameter list.</summary>
+                    protected override void InitParameters()
+                    {
+                        base.InitParameters();
+                        RequestParameters.Add("parent", new Google.Apis.Discovery.Parameter
+                        {
+                            Name = "parent",
+                            IsRequired = true,
+                            ParameterType = "path",
+                            DefaultValue = null,
+                            Pattern = @"^projects/[^/]+/locations/[^/]+/memoryBanks/[^/]+$",
+                        });
                     }
                 }
             }
@@ -81140,6 +81216,10 @@ namespace Google.Apis.Aiplatform.v1.Data
         [Newtonsoft.Json.JsonPropertyAttribute("numDiffusionSteps")]
         public virtual System.Nullable<int> NumDiffusionSteps { get; set; }
 
+        /// <summary>Optional. Omni Rewriter configuration.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("omniRewriter")]
+        public virtual CloudAiLargeModelsVisionGenerateVideoExperimentsOmniRewriterConfig OmniRewriter { get; set; }
+
         /// <summary>
         /// The original REST API request JSON sent by the user, in the instances/parameters format. Preserved for
         /// saving alongside output artifacts so users can reproduce their requests. This field is populated by the API
@@ -81219,6 +81299,21 @@ namespace Google.Apis.Aiplatform.v1.Data
         /// <summary>The image data for this conditioning frame.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("image")]
         public virtual CloudAiLargeModelsVisionGenerateVideoRequestImage Image { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Configuration for Omni Rewriter.</summary>
+    public class CloudAiLargeModelsVisionGenerateVideoExperimentsOmniRewriterConfig : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Optional. Maximum duration of a chunk in seconds.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("maxChunkDuration")]
+        public virtual System.Nullable<float> MaxChunkDuration { get; set; }
+
+        /// <summary>Optional. FPS used to generate gemini chunks for video inputs.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("rewriterInputFps")]
+        public virtual System.Nullable<int> RewriterInputFps { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -82772,6 +82867,104 @@ namespace Google.Apis.Aiplatform.v1.Data
         /// <summary>Optional. Sample rate for the generated audio in Hertz.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("sampleRate")]
         public virtual System.Nullable<int> SampleRate { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>
+    /// The transcription of an audio part. For multi-speaker audio, each speaker segment is a separate Part with its
+    /// own AudioTranscription carrying the speaker_label.
+    /// </summary>
+    public class GoogleCloudAiplatformV1AudioTranscription : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>
+        /// Optional. A label identifying the speaker of this audio segment (e.g. "spk_1", "spk_2"). Present when
+        /// diarization is set.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("speakerLabel")]
+        public virtual string SpeakerLabel { get; set; }
+
+        /// <summary>Required. The transcription text of this audio segment.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("text")]
+        public virtual string Text { get; set; }
+
+        /// <summary>
+        /// Optional. Detailed word-level transcriptions and timing details. Present when word_timestamp is set.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("words")]
+        public virtual System.Collections.Generic.IList<GoogleCloudAiplatformV1AudioTranscriptionWordInfo> Words { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Configuration for speech recognition (transcription).</summary>
+    public class GoogleCloudAiplatformV1AudioTranscriptionConfig : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Optional. A list of phrases to bias the ASR model towards.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("adaptationPhrases")]
+        public virtual System.Collections.Generic.IList<string> AdaptationPhrases { get; set; }
+
+        /// <summary>
+        /// Optional. A list of custom vocabulary phrases to bias the speech recognition model toward recognizing
+        /// specific terms.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("customVocabulary")]
+        public virtual System.Collections.Generic.IList<string> CustomVocabulary { get; set; }
+
+        /// <summary>Optional. Configures speaker diarization.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("diarization")]
+        public virtual System.Nullable<bool> Diarization { get; set; }
+
+        /// <summary>Optional. The model will detect the language automatically.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("languageAuto")]
+        public virtual GoogleCloudAiplatformV1AudioTranscriptionConfigLanguageAuto LanguageAuto { get; set; }
+
+        /// <summary>Optional. Specifies one or more languages in the audio.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("languageHints")]
+        public virtual GoogleCloudAiplatformV1AudioTranscriptionConfigLanguageHints LanguageHints { get; set; }
+
+        /// <summary>Optional. Configures word-level timestamp generation.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("wordTimestamp")]
+        public virtual System.Nullable<bool> WordTimestamp { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Indicates the language of the audio should be automatically detected.</summary>
+    public class GoogleCloudAiplatformV1AudioTranscriptionConfigLanguageAuto : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Provides hints to the model about possible languages present in the audio.</summary>
+    public class GoogleCloudAiplatformV1AudioTranscriptionConfigLanguageHints : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Required. BCP-47 language codes. At least one must be specified.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("languageCodes")]
+        public virtual System.Collections.Generic.IList<string> LanguageCodes { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Information about a single recognized word.</summary>
+    public class GoogleCloudAiplatformV1AudioTranscriptionWordInfo : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Optional. End offset in time of the word relative to the start of the audio.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("endOffset")]
+        public virtual object EndOffset { get; set; }
+
+        /// <summary>Optional. Start offset in time of the word relative to the start of the audio.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("startOffset")]
+        public virtual object StartOffset { get; set; }
+
+        /// <summary>Required. Transcript of the word.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("word")]
+        public virtual string Word { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -90898,6 +91091,13 @@ namespace Google.Apis.Aiplatform.v1.Data
         [Newtonsoft.Json.JsonPropertyAttribute("displayName")]
         public virtual string DisplayName { get; set; }
 
+        /// <summary>
+        /// Optional. Customer-managed encryption key spec for this EvaluationSet. If set, this EvaluationSet and its
+        /// sub-resources will be secured by this key.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("encryptionSpec")]
+        public virtual GoogleCloudAiplatformV1EncryptionSpec EncryptionSpec { get; set; }
+
         /// <summary>Required. The EvaluationItems that are part of this dataset.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("evaluationItems")]
         public virtual System.Collections.Generic.IList<string> EvaluationItems { get; set; }
@@ -95154,6 +95354,16 @@ namespace Google.Apis.Aiplatform.v1.Data
     /// <summary>Configuration for a single gateway.</summary>
     public class GoogleCloudAiplatformV1GatewayConfig : Google.Apis.Requests.IDirectResponseSchema
     {
+        /// <summary>
+        /// Optional. Additional consumer projects permitted to attach their own PSC endpoint to this gateway's
+        /// ServiceAttachment. This is the "decoupled" mode, where the customer creates the PSC endpoint in a project
+        /// other than this gateway's `network` project. Each listed project is VPC-SC enforced: it must be within the
+        /// caller's service perimeter. The owning SemanticGovernancePolicyEngine's own project is always permitted
+        /// implicitly and need not be listed. Format: project ID or number.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("allowedProjects")]
+        public virtual System.Collections.Generic.IList<string> AllowedProjects { get; set; }
+
         /// <summary>Output only. The fully qualified record name of the created A-record in Cloud DNS.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("dnsRecord")]
         public virtual string DnsRecord { get; set; }
@@ -96080,6 +96290,10 @@ namespace Google.Apis.Aiplatform.v1.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("audioTimestamp")]
         public virtual System.Nullable<bool> AudioTimestamp { get; set; }
+
+        /// <summary>Optional. Config for audio transcription (speech recognition).</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("audioTranscriptionConfig")]
+        public virtual GoogleCloudAiplatformV1AudioTranscriptionConfig AudioTranscriptionConfig { get; set; }
 
         /// <summary>
         /// Optional. The number of candidate responses to generate. A higher `candidate_count` can provide more options
@@ -101684,9 +101898,9 @@ namespace Google.Apis.Aiplatform.v1.Data
         public virtual System.Collections.Generic.IList<GoogleCloudAiplatformV1Checkpoint> Checkpoints { get; set; }
 
         /// <summary>
-        /// Input only. The specification of the container that is to be used when deploying this Model. The
-        /// specification is ingested upon ModelService.UploadModel, and all binaries it contains are copied and stored
-        /// internally by Vertex AI. Not required for AutoML Models.
+        /// The specification of the container that is to be used when deploying this Model. The specification is
+        /// ingested upon ModelService.UploadModel, and all binaries it contains are copied and stored internally by
+        /// Vertex AI. Not required for AutoML Models.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("containerSpec")]
         public virtual GoogleCloudAiplatformV1ModelContainerSpec ContainerSpec { get; set; }
@@ -105131,7 +105345,7 @@ namespace Google.Apis.Aiplatform.v1.Data
         }
 
         /// <summary>
-        /// Optional. Human-readable name for the `OnlineEvaluator`. The name doesn't have to be unique. The name can
+        /// Optional. Human-readable name for the OnlineEvaluator. The name doesn't have to be unique. The name can
         /// consist of any UTF-8 characters. The maximum length is `63` characters. If the display name exceeds max
         /// characters, an `INVALID_ARGUMENT` error is returned.
         /// </summary>
@@ -105677,6 +105891,12 @@ namespace Google.Apis.Aiplatform.v1.Data
     /// </summary>
     public class GoogleCloudAiplatformV1Part : Google.Apis.Requests.IDirectResponseSchema
     {
+        /// <summary>
+        /// Optional. Audio (input or output) transcription. This is only set when this Part contains audio data.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("audioTranscription")]
+        public virtual GoogleCloudAiplatformV1AudioTranscription AudioTranscription { get; set; }
+
         /// <summary>Optional. The result of executing the ExecutableCode.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("codeExecutionResult")]
         public virtual GoogleCloudAiplatformV1CodeExecutionResult CodeExecutionResult { get; set; }
@@ -109825,6 +110045,16 @@ namespace Google.Apis.Aiplatform.v1.Data
     public class GoogleCloudAiplatformV1ReasoningEngineSpecBuildSpec : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>
+        /// Optional. The service account that Cloud Build uses to run the build. This field is only applicable when
+        /// `worker_pool` is specified (i.e., for custom worker pools). If `worker_pool` is not specified, this field is
+        /// ignored and the build runs using the Google-managed service agent. Format:
+        /// `projects/{project}/serviceAccounts/{service_account}` or
+        /// `{service_account}@{project}.iam.gserviceaccount.com`
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("serviceAccount")]
+        public virtual string ServiceAccount { get; set; }
+
+        /// <summary>
         /// Optional. Identifier. The resource name of the Cloud Build WorkerPool to use for the build. Format:
         /// `projects/{project}/locations/{location}/workerPools/{worker_pool}`
         /// </summary>
@@ -109845,6 +110075,10 @@ namespace Google.Apis.Aiplatform.v1.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("imageUri")]
         public virtual string ImageUri { get; set; }
+
+        /// <summary>Optional. The port the container listens on. Defaults to 8080 if unset.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("port")]
+        public virtual System.Nullable<int> Port { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -111774,9 +112008,57 @@ namespace Google.Apis.Aiplatform.v1.Data
     /// <summary>Configuration for egress control of sandbox instances.</summary>
     public class GoogleCloudAiplatformV1SandboxEnvironmentTemplateEgressControlConfig : Google.Apis.Requests.IDirectResponseSchema
     {
+        /// <summary>Optional. The customer VPC network that sandbox egress is routed into.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("customerVpcNetwork")]
+        public virtual string CustomerVpcNetwork { get; set; }
+
+        /// <summary>
+        /// Optional. DNS peering configurations that allow sandbox egress to resolve customer-internal domains via the
+        /// customer VPC.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("dnsPeeringConfigs")]
+        public virtual System.Collections.Generic.IList<GoogleCloudAiplatformV1SandboxEnvironmentTemplateEgressControlConfigDnsPeeringConfig> DnsPeeringConfigs { get; set; }
+
         /// <summary>Optional. Whether to allow internet access.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("internetAccess")]
         public virtual System.Nullable<bool> InternetAccess { get; set; }
+
+        /// <summary>
+        /// Optional. The name of the customer VPC NetworkAttachment used to draw a PSC interface IP into the customer
+        /// VPC for sandbox egress.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("networkAttachment")]
+        public virtual string NetworkAttachment { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>
+    /// Configuration for peering a customer's private DNS zone so that sandbox egress can resolve customer-internal
+    /// domains via the customer VPC.
+    /// </summary>
+    public class GoogleCloudAiplatformV1SandboxEnvironmentTemplateEgressControlConfigDnsPeeringConfig : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>
+        /// Required. The DNS name suffix of the zone being peered to, e.g., "my-internal-domain.corp.". Must end with a
+        /// dot.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("domain")]
+        public virtual string Domain { get; set; }
+
+        /// <summary>
+        /// Required. The VPC network name in the target_project where the DNS zone specified by 'domain' is visible.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("targetNetwork")]
+        public virtual string TargetNetwork { get; set; }
+
+        /// <summary>
+        /// Required. The project ID hosting the Cloud DNS managed zone that contains the 'domain'. The Vertex AI
+        /// Service Agent requires the dns.peer role on this project.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("targetProject")]
+        public virtual string TargetProject { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
