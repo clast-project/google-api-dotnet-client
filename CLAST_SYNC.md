@@ -59,13 +59,13 @@ Steps (example is this repo; take the target versions from the `upstream-sync` i
    int64 (`long`) body fields need only the plain attribute — the source-gen serializer
    handles long-as-string globally. Compare the count against pre-merge `main` to be sure
    the support libs didn't regress.
-4. **Reconcile `*.JsonContext.cs`** (the Clast transform's committed AOT registry) with the
-   new client surface. If upstream **removed** a request type/method, delete its
-   `RequestParameterRegistry.Register(...)` and any `EnumStringValueRegistry.Register(...)`
-   blocks (a build error like `CS0426: type 'XxxRequest' does not exist` points right at it).
-   ⚠️ **The transform tool that emits these files is not in this repo**, so newly **added**
-   request types won't be registered automatically — they silently fall back to reflection
-   (an AOT gap that the build won't catch). Locating/committing that tool is an open task.
+4. **Regenerate `*.JsonContext.cs`** (the committed AOT registry) against the new client
+   surface: `python Tools/ClastJsonContextGen/regenerate.py`, then review the diff.
+   Do this *before* building — it handles both directions. A request type upstream
+   **removed** would otherwise show up as `CS0426: type 'XxxRequest' does not exist`, and one
+   upstream **added** wouldn't show up at all: it silently falls back to reflection, an AOT
+   gap the build can't catch. See `Tools/ClastJsonContextGen/README.md` for what the script
+   derives and what it preserves.
 5. **Build + test exactly as `.github/workflows/clast-ci.yml` does:**
    `dotnet build` the Storage.v1 and Bigquery.v2 generated clients (all TFMs, incl. net10),
    and `dotnet test` `Google.Apis.Tests` + `Google.Apis.Auth.Tests` (`-c Release`). Then
