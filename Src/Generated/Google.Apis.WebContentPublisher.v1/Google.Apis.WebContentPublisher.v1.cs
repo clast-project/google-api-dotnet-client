@@ -59,30 +59,6 @@ namespace Google.Apis.WebContentPublisher.v1
         /// <summary>Gets the batch base path; <c>null</c> if unspecified.</summary>
         public override string BatchPath => "batch";
 
-        /// <summary>Available OAuth 2.0 scopes for use with the Web Content Publisher API.</summary>
-        public class Scope
-        {
-            /// <summary>
-            /// Private Service: https://www.googleapis.com/auth/subscribewithgoogle.publications.entitlements.manage
-            /// </summary>
-            public static string SubscribewithgooglePublicationsEntitlementsManage = "https://www.googleapis.com/auth/subscribewithgoogle.publications.entitlements.manage";
-
-            /// <summary>See and review your subscription information</summary>
-            public static string SubscribewithgooglePublicationsEntitlementsReadonly = "https://www.googleapis.com/auth/subscribewithgoogle.publications.entitlements.readonly";
-        }
-
-        /// <summary>Available OAuth 2.0 scope constants for use with the Web Content Publisher API.</summary>
-        public static class ScopeConstants
-        {
-            /// <summary>
-            /// Private Service: https://www.googleapis.com/auth/subscribewithgoogle.publications.entitlements.manage
-            /// </summary>
-            public const string SubscribewithgooglePublicationsEntitlementsManage = "https://www.googleapis.com/auth/subscribewithgoogle.publications.entitlements.manage";
-
-            /// <summary>See and review your subscription information</summary>
-            public const string SubscribewithgooglePublicationsEntitlementsReadonly = "https://www.googleapis.com/auth/subscribewithgoogle.publications.entitlements.readonly";
-        }
-
         /// <summary>Gets the Organizations resource.</summary>
         public virtual OrganizationsResource Organizations { get; }
 
@@ -1347,14 +1323,6 @@ namespace Google.Apis.WebContentPublisher.v1.Data
         /// <summary>Optional. Whether the user opted in to receive product updates and email communications.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("emailOptIn")]
         public virtual System.Nullable<bool> EmailOptIn { get; set; }
-
-        /// <summary>Optional. The name of the person who accepted the TOS.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("signer")]
-        public virtual string Signer { get; set; }
-
-        /// <summary>Optional. The job title or role of the signer.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("signerTitle")]
-        public virtual string SignerTitle { get; set; }
 
         /// <summary>Required. Whether the user has accepted the Terms of Service.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("userAccepted")]

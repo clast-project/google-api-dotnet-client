@@ -2771,7 +2771,7 @@ namespace Google.Apis.AgentRegistry.v1alpha
 
                     /// <summary>
                     /// Required. Custom, user-defined unique container identifier. Must be unique within the parent
-                    /// project and location. This value should be 4-63 characters, and valid characters are `/a-z-/`.
+                    /// project and location. This value should be 4-64 characters, and valid characters are `/a-z-/`.
                     /// </summary>
                     [Google.Apis.Util.RequestParameterAttribute("skillId", Google.Apis.Util.RequestParameterType.Query)]
                     public virtual string SkillId { get; set; }
@@ -2908,6 +2908,7 @@ namespace Google.Apis.AgentRegistry.v1alpha
                     public GetRequest(Google.Apis.Services.IClientService service, string name) : base(service)
                     {
                         Name = name;
+                        MediaDownloader = new Google.Apis.Download.MediaDownloader(service);
                         InitParameters();
                     }
 
@@ -2937,6 +2938,99 @@ namespace Google.Apis.AgentRegistry.v1alpha
                             Pattern = @"^projects/[^/]+/locations/[^/]+/skills/[^/]+$",
                         });
                     }
+
+                    /// <summary>Gets the media downloader.</summary>
+                    public Google.Apis.Download.IMediaDownloader MediaDownloader { get; private set; }
+
+                    /// <summary>
+                    /// <para>Synchronously download the media into the given stream.</para>
+                    /// <para>
+                    /// Warning: This method hides download errors; use
+                    /// <see cref="DownloadWithStatus(System.IO.Stream)"/> instead.
+                    /// </para>
+                    /// </summary>
+                    /// <remarks>
+                    /// This method uses the <see cref="MediaDownloader"/> property to perform the download. Progress
+                    /// event handlers and other configuration may be performed using that property prior to calling
+                    /// this method.
+                    /// </remarks>
+                    public virtual void Download(System.IO.Stream stream)
+                    {
+                        var mediaDownloader = (Google.Apis.Download.MediaDownloader)MediaDownloader;
+                        mediaDownloader.Range = null;
+                        mediaDownloader.Download(this.GenerateRequestUri(), stream);
+                    }
+
+                    /// <summary>Synchronously download the media into the given stream.</summary>
+                    /// <remarks>
+                    /// This method uses the <see cref="MediaDownloader"/> property to perform the download. Progress
+                    /// event handlers and other configuration may be performed using that property prior to calling
+                    /// this method.
+                    /// </remarks>
+                    /// <returns>
+                    /// The final status of the download; including whether the download succeeded or failed.
+                    /// </returns>
+                    public virtual Google.Apis.Download.IDownloadProgress DownloadWithStatus(System.IO.Stream stream)
+                    {
+                        var mediaDownloader = (Google.Apis.Download.MediaDownloader)MediaDownloader;
+                        mediaDownloader.Range = null;
+                        return mediaDownloader.Download(this.GenerateRequestUri(), stream);
+                    }
+
+                    /// <summary>Asynchronously download the media into the given stream.</summary>
+                    /// <remarks>
+                    /// This method uses the <see cref="MediaDownloader"/> property to perform the download. Progress
+                    /// event handlers and other configuration may be performed using that property prior to calling
+                    /// this method.
+                    /// </remarks>
+                    public virtual System.Threading.Tasks.Task<Google.Apis.Download.IDownloadProgress> DownloadAsync(System.IO.Stream stream)
+                    {
+                        var mediaDownloader = (Google.Apis.Download.MediaDownloader)MediaDownloader;
+                        mediaDownloader.Range = null;
+                        return mediaDownloader.DownloadAsync(this.GenerateRequestUri(), stream);
+                    }
+
+                    /// <summary>Asynchronously download the media into the given stream.</summary>
+                    /// <remarks>
+                    /// This method uses the <see cref="MediaDownloader"/> property to perform the download. Progress
+                    /// event handlers and other configuration may be performed using that property prior to calling
+                    /// this method.
+                    /// </remarks>
+                    public virtual System.Threading.Tasks.Task<Google.Apis.Download.IDownloadProgress> DownloadAsync(System.IO.Stream stream,
+                        System.Threading.CancellationToken cancellationToken)
+                    {
+                        var mediaDownloader = (Google.Apis.Download.MediaDownloader)MediaDownloader;
+                        mediaDownloader.Range = null;
+                        return mediaDownloader.DownloadAsync(this.GenerateRequestUri(), stream, cancellationToken);
+                    }
+
+                    /// <summary>Synchronously download a range of the media into the given stream.</summary>
+                    /// <remarks>
+                    /// This method uses the <see cref="MediaDownloader"/> property to perform the download. Progress
+                    /// event handlers and other configuration may be performed using that property prior to calling
+                    /// this method.
+                    /// </remarks>
+                    public virtual Google.Apis.Download.IDownloadProgress DownloadRange(System.IO.Stream stream, System.Net.Http.Headers.RangeHeaderValue range)
+                    {
+                        var mediaDownloader = (Google.Apis.Download.MediaDownloader)MediaDownloader;
+                        mediaDownloader.Range = range;
+                        return mediaDownloader.Download(this.GenerateRequestUri(), stream);
+                    }
+
+                    /// <summary>Asynchronously download a range of the media into the given stream.</summary>
+                    /// <remarks>
+                    /// This method uses the <see cref="MediaDownloader"/> property to perform the download. Progress
+                    /// event handlers and other configuration may be performed using that property prior to calling
+                    /// this method.
+                    /// </remarks>
+                    public virtual System.Threading.Tasks.Task<Google.Apis.Download.IDownloadProgress> DownloadRangeAsync(System.IO.Stream stream,
+                        System.Net.Http.Headers.RangeHeaderValue range,
+                        System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+                    {
+                        var mediaDownloader = (Google.Apis.Download.MediaDownloader)MediaDownloader;
+                        mediaDownloader.Range = range;
+                        return mediaDownloader.DownloadAsync(this.GenerateRequestUri(), stream, cancellationToken);
+                    }
                 }
 
                 /// <summary>Lists logical Skills available in a project.</summary>
@@ -2965,9 +3059,12 @@ namespace Google.Apis.AgentRegistry.v1alpha
                     /// used to restrict results based upon filterable fields, where equality operators can be used. See
                     /// [instructions](https://docs.cloud.google.com/agent-registry/search-agents-and-tools) for more
                     /// details. Allowed operators: `=`, `&amp;lt;`, `&amp;gt;`, `NOT`, `AND`, `OR`, and `()`. | Field |
-                    /// `=` | `&amp;lt;`, `&amp;gt;` | |--------------|-----|----------| | state | Yes | No | |
-                    /// targetState | Yes | No | | createTime | Yes | Yes | | updateTime | Yes | Yes | Examples: *
-                    /// `state=ACTIVE` to restrict results to skills in the `ACTIVE` state.
+                    /// `=` | `&amp;lt;`, `&amp;gt;` | |----------------------------|-----|----------| | state | Yes |
+                    /// No | | targetState | Yes | No | | createTime | Yes | Yes | | updateTime | Yes | Yes | |
+                    /// publisher | Yes | No | | frontmatter.metadata. | Yes | No | | attributes.. | Yes | No |
+                    /// Examples: * `state=ACTIVE` to restrict results to skills in the `ACTIVE` state. *
+                    /// `frontmatter.metadata.version=10` to restrict results to skills with a frontmatter metadata
+                    /// `version` equal to `10`.
                     /// </summary>
                     [Google.Apis.Util.RequestParameterAttribute("filter", Google.Apis.Util.RequestParameterType.Query)]
                     public virtual string Filter { get; set; }
@@ -3167,9 +3264,12 @@ namespace Google.Apis.AgentRegistry.v1alpha
                     /// operators can be used. See
                     /// [instructions](https://docs.cloud.google.com/agent-registry/search-agents-and-tools) for more
                     /// details. Allowed operators: `=`, `&amp;lt;`, `&amp;gt;`, `NOT`, `AND`, `OR`, and `()`. | Field |
-                    /// `=` | `&amp;lt;`, `&amp;gt;` | |--------------|-----|----------| | state | Yes | No | |
-                    /// targetState | Yes | No | | createTime | Yes | Yes | | updateTime | Yes | Yes | Examples: *
-                    /// `state=ACTIVE` to restrict results to skills in the `ACTIVE` state.
+                    /// `=` | `&amp;lt;`, `&amp;gt;` | |----------------------------|-----|----------| | state | Yes |
+                    /// No | | targetState | Yes | No | | createTime | Yes | Yes | | updateTime | Yes | Yes | |
+                    /// publisher | Yes | No | | frontmatter.metadata. | Yes | No | | attributes.. | Yes | No |
+                    /// Examples: * `state=ACTIVE` to restrict results to skills in the `ACTIVE` state. *
+                    /// `frontmatter.metadata.version=10` to restrict results to skills with a frontmatter metadata
+                    /// `version` equal to `10`.
                     /// </summary>
                     [Google.Apis.Util.RequestParameterAttribute("filter", Google.Apis.Util.RequestParameterType.Query)]
                     public virtual string Filter { get; set; }
@@ -3199,15 +3299,18 @@ namespace Google.Apis.AgentRegistry.v1alpha
                     /// [instructions](https://docs.cloud.google.com/agent-registry/search-agents-and-tools) for more
                     /// details. Allowed operators: `=`, `:`, `NOT`, `AND`, `OR`, and `()`. Searchable fields: | Field |
                     /// `=` | `:` | `*` | Keyword Search |
-                    /// |---------------------------|-----|-----|-----|----------------| | skillId | Yes | Yes | Yes |
+                    /// |----------------------------|-----|-----|-----|----------------| | skillId | Yes | Yes | Yes |
                     /// Included | | name | No | Yes | Yes | Included | | displayName | No | Yes | Yes | Included | |
-                    /// description | No | Yes | No | Included | | frontmatter.name | No | Yes | No | Included | |
-                    /// frontmatter.description | No | Yes | No | Included | | frontmatter.compatibility | No | Yes | No
-                    /// | Included | | frontmatter.license | No | Yes | No | Included | Examples: *
+                    /// description | No | Yes | No | Included | | publisher | No | Yes | Yes | Excluded | |
+                    /// frontmatter.name | No | Yes | No | Included | | frontmatter.description | No | Yes | No |
+                    /// Included | | frontmatter.compatibility | No | Yes | No | Included | | frontmatter.license | No |
+                    /// Yes | No | Included | | frontmatter.metadata. | No | Yes | No | Excluded | | attributes.. | No |
+                    /// Yes | No | Excluded | Examples: *
                     /// `skillId="urn:skill:projects-1234:locations:global:private-important-skill"` to find the skill
                     /// with the specified skill ID. * `name:important` to find skills whose name contains `important`
                     /// as a word. * `displayName:works*` to find skills whose display name contains words that start
-                    /// with `works`.
+                    /// with `works`. * `frontmatter.metadata.author:alice` to find skills whose frontmatter metadata
+                    /// `author` contains words that start with `alice`.
                     /// </summary>
                     [Google.Apis.Util.RequestParameterAttribute("searchString", Google.Apis.Util.RequestParameterType.Query)]
                     public virtual string SearchString { get; set; }
