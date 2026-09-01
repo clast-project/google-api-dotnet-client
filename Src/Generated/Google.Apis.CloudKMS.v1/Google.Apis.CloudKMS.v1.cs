@@ -392,18 +392,26 @@ namespace Google.Apis.CloudKMS.v1
             }
         }
 
-        /// <summary>Returns the effective Cloud KMS Autokey configuration for a given project or folder.</summary>
+        /// <summary>
+        /// Returns the effective Cloud KMS Autokey configuration for a given project or folder. Note on permissions: -
+        /// If called on a project (`projects/{project}`), requires `cloudkms.projects.showEffectiveAutokeyConfig`. - If
+        /// called on a folder (`folders/{folder}`), requires `cloudkms.folders.showEffectiveAutokeyConfig`.
+        /// </summary>
         /// <param name="parent">
         /// Required. Name of the resource project or folder to show the effective Cloud KMS Autokey configuration for.
-        /// This may be helpful for interrogating the effect of nested folder configurations on a given resource
-        /// project. Format: * projects/{project} * folders/{folder}
+        /// This may be helpful for evaluating the effect of nested folder configurations on a given resource project.
+        /// Format: * projects/{project} * folders/{folder}
         /// </param>
         public virtual ShowEffectiveAutokeyConfigRequest ShowEffectiveAutokeyConfig(string parent)
         {
             return new ShowEffectiveAutokeyConfigRequest(this.service, parent);
         }
 
-        /// <summary>Returns the effective Cloud KMS Autokey configuration for a given project or folder.</summary>
+        /// <summary>
+        /// Returns the effective Cloud KMS Autokey configuration for a given project or folder. Note on permissions: -
+        /// If called on a project (`projects/{project}`), requires `cloudkms.projects.showEffectiveAutokeyConfig`. - If
+        /// called on a folder (`folders/{folder}`), requires `cloudkms.folders.showEffectiveAutokeyConfig`.
+        /// </summary>
         public class ShowEffectiveAutokeyConfigRequest : CloudKMSBaseServiceRequest<Google.Apis.CloudKMS.v1.Data.ShowEffectiveAutokeyConfigResponse>
         {
             /// <summary>Constructs a new ShowEffectiveAutokeyConfig request.</summary>
@@ -415,8 +423,8 @@ namespace Google.Apis.CloudKMS.v1
 
             /// <summary>
             /// Required. Name of the resource project or folder to show the effective Cloud KMS Autokey configuration
-            /// for. This may be helpful for interrogating the effect of nested folder configurations on a given
-            /// resource project. Format: * projects/{project} * folders/{folder}
+            /// for. This may be helpful for evaluating the effect of nested folder configurations on a given resource
+            /// project. Format: * projects/{project} * folders/{folder}
             /// </summary>
             [Google.Apis.Util.RequestParameterAttribute("parent", Google.Apis.Util.RequestParameterType.Path)]
             public virtual string Parent { get; private set; }
@@ -4632,6 +4640,63 @@ namespace Google.Apis.CloudKMS.v1
                     }
                 }
 
+                /// <summary>
+                /// Permanently deletes the given KeyRing. All child resources of the KeyRing must have been previously
+                /// deleted using their corresponding Delete operations. The specified key ring will be immediately and
+                /// permanently deleted upon calling this method. This action cannot be undone. Note: the key ring and
+                /// its metadata will be remembered by KeyManagementService to prevent re-use of the key ring's resource
+                /// name.
+                /// </summary>
+                /// <param name="name">Required. The name of the KeyRing to delete.</param>
+                public virtual DeleteRequest Delete(string name)
+                {
+                    return new DeleteRequest(this.service, name);
+                }
+
+                /// <summary>
+                /// Permanently deletes the given KeyRing. All child resources of the KeyRing must have been previously
+                /// deleted using their corresponding Delete operations. The specified key ring will be immediately and
+                /// permanently deleted upon calling this method. This action cannot be undone. Note: the key ring and
+                /// its metadata will be remembered by KeyManagementService to prevent re-use of the key ring's resource
+                /// name.
+                /// </summary>
+                public class DeleteRequest : CloudKMSBaseServiceRequest<Google.Apis.CloudKMS.v1.Data.Operation>
+                {
+                    /// <summary>Constructs a new Delete request.</summary>
+                    public DeleteRequest(Google.Apis.Services.IClientService service, string name) : base(service)
+                    {
+                        Name = name;
+                        InitParameters();
+                    }
+
+                    /// <summary>Required. The name of the KeyRing to delete.</summary>
+                    [Google.Apis.Util.RequestParameterAttribute("name", Google.Apis.Util.RequestParameterType.Path)]
+                    public virtual string Name { get; private set; }
+
+                    /// <summary>Gets the method name.</summary>
+                    public override string MethodName => "delete";
+
+                    /// <summary>Gets the HTTP method.</summary>
+                    public override string HttpMethod => "DELETE";
+
+                    /// <summary>Gets the REST path.</summary>
+                    public override string RestPath => "v1/{+name}";
+
+                    /// <summary>Initializes Delete parameter list.</summary>
+                    protected override void InitParameters()
+                    {
+                        base.InitParameters();
+                        RequestParameters.Add("name", new Google.Apis.Discovery.Parameter
+                        {
+                            Name = "name",
+                            IsRequired = true,
+                            ParameterType = "path",
+                            DefaultValue = null,
+                            Pattern = @"^projects/[^/]+/locations/[^/]+/keyRings/[^/]+$",
+                        });
+                    }
+                }
+
                 /// <summary>Returns metadata for a given KeyRing.</summary>
                 /// <param name="name">Required. The name of the KeyRing to get.</param>
                 public virtual GetRequest Get(string name)
@@ -6387,18 +6452,26 @@ namespace Google.Apis.CloudKMS.v1
             }
         }
 
-        /// <summary>Returns the effective Cloud KMS Autokey configuration for a given project or folder.</summary>
+        /// <summary>
+        /// Returns the effective Cloud KMS Autokey configuration for a given project or folder. Note on permissions: -
+        /// If called on a project (`projects/{project}`), requires `cloudkms.projects.showEffectiveAutokeyConfig`. - If
+        /// called on a folder (`folders/{folder}`), requires `cloudkms.folders.showEffectiveAutokeyConfig`.
+        /// </summary>
         /// <param name="parent">
         /// Required. Name of the resource project or folder to show the effective Cloud KMS Autokey configuration for.
-        /// This may be helpful for interrogating the effect of nested folder configurations on a given resource
-        /// project. Format: * projects/{project} * folders/{folder}
+        /// This may be helpful for evaluating the effect of nested folder configurations on a given resource project.
+        /// Format: * projects/{project} * folders/{folder}
         /// </param>
         public virtual ShowEffectiveAutokeyConfigRequest ShowEffectiveAutokeyConfig(string parent)
         {
             return new ShowEffectiveAutokeyConfigRequest(this.service, parent);
         }
 
-        /// <summary>Returns the effective Cloud KMS Autokey configuration for a given project or folder.</summary>
+        /// <summary>
+        /// Returns the effective Cloud KMS Autokey configuration for a given project or folder. Note on permissions: -
+        /// If called on a project (`projects/{project}`), requires `cloudkms.projects.showEffectiveAutokeyConfig`. - If
+        /// called on a folder (`folders/{folder}`), requires `cloudkms.folders.showEffectiveAutokeyConfig`.
+        /// </summary>
         public class ShowEffectiveAutokeyConfigRequest : CloudKMSBaseServiceRequest<Google.Apis.CloudKMS.v1.Data.ShowEffectiveAutokeyConfigResponse>
         {
             /// <summary>Constructs a new ShowEffectiveAutokeyConfig request.</summary>
@@ -6410,8 +6483,8 @@ namespace Google.Apis.CloudKMS.v1
 
             /// <summary>
             /// Required. Name of the resource project or folder to show the effective Cloud KMS Autokey configuration
-            /// for. This may be helpful for interrogating the effect of nested folder configurations on a given
-            /// resource project. Format: * projects/{project} * folders/{folder}
+            /// for. This may be helpful for evaluating the effect of nested folder configurations on a given resource
+            /// project. Format: * projects/{project} * folders/{folder}
             /// </summary>
             [Google.Apis.Util.RequestParameterAttribute("parent", Google.Apis.Util.RequestParameterType.Path)]
             public virtual string Parent { get; private set; }
@@ -6964,7 +7037,7 @@ namespace Google.Apis.CloudKMS.v1.Data
         public virtual string ETag { get; set; }
     }
 
-    /// <summary>Cloud KMS Autokey configuration for a folder.</summary>
+    /// <summary>Cloud KMS Autokey configuration for a project or folder.</summary>
     public class AutokeyConfig : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>
@@ -7728,9 +7801,10 @@ namespace Google.Apis.CloudKMS.v1.Data
         public virtual string State { get; set; }
 
         /// <summary>
-        /// Immutable. Field indicating that the key may be wrapped by a trusted key. This field can be set for all key
-        /// purposes except ENCRYPT_DECRYPT, and is only valid for keys with protection level HSM_SINGLE_TENANT. This
-        /// field can only be set at creation or import time via CreateCryptoKeyVersion, or ImportCryptoKeyVersion.
+        /// Optional. Immutable. Field indicating that the key may be wrapped by a trusted key. This field can be set
+        /// for all key purposes except ENCRYPT_DECRYPT, and is only valid for keys with protection level
+        /// HSM_SINGLE_TENANT. This field can only be set at creation or import time via CreateCryptoKeyVersion, or
+        /// ImportCryptoKeyVersion.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("trustedWrappingEnabled")]
         public virtual System.Nullable<bool> TrustedWrappingEnabled { get; set; }
@@ -8281,7 +8355,7 @@ namespace Google.Apis.CloudKMS.v1.Data
     {
         /// <summary>
         /// Optional. The resource name of the backend environment where the key material of CryptoKeyVersions is
-        /// associated with. Setting this field overrides the CryptoKeyBackend. This field may be set when
+        /// associated with. Setting this field overrides the crypto_key_backend. This field may be set when
         /// CryptoKeyVersions is set to EXTERNAL_VPC. Format: `projects/*/locations/*/ekmConnections/*`.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("ekmConnectionBackendOverride")]
@@ -10072,7 +10146,7 @@ namespace Google.Apis.CloudKMS.v1.Data
         public virtual string ETag { get; set; }
     }
 
-    /// <summary>Response message for ShowEffectiveAutokeyConfig.</summary>
+    /// <summary>Response message for ShowEffectiveAutokeyConfig</summary>
     public class ShowEffectiveAutokeyConfigResponse : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>Name of the key project configured in the ancestry of the project or folder.</summary>

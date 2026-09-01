@@ -36,3 +36,7 @@ Generated.sln
 
 # Ignore the C# generator clone
 tmp-gapic-generator-csharp
+
+# Python bytecode from Tools/ClastJsonContextGen
+__pycache__/
+*.pyc

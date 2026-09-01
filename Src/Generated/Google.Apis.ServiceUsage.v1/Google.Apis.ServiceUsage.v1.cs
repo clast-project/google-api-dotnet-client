@@ -2371,7 +2371,7 @@ namespace Google.Apis.ServiceUsage.v1.Data
     /// <summary>The consumer policy rule that defines enabled services and groups.</summary>
     public class EnableRule : Google.Apis.Requests.IDirectResponseSchema
     {
-        /// <summary>Client and resource project enable type.</summary>
+        /// <summary>Deprecated: EnableType is not supported.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("enableType")]
         public virtual string EnableType { get; set; }
 
@@ -4992,7 +4992,9 @@ namespace Google.Apis.ServiceUsage.v1.Data
         [Newtonsoft.Json.JsonPropertyAttribute("parent")]
         public virtual string Parent { get; set; }
 
-        /// <summary>The values removed from the parent consumer policy.</summary>
+        /// <summary>
+        /// Deprecated: This field is no longer populated. Use GetConsumerPolicy to verify the remaining enabled values.
+        /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("removedValues")]
         public virtual System.Collections.Generic.IList<string> RemovedValues { get; set; }
 

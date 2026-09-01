@@ -4988,6 +4988,14 @@ namespace Google.Apis.ContainerAnalysis.v1alpha1.Data
         [Newtonsoft.Json.JsonPropertyAttribute("destPath")]
         public virtual string DestPath { get; set; }
 
+        /// <summary>
+        /// Optional. True if remote tags should be fetched too (default false). Note: when depth is 1 (default), git
+        /// fetch only retrieves tags pointing to commits within the shallow boundary. Set depth to -1 to fetch all
+        /// historical tags.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("fetchTags")]
+        public virtual System.Nullable<bool> FetchTags { get; set; }
+
         /// <summary>Optional. True if submodules should be fetched too (default false).</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("recurseSubmodules")]
         public virtual System.Nullable<bool> RecurseSubmodules { get; set; }
@@ -7499,6 +7507,10 @@ namespace Google.Apis.ContainerAnalysis.v1alpha1.Data
         /// <summary>Optional. Tracks max severity found.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("maxSeverity")]
         public virtual string MaxSeverity { get; set; }
+
+        /// <summary>Optional. The base name of the model that performed the scan.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("modelId")]
+        public virtual string ModelId { get; set; }
 
         /// <summary>Output only. State of the scan.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("scanState")]
