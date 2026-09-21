@@ -8626,22 +8626,22 @@ namespace Google.Apis.DiscoveryEngine.v1alpha
 
                             /// <summary>
                             /// Optional. Selects which view of `WidgetConfig.UiSettings.ModelConfigInfo` the backend
-                            /// computes. `MODEL_INFO_VIEW_ADMIN` is set by the Cloud Console admin "Feature Management"
-                            /// page (screen/4Vn9gQKbN8tb7gm) to receive the admin-surfaced model set with
-                            /// `ResolvedModel.admin_view` populated; unset / `MODEL_INFO_VIEW_WEB` returns the end-user
-                            /// selector. The mobile surface is detected from the `X-Goog-Gemini-Enterprise-Mobile`
-                            /// header instead (see `ModelInfoView`).
+                            /// computes. `ADMIN` is set by the Cloud Console admin "Feature Management" page
+                            /// (screen/4Vn9gQKbN8tb7gm) to receive the admin-surfaced model set with
+                            /// `ResolvedModel.admin_view` populated; `END_USER_MOBILE` is set by the Gemini Enterprise
+                            /// mobile app to receive the mobile model set; unset / `END_USER_WEB` returns the end-user
+                            /// web selector.
                             /// </summary>
                             [Google.Apis.Util.RequestParameterAttribute("modelInfoView", Google.Apis.Util.RequestParameterType.Query)]
                             public virtual System.Nullable<ModelInfoViewEnum> ModelInfoView { get; set; }
 
                             /// <summary>
                             /// Optional. Selects which view of `WidgetConfig.UiSettings.ModelConfigInfo` the backend
-                            /// computes. `MODEL_INFO_VIEW_ADMIN` is set by the Cloud Console admin "Feature Management"
-                            /// page (screen/4Vn9gQKbN8tb7gm) to receive the admin-surfaced model set with
-                            /// `ResolvedModel.admin_view` populated; unset / `MODEL_INFO_VIEW_WEB` returns the end-user
-                            /// selector. The mobile surface is detected from the `X-Goog-Gemini-Enterprise-Mobile`
-                            /// header instead (see `ModelInfoView`).
+                            /// computes. `ADMIN` is set by the Cloud Console admin "Feature Management" page
+                            /// (screen/4Vn9gQKbN8tb7gm) to receive the admin-surfaced model set with
+                            /// `ResolvedModel.admin_view` populated; `END_USER_MOBILE` is set by the Gemini Enterprise
+                            /// mobile app to receive the mobile model set; unset / `END_USER_WEB` returns the end-user
+                            /// web selector.
                             /// </summary>
                             public enum ModelInfoViewEnum
                             {
@@ -8659,6 +8659,14 @@ namespace Google.Apis.DiscoveryEngine.v1alpha
                                 /// </summary>
                                 [Google.Apis.Util.StringValueAttribute("ADMIN")]
                                 ADMIN = 2,
+
+                                /// <summary>
+                                /// The end-user model selector view for the Gemini Enterprise mobile app. Returns only
+                                /// mobile-surfaced models, with the mobile default selected. Set explicitly by the
+                                /// mobile client.
+                                /// </summary>
+                                [Google.Apis.Util.StringValueAttribute("END_USER_MOBILE")]
+                                ENDUSERMOBILE = 3,
                             }
 
                             /// <summary>Gets the method name.</summary>
@@ -15435,22 +15443,22 @@ namespace Google.Apis.DiscoveryEngine.v1alpha
 
                             /// <summary>
                             /// Optional. Selects which view of `WidgetConfig.UiSettings.ModelConfigInfo` the backend
-                            /// computes. `MODEL_INFO_VIEW_ADMIN` is set by the Cloud Console admin "Feature Management"
-                            /// page (screen/4Vn9gQKbN8tb7gm) to receive the admin-surfaced model set with
-                            /// `ResolvedModel.admin_view` populated; unset / `MODEL_INFO_VIEW_WEB` returns the end-user
-                            /// selector. The mobile surface is detected from the `X-Goog-Gemini-Enterprise-Mobile`
-                            /// header instead (see `ModelInfoView`).
+                            /// computes. `ADMIN` is set by the Cloud Console admin "Feature Management" page
+                            /// (screen/4Vn9gQKbN8tb7gm) to receive the admin-surfaced model set with
+                            /// `ResolvedModel.admin_view` populated; `END_USER_MOBILE` is set by the Gemini Enterprise
+                            /// mobile app to receive the mobile model set; unset / `END_USER_WEB` returns the end-user
+                            /// web selector.
                             /// </summary>
                             [Google.Apis.Util.RequestParameterAttribute("modelInfoView", Google.Apis.Util.RequestParameterType.Query)]
                             public virtual System.Nullable<ModelInfoViewEnum> ModelInfoView { get; set; }
 
                             /// <summary>
                             /// Optional. Selects which view of `WidgetConfig.UiSettings.ModelConfigInfo` the backend
-                            /// computes. `MODEL_INFO_VIEW_ADMIN` is set by the Cloud Console admin "Feature Management"
-                            /// page (screen/4Vn9gQKbN8tb7gm) to receive the admin-surfaced model set with
-                            /// `ResolvedModel.admin_view` populated; unset / `MODEL_INFO_VIEW_WEB` returns the end-user
-                            /// selector. The mobile surface is detected from the `X-Goog-Gemini-Enterprise-Mobile`
-                            /// header instead (see `ModelInfoView`).
+                            /// computes. `ADMIN` is set by the Cloud Console admin "Feature Management" page
+                            /// (screen/4Vn9gQKbN8tb7gm) to receive the admin-surfaced model set with
+                            /// `ResolvedModel.admin_view` populated; `END_USER_MOBILE` is set by the Gemini Enterprise
+                            /// mobile app to receive the mobile model set; unset / `END_USER_WEB` returns the end-user
+                            /// web selector.
                             /// </summary>
                             public enum ModelInfoViewEnum
                             {
@@ -15468,6 +15476,14 @@ namespace Google.Apis.DiscoveryEngine.v1alpha
                                 /// </summary>
                                 [Google.Apis.Util.StringValueAttribute("ADMIN")]
                                 ADMIN = 2,
+
+                                /// <summary>
+                                /// The end-user model selector view for the Gemini Enterprise mobile app. Returns only
+                                /// mobile-surfaced models, with the mobile default selected. Set explicitly by the
+                                /// mobile client.
+                                /// </summary>
+                                [Google.Apis.Util.StringValueAttribute("END_USER_MOBILE")]
+                                ENDUSERMOBILE = 3,
                             }
 
                             /// <summary>Gets the method name.</summary>
@@ -22989,22 +23005,22 @@ namespace Google.Apis.DiscoveryEngine.v1alpha
 
                         /// <summary>
                         /// Optional. Selects which view of `WidgetConfig.UiSettings.ModelConfigInfo` the backend
-                        /// computes. `MODEL_INFO_VIEW_ADMIN` is set by the Cloud Console admin "Feature Management"
-                        /// page (screen/4Vn9gQKbN8tb7gm) to receive the admin-surfaced model set with
-                        /// `ResolvedModel.admin_view` populated; unset / `MODEL_INFO_VIEW_WEB` returns the end-user
-                        /// selector. The mobile surface is detected from the `X-Goog-Gemini-Enterprise-Mobile` header
-                        /// instead (see `ModelInfoView`).
+                        /// computes. `ADMIN` is set by the Cloud Console admin "Feature Management" page
+                        /// (screen/4Vn9gQKbN8tb7gm) to receive the admin-surfaced model set with
+                        /// `ResolvedModel.admin_view` populated; `END_USER_MOBILE` is set by the Gemini Enterprise
+                        /// mobile app to receive the mobile model set; unset / `END_USER_WEB` returns the end-user web
+                        /// selector.
                         /// </summary>
                         [Google.Apis.Util.RequestParameterAttribute("modelInfoView", Google.Apis.Util.RequestParameterType.Query)]
                         public virtual System.Nullable<ModelInfoViewEnum> ModelInfoView { get; set; }
 
                         /// <summary>
                         /// Optional. Selects which view of `WidgetConfig.UiSettings.ModelConfigInfo` the backend
-                        /// computes. `MODEL_INFO_VIEW_ADMIN` is set by the Cloud Console admin "Feature Management"
-                        /// page (screen/4Vn9gQKbN8tb7gm) to receive the admin-surfaced model set with
-                        /// `ResolvedModel.admin_view` populated; unset / `MODEL_INFO_VIEW_WEB` returns the end-user
-                        /// selector. The mobile surface is detected from the `X-Goog-Gemini-Enterprise-Mobile` header
-                        /// instead (see `ModelInfoView`).
+                        /// computes. `ADMIN` is set by the Cloud Console admin "Feature Management" page
+                        /// (screen/4Vn9gQKbN8tb7gm) to receive the admin-surfaced model set with
+                        /// `ResolvedModel.admin_view` populated; `END_USER_MOBILE` is set by the Gemini Enterprise
+                        /// mobile app to receive the mobile model set; unset / `END_USER_WEB` returns the end-user web
+                        /// selector.
                         /// </summary>
                         public enum ModelInfoViewEnum
                         {
@@ -23022,6 +23038,14 @@ namespace Google.Apis.DiscoveryEngine.v1alpha
                             /// </summary>
                             [Google.Apis.Util.StringValueAttribute("ADMIN")]
                             ADMIN = 2,
+
+                            /// <summary>
+                            /// The end-user model selector view for the Gemini Enterprise mobile app. Returns only
+                            /// mobile-surfaced models, with the mobile default selected. Set explicitly by the mobile
+                            /// client.
+                            /// </summary>
+                            [Google.Apis.Util.StringValueAttribute("END_USER_MOBILE")]
+                            ENDUSERMOBILE = 3,
                         }
 
                         /// <summary>Gets the method name.</summary>
@@ -31398,6 +31422,10 @@ namespace Google.Apis.DiscoveryEngine.v1alpha.Data
         [Newtonsoft.Json.JsonPropertyAttribute("bannedPhrases")]
         public virtual System.Collections.Generic.IList<GoogleCloudDiscoveryengineV1AssistantCustomerPolicyBannedPhrase> BannedPhrases { get; set; }
 
+        /// <summary>Optional. Data protection policy to be used for sanitizing file uploads.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("dataProtectionPolicy")]
+        public virtual GoogleCloudDiscoveryengineV1DataProtectionPolicy DataProtectionPolicy { get; set; }
+
         /// <summary>
         /// Optional. Model Armor configuration to be used for sanitizing user prompts and assistant responses.
         /// </summary>
@@ -32805,6 +32833,10 @@ namespace Google.Apis.DiscoveryEngine.v1alpha.Data
             set => CreateTimeRaw = Google.Apis.Util.DiscoveryFormat.FormatDateTimeOffsetToGoogleDateTime(value);
         }
 
+        /// <summary>Optional. Specifies the data protection policy for the connector.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("dataProtectionPolicy")]
+        public virtual GoogleCloudDiscoveryengineV1DataProtectionPolicy DataProtectionPolicy { get; set; }
+
         /// <summary>
         /// Required. The identifier for the data source. For the full, up-to-date list of supported connectors and
         /// their values, see [Connect a third-party data
@@ -33292,6 +33324,31 @@ namespace Google.Apis.DiscoveryEngine.v1alpha.Data
         public virtual string ETag { get; set; }
     }
 
+    /// <summary>Contains the data protection policy config for a DataStore or a connector.</summary>
+    public class GoogleCloudDiscoveryengineV1DataProtectionPolicy : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Optional. Specifies the sensitive data protection policy for the connector source.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("sensitiveDataProtectionPolicy")]
+        public virtual GoogleCloudDiscoveryengineV1DataProtectionPolicySensitiveDataProtectionPolicy SensitiveDataProtectionPolicy { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>
+    /// Specifies a Sensitive Data Protection
+    /// (https://cloud.google.com/sensitive-data-protection/docs/sensitive-data-protection-overview) policy.
+    /// </summary>
+    public class GoogleCloudDiscoveryengineV1DataProtectionPolicySensitiveDataProtectionPolicy : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Optional. Specifies the resource name of the Sensitive Data Protection content policy.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("policy")]
+        public virtual string Policy { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
     /// <summary>DataStore captures global settings and configs at the DataStore level.</summary>
     public class GoogleCloudDiscoveryengineV1DataStore : Google.Apis.Requests.IDirectResponseSchema
     {
@@ -33406,6 +33463,10 @@ namespace Google.Apis.DiscoveryEngine.v1alpha.Data
             get => Google.Apis.Util.DiscoveryFormat.ParseGoogleDateTimeToDateTimeOffset(CreateTimeRaw);
             set => CreateTimeRaw = Google.Apis.Util.DiscoveryFormat.FormatDateTimeOffsetToGoogleDateTime(value);
         }
+
+        /// <summary>Optional. Specifies the data protection policy for the data store.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("dataProtectionPolicy")]
+        public virtual GoogleCloudDiscoveryengineV1DataProtectionPolicy DataProtectionPolicy { get; set; }
 
         /// <summary>Output only. The id of the default Schema associated to this data store.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("defaultSchemaId")]
@@ -34962,10 +35023,10 @@ namespace Google.Apis.DiscoveryEngine.v1alpha.Data
         /// `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` *
         /// `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` *
         /// `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` *
-        /// `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `skills` * `skill-sharing` *
-        /// `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups`
-        /// * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` *
-        /// `workflow-agents` * `in-app-notifications`
+        /// `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` *
+        /// `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` *
+        /// `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` *
+        /// `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("features")]
         public virtual System.Collections.Generic.IDictionary<string, string> Features { get; set; }
@@ -35026,6 +35087,10 @@ namespace Google.Apis.DiscoveryEngine.v1alpha.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("searchEngineConfig")]
         public virtual GoogleCloudDiscoveryengineV1EngineSearchEngineConfig SearchEngineConfig { get; set; }
+
+        /// <summary>Optional. Non-empty default. Session config for the engine.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("sessionConfig")]
+        public virtual GoogleCloudDiscoveryengineV1SessionConfig SessionConfig { get; set; }
 
         /// <summary>Required. The solutions of the engine.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("solutionType")]
@@ -37682,6 +37747,32 @@ namespace Google.Apis.DiscoveryEngine.v1alpha.Data
         public virtual string ETag { get; set; }
     }
 
+    /// <summary>Configuration for the session.</summary>
+    public class GoogleCloudDiscoveryengineV1SessionConfig : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Optional. Session management policy that defines who will manage the session.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("sessionManagementPolicy")]
+        public virtual string SessionManagementPolicy { get; set; }
+
+        /// <summary>Optional. The TTL for the session. If unset, the default value is 60 days.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("sessionTtl")]
+        public virtual GoogleCloudDiscoveryengineV1SessionConfigSessionTtl SessionTtl { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Defines the TTL for sessions.</summary>
+    public class GoogleCloudDiscoveryengineV1SessionConfigSessionTtl : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Defines the number of days for session TTL.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("days")]
+        public virtual System.Nullable<int> Days { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
     /// <summary>Metadata for DataConnectorService.SetUpDataConnector method.</summary>
     public class GoogleCloudDiscoveryengineV1SetUpDataConnectorMetadata : Google.Apis.Requests.IDirectResponseSchema
     {
@@ -39747,6 +39838,10 @@ namespace Google.Apis.DiscoveryEngine.v1alpha.Data
         [Newtonsoft.Json.JsonPropertyAttribute("name")]
         public virtual string Name { get; set; }
 
+        /// <summary>Optional. Sent as Vertex `ThinkingConfig.thinking_level`.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("thinkingLevel")]
+        public virtual string ThinkingLevel { get; set; }
+
         /// <summary>
         /// Optional. Relative weight for this model in the mixture. Must be a finite, strictly positive value. Weights
         /// across all entries are normalized server-side, so they need not sum to 1.0. Defaults to 1.0 when unset,
@@ -41484,6 +41579,13 @@ namespace Google.Apis.DiscoveryEngine.v1alpha.Data
         /// <summary>Optional. Configuration for the generation of the assistant response.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("generationConfig")]
         public virtual GoogleCloudDiscoveryengineV1alphaAssistantGenerationConfig GenerationConfig { get; set; }
+
+        /// <summary>
+        /// Optional. Indicates whether Knowledge Catalog is enabled for this specific assistant. When enabled, it
+        /// powers discovery context using organizational data.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("knowledgeCatalogEnabled")]
+        public virtual System.Nullable<bool> KnowledgeCatalogEnabled { get; set; }
 
         /// <summary>
         /// Immutable. Resource name of the assistant. Format:
@@ -48275,10 +48377,10 @@ namespace Google.Apis.DiscoveryEngine.v1alpha.Data
         /// `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` *
         /// `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` *
         /// `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` *
-        /// `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `skills` * `skill-sharing` *
-        /// `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups`
-        /// * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` *
-        /// `workflow-agents` * `in-app-notifications`
+        /// `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` *
+        /// `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` *
+        /// `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` *
+        /// `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("features")]
         public virtual System.Collections.Generic.IDictionary<string, string> Features { get; set; }
@@ -48346,6 +48448,10 @@ namespace Google.Apis.DiscoveryEngine.v1alpha.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("searchEngineConfig")]
         public virtual GoogleCloudDiscoveryengineV1alphaEngineSearchEngineConfig SearchEngineConfig { get; set; }
+
+        /// <summary>Optional. Non-empty default. Session config for the engine.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("sessionConfig")]
+        public virtual GoogleCloudDiscoveryengineV1alphaSessionConfig SessionConfig { get; set; }
 
         /// <summary>Additional config specs for a `similar-items` engine.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("similarDocumentsConfig")]
@@ -57677,6 +57783,32 @@ namespace Google.Apis.DiscoveryEngine.v1alpha.Data
         public virtual string ETag { get; set; }
     }
 
+    /// <summary>Configuration for the session.</summary>
+    public class GoogleCloudDiscoveryengineV1alphaSessionConfig : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Optional. Session management policy that defines who will manage the session.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("sessionManagementPolicy")]
+        public virtual string SessionManagementPolicy { get; set; }
+
+        /// <summary>Optional. The TTL for the session. If unset, the default value is 60 days.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("sessionTtl")]
+        public virtual GoogleCloudDiscoveryengineV1alphaSessionConfigSessionTtl SessionTtl { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Defines the TTL for sessions.</summary>
+    public class GoogleCloudDiscoveryengineV1alphaSessionConfigSessionTtl : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Defines the number of days for session TTL.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("days")]
+        public virtual System.Nullable<int> Days { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
     /// <summary>Represents a turn, including a query from the user and a answer from service.</summary>
     public class GoogleCloudDiscoveryengineV1alphaSessionTurn : Google.Apis.Requests.IDirectResponseSchema
     {
@@ -60457,6 +60589,14 @@ namespace Google.Apis.DiscoveryEngine.v1alpha.Data
     /// <summary>Customer provided configurations.</summary>
     public class GoogleCloudDiscoveryengineV1alphaWidgetConfigCustomerProvidedConfig : Google.Apis.Requests.IDirectResponseSchema
     {
+        /// <summary>
+        /// Output only. The customer's Assured Workloads compliance level. `customer_type` collapses every compliance
+        /// level into a single `GOVERNMENT_CUSTOMER` value, so a client that gates a feature on one specific level
+        /// rather than on government status as a whole must read this field instead.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("complianceLevel")]
+        public virtual string ComplianceLevel { get; set; }
+
         /// <summary>Customer type.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("customerType")]
         public virtual string CustomerType { get; set; }
@@ -60743,10 +60883,10 @@ namespace Google.Apis.DiscoveryEngine.v1alpha.Data
         /// `session-sharing` * `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access`
         /// * `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` *
         /// `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` *
-        /// `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `skills` * `skill-sharing` *
-        /// `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups`
-        /// * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` *
-        /// `workflow-agents` * `in-app-notifications`
+        /// `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` *
+        /// `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` *
+        /// `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` *
+        /// `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("features")]
         public virtual System.Collections.Generic.IDictionary<string, string> Features { get; set; }
@@ -60938,6 +61078,14 @@ namespace Google.Apis.DiscoveryEngine.v1alpha.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("icon")]
         public virtual string Icon { get; set; }
+
+        /// <summary>
+        /// Output only. Absolute URL of a brand mark to render instead of `icon`, for models whose vendor logo is not a
+        /// GM3 glyph. `icon` stays populated as the fallback, so a client that does not render images, or that fails to
+        /// fetch this one, shows the glyph instead of nothing.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("iconUrl")]
+        public virtual string IconUrl { get; set; }
 
         /// <summary>
         /// Output only. Whether the model is currently in preview. Clients should surface this via a "Preview" badge in
@@ -62198,6 +62346,31 @@ namespace Google.Apis.DiscoveryEngine.v1alpha.Data
         public virtual string ETag { get; set; }
     }
 
+    /// <summary>Contains the data protection policy config for a DataStore or a connector.</summary>
+    public class GoogleCloudDiscoveryengineV1betaDataProtectionPolicy : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Optional. Specifies the sensitive data protection policy for the connector source.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("sensitiveDataProtectionPolicy")]
+        public virtual GoogleCloudDiscoveryengineV1betaDataProtectionPolicySensitiveDataProtectionPolicy SensitiveDataProtectionPolicy { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>
+    /// Specifies a Sensitive Data Protection
+    /// (https://cloud.google.com/sensitive-data-protection/docs/sensitive-data-protection-overview) policy.
+    /// </summary>
+    public class GoogleCloudDiscoveryengineV1betaDataProtectionPolicySensitiveDataProtectionPolicy : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Optional. Specifies the resource name of the Sensitive Data Protection content policy.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("policy")]
+        public virtual string Policy { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
     /// <summary>DataStore captures global settings and configs at the DataStore level.</summary>
     public class GoogleCloudDiscoveryengineV1betaDataStore : Google.Apis.Requests.IDirectResponseSchema
     {
@@ -62312,6 +62485,10 @@ namespace Google.Apis.DiscoveryEngine.v1alpha.Data
             get => Google.Apis.Util.DiscoveryFormat.ParseGoogleDateTimeToDateTimeOffset(CreateTimeRaw);
             set => CreateTimeRaw = Google.Apis.Util.DiscoveryFormat.FormatDateTimeOffsetToGoogleDateTime(value);
         }
+
+        /// <summary>Optional. Specifies the data protection policy for the data store.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("dataProtectionPolicy")]
+        public virtual GoogleCloudDiscoveryengineV1betaDataProtectionPolicy DataProtectionPolicy { get; set; }
 
         /// <summary>Output only. The id of the default Schema associated to this data store.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("defaultSchemaId")]
@@ -63677,10 +63854,10 @@ namespace Google.Apis.DiscoveryEngine.v1alpha.Data
         /// `personalization-memory` * `personalization-suggested-highlights` * `mobile-app-access` *
         /// `disable-agent-sharing` * `disable-image-generation` * `disable-video-generation` *
         /// `disable-onedrive-upload` * `disable-talk-to-content` * `disable-google-drive-upload` *
-        /// `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `skills` * `skill-sharing` *
-        /// `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` * `enable-end-user-sharing-with-groups`
-        /// * `single-agent-orchestration` * `multi-agent-orchestration` * `cross-product-intelligence` *
-        /// `workflow-agents` * `in-app-notifications`
+        /// `disable-welcome-emails` * `disable-canvas` * `canvas-workspace` * `canvas-app-builder` * `skills` *
+        /// `skill-sharing` * `skill-sharing-without-admin-approval` * `disable-projects` * `sobi` *
+        /// `enable-end-user-sharing-with-groups` * `single-agent-orchestration` * `multi-agent-orchestration` *
+        /// `cross-product-intelligence` * `workflow-agents` * `in-app-notifications`
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("features")]
         public virtual System.Collections.Generic.IDictionary<string, string> Features { get; set; }
@@ -63741,6 +63918,10 @@ namespace Google.Apis.DiscoveryEngine.v1alpha.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("searchEngineConfig")]
         public virtual GoogleCloudDiscoveryengineV1betaEngineSearchEngineConfig SearchEngineConfig { get; set; }
+
+        /// <summary>Optional. Non-empty default. Session config for the engine.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("sessionConfig")]
+        public virtual GoogleCloudDiscoveryengineV1betaSessionConfig SessionConfig { get; set; }
 
         /// <summary>Required. The solutions of the engine.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("solutionType")]
@@ -67513,6 +67694,32 @@ namespace Google.Apis.DiscoveryEngine.v1alpha.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("mode")]
         public virtual string Mode { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Configuration for the session.</summary>
+    public class GoogleCloudDiscoveryengineV1betaSessionConfig : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Optional. Session management policy that defines who will manage the session.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("sessionManagementPolicy")]
+        public virtual string SessionManagementPolicy { get; set; }
+
+        /// <summary>Optional. The TTL for the session. If unset, the default value is 60 days.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("sessionTtl")]
+        public virtual GoogleCloudDiscoveryengineV1betaSessionConfigSessionTtl SessionTtl { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Defines the TTL for sessions.</summary>
+    public class GoogleCloudDiscoveryengineV1betaSessionConfigSessionTtl : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Defines the number of days for session TTL.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("days")]
+        public virtual System.Nullable<int> Days { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }

@@ -59,6 +59,24 @@ namespace Google.Apis.WebContentPublisher.v1
         /// <summary>Gets the batch base path; <c>null</c> if unspecified.</summary>
         public override string BatchPath => "batch";
 
+        /// <summary>Available OAuth 2.0 scopes for use with the Web Content Publisher API.</summary>
+        public class Scope
+        {
+            /// <summary>
+            /// Private Service: https://www.googleapis.com/auth/webcontentpublisher.publications.manage.system
+            /// </summary>
+            public static string WebcontentpublisherPublicationsManageSystem = "https://www.googleapis.com/auth/webcontentpublisher.publications.manage.system";
+        }
+
+        /// <summary>Available OAuth 2.0 scope constants for use with the Web Content Publisher API.</summary>
+        public static class ScopeConstants
+        {
+            /// <summary>
+            /// Private Service: https://www.googleapis.com/auth/webcontentpublisher.publications.manage.system
+            /// </summary>
+            public const string WebcontentpublisherPublicationsManageSystem = "https://www.googleapis.com/auth/webcontentpublisher.publications.manage.system";
+        }
+
         /// <summary>Gets the Organizations resource.</summary>
         public virtual OrganizationsResource Organizations { get; }
 
@@ -1094,7 +1112,7 @@ namespace Google.Apis.WebContentPublisher.v1.Data
     public class DomainProperty : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>
-        /// Optional. Whether the domain ownership has been verified (e.g., via Google Search Console).
+        /// Output only. Whether the domain ownership has been verified (e.g., via Google Search Console).
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("ownershipVerified")]
         public virtual System.Nullable<bool> OwnershipVerified { get; set; }

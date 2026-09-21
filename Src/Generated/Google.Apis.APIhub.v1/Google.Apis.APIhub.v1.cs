@@ -8261,6 +8261,19 @@ namespace Google.Apis.APIhub.v1.Data
     /// <summary>Addon resource.</summary>
     public class GoogleCloudApihubV1Addon : Google.Apis.Requests.IDirectResponseSchema
     {
+        /// <summary>
+        /// Output only. The Vertex AI region where the BoostSpec Gemini model calls run for this API Hub instance.
+        /// Populated only for the SpecGen addon (`system-spec-generation`); other addons leave this field empty.
+        /// `gemini-2.5-flash` is not available in every API Hub region, so the effective region may differ from the API
+        /// Hub instance's own region. The value follows these semantics: - `""`: BoostSpec is disabled in this region
+        /// (the addon is not SpecGen, or the API Hub instance region has no configured Gemini endpoint or fallback). -
+        /// Equal to the API Hub instance region: BoostSpec calls run in-region. - Differs from the API Hub instance
+        /// region: BoostSpec calls run in the specified fallback region. Callers rendering this field can derive the
+        /// three display states from this single field combined with the API Hub instance region.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("boostSpecGeminiRegionId")]
+        public virtual string BoostSpecGeminiRegionId { get; set; }
+
         /// <summary>Required. The configuration of the addon.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("config")]
         public virtual GoogleCloudApihubV1AddonConfig Config { get; set; }
@@ -8925,6 +8938,14 @@ namespace Google.Apis.APIhub.v1.Data
             get => Google.Apis.Util.DiscoveryFormat.ParseGoogleDateTimeToDateTimeOffset(CreateTimeRaw);
             set => CreateTimeRaw = Google.Apis.Util.DiscoveryFormat.FormatDateTimeOffsetToGoogleDateTime(value);
         }
+
+        /// <summary>
+        /// Optional. The deployments linked directly to this API operation. For operations parsed from a spec,
+        /// `UpdateApiOperation` returns `FAILED_PRECONDITION`; link the parent spec to the deployment via
+        /// `Spec.deployments` instead. Format is `projects/{project}/locations/{location}/deployments/{deployment}`
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("deployments")]
+        public virtual System.Collections.Generic.IList<string> Deployments { get; set; }
 
         /// <summary>
         /// Optional. Operation details. Note: Even though this field is optional, it is required for CreateApiOperation
@@ -10006,6 +10027,10 @@ namespace Google.Apis.APIhub.v1.Data
     /// </summary>
     public class GoogleCloudApihubV1Deployment : Google.Apis.Requests.IDirectResponseSchema
     {
+        /// <summary>Output only. The API operations linked directly to this deployment.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("apiOperations")]
+        public virtual System.Collections.Generic.IList<string> ApiOperations { get; set; }
+
         /// <summary>
         /// Output only. The API versions linked to this deployment. Note: A particular deployment could be linked to
         /// multiple different API versions (of same or different APIs).
@@ -10148,6 +10173,14 @@ namespace Google.Apis.APIhub.v1.Data
         public virtual string SourceProject { get; set; }
 
         /// <summary>
+        /// Optional. A revision identifier for the underlying gateway configuration that this deployment serves. For
+        /// Apigee gateway variants, this is typically the proxy revision number populated automatically when the
+        /// deployment is discovered.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("sourceRevision")]
+        public virtual string SourceRevision { get; set; }
+
+        /// <summary>
         /// Optional. The uri where additional source specific information for this deployment can be found. This maps
         /// to the following system defined attribute:
         /// `projects/{project}/locations/{location}/attributes/system-source-uri` The number of values for this
@@ -10157,6 +10190,13 @@ namespace Google.Apis.APIhub.v1.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("sourceUri")]
         public virtual GoogleCloudApihubV1AttributeValues SourceUri { get; set; }
+
+        /// <summary>
+        /// Output only. The specs linked directly to this deployment. Note: a deployment could serve multiple specs
+        /// (e.g., across different revisions of the same underlying gateway configuration).
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("specs")]
+        public virtual System.Collections.Generic.IList<string> Specs { get; set; }
 
         private string _updateTimeRaw;
 
@@ -13100,6 +13140,13 @@ namespace Google.Apis.APIhub.v1.Data
             set => CreateTimeRaw = Google.Apis.Util.DiscoveryFormat.FormatDateTimeOffsetToGoogleDateTime(value);
         }
 
+        /// <summary>
+        /// Optional. The deployments linked directly to this spec. Format is
+        /// `projects/{project}/locations/{location}/deployments/{deployment}`
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("deployments")]
+        public virtual System.Collections.Generic.IList<string> Deployments { get; set; }
+
         /// <summary>Output only. Details parsed from the spec.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("details")]
         public virtual GoogleCloudApihubV1SpecDetails Details { get; set; }
@@ -13230,6 +13277,15 @@ namespace Google.Apis.APIhub.v1.Data
     /// <summary>The metadata associated with a spec of the API version.</summary>
     public class GoogleCloudApihubV1SpecMetadata : Google.Apis.Requests.IDirectResponseSchema
     {
+        /// <summary>
+        /// Optional. The gateway-side URIs of deployments that serve this spec. If provided, the API Hub service
+        /// creates links between this spec and the deployments identified by these URIs. URIs that don't match any
+        /// known deployment are ignored; a subsequent ingestion cycle that includes the missing deployment will
+        /// re-establish the link. The maximum number of URIs allowed is 100.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("deploymentResourceUris")]
+        public virtual System.Collections.Generic.IList<string> DeploymentResourceUris { get; set; }
+
         private string _originalCreateTimeRaw;
 
         private object _originalCreateTime;
