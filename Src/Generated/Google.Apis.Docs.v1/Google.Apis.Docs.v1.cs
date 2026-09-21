@@ -438,11 +438,13 @@ namespace Google.Apis.Docs.v1
             public virtual string DocumentId { get; private set; }
 
             /// <summary>
-            /// Whether to populate the Document.tabs field instead of the text content fields like `body` and
-            /// `documentStyle` on Document. - When `True`: Document content populates in the Document.tabs field
-            /// instead of the text content fields in Document. - When `False`: The content of the document's first tab
-            /// populates the content fields in Document excluding Document.tabs. If a document has only one tab, then
-            /// that tab is used to populate the document content. Document.tabs will be empty.
+            /// Whether to populate the `Document.tabs` field instead of the text content fields like `body` and
+            /// `documentStyle` on `Document`. - When `true`: Document content populates in the `Document.tabs` field
+            /// instead of the text content fields in `Document`. - When `false`: The content of the document's first
+            /// tab populates the content fields in `Document` excluding `Document.tabs`. If a document has only one
+            /// tab, then that tab is used to populate the document content. `Document.tabs` will be empty. If you use a
+            /// field mask that references the `Document.tabs` field (or any subfield), the API implicitly treats the
+            /// request as if you set `include_tabs_content` to `true`.
             /// </summary>
             [Google.Apis.Util.RequestParameterAttribute("includeTabsContent", Google.Apis.Util.RequestParameterType.Query)]
             public virtual System.Nullable<bool> IncludeTabsContent { get; set; }
@@ -1486,8 +1488,8 @@ namespace Google.Apis.Docs.v1.Data
         public virtual string SuggestionsViewMode { get; set; }
 
         /// <summary>
-        /// Tabs that are part of a document. Tabs can contain child tabs, a tab nested within another tab. Child tabs
-        /// are represented by the Tab.childTabs field.
+        /// Output only. Tabs that are part of a document. Tabs can contain child tabs, a tab nested within another tab.
+        /// Child tabs are represented by the Tab.childTabs field.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("tabs")]
         public virtual System.Collections.Generic.IList<Tab> Tabs { get; set; }
