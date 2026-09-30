@@ -33,5 +33,11 @@
   "connectors.v2",
 
   // b/542211130
-  "aiplatform.v1"
+  "aiplatform.v1",
+
+  // b/533068783
+  "readerrevenuesubscriptionlinking.v1",
+
+  // b/567102951
+  "compute.preview"
 ]
