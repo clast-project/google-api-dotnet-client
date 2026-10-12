@@ -3358,6 +3358,13 @@ namespace Google.Apis.NetworkManagement.v1beta1.Data
         [Newtonsoft.Json.JsonPropertyAttribute("displayName")]
         public virtual string DisplayName { get; set; }
 
+        /// <summary>
+        /// IP address of a Cloud Run revision. If the Cloud Run revision is in dual-stack subnetwork, this is the IP
+        /// address relevant to the trace. Populated for `ARRIVE_AT_CLOUD_RUN_REVISION` steps.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("ipAddress")]
+        public virtual string IpAddress { get; set; }
+
         /// <summary>Location in which this revision is deployed.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("location")]
         public virtual string Location { get; set; }
@@ -3378,7 +3385,7 @@ namespace Google.Apis.NetworkManagement.v1beta1.Data
 
         /// <summary>
         /// URI of Cloud Run worker pool this revision belongs to. Format:
-        /// `projects/{project_id}/locations/{location}/workerPools/{worker_pool_id}`. Mutually exclusive with
+        /// `projects/{project_id}/locations/{location}/workerPools/{worker_pool_id}` Mutually exclusive with
         /// `service_uri`.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("workerPoolUri")]
@@ -3651,38 +3658,6 @@ namespace Google.Apis.NetworkManagement.v1beta1.Data
         public virtual string ETag { get; set; }
     }
 
-    /// <summary>For display only. Metadata associated with a serverless direct VPC ingress connection.</summary>
-    public class DirectVpcIngressConnectionInfo : Google.Apis.Requests.IDirectResponseSchema
-    {
-        /// <summary>
-        /// URI of the VPC network for direct ingress. Format: `projects/{project_id}/global/networks/{network_id}`
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("networkUri")]
-        public virtual string NetworkUri { get; set; }
-
-        /// <summary>Region in which the Direct VPC ingress is deployed.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("region")]
-        public virtual string Region { get; set; }
-
-        /// <summary>Selected destination IP address, from the selected IP range.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("selectedIpAddress")]
-        public virtual string SelectedIpAddress { get; set; }
-
-        /// <summary>Selected IP range.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("selectedIpRange")]
-        public virtual string SelectedIpRange { get; set; }
-
-        /// <summary>
-        /// URI of the subnetwork for direct ingress. Format:
-        /// `projects/{project_id}/regions/{region}/subnetworks/{subnetwork_id}`
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("subnetworkUri")]
-        public virtual string SubnetworkUri { get; set; }
-
-        /// <summary>The ETag of the item.</summary>
-        public virtual string ETag { get; set; }
-    }
-
     /// <summary>Details of the final state "drop" and associated resource.</summary>
     public class DropInfo : Google.Apis.Requests.IDirectResponseSchema
     {
@@ -3740,6 +3715,10 @@ namespace Google.Apis.NetworkManagement.v1beta1.Data
         /// <summary>The aggregation interval for the logs. Default value is INTERVAL_5_SEC.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("aggregationInterval")]
         public virtual string AggregationInterval { get; set; }
+
+        /// <summary>Optional. Configures whether connection logging is enabled for VPC Flow Logs.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("connectionLogging")]
+        public virtual string ConnectionLogging { get; set; }
 
         /// <summary>
         /// Determines whether to include cross project annotations in the logs. This field is available only for
@@ -5790,10 +5769,6 @@ namespace Google.Apis.NetworkManagement.v1beta1.Data
         [Newtonsoft.Json.JsonPropertyAttribute("directVpcEgressConnection")]
         public virtual DirectVpcEgressConnectionInfo DirectVpcEgressConnection { get; set; }
 
-        /// <summary>Display information of a serverless direct VPC ingress connection.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("directVpcIngressConnection")]
-        public virtual DirectVpcIngressConnectionInfo DirectVpcIngressConnection { get; set; }
-
         /// <summary>Display information of a DMS Private Connection.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("dmsPrivateConnection")]
         public virtual PrivateConnectionInfo DmsPrivateConnection { get; set; }
@@ -6054,6 +6029,10 @@ namespace Google.Apis.NetworkManagement.v1beta1.Data
         /// <summary>Optional. The aggregation interval for the logs. Default value is INTERVAL_5_SEC.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("aggregationInterval")]
         public virtual string AggregationInterval { get; set; }
+
+        /// <summary>Optional. Configures whether connection logging is enabled for VPC Flow Logs.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("connectionLogging")]
+        public virtual string ConnectionLogging { get; set; }
 
         private string _createTimeRaw;
 

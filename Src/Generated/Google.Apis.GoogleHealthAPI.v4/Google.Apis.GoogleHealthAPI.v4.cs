@@ -1379,11 +1379,14 @@ namespace Google.Apis.GoogleHealthAPI.v4
                 /// <summary>Delete a batch of identifyable data points.</summary>
                 /// <param name="body">The body of the request.</param>
                 /// <param name="parent">
-                /// Optional. Parent (data type) for the Data Point collection Format: `users/me/dataTypes/{data_type}`,
-                /// e.g.: - `users/me/dataTypes/steps` - `users/me/dataTypes/-` For a list of the supported data types
-                /// see the DataPoint data union field. Deleting data points across multiple data type collections is
-                /// supported following https://aip.dev/159. If this is set, the parent of all of the data points
-                /// specified in `names` must match this field.
+                /// Optional. Parent (data type) for the Data Point collection Format:
+                /// `users/{user}/dataTypes/{data_type}`, e.g.: - `users/me/dataTypes/steps` -
+                /// `users/1234567890/dataTypes/steps` - `users/me/dataTypes/-` - `users/1234567890/dataTypes/-` The
+                /// `{user}` can be either the alias `me` or the authenticated user's numeric Health User ID (retrieved
+                /// via GetIdentity). For a list of the supported data types see the DataPoint data union field.
+                /// Deleting data points across multiple data type collections is supported following
+                /// https://aip.dev/159. If this is set, the parent of all of the data points specified in `names` must
+                /// match this field.
                 /// </param>
                 public virtual BatchDeleteRequest BatchDelete(Google.Apis.GoogleHealthAPI.v4.Data.BatchDeleteDataPointsRequest body, string parent)
                 {
@@ -1403,10 +1406,13 @@ namespace Google.Apis.GoogleHealthAPI.v4
 
                     /// <summary>
                     /// Optional. Parent (data type) for the Data Point collection Format:
-                    /// `users/me/dataTypes/{data_type}`, e.g.: - `users/me/dataTypes/steps` - `users/me/dataTypes/-`
-                    /// For a list of the supported data types see the DataPoint data union field. Deleting data points
-                    /// across multiple data type collections is supported following https://aip.dev/159. If this is
-                    /// set, the parent of all of the data points specified in `names` must match this field.
+                    /// `users/{user}/dataTypes/{data_type}`, e.g.: - `users/me/dataTypes/steps` -
+                    /// `users/1234567890/dataTypes/steps` - `users/me/dataTypes/-` - `users/1234567890/dataTypes/-` The
+                    /// `{user}` can be either the alias `me` or the authenticated user's numeric Health User ID
+                    /// (retrieved via GetIdentity). For a list of the supported data types see the DataPoint data union
+                    /// field. Deleting data points across multiple data type collections is supported following
+                    /// https://aip.dev/159. If this is set, the parent of all of the data points specified in `names`
+                    /// must match this field.
                     /// </summary>
                     [Google.Apis.Util.RequestParameterAttribute("parent", Google.Apis.Util.RequestParameterType.Path)]
                     public virtual string Parent { get; private set; }
@@ -1445,7 +1451,9 @@ namespace Google.Apis.GoogleHealthAPI.v4
                 /// <param name="body">The body of the request.</param>
                 /// <param name="parent">
                 /// Required. The parent resource name where the data point will be created. Format:
-                /// `users/{user}/dataTypes/{data_type}`
+                /// `users/{user}/dataTypes/{data_type}`, e.g.: - `users/me/dataTypes/steps` -
+                /// `users/1234567890/dataTypes/steps` The `{user}` can be either the alias `me` or the authenticated
+                /// user's numeric Health User ID (retrieved via GetIdentity).
                 /// </param>
                 public virtual CreateRequest Create(Google.Apis.GoogleHealthAPI.v4.Data.DataPoint body, string parent)
                 {
@@ -1465,7 +1473,9 @@ namespace Google.Apis.GoogleHealthAPI.v4
 
                     /// <summary>
                     /// Required. The parent resource name where the data point will be created. Format:
-                    /// `users/{user}/dataTypes/{data_type}`
+                    /// `users/{user}/dataTypes/{data_type}`, e.g.: - `users/me/dataTypes/steps` -
+                    /// `users/1234567890/dataTypes/steps` The `{user}` can be either the alias `me` or the
+                    /// authenticated user's numeric Health User ID (retrieved via GetIdentity).
                     /// </summary>
                     [Google.Apis.Util.RequestParameterAttribute("parent", Google.Apis.Util.RequestParameterType.Path)]
                     public virtual string Parent { get; private set; }
@@ -1505,8 +1515,10 @@ namespace Google.Apis.GoogleHealthAPI.v4
                 /// <param name="parent">
                 /// Required. Parent data type of the Data Point collection. Format:
                 /// `users/{user}/dataTypes/{data_type}`, e.g.: - `users/me/dataTypes/steps` -
-                /// `users/me/dataTypes/distance` For a list of the supported data types see the DailyRollupDataPoint
-                /// value union field.
+                /// `users/1234567890/dataTypes/steps` - `users/me/dataTypes/distance` -
+                /// `users/1234567890/dataTypes/distance` The `{user}` can be either the alias `me` or the authenticated
+                /// user's numeric Health User ID (retrieved via GetIdentity). For a list of the supported data types
+                /// see the DailyRollupDataPoint value union field.
                 /// </param>
                 public virtual DailyRollUpRequest DailyRollUp(Google.Apis.GoogleHealthAPI.v4.Data.DailyRollUpDataPointsRequest body, string parent)
                 {
@@ -1527,8 +1539,10 @@ namespace Google.Apis.GoogleHealthAPI.v4
                     /// <summary>
                     /// Required. Parent data type of the Data Point collection. Format:
                     /// `users/{user}/dataTypes/{data_type}`, e.g.: - `users/me/dataTypes/steps` -
-                    /// `users/me/dataTypes/distance` For a list of the supported data types see the
-                    /// DailyRollupDataPoint value union field.
+                    /// `users/1234567890/dataTypes/steps` - `users/me/dataTypes/distance` -
+                    /// `users/1234567890/dataTypes/distance` The `{user}` can be either the alias `me` or the
+                    /// authenticated user's numeric Health User ID (retrieved via GetIdentity). For a list of the
+                    /// supported data types see the DailyRollupDataPoint value union field.
                     /// </summary>
                     [Google.Apis.Util.RequestParameterAttribute("parent", Google.Apis.Util.RequestParameterType.Path)]
                     public virtual string Parent { get; private set; }
@@ -1565,8 +1579,9 @@ namespace Google.Apis.GoogleHealthAPI.v4
 
                 /// <summary>
                 /// Exports exercise data in TCX format. **IMPORTANT:** HTTP clients must append `?alt=media` to the
-                /// request URL to download the raw TCX file. Example:
+                /// request URL to download the raw TCX file. ## Examples: ##
                 /// `https://health.googleapis.com/v4/users/me/dataTypes/exercise/dataPoints/EXERCISE_ID:exportExerciseTcx?alt=media`
+                /// `https://health.googleapis.com/v4/users/1234567890/dataTypes/exercise/dataPoints/EXERCISE_ID:exportExerciseTcx?alt=media`
                 /// Without `alt=media`, the server returns a JSON response (`ExportExerciseTcxResponse`) which is
                 /// intended primarily for gRPC clients. **Note:** While the Authorization section below states that any
                 /// one of the listed scopes is accepted, this specific method requires the user to provide both one of
@@ -1575,10 +1590,11 @@ namespace Google.Apis.GoogleHealthAPI.v4
                 /// </summary>
                 /// <param name="name">
                 /// Required. The resource name of the exercise data point to export. Format:
-                /// `users/{user}/dataTypes/exercise/dataPoints/{data_point}` Example:
-                /// `users/me/dataTypes/exercise/dataPoints/2026443605080188808` The `{user}` is the alias `"me"`
-                /// currently. Future versions may support user IDs. The `{data_point}` ID maps to the exercise ID,
-                /// which is a long integer.
+                /// `users/{user}/dataTypes/exercise/dataPoints/{data_point}` Examples: -
+                /// `users/me/dataTypes/exercise/dataPoints/2026443605080188808` -
+                /// `users/1234567890/dataTypes/exercise/dataPoints/2026443605080188808` The `{user}` can be either the
+                /// alias `me` or the authenticated user's numeric Health User ID (retrieved via GetIdentity). The
+                /// `{data_point}` ID maps to the exercise ID, which is a long integer.
                 /// </param>
                 public virtual ExportExerciseTcxRequest ExportExerciseTcx(string name)
                 {
@@ -1587,8 +1603,9 @@ namespace Google.Apis.GoogleHealthAPI.v4
 
                 /// <summary>
                 /// Exports exercise data in TCX format. **IMPORTANT:** HTTP clients must append `?alt=media` to the
-                /// request URL to download the raw TCX file. Example:
+                /// request URL to download the raw TCX file. ## Examples: ##
                 /// `https://health.googleapis.com/v4/users/me/dataTypes/exercise/dataPoints/EXERCISE_ID:exportExerciseTcx?alt=media`
+                /// `https://health.googleapis.com/v4/users/1234567890/dataTypes/exercise/dataPoints/EXERCISE_ID:exportExerciseTcx?alt=media`
                 /// Without `alt=media`, the server returns a JSON response (`ExportExerciseTcxResponse`) which is
                 /// intended primarily for gRPC clients. **Note:** While the Authorization section below states that any
                 /// one of the listed scopes is accepted, this specific method requires the user to provide both one of
@@ -1607,10 +1624,11 @@ namespace Google.Apis.GoogleHealthAPI.v4
 
                     /// <summary>
                     /// Required. The resource name of the exercise data point to export. Format:
-                    /// `users/{user}/dataTypes/exercise/dataPoints/{data_point}` Example:
-                    /// `users/me/dataTypes/exercise/dataPoints/2026443605080188808` The `{user}` is the alias `"me"`
-                    /// currently. Future versions may support user IDs. The `{data_point}` ID maps to the exercise ID,
-                    /// which is a long integer.
+                    /// `users/{user}/dataTypes/exercise/dataPoints/{data_point}` Examples: -
+                    /// `users/me/dataTypes/exercise/dataPoints/2026443605080188808` -
+                    /// `users/1234567890/dataTypes/exercise/dataPoints/2026443605080188808` The `{user}` can be either
+                    /// the alias `me` or the authenticated user's numeric Health User ID (retrieved via GetIdentity).
+                    /// The `{data_point}` ID maps to the exercise ID, which is a long integer.
                     /// </summary>
                     [Google.Apis.Util.RequestParameterAttribute("name", Google.Apis.Util.RequestParameterType.Path)]
                     public virtual string Name { get; private set; }
@@ -1750,8 +1768,11 @@ namespace Google.Apis.GoogleHealthAPI.v4
                 /// <summary>Get a single identifyable data point.</summary>
                 /// <param name="name">
                 /// Required. The name of the data point to retrieve. Format:
-                /// `users/{user}/dataTypes/{data_type}/dataPoints/{data_point}` See DataPoint.name for examples and
-                /// possible values.
+                /// `users/{user}/dataTypes/{data_type}/dataPoints/{data_point}` ## Examples: ##
+                /// `users/me/dataTypes/sleep/dataPoints/a1b2c3d4-e5f6-7890-1234-567890abcdef`
+                /// `users/1234567890/dataTypes/sleep/dataPoints/a1b2c3d4-e5f6-7890-1234-567890abcdef` The `{user}` can
+                /// be either the alias `me` or the authenticated user's numeric Health User ID (retrieved via
+                /// GetIdentity). See DataPoint.name for examples and possible values.
                 /// </param>
                 public virtual GetRequest Get(string name)
                 {
@@ -1770,8 +1791,11 @@ namespace Google.Apis.GoogleHealthAPI.v4
 
                     /// <summary>
                     /// Required. The name of the data point to retrieve. Format:
-                    /// `users/{user}/dataTypes/{data_type}/dataPoints/{data_point}` See DataPoint.name for examples and
-                    /// possible values.
+                    /// `users/{user}/dataTypes/{data_type}/dataPoints/{data_point}` ## Examples: ##
+                    /// `users/me/dataTypes/sleep/dataPoints/a1b2c3d4-e5f6-7890-1234-567890abcdef`
+                    /// `users/1234567890/dataTypes/sleep/dataPoints/a1b2c3d4-e5f6-7890-1234-567890abcdef` The `{user}`
+                    /// can be either the alias `me` or the authenticated user's numeric Health User ID (retrieved via
+                    /// GetIdentity). See DataPoint.name for examples and possible values.
                     /// </summary>
                     [Google.Apis.Util.RequestParameterAttribute("name", Google.Apis.Util.RequestParameterType.Path)]
                     public virtual string Name { get; private set; }
@@ -1802,9 +1826,12 @@ namespace Google.Apis.GoogleHealthAPI.v4
 
                 /// <summary>Query user health and fitness data points.</summary>
                 /// <param name="parent">
-                /// Required. Parent data type of the Data Point collection. Format: `users/me/dataTypes/{data_type}`,
-                /// e.g.: - `users/me/dataTypes/steps` - `users/me/dataTypes/weight` For a list of the supported data
-                /// types see the DataPoint data union field.
+                /// Required. Parent data type of the Data Point collection. Format:
+                /// `users/{user}/dataTypes/{data_type}`, e.g.: - `users/me/dataTypes/steps` -
+                /// `users/1234567890/dataTypes/steps` - `users/me/dataTypes/weight` -
+                /// `users/1234567890/dataTypes/weight` The `{user}` can be either the alias `me` or the authenticated
+                /// user's numeric Health User ID (retrieved via GetIdentity). For a list of the supported data types
+                /// see the DataPoint data union field.
                 /// </param>
                 public virtual ListRequest List(string parent)
                 {
@@ -1823,12 +1850,41 @@ namespace Google.Apis.GoogleHealthAPI.v4
 
                     /// <summary>
                     /// Required. Parent data type of the Data Point collection. Format:
-                    /// `users/me/dataTypes/{data_type}`, e.g.: - `users/me/dataTypes/steps` -
-                    /// `users/me/dataTypes/weight` For a list of the supported data types see the DataPoint data union
-                    /// field.
+                    /// `users/{user}/dataTypes/{data_type}`, e.g.: - `users/me/dataTypes/steps` -
+                    /// `users/1234567890/dataTypes/steps` - `users/me/dataTypes/weight` -
+                    /// `users/1234567890/dataTypes/weight` The `{user}` can be either the alias `me` or the
+                    /// authenticated user's numeric Health User ID (retrieved via GetIdentity). For a list of the
+                    /// supported data types see the DataPoint data union field.
                     /// </summary>
                     [Google.Apis.Util.RequestParameterAttribute("parent", Google.Apis.Util.RequestParameterType.Path)]
                     public virtual string Parent { get; private set; }
+
+                    /// <summary>
+                    /// Optional. The data source family name to filter by. If empty, data points from all available
+                    /// data sources will be returned. Format: `users/{user}/dataSourceFamilies/{data_source_family}`
+                    /// The `{user}` can be either the alias `me` or the authenticated user's numeric Health User ID,
+                    /// retrieved via GetIdentity (e.g. `users/me/dataSourceFamilies/...` or
+                    /// `users/1234567890/dataSourceFamilies/...`). The supported values are: -
+                    /// `users/{user}/dataSourceFamilies/all-sources` - Default value. Includes data from all available
+                    /// data sources. - `users/{user}/dataSourceFamilies/google-wearables` - Includes data from Google
+                    /// and Fitbit tracker devices (such as Fitbit trackers and Pixel Watch). Excludes manually logged
+                    /// data. - `users/{user}/dataSourceFamilies/google-sources` - Includes first-party Google data,
+                    /// such as data from tracker devices, manually logged data, and Health Connect. -
+                    /// `users/{user}/dataSourceFamilies/self-sources` - Includes only the data the calling client wrote
+                    /// through this API, that is, data points whose data source was registered through this API with
+                    /// the same OAuth client ID as the caller. Callers that were only granted write scopes for the
+                    /// requested data types may only read the data they wrote themselves: their requests are implicitly
+                    /// restricted to `self-sources`, and requesting any other data source family fails with
+                    /// `PERMISSION_DENIED`. If no data point matches the requested data source family, the response is
+                    /// an empty list rather than an error. Filtering by data source family is not supported for the
+                    /// `sleep`, `food` and `food-measurement-unit` data types, because the underlying listing
+                    /// implementation cannot restrict results by data source. Such requests fail with
+                    /// `INVALID_ARGUMENT` when the data source family is set explicitly, and with `PERMISSION_DENIED`
+                    /// when the restriction is only implied by the caller's scopes. For `sleep`, use
+                    /// ReconcileDataPoints instead.
+                    /// </summary>
+                    [Google.Apis.Util.RequestParameterAttribute("dataSourceFamily", Google.Apis.Util.RequestParameterType.Query)]
+                    public virtual string DataSourceFamily { get; set; }
 
                     /// <summary>
                     /// Optional. Filter expression following https://google.aip.dev/160. A time range (either physical
@@ -1915,6 +1971,14 @@ namespace Google.Apis.GoogleHealthAPI.v4
                             DefaultValue = null,
                             Pattern = @"^users/[^/]+/dataTypes/[^/]+$",
                         });
+                        RequestParameters.Add("dataSourceFamily", new Google.Apis.Discovery.Parameter
+                        {
+                            Name = "dataSourceFamily",
+                            IsRequired = false,
+                            ParameterType = "query",
+                            DefaultValue = null,
+                            Pattern = null,
+                        });
                         RequestParameters.Add("filter", new Google.Apis.Discovery.Parameter
                         {
                             Name = "filter",
@@ -1950,13 +2014,15 @@ namespace Google.Apis.GoogleHealthAPI.v4
                 /// <param name="name">
                 /// Identifier. Data point name, only supported for the subset of identifiable data types. For the
                 /// majority of the data types, individual data points do not need to be identified and this field would
-                /// be empty. Format: `users/{user}/dataTypes/{data_type}/dataPoints/{data_point}` Example:
-                /// `users/abcd1234/dataTypes/sleep/dataPoints/a1b2c3d4-e5f6-7890-1234-567890abcdef` The `{user}` ID is
-                /// a system-generated identifier, as described in Identity.health_user_id. The `{data_type}` ID
-                /// corresponds to the kebab-case version of the field names in the DataPoint data union field, e.g.
-                /// `heart-rate` for the `heart_rate` field. The `{data_point}` ID can be client-provided or
-                /// system-generated. If client-provided, it must be a string of 4-63 characters, containing only
-                /// lowercase letters, numbers, and hyphens.
+                /// be empty. Format: `users/{user}/dataTypes/{data_type}/dataPoints/{data_point}` ## Examples: ##
+                /// `users/me/dataTypes/sleep/dataPoints/a1b2c3d4-e5f6-7890-1234-567890abcdef`
+                /// `users/1234567890/dataTypes/sleep/dataPoints/a1b2c3d4-e5f6-7890-1234-567890abcdef` The `{user}` can
+                /// be either the alias `me` or the authenticated user's numeric Health User ID, which can be retrieved
+                /// by calling GetIdentity (see Identity.health_user_id). The `{data_type}` ID corresponds to the
+                /// kebab-case version of the field names in the DataPoint data union field, e.g. `heart-rate` for the
+                /// `heart_rate` field. The `{data_point}` ID can be client-provided or system-generated. If
+                /// client-provided, it must be a string of 4-63 characters, containing only lowercase letters, numbers,
+                /// and hyphens.
                 /// </param>
                 public virtual PatchRequest Patch(Google.Apis.GoogleHealthAPI.v4.Data.DataPoint body, string name)
                 {
@@ -1980,10 +2046,12 @@ namespace Google.Apis.GoogleHealthAPI.v4
                     /// <summary>
                     /// Identifier. Data point name, only supported for the subset of identifiable data types. For the
                     /// majority of the data types, individual data points do not need to be identified and this field
-                    /// would be empty. Format: `users/{user}/dataTypes/{data_type}/dataPoints/{data_point}` Example:
-                    /// `users/abcd1234/dataTypes/sleep/dataPoints/a1b2c3d4-e5f6-7890-1234-567890abcdef` The `{user}` ID
-                    /// is a system-generated identifier, as described in Identity.health_user_id. The `{data_type}` ID
-                    /// corresponds to the kebab-case version of the field names in the DataPoint data union field, e.g.
+                    /// would be empty. Format: `users/{user}/dataTypes/{data_type}/dataPoints/{data_point}` ##
+                    /// Examples: ## `users/me/dataTypes/sleep/dataPoints/a1b2c3d4-e5f6-7890-1234-567890abcdef`
+                    /// `users/1234567890/dataTypes/sleep/dataPoints/a1b2c3d4-e5f6-7890-1234-567890abcdef` The `{user}`
+                    /// can be either the alias `me` or the authenticated user's numeric Health User ID, which can be
+                    /// retrieved by calling GetIdentity (see Identity.health_user_id). The `{data_type}` ID corresponds
+                    /// to the kebab-case version of the field names in the DataPoint data union field, e.g.
                     /// `heart-rate` for the `heart_rate` field. The `{data_point}` ID can be client-provided or
                     /// system-generated. If client-provided, it must be a string of 4-63 characters, containing only
                     /// lowercase letters, numbers, and hyphens.
@@ -2023,8 +2091,11 @@ namespace Google.Apis.GoogleHealthAPI.v4
 
                 /// <summary>Reconcile data points from multiple data sources into a single data stream.</summary>
                 /// <param name="parent">
-                /// Required. Parent data type of the Data Point collection. Format: `users/me/dataTypes/{data_type}`,
-                /// e.g.: - `users/me/dataTypes/steps` - `users/me/dataTypes/heart-rate` For a list of the supported
+                /// Required. Parent data type of the Data Point collection. Format:
+                /// `users/{user}/dataTypes/{data_type}`, e.g.: - `users/me/dataTypes/steps` -
+                /// `users/1234567890/dataTypes/steps` - `users/me/dataTypes/heart-rate` -
+                /// `users/1234567890/dataTypes/heart-rate` The `{user}` can be either the alias `me` or the
+                /// authenticated user's numeric Health User ID (retrieved via GetIdentity). For a list of the supported
                 /// data types see the DataPoint data union field.
                 /// </param>
                 public virtual ReconcileRequest Reconcile(string parent)
@@ -2044,21 +2115,33 @@ namespace Google.Apis.GoogleHealthAPI.v4
 
                     /// <summary>
                     /// Required. Parent data type of the Data Point collection. Format:
-                    /// `users/me/dataTypes/{data_type}`, e.g.: - `users/me/dataTypes/steps` -
-                    /// `users/me/dataTypes/heart-rate` For a list of the supported data types see the DataPoint data
-                    /// union field.
+                    /// `users/{user}/dataTypes/{data_type}`, e.g.: - `users/me/dataTypes/steps` -
+                    /// `users/1234567890/dataTypes/steps` - `users/me/dataTypes/heart-rate` -
+                    /// `users/1234567890/dataTypes/heart-rate` The `{user}` can be either the alias `me` or the
+                    /// authenticated user's numeric Health User ID (retrieved via GetIdentity). For a list of the
+                    /// supported data types see the DataPoint data union field.
                     /// </summary>
                     [Google.Apis.Util.RequestParameterAttribute("parent", Google.Apis.Util.RequestParameterType.Path)]
                     public virtual string Parent { get; private set; }
 
                     /// <summary>
                     /// Optional. The data source family name to reconcile. If empty, data points from all data sources
-                    /// will be reconciled. Format: `users/me/dataSourceFamilies/{data_source_family}` -
-                    /// `users/me/dataSourceFamilies/all-sources` - Default value. Includes data from all available data
-                    /// sources. - `users/me/dataSourceFamilies/google-wearables` - Includes data from Google and Fitbit
-                    /// tracker devices (such as Fitbit trackers and Pixel Watch). Excludes manually logged data. -
-                    /// `users/me/dataSourceFamilies/google-sources` - Includes first-party Google data, such as data
-                    /// from tracker devices, manually logged data, and Health Connect.
+                    /// will be reconciled. Format: `users/{user}/dataSourceFamilies/{data_source_family}` The `{user}`
+                    /// can be either the alias `me` or the authenticated user's numeric Health User ID, retrieved via
+                    /// GetIdentity (e.g. `users/me/dataSourceFamilies/...` or
+                    /// `users/1234567890/dataSourceFamilies/...`). The supported values are: -
+                    /// `users/{user}/dataSourceFamilies/all-sources` - Default value. Includes data from all available
+                    /// data sources. - `users/{user}/dataSourceFamilies/google-wearables` - Includes data from Google
+                    /// and Fitbit tracker devices (such as Fitbit trackers and Pixel Watch). Excludes manually logged
+                    /// data. - `users/{user}/dataSourceFamilies/google-sources` - Includes first-party Google data,
+                    /// such as data from tracker devices, manually logged data, and Health Connect. -
+                    /// `users/{user}/dataSourceFamilies/self-sources` - Includes only the data the calling client wrote
+                    /// through this API, that is, data points whose data source was registered through this API with
+                    /// the same OAuth client ID as the caller. Callers that were only granted write scopes for the
+                    /// requested data type may only read the data they wrote themselves: their requests are implicitly
+                    /// restricted to `self-sources`, and requesting any other data source family fails with
+                    /// `PERMISSION_DENIED`. If no data point matches the requested data source family, the response is
+                    /// an empty list rather than an error.
                     /// </summary>
                     [Google.Apis.Util.RequestParameterAttribute("dataSourceFamily", Google.Apis.Util.RequestParameterType.Query)]
                     public virtual string DataSourceFamily { get; set; }
@@ -2145,8 +2228,10 @@ namespace Google.Apis.GoogleHealthAPI.v4
                 /// <param name="parent">
                 /// Required. Parent data type of the Data Point collection. Format:
                 /// `users/{user}/dataTypes/{data_type}`, e.g.: - `users/me/dataTypes/steps` -
-                /// `users/me/dataTypes/distance` For a list of the supported data types see the RollupDataPoint value
-                /// union field.
+                /// `users/1234567890/dataTypes/steps` - `users/me/dataTypes/distance` -
+                /// `users/1234567890/dataTypes/distance` The `{user}` can be either the alias `me` or the authenticated
+                /// user's numeric Health User ID (retrieved via GetIdentity). For a list of the supported data types
+                /// see the RollupDataPoint value union field.
                 /// </param>
                 public virtual RollUpRequest RollUp(Google.Apis.GoogleHealthAPI.v4.Data.RollUpDataPointsRequest body, string parent)
                 {
@@ -2167,8 +2252,10 @@ namespace Google.Apis.GoogleHealthAPI.v4
                     /// <summary>
                     /// Required. Parent data type of the Data Point collection. Format:
                     /// `users/{user}/dataTypes/{data_type}`, e.g.: - `users/me/dataTypes/steps` -
-                    /// `users/me/dataTypes/distance` For a list of the supported data types see the RollupDataPoint
-                    /// value union field.
+                    /// `users/1234567890/dataTypes/steps` - `users/me/dataTypes/distance` -
+                    /// `users/1234567890/dataTypes/distance` The `{user}` can be either the alias `me` or the
+                    /// authenticated user's numeric Health User ID (retrieved via GetIdentity). For a list of the
+                    /// supported data types see the RollupDataPoint value union field.
                     /// </summary>
                     [Google.Apis.Util.RequestParameterAttribute("parent", Google.Apis.Util.RequestParameterType.Path)]
                     public virtual string Parent { get; private set; }
@@ -2553,7 +2640,7 @@ namespace Google.Apis.GoogleHealthAPI.v4
         /// Identifier. The resource name of this Profile resource. Format: `users/{user}/profile` Example:
         /// `users/1234567890/profile` or `users/me/profile` The {user} ID is a system-generated Google Health API user
         /// ID, a string of 1-63 characters consisting of lowercase and uppercase letters, numbers, and hyphens. The
-        /// literal `me` can also be used to refer to the authenticated user.
+        /// literal `me` can also be used to refer to the authenticated user. This field is read-only.
         /// </param>
         public virtual UpdateProfileRequest UpdateProfile(Google.Apis.GoogleHealthAPI.v4.Data.Profile body, string name)
         {
@@ -2575,7 +2662,7 @@ namespace Google.Apis.GoogleHealthAPI.v4
             /// Identifier. The resource name of this Profile resource. Format: `users/{user}/profile` Example:
             /// `users/1234567890/profile` or `users/me/profile` The {user} ID is a system-generated Google Health API
             /// user ID, a string of 1-63 characters consisting of lowercase and uppercase letters, numbers, and
-            /// hyphens. The literal `me` can also be used to refer to the authenticated user.
+            /// hyphens. The literal `me` can also be used to refer to the authenticated user. This field is read-only.
             /// </summary>
             [Google.Apis.Util.RequestParameterAttribute("name", Google.Apis.Util.RequestParameterType.Path)]
             public virtual string Name { get; private set; }
@@ -2628,7 +2715,7 @@ namespace Google.Apis.GoogleHealthAPI.v4
         /// Identifier. The resource name of this Settings resource. Format: `users/{user}/settings` Example:
         /// `users/1234567890/settings` or `users/me/settings` The {user} ID is a system-generated Google Health API
         /// user ID, a string of 1-63 characters consisting of lowercase and uppercase letters, numbers, and hyphens.
-        /// The literal `me` can also be used to refer to the authenticated user.
+        /// The literal `me` can also be used to refer to the authenticated user. This field is read-only.
         /// </param>
         public virtual UpdateSettingsRequest UpdateSettings(Google.Apis.GoogleHealthAPI.v4.Data.Settings body, string name)
         {
@@ -2650,7 +2737,7 @@ namespace Google.Apis.GoogleHealthAPI.v4
             /// Identifier. The resource name of this Settings resource. Format: `users/{user}/settings` Example:
             /// `users/1234567890/settings` or `users/me/settings` The {user} ID is a system-generated Google Health API
             /// user ID, a string of 1-63 characters consisting of lowercase and uppercase letters, numbers, and
-            /// hyphens. The literal `me` can also be used to refer to the authenticated user.
+            /// hyphens. The literal `me` can also be used to refer to the authenticated user. This field is read-only.
             /// </summary>
             [Google.Apis.Util.RequestParameterAttribute("name", Google.Apis.Util.RequestParameterType.Path)]
             public virtual string Name { get; private set; }
@@ -2707,7 +2794,9 @@ namespace Google.Apis.GoogleHealthAPI.v4.Data
         [Newtonsoft.Json.JsonPropertyAttribute("interval")]
         public virtual ObservationTimeInterval Interval { get; set; }
 
-        /// <summary>Required. Energy burned during an activity, measured in kilocalories.</summary>
+        /// <summary>
+        /// Required. Energy burned during an activity, measured in kilocalories. Must be in the range `[0, 1000000]`.
+        /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("kcal")]
         public virtual System.Nullable<double> Kcal { get; set; }
 
@@ -2991,7 +3080,10 @@ namespace Google.Apis.GoogleHealthAPI.v4.Data
     /// <summary>Captures the altitude gain (i.e. deltas), and not level above sea, for a user in millimeters.</summary>
     public class Altitude : Google.Apis.Requests.IDirectResponseSchema
     {
-        /// <summary>Required. Altitude gain in millimeters over the observed interval.</summary>
+        /// <summary>
+        /// Required. Altitude gain in millimeters over the observed interval. Must be in the range `[-1000000000,
+        /// 1000000000]`.
+        /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("gainMillimeters")]
         public virtual System.Nullable<long> GainMillimeters { get; set; }
 
@@ -3081,7 +3173,7 @@ namespace Google.Apis.GoogleHealthAPI.v4.Data
     /// <summary>Represents a blood glucose level measurement. LINT: LEGACY_NAMES</summary>
     public class BloodGlucose : Google.Apis.Requests.IDirectResponseSchema
     {
-        /// <summary>Required. Blood glucose level concentration in mg/dL.</summary>
+        /// <summary>Required. Blood glucose level concentration in mg/dL. Must be in the range `[0, 900]`.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("bloodGlucoseMilligramsPerDeciliter")]
         public virtual System.Nullable<double> BloodGlucoseMilligramsPerDeciliter { get; set; }
 
@@ -3127,7 +3219,7 @@ namespace Google.Apis.GoogleHealthAPI.v4.Data
     /// <summary>Body fat measurement.</summary>
     public class BodyFat : Google.Apis.Requests.IDirectResponseSchema
     {
-        /// <summary>Required. Body fat percentage, in range [0, 100].</summary>
+        /// <summary>Required. Body fat percentage. Must be in the range `[0, 100]`.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("percentage")]
         public virtual System.Nullable<double> Percentage { get; set; }
 
@@ -3227,7 +3319,7 @@ namespace Google.Apis.GoogleHealthAPI.v4.Data
         [Newtonsoft.Json.JsonPropertyAttribute("sampleTime")]
         public virtual ObservationSampleTime SampleTime { get; set; }
 
-        /// <summary>Required. The core body temperature in Celsius.</summary>
+        /// <summary>Required. The core body temperature in Celsius. Must be in the range `[0, 100]`.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("temperatureCelsius")]
         public virtual System.Nullable<double> TemperatureCelsius { get; set; }
 
@@ -3358,7 +3450,10 @@ namespace Google.Apis.GoogleHealthAPI.v4.Data
     /// </summary>
     public class DailyOxygenSaturation : Google.Apis.Requests.IDirectResponseSchema
     {
-        /// <summary>Required. The average value of the oxygen saturation samples during the sleep.</summary>
+        /// <summary>
+        /// Required. The average value of the oxygen saturation samples during the sleep. Must be in the range `[0,
+        /// 100]`.
+        /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("averagePercentage")]
         public virtual System.Nullable<double> AveragePercentage { get; set; }
 
@@ -3367,7 +3462,8 @@ namespace Google.Apis.GoogleHealthAPI.v4.Data
         public virtual Date Date { get; set; }
 
         /// <summary>
-        /// Required. The lower bound of the confidence interval of oxygen saturation samples during sleep.
+        /// Required. The lower bound of the confidence interval of oxygen saturation samples during sleep. Must be in
+        /// the range `[0, 100]`.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("lowerBoundPercentage")]
         public virtual System.Nullable<double> LowerBoundPercentage { get; set; }
@@ -3379,7 +3475,8 @@ namespace Google.Apis.GoogleHealthAPI.v4.Data
         public virtual System.Nullable<double> StandardDeviationPercentage { get; set; }
 
         /// <summary>
-        /// Required. The upper bound of the confidence interval of oxygen saturation samples during sleep.
+        /// Required. The upper bound of the confidence interval of oxygen saturation samples during sleep. Must be in
+        /// the range `[0, 100]`.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("upperBoundPercentage")]
         public virtual System.Nullable<double> UpperBoundPercentage { get; set; }
@@ -3443,12 +3540,20 @@ namespace Google.Apis.GoogleHealthAPI.v4.Data
     {
         /// <summary>
         /// Optional. The data source family name to roll up. If empty, data points from all available data sources will
-        /// be rolled up. Format: `users/me/dataSourceFamilies/{data_source_family}` The supported values are: -
-        /// `users/me/dataSourceFamilies/all-sources` - Default value. Includes data from all available data sources. -
-        /// `users/me/dataSourceFamilies/google-wearables` - Includes data from Google and Fitbit tracker devices (such
-        /// as Fitbit trackers and Pixel Watch). Excludes manually logged data. -
-        /// `users/me/dataSourceFamilies/google-sources` - Includes first-party Google data, such as data from tracker
-        /// devices, manually logged data, and Health Connect.
+        /// be rolled up. Format: `users/{user}/dataSourceFamilies/{data_source_family}` The `{user}` can be either the
+        /// alias `me` or the authenticated user's numeric Health User ID, retrieved via GetIdentity (e.g.
+        /// `users/me/dataSourceFamilies/...` or `users/1234567890/dataSourceFamilies/...`). The supported values are: -
+        /// `users/{user}/dataSourceFamilies/all-sources` - Default value. Includes data from all available data
+        /// sources. - `users/{user}/dataSourceFamilies/google-wearables` - Includes data from Google and Fitbit tracker
+        /// devices (such as Fitbit trackers and Pixel Watch). Excludes manually logged data. -
+        /// `users/{user}/dataSourceFamilies/google-sources` - Includes first-party Google data, such as data from
+        /// tracker devices, manually logged data, and Health Connect. - `users/{user}/dataSourceFamilies/self-sources`
+        /// - Includes only the data the calling client wrote through this API, that is, data points whose data source
+        /// was registered through this API with the same OAuth client ID as the caller. Callers that were only granted
+        /// write scopes for the requested data type may only read the data they wrote themselves: their requests are
+        /// implicitly restricted to `self-sources`, and requesting any other data source family fails with
+        /// `PERMISSION_DENIED`. If no data point matches the requested data source family, the response is an empty
+        /// list rather than an error.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("dataSourceFamily")]
         public virtual string DataSourceFamily { get; set; }
@@ -3461,8 +3566,8 @@ namespace Google.Apis.GoogleHealthAPI.v4.Data
         public virtual System.Nullable<int> PageSize { get; set; }
 
         /// <summary>
-        /// Optional. The `next_page_token` from a previous request, if any. All other request fields need to be the
-        /// same as in the initial request when the page token is specified.
+        /// Optional. The next_page_token from a previous request, if any. All other request fields need to be the same
+        /// as in the initial request when the page token is specified.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("pageToken")]
         public virtual string PageToken { get; set; }
@@ -3490,6 +3595,13 @@ namespace Google.Apis.GoogleHealthAPI.v4.Data
     /// <summary>Response containing the list of rolled up data points.</summary>
     public class DailyRollUpDataPointsResponse : Google.Apis.Requests.IDirectResponseSchema
     {
+        /// <summary>
+        /// A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no
+        /// subsequent pages.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("nextPageToken")]
+        public virtual string NextPageToken { get; set; }
+
         /// <summary>Values for each aggregation time window.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("rollupDataPoints")]
         public virtual System.Collections.Generic.IList<DailyRollupDataPoint> RollupDataPoints { get; set; }
@@ -3731,7 +3843,8 @@ namespace Google.Apis.GoogleHealthAPI.v4.Data
         public virtual System.Nullable<bool> Estimated { get; set; }
 
         /// <summary>
-        /// Required. Daily VO2 max value measured as in ml consumed oxygen / kg of body weight / min.
+        /// Required. Daily VO2 max value measured as in ml consumed oxygen / kg of body weight / min. Must be in the
+        /// range `[0, 100]`.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("vo2Max")]
         public virtual System.Nullable<double> Vo2Max { get; set; }
@@ -3878,12 +3991,14 @@ namespace Google.Apis.GoogleHealthAPI.v4.Data
         /// <summary>
         /// Identifier. Data point name, only supported for the subset of identifiable data types. For the majority of
         /// the data types, individual data points do not need to be identified and this field would be empty. Format:
-        /// `users/{user}/dataTypes/{data_type}/dataPoints/{data_point}` Example:
-        /// `users/abcd1234/dataTypes/sleep/dataPoints/a1b2c3d4-e5f6-7890-1234-567890abcdef` The `{user}` ID is a
-        /// system-generated identifier, as described in Identity.health_user_id. The `{data_type}` ID corresponds to
-        /// the kebab-case version of the field names in the DataPoint data union field, e.g. `heart-rate` for the
-        /// `heart_rate` field. The `{data_point}` ID can be client-provided or system-generated. If client-provided, it
-        /// must be a string of 4-63 characters, containing only lowercase letters, numbers, and hyphens.
+        /// `users/{user}/dataTypes/{data_type}/dataPoints/{data_point}` ## Examples: ##
+        /// `users/me/dataTypes/sleep/dataPoints/a1b2c3d4-e5f6-7890-1234-567890abcdef`
+        /// `users/1234567890/dataTypes/sleep/dataPoints/a1b2c3d4-e5f6-7890-1234-567890abcdef` The `{user}` can be
+        /// either the alias `me` or the authenticated user's numeric Health User ID, which can be retrieved by calling
+        /// GetIdentity (see Identity.health_user_id). The `{data_type}` ID corresponds to the kebab-case version of the
+        /// field names in the DataPoint data union field, e.g. `heart-rate` for the `heart_rate` field. The
+        /// `{data_point}` ID can be client-provided or system-generated. If client-provided, it must be a string of
+        /// 4-63 characters, containing only lowercase letters, numbers, and hyphens.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("name")]
         public virtual string Name { get; set; }
@@ -4103,7 +4218,9 @@ namespace Google.Apis.GoogleHealthAPI.v4.Data
         [Newtonsoft.Json.JsonPropertyAttribute("interval")]
         public virtual ObservationTimeInterval Interval { get; set; }
 
-        /// <summary>Required. Distance in millimeters over the observed interval.</summary>
+        /// <summary>
+        /// Required. Distance in millimeters over the observed interval. Must be in the range `[0, 1000000000]`.
+        /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("millimeters")]
         public virtual System.Nullable<long> Millimeters { get; set; }
 
@@ -4218,7 +4335,7 @@ namespace Google.Apis.GoogleHealthAPI.v4.Data
     /// <summary>Represents the energy quantity.</summary>
     public class EnergyQuantity : Google.Apis.Requests.IDirectResponseSchema
     {
-        /// <summary>Required. The energy value in kilocalories.</summary>
+        /// <summary>Required. The energy value in kilocalories. Must be in the range `[0, 100000]`.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("kcal")]
         public virtual System.Nullable<double> Kcal { get; set; }
 
@@ -4464,7 +4581,7 @@ namespace Google.Apis.GoogleHealthAPI.v4.Data
     /// <summary>Gained elevation measured in floors over the time interval</summary>
     public class Floors : Google.Apis.Requests.IDirectResponseSchema
     {
-        /// <summary>Required. Number of floors in the recorded interval</summary>
+        /// <summary>Required. Number of floors in the recorded interval. Must be in the range `[0, 1000000]`.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("count")]
         public virtual System.Nullable<long> Count { get; set; }
 
@@ -4614,8 +4731,10 @@ namespace Google.Apis.GoogleHealthAPI.v4.Data
     public class GoogleDevicesandservicesHealthV4DataType : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>
-        /// Identifier. The resource name of the data type. Format: `users/{user}/dataTypes/{data_type}` See
-        /// DataPoint.name for examples and possible values.
+        /// Identifier. The resource name of the data type. Format: `users/{user}/dataTypes/{data_type}`, e.g.: -
+        /// `users/me/dataTypes/steps` - `users/1234567890/dataTypes/steps` The `{user}` can be either the alias `me` or
+        /// the authenticated user's numeric Health User ID (retrieved via GetIdentity). See DataPoint.name for examples
+        /// and possible values.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("name")]
         public virtual string Name { get; set; }
@@ -4666,8 +4785,10 @@ namespace Google.Apis.GoogleHealthAPI.v4.Data
     public class GoogleDevicesandservicesHealthV4betaDataType : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>
-        /// Identifier. The resource name of the data type. Format: `users/{user}/dataTypes/{data_type}` See
-        /// DataPoint.name for examples and possible values.
+        /// Identifier. The resource name of the data type. Format: `users/{user}/dataTypes/{data_type}`, e.g.: -
+        /// `users/me/dataTypes/steps` - `users/1234567890/dataTypes/steps` The `{user}` can be either the alias `me` or
+        /// the authenticated user's numeric Health User ID (retrieved via GetIdentity). See DataPoint.name for examples
+        /// and possible values.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("name")]
         public virtual string Name { get; set; }
@@ -4775,7 +4896,7 @@ namespace Google.Apis.GoogleHealthAPI.v4.Data
     /// <summary>A heart rate measurement.</summary>
     public class HeartRate : Google.Apis.Requests.IDirectResponseSchema
     {
-        /// <summary>Required. The heart rate value in beats per minute.</summary>
+        /// <summary>Required. The heart rate value in beats per minute. Must be in the range `[1, 300]`.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("beatsPerMinute")]
         public virtual System.Nullable<long> BeatsPerMinute { get; set; }
 
@@ -4831,13 +4952,13 @@ namespace Google.Apis.GoogleHealthAPI.v4.Data
     /// </summary>
     public class HeartRateVariability : Google.Apis.Requests.IDirectResponseSchema
     {
-        /// <summary>Optional. Metadata used in 1P surfaces.</summary>
+        /// <summary>Optional. Additional information about the heart rate variability measurement.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("metadata")]
         public virtual HeartRateVariabilityMetadata Metadata { get; set; }
 
         /// <summary>
         /// Optional. The root mean square of successive differences between normal heartbeats. This is a measure of
-        /// heart rate variability used by Google Health.
+        /// heart rate variability used by Google Health. Must be in the range `[1, 200]`.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("rootMeanSquareOfSuccessiveDifferencesMilliseconds")]
         public virtual System.Nullable<double> RootMeanSquareOfSuccessiveDifferencesMilliseconds { get; set; }
@@ -4912,7 +5033,7 @@ namespace Google.Apis.GoogleHealthAPI.v4.Data
     /// <summary>Body height measurement.</summary>
     public class Height : Google.Apis.Requests.IDirectResponseSchema
     {
-        /// <summary>Required. Height of the user in millimeters.</summary>
+        /// <summary>Required. Height of the user in millimeters. Must be in the range `[0, 3000]`.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("heightMillimeters")]
         public virtual System.Nullable<long> HeightMillimeters { get; set; }
 
@@ -5942,7 +6063,7 @@ namespace Google.Apis.GoogleHealthAPI.v4.Data
     /// <summary>Captures the user's instantaneous oxygen saturation percentage (SpO2).</summary>
     public class OxygenSaturation : Google.Apis.Requests.IDirectResponseSchema
     {
-        /// <summary>Required. The oxygen saturation percentage. Valid values are from 0 to 100.</summary>
+        /// <summary>Required. The oxygen saturation percentage. Must be in the range `[0, 100]`.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("percentage")]
         public virtual System.Nullable<double> Percentage { get; set; }
 
@@ -6105,7 +6226,7 @@ namespace Google.Apis.GoogleHealthAPI.v4.Data
         /// Identifier. The resource name of this Profile resource. Format: `users/{user}/profile` Example:
         /// `users/1234567890/profile` or `users/me/profile` The {user} ID is a system-generated Google Health API user
         /// ID, a string of 1-63 characters consisting of lowercase and uppercase letters, numbers, and hyphens. The
-        /// literal `me` can also be used to refer to the authenticated user.
+        /// literal `me` can also be used to refer to the authenticated user. This field is read-only.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("name")]
         public virtual string Name { get; set; }
@@ -6217,12 +6338,14 @@ namespace Google.Apis.GoogleHealthAPI.v4.Data
         /// <summary>
         /// Identifier. Data point name, only supported for the subset of identifiable data types. For the majority of
         /// the data types, individual data points do not need to be identified and this field would be empty. Format:
-        /// `users/{user}/dataTypes/{data_type}/dataPoints/{data_point}` Example:
-        /// `users/abcd1234/dataTypes/sleep/dataPoints/a1b2c3d4-e5f6-7890-1234-567890abcdef` The `{user}` ID is a
-        /// system-generated identifier, as described in Identity.health_user_id. The `{data_type}` ID corresponds to
-        /// the kebab-case version of the field names in the DataPoint data union field, e.g. `heart-rate` for the
-        /// `heart_rate` field. The `{data_point}` ID can be client-provided or system-generated. If client-provided, it
-        /// must be a string of 4-63 characters, containing only lowercase letters, numbers, and hyphens.
+        /// `users/{user}/dataTypes/{data_type}/dataPoints/{data_point}` ## Examples: ##
+        /// `users/me/dataTypes/sleep/dataPoints/a1b2c3d4-e5f6-7890-1234-567890abcdef`
+        /// `users/1234567890/dataTypes/sleep/dataPoints/a1b2c3d4-e5f6-7890-1234-567890abcdef` The `{user}` can be
+        /// either the alias `me` or the authenticated user's numeric Health User ID, which can be retrieved by calling
+        /// GetIdentity (see Identity.health_user_id). The `{data_type}` ID corresponds to the kebab-case version of the
+        /// field names in the DataPoint data union field, e.g. `heart-rate` for the `heart_rate` field. The
+        /// `{data_point}` ID can be client-provided or system-generated. If client-provided, it must be a string of
+        /// 4-63 characters, containing only lowercase letters, numbers, and hyphens.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("dataPointName")]
         public virtual string DataPointName { get; set; }
@@ -6371,12 +6494,20 @@ namespace Google.Apis.GoogleHealthAPI.v4.Data
     {
         /// <summary>
         /// Optional. The data source family name to roll up. If empty, data points from all available data sources will
-        /// be rolled up. Format: `users/me/dataSourceFamilies/{data_source_family}` The supported values are: -
-        /// `users/me/dataSourceFamilies/all-sources` - Default value. Includes data from all available data sources. -
-        /// `users/me/dataSourceFamilies/google-wearables` - Includes data from Google and Fitbit tracker devices (such
-        /// as Fitbit trackers and Pixel Watch). Excludes manually logged data. -
-        /// `users/me/dataSourceFamilies/google-sources` - Includes first-party Google data, such as data from tracker
-        /// devices, manually logged data, and Health Connect.
+        /// be rolled up. Format: `users/{user}/dataSourceFamilies/{data_source_family}` The `{user}` can be either the
+        /// alias `me` or the authenticated user's numeric Health User ID, retrieved via GetIdentity (e.g.
+        /// `users/me/dataSourceFamilies/...` or `users/1234567890/dataSourceFamilies/...`). The supported values are: -
+        /// `users/{user}/dataSourceFamilies/all-sources` - Default value. Includes data from all available data
+        /// sources. - `users/{user}/dataSourceFamilies/google-wearables` - Includes data from Google and Fitbit tracker
+        /// devices (such as Fitbit trackers and Pixel Watch). Excludes manually logged data. -
+        /// `users/{user}/dataSourceFamilies/google-sources` - Includes first-party Google data, such as data from
+        /// tracker devices, manually logged data, and Health Connect. - `users/{user}/dataSourceFamilies/self-sources`
+        /// - Includes only the data the calling client wrote through this API, that is, data points whose data source
+        /// was registered through this API with the same OAuth client ID as the caller. Callers that were only granted
+        /// write scopes for the requested data type may only read the data they wrote themselves: their requests are
+        /// implicitly restricted to `self-sources`, and requesting any other data source family fails with
+        /// `PERMISSION_DENIED`. If no data point matches the requested data source family, the response is an empty
+        /// list rather than an error.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("dataSourceFamily")]
         public virtual string DataSourceFamily { get; set; }
@@ -6665,7 +6796,7 @@ namespace Google.Apis.GoogleHealthAPI.v4.Data
     /// <summary>VO2 max value calculated based on the user's running activity. Value stored in ml/kg/min.</summary>
     public class RunVO2Max : Google.Apis.Requests.IDirectResponseSchema
     {
-        /// <summary>Required. Run VO2 max value in ml/kg/min.</summary>
+        /// <summary>Required. Run VO2 max value in ml/kg/min. Must be in the range `[0, 100]`.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("runVo2Max")]
         public virtual System.Nullable<double> RunVo2Max { get; set; }
 
@@ -6895,7 +7026,7 @@ namespace Google.Apis.GoogleHealthAPI.v4.Data
         /// Identifier. The resource name of this Settings resource. Format: `users/{user}/settings` Example:
         /// `users/1234567890/settings` or `users/me/settings` The {user} ID is a system-generated Google Health API
         /// user ID, a string of 1-63 characters consisting of lowercase and uppercase letters, numbers, and hyphens.
-        /// The literal `me` can also be used to refer to the authenticated user.
+        /// The literal `me` can also be used to refer to the authenticated user. This field is read-only.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("name")]
         public virtual string Name { get; set; }
@@ -7469,7 +7600,7 @@ namespace Google.Apis.GoogleHealthAPI.v4.Data
     /// <summary>Step count over the time interval.</summary>
     public class Steps : Google.Apis.Requests.IDirectResponseSchema
     {
-        /// <summary>Required. Number of steps in the recorded interval.</summary>
+        /// <summary>Required. Number of steps in the recorded interval. Must be in the range `[0, 1000000]`.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("count")]
         public virtual System.Nullable<long> Count { get; set; }
 
@@ -7851,7 +7982,10 @@ namespace Google.Apis.GoogleHealthAPI.v4.Data
         [Newtonsoft.Json.JsonPropertyAttribute("sampleTime")]
         public virtual ObservationSampleTime SampleTime { get; set; }
 
-        /// <summary>Required. VO2 max value measured as in ml consumed oxygen / kg of body weight / min.</summary>
+        /// <summary>
+        /// Required. VO2 max value measured as in ml consumed oxygen / kg of body weight / min. Must be in the range
+        /// `[0, 100]`.
+        /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("vo2Max")]
         public virtual System.Nullable<double> Vo2Max { get; set; }
 
@@ -7862,7 +7996,9 @@ namespace Google.Apis.GoogleHealthAPI.v4.Data
     /// <summary>Represents the volume quantity.</summary>
     public class VolumeQuantity : Google.Apis.Requests.IDirectResponseSchema
     {
-        /// <summary>Required. Value representing the volume in milliliters.</summary>
+        /// <summary>
+        /// Required. Value representing the volume in milliliters. Must be in the range `[0, 100000]`.
+        /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("milliliters")]
         public virtual System.Nullable<double> Milliliters { get; set; }
 
@@ -7903,7 +8039,7 @@ namespace Google.Apis.GoogleHealthAPI.v4.Data
         [Newtonsoft.Json.JsonPropertyAttribute("sampleTime")]
         public virtual ObservationSampleTime SampleTime { get; set; }
 
-        /// <summary>Required. Weight of a user in grams.</summary>
+        /// <summary>Required. Weight of a user in grams. Must be in the range `[0, 1000000]`.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("weightGrams")]
         public virtual System.Nullable<double> WeightGrams { get; set; }
 
@@ -7914,7 +8050,7 @@ namespace Google.Apis.GoogleHealthAPI.v4.Data
     /// <summary>Represents the weight quantity.</summary>
     public class WeightQuantity : Google.Apis.Requests.IDirectResponseSchema
     {
-        /// <summary>Required. The weight value in grams.</summary>
+        /// <summary>Required. The weight value in grams. Must be in the range `[0, 100000]`.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("grams")]
         public virtual System.Nullable<double> Grams { get; set; }
 

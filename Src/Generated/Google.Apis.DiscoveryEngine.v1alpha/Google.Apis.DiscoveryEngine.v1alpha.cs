@@ -10347,6 +10347,7 @@ namespace Google.Apis.DiscoveryEngine.v1alpha
                         this.service = service;
                         Analytics = new AnalyticsResource(service);
                         Assistants = new AssistantsResource(service);
+                        CollaborativeProjects = new CollaborativeProjectsResource(service);
                         CompletionConfig = new CompletionConfigResource(service);
                         Controls = new ControlsResource(service);
                         Conversations = new ConversationsResource(service);
@@ -10596,6 +10597,7 @@ namespace Google.Apis.DiscoveryEngine.v1alpha
                                 this.service = service;
                                 Files = new FilesResource(service);
                                 Operations = new OperationsResource(service);
+                                ToolCalls = new ToolCallsResource(service);
                             }
 
                             /// <summary>Gets the Files resource.</summary>
@@ -10744,6 +10746,94 @@ namespace Google.Apis.DiscoveryEngine.v1alpha
                                             DefaultValue = null,
                                             Pattern = @"^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/assistants/[^/]+/agents/[^/]+/operations/[^/]+$",
                                         });
+                                    }
+                                }
+                            }
+
+                            /// <summary>Gets the ToolCalls resource.</summary>
+                            public virtual ToolCallsResource ToolCalls { get; }
+
+                            /// <summary>The "toolCalls" collection of methods.</summary>
+                            public class ToolCallsResource
+                            {
+                                private const string Resource = "toolCalls";
+
+                                /// <summary>The service which this resource belongs to.</summary>
+                                private readonly Google.Apis.Services.IClientService service;
+
+                                /// <summary>Constructs a new resource.</summary>
+                                public ToolCallsResource(Google.Apis.Services.IClientService service)
+                                {
+                                    this.service = service;
+                                    Operations = new OperationsResource(service);
+                                }
+
+                                /// <summary>Gets the Operations resource.</summary>
+                                public virtual OperationsResource Operations { get; }
+
+                                /// <summary>The "operations" collection of methods.</summary>
+                                public class OperationsResource
+                                {
+                                    private const string Resource = "operations";
+
+                                    /// <summary>The service which this resource belongs to.</summary>
+                                    private readonly Google.Apis.Services.IClientService service;
+
+                                    /// <summary>Constructs a new resource.</summary>
+                                    public OperationsResource(Google.Apis.Services.IClientService service)
+                                    {
+                                        this.service = service;
+                                    }
+
+                                    /// <summary>
+                                    /// Gets the latest state of a long-running operation. Clients can use this method
+                                    /// to poll the operation result at intervals as recommended by the API service.
+                                    /// </summary>
+                                    /// <param name="name">The name of the operation resource.</param>
+                                    public virtual GetRequest Get(string name)
+                                    {
+                                        return new GetRequest(this.service, name);
+                                    }
+
+                                    /// <summary>
+                                    /// Gets the latest state of a long-running operation. Clients can use this method
+                                    /// to poll the operation result at intervals as recommended by the API service.
+                                    /// </summary>
+                                    public class GetRequest : DiscoveryEngineBaseServiceRequest<Google.Apis.DiscoveryEngine.v1alpha.Data.GoogleLongrunningOperation>
+                                    {
+                                        /// <summary>Constructs a new Get request.</summary>
+                                        public GetRequest(Google.Apis.Services.IClientService service, string name) : base(service)
+                                        {
+                                            Name = name;
+                                            InitParameters();
+                                        }
+
+                                        /// <summary>The name of the operation resource.</summary>
+                                        [Google.Apis.Util.RequestParameterAttribute("name", Google.Apis.Util.RequestParameterType.Path)]
+                                        public virtual string Name { get; private set; }
+
+                                        /// <summary>Gets the method name.</summary>
+                                        public override string MethodName => "get";
+
+                                        /// <summary>Gets the HTTP method.</summary>
+                                        public override string HttpMethod => "GET";
+
+                                        /// <summary>Gets the REST path.</summary>
+                                        public override string RestPath => "v1alpha/{+name}";
+
+                                        /// <summary>Initializes Get parameter list.</summary>
+                                        protected override void InitParameters()
+                                        {
+                                            base.InitParameters();
+                                            RequestParameters.Add("name", new Google.Apis.Discovery.Parameter
+                                            {
+                                                Name = "name",
+                                                IsRequired = true,
+                                                ParameterType = "path",
+                                                DefaultValue = null,
+                                                Pattern = @"^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/assistants/[^/]+/agents/[^/]+/toolCalls/[^/]+/operations/[^/]+$",
+                                            });
+                                        }
                                     }
                                 }
                             }
@@ -11876,6 +11966,113 @@ namespace Google.Apis.DiscoveryEngine.v1alpha
                                     DefaultValue = null,
                                     Pattern = @"^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/assistants/[^/]+$",
                                 });
+                            }
+                        }
+                    }
+
+                    /// <summary>Gets the CollaborativeProjects resource.</summary>
+                    public virtual CollaborativeProjectsResource CollaborativeProjects { get; }
+
+                    /// <summary>The "collaborativeProjects" collection of methods.</summary>
+                    public class CollaborativeProjectsResource
+                    {
+                        private const string Resource = "collaborativeProjects";
+
+                        /// <summary>The service which this resource belongs to.</summary>
+                        private readonly Google.Apis.Services.IClientService service;
+
+                        /// <summary>Constructs a new resource.</summary>
+                        public CollaborativeProjectsResource(Google.Apis.Services.IClientService service)
+                        {
+                            this.service = service;
+                            KnowledgeSpaces = new KnowledgeSpacesResource(service);
+                        }
+
+                        /// <summary>Gets the KnowledgeSpaces resource.</summary>
+                        public virtual KnowledgeSpacesResource KnowledgeSpaces { get; }
+
+                        /// <summary>The "knowledgeSpaces" collection of methods.</summary>
+                        public class KnowledgeSpacesResource
+                        {
+                            private const string Resource = "knowledgeSpaces";
+
+                            /// <summary>The service which this resource belongs to.</summary>
+                            private readonly Google.Apis.Services.IClientService service;
+
+                            /// <summary>Constructs a new resource.</summary>
+                            public KnowledgeSpacesResource(Google.Apis.Services.IClientService service)
+                            {
+                                this.service = service;
+                                Operations = new OperationsResource(service);
+                            }
+
+                            /// <summary>Gets the Operations resource.</summary>
+                            public virtual OperationsResource Operations { get; }
+
+                            /// <summary>The "operations" collection of methods.</summary>
+                            public class OperationsResource
+                            {
+                                private const string Resource = "operations";
+
+                                /// <summary>The service which this resource belongs to.</summary>
+                                private readonly Google.Apis.Services.IClientService service;
+
+                                /// <summary>Constructs a new resource.</summary>
+                                public OperationsResource(Google.Apis.Services.IClientService service)
+                                {
+                                    this.service = service;
+                                }
+
+                                /// <summary>
+                                /// Gets the latest state of a long-running operation. Clients can use this method to
+                                /// poll the operation result at intervals as recommended by the API service.
+                                /// </summary>
+                                /// <param name="name">The name of the operation resource.</param>
+                                public virtual GetRequest Get(string name)
+                                {
+                                    return new GetRequest(this.service, name);
+                                }
+
+                                /// <summary>
+                                /// Gets the latest state of a long-running operation. Clients can use this method to
+                                /// poll the operation result at intervals as recommended by the API service.
+                                /// </summary>
+                                public class GetRequest : DiscoveryEngineBaseServiceRequest<Google.Apis.DiscoveryEngine.v1alpha.Data.GoogleLongrunningOperation>
+                                {
+                                    /// <summary>Constructs a new Get request.</summary>
+                                    public GetRequest(Google.Apis.Services.IClientService service, string name) : base(service)
+                                    {
+                                        Name = name;
+                                        InitParameters();
+                                    }
+
+                                    /// <summary>The name of the operation resource.</summary>
+                                    [Google.Apis.Util.RequestParameterAttribute("name", Google.Apis.Util.RequestParameterType.Path)]
+                                    public virtual string Name { get; private set; }
+
+                                    /// <summary>Gets the method name.</summary>
+                                    public override string MethodName => "get";
+
+                                    /// <summary>Gets the HTTP method.</summary>
+                                    public override string HttpMethod => "GET";
+
+                                    /// <summary>Gets the REST path.</summary>
+                                    public override string RestPath => "v1alpha/{+name}";
+
+                                    /// <summary>Initializes Get parameter list.</summary>
+                                    protected override void InitParameters()
+                                    {
+                                        base.InitParameters();
+                                        RequestParameters.Add("name", new Google.Apis.Discovery.Parameter
+                                        {
+                                            Name = "name",
+                                            IsRequired = true,
+                                            ParameterType = "path",
+                                            DefaultValue = null,
+                                            Pattern = @"^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/collaborativeProjects/[^/]+/knowledgeSpaces/[^/]+/operations/[^/]+$",
+                                        });
+                                    }
+                                }
                             }
                         }
                     }
@@ -33099,9 +33296,12 @@ namespace Google.Apis.DiscoveryEngine.v1alpha.Data
         /// <summary>
         /// Optional. Immutable. User-facing, version-independent label for this connector. May be shared by multiple
         /// connectors under the same (project, location, collection, data_source); tag-based lookup returns the one
-        /// with the greatest create_time. Optional at Create time. Agent Designer resolves connectors via (data_source,
-        /// tag) when set, falling back to the legacy resource-name lookup when unset, so connectors created before the
-        /// tag-write launch continue to work without a backfill.
+        /// with the greatest create_time. Optional at Create time. If the caller omits `tag`, the server auto-derives
+        /// one from the collection_id (falling back to data_source, else a time-based `t-` sentinel). The auto-derived
+        /// tag is subject to the same immutability guarantee as a caller-supplied one, so callers who care about the
+        /// exact tag value should provide it explicitly rather than relying on the server default. Agent Designer
+        /// resolves connectors via (data_source, tag) when set, falling back to the legacy resource-name lookup when
+        /// unset, so connectors created before the tag-write launch continue to work without a backfill.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("tag")]
         public virtual string Tag { get; set; }
@@ -41337,6 +41537,15 @@ namespace Google.Apis.DiscoveryEngine.v1alpha.Data
         public virtual System.Collections.Generic.IList<string> AssistSkippedReasons { get; set; }
 
         /// <summary>
+        /// Output only. Maps an internal connector agent name (the machine identifier embedded in tool names, e.g.
+        /// `custom_mcp__agent`) to the connector's human-readable display name. Populated at serving time for custom
+        /// MCP / agent gateway connectors so user-facing surfaces (e.g. the tool-call chip) can show the connector name
+        /// instead of its internal identifier. Empty when there are no such connectors.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("connectorDisplayNames")]
+        public virtual System.Collections.Generic.IDictionary<string, string> ConnectorDisplayNames { get; set; }
+
+        /// <summary>
         /// Optional. The field contains information about the various policy checks' results like the banned phrases or
         /// the Model Armor checks. This field is populated only if the assist call was skipped due to a policy
         /// violation.
@@ -42110,6 +42319,16 @@ namespace Google.Apis.DiscoveryEngine.v1alpha.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("authorizationUri")]
         public virtual string AuthorizationUri { get; set; }
+
+        /// <summary>
+        /// Optional. Whether the OAuth token exchange uses HTTP Basic authentication (`client_secret_basic`) instead of
+        /// sending the client credentials in the request body (`client_secret_post`). When `true`, the credentials
+        /// (`client_id:client_secret`) are Base64 encoded and sent in the `Authorization` header. Some OAuth providers
+        /// (e.g. Splunk) require `client_secret_basic`. When `false` or unset, the default `client_secret_post` is
+        /// used.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("basicAuthenticationEnabled")]
+        public virtual System.Nullable<bool> BasicAuthenticationEnabled { get; set; }
 
         /// <summary>Required. The OAuth2 client ID.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("clientId")]
@@ -43847,7 +44066,7 @@ namespace Google.Apis.DiscoveryEngine.v1alpha.Data
         [Newtonsoft.Json.JsonPropertyAttribute("selectedPosition")]
         public virtual System.Nullable<int> SelectedPosition { get; set; }
 
-        /// <summary>End user selected CompleteQueryResponse.QuerySuggestion.suggestion.</summary>
+        /// <summary>Optional. End user selected CompleteQueryResponse.QuerySuggestion.suggestion.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("selectedSuggestion")]
         public virtual string SelectedSuggestion { get; set; }
 
@@ -45868,9 +46087,12 @@ namespace Google.Apis.DiscoveryEngine.v1alpha.Data
         /// <summary>
         /// Optional. Immutable. User-facing, version-independent label for this connector. May be shared by multiple
         /// connectors under the same (project, location, collection, data_source); tag-based lookup returns the one
-        /// with the greatest create_time. Optional at Create time. Agent Designer resolves connectors via (data_source,
-        /// tag) when set, falling back to the legacy resource-name lookup when unset, so connectors created before the
-        /// tag-write launch continue to work without a backfill.
+        /// with the greatest create_time. Optional at Create time. If the caller omits `tag`, the server auto-derives
+        /// one from the collection_id (falling back to data_source, else a time-based `t-` sentinel). The auto-derived
+        /// tag is subject to the same immutability guarantee as a caller-supplied one, so callers who care about the
+        /// exact tag value should provide it explicitly rather than relying on the server default. Agent Designer
+        /// resolves connectors via (data_source, tag) when set, falling back to the legacy resource-name lookup when
+        /// unset, so connectors created before the tag-write launch continue to work without a backfill.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("tag")]
         public virtual string Tag { get; set; }
@@ -49310,6 +49532,15 @@ namespace Google.Apis.DiscoveryEngine.v1alpha.Data
         [Newtonsoft.Json.JsonPropertyAttribute("outputConfig")]
         public virtual GoogleCloudDiscoveryengineV1alphaOutputConfig OutputConfig { get; set; }
 
+        /// <summary>
+        /// Optional. The earliest date (inclusive), interpreted in the UTC time zone, whose metrics are included in the
+        /// export. If unset, defaults to 30 days before the current UTC date. The value must be a valid calendar date
+        /// that is not in the future and not older than 180 days (the source data retention window); otherwise the
+        /// request fails with `INVALID_ARGUMENT`.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("startDate")]
+        public virtual GoogleTypeDate StartDate { get; set; }
+
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
     }
@@ -49514,6 +49745,13 @@ namespace Google.Apis.DiscoveryEngine.v1alpha.Data
         /// <summary>Name of the newly generated or continued session.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("session")]
         public virtual string Session { get; set; }
+
+        /// <summary>
+        /// Optional. The full resource name of the Sobi task if the conversation was handled by a long-running agent
+        /// task. Format: projects/{project}/locations/{location}/tasks/{task_id}
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("taskName")]
+        public virtual string TaskName { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -51335,6 +51573,13 @@ namespace Google.Apis.DiscoveryEngine.v1alpha.Data
         /// <summary>Optional. Whether the license config should be auto renewed when it reaches the end date.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("autoRenew")]
         public virtual System.Nullable<bool> AutoRenew { get; set; }
+
+        /// <summary>
+        /// Output only. The name of the BillingAccountLicenseConfig from which this LicenseConfig is assigned, if this
+        /// field is set.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("billingAccountLicenseConfig")]
+        public virtual string BillingAccountLicenseConfig { get; set; }
 
         /// <summary>
         /// Output only. Indication of whether the subscription is terminated earlier than the expiration date. This is
@@ -55405,10 +55650,10 @@ namespace Google.Apis.DiscoveryEngine.v1alpha.Data
         public virtual string OrderBy { get; set; }
 
         /// <summary>
-        /// The user's search query. See SearchRequest.query for definition. The value must be a UTF-8 encoded string
-        /// with a length limit of 5,000 characters. Otherwise, an `INVALID_ARGUMENT` error is returned. At least one of
-        /// search_query or PageInfo.page_category is required for `search` events. Other event types should not set
-        /// this field. Otherwise, an `INVALID_ARGUMENT` error is returned.
+        /// Optional. The user's search query. See SearchRequest.query for definition. The value must be a UTF-8 encoded
+        /// string with a length limit of 5,000 characters. Otherwise, an `INVALID_ARGUMENT` error is returned. At least
+        /// one of search_query or PageInfo.page_category is required for `search` events. Other event types should not
+        /// set this field. Otherwise, an `INVALID_ARGUMENT` error is returned.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("searchQuery")]
         public virtual string SearchQuery { get; set; }
@@ -59669,18 +59914,18 @@ namespace Google.Apis.DiscoveryEngine.v1alpha.Data
     public class GoogleCloudDiscoveryengineV1alphaUserEvent : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>
-        /// Extra user event features to include in the recommendation model. These attributes must NOT contain data
-        /// that needs to be parsed or processed further, e.g. JSON or other encodings. If you provide custom attributes
-        /// for ingested user events, also include them in the user events that you associate with prediction requests.
-        /// Custom attribute formatting must be consistent between imported events and events provided with prediction
-        /// requests. This lets the Discovery Engine API use those custom attributes when training models and serving
-        /// predictions, which helps improve recommendation quality. This field needs to pass all below criteria,
-        /// otherwise an `INVALID_ARGUMENT` error is returned: * The key must be a UTF-8 encoded string with a length
-        /// limit of 5,000 characters. * For text attributes, at most 400 values are allowed. Empty values are not
-        /// allowed. Each value must be a UTF-8 encoded string with a length limit of 256 characters. * For number
-        /// attributes, at most 400 values are allowed. For product recommendations, an example of extra user
-        /// information is `traffic_channel`, which is how a user arrives at the site. Users can arrive at the site by
-        /// coming to the site directly, coming through Google search, or in other ways.
+        /// Optional. Extra user event features to include in the recommendation model. These attributes must NOT
+        /// contain data that needs to be parsed or processed further, e.g. JSON or other encodings. If you provide
+        /// custom attributes for ingested user events, also include them in the user events that you associate with
+        /// prediction requests. Custom attribute formatting must be consistent between imported events and events
+        /// provided with prediction requests. This lets the Discovery Engine API use those custom attributes when
+        /// training models and serving predictions, which helps improve recommendation quality. This field needs to
+        /// pass all below criteria, otherwise an `INVALID_ARGUMENT` error is returned: * The key must be a UTF-8
+        /// encoded string with a length limit of 5,000 characters. * For text attributes, at most 400 values are
+        /// allowed. Empty values are not allowed. Each value must be a UTF-8 encoded string with a length limit of 256
+        /// characters. * For number attributes, at most 400 values are allowed. For product recommendations, an example
+        /// of extra user information is `traffic_channel`, which is how a user arrives at the site. Users can arrive at
+        /// the site by coming to the site directly, coming through Google search, or in other ways.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("attributes")]
         public virtual System.Collections.Generic.IDictionary<string, GoogleCloudDiscoveryengineV1alphaCustomAttribute> Attributes { get; set; }
@@ -60629,6 +60874,19 @@ namespace Google.Apis.DiscoveryEngine.v1alpha.Data
         [Newtonsoft.Json.JsonPropertyAttribute("name")]
         public virtual string Name { get; set; }
 
+        /// <summary>
+        /// Output only. The version-independent label of the connector backing this collection, mirroring
+        /// `DataConnector.tag`. Unlike the version-pinned data store id it survives a connector version upgrade, so an
+        /// upgraded connector keeps the same tag. Not a unique key. As `DataConnector.tag` documents, several
+        /// connectors may share a tag under the same (project, location, collection, data_source), and tag-based lookup
+        /// resolves to the one with the greatest create_time. Clients must not treat this as a connector identifier.
+        /// Empty when the connector was created before the tag-write launch, and for synthetic placeholder entries,
+        /// which have no underlying `DataConnector`. Populated only when `ConnectorsFeature.enable_connector_tag` is
+        /// on.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("tag")]
+        public virtual string Tag { get; set; }
+
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
     }
@@ -61131,6 +61389,16 @@ namespace Google.Apis.DiscoveryEngine.v1alpha.Data
     /// </summary>
     public class GoogleCloudDiscoveryengineV1alphaWidgetConfigUiSettingsModelConfigInfo : Google.Apis.Requests.IDirectResponseSchema
     {
+        /// <summary>
+        /// Output only. The `model_id` a client must send when the end-user picks the "Auto" entry (the empty
+        /// `model_id`). Populated only for surfaces known to have no true "Auto" mode, where leaving the model unset
+        /// would fall back to a platform default rather than a backend-chosen model. Empty on every other surface,
+        /// where "Auto" is resolved server-side, and when none of the surface's ranked models is available. When set,
+        /// it is always one of the non-empty `model_id`s present in `resolved_models`.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("autoModelId")]
+        public virtual string AutoModelId { get; set; }
+
         /// <summary>
         /// Output only. The `model_id` of the model that should be selected by default in the model selector when the
         /// end-user has not made an explicit choice. The value is always one of the `model_id`s present in
