@@ -44,6 +44,7 @@ namespace Google.Apis.Storage.v1.Data
     [JsonSerializable(typeof(global::Google.Apis.Storage.v1.Data.Bucket.OwnerData), TypeInfoPropertyName = "Schema_Bucket_OwnerData")]
     [JsonSerializable(typeof(global::Google.Apis.Storage.v1.Data.Bucket.RetentionPolicyData), TypeInfoPropertyName = "Schema_Bucket_RetentionPolicyData")]
     [JsonSerializable(typeof(global::Google.Apis.Storage.v1.Data.Bucket.SoftDeletePolicyData), TypeInfoPropertyName = "Schema_Bucket_SoftDeletePolicyData")]
+    [JsonSerializable(typeof(global::Google.Apis.Storage.v1.Data.Bucket.SoftDeletePolicyData.HardDeletePauseData), TypeInfoPropertyName = "Schema_Bucket_SoftDeletePolicyData_HardDeletePauseData")]
     [JsonSerializable(typeof(global::Google.Apis.Storage.v1.Data.Bucket.VersioningData), TypeInfoPropertyName = "Schema_Bucket_VersioningData")]
     [JsonSerializable(typeof(global::Google.Apis.Storage.v1.Data.Bucket.WebsiteData), TypeInfoPropertyName = "Schema_Bucket_WebsiteData")]
     [JsonSerializable(typeof(global::Google.Apis.Storage.v1.Data.BucketAccessControl), TypeInfoPropertyName = "Schema_BucketAccessControl")]
@@ -81,6 +82,7 @@ namespace Google.Apis.Storage.v1.Data
     [JsonSerializable(typeof(global::Google.Apis.Storage.v1.Data.ObjectAccessControl.ProjectTeamData), TypeInfoPropertyName = "Schema_ObjectAccessControl_ProjectTeamData")]
     [JsonSerializable(typeof(global::Google.Apis.Storage.v1.Data.ObjectAccessControls), TypeInfoPropertyName = "Schema_ObjectAccessControls")]
     [JsonSerializable(typeof(global::Google.Apis.Storage.v1.Data.ObjectCustomContextPayload), TypeInfoPropertyName = "Schema_ObjectCustomContextPayload")]
+    [JsonSerializable(typeof(global::Google.Apis.Storage.v1.Data.ObjectFullContext), TypeInfoPropertyName = "Schema_ObjectFullContext")]
     [JsonSerializable(typeof(global::Google.Apis.Storage.v1.Data.Objects), TypeInfoPropertyName = "Schema_Objects")]
     [JsonSerializable(typeof(global::Google.Apis.Storage.v1.Data.Policy), TypeInfoPropertyName = "Schema_Policy")]
     [JsonSerializable(typeof(global::Google.Apis.Storage.v1.Data.Policy.BindingsData), TypeInfoPropertyName = "Schema_Policy_BindingsData")]
@@ -1270,6 +1272,22 @@ namespace Google.Apis.Storage.v1.Data
                 P("quotaUser", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.ObjectsResource.UpdateRequest)r).QuotaUser),
                 P("uploadType", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.ObjectsResource.UpdateRequest)r).UploadType),
                 P("userIp", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.ObjectsResource.UpdateRequest)r).UserIp),
+            });
+            RequestParameterRegistry.Register(typeof(global::Google.Apis.Storage.v1.ObjectsResource.ViewFullContextRequest), new RequestParameterDescriptor[]
+            {
+                P("contextKey", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.ObjectsResource.ViewFullContextRequest)r).ContextKey),
+                P("bucket", RequestParameterType.Path, false, r => ((global::Google.Apis.Storage.v1.ObjectsResource.ViewFullContextRequest)r).Bucket),
+                P("object", RequestParameterType.Path, false, r => ((global::Google.Apis.Storage.v1.ObjectsResource.ViewFullContextRequest)r).Object),
+                P("generation", RequestParameterType.Query, true, r => ((global::Google.Apis.Storage.v1.ObjectsResource.ViewFullContextRequest)r).Generation),
+                P("userProject", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.ObjectsResource.ViewFullContextRequest)r).UserProject),
+                P("alt", RequestParameterType.Query, true, r => ((global::Google.Apis.Storage.v1.ObjectsResource.ViewFullContextRequest)r).Alt),
+                P("fields", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.ObjectsResource.ViewFullContextRequest)r).Fields),
+                P("key", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.ObjectsResource.ViewFullContextRequest)r).Key),
+                P("oauth_token", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.ObjectsResource.ViewFullContextRequest)r).OauthToken),
+                P("prettyPrint", RequestParameterType.Query, true, r => ((global::Google.Apis.Storage.v1.ObjectsResource.ViewFullContextRequest)r).PrettyPrint),
+                P("quotaUser", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.ObjectsResource.ViewFullContextRequest)r).QuotaUser),
+                P("uploadType", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.ObjectsResource.ViewFullContextRequest)r).UploadType),
+                P("userIp", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.ObjectsResource.ViewFullContextRequest)r).UserIp),
             });
             RequestParameterRegistry.Register(typeof(global::Google.Apis.Storage.v1.OperationsResource.AdvanceRelocateBucketRequest), new RequestParameterDescriptor[]
             {

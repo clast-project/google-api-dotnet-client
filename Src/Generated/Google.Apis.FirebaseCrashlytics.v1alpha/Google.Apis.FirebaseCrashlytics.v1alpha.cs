@@ -773,6 +773,22 @@ namespace Google.Apis.FirebaseCrashlytics.v1alpha
                     [Google.Apis.Util.RequestParameterAttribute("filter.version.displayNames", Google.Apis.Util.RequestParameterType.Query)]
                     public virtual Google.Apis.Util.Repeatable<string> FilterVersionDisplayNames { get; set; }
 
+                    /// <summary>
+                    /// Optional. Filters events by custom keys
+                    /// (https://firebase.google.com/docs/crashlytics/customize-crash-reports#add-keys). Supported
+                    /// forms: * Equality: `custom_keys.level = "vip"` or `custom_keys.level:"vip"` * Presence:
+                    /// `custom_keys.level:*` * OR across values of one key: `custom_keys.level = "vip" OR
+                    /// custom_keys.level = "enterprise"` * AND across different keys: `custom_keys.level = "vip" AND
+                    /// custom_keys.region = "us"` Keys are case-sensitive. Keys and values containing spaces must be
+                    /// double-quoted, for example `custom_keys."app state" = "background"`. OR across different keys,
+                    /// repeating a key within an AND, NOT, and comparators other than `=` and `:` are rejected with
+                    /// INVALID_ARGUMENT. Wildcards are not supported in values; use `custom_keys.:*` to match events
+                    /// that set a key to any value. This filter expression applies in addition to the `filter` field
+                    /// above. The syntax is a subset of AIP-160 (https://google.aip.dev/160).
+                    /// </summary>
+                    [Google.Apis.Util.RequestParameterAttribute("filterExpression", Google.Apis.Util.RequestParameterType.Query)]
+                    public virtual string FilterExpression { get; set; }
+
                     /// <summary>Optional. The maximum number of events per page. If omitted, defaults to 10.</summary>
                     [Google.Apis.Util.RequestParameterAttribute("pageSize", Google.Apis.Util.RequestParameterType.Query)]
                     public virtual System.Nullable<int> PageSize { get; set; }
@@ -916,6 +932,14 @@ namespace Google.Apis.FirebaseCrashlytics.v1alpha
                         RequestParameters.Add("filter.version.displayNames", new Google.Apis.Discovery.Parameter
                         {
                             Name = "filter.version.displayNames",
+                            IsRequired = false,
+                            ParameterType = "query",
+                            DefaultValue = null,
+                            Pattern = null,
+                        });
+                        RequestParameters.Add("filterExpression", new Google.Apis.Discovery.Parameter
+                        {
+                            Name = "filterExpression",
                             IsRequired = false,
                             ParameterType = "query",
                             DefaultValue = null,
@@ -1781,7 +1805,39 @@ namespace Google.Apis.FirebaseCrashlytics.v1alpha
                     }
 
                     /// <summary>
-                    /// Optional. The maximum number of result groups to return. If omitted, defaults to 25.
+                    /// Optional. Controls whether metrics are raw observed values (mobile and web) or extrapolated
+                    /// values (web only). If omitted, defaults to OBSERVED.
+                    /// </summary>
+                    [Google.Apis.Util.RequestParameterAttribute("metricsMode", Google.Apis.Util.RequestParameterType.Query)]
+                    public virtual System.Nullable<MetricsModeEnum> MetricsMode { get; set; }
+
+                    /// <summary>
+                    /// Optional. Controls whether metrics are raw observed values (mobile and web) or extrapolated
+                    /// values (web only). If omitted, defaults to OBSERVED.
+                    /// </summary>
+                    public enum MetricsModeEnum
+                    {
+                        /// <summary>Unknown.</summary>
+                        [Google.Apis.Util.StringValueAttribute("METRICS_MODE_UNSPECIFIED")]
+                        METRICSMODEUNSPECIFIED = 0,
+
+                        /// <summary>
+                        /// Raw counts of the events, sessions, and users that were actually collected.
+                        /// </summary>
+                        [Google.Apis.Util.StringValueAttribute("METRICS_MODE_OBSERVED")]
+                        METRICSMODEOBSERVED = 1,
+
+                        /// <summary>
+                        /// Web only. Estimated event counts based on the per-session sampling rate recorded on each
+                        /// event.
+                        /// </summary>
+                        [Google.Apis.Util.StringValueAttribute("METRICS_MODE_EXTRAPOLATED")]
+                        METRICSMODEEXTRAPOLATED = 2,
+                    }
+
+                    /// <summary>
+                    /// Optional. The maximum number of result groups to return. The maximum value is 100; values above
+                    /// 100 will be coerced to 100. If omitted, defaults to 25.
                     /// </summary>
                     [Google.Apis.Util.RequestParameterAttribute("pageSize", Google.Apis.Util.RequestParameterType.Query)]
                     public virtual System.Nullable<int> PageSize { get; set; }
@@ -1793,6 +1849,32 @@ namespace Google.Apis.FirebaseCrashlytics.v1alpha
                     /// </summary>
                     [Google.Apis.Util.RequestParameterAttribute("pageToken", Google.Apis.Util.RequestParameterType.Query)]
                     public virtual string PageToken { get; set; }
+
+                    /// <summary>Optional. Response view. If not set, defaults to `REPORT_VIEW_FULL`.</summary>
+                    [Google.Apis.Util.RequestParameterAttribute("view", Google.Apis.Util.RequestParameterType.Query)]
+                    public virtual System.Nullable<ViewEnum> View { get; set; }
+
+                    /// <summary>Optional. Response view. If not set, defaults to `REPORT_VIEW_FULL`.</summary>
+                    public enum ViewEnum
+                    {
+                        /// <summary>
+                        /// The default / unset value. The API will default to `REPORT_VIEW_BASIC` view for
+                        /// `ListReports` and `REPORT_VIEW_FULL` for `GetReport`.
+                        /// </summary>
+                        [Google.Apis.Util.StringValueAttribute("REPORT_VIEW_UNSPECIFIED")]
+                        REPORTVIEWUNSPECIFIED = 0,
+
+                        /// <summary>
+                        /// Only includes the report `display_name` and optional `usage`. This is the default view for
+                        /// `ListReports`.
+                        /// </summary>
+                        [Google.Apis.Util.StringValueAttribute("REPORT_VIEW_BASIC")]
+                        REPORTVIEWBASIC = 1,
+
+                        /// <summary>Includes all fields on report. This is the default view for `GetReport`.</summary>
+                        [Google.Apis.Util.StringValueAttribute("REPORT_VIEW_FULL")]
+                        REPORTVIEWFULL = 2,
+                    }
 
                     /// <summary>Gets the method name.</summary>
                     public override string MethodName => "get";
@@ -1935,6 +2017,14 @@ namespace Google.Apis.FirebaseCrashlytics.v1alpha
                             DefaultValue = null,
                             Pattern = null,
                         });
+                        RequestParameters.Add("metricsMode", new Google.Apis.Discovery.Parameter
+                        {
+                            Name = "metricsMode",
+                            IsRequired = false,
+                            ParameterType = "query",
+                            DefaultValue = null,
+                            Pattern = null,
+                        });
                         RequestParameters.Add("pageSize", new Google.Apis.Discovery.Parameter
                         {
                             Name = "pageSize",
@@ -1946,6 +2036,14 @@ namespace Google.Apis.FirebaseCrashlytics.v1alpha
                         RequestParameters.Add("pageToken", new Google.Apis.Discovery.Parameter
                         {
                             Name = "pageToken",
+                            IsRequired = false,
+                            ParameterType = "query",
+                            DefaultValue = null,
+                            Pattern = null,
+                        });
+                        RequestParameters.Add("view", new Google.Apis.Discovery.Parameter
+                        {
+                            Name = "view",
                             IsRequired = false,
                             ParameterType = "query",
                             DefaultValue = null,
@@ -1979,6 +2077,38 @@ namespace Google.Apis.FirebaseCrashlytics.v1alpha
                     [Google.Apis.Util.RequestParameterAttribute("parent", Google.Apis.Util.RequestParameterType.Path)]
                     public virtual string Parent { get; private set; }
 
+                    /// <summary>
+                    /// Optional. Response view. If not set, defaults to `REPORT_VIEW_BASIC`. `REPORT_VIEW_FULL` is not
+                    /// supported for list operations.
+                    /// </summary>
+                    [Google.Apis.Util.RequestParameterAttribute("view", Google.Apis.Util.RequestParameterType.Query)]
+                    public virtual System.Nullable<ViewEnum> View { get; set; }
+
+                    /// <summary>
+                    /// Optional. Response view. If not set, defaults to `REPORT_VIEW_BASIC`. `REPORT_VIEW_FULL` is not
+                    /// supported for list operations.
+                    /// </summary>
+                    public enum ViewEnum
+                    {
+                        /// <summary>
+                        /// The default / unset value. The API will default to `REPORT_VIEW_BASIC` view for
+                        /// `ListReports` and `REPORT_VIEW_FULL` for `GetReport`.
+                        /// </summary>
+                        [Google.Apis.Util.StringValueAttribute("REPORT_VIEW_UNSPECIFIED")]
+                        REPORTVIEWUNSPECIFIED = 0,
+
+                        /// <summary>
+                        /// Only includes the report `display_name` and optional `usage`. This is the default view for
+                        /// `ListReports`.
+                        /// </summary>
+                        [Google.Apis.Util.StringValueAttribute("REPORT_VIEW_BASIC")]
+                        REPORTVIEWBASIC = 1,
+
+                        /// <summary>Includes all fields on report. This is the default view for `GetReport`.</summary>
+                        [Google.Apis.Util.StringValueAttribute("REPORT_VIEW_FULL")]
+                        REPORTVIEWFULL = 2,
+                    }
+
                     /// <summary>Gets the method name.</summary>
                     public override string MethodName => "list";
 
@@ -1999,6 +2129,14 @@ namespace Google.Apis.FirebaseCrashlytics.v1alpha
                             ParameterType = "path",
                             DefaultValue = null,
                             Pattern = @"^projects/[^/]+/apps/[^/]+$",
+                        });
+                        RequestParameters.Add("view", new Google.Apis.Discovery.Parameter
+                        {
+                            Name = "view",
+                            IsRequired = false,
+                            ParameterType = "query",
+                            DefaultValue = null,
+                            Pattern = null,
                         });
                     }
                 }
@@ -2741,6 +2879,20 @@ namespace Google.Apis.FirebaseCrashlytics.v1alpha.Data
     /// <summary>A set of computed metric values for a time interval</summary>
     public class IntervalMetrics : Google.Apis.Requests.IDirectResponseSchema
     {
+        /// <summary>
+        /// Mobile only. Percentage of crash-free sessions. (total_sessions_count - impacted_sessions_count) /
+        /// total_sessions_count * 100.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("crashFreeSessionsPercentage")]
+        public virtual System.Nullable<float> CrashFreeSessionsPercentage { get; set; }
+
+        /// <summary>
+        /// Mobile only. Percentage of crash-free users. (total_users_count - impacted_users_count) / total_users_count
+        /// * 100
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("crashFreeUsersPercentage")]
+        public virtual System.Nullable<float> CrashFreeUsersPercentage { get; set; }
+
         private string _endTimeRaw;
 
         private object _endTime;
@@ -2782,11 +2934,17 @@ namespace Google.Apis.FirebaseCrashlytics.v1alpha.Data
         [Newtonsoft.Json.JsonPropertyAttribute("eventsCount")]
         public virtual System.Nullable<long> EventsCount { get; set; }
 
+        /// <summary>The number of distinct sessions in the set of events.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("impactedSessionsCount")]
+        public virtual System.Nullable<long> ImpactedSessionsCount { get; set; }
+
         /// <summary>The number of distinct users in the set of events.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("impactedUsersCount")]
         public virtual System.Nullable<long> ImpactedUsersCount { get; set; }
 
-        /// <summary>The number of distinct sessions in the set of events.</summary>
+        /// <summary>
+        /// Deprecated: Prefer `impacted_sessions_count`. The number of distinct sessions in the set of events.
+        /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("sessionsCount")]
         public virtual System.Nullable<long> SessionsCount { get; set; }
 
@@ -2826,6 +2984,14 @@ namespace Google.Apis.FirebaseCrashlytics.v1alpha.Data
             get => Google.Apis.Util.DiscoveryFormat.ParseGoogleDateTimeToDateTimeOffset(StartTimeRaw);
             set => StartTimeRaw = Google.Apis.Util.DiscoveryFormat.FormatDateTimeOffsetToGoogleDateTime(value);
         }
+
+        /// <summary>The number of distinct sessions.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("totalSessionsCount")]
+        public virtual System.Nullable<long> TotalSessionsCount { get; set; }
+
+        /// <summary>The number of distinct users.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("totalUsersCount")]
+        public virtual System.Nullable<long> TotalUsersCount { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }

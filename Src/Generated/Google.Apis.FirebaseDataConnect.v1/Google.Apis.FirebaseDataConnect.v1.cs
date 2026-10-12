@@ -607,6 +607,7 @@ namespace Google.Apis.FirebaseDataConnect.v1
                 {
                     this.service = service;
                     Connectors = new ConnectorsResource(service);
+                    Postgrest = new PostgrestResource(service);
                     Schemas = new SchemasResource(service);
                 }
 
@@ -1446,6 +1447,546 @@ namespace Google.Apis.FirebaseDataConnect.v1
                     }
                 }
 
+                /// <summary>Gets the Postgrest resource.</summary>
+                public virtual PostgrestResource Postgrest { get; }
+
+                /// <summary>The "postgrest" collection of methods.</summary>
+                public class PostgrestResource
+                {
+                    private const string Resource = "postgrest";
+
+                    /// <summary>The service which this resource belongs to.</summary>
+                    private readonly Google.Apis.Services.IClientService service;
+
+                    /// <summary>Constructs a new resource.</summary>
+                    public PostgrestResource(Google.Apis.Services.IClientService service)
+                    {
+                        this.service = service;
+                        Rpc = new RpcResource(service);
+                    }
+
+                    /// <summary>Gets the Rpc resource.</summary>
+                    public virtual RpcResource Rpc { get; }
+
+                    /// <summary>The "rpc" collection of methods.</summary>
+                    public class RpcResource
+                    {
+                        private const string Resource = "rpc";
+
+                        /// <summary>The service which this resource belongs to.</summary>
+                        private readonly Google.Apis.Services.IClientService service;
+
+                        /// <summary>Constructs a new resource.</summary>
+                        public RpcResource(Google.Apis.Services.IClientService service)
+                        {
+                            this.service = service;
+                        }
+
+                        /// <summary>Executes a PostgreSQL database function.</summary>
+                        /// <param name="body">The body of the request.</param>
+                        /// <param name="firebasedataconnectService">
+                        /// Required. The resource name of the service, in the format:
+                        /// `projects/{project}/locations/{location}/services/{service}`
+                        /// </param>
+                        /// <param name="firebasedataconnectFunction">
+                        /// Required. The name of the database function.
+                        /// </param>
+                        public virtual PostgrestCallFunctionRequest PostgrestCallFunction(Google.Apis.FirebaseDataConnect.v1.Data.HttpBody body, string firebasedataconnectService, string firebasedataconnectFunction)
+                        {
+                            return new PostgrestCallFunctionRequest(this.service, body, firebasedataconnectService, firebasedataconnectFunction);
+                        }
+
+                        /// <summary>Executes a PostgreSQL database function.</summary>
+                        public class PostgrestCallFunctionRequest : FirebaseDataConnectBaseServiceRequest<Google.Apis.FirebaseDataConnect.v1.Data.HttpBody>
+                        {
+                            /// <summary>Constructs a new PostgrestCallFunction request.</summary>
+                            public PostgrestCallFunctionRequest(Google.Apis.Services.IClientService service, Google.Apis.FirebaseDataConnect.v1.Data.HttpBody body, string firebasedataconnectService, string firebasedataconnectFunction) : base(service)
+                            {
+                                FirebasedataconnectService = firebasedataconnectService;
+                                FirebasedataconnectFunction = firebasedataconnectFunction;
+                                Body = body;
+                                InitParameters();
+                            }
+
+                            /// <summary>
+                            /// Required. The resource name of the service, in the format:
+                            /// `projects/{project}/locations/{location}/services/{service}`
+                            /// </summary>
+                            [Google.Apis.Util.RequestParameterAttribute("firebasedataconnectService", Google.Apis.Util.RequestParameterType.Path)]
+                            public virtual string FirebasedataconnectService { get; private set; }
+
+                            /// <summary>Required. The name of the database function.</summary>
+                            [Google.Apis.Util.RequestParameterAttribute("firebasedataconnectFunction", Google.Apis.Util.RequestParameterType.Path)]
+                            public virtual string FirebasedataconnectFunction { get; private set; }
+
+                            /// <summary>Gets or sets the body of this request.</summary>
+                            Google.Apis.FirebaseDataConnect.v1.Data.HttpBody Body { get; set; }
+
+                            /// <summary>Returns the body of the request.</summary>
+                            protected override object GetBody() => Body;
+
+                            /// <summary>Gets the method name.</summary>
+                            public override string MethodName => "postgrestCallFunction";
+
+                            /// <summary>Gets the HTTP method.</summary>
+                            public override string HttpMethod => "POST";
+
+                            /// <summary>Gets the REST path.</summary>
+                            public override string RestPath => "v1/{+firebasedataconnectService}/postgrest/rpc/{+firebasedataconnectFunction}";
+
+                            /// <summary>Initializes PostgrestCallFunction parameter list.</summary>
+                            protected override void InitParameters()
+                            {
+                                base.InitParameters();
+                                RequestParameters.Add("firebasedataconnectService", new Google.Apis.Discovery.Parameter
+                                {
+                                    Name = "firebasedataconnectService",
+                                    IsRequired = true,
+                                    ParameterType = "path",
+                                    DefaultValue = null,
+                                    Pattern = @"^projects/[^/]+/locations/[^/]+/services/[^/]+$",
+                                });
+                                RequestParameters.Add("firebasedataconnectFunction", new Google.Apis.Discovery.Parameter
+                                {
+                                    Name = "firebasedataconnectFunction",
+                                    IsRequired = true,
+                                    ParameterType = "path",
+                                    DefaultValue = null,
+                                    Pattern = @"^.*$",
+                                });
+                            }
+                        }
+
+                        /// <summary>Executes a read-only PostgreSQL database function.</summary>
+                        /// <param name="firebasedataconnectService">
+                        /// Required. The resource name of the service, in the format:
+                        /// `projects/{project}/locations/{location}/services/{service}`
+                        /// </param>
+                        /// <param name="firebasedataconnectFunction">
+                        /// Required. The name of the database function.
+                        /// </param>
+                        public virtual PostgrestQueryFunctionRequest PostgrestQueryFunction(string firebasedataconnectService, string firebasedataconnectFunction)
+                        {
+                            return new PostgrestQueryFunctionRequest(this.service, firebasedataconnectService, firebasedataconnectFunction);
+                        }
+
+                        /// <summary>Executes a read-only PostgreSQL database function.</summary>
+                        public class PostgrestQueryFunctionRequest : FirebaseDataConnectBaseServiceRequest<Google.Apis.FirebaseDataConnect.v1.Data.HttpBody>
+                        {
+                            /// <summary>Constructs a new PostgrestQueryFunction request.</summary>
+                            public PostgrestQueryFunctionRequest(Google.Apis.Services.IClientService service, string firebasedataconnectService, string firebasedataconnectFunction) : base(service)
+                            {
+                                FirebasedataconnectService = firebasedataconnectService;
+                                FirebasedataconnectFunction = firebasedataconnectFunction;
+                                InitParameters();
+                            }
+
+                            /// <summary>
+                            /// Required. The resource name of the service, in the format:
+                            /// `projects/{project}/locations/{location}/services/{service}`
+                            /// </summary>
+                            [Google.Apis.Util.RequestParameterAttribute("firebasedataconnectService", Google.Apis.Util.RequestParameterType.Path)]
+                            public virtual string FirebasedataconnectService { get; private set; }
+
+                            /// <summary>Required. The name of the database function.</summary>
+                            [Google.Apis.Util.RequestParameterAttribute("firebasedataconnectFunction", Google.Apis.Util.RequestParameterType.Path)]
+                            public virtual string FirebasedataconnectFunction { get; private set; }
+
+                            /// <summary>Gets the method name.</summary>
+                            public override string MethodName => "postgrestQueryFunction";
+
+                            /// <summary>Gets the HTTP method.</summary>
+                            public override string HttpMethod => "GET";
+
+                            /// <summary>Gets the REST path.</summary>
+                            public override string RestPath => "v1/{+firebasedataconnectService}/postgrest/rpc/{+firebasedataconnectFunction}";
+
+                            /// <summary>Initializes PostgrestQueryFunction parameter list.</summary>
+                            protected override void InitParameters()
+                            {
+                                base.InitParameters();
+                                RequestParameters.Add("firebasedataconnectService", new Google.Apis.Discovery.Parameter
+                                {
+                                    Name = "firebasedataconnectService",
+                                    IsRequired = true,
+                                    ParameterType = "path",
+                                    DefaultValue = null,
+                                    Pattern = @"^projects/[^/]+/locations/[^/]+/services/[^/]+$",
+                                });
+                                RequestParameters.Add("firebasedataconnectFunction", new Google.Apis.Discovery.Parameter
+                                {
+                                    Name = "firebasedataconnectFunction",
+                                    IsRequired = true,
+                                    ParameterType = "path",
+                                    DefaultValue = null,
+                                    Pattern = @"^.*$",
+                                });
+                            }
+                        }
+                    }
+
+                    /// <summary>Executes a dynamic DELETE mutation on rows matching the URL filters.</summary>
+                    /// <param name="firebasedataconnectService">
+                    /// Required. The resource name of the service, in the format:
+                    /// `projects/{project}/locations/{location}/services/{service}`
+                    /// </param>
+                    /// <param name="firebasedataconnectTable">Required. The name of the table to delete from.</param>
+                    public virtual PostgrestDeleteRequest PostgrestDelete(string firebasedataconnectService, string firebasedataconnectTable)
+                    {
+                        return new PostgrestDeleteRequest(this.service, firebasedataconnectService, firebasedataconnectTable);
+                    }
+
+                    /// <summary>Executes a dynamic DELETE mutation on rows matching the URL filters.</summary>
+                    public class PostgrestDeleteRequest : FirebaseDataConnectBaseServiceRequest<Google.Apis.FirebaseDataConnect.v1.Data.HttpBody>
+                    {
+                        /// <summary>Constructs a new PostgrestDelete request.</summary>
+                        public PostgrestDeleteRequest(Google.Apis.Services.IClientService service, string firebasedataconnectService, string firebasedataconnectTable) : base(service)
+                        {
+                            FirebasedataconnectService = firebasedataconnectService;
+                            FirebasedataconnectTable = firebasedataconnectTable;
+                            InitParameters();
+                        }
+
+                        /// <summary>
+                        /// Required. The resource name of the service, in the format:
+                        /// `projects/{project}/locations/{location}/services/{service}`
+                        /// </summary>
+                        [Google.Apis.Util.RequestParameterAttribute("firebasedataconnectService", Google.Apis.Util.RequestParameterType.Path)]
+                        public virtual string FirebasedataconnectService { get; private set; }
+
+                        /// <summary>Required. The name of the table to delete from.</summary>
+                        [Google.Apis.Util.RequestParameterAttribute("firebasedataconnectTable", Google.Apis.Util.RequestParameterType.Path)]
+                        public virtual string FirebasedataconnectTable { get; private set; }
+
+                        /// <summary>Gets the method name.</summary>
+                        public override string MethodName => "postgrestDelete";
+
+                        /// <summary>Gets the HTTP method.</summary>
+                        public override string HttpMethod => "DELETE";
+
+                        /// <summary>Gets the REST path.</summary>
+                        public override string RestPath => "v1/{+firebasedataconnectService}/postgrest/{+firebasedataconnectTable}";
+
+                        /// <summary>Initializes PostgrestDelete parameter list.</summary>
+                        protected override void InitParameters()
+                        {
+                            base.InitParameters();
+                            RequestParameters.Add("firebasedataconnectService", new Google.Apis.Discovery.Parameter
+                            {
+                                Name = "firebasedataconnectService",
+                                IsRequired = true,
+                                ParameterType = "path",
+                                DefaultValue = null,
+                                Pattern = @"^projects/[^/]+/locations/[^/]+/services/[^/]+$",
+                            });
+                            RequestParameters.Add("firebasedataconnectTable", new Google.Apis.Discovery.Parameter
+                            {
+                                Name = "firebasedataconnectTable",
+                                IsRequired = true,
+                                ParameterType = "path",
+                                DefaultValue = null,
+                                Pattern = @"^.*$",
+                            });
+                        }
+                    }
+
+                    /// <summary>Executes a dynamic INSERT (create) or UPSERT mutation on a target table.</summary>
+                    /// <param name="body">The body of the request.</param>
+                    /// <param name="firebasedataconnectService">
+                    /// Required. The resource name of the service, in the format:
+                    /// `projects/{project}/locations/{location}/services/{service}`
+                    /// </param>
+                    /// <param name="firebasedataconnectTable">Required. The name of the table to insert into.</param>
+                    public virtual PostgrestInsertRequest PostgrestInsert(Google.Apis.FirebaseDataConnect.v1.Data.HttpBody body, string firebasedataconnectService, string firebasedataconnectTable)
+                    {
+                        return new PostgrestInsertRequest(this.service, body, firebasedataconnectService, firebasedataconnectTable);
+                    }
+
+                    /// <summary>Executes a dynamic INSERT (create) or UPSERT mutation on a target table.</summary>
+                    public class PostgrestInsertRequest : FirebaseDataConnectBaseServiceRequest<Google.Apis.FirebaseDataConnect.v1.Data.HttpBody>
+                    {
+                        /// <summary>Constructs a new PostgrestInsert request.</summary>
+                        public PostgrestInsertRequest(Google.Apis.Services.IClientService service, Google.Apis.FirebaseDataConnect.v1.Data.HttpBody body, string firebasedataconnectService, string firebasedataconnectTable) : base(service)
+                        {
+                            FirebasedataconnectService = firebasedataconnectService;
+                            FirebasedataconnectTable = firebasedataconnectTable;
+                            Body = body;
+                            InitParameters();
+                        }
+
+                        /// <summary>
+                        /// Required. The resource name of the service, in the format:
+                        /// `projects/{project}/locations/{location}/services/{service}`
+                        /// </summary>
+                        [Google.Apis.Util.RequestParameterAttribute("firebasedataconnectService", Google.Apis.Util.RequestParameterType.Path)]
+                        public virtual string FirebasedataconnectService { get; private set; }
+
+                        /// <summary>Required. The name of the table to insert into.</summary>
+                        [Google.Apis.Util.RequestParameterAttribute("firebasedataconnectTable", Google.Apis.Util.RequestParameterType.Path)]
+                        public virtual string FirebasedataconnectTable { get; private set; }
+
+                        /// <summary>Gets or sets the body of this request.</summary>
+                        Google.Apis.FirebaseDataConnect.v1.Data.HttpBody Body { get; set; }
+
+                        /// <summary>Returns the body of the request.</summary>
+                        protected override object GetBody() => Body;
+
+                        /// <summary>Gets the method name.</summary>
+                        public override string MethodName => "postgrestInsert";
+
+                        /// <summary>Gets the HTTP method.</summary>
+                        public override string HttpMethod => "POST";
+
+                        /// <summary>Gets the REST path.</summary>
+                        public override string RestPath => "v1/{+firebasedataconnectService}/postgrest/{+firebasedataconnectTable}";
+
+                        /// <summary>Initializes PostgrestInsert parameter list.</summary>
+                        protected override void InitParameters()
+                        {
+                            base.InitParameters();
+                            RequestParameters.Add("firebasedataconnectService", new Google.Apis.Discovery.Parameter
+                            {
+                                Name = "firebasedataconnectService",
+                                IsRequired = true,
+                                ParameterType = "path",
+                                DefaultValue = null,
+                                Pattern = @"^projects/[^/]+/locations/[^/]+/services/[^/]+$",
+                            });
+                            RequestParameters.Add("firebasedataconnectTable", new Google.Apis.Discovery.Parameter
+                            {
+                                Name = "firebasedataconnectTable",
+                                IsRequired = true,
+                                ParameterType = "path",
+                                DefaultValue = null,
+                                Pattern = @"^.*$",
+                            });
+                        }
+                    }
+
+                    /// <summary>
+                    /// Executes a dynamic SELECT (read) query on a target PostgreSQL table. Projections, filters,
+                    /// sorting, and embeddings are mapped from the HTTP URL query parameters.
+                    /// </summary>
+                    /// <param name="firebasedataconnectService">
+                    /// Required. The resource name of the service, in the format:
+                    /// `projects/{project}/locations/{location}/services/{service}`
+                    /// </param>
+                    /// <param name="firebasedataconnectTable">Required. The name of the table to select from.</param>
+                    public virtual PostgrestSelectRequest PostgrestSelect(string firebasedataconnectService, string firebasedataconnectTable)
+                    {
+                        return new PostgrestSelectRequest(this.service, firebasedataconnectService, firebasedataconnectTable);
+                    }
+
+                    /// <summary>
+                    /// Executes a dynamic SELECT (read) query on a target PostgreSQL table. Projections, filters,
+                    /// sorting, and embeddings are mapped from the HTTP URL query parameters.
+                    /// </summary>
+                    public class PostgrestSelectRequest : FirebaseDataConnectBaseServiceRequest<Google.Apis.FirebaseDataConnect.v1.Data.HttpBody>
+                    {
+                        /// <summary>Constructs a new PostgrestSelect request.</summary>
+                        public PostgrestSelectRequest(Google.Apis.Services.IClientService service, string firebasedataconnectService, string firebasedataconnectTable) : base(service)
+                        {
+                            FirebasedataconnectService = firebasedataconnectService;
+                            FirebasedataconnectTable = firebasedataconnectTable;
+                            InitParameters();
+                        }
+
+                        /// <summary>
+                        /// Required. The resource name of the service, in the format:
+                        /// `projects/{project}/locations/{location}/services/{service}`
+                        /// </summary>
+                        [Google.Apis.Util.RequestParameterAttribute("firebasedataconnectService", Google.Apis.Util.RequestParameterType.Path)]
+                        public virtual string FirebasedataconnectService { get; private set; }
+
+                        /// <summary>Required. The name of the table to select from.</summary>
+                        [Google.Apis.Util.RequestParameterAttribute("firebasedataconnectTable", Google.Apis.Util.RequestParameterType.Path)]
+                        public virtual string FirebasedataconnectTable { get; private set; }
+
+                        /// <summary>Gets the method name.</summary>
+                        public override string MethodName => "postgrestSelect";
+
+                        /// <summary>Gets the HTTP method.</summary>
+                        public override string HttpMethod => "GET";
+
+                        /// <summary>Gets the REST path.</summary>
+                        public override string RestPath => "v1/{+firebasedataconnectService}/postgrest/{+firebasedataconnectTable}";
+
+                        /// <summary>Initializes PostgrestSelect parameter list.</summary>
+                        protected override void InitParameters()
+                        {
+                            base.InitParameters();
+                            RequestParameters.Add("firebasedataconnectService", new Google.Apis.Discovery.Parameter
+                            {
+                                Name = "firebasedataconnectService",
+                                IsRequired = true,
+                                ParameterType = "path",
+                                DefaultValue = null,
+                                Pattern = @"^projects/[^/]+/locations/[^/]+/services/[^/]+$",
+                            });
+                            RequestParameters.Add("firebasedataconnectTable", new Google.Apis.Discovery.Parameter
+                            {
+                                Name = "firebasedataconnectTable",
+                                IsRequired = true,
+                                ParameterType = "path",
+                                DefaultValue = null,
+                                Pattern = @"^.*$",
+                            });
+                        }
+                    }
+
+                    /// <summary>Executes a dynamic UPDATE (modify) mutation on rows matching the URL filters.</summary>
+                    /// <param name="body">The body of the request.</param>
+                    /// <param name="firebasedataconnectService">
+                    /// Required. The resource name of the service, in the format:
+                    /// `projects/{project}/locations/{location}/services/{service}`
+                    /// </param>
+                    /// <param name="firebasedataconnectTable">Required. The name of the table to update.</param>
+                    public virtual PostgrestUpdateRequest PostgrestUpdate(Google.Apis.FirebaseDataConnect.v1.Data.HttpBody body, string firebasedataconnectService, string firebasedataconnectTable)
+                    {
+                        return new PostgrestUpdateRequest(this.service, body, firebasedataconnectService, firebasedataconnectTable);
+                    }
+
+                    /// <summary>Executes a dynamic UPDATE (modify) mutation on rows matching the URL filters.</summary>
+                    public class PostgrestUpdateRequest : FirebaseDataConnectBaseServiceRequest<Google.Apis.FirebaseDataConnect.v1.Data.HttpBody>
+                    {
+                        /// <summary>Constructs a new PostgrestUpdate request.</summary>
+                        public PostgrestUpdateRequest(Google.Apis.Services.IClientService service, Google.Apis.FirebaseDataConnect.v1.Data.HttpBody body, string firebasedataconnectService, string firebasedataconnectTable) : base(service)
+                        {
+                            FirebasedataconnectService = firebasedataconnectService;
+                            FirebasedataconnectTable = firebasedataconnectTable;
+                            Body = body;
+                            InitParameters();
+                        }
+
+                        /// <summary>
+                        /// Required. The resource name of the service, in the format:
+                        /// `projects/{project}/locations/{location}/services/{service}`
+                        /// </summary>
+                        [Google.Apis.Util.RequestParameterAttribute("firebasedataconnectService", Google.Apis.Util.RequestParameterType.Path)]
+                        public virtual string FirebasedataconnectService { get; private set; }
+
+                        /// <summary>Required. The name of the table to update.</summary>
+                        [Google.Apis.Util.RequestParameterAttribute("firebasedataconnectTable", Google.Apis.Util.RequestParameterType.Path)]
+                        public virtual string FirebasedataconnectTable { get; private set; }
+
+                        /// <summary>Gets or sets the body of this request.</summary>
+                        Google.Apis.FirebaseDataConnect.v1.Data.HttpBody Body { get; set; }
+
+                        /// <summary>Returns the body of the request.</summary>
+                        protected override object GetBody() => Body;
+
+                        /// <summary>Gets the method name.</summary>
+                        public override string MethodName => "postgrestUpdate";
+
+                        /// <summary>Gets the HTTP method.</summary>
+                        public override string HttpMethod => "PATCH";
+
+                        /// <summary>Gets the REST path.</summary>
+                        public override string RestPath => "v1/{+firebasedataconnectService}/postgrest/{+firebasedataconnectTable}";
+
+                        /// <summary>Initializes PostgrestUpdate parameter list.</summary>
+                        protected override void InitParameters()
+                        {
+                            base.InitParameters();
+                            RequestParameters.Add("firebasedataconnectService", new Google.Apis.Discovery.Parameter
+                            {
+                                Name = "firebasedataconnectService",
+                                IsRequired = true,
+                                ParameterType = "path",
+                                DefaultValue = null,
+                                Pattern = @"^projects/[^/]+/locations/[^/]+/services/[^/]+$",
+                            });
+                            RequestParameters.Add("firebasedataconnectTable", new Google.Apis.Discovery.Parameter
+                            {
+                                Name = "firebasedataconnectTable",
+                                IsRequired = true,
+                                ParameterType = "path",
+                                DefaultValue = null,
+                                Pattern = @"^.*$",
+                            });
+                        }
+                    }
+
+                    /// <summary>
+                    /// Executes a dynamic UPSERT (replace or create) mutation on a target table identified by primary
+                    /// key filters.
+                    /// </summary>
+                    /// <param name="body">The body of the request.</param>
+                    /// <param name="firebasedataconnectService">
+                    /// Required. The resource name of the service, in the format:
+                    /// `projects/{project}/locations/{location}/services/{service}`
+                    /// </param>
+                    /// <param name="firebasedataconnectTable">Required. The name of the table to upsert into.</param>
+                    public virtual PostgrestUpsertRequest PostgrestUpsert(Google.Apis.FirebaseDataConnect.v1.Data.HttpBody body, string firebasedataconnectService, string firebasedataconnectTable)
+                    {
+                        return new PostgrestUpsertRequest(this.service, body, firebasedataconnectService, firebasedataconnectTable);
+                    }
+
+                    /// <summary>
+                    /// Executes a dynamic UPSERT (replace or create) mutation on a target table identified by primary
+                    /// key filters.
+                    /// </summary>
+                    public class PostgrestUpsertRequest : FirebaseDataConnectBaseServiceRequest<Google.Apis.FirebaseDataConnect.v1.Data.HttpBody>
+                    {
+                        /// <summary>Constructs a new PostgrestUpsert request.</summary>
+                        public PostgrestUpsertRequest(Google.Apis.Services.IClientService service, Google.Apis.FirebaseDataConnect.v1.Data.HttpBody body, string firebasedataconnectService, string firebasedataconnectTable) : base(service)
+                        {
+                            FirebasedataconnectService = firebasedataconnectService;
+                            FirebasedataconnectTable = firebasedataconnectTable;
+                            Body = body;
+                            InitParameters();
+                        }
+
+                        /// <summary>
+                        /// Required. The resource name of the service, in the format:
+                        /// `projects/{project}/locations/{location}/services/{service}`
+                        /// </summary>
+                        [Google.Apis.Util.RequestParameterAttribute("firebasedataconnectService", Google.Apis.Util.RequestParameterType.Path)]
+                        public virtual string FirebasedataconnectService { get; private set; }
+
+                        /// <summary>Required. The name of the table to upsert into.</summary>
+                        [Google.Apis.Util.RequestParameterAttribute("firebasedataconnectTable", Google.Apis.Util.RequestParameterType.Path)]
+                        public virtual string FirebasedataconnectTable { get; private set; }
+
+                        /// <summary>Gets or sets the body of this request.</summary>
+                        Google.Apis.FirebaseDataConnect.v1.Data.HttpBody Body { get; set; }
+
+                        /// <summary>Returns the body of the request.</summary>
+                        protected override object GetBody() => Body;
+
+                        /// <summary>Gets the method name.</summary>
+                        public override string MethodName => "postgrestUpsert";
+
+                        /// <summary>Gets the HTTP method.</summary>
+                        public override string HttpMethod => "PUT";
+
+                        /// <summary>Gets the REST path.</summary>
+                        public override string RestPath => "v1/{+firebasedataconnectService}/postgrest/{+firebasedataconnectTable}";
+
+                        /// <summary>Initializes PostgrestUpsert parameter list.</summary>
+                        protected override void InitParameters()
+                        {
+                            base.InitParameters();
+                            RequestParameters.Add("firebasedataconnectService", new Google.Apis.Discovery.Parameter
+                            {
+                                Name = "firebasedataconnectService",
+                                IsRequired = true,
+                                ParameterType = "path",
+                                DefaultValue = null,
+                                Pattern = @"^projects/[^/]+/locations/[^/]+/services/[^/]+$",
+                            });
+                            RequestParameters.Add("firebasedataconnectTable", new Google.Apis.Discovery.Parameter
+                            {
+                                Name = "firebasedataconnectTable",
+                                IsRequired = true,
+                                ParameterType = "path",
+                                DefaultValue = null,
+                                Pattern = @"^.*$",
+                            });
+                        }
+                    }
+                }
+
                 /// <summary>Gets the Schemas resource.</summary>
                 public virtual SchemasResource Schemas { get; }
 
@@ -1867,6 +2408,77 @@ namespace Google.Apis.FirebaseDataConnect.v1
                                 ParameterType = "query",
                                 DefaultValue = null,
                                 Pattern = null,
+                            });
+                        }
+                    }
+
+                    /// <summary>
+                    /// Executes SQL migration steps against the active database schema. This operation compares
+                    /// submitted migration steps against the schema migration ledger (`firebasesql.schema_migrations`),
+                    /// executes unapplied DDL, and records applied steps. It does NOT persist the GraphQL schema to the
+                    /// control plane.
+                    /// </summary>
+                    /// <param name="body">The body of the request.</param>
+                    /// <param name="name">
+                    /// Required. Resource name of the target schema:
+                    /// projects/{project}/locations/{location}/services/{service}/schemas/{schema} Note: Only
+                    /// `schemas/main` is supported (singleton schema per service).
+                    /// </param>
+                    public virtual MigrateRequest Migrate(Google.Apis.FirebaseDataConnect.v1.Data.MigrateSchemaRequest body, string name)
+                    {
+                        return new MigrateRequest(this.service, body, name);
+                    }
+
+                    /// <summary>
+                    /// Executes SQL migration steps against the active database schema. This operation compares
+                    /// submitted migration steps against the schema migration ledger (`firebasesql.schema_migrations`),
+                    /// executes unapplied DDL, and records applied steps. It does NOT persist the GraphQL schema to the
+                    /// control plane.
+                    /// </summary>
+                    public class MigrateRequest : FirebaseDataConnectBaseServiceRequest<Google.Apis.FirebaseDataConnect.v1.Data.Operation>
+                    {
+                        /// <summary>Constructs a new Migrate request.</summary>
+                        public MigrateRequest(Google.Apis.Services.IClientService service, Google.Apis.FirebaseDataConnect.v1.Data.MigrateSchemaRequest body, string name) : base(service)
+                        {
+                            Name = name;
+                            Body = body;
+                            InitParameters();
+                        }
+
+                        /// <summary>
+                        /// Required. Resource name of the target schema:
+                        /// projects/{project}/locations/{location}/services/{service}/schemas/{schema} Note: Only
+                        /// `schemas/main` is supported (singleton schema per service).
+                        /// </summary>
+                        [Google.Apis.Util.RequestParameterAttribute("name", Google.Apis.Util.RequestParameterType.Path)]
+                        public virtual string Name { get; private set; }
+
+                        /// <summary>Gets or sets the body of this request.</summary>
+                        Google.Apis.FirebaseDataConnect.v1.Data.MigrateSchemaRequest Body { get; set; }
+
+                        /// <summary>Returns the body of the request.</summary>
+                        protected override object GetBody() => Body;
+
+                        /// <summary>Gets the method name.</summary>
+                        public override string MethodName => "migrate";
+
+                        /// <summary>Gets the HTTP method.</summary>
+                        public override string HttpMethod => "POST";
+
+                        /// <summary>Gets the REST path.</summary>
+                        public override string RestPath => "v1/{+name}:migrate";
+
+                        /// <summary>Initializes Migrate parameter list.</summary>
+                        protected override void InitParameters()
+                        {
+                            base.InitParameters();
+                            RequestParameters.Add("name", new Google.Apis.Discovery.Parameter
+                            {
+                                Name = "name",
+                                IsRequired = true,
+                                ParameterType = "path",
+                                DefaultValue = null,
+                                Pattern = @"^projects/[^/]+/locations/[^/]+/services/[^/]+/schemas/[^/]+$",
                             });
                         }
                     }
@@ -3666,6 +4278,39 @@ namespace Google.Apis.FirebaseDataConnect.v1.Data
         public virtual string ETag { get; set; }
     }
 
+    /// <summary>
+    /// Message that represents an arbitrary HTTP body. It should only be used for payload formats that can't be
+    /// represented as JSON, such as raw binary or an HTML page. This message can be used both in streaming and
+    /// non-streaming API methods in the request as well as the response. It can be used as a top-level request field,
+    /// which is convenient if one wants to extract parameters from either the URL or HTTP template into the request
+    /// fields and also want access to the raw HTTP body. Example: message GetResourceRequest { // A unique request id.
+    /// string request_id = 1; // The raw HTTP body is bound to this field. google.api.HttpBody http_body = 2; } service
+    /// ResourceService { rpc GetResource(GetResourceRequest) returns (google.api.HttpBody); rpc
+    /// UpdateResource(google.api.HttpBody) returns (google.protobuf.Empty); } Example with streaming methods: service
+    /// CaldavService { rpc GetCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); rpc
+    /// UpdateCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); } Use of this type only changes
+    /// how the request and response bodies are handled, all other features will continue to work unchanged.
+    /// </summary>
+    public class HttpBody : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The HTTP Content-Type header value specifying the content type of the body.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("contentType")]
+        public virtual string ContentType { get; set; }
+
+        /// <summary>The HTTP request/response body as raw binary.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("data")]
+        public virtual string Data { get; set; }
+
+        /// <summary>
+        /// Application specific response metadata. Must be set in the first response for streaming APIs.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("extensions")]
+        public virtual System.Collections.Generic.IList<System.Collections.Generic.IDictionary<string, object>> Extensions { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
     /// <summary>Settings for HTTP GraphQL server webhook.</summary>
     public class HttpGraphql : Google.Apis.Requests.IDirectResponseSchema
     {
@@ -3865,6 +4510,70 @@ namespace Google.Apis.FirebaseDataConnect.v1.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("name")]
         public virtual string Name { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Request message for `MigrateSchema`. Next tag: 7</summary>
+    public class MigrateSchemaRequest : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>
+        /// Optional. Execution mode controlling DDL execution and ledger recording. Defaults to EXECUTE_AND_RECORD.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("executionMode")]
+        public virtual string ExecutionMode { get; set; }
+
+        /// <summary>
+        /// Required. Ordered migration steps from `./sql/migrations/` (or a single ad-hoc step). Backend compares
+        /// submitted versions against `firebasesql.schema_migrations`: already-applied steps are verified for SQL
+        /// immutability and skipped, while unapplied steps (`version &amp;gt; MAX(applied_version)`) are executed. All
+        /// unapplied transactional steps in a single request execute atomically within one database transaction (BEGIN
+        /// ... COMMIT): either every unapplied step commits and is recorded in the ledger, or the entire request rolls
+        /// back. An unapplied step containing CREATE INDEX CONCURRENTLY or DROP INDEX CONCURRENTLY cannot be mixed with
+        /// other unapplied steps and must be the sole unapplied step executed in the request.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("migrationSteps")]
+        public virtual System.Collections.Generic.IList<MigrationStep> MigrationSteps { get; set; }
+
+        /// <summary>
+        /// Optional. When true, runs preflight validation (syntax, applied-step immutability, sequence ordering,
+        /// CONCURRENTLY isolation, and SAVEPOINT catalog checks) without committing mutations to the database.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("validateOnly")]
+        public virtual System.Nullable<bool> ValidateOnly { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>An individual unit of migration work. Next tag: 4</summary>
+    public class MigrationStep : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>
+        /// Optional. Descriptive migration label (e.g. "create_accounts_table"). If omitted, defaults to "adhoc".
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("name")]
+        public virtual string Name { get; set; }
+
+        /// <summary>
+        /// Required. Raw multi-statement SQL script. The backend splits it into individual statements before execution;
+        /// callers do not pre-split. Required whenever the request executes or records DDL, which is every publicly
+        /// available execution mode; omitting it returns INVALID_ARGUMENT.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("sql")]
+        public virtual string Sql { get; set; }
+
+        /// <summary>
+        /// Optional. Monotonic 14-digit UTC timestamp (YYYYMMDDHHMMSS), matching the timestamp prefix of the
+        /// developer's migration filename. Constrained to `^[0-9]{14}$`. - When specified (file migrations): If
+        /// `version` is already recorded in `firebasesql.schema_migrations`, the backend verifies that `sql` matches
+        /// the recorded statements and skips execution. If `version` is unapplied, the backend validates `version
+        /// &amp;gt; MAX(applied_version)` and records the value unchanged, so the ledger row and the on-disk filename
+        /// stay identical. - When omitted (Console/ad-hoc): Backend auto-generates a 14-digit UTC timestamp.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("version")]
+        public virtual string Version { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }

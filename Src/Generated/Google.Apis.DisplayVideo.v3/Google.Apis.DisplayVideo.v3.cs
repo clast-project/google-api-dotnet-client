@@ -572,12 +572,13 @@ namespace Google.Apis.DisplayVideo.v3
                 /// of one or more restrictions. * Restrictions can be combined by `AND` and `OR`. A sequence of
                 /// restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. *
                 /// All fields must use the `EQUALS (=)` operator. Supported fields: * `adGroupId` * `displayName` *
-                /// `entityStatus` * `adGroupAdId` Examples: * All ad group ads under an ad group: `adGroupId="1234"` *
-                /// All ad group ads under an ad group with an entityStatus of `ENTITY_STATUS_ACTIVE` or
-                /// `ENTITY_STATUS_PAUSED`: `(entityStatus="ENTITY_STATUS_ACTIVE" OR
-                /// entityStatus="ENTITY_STATUS_PAUSED") AND adGroupId="12345"` The length of this field should be no
-                /// more than 500 characters. Reference our [filter `LIST`
-                /// requests](/display-video/api/guides/how-tos/filters) guide for more information.
+                /// `entityStatus` * `adGroupAdId` * `parentCreativeId` Examples: * All ad group ads under an ad group:
+                /// `adGroupId="1234"` * All ad group ads under an ad group with an entityStatus of
+                /// `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED`: `(entityStatus="ENTITY_STATUS_ACTIVE" OR
+                /// entityStatus="ENTITY_STATUS_PAUSED") AND adGroupId="12345"` * All ad group ads under a parent
+                /// creative: `parentCreativeId="12345"` The length of this field should be no more than 500 characters.
+                /// Reference our [filter `LIST` requests](/display-video/api/guides/how-tos/filters) guide for more
+                /// information.
                 /// </summary>
                 [Google.Apis.Util.RequestParameterAttribute("filter", Google.Apis.Util.RequestParameterType.Query)]
                 public virtual string Filter { get; set; }
@@ -1015,10 +1016,6 @@ namespace Google.Apis.DisplayVideo.v3
                             [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_CATEGORY")]
                             TARGETINGTYPECATEGORY = 30,
 
-                            /// <summary>Purchase impressions from specific deals and auction packages.</summary>
-                            [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_INVENTORY_SOURCE")]
-                            TARGETINGTYPEINVENTORYSOURCE = 31,
-
                             /// <summary>Target ads to a specific language (for example, English or Japanese).</summary>
                             [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_LANGUAGE")]
                             TARGETINGTYPELANGUAGE = 32,
@@ -1393,10 +1390,6 @@ namespace Google.Apis.DisplayVideo.v3
                             /// </summary>
                             [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_CATEGORY")]
                             TARGETINGTYPECATEGORY = 30,
-
-                            /// <summary>Purchase impressions from specific deals and auction packages.</summary>
-                            [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_INVENTORY_SOURCE")]
-                            TARGETINGTYPEINVENTORYSOURCE = 31,
 
                             /// <summary>Target ads to a specific language (for example, English or Japanese).</summary>
                             [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_LANGUAGE")]
@@ -1780,10 +1773,6 @@ namespace Google.Apis.DisplayVideo.v3
                             [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_CATEGORY")]
                             TARGETINGTYPECATEGORY = 30,
 
-                            /// <summary>Purchase impressions from specific deals and auction packages.</summary>
-                            [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_INVENTORY_SOURCE")]
-                            TARGETINGTYPEINVENTORYSOURCE = 31,
-
                             /// <summary>Target ads to a specific language (for example, English or Japanese).</summary>
                             [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_LANGUAGE")]
                             TARGETINGTYPELANGUAGE = 32,
@@ -2161,10 +2150,6 @@ namespace Google.Apis.DisplayVideo.v3
                             /// </summary>
                             [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_CATEGORY")]
                             TARGETINGTYPECATEGORY = 30,
-
-                            /// <summary>Purchase impressions from specific deals and auction packages.</summary>
-                            [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_INVENTORY_SOURCE")]
-                            TARGETINGTYPEINVENTORYSOURCE = 31,
 
                             /// <summary>Target ads to a specific language (for example, English or Japanese).</summary>
                             [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_LANGUAGE")]
@@ -5835,10 +5820,6 @@ namespace Google.Apis.DisplayVideo.v3
                             [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_CATEGORY")]
                             TARGETINGTYPECATEGORY = 30,
 
-                            /// <summary>Purchase impressions from specific deals and auction packages.</summary>
-                            [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_INVENTORY_SOURCE")]
-                            TARGETINGTYPEINVENTORYSOURCE = 31,
-
                             /// <summary>Target ads to a specific language (for example, English or Japanese).</summary>
                             [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_LANGUAGE")]
                             TARGETINGTYPELANGUAGE = 32,
@@ -6264,10 +6245,6 @@ namespace Google.Apis.DisplayVideo.v3
                             /// </summary>
                             [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_CATEGORY")]
                             TARGETINGTYPECATEGORY = 30,
-
-                            /// <summary>Purchase impressions from specific deals and auction packages.</summary>
-                            [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_INVENTORY_SOURCE")]
-                            TARGETINGTYPEINVENTORYSOURCE = 31,
 
                             /// <summary>Target ads to a specific language (for example, English or Japanese).</summary>
                             [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_LANGUAGE")]
@@ -6699,10 +6676,6 @@ namespace Google.Apis.DisplayVideo.v3
                             [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_CATEGORY")]
                             TARGETINGTYPECATEGORY = 30,
 
-                            /// <summary>Purchase impressions from specific deals and auction packages.</summary>
-                            [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_INVENTORY_SOURCE")]
-                            TARGETINGTYPEINVENTORYSOURCE = 31,
-
                             /// <summary>Target ads to a specific language (for example, English or Japanese).</summary>
                             [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_LANGUAGE")]
                             TARGETINGTYPELANGUAGE = 32,
@@ -7130,10 +7103,6 @@ namespace Google.Apis.DisplayVideo.v3
                             /// </summary>
                             [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_CATEGORY")]
                             TARGETINGTYPECATEGORY = 30,
-
-                            /// <summary>Purchase impressions from specific deals and auction packages.</summary>
-                            [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_INVENTORY_SOURCE")]
-                            TARGETINGTYPEINVENTORYSOURCE = 31,
 
                             /// <summary>Target ads to a specific language (for example, English or Japanese).</summary>
                             [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_LANGUAGE")]
@@ -9909,10 +9878,6 @@ namespace Google.Apis.DisplayVideo.v3
                         [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_CATEGORY")]
                         TARGETINGTYPECATEGORY = 30,
 
-                        /// <summary>Purchase impressions from specific deals and auction packages.</summary>
-                        [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_INVENTORY_SOURCE")]
-                        TARGETINGTYPEINVENTORYSOURCE = 31,
-
                         /// <summary>Target ads to a specific language (for example, English or Japanese).</summary>
                         [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_LANGUAGE")]
                         TARGETINGTYPELANGUAGE = 32,
@@ -10247,10 +10212,6 @@ namespace Google.Apis.DisplayVideo.v3
                         /// </summary>
                         [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_CATEGORY")]
                         TARGETINGTYPECATEGORY = 30,
-
-                        /// <summary>Purchase impressions from specific deals and auction packages.</summary>
-                        [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_INVENTORY_SOURCE")]
-                        TARGETINGTYPEINVENTORYSOURCE = 31,
 
                         /// <summary>Target ads to a specific language (for example, English or Japanese).</summary>
                         [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_LANGUAGE")]
@@ -10600,10 +10561,6 @@ namespace Google.Apis.DisplayVideo.v3
                         [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_CATEGORY")]
                         TARGETINGTYPECATEGORY = 30,
 
-                        /// <summary>Purchase impressions from specific deals and auction packages.</summary>
-                        [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_INVENTORY_SOURCE")]
-                        TARGETINGTYPEINVENTORYSOURCE = 31,
-
                         /// <summary>Target ads to a specific language (for example, English or Japanese).</summary>
                         [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_LANGUAGE")]
                         TARGETINGTYPELANGUAGE = 32,
@@ -10949,10 +10906,6 @@ namespace Google.Apis.DisplayVideo.v3
                         /// </summary>
                         [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_CATEGORY")]
                         TARGETINGTYPECATEGORY = 30,
-
-                        /// <summary>Purchase impressions from specific deals and auction packages.</summary>
-                        [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_INVENTORY_SOURCE")]
-                        TARGETINGTYPEINVENTORYSOURCE = 31,
 
                         /// <summary>Target ads to a specific language (for example, English or Japanese).</summary>
                         [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_LANGUAGE")]
@@ -16584,10 +16537,6 @@ namespace Google.Apis.DisplayVideo.v3
                         [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_CATEGORY")]
                         TARGETINGTYPECATEGORY = 30,
 
-                        /// <summary>Purchase impressions from specific deals and auction packages.</summary>
-                        [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_INVENTORY_SOURCE")]
-                        TARGETINGTYPEINVENTORYSOURCE = 31,
-
                         /// <summary>Target ads to a specific language (for example, English or Japanese).</summary>
                         [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_LANGUAGE")]
                         TARGETINGTYPELANGUAGE = 32,
@@ -16919,10 +16868,6 @@ namespace Google.Apis.DisplayVideo.v3
                         /// </summary>
                         [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_CATEGORY")]
                         TARGETINGTYPECATEGORY = 30,
-
-                        /// <summary>Purchase impressions from specific deals and auction packages.</summary>
-                        [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_INVENTORY_SOURCE")]
-                        TARGETINGTYPEINVENTORYSOURCE = 31,
 
                         /// <summary>Target ads to a specific language (for example, English or Japanese).</summary>
                         [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_LANGUAGE")]
@@ -17263,10 +17208,6 @@ namespace Google.Apis.DisplayVideo.v3
                         [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_CATEGORY")]
                         TARGETINGTYPECATEGORY = 30,
 
-                        /// <summary>Purchase impressions from specific deals and auction packages.</summary>
-                        [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_INVENTORY_SOURCE")]
-                        TARGETINGTYPEINVENTORYSOURCE = 31,
-
                         /// <summary>Target ads to a specific language (for example, English or Japanese).</summary>
                         [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_LANGUAGE")]
                         TARGETINGTYPELANGUAGE = 32,
@@ -17603,10 +17544,6 @@ namespace Google.Apis.DisplayVideo.v3
                         /// </summary>
                         [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_CATEGORY")]
                         TARGETINGTYPECATEGORY = 30,
-
-                        /// <summary>Purchase impressions from specific deals and auction packages.</summary>
-                        [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_INVENTORY_SOURCE")]
-                        TARGETINGTYPEINVENTORYSOURCE = 31,
 
                         /// <summary>Target ads to a specific language (for example, English or Japanese).</summary>
                         [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_LANGUAGE")]
@@ -18397,10 +18334,6 @@ namespace Google.Apis.DisplayVideo.v3
                     [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_CATEGORY")]
                     TARGETINGTYPECATEGORY = 30,
 
-                    /// <summary>Purchase impressions from specific deals and auction packages.</summary>
-                    [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_INVENTORY_SOURCE")]
-                    TARGETINGTYPEINVENTORYSOURCE = 31,
-
                     /// <summary>Target ads to a specific language (for example, English or Japanese).</summary>
                     [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_LANGUAGE")]
                     TARGETINGTYPELANGUAGE = 32,
@@ -18752,10 +18685,6 @@ namespace Google.Apis.DisplayVideo.v3
                     /// </summary>
                     [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_CATEGORY")]
                     TARGETINGTYPECATEGORY = 30,
-
-                    /// <summary>Purchase impressions from specific deals and auction packages.</summary>
-                    [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_INVENTORY_SOURCE")]
-                    TARGETINGTYPEINVENTORYSOURCE = 31,
 
                     /// <summary>Target ads to a specific language (for example, English or Japanese).</summary>
                     [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_LANGUAGE")]
@@ -19140,10 +19069,6 @@ namespace Google.Apis.DisplayVideo.v3
                     /// </summary>
                     [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_CATEGORY")]
                     TARGETINGTYPECATEGORY = 30,
-
-                    /// <summary>Purchase impressions from specific deals and auction packages.</summary>
-                    [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_INVENTORY_SOURCE")]
-                    TARGETINGTYPEINVENTORYSOURCE = 31,
 
                     /// <summary>Target ads to a specific language (for example, English or Japanese).</summary>
                     [Google.Apis.Util.StringValueAttribute("TARGETING_TYPE_LANGUAGE")]
@@ -19847,7 +19772,7 @@ namespace Google.Apis.DisplayVideo.v3.Data
         public virtual AudioAd AudioAd { get; set; }
 
         /// <summary>
-        /// Output only. Details of a [non-skippable short video ad](//support.google.com/displayvideo/answer/6274216),
+        /// Optional. Details of a [non-skippable short video ad](//support.google.com/displayvideo/answer/6274216),
         /// equal to or less than 6 seconds, used for reach.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("bumperAd")]
@@ -19861,28 +19786,28 @@ namespace Google.Apis.DisplayVideo.v3.Data
         public virtual DcmTrackingInfo DcmTrackingInfo { get; set; }
 
         /// <summary>
-        /// Details of a [Demand Gen carousel
+        /// Optional. Details of a [Demand Gen carousel
         /// ad](//support.google.com/displayvideo/answer/15598924?&amp;amp;sjid=11207068802760924844-NC#CarouselAd).
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("demandGenCarouselAd")]
         public virtual DemandGenCarouselAd DemandGenCarouselAd { get; set; }
 
         /// <summary>
-        /// Details of a [Demand Gen image
+        /// Optional. Details of a [Demand Gen image
         /// ad](//support.google.com/displayvideo/answer/15598924?&amp;amp;sjid=11207068802760924844-NC#ImageAd).
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("demandGenImageAd")]
         public virtual DemandGenImageAd DemandGenImageAd { get; set; }
 
         /// <summary>
-        /// Details of a [Demand Gen product
+        /// Optional. Details of a [Demand Gen product
         /// ad](//support.google.com/displayvideo/answer/15598924?&amp;amp;sjid=11207068802760924844-NC#Product-onlyAd).
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("demandGenProductAd")]
         public virtual DemandGenProductAd DemandGenProductAd { get; set; }
 
         /// <summary>
-        /// Details of a [Demand Gen video
+        /// Optional. Details of a [Demand Gen video
         /// ad](//support.google.com/displayvideo/answer/15598924?&amp;amp;sjid=11207068802760924844-NC#VideoAd).
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("demandGenVideoAd")]
@@ -19903,7 +19828,7 @@ namespace Google.Apis.DisplayVideo.v3.Data
         public virtual string EntityStatus { get; set; }
 
         /// <summary>
-        /// Output only. Details of an [in-stream ad skippable after 5
+        /// Optional. Details of an [in-stream ad skippable after 5
         /// seconds](//support.google.com/displayvideo/answer/6274216), used for brand awareness or reach marketing
         /// objectives.
         /// </summary>
@@ -19922,7 +19847,7 @@ namespace Google.Apis.DisplayVideo.v3.Data
         public virtual string Name { get; set; }
 
         /// <summary>
-        /// Output only. Details of a [non-skippable short in-stream video
+        /// Optional. Details of a [non-skippable short in-stream video
         /// ad](//support.google.com/displayvideo/answer/6274216), between 6 and 15 seconds, used for reach marketing
         /// objectives.
         /// </summary>
@@ -19937,7 +19862,7 @@ namespace Google.Apis.DisplayVideo.v3.Data
         public virtual VideoDiscoveryAd VideoDiscoverAd { get; set; }
 
         /// <summary>
-        /// Output only. Details of an [ad used in a video action
+        /// Optional. Details of an [ad used in a video action
         /// campaign](//support.google.com/google-ads/answer/10147229) to drive actions to the business, service or
         /// product.
         /// </summary>
@@ -21480,7 +21405,7 @@ namespace Google.Apis.DisplayVideo.v3.Data
 
         /// <summary>
         /// Inventory source details. This field will be populated when the targeting_type is
-        /// `TARGETING_TYPE_INVENTORY_SOURCE`.
+        /// `TARGETING_TYPE_INVENTORY_SOURCE` or `TARGETING_TYPE_INVENTORY_SOURCE_DEAL`.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("inventorySourceDetails")]
         public virtual InventorySourceAssignedTargetingOptionDetails InventorySourceDetails { get; set; }
@@ -22531,7 +22456,7 @@ namespace Google.Apis.DisplayVideo.v3.Data
     /// <summary>Details for a bumper ad.</summary>
     public class BumperAd : Google.Apis.Requests.IDirectResponseSchema
     {
-        /// <summary>Common ad attributes.</summary>
+        /// <summary>Required. Common ad attributes.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("commonInStreamAttribute")]
         public virtual CommonInStreamAttribute CommonInStreamAttribute { get; set; }
 
@@ -23121,31 +23046,31 @@ namespace Google.Apis.DisplayVideo.v3.Data
     /// <summary>Common attributes for in-stream, non-skippable and bumper ads.</summary>
     public class CommonInStreamAttribute : Google.Apis.Requests.IDirectResponseSchema
     {
-        /// <summary>The text on the call-to-action button.</summary>
+        /// <summary>Optional. The text on the call-to-action button.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("actionButtonLabel")]
         public virtual string ActionButtonLabel { get; set; }
 
-        /// <summary>The headline of the call-to-action banner.</summary>
+        /// <summary>Optional. The headline of the call-to-action banner.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("actionHeadline")]
         public virtual string ActionHeadline { get; set; }
 
-        /// <summary>The image which shows next to the video ad.</summary>
+        /// <summary>Optional. The image which shows next to the video ad.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("companionBanner")]
         public virtual ImageAsset CompanionBanner { get; set; }
 
-        /// <summary>The webpage address that appears with the ad.</summary>
+        /// <summary>Required. The webpage address that appears with the ad.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("displayUrl")]
         public virtual string DisplayUrl { get; set; }
 
-        /// <summary>The URL address of the webpage that people reach after they click the ad.</summary>
+        /// <summary>Required. The URL address of the webpage that people reach after they click the ad.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("finalUrl")]
         public virtual string FinalUrl { get; set; }
 
-        /// <summary>The URL address loaded in the background for tracking purposes.</summary>
+        /// <summary>Output only. The URL address loaded in the background for tracking purposes.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("trackingUrl")]
         public virtual string TrackingUrl { get; set; }
 
-        /// <summary>The YouTube video of the ad.</summary>
+        /// <summary>Required. Immutable. The YouTube video of the ad.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("video")]
         public virtual YoutubeVideoDetails Video { get; set; }
 
@@ -24790,7 +24715,7 @@ namespace Google.Apis.DisplayVideo.v3.Data
         public virtual string DeviceType { get; set; }
 
         /// <summary>
-        /// Output only. Bid multiplier allows you to show your ads more or less frequently based on the device type. It
+        /// Optional. Bid multiplier allows you to show your ads more or less frequently based on the device type. It
         /// will apply a multiplier on the original bid price. When this field is 0, it indicates this field is not
         /// applicable instead of multiplying 0 on the original bid price. For example, if the bid price without
         /// multiplier is $10.0 and the multiplier is 1.5 for Tablet, the resulting bid price for Tablet will be $15.0.
@@ -24824,9 +24749,8 @@ namespace Google.Apis.DisplayVideo.v3.Data
     public class DigitalContentLabelAssignedTargetingOptionDetails : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>
-        /// Required. The display name of the digital content label rating tier to be EXCLUDED. **Starting on *October
-        /// 1, 2026*, this field will only accept the value `CONTENT_RATING_TIER_UNRATED`. All other values will be
-        /// deprecated and no longer be accepted.**
+        /// Required. The display name of the digital content label rating tier to be EXCLUDED. This field only accepts
+        /// the value `CONTENT_RATING_TIER_UNRATED`.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("excludedContentRatingTier")]
         public virtual string ExcludedContentRatingTier { get; set; }
@@ -25852,11 +25776,11 @@ namespace Google.Apis.DisplayVideo.v3.Data
     /// <summary>Details for an in-stream ad.</summary>
     public class InStreamAd : Google.Apis.Requests.IDirectResponseSchema
     {
-        /// <summary>Common ad attributes.</summary>
+        /// <summary>Required. Common ad attributes.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("commonInStreamAttribute")]
         public virtual CommonInStreamAttribute CommonInStreamAttribute { get; set; }
 
-        /// <summary>The custom parameters and accompanying values to add to the tracking URL.</summary>
+        /// <summary>Optional. The custom parameters and accompanying values to add to the tracking URL.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("customParameters")]
         public virtual System.Collections.Generic.IDictionary<string, string> CustomParameters { get; set; }
 
@@ -26160,7 +26084,8 @@ namespace Google.Apis.DisplayVideo.v3.Data
 
     /// <summary>
     /// Targeting details for inventory source. This will be populated in the details field of an
-    /// AssignedTargetingOption when targeting_type is `TARGETING_TYPE_INVENTORY_SOURCE`.
+    /// AssignedTargetingOption when targeting_type is one of `TARGETING_TYPE_INVENTORY_SOURCE` or
+    /// `TARGETING_TYPE_INVENTORY_SOURCE_DEAL`.
     /// </summary>
     public class InventorySourceAssignedTargetingOptionDetails : Google.Apis.Requests.IDirectResponseSchema
     {
@@ -26650,7 +26575,7 @@ namespace Google.Apis.DisplayVideo.v3.Data
         [Newtonsoft.Json.JsonPropertyAttribute("warningMessages")]
         public virtual System.Collections.Generic.IList<string> WarningMessages { get; set; }
 
-        /// <summary>Output only. Settings specific to YouTube and Partners line items.</summary>
+        /// <summary>Optional. Settings specific to YouTube and Partners line items.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("youtubeAndPartnersSettings")]
         public virtual YoutubeAndPartnersSettings YoutubeAndPartnersSettings { get; set; }
 
@@ -27565,11 +27490,11 @@ namespace Google.Apis.DisplayVideo.v3.Data
     /// <summary>Details for a non-skippable ad.</summary>
     public class NonSkippableAd : Google.Apis.Requests.IDirectResponseSchema
     {
-        /// <summary>Common ad attributes.</summary>
+        /// <summary>Required. Common ad attributes.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("commonInStreamAttribute")]
         public virtual CommonInStreamAttribute CommonInStreamAttribute { get; set; }
 
-        /// <summary>The custom parameters and accompanying values to add to the tracking URL.</summary>
+        /// <summary>Optional. The custom parameters and accompanying values to add to the tracking URL.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("customParameters")]
         public virtual System.Collections.Generic.IDictionary<string, string> CustomParameters { get; set; }
 
@@ -28733,9 +28658,9 @@ namespace Google.Apis.DisplayVideo.v3.Data
     public class SensitiveCategoryAssignedTargetingOptionDetails : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>
-        /// Required. An enum for the DV360 Sensitive category content classified to be EXCLUDED. **Starting on *October
-        /// 1, 2026*, this field will only accept `SENSITIVE_CATEGORY_EMBEDDED_VIDEO` or
-        /// `SENSITIVE_CATEGORY_LIVE_STREAMING_VIDEO`. All other values will be deprecated and no longer be accepted.**
+        /// Required. An enum for the Display &amp;amp; Video 360 Sensitive category content classified to be EXCLUDED.
+        /// This field only accepts the following values: * `SENSITIVE_CATEGORY_EMBEDDED_VIDEO` *
+        /// `SENSITIVE_CATEGORY_LIVE_STREAMING_VIDEO`
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("excludedSensitiveCategory")]
         public virtual string ExcludedSensitiveCategory { get; set; }
@@ -28750,7 +28675,9 @@ namespace Google.Apis.DisplayVideo.v3.Data
     /// </summary>
     public class SensitiveCategoryTargetingOptionDetails : Google.Apis.Requests.IDirectResponseSchema
     {
-        /// <summary>Output only. An enum for the DV360 Sensitive category content classifier.</summary>
+        /// <summary>
+        /// Output only. An enum for the Display &amp;amp; Video 360 Sensitive category content classifier.
+        /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("sensitiveCategory")]
         public virtual string SensitiveCategory { get; set; }
 
@@ -28863,14 +28790,14 @@ namespace Google.Apis.DisplayVideo.v3.Data
 
         /// <summary>
         /// The unit of time in which the target frequency will be applied. The following time unit is applicable: *
-        /// `TIME_UNIT_WEEKS`
+        /// `TIME_UNIT_WEEKS` * `TIME_UNIT_MONTHS`
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("timeUnit")]
         public virtual string TimeUnit { get; set; }
 
         /// <summary>
         /// The number of time_unit the target frequency will last. The following restrictions apply based on the value
-        /// of time_unit: * `TIME_UNIT_WEEKS` - must be 1
+        /// of time_unit: * `TIME_UNIT_WEEKS` - must be 1 * `TIME_UNIT_MONTHS` - must be 1
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("timeUnitCount")]
         public virtual System.Nullable<int> TimeUnitCount { get; set; }
@@ -28885,20 +28812,6 @@ namespace Google.Apis.DisplayVideo.v3.Data
     /// </summary>
     public class TargetingExpansionConfig : Google.Apis.Requests.IDirectResponseSchema
     {
-        /// <summary>
-        /// Output only. Magnitude of expansion for eligible first-party user lists under this ad group. This field only
-        /// applies to YouTube and Partners line item and ad group resources.
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("audienceExpansionLevel")]
-        public virtual string AudienceExpansionLevel { get; set; }
-
-        /// <summary>
-        /// Output only. Whether to exclude seed list for audience expansion. This field only applies to YouTube and
-        /// Partners line item and ad group resources.
-        /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("audienceExpansionSeedListExcluded")]
-        public virtual System.Nullable<bool> AudienceExpansionSeedListExcluded { get; set; }
-
         /// <summary>
         /// Required. Whether to enable Optimized Targeting for the line item. Optimized targeting is not compatible
         /// with all bid strategies. Attempting to set this field to `true` for a line item using the BiddingStrategy
@@ -29517,27 +29430,27 @@ namespace Google.Apis.DisplayVideo.v3.Data
     /// <summary>Details for a video performance ad.</summary>
     public class VideoPerformanceAd : Google.Apis.Requests.IDirectResponseSchema
     {
-        /// <summary>The list of text assets shown on the call-to-action button.</summary>
+        /// <summary>Optional. The list of text assets shown on the call-to-action button.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("actionButtonLabels")]
         public virtual System.Collections.Generic.IList<string> ActionButtonLabels { get; set; }
 
-        /// <summary>The list of companion banners used by this ad.</summary>
+        /// <summary>Optional. The list of companion banners used by this ad.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("companionBanners")]
         public virtual System.Collections.Generic.IList<ImageAsset> CompanionBanners { get; set; }
 
-        /// <summary>The custom parameters and accompanying values to add to the tracking URL.</summary>
+        /// <summary>Optional. The custom parameters and accompanying values to add to the tracking URL.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("customParameters")]
         public virtual System.Collections.Generic.IDictionary<string, string> CustomParameters { get; set; }
 
-        /// <summary>The list of descriptions shown on the call-to-action banner.</summary>
+        /// <summary>Optional. The list of descriptions shown on the call-to-action banner.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("descriptions")]
         public virtual System.Collections.Generic.IList<string> Descriptions { get; set; }
 
-        /// <summary>The first piece after the domain in the display URL.</summary>
+        /// <summary>Optional. The first piece after the domain in the display URL.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("displayUrlBreadcrumb1")]
         public virtual string DisplayUrlBreadcrumb1 { get; set; }
 
-        /// <summary>The second piece after the domain in the display URL.</summary>
+        /// <summary>Optional. The second piece after the domain in the display URL.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("displayUrlBreadcrumb2")]
         public virtual string DisplayUrlBreadcrumb2 { get; set; }
 
@@ -29545,23 +29458,23 @@ namespace Google.Apis.DisplayVideo.v3.Data
         [Newtonsoft.Json.JsonPropertyAttribute("domain")]
         public virtual string Domain { get; set; }
 
-        /// <summary>The URL address of the webpage that people reach after they click the ad.</summary>
+        /// <summary>Required. The URL address of the webpage that people reach after they click the ad.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("finalUrl")]
         public virtual string FinalUrl { get; set; }
 
-        /// <summary>The list of headlines shown on the call-to-action banner.</summary>
+        /// <summary>Optional. The list of headlines shown on the call-to-action banner.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("headlines")]
         public virtual System.Collections.Generic.IList<string> Headlines { get; set; }
 
-        /// <summary>The list of long headlines shown on the call-to-action banner.</summary>
+        /// <summary>Optional. The list of long headlines shown on the call-to-action banner.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("longHeadlines")]
         public virtual System.Collections.Generic.IList<string> LongHeadlines { get; set; }
 
-        /// <summary>The URL address loaded in the background for tracking purposes.</summary>
+        /// <summary>Output only. The URL address loaded in the background for tracking purposes.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("trackingUrl")]
         public virtual string TrackingUrl { get; set; }
 
-        /// <summary>The list of YouTube video assets used by this ad.</summary>
+        /// <summary>Required. The list of YouTube video assets used by this ad.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("videos")]
         public virtual System.Collections.Generic.IList<YoutubeVideoDetails> Videos { get; set; }
 
@@ -29819,7 +29732,7 @@ namespace Google.Apis.DisplayVideo.v3.Data
         [Newtonsoft.Json.JsonPropertyAttribute("id")]
         public virtual string Id { get; set; }
 
-        /// <summary>The reason why the video data is not available.</summary>
+        /// <summary>Output only. The reason why the video data is not available.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("unavailableReason")]
         public virtual string UnavailableReason { get; set; }
 

@@ -4659,6 +4659,10 @@ namespace Google.Apis.ContainerAnalysis.v1alpha1.Data
         [Newtonsoft.Json.JsonPropertyAttribute("requestedVerifyOption")]
         public virtual string RequestedVerifyOption { get; set; }
 
+        /// <summary>Output only. Worker release resolved from the release channel.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("resolvedWorkerRelease")]
+        public virtual string ResolvedWorkerRelease { get; set; }
+
         /// <summary>
         /// A list of global environment variables, which are encrypted using a Cloud Key Management Service crypto key.
         /// These values must be specified in the build's `Secret`. These variables will be available to all build steps
@@ -4692,6 +4696,13 @@ namespace Google.Apis.ContainerAnalysis.v1alpha1.Data
         [Newtonsoft.Json.JsonPropertyAttribute("workerPool")]
         public virtual string WorkerPool { get; set; }
 
+        /// <summary>
+        /// Optional. Option to specify which release or release channel (rapid|regular|stable) to use to run this
+        /// build.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("workerRelease")]
+        public virtual string WorkerRelease { get; set; }
+
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
     }
@@ -4708,6 +4719,56 @@ namespace Google.Apis.ContainerAnalysis.v1alpha1.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("name")]
         public virtual string Name { get; set; }
+
+        /// <summary>Output only. OUTPUT_ONLY. Worker release resolved from the release channel.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("resolvedWorkerRelease")]
+        public virtual string ResolvedWorkerRelease { get; set; }
+
+        /// <summary>
+        /// Output only. OUTPUT_ONLY. The release or release channel used to run the Build. This is set to the same
+        /// value as `PrivatePoolV1Config.WorkerConfig.worker_release` for the UI to easily access.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("workerRelease")]
+        public virtual string WorkerRelease { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Aggregated/summary metrics over the entire build lifecycle.</summary>
+    public class ContaineranalysisGoogleDevtoolsCloudbuildV1BuildResourceUsage : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>
+        /// Output only. The average CPU utilization ratio across all vCPUs over the duration of the build, expressed as
+        /// a fraction in the range [0.0, 1.0].
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("averageCpuUtilization")]
+        public virtual System.Nullable<float> AverageCpuUtilization { get; set; }
+
+        /// <summary>
+        /// Output only. The average memory utilization ratio over the duration of the build, expressed as a fraction in
+        /// the range [0.0, 1.0].
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("averageMemoryUtilization")]
+        public virtual System.Nullable<float> AverageMemoryUtilization { get; set; }
+
+        /// <summary>
+        /// Output only. The highest CPU utilization ratio across all vCPUs observed over the duration of the build,
+        /// expressed as a fraction in the range [0.0, 1.0].
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("peakCpuUtilization")]
+        public virtual System.Nullable<float> PeakCpuUtilization { get; set; }
+
+        /// <summary>
+        /// Output only. The highest memory utilization ratio observed over the duration of the build, expressed as a
+        /// fraction in the range [0.0, 1.0].
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("peakMemoryUtilization")]
+        public virtual System.Nullable<float> PeakMemoryUtilization { get; set; }
+
+        /// <summary>Output only. Total CPU execution time consumed across all cores during build execution.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("totalCpuDuration")]
+        public virtual object TotalCpuDuration { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -5280,6 +5341,10 @@ namespace Google.Apis.ContainerAnalysis.v1alpha1.Data
         /// <summary>Python artifacts uploaded to Artifact Registry at the end of the build.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("pythonPackages")]
         public virtual System.Collections.Generic.IList<ContaineranalysisGoogleDevtoolsCloudbuildV1UploadedPythonPackage> PythonPackages { get; set; }
+
+        /// <summary>Output only. Aggregated metrics for the build.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("resourceUsage")]
+        public virtual ContaineranalysisGoogleDevtoolsCloudbuildV1BuildResourceUsage ResourceUsage { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }

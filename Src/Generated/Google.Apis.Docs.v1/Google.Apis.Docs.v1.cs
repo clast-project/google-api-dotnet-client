@@ -438,6 +438,55 @@ namespace Google.Apis.Docs.v1
             public virtual string DocumentId { get; private set; }
 
             /// <summary>
+            /// The comments view mode to apply to the document. This allows viewing the document with comments omitted
+            /// or included. If one is not specified, COMMENTS_VIEW_MODE_OMITTED is used. If you set comments_view_mode
+            /// to any value, you must also set include_tabs_content to `true` or use a field mask that references the
+            /// Document.tabs field (or any subfield). If you set comments_view_mode to COMMENTS_VIEW_MODE_INCLUDED, you
+            /// must also explicitly set suggestions_view_mode to SUGGESTIONS_INLINE. If you set comments_view_mode to
+            /// COMMENTS_VIEW_MODE_INCLUDED or COMMENTS_VIEW_MODE_DEFAULT_FOR_CURRENT_ACCESS, you may not set
+            /// suggestions_view_mode to PREVIEW_WITHOUT_SUGGESTIONS or PREVIEW_SUGGESTIONS_ACCEPTED.
+            /// </summary>
+            [Google.Apis.Util.RequestParameterAttribute("commentsViewMode", Google.Apis.Util.RequestParameterType.Query)]
+            public virtual System.Nullable<CommentsViewModeEnum> CommentsViewMode { get; set; }
+
+            /// <summary>
+            /// The comments view mode to apply to the document. This allows viewing the document with comments omitted
+            /// or included. If one is not specified, COMMENTS_VIEW_MODE_OMITTED is used. If you set comments_view_mode
+            /// to any value, you must also set include_tabs_content to `true` or use a field mask that references the
+            /// Document.tabs field (or any subfield). If you set comments_view_mode to COMMENTS_VIEW_MODE_INCLUDED, you
+            /// must also explicitly set suggestions_view_mode to SUGGESTIONS_INLINE. If you set comments_view_mode to
+            /// COMMENTS_VIEW_MODE_INCLUDED or COMMENTS_VIEW_MODE_DEFAULT_FOR_CURRENT_ACCESS, you may not set
+            /// suggestions_view_mode to PREVIEW_WITHOUT_SUGGESTIONS or PREVIEW_SUGGESTIONS_ACCEPTED.
+            /// </summary>
+            public enum CommentsViewModeEnum
+            {
+                /// <summary>The CommentsViewMode is unspecified. COMMENTS_VIEW_MODE_OMITTED is applied.</summary>
+                [Google.Apis.Util.StringValueAttribute("COMMENTS_VIEW_MODE_UNSPECIFIED")]
+                COMMENTSVIEWMODEUNSPECIFIED = 0,
+
+                /// <summary>
+                /// The CommentsViewMode applied to the returned document depends on the user's current access level. If
+                /// the user only has view access, COMMENTS_VIEW_MODE_OMITTED is applied. Otherwise,
+                /// COMMENTS_VIEW_MODE_INCLUDED is applied.
+                /// </summary>
+                [Google.Apis.Util.StringValueAttribute("COMMENTS_VIEW_MODE_DEFAULT_FOR_CURRENT_ACCESS")]
+                COMMENTSVIEWMODEDEFAULTFORCURRENTACCESS = 1,
+
+                /// <summary>The returned document has comments omitted.</summary>
+                [Google.Apis.Util.StringValueAttribute("COMMENTS_VIEW_MODE_OMITTED")]
+                COMMENTSVIEWMODEOMITTED = 2,
+
+                /// <summary>
+                /// The returned document has comments included. Requests to retrieve a document using this mode will
+                /// return a 403 error if the user does not have permission to view comments. When set,
+                /// suggestions_view_mode must also be set to SUGGESTIONS_INLINE. Returns a 400 bad request error
+                /// otherwise.
+                /// </summary>
+                [Google.Apis.Util.StringValueAttribute("COMMENTS_VIEW_MODE_INCLUDED")]
+                COMMENTSVIEWMODEINCLUDED = 3,
+            }
+
+            /// <summary>
             /// Whether to populate the `Document.tabs` field instead of the text content fields like `body` and
             /// `documentStyle` on `Document`. - When `true`: Document content populates in the `Document.tabs` field
             /// instead of the text content fields in `Document`. - When `false`: The content of the document's first
@@ -515,6 +564,14 @@ namespace Google.Apis.Docs.v1
                     DefaultValue = null,
                     Pattern = null,
                 });
+                RequestParameters.Add("commentsViewMode", new Google.Apis.Discovery.Parameter
+                {
+                    Name = "commentsViewMode",
+                    IsRequired = false,
+                    ParameterType = "query",
+                    DefaultValue = null,
+                    Pattern = null,
+                });
                 RequestParameters.Add("includeTabsContent", new Google.Apis.Discovery.Parameter
                 {
                     Name = "includeTabsContent",
@@ -537,6 +594,50 @@ namespace Google.Apis.Docs.v1
 }
 namespace Google.Apis.Docs.v1.Data
 {
+    /// <summary>
+    /// Accepts a suggestion. Returns a 403 forbidden error if the requesting user does not have edit access to the
+    /// document.
+    /// </summary>
+    public class AcceptSuggestionRequest : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The ID of the suggestion.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("suggestionId")]
+        public virtual string SuggestionId { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Inserts a reply Post into a CommentThread or SuggestionThread.</summary>
+    public class AddCommentReplyRequest : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The ID of the CommentThread to add the reply to.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("commentId")]
+        public virtual string CommentId { get; set; }
+
+        /// <summary>The Post representing the reply.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("post")]
+        public virtual Post Post { get; set; }
+
+        /// <summary>The ID of the SuggestionThread to add the reply to.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("suggestionId")]
+        public virtual string SuggestionId { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Response message for adding a reply.</summary>
+    public class AddCommentReplyResponse : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The newly-inserted reply Post.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("post")]
+        public virtual Post Post { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
     /// <summary>
     /// Adds a document tab. When a tab is added at a given index, all subsequent tabs' indexes are incremented.
     /// </summary>
@@ -639,6 +740,10 @@ namespace Google.Apis.Docs.v1.Data
     /// <summary>Response message from a BatchUpdateDocument request.</summary>
     public class BatchUpdateDocumentResponse : Google.Apis.Requests.IDirectResponseSchema
     {
+        /// <summary>Whether comment updates were applied in the batch request.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("commentUpdateState")]
+        public virtual string CommentUpdateState { get; set; }
+
         /// <summary>The ID of the document to which the updates were applied to.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("documentId")]
         public virtual string DocumentId { get; set; }
@@ -648,6 +753,10 @@ namespace Google.Apis.Docs.v1.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("replies")]
         public virtual System.Collections.Generic.IList<Response> Replies { get; set; }
+
+        /// <summary>The suggestions which were affected by each update. This maps 1:1 with the updates.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("suggestionResponses")]
+        public virtual System.Collections.Generic.IList<SuggestionResponse> SuggestionResponses { get; set; }
 
         /// <summary>The updated write control after applying the request.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("writeControl")]
@@ -769,6 +878,89 @@ namespace Google.Apis.Docs.v1.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("textStyle")]
         public virtual TextStyle TextStyle { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>
+    /// One or more locations in the document that are tied to CommentThreads with the same anchorId. Note: Multiple
+    /// anchors may refer to the same location.
+    /// </summary>
+    public class CommentAnchor : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The ID of the comment anchor.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("anchorId")]
+        public virtual string AnchorId { get; set; }
+
+        /// <summary>A collection of Ranges in the document which are tied to this anchor.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("ranges")]
+        public virtual System.Collections.Generic.IList<Range> Ranges { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Represents a single comment thread.</summary>
+    public class CommentThread : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>
+        /// The ID of the CommentAnchor in the document that this thread is tied to. Multiple comment threads may be
+        /// anchored to the same CommentAnchor.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("anchorId")]
+        public virtual string AnchorId { get; set; }
+
+        /// <summary>The unique ID of the comment thread.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("commentId")]
+        public virtual string CommentId { get; set; }
+
+        /// <summary>The first post in the thread.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("headPost")]
+        public virtual Post HeadPost { get; set; }
+
+        /// <summary>The quoted text from the document when the comment was created, formatted as plain-text.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("plainTextQuote")]
+        public virtual string PlainTextQuote { get; set; }
+
+        /// <summary>Replies to the head post.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("replies")]
+        public virtual System.Collections.Generic.IList<Post> Replies { get; set; }
+
+        /// <summary>Whether the thread is open or resolved.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("status")]
+        public virtual string Status { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Creates a new DropdownDefinition in the document.</summary>
+    public class CreateDropdownDefinitionRequest : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Required. The DropdownDefinition to create.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("dropdownDefinition")]
+        public virtual DropdownDefinition DropdownDefinition { get; set; }
+
+        /// <summary>
+        /// The ID of the tab to create the dropdown definition in. When omitted, the request is applied to the first
+        /// tab. In a document containing a single tab: - If provided, must match the singular tab's ID. - If omitted,
+        /// the request applies to the singular tab. In a document containing multiple tabs: - If provided, the request
+        /// applies to the specified tab. - If omitted, the request applies to the first tab in the document.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("tabId")]
+        public virtual string TabId { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Response message for creating a dropdown definition.</summary>
+    public class CreateDropdownDefinitionResponse : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The newly-created DropdownDefinition.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("dropdownDefinition")]
+        public virtual DropdownDefinition DropdownDefinition { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -1169,6 +1361,43 @@ namespace Google.Apis.Docs.v1.Data
         public virtual string ETag { get; set; }
     }
 
+    /// <summary>
+    /// Deletes a reply Post from a CommentThread or SuggestionThread. Returns a 400 bad request error if: - The
+    /// requesting user is not the author of the post. - The reply post contains an action. - The reply post contains an
+    /// assignee.
+    /// </summary>
+    public class DeleteCommentReplyRequest : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The ID of the CommentThread which the post belongs to.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("commentId")]
+        public virtual string CommentId { get; set; }
+
+        /// <summary>The ID of the reply Post being deleted.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("postId")]
+        public virtual string PostId { get; set; }
+
+        /// <summary>The ID of the SuggestionThread which the post belongs to.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("suggestionId")]
+        public virtual string SuggestionId { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>
+    /// Deletes a CommentThread. Returns a 400 bad request error if the requesting user is not the author of the
+    /// headPost.
+    /// </summary>
+    public class DeleteCommentRequest : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The ID of the CommentThread that is being deleted.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("commentId")]
+        public virtual string CommentId { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
     /// <summary>Deletes content from the document.</summary>
     public class DeleteContentRangeRequest : Google.Apis.Requests.IDirectResponseSchema
     {
@@ -1184,6 +1413,29 @@ namespace Google.Apis.Docs.v1.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("range")]
         public virtual Range Range { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>
+    /// Deletes a DropdownDefinition. If the dropdown definition is referenced by any dropdown instances (chips) in the
+    /// document, a 400 bad request error is returned.
+    /// </summary>
+    public class DeleteDropdownDefinitionRequest : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The ID of the DropdownDefinition to delete.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("dropdownDefinitionId")]
+        public virtual string DropdownDefinitionId { get; set; }
+
+        /// <summary>
+        /// The ID of the tab that contains the dropdown definition to delete. When omitted, the request is applied to
+        /// the first tab. In a document containing a single tab: - If provided, must match the singular tab's ID. - If
+        /// omitted, the request applies to the singular tab. In a document containing multiple tabs: - If provided, the
+        /// request applies to the specified tab. - If omitted, the request applies to the first tab in the document.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("tabId")]
+        public virtual string TabId { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -1298,6 +1550,19 @@ namespace Google.Apis.Docs.v1.Data
         public virtual string ETag { get; set; }
     }
 
+    /// <summary>
+    /// Deletes a suggestion. Returns a 403 forbidden error if the requesting user is not the author of the suggestion.
+    /// </summary>
+    public class DeleteSuggestionRequest : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The ID of the suggestion.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("suggestionId")]
+        public virtual string SuggestionId { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
     /// <summary>Deletes a tab. If the tab has child tabs, they are deleted as well.</summary>
     public class DeleteTabRequest : Google.Apis.Requests.IDirectResponseSchema
     {
@@ -1364,6 +1629,17 @@ namespace Google.Apis.Docs.v1.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("body")]
         public virtual Body Body { get; set; }
+
+        /// <summary>
+        /// Output only. The comments associated with the document. Only populated if the commentsViewMode parameter is
+        /// set to require comments (such as `COMMENTS_VIEW_MODE_INCLUDED`).
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("comments")]
+        public virtual System.Collections.Generic.IList<CommentThread> Comments { get; set; }
+
+        /// <summary>Output only. The comments view mode applied to the document.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("commentsViewMode")]
+        public virtual string CommentsViewMode { get; set; }
 
         /// <summary>Output only. The ID of the document.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("documentId")]
@@ -1479,6 +1755,13 @@ namespace Google.Apis.Docs.v1.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("suggestedNamedStylesChanges")]
         public virtual System.Collections.Generic.IDictionary<string, SuggestedNamedStyles> SuggestedNamedStylesChanges { get; set; }
+
+        /// <summary>
+        /// Output only. The suggestions associated with the document. Only populated if the commentsViewMode parameter
+        /// is set to require comments (such as `COMMENTS_VIEW_MODE_INCLUDED`).
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("suggestions")]
+        public virtual System.Collections.Generic.IList<SuggestionThread> Suggestions { get; set; }
 
         /// <summary>
         /// Output only. The suggestions view mode applied to the document. Note: When editing a document, changes must
@@ -1758,9 +2041,20 @@ namespace Google.Apis.Docs.v1.Data
         [Newtonsoft.Json.JsonPropertyAttribute("body")]
         public virtual Body Body { get; set; }
 
+        /// <summary>
+        /// The comment anchors in a document tab, keyed by anchor ID. Only populated if the commentsViewMode parameter
+        /// is set to require comments (such as `COMMENTS_VIEW_MODE_INCLUDED`).
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("commentAnchors")]
+        public virtual System.Collections.Generic.IDictionary<string, CommentAnchor> CommentAnchors { get; set; }
+
         /// <summary>The style of the document tab.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("documentStyle")]
         public virtual DocumentStyle DocumentStyle { get; set; }
+
+        /// <summary>The dropdown definitions in a document tab, keyed by dropdown definition ID.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("dropdownDefinitions")]
+        public virtual System.Collections.Generic.IDictionary<string, DropdownDefinition> DropdownDefinitions { get; set; }
 
         /// <summary>The footers in the document tab, keyed by footer ID.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("footers")]
@@ -1801,6 +2095,180 @@ namespace Google.Apis.Docs.v1.Data
         /// <summary>The suggested changes to the named styles of the document tab, keyed by suggestion ID.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("suggestedNamedStylesChanges")]
         public virtual System.Collections.Generic.IDictionary<string, SuggestedNamedStyles> SuggestedNamedStylesChanges { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>
+    /// A dropdown in the document. The chip is displayed as a dropdown menu that allows users to select an option from
+    /// a configurable list of options.
+    /// </summary>
+    public class Dropdown : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The ID of this dropdown.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("dropdownId")]
+        public virtual string DropdownId { get; set; }
+
+        /// <summary>The properties of this dropdown.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("dropdownProperties")]
+        public virtual DropdownProperties DropdownProperties { get; set; }
+
+        /// <summary>
+        /// IDs for suggestions that remove this dropdown from the document. If empty, then this dropdown isn't
+        /// suggested for deletion.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("suggestedDeletionIds")]
+        public virtual System.Collections.Generic.IList<string> SuggestedDeletionIds { get; set; }
+
+        /// <summary>The suggested properties changes to this dropdown, keyed by suggestion ID.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("suggestedDropdownPropertiesChanges")]
+        public virtual System.Collections.Generic.IDictionary<string, SuggestedDropdownProperties> SuggestedDropdownPropertiesChanges { get; set; }
+
+        /// <summary>
+        /// IDs for suggestions that insert this dropdown into the document. If empty, then this dropdown isn't a
+        /// suggested insertion.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("suggestedInsertionIds")]
+        public virtual System.Collections.Generic.IList<string> SuggestedInsertionIds { get; set; }
+
+        /// <summary>The suggested text style changes to this dropdown, keyed by suggestion ID.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("suggestedTextStyleChanges")]
+        public virtual System.Collections.Generic.IDictionary<string, SuggestedTextStyle> SuggestedTextStyleChanges { get; set; }
+
+        /// <summary>The text style of this dropdown.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("textStyle")]
+        public virtual TextStyle TextStyle { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>A dropdown definition in the document.</summary>
+    public class DropdownDefinition : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>
+        /// The ID of this dropdown definition. If you specify an ID, it must be unique among all IDs in the tab. The ID
+        /// must start with `kix.` and match regex `^kix\.[a-zA-Z0-9_-]{2,14}$` (length 6-18 chars). If you don't
+        /// specify an ID, a unique one is generated.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("dropdownDefinitionId")]
+        public virtual string DropdownDefinitionId { get; set; }
+
+        /// <summary>The properties of this dropdown definition.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("dropdownDefinitionProperties")]
+        public virtual DropdownDefinitionProperties DropdownDefinitionProperties { get; set; }
+
+        /// <summary>ID for suggestion that deletes this dropdown definition.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("suggestedDeletionId")]
+        public virtual string SuggestedDeletionId { get; set; }
+
+        /// <summary>Suggested property changes to this definition, keyed by suggestion ID.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("suggestedDropdownDefinitionPropertiesChanges")]
+        public virtual System.Collections.Generic.IDictionary<string, SuggestedDropdownDefinitionProperties> SuggestedDropdownDefinitionPropertiesChanges { get; set; }
+
+        /// <summary>ID for suggestion that inserts this dropdown definition.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("suggestedInsertionId")]
+        public virtual string SuggestedInsertionId { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Properties of a dropdown definition.</summary>
+    public class DropdownDefinitionProperties : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>
+        /// The list of options defined by this dropdown definition. A dropdown definition must have at least 2 options
+        /// and at most 50 options.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("options")]
+        public virtual System.Collections.Generic.IList<DropdownOption> Options { get; set; }
+
+        /// <summary>The title of the dropdown definition.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("title")]
+        public virtual string Title { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>
+    /// A mask that indicates which of the fields on the base DropdownDefinitionProperties have been changed in this
+    /// suggestion. For any field set to true, there's a new suggested value.
+    /// </summary>
+    public class DropdownDefinitionPropertiesSuggestionState : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Indicates if there was a suggested change to options.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("optionsSuggested")]
+        public virtual System.Nullable<bool> OptionsSuggested { get; set; }
+
+        /// <summary>Indicates if there was a suggested change to title.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("titleSuggested")]
+        public virtual System.Nullable<bool> TitleSuggested { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>An option in a Dropdown.</summary>
+    public class DropdownOption : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The display value of this dropdown option.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("displayValue")]
+        public virtual string DisplayValue { get; set; }
+
+        /// <summary>
+        /// The ID of this dropdown option. If you specify an ID, it must be unique among all options in this dropdown
+        /// definition. The ID must start with `dropdownItem.` and match regex `^dropdownItem\.[a-zA-Z0-9_-]{2,14}$`
+        /// (length 15-27 chars). If you don't specify an ID, a unique one is generated.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("optionId")]
+        public virtual string OptionId { get; set; }
+
+        /// <summary>
+        /// The text style of this dropdown option. Currently, only the `foreground_color` and `background_color`
+        /// properties are supported. If other properties are set, a 400 bad request error is returned.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("textStyle")]
+        public virtual TextStyle TextStyle { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Properties specific to a dropdown.</summary>
+    public class DropdownProperties : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>
+        /// The human-readable display text of the currently selected item. This field is populated by the server based
+        /// on the dropdown definition and the selected option ID. It may differ from `DropdownOption.display_value` if
+        /// the underlying option definition was modified or deleted, or during pending suggested changes.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("displayValue")]
+        public virtual string DisplayValue { get; set; }
+
+        /// <summary>The ID of the DropdownDefinition that defines the options for this dropdown.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("dropdownDefinitionId")]
+        public virtual string DropdownDefinitionId { get; set; }
+
+        /// <summary>The ID of the selected option in this dropdown.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("selectedOptionId")]
+        public virtual string SelectedOptionId { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>
+    /// A mask that indicates which of the fields on the base DropdownProperties have been changed in this suggestion.
+    /// For any field set to true, there's a new suggested value.
+    /// </summary>
+    public class DropdownPropertiesSuggestionState : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Indicates if there was a suggested change to selected_option_id.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("selectedOptionIdSuggested")]
+        public virtual System.Nullable<bool> SelectedOptionIdSuggested { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -2354,6 +2822,43 @@ namespace Google.Apis.Docs.v1.Data
         public virtual string ETag { get; set; }
     }
 
+    /// <summary>Inserts a CommentThread into the document.</summary>
+    public class InsertCommentRequest : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>
+        /// Optional. The email address of the assignee of the comment. Leave empty for a non-assigned comment. May not
+        /// exceed 2048 UTF-8 code units.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("assigneeEmailAddress")]
+        public virtual string AssigneeEmailAddress { get; set; }
+
+        /// <summary>
+        /// The text of the comment, as plain text. This text content will be handled similarly to comments created in
+        /// the Docs editor. It will have similar behaviors for formatting, notifications, etc. This field cannot be
+        /// empty, and must not exceed 2048 UTF-8 code units.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("content")]
+        public virtual string Content { get; set; }
+
+        /// <summary>The Range in the document that is tied to this comment.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("range")]
+        public virtual Range Range { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Response message for inserting a comment.</summary>
+    public class InsertCommentResponse : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The newly-inserted comment thread.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("commentThread")]
+        public virtual CommentThread CommentThread { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
     /// <summary>Inserts a date at the specified location.</summary>
     public class InsertDateRequest : Google.Apis.Requests.IDirectResponseSchema
     {
@@ -2372,6 +2877,44 @@ namespace Google.Apis.Docs.v1.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("location")]
         public virtual Location Location { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Inserts a Dropdown at the specified location.</summary>
+    public class InsertDropdownRequest : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Required. The DropdownDefinition ID.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("dropdownDefinitionId")]
+        public virtual string DropdownDefinitionId { get; set; }
+
+        /// <summary>The EndOfSegmentLocation in the document to insert the dropdown at.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("endOfSegmentLocation")]
+        public virtual EndOfSegmentLocation EndOfSegmentLocation { get; set; }
+
+        /// <summary>The Location in the document to insert the dropdown at.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("location")]
+        public virtual Location Location { get; set; }
+
+        /// <summary>
+        /// Optional initial value for the dropdown. If this field is not specified, the new dropdown will default to
+        /// selecting the first option defined in the dropdown definition. If this field is specified but does not
+        /// reference a valid option in the dropdown definition, a 400 bad request error is returned.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("selectedOptionId")]
+        public virtual string SelectedOptionId { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>The result of inserting a Dropdown.</summary>
+    public class InsertDropdownResponse : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The newly-inserted Dropdown.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("dropdown")]
+        public virtual Dropdown Dropdown { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -3211,6 +3754,10 @@ namespace Google.Apis.Docs.v1.Data
         [Newtonsoft.Json.JsonPropertyAttribute("dateElement")]
         public virtual DateElement DateElement { get; set; }
 
+        /// <summary>A paragraph element that represents a dropdown menu.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("dropdown")]
+        public virtual Dropdown Dropdown { get; set; }
+
         /// <summary>The zero-base end index of this paragraph element, exclusive, in UTF-16 code units.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("endIndex")]
         public virtual System.Nullable<int> EndIndex { get; set; }
@@ -3717,6 +4264,175 @@ namespace Google.Apis.Docs.v1.Data
         public virtual string ETag { get; set; }
     }
 
+    /// <summary>Represents a single post in a comment or suggestion thread.</summary>
+    public class Post : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>
+        /// Optional. The email of the user who is being newly assigned to the thread as part of this post. Returns a
+        /// 400 bad request error if: - The parent thread is a CommentThread whose headPost does not have an assignee. -
+        /// The parent thread is a SuggestionThread. - commentAction is specified as `RESOLVE` or `REOPEN`. -
+        /// `assigneeEmail` exceeds 2048 UTF-8 code units.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("assigneeEmail")]
+        public virtual string AssigneeEmail { get; set; }
+
+        /// <summary>Output only. The user who created the post.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("author")]
+        public virtual PostAuthor Author { get; set; }
+
+        /// <summary>Optional. The action type for comment posts.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("commentAction")]
+        public virtual string CommentAction { get; set; }
+
+        /// <summary>
+        /// The content of the post. Required to be non-empty if commentAction is not `RESOLVE` or `REOPEN`. This text
+        /// content will be handled similarly to comments created in the Docs editor. It will have similar behaviors for
+        /// formatting, notifications, etc. May not exceed 2048 UTF-8 code units.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("content")]
+        public virtual string Content { get; set; }
+
+        /// <summary>Output only. The content of the post as HTML.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("contentHtml")]
+        public virtual string ContentHtml { get; set; }
+
+        private string _createTimeRaw;
+
+        private object _createTime;
+
+        /// <summary>Output only. The time the post was created.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("createTime")]
+        public virtual string CreateTimeRaw
+        {
+            get => _createTimeRaw;
+            set
+            {
+                _createTime = Google.Apis.Util.Utilities.DeserializeForGoogleFormat(value);
+                _createTimeRaw = value;
+            }
+        }
+
+        /// <summary><seealso cref="object"/> representation of <see cref="CreateTimeRaw"/>.</summary>
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use CreateTimeDateTimeOffset instead.")]
+        public virtual object CreateTime
+        {
+            get => _createTime;
+            set
+            {
+                _createTimeRaw = Google.Apis.Util.Utilities.SerializeForGoogleFormat(value);
+                _createTime = value;
+            }
+        }
+
+        /// <summary><seealso cref="System.DateTimeOffset"/> representation of <see cref="CreateTimeRaw"/>.</summary>
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        public virtual System.DateTimeOffset? CreateTimeDateTimeOffset
+        {
+            get => Google.Apis.Util.DiscoveryFormat.ParseGoogleDateTimeToDateTimeOffset(CreateTimeRaw);
+            set => CreateTimeRaw = Google.Apis.Util.DiscoveryFormat.FormatDateTimeOffsetToGoogleDateTime(value);
+        }
+
+        /// <summary>
+        /// Output only. Whether the post is deleted. If `true`, content and author fields will be empty.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("deleted")]
+        public virtual System.Nullable<bool> Deleted { get; set; }
+
+        /// <summary>
+        /// Output only. Whether the post is from a copied document. This field cannot be set directly by callers.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("fromCopiedDocument")]
+        public virtual System.Nullable<bool> FromCopiedDocument { get; set; }
+
+        /// <summary>
+        /// Output only. Whether the post is from a document comparison. This field cannot be set directly by callers.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("fromDocumentComparison")]
+        public virtual System.Nullable<bool> FromDocumentComparison { get; set; }
+
+        /// <summary>
+        /// Output only. Whether the post is from an imported document. This field cannot be set directly by callers.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("fromImportedDocument")]
+        public virtual System.Nullable<bool> FromImportedDocument { get; set; }
+
+        /// <summary>Output only. The unique ID of the post.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("postId")]
+        public virtual string PostId { get; set; }
+
+        /// <summary>Output only. The action type for suggestion posts.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("suggestionAction")]
+        public virtual string SuggestionAction { get; set; }
+
+        private string _updateTimeRaw;
+
+        private object _updateTime;
+
+        /// <summary>Output only. The time the post was last updated.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("updateTime")]
+        public virtual string UpdateTimeRaw
+        {
+            get => _updateTimeRaw;
+            set
+            {
+                _updateTime = Google.Apis.Util.Utilities.DeserializeForGoogleFormat(value);
+                _updateTimeRaw = value;
+            }
+        }
+
+        /// <summary><seealso cref="object"/> representation of <see cref="UpdateTimeRaw"/>.</summary>
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use UpdateTimeDateTimeOffset instead.")]
+        public virtual object UpdateTime
+        {
+            get => _updateTime;
+            set
+            {
+                _updateTimeRaw = Google.Apis.Util.Utilities.SerializeForGoogleFormat(value);
+                _updateTime = value;
+            }
+        }
+
+        /// <summary><seealso cref="System.DateTimeOffset"/> representation of <see cref="UpdateTimeRaw"/>.</summary>
+        [Newtonsoft.Json.JsonIgnoreAttribute]
+        public virtual System.DateTimeOffset? UpdateTimeDateTimeOffset
+        {
+            get => Google.Apis.Util.DiscoveryFormat.ParseGoogleDateTimeToDateTimeOffset(UpdateTimeRaw);
+            set => UpdateTimeRaw = Google.Apis.Util.DiscoveryFormat.FormatDateTimeOffsetToGoogleDateTime(value);
+        }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Represents a user who authored a comment or suggestion post.</summary>
+    public class PostAuthor : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Whether the user is anonymous.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("anonymous")]
+        public virtual System.Nullable<bool> Anonymous { get; set; }
+
+        /// <summary>The display name of the user. May be absent if the author is anonymous.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("displayName")]
+        public virtual string DisplayName { get; set; }
+
+        /// <summary>Whether the user is the authenticated user making the request.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("me")]
+        public virtual System.Nullable<bool> Me { get; set; }
+
+        /// <summary>
+        /// The resource name of the post author user, which can also be used to identify the user in the [Google People
+        /// API](https://developers.google.com/people/api/rest/v1/people). Format: `users/{user}`. Will not be populated
+        /// if the anonymous field is `true` or if the post is from an imported document.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("user")]
+        public virtual string User { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
     /// <summary>Specifies a contiguous range of text.</summary>
     public class Range : Google.Apis.Requests.IDirectResponseSchema
     {
@@ -3750,6 +4466,20 @@ namespace Google.Apis.Docs.v1.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("tabId")]
         public virtual string TabId { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>
+    /// Rejects a suggestion. Returns a 403 forbidden error if the requesting user does not have edit access to the
+    /// document and is not the author of the suggestion.
+    /// </summary>
+    public class RejectSuggestionRequest : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The ID of the suggestion.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("suggestionId")]
+        public virtual string SuggestionId { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -3872,9 +4602,21 @@ namespace Google.Apis.Docs.v1.Data
     /// <summary>A single update to apply to a document.</summary>
     public class Request : Google.Apis.Requests.IDirectResponseSchema
     {
+        /// <summary>Accepts a suggestion.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("acceptSuggestion")]
+        public virtual AcceptSuggestionRequest AcceptSuggestion { get; set; }
+
+        /// <summary>Adds a reply to a CommentThread or SuggestionThread.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("addCommentReply")]
+        public virtual AddCommentReplyRequest AddCommentReply { get; set; }
+
         /// <summary>Adds a document tab.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("addDocumentTab")]
         public virtual AddDocumentTabRequest AddDocumentTab { get; set; }
+
+        /// <summary>Creates a DropdownDefinition.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("createDropdownDefinition")]
+        public virtual CreateDropdownDefinitionRequest CreateDropdownDefinition { get; set; }
 
         /// <summary>Creates a footer.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("createFooter")]
@@ -3896,9 +4638,21 @@ namespace Google.Apis.Docs.v1.Data
         [Newtonsoft.Json.JsonPropertyAttribute("createParagraphBullets")]
         public virtual CreateParagraphBulletsRequest CreateParagraphBullets { get; set; }
 
+        /// <summary>Deletes a CommentThread.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("deleteComment")]
+        public virtual DeleteCommentRequest DeleteComment { get; set; }
+
+        /// <summary>Deletes a reply Post from a CommentThread or SuggestionThread.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("deleteCommentReply")]
+        public virtual DeleteCommentReplyRequest DeleteCommentReply { get; set; }
+
         /// <summary>Deletes content from the document.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("deleteContentRange")]
         public virtual DeleteContentRangeRequest DeleteContentRange { get; set; }
+
+        /// <summary>Deletes a DropdownDefinition.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("deleteDropdownDefinition")]
+        public virtual DeleteDropdownDefinitionRequest DeleteDropdownDefinition { get; set; }
 
         /// <summary>Deletes a footer from the document.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("deleteFooter")]
@@ -3920,6 +4674,10 @@ namespace Google.Apis.Docs.v1.Data
         [Newtonsoft.Json.JsonPropertyAttribute("deletePositionedObject")]
         public virtual DeletePositionedObjectRequest DeletePositionedObject { get; set; }
 
+        /// <summary>Deletes a suggestion.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("deleteSuggestion")]
+        public virtual DeleteSuggestionRequest DeleteSuggestion { get; set; }
+
         /// <summary>Deletes a document tab.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("deleteTab")]
         public virtual DeleteTabRequest DeleteTab { get; set; }
@@ -3932,9 +4690,17 @@ namespace Google.Apis.Docs.v1.Data
         [Newtonsoft.Json.JsonPropertyAttribute("deleteTableRow")]
         public virtual DeleteTableRowRequest DeleteTableRow { get; set; }
 
+        /// <summary>Inserts a CommentThread into the document.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("insertComment")]
+        public virtual InsertCommentRequest InsertComment { get; set; }
+
         /// <summary>Inserts a date.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("insertDate")]
         public virtual InsertDateRequest InsertDate { get; set; }
+
+        /// <summary>Inserts a Dropdown at the specified location.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("insertDropdown")]
+        public virtual InsertDropdownRequest InsertDropdown { get; set; }
 
         /// <summary>Inserts an inline image at the specified location.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("insertInlineImage")]
@@ -3980,6 +4746,10 @@ namespace Google.Apis.Docs.v1.Data
         [Newtonsoft.Json.JsonPropertyAttribute("pinTableHeaderRows")]
         public virtual PinTableHeaderRowsRequest PinTableHeaderRows { get; set; }
 
+        /// <summary>Rejects a suggestion.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("rejectSuggestion")]
+        public virtual RejectSuggestionRequest RejectSuggestion { get; set; }
+
         /// <summary>Replaces all instances of the specified text.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("replaceAllText")]
         public virtual ReplaceAllTextRequest ReplaceAllText { get; set; }
@@ -3996,6 +4766,10 @@ namespace Google.Apis.Docs.v1.Data
         [Newtonsoft.Json.JsonPropertyAttribute("unmergeTableCells")]
         public virtual UnmergeTableCellsRequest UnmergeTableCells { get; set; }
 
+        /// <summary>Updates an existing post (head post or reply) of a CommentThread or SuggestionThread.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("updateCommentPost")]
+        public virtual UpdateCommentPostRequest UpdateCommentPost { get; set; }
+
         /// <summary>Updates the style of the document.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("updateDocumentStyle")]
         public virtual UpdateDocumentStyleRequest UpdateDocumentStyle { get; set; }
@@ -4003,6 +4777,14 @@ namespace Google.Apis.Docs.v1.Data
         /// <summary>Updates the properties of a document tab.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("updateDocumentTabProperties")]
         public virtual UpdateDocumentTabPropertiesRequest UpdateDocumentTabProperties { get; set; }
+
+        /// <summary>Updates the properties of a DropdownDefinition.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("updateDropdownDefinitionProperties")]
+        public virtual UpdateDropdownDefinitionPropertiesRequest UpdateDropdownDefinitionProperties { get; set; }
+
+        /// <summary>Updates the properties of a Dropdown.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("updateDropdownProperties")]
+        public virtual UpdateDropdownPropertiesRequest UpdateDropdownProperties { get; set; }
 
         /// <summary>Updates a named style.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("updateNamedStyle")]
@@ -4039,9 +4821,17 @@ namespace Google.Apis.Docs.v1.Data
     /// <summary>A single response from an update.</summary>
     public class Response : Google.Apis.Requests.IDirectResponseSchema
     {
+        /// <summary>The result of adding a reply to a comment or suggestion.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("addCommentReply")]
+        public virtual AddCommentReplyResponse AddCommentReply { get; set; }
+
         /// <summary>The result of adding a document tab.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("addDocumentTab")]
         public virtual AddDocumentTabResponse AddDocumentTab { get; set; }
+
+        /// <summary>The result of creating a dropdown definition.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("createDropdownDefinition")]
+        public virtual CreateDropdownDefinitionResponse CreateDropdownDefinition { get; set; }
 
         /// <summary>The result of creating a footer.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("createFooter")]
@@ -4058,6 +4848,14 @@ namespace Google.Apis.Docs.v1.Data
         /// <summary>The result of creating a named range.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("createNamedRange")]
         public virtual CreateNamedRangeResponse CreateNamedRange { get; set; }
+
+        /// <summary>The result of inserting a comment.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("insertComment")]
+        public virtual InsertCommentResponse InsertComment { get; set; }
+
+        /// <summary>The result of inserting a dropdown.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("insertDropdown")]
+        public virtual InsertDropdownResponse InsertDropdown { get; set; }
 
         /// <summary>The result of inserting an inline image.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("insertInlineImage")]
@@ -4590,6 +5388,49 @@ namespace Google.Apis.Docs.v1.Data
         public virtual string ETag { get; set; }
     }
 
+    /// <summary>A suggested change to dropdown definition properties.</summary>
+    public class SuggestedDropdownDefinitionProperties : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>
+        /// A DropdownDefinitionProperties that only includes the changes made in this suggestion. This can be used
+        /// along with the dropdown_definition_properties_suggestion_state to see which fields have changed and their
+        /// new values.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("dropdownDefinitionProperties")]
+        public virtual DropdownDefinitionProperties DropdownDefinitionProperties { get; set; }
+
+        /// <summary>
+        /// A mask that indicates which of the fields on the base DropdownDefinitionProperties have been changed in this
+        /// suggestion.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("dropdownDefinitionPropertiesSuggestionState")]
+        public virtual DropdownDefinitionPropertiesSuggestionState DropdownDefinitionPropertiesSuggestionState { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>A suggested change to dropdown properties.</summary>
+    public class SuggestedDropdownProperties : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>
+        /// A DropdownProperties that only includes the changes made in this suggestion. This can be used along with the
+        /// dropdown_properties_suggestion_state to see which fields have changed and their new values.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("dropdownProperties")]
+        public virtual DropdownProperties DropdownProperties { get; set; }
+
+        /// <summary>
+        /// A mask that indicates which of the fields on the base DropdownProperties have been changed in this
+        /// suggestion.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("dropdownPropertiesSuggestionState")]
+        public virtual DropdownPropertiesSuggestionState DropdownPropertiesSuggestionState { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
     /// <summary>A suggested change to InlineObjectProperties.</summary>
     public class SuggestedInlineObjectProperties : Google.Apis.Requests.IDirectResponseSchema
     {
@@ -4748,6 +5589,67 @@ namespace Google.Apis.Docs.v1.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("textStyleSuggestionState")]
         public virtual TextStyleSuggestionState TextStyleSuggestionState { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>The suggestions which were affected by a given update.</summary>
+    public class SuggestionResponse : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The IDs of suggestions which were accepted during the update.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("acceptedSuggestionIds")]
+        public virtual System.Collections.Generic.IList<string> AcceptedSuggestionIds { get; set; }
+
+        /// <summary>The IDs of suggestions which were created during the update.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("createdSuggestionIds")]
+        public virtual System.Collections.Generic.IList<string> CreatedSuggestionIds { get; set; }
+
+        /// <summary>The IDs of suggestions which were deleted during the update.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("deletedSuggestionIds")]
+        public virtual System.Collections.Generic.IList<string> DeletedSuggestionIds { get; set; }
+
+        /// <summary>The IDs of suggestions which were rejected during the update.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("rejectedSuggestionIds")]
+        public virtual System.Collections.Generic.IList<string> RejectedSuggestionIds { get; set; }
+
+        /// <summary>The IDs of suggestions whose summaries were updated during the update.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("updatedSummarySuggestionIds")]
+        public virtual System.Collections.Generic.IList<string> UpdatedSummarySuggestionIds { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>
+    /// Represents a single suggestion thread. Suggestion threads are created as a byproduct of saving changes to the
+    /// document while in suggestion mode, and cannot be created directly.
+    /// </summary>
+    public class SuggestionThread : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The first post in the thread.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("headPost")]
+        public virtual Post HeadPost { get; set; }
+
+        /// <summary>Replies to the head post.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("replies")]
+        public virtual System.Collections.Generic.IList<Post> Replies { get; set; }
+
+        /// <summary>Whether the thread is open, accepted, or rejected.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("status")]
+        public virtual string Status { get; set; }
+
+        /// <summary>The unique ID of the suggestion.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("suggestionId")]
+        public virtual string SuggestionId { get; set; }
+
+        /// <summary>Summary of the suggested differences in the document, in HTML. May be empty.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("summaryHtml")]
+        public virtual string SummaryHtml { get; set; }
+
+        /// <summary>Summary of the suggested differences in the document, in plain text. May be empty.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("summaryText")]
+        public virtual string SummaryText { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -5426,6 +6328,36 @@ namespace Google.Apis.Docs.v1.Data
         public virtual string ETag { get; set; }
     }
 
+    /// <summary>
+    /// Updates a Post in a CommentThread or SuggestionThread. Returns a 400 bad request error if: - The post is the
+    /// headPost of a SuggestionThread. - The requesting user is not the author of the post.
+    /// </summary>
+    public class UpdateCommentPostRequest : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The ID of the CommentThread which the post belongs to.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("commentId")]
+        public virtual string CommentId { get; set; }
+
+        /// <summary>
+        /// The new text of the comment, as plain text. This text content will be handled similarly to comments created
+        /// in the Docs editor. It will have similar behaviors for formatting, notifications, etc. This field cannot be
+        /// empty, and must not exceed 2048 UTF-8 code units.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("content")]
+        public virtual string Content { get; set; }
+
+        /// <summary>The ID of the post being updated.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("postId")]
+        public virtual string PostId { get; set; }
+
+        /// <summary>The ID of the SuggestionThread which the post belongs to.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("suggestionId")]
+        public virtual string SuggestionId { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
     /// <summary>Updates the DocumentStyle.</summary>
     public class UpdateDocumentStyleRequest : Google.Apis.Requests.IDirectResponseSchema
     {
@@ -5470,6 +6402,83 @@ namespace Google.Apis.Docs.v1.Data
         /// <summary>The tab properties to update.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("tabProperties")]
         public virtual TabProperties TabProperties { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Updates the properties of a DropdownDefinition.</summary>
+    public class UpdateDropdownDefinitionPropertiesRequest : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>The ID of the DropdownDefinition to update.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("dropdownDefinitionId")]
+        public virtual string DropdownDefinitionId { get; set; }
+
+        /// <summary>The properties to update.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("dropdownDefinitionProperties")]
+        public virtual DropdownDefinitionProperties DropdownDefinitionProperties { get; set; }
+
+        /// <summary>
+        /// The fields that should be updated. At least one field must be specified. The root
+        /// `dropdown_definition_properties` is implied and should not be specified. A single `"*"` can be used as
+        /// short-hand for listing every field. When `dropdown_definition_properties.options` is included in the field
+        /// mask, the full, complete list of desired options must be provided in
+        /// `dropdown_definition_properties.options`.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("fields")]
+        public virtual object Fields { get; set; }
+
+        /// <summary>
+        /// A map of option IDs to their replacements, used to automatically reassign orphaned Dropdown chips when an
+        /// option is deleted. The keys are the IDs of the options being deleted, and the values are the IDs of their
+        /// replacement options. If an option being deleted is selected in one or more Dropdown chips in the document, a
+        /// replacement entry for that option must be provided in this map, and the replacement option ID must exist in
+        /// the updated DropdownDefinition. If a replacement is required but not provided, a 400 bad request error is
+        /// returned. Options being deleted that are not selected in any Dropdown chips do not require a replacement.
+        /// For example, if option A is being replaced by option B, the map should be `{"A": "B"}`.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("selectedOptionIdReplacements")]
+        public virtual System.Collections.Generic.IDictionary<string, string> SelectedOptionIdReplacements { get; set; }
+
+        /// <summary>
+        /// The ID of the tab that contains the dropdown definition to update. When omitted, the request is applied to
+        /// the first tab. In a document containing a single tab: - If provided, must match the singular tab's ID. - If
+        /// omitted, the request applies to the singular tab. In a document containing multiple tabs: - If provided, the
+        /// request applies to the specified tab. - If omitted, the request applies to the first tab in the document.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("tabId")]
+        public virtual string TabId { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
+    /// <summary>Updates the properties of a Dropdown.</summary>
+    public class UpdateDropdownPropertiesRequest : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>Required. The Dropdown ID.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("dropdownId")]
+        public virtual string DropdownId { get; set; }
+
+        /// <summary>The properties to update.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("dropdownProperties")]
+        public virtual DropdownProperties DropdownProperties { get; set; }
+
+        /// <summary>
+        /// The fields that should be updated. At least one field must be specified. The root `dropdown_properties` is
+        /// implied and should not be specified. A single `"*"` can be used as short-hand for listing every field.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("fields")]
+        public virtual object Fields { get; set; }
+
+        /// <summary>
+        /// The ID of the tab that contains the dropdown to update. When omitted, the request is applied to the first
+        /// tab. In a document containing a single tab: - If provided, must match the singular tab's ID. - If omitted,
+        /// the request applies to the singular tab. In a document containing multiple tabs: - If provided, the request
+        /// applies to the specified tab. - If omitted, the request applies to the first tab in the document.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("tabId")]
+        public virtual string TabId { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
@@ -5743,6 +6752,13 @@ namespace Google.Apis.Docs.v1.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("targetRevisionId")]
         public virtual string TargetRevisionId { get; set; }
+
+        /// <summary>
+        /// How the request updates should be applied to the document. If unspecified, the request updates will be
+        /// applied as normal edits.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("writeMode")]
+        public virtual string WriteMode { get; set; }
 
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }

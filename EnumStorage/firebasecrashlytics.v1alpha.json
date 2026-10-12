@@ -79,5 +79,20 @@
     "TIME_GRANULARITY_NONE",
     "TIME_GRANULARITY_HOUR",
     "TIME_GRANULARITY_DAY"
+  ],
+  "Google.Apis.FirebaseCrashlytics.v1alpha.ProjectsResource+AppsResource+ReportsResource+GetRequest.MetricsModeEnum": [
+    "METRICS_MODE_UNSPECIFIED",
+    "METRICS_MODE_OBSERVED",
+    "METRICS_MODE_EXTRAPOLATED"
+  ],
+  "Google.Apis.FirebaseCrashlytics.v1alpha.ProjectsResource+AppsResource+ReportsResource+GetRequest.ViewEnum": [
+    "REPORT_VIEW_UNSPECIFIED",
+    "REPORT_VIEW_BASIC",
+    "REPORT_VIEW_FULL"
+  ],
+  "Google.Apis.FirebaseCrashlytics.v1alpha.ProjectsResource+AppsResource+ReportsResource+ListRequest.ViewEnum": [
+    "REPORT_VIEW_UNSPECIFIED",
+    "REPORT_VIEW_BASIC",
+    "REPORT_VIEW_FULL"
   ]
 }
