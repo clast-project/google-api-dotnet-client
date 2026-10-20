@@ -55,7 +55,6 @@ namespace Google.Apis.Storage.v1.Data
     [JsonSerializable(typeof(global::Google.Apis.Storage.v1.Data.BucketStorageLayout.CustomPlacementConfigData), TypeInfoPropertyName = "Schema_BucketStorageLayout_CustomPlacementConfigData")]
     [JsonSerializable(typeof(global::Google.Apis.Storage.v1.Data.BucketStorageLayout.HierarchicalNamespaceData), TypeInfoPropertyName = "Schema_BucketStorageLayout_HierarchicalNamespaceData")]
     [JsonSerializable(typeof(global::Google.Apis.Storage.v1.Data.BulkRestoreObjectsRequest), TypeInfoPropertyName = "Schema_BulkRestoreObjectsRequest")]
-    [JsonSerializable(typeof(global::Google.Apis.Storage.v1.Data.Channel), TypeInfoPropertyName = "Schema_Channel")]
     [JsonSerializable(typeof(global::Google.Apis.Storage.v1.Data.ComposeRequest), TypeInfoPropertyName = "Schema_ComposeRequest")]
     [JsonSerializable(typeof(global::Google.Apis.Storage.v1.Data.ComposeRequest.SourceObjectsData), TypeInfoPropertyName = "Schema_ComposeRequest_SourceObjectsData")]
     [JsonSerializable(typeof(global::Google.Apis.Storage.v1.Data.ComposeRequest.SourceObjectsData.ObjectPreconditionsData), TypeInfoPropertyName = "Schema_ComposeRequest_SourceObjectsData_ObjectPreconditionsData")]
@@ -483,17 +482,6 @@ namespace Google.Apis.Storage.v1.Data
                 P("quotaUser", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.BucketsResource.UpdateRequest)r).QuotaUser),
                 P("uploadType", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.BucketsResource.UpdateRequest)r).UploadType),
                 P("userIp", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.BucketsResource.UpdateRequest)r).UserIp),
-            });
-            RequestParameterRegistry.Register(typeof(global::Google.Apis.Storage.v1.ChannelsResource.StopRequest), new RequestParameterDescriptor[]
-            {
-                P("alt", RequestParameterType.Query, true, r => ((global::Google.Apis.Storage.v1.ChannelsResource.StopRequest)r).Alt),
-                P("fields", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.ChannelsResource.StopRequest)r).Fields),
-                P("key", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.ChannelsResource.StopRequest)r).Key),
-                P("oauth_token", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.ChannelsResource.StopRequest)r).OauthToken),
-                P("prettyPrint", RequestParameterType.Query, true, r => ((global::Google.Apis.Storage.v1.ChannelsResource.StopRequest)r).PrettyPrint),
-                P("quotaUser", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.ChannelsResource.StopRequest)r).QuotaUser),
-                P("uploadType", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.ChannelsResource.StopRequest)r).UploadType),
-                P("userIp", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.ChannelsResource.StopRequest)r).UserIp),
             });
             RequestParameterRegistry.Register(typeof(global::Google.Apis.Storage.v1.DefaultObjectAccessControlsResource.DeleteRequest), new RequestParameterDescriptor[]
             {
