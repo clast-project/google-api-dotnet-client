@@ -40,7 +40,7 @@ its output into the file:
 | Section | Rule |
 |---|---|
 | `[JsonSerializable]` | every class in the `.Data` namespace, nested path joined with `_`, sorted `OrdinalIgnoreCase` |
-| …plus carried-over entries | any `[JsonSerializable]` line in the existing file that isn't derivable is preserved verbatim at the end — e.g. the two explicit `IList<T>` registrations `Bigquery.v2` needs to disambiguate two nested types both named `ReservationUsageData` |
+| …plus carried-over entries | any `[JsonSerializable]` line in the existing file that isn't derivable is preserved verbatim at the end — e.g. the two explicit `IList<T>` registrations `Bigquery.v2` needs to disambiguate two nested types both named `ReservationUsageData`. A line in the derived per-class shape (`typeof(global::<Ns>.Data.<Path>)` with `TypeInfoPropertyName = "Schema_<Path>"`) is never carried over: if it isn't derived, upstream removed that schema |
 | `RequestParameterRegistry` | request classes in **declaration** order (including `*MediaUpload : ResumableUpload<>`); each request's own parameters, then the base service request's appended — except media-upload classes, which redeclare the common parameters themselves and get no append |
 | `isValueType` | true iff the property type is `System.Nullable<...>`; a required, non-nullable `long` parameter is `false` |
 | `EnumStringValueRegistry` | enums with `[StringValue]` members nested in the base service request (emitted as `Base<object>.XEnum`) or in a registered request, in declaration order |
