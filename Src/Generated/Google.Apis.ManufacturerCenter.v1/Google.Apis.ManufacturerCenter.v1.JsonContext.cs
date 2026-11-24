@@ -35,6 +35,9 @@ namespace Google.Apis.ManufacturerCenter.v1.Data
     [JsonSerializable(typeof(global::Google.Apis.ManufacturerCenter.v1.Data.Product), TypeInfoPropertyName = "Schema_Product")]
     [JsonSerializable(typeof(global::Google.Apis.ManufacturerCenter.v1.Data.ProductCertification), TypeInfoPropertyName = "Schema_ProductCertification")]
     [JsonSerializable(typeof(global::Google.Apis.ManufacturerCenter.v1.Data.ProductDetail), TypeInfoPropertyName = "Schema_ProductDetail")]
+    [JsonSerializable(typeof(global::Google.Apis.ManufacturerCenter.v1.Data.QuestionAndAnswer), TypeInfoPropertyName = "Schema_QuestionAndAnswer")]
+    [JsonSerializable(typeof(global::Google.Apis.ManufacturerCenter.v1.Data.RelatedProduct), TypeInfoPropertyName = "Schema_RelatedProduct")]
+    [JsonSerializable(typeof(global::Google.Apis.ManufacturerCenter.v1.Data.VariantOption), TypeInfoPropertyName = "Schema_VariantOption")]
     [JsonSerializable(typeof(global::Google.Apis.ManufacturerCenter.v1.Data.VoluntaryNutritionFact), TypeInfoPropertyName = "Schema_VoluntaryNutritionFact")]
     internal partial class GeneratedClientJsonContext : JsonSerializerContext
     {

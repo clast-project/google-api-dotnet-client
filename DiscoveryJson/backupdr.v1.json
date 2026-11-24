@@ -671,7 +671,7 @@
                   ],
                   "parameters": {
                     "etag": {
-                      "description": "The current etag of the autoprotectionpolicy. If an etag is provided and does not match the current etag of the connection, deletion will be blocked.",
+                      "description": "Optional. The current etag of the autoprotectionpolicy. If an etag is provided and does not match the current etag of the connection, deletion will be blocked.",
                       "location": "query",
                       "type": "string"
                     },
@@ -733,7 +733,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. A filter expression that filters resources listed in the response. The following fields are filterable:",
+                      "description": "Optional. A filter expression that filters resources listed in the response. Filtering follows AIP-160 (https://google.aip.dev/160). The following fields are filterable: * `name` * `description` * `state` * `create_time` * `update_time` * `backup_plan_details.resource_type` * `backup_plan_details.backup_plan` * `criteria.matching_conditions.label_condition.key` * `criteria.matching_conditions.label_condition.values` * `binding_summary.project_count` * `policy_evaluation_summary.matching_resource_count` * `policy_evaluation_summary.protected_resource_count` * `policy_evaluation_summary.failed_resource_count` Note: `backup_plan_details` and `criteria.matching_conditions` are repeated fields, so filters on their subfields must use the `:` (has) operator rather than `=` (for example, `backup_plan_details.resource_type:\"compute.googleapis.com/Disk\"` or `criteria.matching_conditions.label_condition.key:\"env\"`). Examples: * `state:ACTIVE` * `backup_plan_details.resource_type:\"compute.googleapis.com/Disk\"` * `criteria.matching_conditions.label_condition.key:\"env\"` * `policy_evaluation_summary.protected_resource_count>0`",
                       "location": "query",
                       "type": "string"
                     },
@@ -3863,7 +3863,7 @@
       }
     }
   },
-  "revision": "20261028",
+  "revision": "20261111",
   "rootUrl": "https://backupdr.googleapis.com/",
   "schemas": {
     "AbandonBackupRequest": {
@@ -4512,7 +4512,7 @@
           "type": "string"
         },
         "etag": {
-          "description": "Optional. Output only. The etag for the binding. If this is provided on update, it must match the server's etag.",
+          "description": "Output only. The etag for the binding. If this is provided on update, it must match the server's etag.",
           "type": "string"
         },
         "name": {
@@ -5634,11 +5634,13 @@
           "type": "string"
         },
         "name": {
-          "description": "Identifier. The resource name of the `BindingMatchingResource`. Format: `projects/{project}/locations/{location}/autoProtectionPolicies/{auto_protection_policy}/bindings/{binding}/matchingResources/{matching_resource}`",
+          "description": "Output only. Identifier. The resource name of the `BindingMatchingResource`. Format: `projects/{project}/locations/{location}/autoProtectionPolicies/{auto_protection_policy}/bindings/{binding}/matchingResources/{matching_resource}`",
+          "readOnly": true,
           "type": "string"
         },
         "resource": {
-          "description": "Required. Immutable. Resource name of the workload that matches the criteria of the binding. The format can be either a relative resource name (e.g., `projects/my-project/zones/us-central1-a/instances/my-instance`) or a schemeless full resource name (e.g., `//compute.googleapis.com/projects/my-project/zones/us-central1-a/instances/my-instance`).",
+          "description": "Output only. Resource name of the workload that matches the criteria of the binding. The format can be either a relative resource name (e.g., `projects/my-project/zones/us-central1-a/instances/my-instance`) or a schemeless full resource name (e.g., `//compute.googleapis.com/projects/my-project/zones/us-central1-a/instances/my-instance`).",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -7433,6 +7435,10 @@
           "description": "Required. The resource type to which the default service config will be applied. Examples include, \"compute.googleapis.com/Instance\" and \"storage.googleapis.com/Bucket\".",
           "type": "string"
         },
+        "serviceAgentOnly": {
+          "description": "Optional. If set to `true`, only provisions the Backup and DR service agent for the project and skips creating the default BackupVault and BackupPlan resources. When set to `true`, `validate_only` must also be set to `true`.",
+          "type": "boolean"
+        },
         "validateOnly": {
           "description": "Optional. If set, validates the request and returns the result, but does not actually run it.",
           "type": "boolean"
@@ -7579,7 +7585,7 @@
           "type": "string"
         },
         "unreachable": {
-          "description": "Locations that could not be reached.",
+          "description": "Unordered list. Locations that could not be reached.",
           "items": {
             "type": "string"
           },
@@ -9262,7 +9268,7 @@
       "type": "object"
     },
     "RestoreVerificationPlan": {
-      "description": "A `RestoreVerificationPlan` specifies the scheduling and clean-up template for automated restore verification. It contains a `RestoreVerificationSchedule` to dictate when the verifications should run, and a `CleanupConfig` for post-verification resource deletion.",
+      "description": "A `RestoreVerificationPlan` specifies the scheduling and clean-up template for automated restore verification. It contains a `schedule` to dictate when the verifications should run, and a `RestoreVerificationCleanupRule` for post-verification resource deletion.",
       "id": "RestoreVerificationPlan",
       "properties": {
         "createTime": {
@@ -9357,7 +9363,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Output only. Identifier. The resource name of RestoreVerificationPlanAssociation in below format Format : projects/{project}/locations/{location}/restoreVerificationPlans/{restore_verification_plan}/associations/{association}",
+          "description": "Output only. Identifier. The resource name of the `RestoreVerificationPlanAssociation`. Format: `projects/{project}/locations/{location}/restoreVerificationPlans/{restore_verification_plan}/associations/{association}`",
           "readOnly": true,
           "type": "string"
         },

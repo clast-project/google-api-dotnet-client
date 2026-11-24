@@ -7915,6 +7915,10 @@ namespace Google.Apis.SaaSServiceManagement.v1beta1.Data
         [Newtonsoft.Json.JsonPropertyAttribute("name")]
         public virtual string Name { get; set; }
 
+        /// <summary>Type of location.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("type")]
+        public virtual string Type { get; set; }
+
         /// <summary>The ETag of the item.</summary>
         public virtual string ETag { get; set; }
     }
@@ -8627,6 +8631,13 @@ namespace Google.Apis.SaaSServiceManagement.v1beta1.Data
         public virtual System.Collections.Generic.IDictionary<string, string> Labels { get; set; }
 
         /// <summary>
+        /// Optional. The location type of the rollout. Based on the location type, the rollout will target the
+        /// corresponding locations.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("locationType")]
+        public virtual string LocationType { get; set; }
+
+        /// <summary>
         /// Identifier. The resource name (full URI of the resource) following the standard naming scheme:
         /// "projects/{project}/locations/{location}/rolloutKinds/{rollout_kind_id}"
         /// </summary>
@@ -8831,7 +8842,7 @@ namespace Google.Apis.SaaSServiceManagement.v1beta1.Data
         }
 
         /// <summary>
-        /// Output only. If the state is FAILED, the corresponding error code and message. Defaults to code=OK for all
+        /// Output only. If the state is `FAILED`, the corresponding error code and message. Defaults to code=OK for all
         /// other states.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("error")]
@@ -9301,6 +9312,13 @@ namespace Google.Apis.SaaSServiceManagement.v1beta1.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("dependents")]
         public virtual System.Collections.Generic.IList<UnitDependency> Dependents { get; set; }
+
+        /// <summary>
+        /// Optional. Deployment location of the unit. Deployment location is used to determine which cloud_zone,
+        /// prod_zone or prod_region to use for the unit.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("deploymentLocation")]
+        public virtual Location DeploymentLocation { get; set; }
 
         /// <summary>
         /// Optional. Output only. Metadata about the underlying actuation engine instance managing this Unit.
@@ -10106,7 +10124,7 @@ namespace Google.Apis.SaaSServiceManagement.v1beta1.Data
     /// specific Unit. Multiple UnitOperations can be created (requested) and scheduled in the future, however only one
     /// will be allowed to execute at a time (that can change in the future for non-mutating operations). UnitOperations
     /// allow different actors interacting with the same unit to focus only on the change they have requested. This is a
-    /// base object that contains the common fields in all unit operations. Next: 22
+    /// base object that contains the common fields in all unit operations.
     /// </summary>
     public class UnitOperation : Google.Apis.Requests.IDirectResponseSchema
     {
@@ -10226,6 +10244,13 @@ namespace Google.Apis.SaaSServiceManagement.v1beta1.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("engineState")]
         public virtual string EngineState { get; set; }
+
+        /// <summary>
+        /// Optional. Output only. If the state is `FAILED`, the corresponding error code, message, and details. Unset
+        /// when there is no error.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("error")]
+        public virtual Status Error { get; set; }
 
         /// <summary>Optional. Output only. UnitOperationErrorCategory describe the error category.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("errorCategory")]

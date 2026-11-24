@@ -954,6 +954,13 @@ namespace Google.Apis.TravelImpactModel.v1.Data
         public virtual EmissionsMetadata EmissionsMetadata { get; set; }
 
         /// <summary>
+        /// Output only. Errors detailing why detailed emission estimates could not be returned for the flight. Empty
+        /// when emission estimates are present.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("errors")]
+        public virtual System.Collections.Generic.IList<Status> Errors { get; set; }
+
+        /// <summary>
         /// Output only. Matches the flight identifiers in the request. Note: all IATA codes are capitalized.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("flight")]
@@ -988,6 +995,13 @@ namespace Google.Apis.TravelImpactModel.v1.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("emissionsGramsPerPax")]
         public virtual EmissionsGramsPerPax EmissionsGramsPerPax { get; set; }
+
+        /// <summary>
+        /// Output only. Errors detailing why emission estimates could not be returned for the flight. Empty when
+        /// emission estimates are present.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("errors")]
+        public virtual System.Collections.Generic.IList<Status> Errors { get; set; }
 
         /// <summary>
         /// Identifier. Matches the flight identifiers in the request. Note: all IATA codes are capitalized.
@@ -1160,6 +1174,39 @@ namespace Google.Apis.TravelImpactModel.v1.Data
         public virtual string ETag { get; set; }
     }
 
+    /// <summary>
+    /// Represents an error encountered while processing an individual flight or market in a request. When emission
+    /// estimates cannot be computed for a requested item, the `errors` field contains one or more `Status` objects
+    /// describing why: * `INVALID_ARGUMENT` (`code` `3`): Reports input errors on the requested item, such as missing
+    /// or invalid airport codes, operating carrier codes, flight numbers, or departure dates. Multiple `Status` entries
+    /// may be returned if multiple input fields are invalid. * `NOT_FOUND` (`code` `5`): Indicates that no emission
+    /// estimates matched the requested flight or market inputs.
+    /// </summary>
+    public class Status : Google.Apis.Requests.IDirectResponseSchema
+    {
+        /// <summary>
+        /// The numeric status code corresponding to a `google.rpc.Code` enum value: * `3` (`INVALID_ARGUMENT`): Input
+        /// error (for example, a missing or invalid airport or carrier code). * `5` (`NOT_FOUND`): No emission
+        /// estimates matched the requested inputs.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("code")]
+        public virtual System.Nullable<int> Code { get; set; }
+
+        /// <summary>Additional structured error details, when available.</summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("details")]
+        public virtual System.Collections.Generic.IList<System.Collections.Generic.IDictionary<string, object>> Details { get; set; }
+
+        /// <summary>
+        /// A human-readable error message in English describing why emission estimates could not be returned for the
+        /// requested item.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("message")]
+        public virtual string Message { get; set; }
+
+        /// <summary>The ETag of the item.</summary>
+        public virtual string ETag { get; set; }
+    }
+
     /// <summary>Typical flight emission estimates for a certain market</summary>
     public class TypicalFlightEmissions : Google.Apis.Requests.IDirectResponseSchema
     {
@@ -1171,6 +1218,13 @@ namespace Google.Apis.TravelImpactModel.v1.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("emissionsGramsPerPax")]
         public virtual EmissionsGramsPerPax EmissionsGramsPerPax { get; set; }
+
+        /// <summary>
+        /// Output only. Errors detailing why typical flight emission estimates could not be returned for the market.
+        /// Empty when emission estimates are present.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("errors")]
+        public virtual System.Collections.Generic.IList<Status> Errors { get; set; }
 
         /// <summary>
         /// Identifier. Matches the flight identifiers in the request. Note: all IATA codes are capitalized.
