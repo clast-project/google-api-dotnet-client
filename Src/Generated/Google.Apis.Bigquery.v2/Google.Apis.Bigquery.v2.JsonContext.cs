@@ -117,6 +117,7 @@ namespace Google.Apis.Bigquery.v2.Data
     [JsonSerializable(typeof(global::Google.Apis.Bigquery.v2.Data.IndexPruningStats), TypeInfoPropertyName = "Schema_IndexPruningStats")]
     [JsonSerializable(typeof(global::Google.Apis.Bigquery.v2.Data.IndexUnusedReason), TypeInfoPropertyName = "Schema_IndexUnusedReason")]
     [JsonSerializable(typeof(global::Google.Apis.Bigquery.v2.Data.InputDataChange), TypeInfoPropertyName = "Schema_InputDataChange")]
+    [JsonSerializable(typeof(global::Google.Apis.Bigquery.v2.Data.InstalledPackage), TypeInfoPropertyName = "Schema_InstalledPackage")]
     [JsonSerializable(typeof(global::Google.Apis.Bigquery.v2.Data.IntArray), TypeInfoPropertyName = "Schema_IntArray")]
     [JsonSerializable(typeof(global::Google.Apis.Bigquery.v2.Data.IntArrayHparamSearchSpace), TypeInfoPropertyName = "Schema_IntArrayHparamSearchSpace")]
     [JsonSerializable(typeof(global::Google.Apis.Bigquery.v2.Data.IntCandidates), TypeInfoPropertyName = "Schema_IntCandidates")]
@@ -194,6 +195,9 @@ namespace Google.Apis.Bigquery.v2.Data
     [JsonSerializable(typeof(global::Google.Apis.Bigquery.v2.Data.RegressionMetrics), TypeInfoPropertyName = "Schema_RegressionMetrics")]
     [JsonSerializable(typeof(global::Google.Apis.Bigquery.v2.Data.RemoteFunctionOptions), TypeInfoPropertyName = "Schema_RemoteFunctionOptions")]
     [JsonSerializable(typeof(global::Google.Apis.Bigquery.v2.Data.RemoteModelInfo), TypeInfoPropertyName = "Schema_RemoteModelInfo")]
+    [JsonSerializable(typeof(global::Google.Apis.Bigquery.v2.Data.Replica), TypeInfoPropertyName = "Schema_Replica")]
+    [JsonSerializable(typeof(global::Google.Apis.Bigquery.v2.Data.ReplicaOptions), TypeInfoPropertyName = "Schema_ReplicaOptions")]
+    [JsonSerializable(typeof(global::Google.Apis.Bigquery.v2.Data.ResourcePolicyMember), TypeInfoPropertyName = "Schema_ResourcePolicyMember")]
     [JsonSerializable(typeof(global::Google.Apis.Bigquery.v2.Data.RestrictionConfig), TypeInfoPropertyName = "Schema_RestrictionConfig")]
     [JsonSerializable(typeof(global::Google.Apis.Bigquery.v2.Data.Routine), TypeInfoPropertyName = "Schema_Routine")]
     [JsonSerializable(typeof(global::Google.Apis.Bigquery.v2.Data.RoutineBuildStatus), TypeInfoPropertyName = "Schema_RoutineBuildStatus")]
@@ -205,6 +209,7 @@ namespace Google.Apis.Bigquery.v2.Data
     [JsonSerializable(typeof(global::Google.Apis.Bigquery.v2.Data.ScriptOptions), TypeInfoPropertyName = "Schema_ScriptOptions")]
     [JsonSerializable(typeof(global::Google.Apis.Bigquery.v2.Data.ScriptStackFrame), TypeInfoPropertyName = "Schema_ScriptStackFrame")]
     [JsonSerializable(typeof(global::Google.Apis.Bigquery.v2.Data.ScriptStatistics), TypeInfoPropertyName = "Schema_ScriptStatistics")]
+    [JsonSerializable(typeof(global::Google.Apis.Bigquery.v2.Data.SearchIndexingStats), TypeInfoPropertyName = "Schema_SearchIndexingStats")]
     [JsonSerializable(typeof(global::Google.Apis.Bigquery.v2.Data.SearchStatistics), TypeInfoPropertyName = "Schema_SearchStatistics")]
     [JsonSerializable(typeof(global::Google.Apis.Bigquery.v2.Data.SecureContext), TypeInfoPropertyName = "Schema_SecureContext")]
     [JsonSerializable(typeof(global::Google.Apis.Bigquery.v2.Data.SerDeInfo), TypeInfoPropertyName = "Schema_SerDeInfo")]
@@ -262,6 +267,7 @@ namespace Google.Apis.Bigquery.v2.Data
     [JsonSerializable(typeof(global::Google.Apis.Bigquery.v2.Data.TransformColumn), TypeInfoPropertyName = "Schema_TransformColumn")]
     [JsonSerializable(typeof(global::Google.Apis.Bigquery.v2.Data.UndeleteDatasetRequest), TypeInfoPropertyName = "Schema_UndeleteDatasetRequest")]
     [JsonSerializable(typeof(global::Google.Apis.Bigquery.v2.Data.UserDefinedFunctionResource), TypeInfoPropertyName = "Schema_UserDefinedFunctionResource")]
+    [JsonSerializable(typeof(global::Google.Apis.Bigquery.v2.Data.VectorSearchIndexingStats), TypeInfoPropertyName = "Schema_VectorSearchIndexingStats")]
     [JsonSerializable(typeof(global::Google.Apis.Bigquery.v2.Data.VectorSearchStatistics), TypeInfoPropertyName = "Schema_VectorSearchStatistics")]
     [JsonSerializable(typeof(global::Google.Apis.Bigquery.v2.Data.ViewDefinition), TypeInfoPropertyName = "Schema_ViewDefinition")]
     [JsonSerializable(typeof(global::System.Collections.Generic.IList<global::Google.Apis.Bigquery.v2.Data.JobStatistics.ReservationUsageData>), TypeInfoPropertyName = "Schema_JobStatistics_ReservationUsageData_IList")]
@@ -1137,6 +1143,8 @@ namespace Google.Apis.Bigquery.v2.Data
                     case "METADATA": return "METADATA";
                     case "ACL": return "ACL";
                     case "FULL": return "FULL";
+                    case "BASIC": return "BASIC";
+                    case "BASICREPLICAMETADATAVIEW": return "BASIC_REPLICA_METADATA_VIEW";
                     default: return value.ToString();
                 }
             });

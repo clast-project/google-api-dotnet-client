@@ -2974,6 +2974,13 @@ namespace Google.Apis.CloudWorkstations.v1.Data
         public virtual System.Nullable<int> BootDiskSizeGb { get; set; }
 
         /// <summary>
+        /// Optional. Indicates if this boost config is eligible for automatic failover when the service cannot
+        /// provision the default VM type. Defaults to `false`.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("enableAutomaticFailover")]
+        public virtual System.Nullable<bool> EnableAutomaticFailover { get; set; }
+
+        /// <summary>
         /// Optional. Whether to enable nested virtualization on boosted Cloud Workstations VMs running using this boost
         /// configuration. Defaults to false. Nested virtualization lets you run virtual machine (VM) instances inside
         /// your workstation. Before enabling nested virtualization, consider the following important considerations.
@@ -3208,6 +3215,20 @@ namespace Google.Apis.CloudWorkstations.v1.Data
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("maxSizeGb")]
         public virtual System.Nullable<int> MaxSizeGb { get; set; }
+
+        /// <summary>
+        /// Optional. Indicates how many IOPS to provision for the disk. This sets the number of I/O operations per
+        /// second that the disk can handle. Values must be between 3,000 and 100,000.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("provisionedIops")]
+        public virtual System.Nullable<long> ProvisionedIops { get; set; }
+
+        /// <summary>
+        /// Optional. Indicates how much throughput to provision for the disk. This sets the number of throughput MB per
+        /// second that the disk can handle. Values must be between 1 and 2,400.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("provisionedThroughput")]
+        public virtual System.Nullable<long> ProvisionedThroughput { get; set; }
 
         /// <summary>
         /// Optional. Whether the persistent disk should be deleted when the workstation is deleted. Valid values are
@@ -4536,6 +4557,15 @@ namespace Google.Apis.CloudWorkstations.v1.Data
         /// <summary>Output only. Status conditions describing the workstation cluster's current state.</summary>
         [Newtonsoft.Json.JsonPropertyAttribute("conditions")]
         public virtual System.Collections.Generic.IList<Status> Conditions { get; set; }
+
+        /// <summary>
+        /// Optional. Specifies a custom base URL for the Google Cloud Console. This field is intended to be
+        /// user-configurable to support data residency for Cloud Workstations users. This will be used generally for
+        /// user journeys where users need to go to the Cloud Console from Code OSS. When the Auth and Launch URLs are
+        /// unset, this will be used as the base URL for those endpoints if set.
+        /// </summary>
+        [Newtonsoft.Json.JsonPropertyAttribute("consoleBaseUrl")]
+        public virtual string ConsoleBaseUrl { get; set; }
 
         /// <summary>
         /// Output only. The private IP address of the control plane for this workstation cluster. Workstation VMs need

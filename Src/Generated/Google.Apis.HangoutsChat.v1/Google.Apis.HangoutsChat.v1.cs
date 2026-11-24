@@ -4872,7 +4872,7 @@ namespace Google.Apis.HangoutsChat.v1
 
             /// <summary>
             /// Required. The updated field paths, comma separated if there are multiple. You can update the following
-            /// fields for a space: `space_details`: Updates the space's description and guidelines. You must pass both
+            /// fields for a space: `space_details`: Updates the space's description and guidelines. You must pass
             /// description and guidelines in the update request as `SpaceDetails`. If you only want to update one of
             /// the fields, pass the existing value for the other field. `display_name`: Only supports updating the
             /// display name for spaces where `spaceType` field is `SPACE`. If you receive the error message
@@ -6632,6 +6632,99 @@ namespace Google.Apis.HangoutsChat.v1
                         });
                     }
                 }
+
+                /// <summary>
+                /// Updates a user's read state within a thread, used to identify read and unread messages. For an
+                /// example, see [Update a user's thread read
+                /// state](https://developers.google.com/workspace/chat/update-thread-read-state). Requires [user
+                /// authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) with
+                /// the [authorization
+                /// scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes): -
+                /// `https://www.googleapis.com/auth/chat.users.readstate`
+                /// </summary>
+                /// <param name="body">The body of the request.</param>
+                /// <param name="name">
+                /// Resource name of the thread read state. Format:
+                /// `users/{user}/spaces/{space}/threads/{thread}/threadReadState`
+                /// </param>
+                public virtual UpdateThreadReadStateRequest UpdateThreadReadState(Google.Apis.HangoutsChat.v1.Data.ThreadReadState body, string name)
+                {
+                    return new UpdateThreadReadStateRequest(this.service, body, name);
+                }
+
+                /// <summary>
+                /// Updates a user's read state within a thread, used to identify read and unread messages. For an
+                /// example, see [Update a user's thread read
+                /// state](https://developers.google.com/workspace/chat/update-thread-read-state). Requires [user
+                /// authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) with
+                /// the [authorization
+                /// scope](https://developers.google.com/workspace/chat/authenticate-authorize#chat-api-scopes): -
+                /// `https://www.googleapis.com/auth/chat.users.readstate`
+                /// </summary>
+                public class UpdateThreadReadStateRequest : HangoutsChatBaseServiceRequest<Google.Apis.HangoutsChat.v1.Data.ThreadReadState>
+                {
+                    /// <summary>Constructs a new UpdateThreadReadState request.</summary>
+                    public UpdateThreadReadStateRequest(Google.Apis.Services.IClientService service, Google.Apis.HangoutsChat.v1.Data.ThreadReadState body, string name) : base(service)
+                    {
+                        Name = name;
+                        Body = body;
+                        InitParameters();
+                    }
+
+                    /// <summary>
+                    /// Resource name of the thread read state. Format:
+                    /// `users/{user}/spaces/{space}/threads/{thread}/threadReadState`
+                    /// </summary>
+                    [Google.Apis.Util.RequestParameterAttribute("name", Google.Apis.Util.RequestParameterType.Path)]
+                    public virtual string Name { get; private set; }
+
+                    /// <summary>
+                    /// Required. The field paths to update. Currently supported field paths: - `last_read_time` When
+                    /// `last_read_time` is before the latest message create time, the thread appears as unread in the
+                    /// UI. To mark the thread as read, set `last_read_time` to a timestamp equal to or later than the
+                    /// latest message create time. Future timestamps are coerced to the current request time. Setting a
+                    /// negative timestamp (before `1970-01-01T00:00:00Z`) returns an `INVALID_ARGUMENT` error.
+                    /// </summary>
+                    [Google.Apis.Util.RequestParameterAttribute("updateMask", Google.Apis.Util.RequestParameterType.Query)]
+                    public virtual object UpdateMask { get; set; }
+
+                    /// <summary>Gets or sets the body of this request.</summary>
+                    Google.Apis.HangoutsChat.v1.Data.ThreadReadState Body { get; set; }
+
+                    /// <summary>Returns the body of the request.</summary>
+                    protected override object GetBody() => Body;
+
+                    /// <summary>Gets the method name.</summary>
+                    public override string MethodName => "updateThreadReadState";
+
+                    /// <summary>Gets the HTTP method.</summary>
+                    public override string HttpMethod => "PATCH";
+
+                    /// <summary>Gets the REST path.</summary>
+                    public override string RestPath => "v1/{+name}";
+
+                    /// <summary>Initializes UpdateThreadReadState parameter list.</summary>
+                    protected override void InitParameters()
+                    {
+                        base.InitParameters();
+                        RequestParameters.Add("name", new Google.Apis.Discovery.Parameter
+                        {
+                            Name = "name",
+                            IsRequired = true,
+                            ParameterType = "path",
+                            DefaultValue = null,
+                            Pattern = @"^users/[^/]+/spaces/[^/]+/threads/[^/]+/threadReadState$",
+                        });
+                        RequestParameters.Add("updateMask", new Google.Apis.Discovery.Parameter
+                        {
+                            Name = "updateMask",
+                            IsRequired = false,
+                            ParameterType = "query",
+                            DefaultValue = null,
+                            Pattern = null,
+                        });
+                    }
+                }
             }
 
             /// <summary>
@@ -8327,7 +8420,7 @@ namespace Google.Apis.HangoutsChat.v1.Data
         /// of the color. For example, the following sets the color to red at its maximum intensity:
         /// ```
         /// "color": {
-        /// "red": 1, "green": 0, "blue": 0, }
+        /// "red": 1, "green": 0, "blue": 0 }
         /// ```
         /// The `alpha` field is unavailable for stroke color. If specified, this
         /// field is ignored.
@@ -8368,7 +8461,7 @@ namespace Google.Apis.HangoutsChat.v1.Data
         /// of the color. For example, the following sets the color to red at its maximum intensity:
         /// ```
         /// "color": {
-        /// "red": 1, "green": 0, "blue": 0, }
+        /// "red": 1, "green": 0, "blue": 0 }
         /// ```
         /// The `alpha` field is unavailable for button color. If specified, this
         /// field is ignored.
@@ -8459,10 +8552,10 @@ namespace Google.Apis.HangoutsChat.v1.Data
         /// [Google Workspace add-ons](https://developers.google.com/workspace/add-ons): For example, the following JSON
         /// constructs a card action menu with `Settings` and `Send Feedback` options:
         /// ```
-        /// "card_actions": [ {
-        /// "actionLabel": "Settings", "onClick": { "action": { "functionName": "goToView", "parameters": [ { "key":
-        /// "viewType", "value": "SETTING" } ], "loadIndicator": "LoadIndicator.SPINNER" } } }, { "actionLabel": "Send
-        /// Feedback", "onClick": { "openLink": { "url": "https://example.com/feedback" } } } ]
+        /// "cardActions": [ {
+        /// "actionLabel": "Settings", "onClick": { "action": { "function": "goToView", "parameters": [ { "key":
+        /// "viewType", "value": "SETTING" } ], "loadIndicator": "SPINNER" } } }, { "actionLabel": "Send Feedback",
+        /// "onClick": { "openLink": { "url": "https://example.com/feedback" } } } ]
         /// ```
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("cardActions")]
@@ -9118,8 +9211,7 @@ namespace Google.Apis.HangoutsChat.v1.Data
     /// "grid": { "title": "A fine collection of items", "columnCount": 2,
     /// "borderStyle": { "type": "STROKE", "cornerRadius": 4 }, "items": [ { "image": { "imageUri":
     /// "https://www.example.com/image.png", "cropStyle": { "type": "SQUARE" }, "borderStyle": { "type": "STROKE" } },
-    /// "title": "An item", "textAlignment": "CENTER" } ], "onClick": { "openLink": { "url": "https://www.example.com" }
-    /// } }
+    /// "title": "An item" } ], "onClick": { "openLink": { "url": "https://www.example.com" } } }
     /// ```
     /// </summary>
     public class GoogleAppsCardV1Grid : Google.Apis.Requests.IDirectResponseSchema
@@ -9240,7 +9332,7 @@ namespace Google.Apis.HangoutsChat.v1.Data
         /// icon](https://fonts.google.com/icons?selected=Material%20Symbols%20Outlined%3Acheck_box%3AFILL%400%3Bwght%40400%3BGRAD%400%3Bopsz%4048),
         /// use
         /// ```
-        /// "material_icon": { "name": "check_box" }
+        /// "materialIcon": { "name": "check_box" }
         /// ```
         /// [Google Chat
         /// apps](https://developers.google.com/workspace/chat):
@@ -10023,7 +10115,7 @@ namespace Google.Apis.HangoutsChat.v1.Data
         /// the second is an image button that opens a link:
         /// ```
         /// "buttonList": { "buttons": [ { "text": "Edit", "color":
-        /// { "red": 0, "green": 0, "blue": 1, }, "disabled": true, }, { "icon": { "knownIcon": "INVITE", "altText":
+        /// { "red": 0, "green": 0, "blue": 1 }, "disabled": true }, { "icon": { "knownIcon": "INVITE", "altText":
         /// "check calendar" }, "onClick": { "openLink": { "url": "https://example.com/calendar" } } } ] }
         /// ```
         /// </summary>
@@ -10083,9 +10175,9 @@ namespace Google.Apis.HangoutsChat.v1.Data
         /// Displays a decorated text item. For example, the following JSON creates a decorated text widget showing
         /// email address:
         /// ```
-        /// "decoratedText": { "icon": { "knownIcon": "EMAIL" }, "topLabel": "Email Address", "text":
-        /// "sasha@example.com", "bottomLabel": "This is a new Email address!", "switchControl": { "name":
-        /// "has_send_welcome_email_to_sasha", "selected": false, "controlType": "CHECKBOX" } }
+        /// "decoratedText": { "startIcon": { "knownIcon": "EMAIL" }, "topLabel": "Email Address",
+        /// "text": "sasha@example.com", "bottomLabel": "This is a new Email address!", "switchControl": { "name":
+        /// "has_send_welcome_email_to_sasha", "selected": false, "controlType": "CHECK_BOX" } }
         /// ```
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("decoratedText")]
@@ -10117,8 +10209,7 @@ namespace Google.Apis.HangoutsChat.v1.Data
         /// "grid": { "title": "A fine collection of items", "columnCount": 2,
         /// "borderStyle": { "type": "STROKE", "cornerRadius": 4 }, "items": [ { "image": { "imageUri":
         /// "https://www.example.com/image.png", "cropStyle": { "type": "SQUARE" }, "borderStyle": { "type": "STROKE" }
-        /// }, "title": "An item", "textAlignment": "CENTER" } ], "onClick": { "openLink": { "url":
-        /// "https://www.example.com" } } }
+        /// }, "title": "An item" } ], "onClick": { "openLink": { "url": "https://www.example.com" } } }
         /// ```
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("grid")]
@@ -10152,7 +10243,7 @@ namespace Google.Apis.HangoutsChat.v1.Data
         /// buttons, switches, or dropdown menus. For example, the following JSON creates a dropdown menu that lets
         /// users choose a size:
         /// ```
-        /// "selectionInput": { "name": "size", "label": "Size" "type": "DROPDOWN", "items": [
+        /// "selectionInput": { "name": "size", "label": "Size", "type": "DROPDOWN", "items": [
         /// { "text": "S", "value": "small", "selected": false }, { "text": "M", "value": "medium", "selected": true },
         /// { "text": "L", "value": "large", "selected": false }, { "text": "XL", "value": "extra_large", "selected":
         /// false } ] }

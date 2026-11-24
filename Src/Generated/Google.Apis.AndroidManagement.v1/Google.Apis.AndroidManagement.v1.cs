@@ -6851,7 +6851,12 @@ namespace Google.Apis.AndroidManagement.v1.Data
     /// <summary>Device network info.</summary>
     public class NetworkInfo : Google.Apis.Requests.IDirectResponseSchema
     {
-        /// <summary>IMEI number of the GSM device. For example, A1000031212.</summary>
+        /// <summary>
+        /// IMEI number of the GSM device. For example, A1000031212. This value corresponds to the result of
+        /// TelephonyManager.getImei()(https://developer.android.com/reference/android/telephony/TelephonyManager#getImei()).
+        /// On dual-SIM devices, reports the IMEI associated with the default active subscription, such as the IMEI of
+        /// the eSIM slot when only an eSIM is active.
+        /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("imei")]
         public virtual string Imei { get; set; }
 
@@ -9163,8 +9168,11 @@ namespace Google.Apis.AndroidManagement.v1.Data
         /// Optional. When the policy is evaluated for a given target, all rules which refer to that target are
         /// evaluated in sequence. The first rule for which the predicate evaluates to true is considered, and its
         /// outcome is used. If no rule matches, the default update behavior applies. In other words, this behaves like
-        /// a chained if-else statement.However, if an update has been available for more than a certain amount of time,
-        /// any outcome of BLOCK is automatically changed to the default update behavior. At most 100 rules are allowed.
+        /// a chained if-else statement.However, each update can only be deferred for a limited time. After an update
+        /// has been available for longer than its maximum deferral period, rules with an outcome of BLOCK or
+        /// USER_PROMPT no longer delay it. The update then follows a matching rule with an outcome of FORCE or the
+        /// default update behavior. The maximum deferral period depends on the target type and, for OS updates, the
+        /// management mode.At most 100 rules are allowed.
         /// </summary>
         [Newtonsoft.Json.JsonPropertyAttribute("rules")]
         public virtual System.Collections.Generic.IList<Rule> Rules { get; set; }

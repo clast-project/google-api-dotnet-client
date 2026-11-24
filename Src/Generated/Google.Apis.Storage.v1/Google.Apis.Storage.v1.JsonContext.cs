@@ -54,6 +54,7 @@ namespace Google.Apis.Storage.v1.Data
     [JsonSerializable(typeof(global::Google.Apis.Storage.v1.Data.BucketStorageLayout), TypeInfoPropertyName = "Schema_BucketStorageLayout")]
     [JsonSerializable(typeof(global::Google.Apis.Storage.v1.Data.BucketStorageLayout.CustomPlacementConfigData), TypeInfoPropertyName = "Schema_BucketStorageLayout_CustomPlacementConfigData")]
     [JsonSerializable(typeof(global::Google.Apis.Storage.v1.Data.BucketStorageLayout.HierarchicalNamespaceData), TypeInfoPropertyName = "Schema_BucketStorageLayout_HierarchicalNamespaceData")]
+    [JsonSerializable(typeof(global::Google.Apis.Storage.v1.Data.BucketStorageLayout.RapidCacheInfoData), TypeInfoPropertyName = "Schema_BucketStorageLayout_RapidCacheInfoData")]
     [JsonSerializable(typeof(global::Google.Apis.Storage.v1.Data.BulkRestoreObjectsRequest), TypeInfoPropertyName = "Schema_BulkRestoreObjectsRequest")]
     [JsonSerializable(typeof(global::Google.Apis.Storage.v1.Data.ComposeRequest), TypeInfoPropertyName = "Schema_ComposeRequest")]
     [JsonSerializable(typeof(global::Google.Apis.Storage.v1.Data.ComposeRequest.SourceObjectsData), TypeInfoPropertyName = "Schema_ComposeRequest_SourceObjectsData")]
@@ -77,6 +78,7 @@ namespace Google.Apis.Storage.v1.Data
     [JsonSerializable(typeof(global::Google.Apis.Storage.v1.Data.Object.CustomerEncryptionData), TypeInfoPropertyName = "Schema_Object_CustomerEncryptionData")]
     [JsonSerializable(typeof(global::Google.Apis.Storage.v1.Data.Object.OwnerData), TypeInfoPropertyName = "Schema_Object_OwnerData")]
     [JsonSerializable(typeof(global::Google.Apis.Storage.v1.Data.Object.RetentionData), TypeInfoPropertyName = "Schema_Object_RetentionData")]
+    [JsonSerializable(typeof(global::Google.Apis.Storage.v1.Data.Object.ZonalAvailabilityInfoData), TypeInfoPropertyName = "Schema_Object_ZonalAvailabilityInfoData")]
     [JsonSerializable(typeof(global::Google.Apis.Storage.v1.Data.ObjectAccessControl), TypeInfoPropertyName = "Schema_ObjectAccessControl")]
     [JsonSerializable(typeof(global::Google.Apis.Storage.v1.Data.ObjectAccessControl.ProjectTeamData), TypeInfoPropertyName = "Schema_ObjectAccessControl_ProjectTeamData")]
     [JsonSerializable(typeof(global::Google.Apis.Storage.v1.Data.ObjectAccessControls), TypeInfoPropertyName = "Schema_ObjectAccessControls")]
@@ -161,19 +163,6 @@ namespace Google.Apis.Storage.v1.Data
                 P("quotaUser", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.AnywhereCachesResource.ListRequest)r).QuotaUser),
                 P("uploadType", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.AnywhereCachesResource.ListRequest)r).UploadType),
                 P("userIp", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.AnywhereCachesResource.ListRequest)r).UserIp),
-            });
-            RequestParameterRegistry.Register(typeof(global::Google.Apis.Storage.v1.AnywhereCachesResource.PauseRequest), new RequestParameterDescriptor[]
-            {
-                P("bucket", RequestParameterType.Path, false, r => ((global::Google.Apis.Storage.v1.AnywhereCachesResource.PauseRequest)r).Bucket),
-                P("anywhereCacheId", RequestParameterType.Path, false, r => ((global::Google.Apis.Storage.v1.AnywhereCachesResource.PauseRequest)r).AnywhereCacheId),
-                P("alt", RequestParameterType.Query, true, r => ((global::Google.Apis.Storage.v1.AnywhereCachesResource.PauseRequest)r).Alt),
-                P("fields", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.AnywhereCachesResource.PauseRequest)r).Fields),
-                P("key", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.AnywhereCachesResource.PauseRequest)r).Key),
-                P("oauth_token", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.AnywhereCachesResource.PauseRequest)r).OauthToken),
-                P("prettyPrint", RequestParameterType.Query, true, r => ((global::Google.Apis.Storage.v1.AnywhereCachesResource.PauseRequest)r).PrettyPrint),
-                P("quotaUser", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.AnywhereCachesResource.PauseRequest)r).QuotaUser),
-                P("uploadType", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.AnywhereCachesResource.PauseRequest)r).UploadType),
-                P("userIp", RequestParameterType.Query, false, r => ((global::Google.Apis.Storage.v1.AnywhereCachesResource.PauseRequest)r).UserIp),
             });
             RequestParameterRegistry.Register(typeof(global::Google.Apis.Storage.v1.AnywhereCachesResource.ResumeRequest), new RequestParameterDescriptor[]
             {
