@@ -1,10 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk" ToolsVersion="15.0">
 
-  <!-- Clast: republished under a Clast.* identity only when -p:Clast=true (see Google.Apis.Core.csproj). -->
+  <!-- Clast: republished under a Clast.* identity only when -p:Clast=true (see Google.Apis.Core.csproj).
+       The Clast.snk override is in the last Clast group: it must come after the upstream default key below. -->
   <PropertyGroup Condition="'$(Clast)' == 'true'">
     <PackageId>Clast.Google.Apis.Bigquery.v2</PackageId>
     <AssemblyName>Clast.Google.Apis.Bigquery.v2</AssemblyName>
-    <AssemblyOriginatorKeyFile Condition="'$(ClastKeyPath)' != ''">$(ClastKeyPath)</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <!-- nupkg information -->
@@ -93,6 +93,8 @@
     <RepositoryUrl>https://github.com/clast-project/google-api-dotnet-client</RepositoryUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <Description>Clast republish of the generated Google.Apis.Bigquery.v2 REST client: Newtonsoft.Json replaced with source-generated System.Text.Json, trimming/AOT-compatible, adds a net10.0 target. Namespaces and public type names are unchanged. Independent republish from the clast-project fork — not an official Google package.</Description>
+    <!-- Must follow the upstream AssemblyOriginatorKeyFile (google.apis.snk) above, or it is overwritten. -->
+    <AssemblyOriginatorKeyFile Condition="'$(ClastKeyPath)' != ''">$(ClastKeyPath)</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup Condition="'$(Clast)' == 'true'">
     <None Include="..\..\..\CLAST_NUGET.md" Pack="true" PackagePath="README.md" />

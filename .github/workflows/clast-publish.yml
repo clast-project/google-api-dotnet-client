@@ -150,6 +150,13 @@ jobs:
           done
           ls -l "$OUT"
 
+      # Every packed assembly must carry Clast.snk's token. A csproj whose upstream default key is assigned
+      # after the Clast override still builds and packs fine but ships with Google's key — which is how
+      # Storage.v1/Bigquery.v2 went out with google.apis.snk until 1.78.0.4332/4328. Runs on dry runs too.
+      - name: Verify strong-name signing
+        shell: pwsh
+        run: ./google-api-dotnet-client/Tools/ClastVerifySigning/verify-signing.ps1 "${{ github.workspace }}/clast-packages"
+
       - name: Upload packages artifact
         uses: actions/upload-artifact@v4
         with:
