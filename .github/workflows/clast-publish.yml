@@ -146,7 +146,9 @@ jobs:
                 exit 1 ;;
             esac
             echo "packing $(basename "$p" .csproj) @ $v"
-            dotnet pack "$p" -c Release -o "$OUT" -p:Clast=true -p:ClastKeyPath="$KEY"
+            # ContinuousIntegrationBuild: deterministic build with source paths normalized to /_/ in the PDBs
+            # (which ship inside the .nupkg, as upstream does). Source Link still maps them to the fork commit.
+            dotnet pack "$p" -c Release -o "$OUT" -p:Clast=true -p:ClastKeyPath="$KEY" -p:ContinuousIntegrationBuild=true
           done
           ls -l "$OUT"
 
