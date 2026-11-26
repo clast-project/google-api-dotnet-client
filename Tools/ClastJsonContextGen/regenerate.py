@@ -19,10 +19,11 @@ from gen_jsoncontext import generate  # noqa: E402
 REPO_ROOT = os.path.abspath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..'))
 
 # Every generated client that carries a committed JsonContext. The namespace is the
-# directory name in all four cases, but keep it explicit rather than inferred.
+# directory name in every case, but keep it explicit rather than inferred.
 CLIENTS = [
     ('Google.Apis.Storage.v1', 'Google.Apis.Storage.v1'),
     ('Google.Apis.Bigquery.v2', 'Google.Apis.Bigquery.v2'),
+    ('Google.Apis.Gmail.v1', 'Google.Apis.Gmail.v1'),
     ('Google.Apis.ManufacturerCenter.v1', 'Google.Apis.ManufacturerCenter.v1'),
     ('Google.Apis.Translate.v2', 'Google.Apis.Translate.v2'),
 ]

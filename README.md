@@ -13,6 +13,7 @@
 > | `Clast.Google.Apis.Auth` | `Google.Apis.Auth` |
 > | `Clast.Google.Apis.Storage.v1` | `Google.Apis.Storage.v1` |
 > | `Clast.Google.Apis.Bigquery.v2` | `Google.Apis.Bigquery.v2` |
+> | `Clast.Google.Apis.Gmail.v1` | `Google.Apis.Gmail.v1` |
 >
 > Everything else in this repository is unchanged upstream content and is **not** part of the Clast republish. The renaming/re-signing is gated behind an opt-in `-p:Clast=true` MSBuild flag (default builds keep the original identity, so the existing tests run unchanged). See [`PLAN.md`](PLAN.md) and [`BEHAVIORAL-CHANGES.md`](BEHAVIORAL-CHANGES.md) for the full design and the catalogue of Newtonsoft→System.Text.Json behavior differences.
 

@@ -7,7 +7,7 @@ upstream and publish on a unified version. The mechanism spans four sibling fork
 | Repo | Upstream | Republished packages |
 |---|---|---|
 | `gax-dotnet` | googleapis/gax-dotnet | `Clast.Google.Api.Gax`, `.Rest`, `.Grpc` |
-| `google-api-dotnet-client` | googleapis/google-api-dotnet-client | `Clast.Google.Apis.Core`, `.Google.Apis`, `.Auth`, `.Storage.v1`, `.Bigquery.v2` |
+| `google-api-dotnet-client` | googleapis/google-api-dotnet-client | `Clast.Google.Apis.Core`, `.Google.Apis`, `.Auth`, `.Storage.v1`, `.Bigquery.v2`, `.Gmail.v1` |
 | `google-cloud-dotnet` | googleapis/google-cloud-dotnet | `Clast.Google.Cloud.Storage.V1`, `.BigQuery.V2`, `.BigQuery.Storage.V1` |
 | `grpc-dotnet` | grpc/grpc-dotnet | `Clast.Grpc.Auth` |
 
@@ -67,7 +67,7 @@ Steps (example is this repo; take the target versions from the `upstream-sync` i
    gap the build can't catch. See `Tools/ClastJsonContextGen/README.md` for what the script
    derives and what it preserves.
 5. **Build + test exactly as `.github/workflows/clast-ci.yml` does:**
-   `dotnet build` the Storage.v1 and Bigquery.v2 generated clients (all TFMs, incl. net10),
+   `dotnet build` the Storage.v1, Bigquery.v2 and Gmail.v1 generated clients (all TFMs, incl. net10),
    and `dotnet test` `Google.Apis.Tests` + `Google.Apis.Auth.Tests` (`-c Release`). Then
    validate the publish path itself: `dotnet pack <proj> -c Release -p:Clast=true` — the
    package should come out as `Clast.<Name>.<version>.nupkg`.
