@@ -1,6 +1,6 @@
 name: Clast Publish
 
-# Orchestrated build + publish of all 12 Clast.* packages to NuGet.org.
+# Orchestrated build + publish of all 13 Clast.* packages to NuGet.org.
 # Checks out the whole closure (this repo + gax-dotnet + grpc-dotnet + google-cloud-dotnet) as siblings so the cross-repo
 # ProjectReferences resolve, packs every shippable project with -p:Clast=true (renamed assemblies + Clast.snk),
 # then pushes to NuGet.org.
@@ -113,7 +113,7 @@ jobs:
           echo "label=$L" >> "$GITHUB_OUTPUT"
           echo "Run label (artifact naming only; package versions mirror upstream): $L"
 
-      - name: Pack all 12 Clast.* packages (each at its own upstream version)
+      - name: Pack all 13 Clast.* packages (each at its own upstream version)
         shell: bash
         env:
           KEY: ${{ github.workspace }}/google-api-dotnet-client/Clast.snk
@@ -126,6 +126,7 @@ jobs:
             google-api-dotnet-client/Src/Support/Google.Apis.Auth/Google.Apis.Auth.csproj
             google-api-dotnet-client/Src/Generated/Google.Apis.Storage.v1/Google.Apis.Storage.v1.csproj
             google-api-dotnet-client/Src/Generated/Google.Apis.Bigquery.v2/Google.Apis.Bigquery.v2.csproj
+            google-api-dotnet-client/Src/Generated/Google.Apis.Gmail.v1/Google.Apis.Gmail.v1.csproj
             grpc-dotnet/src/Grpc.Auth/Grpc.Auth.csproj
             gax-dotnet/Google.Api.Gax/Google.Api.Gax.csproj
             gax-dotnet/Google.Api.Gax.Rest/Google.Api.Gax.Rest.csproj

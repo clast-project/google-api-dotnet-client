@@ -1,4 +1,4 @@
-// Copyright 2026 Google LLC
+﻿// Copyright 2026 Google LLC
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -7890,18 +7890,18 @@ namespace Google.Apis.Gmail.v1.Data
     public class AutoForwarding : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>The state that a message should be left in after it has been forwarded.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("disposition")]
+        [System.Text.Json.Serialization.JsonPropertyName("disposition")]
         public virtual string Disposition { get; set; }
 
         /// <summary>
         /// Email address to which all incoming messages are forwarded. This email address must be a verified member of
         /// the forwarding addresses.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("emailAddress")]
+        [System.Text.Json.Serialization.JsonPropertyName("emailAddress")]
         public virtual string EmailAddress { get; set; }
 
         /// <summary>Whether all incoming mail is automatically forwarded to another address.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("enabled")]
+        [System.Text.Json.Serialization.JsonPropertyName("enabled")]
         public virtual System.Nullable<bool> Enabled { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -7911,7 +7911,7 @@ namespace Google.Apis.Gmail.v1.Data
     public class BatchDeleteMessagesRequest : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>The IDs of the messages to delete.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("ids")]
+        [System.Text.Json.Serialization.JsonPropertyName("ids")]
         public virtual System.Collections.Generic.IList<string> Ids { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -7927,23 +7927,23 @@ namespace Google.Apis.Gmail.v1.Data
         /// and the final total number of Classification Label values exceeds the maximum allowed number of
         /// Classification Label values per message, the modification fails.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("addClassificationLabels")]
+        [System.Text.Json.Serialization.JsonPropertyName("addClassificationLabels")]
         public virtual System.Collections.Generic.IList<ClassificationLabelValue> AddClassificationLabels { get; set; }
 
         /// <summary>A list of label IDs to add to messages.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("addLabelIds")]
+        [System.Text.Json.Serialization.JsonPropertyName("addLabelIds")]
         public virtual System.Collections.Generic.IList<string> AddLabelIds { get; set; }
 
         /// <summary>The IDs of the messages to modify. There is a limit of 1000 ids per request.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("ids")]
+        [System.Text.Json.Serialization.JsonPropertyName("ids")]
         public virtual System.Collections.Generic.IList<string> Ids { get; set; }
 
         /// <summary>A list of Classification Label values to remove from messages.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("removeClassificationLabelIds")]
+        [System.Text.Json.Serialization.JsonPropertyName("removeClassificationLabelIds")]
         public virtual System.Collections.Generic.IList<string> RemoveClassificationLabelIds { get; set; }
 
         /// <summary>A list of label IDs to remove from messages.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("removeLabelIds")]
+        [System.Text.Json.Serialization.JsonPropertyName("removeLabelIds")]
         public virtual System.Collections.Generic.IList<string> RemoveLabelIds { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -7957,7 +7957,7 @@ namespace Google.Apis.Gmail.v1.Data
         /// Required. The field ID for the Classification Label Value. Maps to the ID field of the Google Drive
         /// `Label.Field` object.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("fieldId")]
+        [System.Text.Json.Serialization.JsonPropertyName("fieldId")]
         public virtual string FieldId { get; set; }
 
         /// <summary>
@@ -7965,7 +7965,7 @@ namespace Google.Apis.Gmail.v1.Data
         /// Google Drive `Label.Field` object. Maps to the id field of the Google Drive `Label.Field.SelectionOptions`
         /// resource.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("selection")]
+        [System.Text.Json.Serialization.JsonPropertyName("selection")]
         public virtual string Selection { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -7980,14 +7980,14 @@ namespace Google.Apis.Gmail.v1.Data
     public class ClassificationLabelValue : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>Field values for the given classification label ID.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("fields")]
+        [System.Text.Json.Serialization.JsonPropertyName("fields")]
         public virtual System.Collections.Generic.IList<ClassificationLabelFieldValue> Fields { get; set; }
 
         /// <summary>
         /// Required. The canonical or raw alphanumeric classification label ID. Maps to the ID field of the Google
         /// Drive Label resource.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("labelId")]
+        [System.Text.Json.Serialization.JsonPropertyName("labelId")]
         public virtual string LabelId { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -8011,17 +8011,17 @@ namespace Google.Apis.Gmail.v1.Data
         /// The email address for the sending identity. The email address must be the primary email address of the
         /// authenticated user.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("emailAddress")]
+        [System.Text.Json.Serialization.JsonPropertyName("emailAddress")]
         public virtual string EmailAddress { get; set; }
 
         /// <summary>If a key pair is associated, the ID of the key pair, CseKeyPair.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("primaryKeyPairId")]
+        [System.Text.Json.Serialization.JsonPropertyName("primaryKeyPairId")]
         public virtual string PrimaryKeyPairId { get; set; }
 
         /// <summary>
         /// The configuration of a CSE identity that uses different key pairs for signing and encryption.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("signAndEncryptKeyPairs")]
+        [System.Text.Json.Serialization.JsonPropertyName("signAndEncryptKeyPairs")]
         public virtual SignAndEncryptKeyPairs SignAndEncryptKeyPairs { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -8050,7 +8050,7 @@ namespace Google.Apis.Gmail.v1.Data
         /// Output only. If a key pair is set to `DISABLED`, the time that the key pair's state changed from `ENABLED`
         /// to `DISABLED`. This field is present only when the key pair is in state `DISABLED`.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("disableTime")]
+        [System.Text.Json.Serialization.JsonPropertyName("disableTime")]
         public virtual string DisableTimeRaw
         {
             get => _disableTimeRaw;
@@ -8062,7 +8062,7 @@ namespace Google.Apis.Gmail.v1.Data
         }
 
         /// <summary><seealso cref="object"/> representation of <see cref="DisableTimeRaw"/>.</summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         [System.ObsoleteAttribute("This property is obsolete and may behave unexpectedly; please use DisableTimeDateTimeOffset instead.")]
         public virtual object DisableTime
         {
@@ -8075,7 +8075,7 @@ namespace Google.Apis.Gmail.v1.Data
         }
 
         /// <summary><seealso cref="System.DateTimeOffset"/> representation of <see cref="DisableTimeRaw"/>.</summary>
-        [Newtonsoft.Json.JsonIgnoreAttribute]
+        [System.Text.Json.Serialization.JsonIgnore]
         public virtual System.DateTimeOffset? DisableTimeDateTimeOffset
         {
             get => Google.Apis.Util.DiscoveryFormat.ParseGoogleDateTimeToDateTimeOffset(DisableTimeRaw);
@@ -8083,33 +8083,33 @@ namespace Google.Apis.Gmail.v1.Data
         }
 
         /// <summary>Output only. The current state of the key pair.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("enablementState")]
+        [System.Text.Json.Serialization.JsonPropertyName("enablementState")]
         public virtual string EnablementState { get; set; }
 
         /// <summary>Output only. The immutable ID for the client-side encryption S/MIME key pair.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("keyPairId")]
+        [System.Text.Json.Serialization.JsonPropertyName("keyPairId")]
         public virtual string KeyPairId { get; set; }
 
         /// <summary>
         /// Output only. The public key and its certificate chain, in
         /// [PEM](https://en.wikipedia.org/wiki/Privacy-Enhanced_Mail) format.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("pem")]
+        [System.Text.Json.Serialization.JsonPropertyName("pem")]
         public virtual string Pem { get; set; }
 
         /// <summary>
         /// Input only. The public key and its certificate chain. The chain must be in
         /// [PKCS#7](https://en.wikipedia.org/wiki/PKCS_7) format and use PEM encoding and ASCII armor.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("pkcs7")]
+        [System.Text.Json.Serialization.JsonPropertyName("pkcs7")]
         public virtual string Pkcs7 { get; set; }
 
         /// <summary>Metadata for instances of this key pair's private key.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("privateKeyMetadata")]
+        [System.Text.Json.Serialization.JsonPropertyName("privateKeyMetadata")]
         public virtual System.Collections.Generic.IList<CsePrivateKeyMetadata> PrivateKeyMetadata { get; set; }
 
         /// <summary>Output only. The email address identities that are specified on the leaf certificate.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("subjectEmailAddresses")]
+        [System.Text.Json.Serialization.JsonPropertyName("subjectEmailAddresses")]
         public virtual System.Collections.Generic.IList<string> SubjectEmailAddresses { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -8120,18 +8120,18 @@ namespace Google.Apis.Gmail.v1.Data
     public class CsePrivateKeyMetadata : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>Metadata for hardware keys.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("hardwareKeyMetadata")]
+        [System.Text.Json.Serialization.JsonPropertyName("hardwareKeyMetadata")]
         public virtual HardwareKeyMetadata HardwareKeyMetadata { get; set; }
 
         /// <summary>
         /// Metadata for a private key instance managed by an external key access control list service. The maximum size
         /// of the KACLS data field is 8 KiB.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("kaclsKeyMetadata")]
+        [System.Text.Json.Serialization.JsonPropertyName("kaclsKeyMetadata")]
         public virtual KaclsKeyMetadata KaclsKeyMetadata { get; set; }
 
         /// <summary>Output only. The immutable ID for the private key metadata instance.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("privateKeyMetadataId")]
+        [System.Text.Json.Serialization.JsonPropertyName("privateKeyMetadataId")]
         public virtual string PrivateKeyMetadataId { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -8145,13 +8145,13 @@ namespace Google.Apis.Gmail.v1.Data
     public class Delegate : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>The email address of the delegate.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("delegateEmail")]
+        [System.Text.Json.Serialization.JsonPropertyName("delegateEmail")]
         public virtual string DelegateEmail { get; set; }
 
         /// <summary>
         /// Indicates whether this address has been verified and can act as a delegate for the account. Read-only.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("verificationStatus")]
+        [System.Text.Json.Serialization.JsonPropertyName("verificationStatus")]
         public virtual string VerificationStatus { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -8169,11 +8169,11 @@ namespace Google.Apis.Gmail.v1.Data
     public class Draft : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>The immutable ID of the draft.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("id")]
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
         public virtual string Id { get; set; }
 
         /// <summary>The message content of the draft.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("message")]
+        [System.Text.Json.Serialization.JsonPropertyName("message")]
         public virtual Message Message { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -8193,15 +8193,15 @@ namespace Google.Apis.Gmail.v1.Data
     public class Filter : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>Action that the filter performs.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("action")]
+        [System.Text.Json.Serialization.JsonPropertyName("action")]
         public virtual FilterAction Action { get; set; }
 
         /// <summary>Matching criteria for the filter.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("criteria")]
+        [System.Text.Json.Serialization.JsonPropertyName("criteria")]
         public virtual FilterCriteria Criteria { get; set; }
 
         /// <summary>The server assigned ID of the filter.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("id")]
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
         public virtual string Id { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -8212,18 +8212,18 @@ namespace Google.Apis.Gmail.v1.Data
     public class FilterAction : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>List of labels to add to the message.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("addLabelIds")]
+        [System.Text.Json.Serialization.JsonPropertyName("addLabelIds")]
         public virtual System.Collections.Generic.IList<string> AddLabelIds { get; set; }
 
         /// <summary>
         /// Email address that the message should be forwarded to. This effectively redirects the message to the address
         /// specified in this field, maintaining the original sender in the "From" field.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("forward")]
+        [System.Text.Json.Serialization.JsonPropertyName("forward")]
         public virtual string Forward { get; set; }
 
         /// <summary>List of labels to remove from the message.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("removeLabelIds")]
+        [System.Text.Json.Serialization.JsonPropertyName("removeLabelIds")]
         public virtual System.Collections.Generic.IList<string> RemoveLabelIds { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -8234,44 +8234,44 @@ namespace Google.Apis.Gmail.v1.Data
     public class FilterCriteria : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>Whether the response should exclude chats.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("excludeChats")]
+        [System.Text.Json.Serialization.JsonPropertyName("excludeChats")]
         public virtual System.Nullable<bool> ExcludeChats { get; set; }
 
         /// <summary>The sender's display name or email address.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("from")]
+        [System.Text.Json.Serialization.JsonPropertyName("from")]
         public virtual string From { get; set; }
 
         /// <summary>Whether the message has any attachment.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("hasAttachment")]
+        [System.Text.Json.Serialization.JsonPropertyName("hasAttachment")]
         public virtual System.Nullable<bool> HasAttachment { get; set; }
 
         /// <summary>
         /// Only return messages not matching the specified query. Supports the same query format as the Gmail search
         /// box. For example, `"from:someuser@example.com rfc822msgid: is:unread"`.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("negatedQuery")]
+        [System.Text.Json.Serialization.JsonPropertyName("negatedQuery")]
         public virtual string NegatedQuery { get; set; }
 
         /// <summary>
         /// Only return messages matching the specified query. Supports the same query format as the Gmail search box.
         /// For example, `"from:someuser@example.com rfc822msgid: is:unread"`.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("query")]
+        [System.Text.Json.Serialization.JsonPropertyName("query")]
         public virtual string Query { get; set; }
 
         /// <summary>The size of the entire RFC822 message in bytes, including all headers and attachments.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("size")]
+        [System.Text.Json.Serialization.JsonPropertyName("size")]
         public virtual System.Nullable<int> Size { get; set; }
 
         /// <summary>How the message size in bytes should be in relation to the size field.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("sizeComparison")]
+        [System.Text.Json.Serialization.JsonPropertyName("sizeComparison")]
         public virtual string SizeComparison { get; set; }
 
         /// <summary>
         /// Case-insensitive phrase found in the message's subject. Trailing and leading whitespace are be trimmed and
         /// adjacent spaces are collapsed.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("subject")]
+        [System.Text.Json.Serialization.JsonPropertyName("subject")]
         public virtual string Subject { get; set; }
 
         /// <summary>
@@ -8279,7 +8279,7 @@ namespace Google.Apis.Gmail.v1.Data
         /// fields. You can use simply the local part of the email address. For example, "example" and "example@" both
         /// match "example@gmail.com". This field is case-insensitive.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("to")]
+        [System.Text.Json.Serialization.JsonPropertyName("to")]
         public virtual string To { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -8290,11 +8290,11 @@ namespace Google.Apis.Gmail.v1.Data
     public class ForwardingAddress : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>An email address to which messages can be forwarded.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("forwardingEmail")]
+        [System.Text.Json.Serialization.JsonPropertyName("forwardingEmail")]
         public virtual string ForwardingEmail { get; set; }
 
         /// <summary>Indicates whether this address has been verified and is usable for forwarding. Read-only.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("verificationStatus")]
+        [System.Text.Json.Serialization.JsonPropertyName("verificationStatus")]
         public virtual string VerificationStatus { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -8310,7 +8310,7 @@ namespace Google.Apis.Gmail.v1.Data
     public class HardwareKeyMetadata : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>Description about the hardware key.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("description")]
+        [System.Text.Json.Serialization.JsonPropertyName("description")]
         public virtual string Description { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -8323,15 +8323,15 @@ namespace Google.Apis.Gmail.v1.Data
     public class History : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>The mailbox sequence ID.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("id")]
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
         public virtual System.Nullable<ulong> Id { get; set; }
 
         /// <summary>Labels added to messages in this history record.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("labelsAdded")]
+        [System.Text.Json.Serialization.JsonPropertyName("labelsAdded")]
         public virtual System.Collections.Generic.IList<HistoryLabelAdded> LabelsAdded { get; set; }
 
         /// <summary>Labels removed from messages in this history record.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("labelsRemoved")]
+        [System.Text.Json.Serialization.JsonPropertyName("labelsRemoved")]
         public virtual System.Collections.Generic.IList<HistoryLabelRemoved> LabelsRemoved { get; set; }
 
         /// <summary>
@@ -8339,15 +8339,15 @@ namespace Google.Apis.Gmail.v1.Data
         /// `messagesAdded` may duplicate messages in this field. We recommend using the specific change-type fields
         /// instead of this.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("messages")]
+        [System.Text.Json.Serialization.JsonPropertyName("messages")]
         public virtual System.Collections.Generic.IList<Message> Messages { get; set; }
 
         /// <summary>Messages added to the mailbox in this history record.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("messagesAdded")]
+        [System.Text.Json.Serialization.JsonPropertyName("messagesAdded")]
         public virtual System.Collections.Generic.IList<HistoryMessageAdded> MessagesAdded { get; set; }
 
         /// <summary>Messages deleted (not Trashed) from the mailbox in this history record.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("messagesDeleted")]
+        [System.Text.Json.Serialization.JsonPropertyName("messagesDeleted")]
         public virtual System.Collections.Generic.IList<HistoryMessageDeleted> MessagesDeleted { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -8357,10 +8357,10 @@ namespace Google.Apis.Gmail.v1.Data
     public class HistoryLabelAdded : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>Label IDs added to the message.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("labelIds")]
+        [System.Text.Json.Serialization.JsonPropertyName("labelIds")]
         public virtual System.Collections.Generic.IList<string> LabelIds { get; set; }
 
-        [Newtonsoft.Json.JsonPropertyAttribute("message")]
+        [System.Text.Json.Serialization.JsonPropertyName("message")]
         public virtual Message Message { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -8370,10 +8370,10 @@ namespace Google.Apis.Gmail.v1.Data
     public class HistoryLabelRemoved : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>Label IDs removed from the message.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("labelIds")]
+        [System.Text.Json.Serialization.JsonPropertyName("labelIds")]
         public virtual System.Collections.Generic.IList<string> LabelIds { get; set; }
 
-        [Newtonsoft.Json.JsonPropertyAttribute("message")]
+        [System.Text.Json.Serialization.JsonPropertyName("message")]
         public virtual Message Message { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -8382,7 +8382,7 @@ namespace Google.Apis.Gmail.v1.Data
 
     public class HistoryMessageAdded : Google.Apis.Requests.IDirectResponseSchema
     {
-        [Newtonsoft.Json.JsonPropertyAttribute("message")]
+        [System.Text.Json.Serialization.JsonPropertyName("message")]
         public virtual Message Message { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -8391,7 +8391,7 @@ namespace Google.Apis.Gmail.v1.Data
 
     public class HistoryMessageDeleted : Google.Apis.Requests.IDirectResponseSchema
     {
-        [Newtonsoft.Json.JsonPropertyAttribute("message")]
+        [System.Text.Json.Serialization.JsonPropertyName("message")]
         public virtual Message Message { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -8405,25 +8405,25 @@ namespace Google.Apis.Gmail.v1.Data
         /// If this value is true, Gmail will immediately expunge a message when it is marked as deleted in IMAP.
         /// Otherwise, Gmail will wait for an update from the client before expunging messages marked as deleted.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("autoExpunge")]
+        [System.Text.Json.Serialization.JsonPropertyName("autoExpunge")]
         public virtual System.Nullable<bool> AutoExpunge { get; set; }
 
         /// <summary>Whether IMAP is enabled for the account.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("enabled")]
+        [System.Text.Json.Serialization.JsonPropertyName("enabled")]
         public virtual System.Nullable<bool> Enabled { get; set; }
 
         /// <summary>
         /// The action that will be executed on a message when it is marked as deleted and expunged from the last
         /// visible IMAP folder.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("expungeBehavior")]
+        [System.Text.Json.Serialization.JsonPropertyName("expungeBehavior")]
         public virtual string ExpungeBehavior { get; set; }
 
         /// <summary>
         /// An optional limit on the number of messages that an IMAP folder may contain. Legal values are 0, 1000, 2000,
         /// 5000 or 10000. A value of zero is interpreted to mean that there is no limit.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("maxFolderSize")]
+        [System.Text.Json.Serialization.JsonPropertyName("maxFolderSize")]
         public virtual System.Nullable<int> MaxFolderSize { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -8438,11 +8438,11 @@ namespace Google.Apis.Gmail.v1.Data
     public class KaclsKeyMetadata : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>Opaque data generated and used by the key access control list service.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("kaclsData")]
+        [System.Text.Json.Serialization.JsonPropertyName("kaclsData")]
         public virtual string KaclsData { get; set; }
 
         /// <summary>The URI of the key access control list service that manages the key.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("kaclsUri")]
+        [System.Text.Json.Serialization.JsonPropertyName("kaclsUri")]
         public virtual string KaclsUri { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -8458,41 +8458,41 @@ namespace Google.Apis.Gmail.v1.Data
         /// <summary>
         /// The color to assign to the label. Color is only available for labels that have their `type` set to `user`.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("color")]
+        [System.Text.Json.Serialization.JsonPropertyName("color")]
         public virtual LabelColor Color { get; set; }
 
         /// <summary>The immutable ID of the label.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("id")]
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
         public virtual string Id { get; set; }
 
         /// <summary>The visibility of the label in the label list in the Gmail web interface.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("labelListVisibility")]
+        [System.Text.Json.Serialization.JsonPropertyName("labelListVisibility")]
         public virtual string LabelListVisibility { get; set; }
 
         /// <summary>
         /// The visibility of messages with this label in the message list in the Gmail web interface.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("messageListVisibility")]
+        [System.Text.Json.Serialization.JsonPropertyName("messageListVisibility")]
         public virtual string MessageListVisibility { get; set; }
 
         /// <summary>The total number of messages with the label.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("messagesTotal")]
+        [System.Text.Json.Serialization.JsonPropertyName("messagesTotal")]
         public virtual System.Nullable<int> MessagesTotal { get; set; }
 
         /// <summary>The number of unread messages with the label.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("messagesUnread")]
+        [System.Text.Json.Serialization.JsonPropertyName("messagesUnread")]
         public virtual System.Nullable<int> MessagesUnread { get; set; }
 
         /// <summary>The display name of the label.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("name")]
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
         public virtual string Name { get; set; }
 
         /// <summary>The total number of threads with the label.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("threadsTotal")]
+        [System.Text.Json.Serialization.JsonPropertyName("threadsTotal")]
         public virtual System.Nullable<int> ThreadsTotal { get; set; }
 
         /// <summary>The number of unread threads with the label.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("threadsUnread")]
+        [System.Text.Json.Serialization.JsonPropertyName("threadsUnread")]
         public virtual System.Nullable<int> ThreadsUnread { get; set; }
 
         /// <summary>
@@ -8503,7 +8503,7 @@ namespace Google.Apis.Gmail.v1.Data
         /// `UNREAD` labels from messages and threads, but cannot apply or remove the `DRAFTS` or `SENT` labels from
         /// messages or threads.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("type")]
+        [System.Text.Json.Serialization.JsonPropertyName("type")]
         public virtual string Type { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -8526,7 +8526,7 @@ namespace Google.Apis.Gmail.v1.Data
         /// #ff7537, #ffad46, \#662e37, #ebdbde, #cca6ac, #094228, #42d692, #16a765, #757575, #1e53b8, \#007286,
         /// #7858c3, #c2185b, #d93025, #54240e, #633e04, #521d28, #202124, \#083018
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("backgroundColor")]
+        [System.Text.Json.Serialization.JsonPropertyName("backgroundColor")]
         public virtual string BackgroundColor { get; set; }
 
         /// <summary>
@@ -8543,7 +8543,7 @@ namespace Google.Apis.Gmail.v1.Data
         /// \#662e37, #ebdbde, #cca6ac, #094228, #42d692, #16a765, #757575, #1e53b8, \#007286, #7858c3, #c2185b,
         /// #d93025, #54240e, #633e04, #521d28, #202124, \#083018
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("textColor")]
+        [System.Text.Json.Serialization.JsonPropertyName("textColor")]
         public virtual string TextColor { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -8566,7 +8566,7 @@ namespace Google.Apis.Gmail.v1.Data
         /// on a particular client, said client automatically chooses to display in the closest supported variant (or a
         /// reasonable default).
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("displayLanguage")]
+        [System.Text.Json.Serialization.JsonPropertyName("displayLanguage")]
         public virtual string DisplayLanguage { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -8576,14 +8576,14 @@ namespace Google.Apis.Gmail.v1.Data
     public class ListCseIdentitiesResponse : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>One page of the list of CSE identities configured for the user.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("cseIdentities")]
+        [System.Text.Json.Serialization.JsonPropertyName("cseIdentities")]
         public virtual System.Collections.Generic.IList<CseIdentity> CseIdentities { get; set; }
 
         /// <summary>
         /// Pagination token to be passed to a subsequent ListCseIdentities call in order to retrieve the next page of
         /// identities. If this value is not returned or is the empty string, then no further pages remain.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("nextPageToken")]
+        [System.Text.Json.Serialization.JsonPropertyName("nextPageToken")]
         public virtual string NextPageToken { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -8593,14 +8593,14 @@ namespace Google.Apis.Gmail.v1.Data
     public class ListCseKeyPairsResponse : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>One page of the list of CSE key pairs installed for the user.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("cseKeyPairs")]
+        [System.Text.Json.Serialization.JsonPropertyName("cseKeyPairs")]
         public virtual System.Collections.Generic.IList<CseKeyPair> CseKeyPairs { get; set; }
 
         /// <summary>
         /// Pagination token to be passed to a subsequent ListCseKeyPairs call in order to retrieve the next page of key
         /// pairs. If this value is not returned, then no further pages remain.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("nextPageToken")]
+        [System.Text.Json.Serialization.JsonPropertyName("nextPageToken")]
         public virtual string NextPageToken { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -8614,7 +8614,7 @@ namespace Google.Apis.Gmail.v1.Data
         /// List of the user's delegates (with any verification status). If an account doesn't have delegates, this
         /// field doesn't appear.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("delegates")]
+        [System.Text.Json.Serialization.JsonPropertyName("delegates")]
         public virtual System.Collections.Generic.IList<Delegate> Delegates { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -8629,15 +8629,15 @@ namespace Google.Apis.Gmail.v1.Data
         /// [`messages.get`](https://developers.google.com/workspace/gmail/api/v1/reference/users/messages/get) method
         /// can fetch additional message details.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("drafts")]
+        [System.Text.Json.Serialization.JsonPropertyName("drafts")]
         public virtual System.Collections.Generic.IList<Draft> Drafts { get; set; }
 
         /// <summary>Token to retrieve the next page of results in the list.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("nextPageToken")]
+        [System.Text.Json.Serialization.JsonPropertyName("nextPageToken")]
         public virtual string NextPageToken { get; set; }
 
         /// <summary>Estimated total number of results.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("resultSizeEstimate")]
+        [System.Text.Json.Serialization.JsonPropertyName("resultSizeEstimate")]
         public virtual System.Nullable<long> ResultSizeEstimate { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -8648,7 +8648,7 @@ namespace Google.Apis.Gmail.v1.Data
     public class ListFiltersResponse : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>List of a user's filters.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("filter")]
+        [System.Text.Json.Serialization.JsonPropertyName("filter")]
         public virtual System.Collections.Generic.IList<Filter> Filter { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -8659,7 +8659,7 @@ namespace Google.Apis.Gmail.v1.Data
     public class ListForwardingAddressesResponse : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>List of addresses that may be used for forwarding.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("forwardingAddresses")]
+        [System.Text.Json.Serialization.JsonPropertyName("forwardingAddresses")]
         public virtual System.Collections.Generic.IList<ForwardingAddress> ForwardingAddresses { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -8672,15 +8672,15 @@ namespace Google.Apis.Gmail.v1.Data
         /// List of history records. Any `messages` contained in the response will typically only have `id` and
         /// `threadId` fields populated.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("history")]
+        [System.Text.Json.Serialization.JsonPropertyName("history")]
         public virtual System.Collections.Generic.IList<History> History { get; set; }
 
         /// <summary>The ID of the mailbox's current history record.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("historyId")]
+        [System.Text.Json.Serialization.JsonPropertyName("historyId")]
         public virtual System.Nullable<ulong> HistoryId { get; set; }
 
         /// <summary>Page token to retrieve the next page of results in the list.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("nextPageToken")]
+        [System.Text.Json.Serialization.JsonPropertyName("nextPageToken")]
         public virtual string NextPageToken { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -8695,7 +8695,7 @@ namespace Google.Apis.Gmail.v1.Data
         /// [`labels.get`](https://developers.google.com/workspace/gmail/api/v1/reference/users/labels/get) method can
         /// fetch additional label details.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("labels")]
+        [System.Text.Json.Serialization.JsonPropertyName("labels")]
         public virtual System.Collections.Generic.IList<Label> Labels { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -8708,15 +8708,15 @@ namespace Google.Apis.Gmail.v1.Data
         /// List of messages. Note that each message resource contains only an `id` and a `threadId`. Additional message
         /// details can be fetched using the messages.get method.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("messages")]
+        [System.Text.Json.Serialization.JsonPropertyName("messages")]
         public virtual System.Collections.Generic.IList<Message> Messages { get; set; }
 
         /// <summary>Token to retrieve the next page of results in the list.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("nextPageToken")]
+        [System.Text.Json.Serialization.JsonPropertyName("nextPageToken")]
         public virtual string NextPageToken { get; set; }
 
         /// <summary>Estimated total number of results.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("resultSizeEstimate")]
+        [System.Text.Json.Serialization.JsonPropertyName("resultSizeEstimate")]
         public virtual System.Nullable<long> ResultSizeEstimate { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -8727,7 +8727,7 @@ namespace Google.Apis.Gmail.v1.Data
     public class ListSendAsResponse : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>List of send-as aliases.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("sendAs")]
+        [System.Text.Json.Serialization.JsonPropertyName("sendAs")]
         public virtual System.Collections.Generic.IList<SendAs> SendAs { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -8737,7 +8737,7 @@ namespace Google.Apis.Gmail.v1.Data
     public class ListSmimeInfoResponse : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>List of SmimeInfo.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("smimeInfo")]
+        [System.Text.Json.Serialization.JsonPropertyName("smimeInfo")]
         public virtual System.Collections.Generic.IList<SmimeInfo> SmimeInfo { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -8747,11 +8747,11 @@ namespace Google.Apis.Gmail.v1.Data
     public class ListThreadsResponse : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>Page token to retrieve the next page of results in the list.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("nextPageToken")]
+        [System.Text.Json.Serialization.JsonPropertyName("nextPageToken")]
         public virtual string NextPageToken { get; set; }
 
         /// <summary>Estimated total number of results.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("resultSizeEstimate")]
+        [System.Text.Json.Serialization.JsonPropertyName("resultSizeEstimate")]
         public virtual System.Nullable<long> ResultSizeEstimate { get; set; }
 
         /// <summary>
@@ -8759,7 +8759,7 @@ namespace Google.Apis.Gmail.v1.Data
         /// `messages` for a given thread can be fetched using the
         /// [`threads.get`](https://developers.google.com/workspace/gmail/api/v1/reference/users/threads/get) method.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("threads")]
+        [System.Text.Json.Serialization.JsonPropertyName("threads")]
         public virtual System.Collections.Generic.IList<Thread> Threads { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -8776,15 +8776,15 @@ namespace Google.Apis.Gmail.v1.Data
         /// limit of 20 Classification Label values per request. If the Classification Label values exceeds the maximum
         /// allowed number, the request fails.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("classificationLabelValues")]
+        [System.Text.Json.Serialization.JsonPropertyName("classificationLabelValues")]
         public virtual System.Collections.Generic.IList<ClassificationLabelValue> ClassificationLabelValues { get; set; }
 
         /// <summary>The ID of the last history record that modified this message.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("historyId")]
+        [System.Text.Json.Serialization.JsonPropertyName("historyId")]
         public virtual System.Nullable<ulong> HistoryId { get; set; }
 
         /// <summary>The immutable ID of the message.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("id")]
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
         public virtual string Id { get; set; }
 
         /// <summary>
@@ -8793,15 +8793,15 @@ namespace Google.Apis.Gmail.v1.Data
         /// reliable than the `Date` header. However, for API-migrated mail, it can be configured by client to be based
         /// on the `Date` header.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("internalDate")]
+        [System.Text.Json.Serialization.JsonPropertyName("internalDate")]
         public virtual System.Nullable<long> InternalDate { get; set; }
 
         /// <summary>List of IDs of labels applied to this message.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("labelIds")]
+        [System.Text.Json.Serialization.JsonPropertyName("labelIds")]
         public virtual System.Collections.Generic.IList<string> LabelIds { get; set; }
 
         /// <summary>The parsed email structure in the message parts.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("payload")]
+        [System.Text.Json.Serialization.JsonPropertyName("payload")]
         public virtual MessagePart Payload { get; set; }
 
         /// <summary>
@@ -8809,15 +8809,15 @@ namespace Google.Apis.Gmail.v1.Data
         /// and `drafts.get` responses when the `format=RAW` parameter is supplied. @required gmail.users.drafts.create
         /// gmail.users.drafts.update
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("raw")]
+        [System.Text.Json.Serialization.JsonPropertyName("raw")]
         public virtual string Raw { get; set; }
 
         /// <summary>Estimated size in bytes of the message.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("sizeEstimate")]
+        [System.Text.Json.Serialization.JsonPropertyName("sizeEstimate")]
         public virtual System.Nullable<int> SizeEstimate { get; set; }
 
         /// <summary>A short part of the message text.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("snippet")]
+        [System.Text.Json.Serialization.JsonPropertyName("snippet")]
         public virtual string Snippet { get; set; }
 
         /// <summary>
@@ -8826,7 +8826,7 @@ namespace Google.Apis.Gmail.v1.Data
         /// with your request. 2. The `References` and `In-Reply-To` headers must be set in compliance with the [RFC
         /// 2822](https://tools.ietf.org/html/rfc2822) standard. 3. The `Subject` headers must match.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("threadId")]
+        [System.Text.Json.Serialization.JsonPropertyName("threadId")]
         public virtual string ThreadId { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -8837,28 +8837,28 @@ namespace Google.Apis.Gmail.v1.Data
     public class MessagePart : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>The message part body for this part, which may be empty for container MIME message parts.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("body")]
+        [System.Text.Json.Serialization.JsonPropertyName("body")]
         public virtual MessagePartBody Body { get; set; }
 
         /// <summary>
         /// The filename of the attachment. Only present if this message part represents an attachment.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("filename")]
+        [System.Text.Json.Serialization.JsonPropertyName("filename")]
         public virtual string Filename { get; set; }
 
         /// <summary>
         /// List of headers on this message part. For the top-level message part, representing the entire message
         /// payload, it will contain the standard RFC 2822 email headers such as `To`, `From`, and `Subject`.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("headers")]
+        [System.Text.Json.Serialization.JsonPropertyName("headers")]
         public virtual System.Collections.Generic.IList<MessagePartHeader> Headers { get; set; }
 
         /// <summary>The MIME type of the message part.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("mimeType")]
+        [System.Text.Json.Serialization.JsonPropertyName("mimeType")]
         public virtual string MimeType { get; set; }
 
         /// <summary>The immutable ID of the message part.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("partId")]
+        [System.Text.Json.Serialization.JsonPropertyName("partId")]
         public virtual string PartId { get; set; }
 
         /// <summary>
@@ -8866,7 +8866,7 @@ namespace Google.Apis.Gmail.v1.Data
         /// `multipart/*`. For non- container MIME message part types, such as `text/plain`, this field is empty. For
         /// more information, see RFC 1521.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("parts")]
+        [System.Text.Json.Serialization.JsonPropertyName("parts")]
         public virtual System.Collections.Generic.IList<MessagePart> Parts { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -8881,7 +8881,7 @@ namespace Google.Apis.Gmail.v1.Data
         /// `messages.attachments.get` request. When not present, the entire content of the message part body is
         /// contained in the data field.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("attachmentId")]
+        [System.Text.Json.Serialization.JsonPropertyName("attachmentId")]
         public virtual string AttachmentId { get; set; }
 
         /// <summary>
@@ -8889,11 +8889,11 @@ namespace Google.Apis.Gmail.v1.Data
         /// that have no message body or when the body data is sent as a separate attachment. An attachment ID is
         /// present if the body data is contained in a separate attachment.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("data")]
+        [System.Text.Json.Serialization.JsonPropertyName("data")]
         public virtual string Data { get; set; }
 
         /// <summary>Number of bytes for the message part data (encoding notwithstanding).</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("size")]
+        [System.Text.Json.Serialization.JsonPropertyName("size")]
         public virtual System.Nullable<int> Size { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -8903,11 +8903,11 @@ namespace Google.Apis.Gmail.v1.Data
     public class MessagePartHeader : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>The name of the header before the `:` separator. For example, `To`.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("name")]
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
         public virtual string Name { get; set; }
 
         /// <summary>The value of the header after the `:` separator. For example, `someuser@example.com`.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("value")]
+        [System.Text.Json.Serialization.JsonPropertyName("value")]
         public virtual string Value { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -8923,23 +8923,23 @@ namespace Google.Apis.Gmail.v1.Data
         /// and the final total number of Classification Label values exceeds the maximum allowed number of
         /// Classification Label values per message, the modification fails.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("addClassificationLabels")]
+        [System.Text.Json.Serialization.JsonPropertyName("addClassificationLabels")]
         public virtual System.Collections.Generic.IList<ClassificationLabelValue> AddClassificationLabels { get; set; }
 
         /// <summary>
         /// A list of IDs of labels to add to this message. You can add up to 100 labels with each update.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("addLabelIds")]
+        [System.Text.Json.Serialization.JsonPropertyName("addLabelIds")]
         public virtual System.Collections.Generic.IList<string> AddLabelIds { get; set; }
 
         /// <summary>A list of Classification Label values to remove from this message.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("removeClassificationLabelIds")]
+        [System.Text.Json.Serialization.JsonPropertyName("removeClassificationLabelIds")]
         public virtual System.Collections.Generic.IList<string> RemoveClassificationLabelIds { get; set; }
 
         /// <summary>
         /// A list IDs of labels to remove from this message. You can remove up to 100 labels with each update.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("removeLabelIds")]
+        [System.Text.Json.Serialization.JsonPropertyName("removeLabelIds")]
         public virtual System.Collections.Generic.IList<string> RemoveLabelIds { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -8951,13 +8951,13 @@ namespace Google.Apis.Gmail.v1.Data
         /// <summary>
         /// A list of IDs of labels to add to this thread. You can add up to 100 labels with each update.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("addLabelIds")]
+        [System.Text.Json.Serialization.JsonPropertyName("addLabelIds")]
         public virtual System.Collections.Generic.IList<string> AddLabelIds { get; set; }
 
         /// <summary>
         /// A list of IDs of labels to remove from this thread. You can remove up to 100 labels with each update.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("removeLabelIds")]
+        [System.Text.Json.Serialization.JsonPropertyName("removeLabelIds")]
         public virtual System.Collections.Generic.IList<string> RemoveLabelIds { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -8975,11 +8975,11 @@ namespace Google.Apis.Gmail.v1.Data
     public class PopSettings : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>The range of messages which are accessible via POP.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("accessWindow")]
+        [System.Text.Json.Serialization.JsonPropertyName("accessWindow")]
         public virtual string AccessWindow { get; set; }
 
         /// <summary>The action that will be executed on a message after it has been fetched via POP.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("disposition")]
+        [System.Text.Json.Serialization.JsonPropertyName("disposition")]
         public virtual string Disposition { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -8990,19 +8990,19 @@ namespace Google.Apis.Gmail.v1.Data
     public class Profile : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>The user's email address.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("emailAddress")]
+        [System.Text.Json.Serialization.JsonPropertyName("emailAddress")]
         public virtual string EmailAddress { get; set; }
 
         /// <summary>The ID of the mailbox's current history record.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("historyId")]
+        [System.Text.Json.Serialization.JsonPropertyName("historyId")]
         public virtual System.Nullable<ulong> HistoryId { get; set; }
 
         /// <summary>The total number of messages in the mailbox.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("messagesTotal")]
+        [System.Text.Json.Serialization.JsonPropertyName("messagesTotal")]
         public virtual System.Nullable<int> MessagesTotal { get; set; }
 
         /// <summary>The total number of threads in the mailbox.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("threadsTotal")]
+        [System.Text.Json.Serialization.JsonPropertyName("threadsTotal")]
         public virtual System.Nullable<int> ThreadsTotal { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -9022,7 +9022,7 @@ namespace Google.Apis.Gmail.v1.Data
         /// associated with the account. If the admin has disabled the ability for users to update their name format,
         /// requests to update this field for the primary login will silently fail.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("displayName")]
+        [System.Text.Json.Serialization.JsonPropertyName("displayName")]
         public virtual string DisplayName { get; set; }
 
         /// <summary>
@@ -9031,7 +9031,7 @@ namespace Google.Apis.Gmail.v1.Data
         /// the only legal value that clients may write to this field is `true`. Changing this from `false` to `true`
         /// for an address will result in this field becoming `false` for the other previous default address.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("isDefault")]
+        [System.Text.Json.Serialization.JsonPropertyName("isDefault")]
         public virtual System.Nullable<bool> IsDefault { get; set; }
 
         /// <summary>
@@ -9039,28 +9039,28 @@ namespace Google.Apis.Gmail.v1.Data
         /// one primary address, and it cannot be deleted from the collection of send-as aliases. This field is
         /// read-only.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("isPrimary")]
+        [System.Text.Json.Serialization.JsonPropertyName("isPrimary")]
         public virtual System.Nullable<bool> IsPrimary { get; set; }
 
         /// <summary>
         /// An optional email address that is included in a "Reply-To:" header for mail sent using this alias. If this
         /// is empty, Gmail will not generate a "Reply-To:" header.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("replyToAddress")]
+        [System.Text.Json.Serialization.JsonPropertyName("replyToAddress")]
         public virtual string ReplyToAddress { get; set; }
 
         /// <summary>
         /// The email address that appears in the "From:" header for mail sent using this alias. This is read-only for
         /// all operations except create.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("sendAsEmail")]
+        [System.Text.Json.Serialization.JsonPropertyName("sendAsEmail")]
         public virtual string SendAsEmail { get; set; }
 
         /// <summary>
         /// An optional HTML signature that is included in messages composed with this alias in the Gmail web UI. This
         /// signature is added to new emails only.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("signature")]
+        [System.Text.Json.Serialization.JsonPropertyName("signature")]
         public virtual string Signature { get; set; }
 
         /// <summary>
@@ -9068,21 +9068,21 @@ namespace Google.Apis.Gmail.v1.Data
         /// empty, outbound mail will be sent directly from Gmail's servers to the destination SMTP service. This
         /// setting only applies to custom "from" aliases.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("smtpMsa")]
+        [System.Text.Json.Serialization.JsonPropertyName("smtpMsa")]
         public virtual SmtpMsa SmtpMsa { get; set; }
 
         /// <summary>
         /// Whether Gmail should treat this address as an alias for the user's primary email address. This setting only
         /// applies to custom "from" aliases.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("treatAsAlias")]
+        [System.Text.Json.Serialization.JsonPropertyName("treatAsAlias")]
         public virtual System.Nullable<bool> TreatAsAlias { get; set; }
 
         /// <summary>
         /// Indicates whether this address has been verified for use as a send-as alias. Read-only. This setting only
         /// applies to custom "from" aliases.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("verificationStatus")]
+        [System.Text.Json.Serialization.JsonPropertyName("verificationStatus")]
         public virtual string VerificationStatus { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -9093,11 +9093,11 @@ namespace Google.Apis.Gmail.v1.Data
     public class SignAndEncryptKeyPairs : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>The ID of the CseKeyPair that encrypts signed outgoing mail.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("encryptionKeyPairId")]
+        [System.Text.Json.Serialization.JsonPropertyName("encryptionKeyPairId")]
         public virtual string EncryptionKeyPairId { get; set; }
 
         /// <summary>The ID of the CseKeyPair that signs outgoing mail.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("signingKeyPairId")]
+        [System.Text.Json.Serialization.JsonPropertyName("signingKeyPairId")]
         public virtual string SigningKeyPairId { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -9108,30 +9108,30 @@ namespace Google.Apis.Gmail.v1.Data
     public class SmimeInfo : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>Encrypted key password, when key is encrypted.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("encryptedKeyPassword")]
+        [System.Text.Json.Serialization.JsonPropertyName("encryptedKeyPassword")]
         public virtual string EncryptedKeyPassword { get; set; }
 
         /// <summary>When the certificate expires (in milliseconds since epoch).</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("expiration")]
+        [System.Text.Json.Serialization.JsonPropertyName("expiration")]
         public virtual System.Nullable<long> Expiration { get; set; }
 
         /// <summary>The immutable ID for the SmimeInfo.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("id")]
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
         public virtual string Id { get; set; }
 
         /// <summary>Whether this SmimeInfo is the default one for this user's send-as address.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("isDefault")]
+        [System.Text.Json.Serialization.JsonPropertyName("isDefault")]
         public virtual System.Nullable<bool> IsDefault { get; set; }
 
         /// <summary>The S/MIME certificate issuer's common name.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("issuerCn")]
+        [System.Text.Json.Serialization.JsonPropertyName("issuerCn")]
         public virtual string IssuerCn { get; set; }
 
         /// <summary>
         /// PEM formatted X509 concatenated certificate string (standard base64 encoding). Format used for returning
         /// key, which includes public key as well as certificate chain (not private key).
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("pem")]
+        [System.Text.Json.Serialization.JsonPropertyName("pem")]
         public virtual string Pem { get; set; }
 
         /// <summary>
@@ -9140,7 +9140,7 @@ namespace Google.Apis.Gmail.v1.Data
         /// intended to be exported. PKCS#12 may be encrypted, in which case encryptedKeyPassword should be set
         /// appropriately.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("pkcs12")]
+        [System.Text.Json.Serialization.JsonPropertyName("pkcs12")]
         public virtual string Pkcs12 { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -9151,29 +9151,29 @@ namespace Google.Apis.Gmail.v1.Data
     public class SmtpMsa : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>The hostname of the SMTP service. Required.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("host")]
+        [System.Text.Json.Serialization.JsonPropertyName("host")]
         public virtual string Host { get; set; }
 
         /// <summary>
         /// The password that will be used for authentication with the SMTP service. This is a write-only field that can
         /// be specified in requests to create or update SendAs settings; it is never populated in responses.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("password")]
+        [System.Text.Json.Serialization.JsonPropertyName("password")]
         public virtual string Password { get; set; }
 
         /// <summary>The port of the SMTP service. Required.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("port")]
+        [System.Text.Json.Serialization.JsonPropertyName("port")]
         public virtual System.Nullable<int> Port { get; set; }
 
         /// <summary>The protocol that will be used to secure communication with the SMTP service. Required.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("securityMode")]
+        [System.Text.Json.Serialization.JsonPropertyName("securityMode")]
         public virtual string SecurityMode { get; set; }
 
         /// <summary>
         /// The username that will be used for authentication with the SMTP service. This is a write-only field that can
         /// be specified in requests to create or update SendAs settings; it is never populated in responses.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("username")]
+        [System.Text.Json.Serialization.JsonPropertyName("username")]
         public virtual string Username { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -9184,19 +9184,19 @@ namespace Google.Apis.Gmail.v1.Data
     public class Thread : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>The ID of the last history record that modified this thread.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("historyId")]
+        [System.Text.Json.Serialization.JsonPropertyName("historyId")]
         public virtual System.Nullable<ulong> HistoryId { get; set; }
 
         /// <summary>The unique ID of the thread.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("id")]
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
         public virtual string Id { get; set; }
 
         /// <summary>The list of messages in the thread.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("messages")]
+        [System.Text.Json.Serialization.JsonPropertyName("messages")]
         public virtual System.Collections.Generic.IList<Message> Messages { get; set; }
 
         /// <summary>A short part of the message text.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("snippet")]
+        [System.Text.Json.Serialization.JsonPropertyName("snippet")]
         public virtual string Snippet { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -9210,7 +9210,7 @@ namespace Google.Apis.Gmail.v1.Data
     public class VacationSettings : Google.Apis.Requests.IDirectResponseSchema
     {
         /// <summary>Flag that controls whether Gmail automatically replies to messages.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("enableAutoReply")]
+        [System.Text.Json.Serialization.JsonPropertyName("enableAutoReply")]
         public virtual System.Nullable<bool> EnableAutoReply { get; set; }
 
         /// <summary>
@@ -9218,41 +9218,41 @@ namespace Google.Apis.Gmail.v1.Data
         /// reply only to messages that it receives before the end time. If both `startTime` and `endTime` are
         /// specified, `startTime` must precede `endTime`.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("endTime")]
+        [System.Text.Json.Serialization.JsonPropertyName("endTime")]
         public virtual System.Nullable<long> EndTime { get; set; }
 
         /// <summary>
         /// Response body in HTML format. Gmail will sanitize the HTML before storing it. If both
         /// `response_body_plain_text` and `response_body_html` are specified, `response_body_html` will be used.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("responseBodyHtml")]
+        [System.Text.Json.Serialization.JsonPropertyName("responseBodyHtml")]
         public virtual string ResponseBodyHtml { get; set; }
 
         /// <summary>
         /// Response body in plain text format. If both `response_body_plain_text` and `response_body_html` are
         /// specified, `response_body_html` will be used.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("responseBodyPlainText")]
+        [System.Text.Json.Serialization.JsonPropertyName("responseBodyPlainText")]
         public virtual string ResponseBodyPlainText { get; set; }
 
         /// <summary>
         /// Optional text to prepend to the subject line in vacation responses. In order to enable auto-replies, either
         /// the response subject or the response body must be nonempty.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("responseSubject")]
+        [System.Text.Json.Serialization.JsonPropertyName("responseSubject")]
         public virtual string ResponseSubject { get; set; }
 
         /// <summary>
         /// Flag that determines whether responses are sent to recipients who are not in the user's list of contacts.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("restrictToContacts")]
+        [System.Text.Json.Serialization.JsonPropertyName("restrictToContacts")]
         public virtual System.Nullable<bool> RestrictToContacts { get; set; }
 
         /// <summary>
         /// Flag that determines whether responses are sent to recipients who are outside of the user's domain. This
         /// feature is only available for Google Workspace users.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("restrictToDomain")]
+        [System.Text.Json.Serialization.JsonPropertyName("restrictToDomain")]
         public virtual System.Nullable<bool> RestrictToDomain { get; set; }
 
         /// <summary>
@@ -9260,7 +9260,7 @@ namespace Google.Apis.Gmail.v1.Data
         /// reply only to messages that it receives after the start time. If both `startTime` and `endTime` are
         /// specified, `startTime` must precede `endTime`.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("startTime")]
+        [System.Text.Json.Serialization.JsonPropertyName("startTime")]
         public virtual System.Nullable<long> StartTime { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -9274,21 +9274,21 @@ namespace Google.Apis.Gmail.v1.Data
         /// Filtering behavior of `labelIds list` specified. This field is deprecated because it caused incorrect
         /// behavior in some cases; use `label_filter_behavior` instead.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("labelFilterAction")]
+        [System.Text.Json.Serialization.JsonPropertyName("labelFilterAction")]
         public virtual string LabelFilterAction { get; set; }
 
         /// <summary>
         /// Filtering behavior of `labelIds list` specified. This field replaces `label_filter_action`; if set,
         /// `label_filter_action` is ignored.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("labelFilterBehavior")]
+        [System.Text.Json.Serialization.JsonPropertyName("labelFilterBehavior")]
         public virtual string LabelFilterBehavior { get; set; }
 
         /// <summary>
         /// List of label_ids to restrict notifications about. By default, if unspecified, all changes are pushed out.
         /// If specified then dictates which labels are required for a push notification to be generated.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("labelIds")]
+        [System.Text.Json.Serialization.JsonPropertyName("labelIds")]
         public virtual System.Collections.Generic.IList<string> LabelIds { get; set; }
 
         /// <summary>
@@ -9298,7 +9298,7 @@ namespace Google.Apis.Gmail.v1.Data
         /// format). Note that the "my-project-identifier" portion must exactly match your Google developer project id
         /// (the one executing this watch request).
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("topicName")]
+        [System.Text.Json.Serialization.JsonPropertyName("topicName")]
         public virtual string TopicName { get; set; }
 
         /// <summary>The ETag of the item.</summary>
@@ -9312,11 +9312,11 @@ namespace Google.Apis.Gmail.v1.Data
         /// When Gmail will stop sending notifications for mailbox updates (epoch millis). Call `watch` again before
         /// this time to renew the watch.
         /// </summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("expiration")]
+        [System.Text.Json.Serialization.JsonPropertyName("expiration")]
         public virtual System.Nullable<long> Expiration { get; set; }
 
         /// <summary>The ID of the mailbox's current history record.</summary>
-        [Newtonsoft.Json.JsonPropertyAttribute("historyId")]
+        [System.Text.Json.Serialization.JsonPropertyName("historyId")]
         public virtual System.Nullable<ulong> HistoryId { get; set; }
 
         /// <summary>The ETag of the item.</summary>
