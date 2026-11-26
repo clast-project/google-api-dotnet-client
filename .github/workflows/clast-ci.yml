@@ -1,7 +1,8 @@
 name: Clast CI
 
 # Build + test the Clast support libraries (Core/Apis/Auth) and the transformed Storage.v1 test clients,
-# and build the transformed generated REST clients (Storage.v1, Bigquery.v2, Gmail.v1) on every OS.
+# and build the transformed generated REST clients (Storage.v1, Bigquery.v2, Gmail.v1) on every OS. A separate
+# aot-smoke job (Linux) publishes Tools/ClastAotSmoke with Native AOT and runs the binary.
 # Tests run with the Clast flag OFF (default) so the assemblies keep their original identity and the suites
 # behave exactly as upstream. net8.0/net10.0 run on all three OSes; net472 (Windows only) is selected
 # automatically by the test projects.
@@ -51,3 +52,38 @@ jobs:
           dotnet build Src/Generated/Google.Apis.Storage.v1/Google.Apis.Storage.v1.csproj -c Release
           dotnet build Src/Generated/Google.Apis.Bigquery.v2/Google.Apis.Bigquery.v2.csproj -c Release
           dotnet build Src/Generated/Google.Apis.Gmail.v1/Google.Apis.Gmail.v1.csproj -c Release
+
+  # Native-AOT smoke test. The IsAotCompatible analyzers above only see each library's own code; a schema or
+  # request missing from a client's committed *.JsonContext.cs surfaces only at runtime, in a binary with
+  # reflection-based serialization disabled. So publish Tools/ClastAotSmoke with PublishAot (any trim/AOT warning
+  # fails it) and run the native binary. Linux only: one OS is enough to prove the metadata, and it keeps the
+  # job off the slower/scarcer macOS runners.
+  aot-smoke:
+    runs-on: ubuntu-latest
+    env:
+      DOTNET_NOLOGO: true
+      DOTNET_CLI_TELEMETRY_OPTOUT: true
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v5
+        with:
+          dotnet-version: |
+            8.0.x
+            10.0.x
+
+      # Completeness check for the committed AOT registries (catches a request/schema upstream added that the
+      # smoke test doesn't happen to exercise).
+      - name: JsonContext drift check
+        run: python3 Tools/ClastJsonContextGen/regenerate.py --check
+
+      - name: Native-AOT prerequisites
+        run: |
+          dpkg -s clang zlib1g-dev >/dev/null 2>&1 || { sudo apt-get update && sudo apt-get install -y --no-install-recommends clang zlib1g-dev; }
+
+      - name: Publish (Native AOT)
+        run: dotnet publish Tools/ClastAotSmoke/ClastAotSmoke.csproj -c Release -r linux-x64 -o "$RUNNER_TEMP/aot-smoke"
+
+      - name: Run native binary
+        run: $RUNNER_TEMP/aot-smoke/ClastAotSmoke

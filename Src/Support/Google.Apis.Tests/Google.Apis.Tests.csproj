@@ -24,6 +24,7 @@
          so each registers its source-generated context via its own module initializer. -->
     <ProjectReference Include="..\..\Generated\Google.Apis.Translate.v2\Google.Apis.Translate.v2.csproj" />
     <ProjectReference Include="..\..\Generated\Google.Apis.ManufacturerCenter.v1\Google.Apis.ManufacturerCenter.v1.csproj" />
+    <ProjectReference Include="..\..\Generated\Google.Apis.Gmail.v1\Google.Apis.Gmail.v1.csproj" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)'=='net472'">

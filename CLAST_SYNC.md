@@ -69,8 +69,19 @@ Steps (example is this repo; take the target versions from the `upstream-sync` i
 5. **Build + test exactly as `.github/workflows/clast-ci.yml` does:**
    `dotnet build` the Storage.v1, Bigquery.v2 and Gmail.v1 generated clients (all TFMs, incl. net10),
    and `dotnet test` `Google.Apis.Tests` + `Google.Apis.Auth.Tests` (`-c Release`). Then
-   validate the publish path itself: `dotnet pack <proj> -c Release -p:Clast=true` — the
-   package should come out as `Clast.<Name>.<version>.nupkg`.
+   run the Native-AOT smoke test as the `aot-smoke` job does:
+   `dotnet publish Tools/ClastAotSmoke/ClastAotSmoke.csproj -c Release -o <dir>` and run the
+   native binary (needs clang + zlib1g-dev on Linux, or the MSVC C++ tools on Windows). Then
+   validate the publish path itself: `dotnet pack <proj> -c Release -p:Clast=true
+   -p:ClastKeyPath=<repo>/Clast.snk` — the package should come out as
+   `Clast.<Name>.<version>.nupkg`, and `Tools/ClastVerifySigning/verify-signing.ps1 <dir>`
+   should report every assembly signed with Clast.snk (`clast-publish.yml` enforces this).
+
+**Porting a new generated client:** besides the csproj/JsonContext/workflow wiring, reference it
+from `Google.Apis.Tests` with a runtime test, and add it (plus a few representative checks) to
+`Tools/ClastAotSmoke`. Put the Clast.snk `AssemblyOriginatorKeyFile` override in the csproj's
+*last* `Clast=true` group: upstream assigns `google.apis.snk` unconditionally further down,
+and the last assignment wins.
 6. Update `.clast/upstream-baseline.json` to the merged versions.
 7. Commit, push, open a PR with `Closes #<issue>`. A human still merges it, then pushes the
    unified `v*` release tag on `google-api-dotnet-client` to publish.
